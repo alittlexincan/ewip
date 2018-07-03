@@ -357,7 +357,11 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
+<<<<<<< HEAD
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+=======
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+>>>>>>> 9b6ce9f7ec5590f7e9c398d29ec84d83bd61e7cb
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
