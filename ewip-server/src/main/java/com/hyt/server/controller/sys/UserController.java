@@ -34,7 +34,7 @@ public class UserController {
     @ApiImplicitParams({
             @ApiImplicitParam(name="loginName",value="登陆名称",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="loginPassword",value="登陆密码",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="name",value="真实名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="真实名称", required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="sex",value="用户性别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="phone",value="用户电话",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="areaId",value="用户所属地区",required = true, dataType = "String",paramType = "query")

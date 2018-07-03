@@ -28,10 +28,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     @Override
     public PageInfo<User> selectAll(Map<String,Object> map) {
         MybatisPage.getPageSize(map);
-        System.out.println(map);
         PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
-        System.out.println(MybatisPage.page);
-        System.out.println(MybatisPage.limit);
         List<User> userInfoList = this.userMapper.findAll(map);
         return new PageInfo<>(userInfoList);
     }
