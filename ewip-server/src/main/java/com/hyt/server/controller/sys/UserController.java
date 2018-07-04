@@ -29,6 +29,18 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    @ApiOperation(value="用户登录信息",httpMethod="POST",notes="根据参数列表查询用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="loginName",value="登陆名称",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="loginPassword",value="登陆密码",required = true, dataType = "String",paramType = "query")
+    })
+    @PostMapping("/login")
+    public ResultObject<User> login(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        System.out.println(map);
+        User user = this.userService.login(map);
+        return ResultResponse.ok(user);
+    }
+
 
     @ApiOperation(value="添加用户信息",httpMethod="POST",notes="根据参数列表添加用户信息")
     @ApiImplicitParams({

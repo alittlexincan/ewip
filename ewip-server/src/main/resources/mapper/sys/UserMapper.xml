@@ -34,4 +34,17 @@
         </choose>
     </select>
 
+    <!-- 用户登录信息 -->
+    <select id="login" parameterType="map" resultType="com.hyt.server.entity.sys.User">
+        select
+        <include refid="Base_Column_List"/>
+        FROM user u where 1=1
+        <if test="loginName != null">
+            AND login_name = #{loginName}
+        </if>
+        <if test="loginPassword != null">
+            AND login_password = #{loginPassword}
+        </if>
+    </select>
+
 </mapper>

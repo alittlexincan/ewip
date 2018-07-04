@@ -15,4 +15,7 @@ import java.util.Map;
 public interface IUserService extends IBaseService<User> {
 
     PageInfo<User> selectAll(Map<String,Object> map);
+
+    User login(Map<String, Object> map);
+
 }

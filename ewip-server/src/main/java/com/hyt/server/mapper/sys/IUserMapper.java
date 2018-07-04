@@ -19,4 +19,6 @@ public interface IUserMapper extends IBaseMapper<User> {
 
     List<User> findAll(Map<String,Object> map);
 
+    User login(Map<String,Object> map);
+
 }

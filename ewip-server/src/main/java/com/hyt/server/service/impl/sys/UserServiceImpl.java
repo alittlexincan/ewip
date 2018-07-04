@@ -26,11 +26,22 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     private IUserMapper userMapper;
 
     @Override
-    public PageInfo<User> selectAll(Map<String,Object> map) {
+    public PageInfo<User> selectAll(Map<String, Object> map) {
         MybatisPage.getPageSize(map);
         PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
         List<User> userInfoList = this.userMapper.findAll(map);
         return new PageInfo<>(userInfoList);
+    }
+
+
+    @Override
+    public User login(Map<String, Object> map) {
+        System.out.println(map);
+        User user = new User();
+        user.setLoginName(map.get("loginName").toString());
+        user.setLoginPassword(map.get("loginPassword").toString());
+        return userMapper.selectOne(user);
+
     }
 
 }

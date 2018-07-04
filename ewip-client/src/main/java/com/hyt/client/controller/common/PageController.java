@@ -23,8 +23,8 @@ public class PageController {
      * @return
      */
     @RequestMapping("/")
-    public String login(){
-        return "main/login";
+    public String signIn(){
+        return "main/signIn";
     }
 
     /**

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ewip.iml" filepath="$PROJECT_DIR$/ewip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-client/ewip-client.iml" filepath="$PROJECT_DIR$/ewip-client/ewip-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-eureka/ewip-eureka.iml" filepath="$PROJECT_DIR$/ewip-eureka/ewip-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-server/ewip-server.iml" filepath="$PROJECT_DIR$/ewip-server/ewip-server.iml" />
+    </modules>
+  </component>
+</project>

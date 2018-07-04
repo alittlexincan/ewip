@@ -11,5 +11,11 @@
         <module name="ewip-server" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ewip" target="1.8" />
+      <module name="ewip-client" target="1.8" />
+      <module name="ewip-eureka" target="1.8" />
+      <module name="ewip-server" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

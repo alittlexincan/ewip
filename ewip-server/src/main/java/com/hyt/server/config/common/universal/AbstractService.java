@@ -121,8 +121,8 @@ public abstract class AbstractService<T> implements IBaseService<T> {
 	 * @param recoed
 	 * @return T
 	 */
-	/*@Override
+	@Override
 	public T selectOne(T recoed){
 		return mapper.selectOne(recoed);
-	}*/
+	}
 }
