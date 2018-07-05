@@ -24,7 +24,16 @@ public class PageController {
      */
     @RequestMapping("/")
     public String signIn(){
-        return "main/signIn";
+        return "main/login";
+    }
+
+    /**
+     * 进入登录界面
+     * @return
+     */
+    @RequestMapping("/index")
+    public String index(){
+        return "main/index";
     }
 
     /**

@@ -8,10 +8,14 @@ spring:
     name: ewip-client
   thymeleaf:
     cache: false
+    mode: LEGACYHTML5
+  mvc:
+    favicon:
+      enabled: false
 
-eureka:
-  client:
-    service-url:
-      default-zone: http://192.168.2.102:8761/eureka/
-  instance:
-    ip-address: true
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://192.168.2.102:8761/eureka/
+#  instance:
+#    ip-address: true
