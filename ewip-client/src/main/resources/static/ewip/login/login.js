@@ -2,7 +2,8 @@
 
 layui.use(['form'], function(){
     var form = layui.form
-        ,$ = layui.$;
+        ,$ = layui.$
+        ,layer = layui.layer;
 
     //自定义验证规则
     form.verify({
@@ -23,10 +24,15 @@ layui.use(['form'], function(){
             async:true,
             type: "POST",
             data: data.field,
-            url: "user/login",
+            url: "employee/login",
             dataType: "json",
             success: function(json){
                 console.log(json);
+                if(json.code == 200 && json.data != null){
+                    window.location.href = 'index';
+                }else{
+                    layer.alert('用户名或密码错误');
+                }
                 return false;
             }
         });

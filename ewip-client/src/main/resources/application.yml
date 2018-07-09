@@ -13,9 +13,9 @@ spring:
     favicon:
       enabled: false
 
-#eureka:
-#  client:
-#    service-url:
-#      default-zone: http://192.168.2.102:8761/eureka/
-#  instance:
-#    ip-address: true
+eureka:
+  client:
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka/
+  instance:
+    ip-address: true

@@ -2,220 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="格式化">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_0_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_0_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_0_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_0_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_0_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/images/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/font/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/font/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/font/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_dataformat_jackson_dataformat_xml_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_2_7_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_2_7_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_core_1_0_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_core_1_0_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_buffer_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_codec_http_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_common_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_resolver_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_epoll_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_23_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_transport_native_unix_common_4_1_25_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_31.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_31.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_5_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_5_31.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_9_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_0_10_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_0_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_freemarker_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_0_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_0_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_0_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_0_1_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_0_1_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_0_3_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_0_6_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_5_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_7_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IEmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ewip-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IUserService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/app/sys/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/admin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/avatar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/column.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/comment.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/css3.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/email.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/page.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/panel.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/reset.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/var.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/demo.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/demo_fontclass.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/demo_symbol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/demo_unicode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/fonts/iconfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/images/login/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/js/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/js/module/dialog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/js/module/formate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/js/module/tool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/admin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/layui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/layui.mobile.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/code.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/laydate/default/laydate.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/icon-ext.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/layer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/loading-0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/loading-1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/modules/layer/default/loading-2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/font/iconfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/font/iconfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/font/iconfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/font/iconfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/10.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/11.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/12.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/13.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/14.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/15.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/16.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/17.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/18.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/19.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/20.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/21.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/22.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/23.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/24.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/25.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/26.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/27.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/28.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/29.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/30.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/31.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/32.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/33.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/34.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/35.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/36.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/37.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/38.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/39.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/4.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/40.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/41.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/42.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/43.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/44.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/45.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/46.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/47.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/48.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/49.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/5.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/50.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/51.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/52.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/53.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/54.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/55.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/56.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/57.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/58.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/59.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/6.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/60.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/61.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/62.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/63.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/64.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/65.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/66.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/67.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/68.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/69.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/7.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/70.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/71.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/8.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/images/face/9.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/carousel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/code.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/element.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/flow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/laydate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/layedit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/layer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/laypage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/laytpl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/mobile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/table.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/tree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/upload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/lay/modules/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/layui.all.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/layui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/signIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IEmployeeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/EmployeeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IEmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -241,61 +43,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
+      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="439" column="21" selection-start-line="439" selection-start-column="16" selection-end-line="439" selection-end-column="21" />
+            <state relative-caret-position="114">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/config.js">
+      <file leaf-file-name="EmployeeController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmployeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="107" column="24" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-240">
-              <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="321" column="34" lean-forward="true" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/view.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-19">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#669#670#0" expanded="true" />
+                <element signature="e#723#724#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/index.js">
+      <file leaf-file-name="IEmployeeService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IEmployeeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="76" lean-forward="true" selection-start-line="1" selection-start-column="76" selection-end-line="1" selection-end-column="76" />
+            <state relative-caret-position="76">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PageController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#688#689#0" expanded="true" />
+                <element signature="e#723#724#0" expanded="true" />
+                <element signature="e#826#827#0" expanded="true" />
+                <element signature="e#861#862#0" expanded="true" />
+                <element signature="e#962#963#0" expanded="true" />
+                <element signature="e#996#997#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -316,6 +116,9 @@
     <findStrings>
       <find>\n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?</find>
     </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -323,19 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/MenuController.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/user/main/index.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/user/main/login.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/user/user.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/app/user.js" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/mybatis/MybatisConfig.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/mvc/WebMvcConfig.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/druid/DruidDataSourceConfigurer.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/result/ResultResponse.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/result/ResultObject.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/universal/BaseModel.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/app/sys/user.js" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/EwipServerApplication.java" />
         <option value="$PROJECT_DIR$/ewip-eureka/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/page/MybatisPage.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" />
@@ -348,8 +138,6 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/login/LoginController.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/login/ILoginService.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/user.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/UserController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/mybatis/MybatisConfig.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/UserController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/mvc/WebMvcConfig.java" />
@@ -357,23 +145,38 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IUserService.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/universal/IBaseService.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/universal/AbstractService.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/UserMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-server/pom.xml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/User.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IUserService.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/signIn.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/console.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/css/login.css" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/config.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IUserService.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/UserController.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/common.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/ewip-client/pom.xml" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/config.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/index.js" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IEmployeeService.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/EmployeeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IEmployeeMapper.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IEmoloyeeService.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmoloyeeController.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IEmployeeService.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java" />
       </list>
     </option>
   </component>
@@ -395,10 +198,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="187" />
-    <option name="y" value="83" />
-    <option name="width" value="1346" />
-    <option name="height" value="751" />
+    <option name="x" value="108" />
+    <option name="y" value="37" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -477,6 +280,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -485,6 +299,17 @@
               <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -504,39 +329,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -556,14 +349,117 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -574,24 +470,24 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../WebStorm/ems" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\layuiadmin\modules" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\layuiadmin\layui\font" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
       <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static" />
       <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\login" />
       <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip" />
       <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\plugins\layui\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\layuiadmin\modules" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\java\com\hyt\client\controller\sys" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\java\com\hyt\client\service\sys" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -647,7 +543,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="EwipClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="EwipClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="ewip-client" />
       <extension name="coverage">
         <pattern>
@@ -657,7 +553,7 @@
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.hyt.client.EwipClientApplication" />
     </configuration>
-    <configuration name="EwipEurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="EwipEurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="ewip-eureka" />
       <extension name="coverage">
         <pattern>
@@ -667,7 +563,7 @@
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.hyt.eureka.EwipEurekaApplication" />
     </configuration>
-    <configuration name="EwipServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="EwipServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="ewip-server" />
       <extension name="coverage">
         <pattern>
@@ -701,9 +597,16 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.EwipEurekaApplication" />
-      <item itemvalue="Spring Boot.EwipClientApplication" />
       <item itemvalue="Spring Boot.EwipServerApplication" />
+      <item itemvalue="Spring Boot.EwipClientApplication" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.EwipClientApplication" />
+        <item itemvalue="Spring Boot.EwipServerApplication" />
+        <item itemvalue="Spring Boot.EwipEurekaApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -775,7 +678,12 @@
       <workItem from="1530665860259" duration="14193000" />
       <workItem from="1530692919582" duration="1829000" />
       <workItem from="1530755710013" duration="11403000" />
-      <workItem from="1530784932921" duration="6646000" />
+      <workItem from="1530784932921" duration="6889000" />
+      <workItem from="1530838178485" duration="1587000" />
+      <workItem from="1531016522642" duration="8149000" />
+      <workItem from="1531098764886" duration="2091000" />
+      <workItem from="1531116318378" duration="1291000" />
+      <workItem from="1531133509638" duration="2489000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -788,11 +696,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="366960000" />
+    <option name="totallyTimeSpent" value="382810000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50075644" side_tool="true" weight="0.39820358" />
@@ -804,18 +711,18 @@
       <window_info id="Structure" order="1" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49924356" weight="0.45658684" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49924356" weight="0.2769461" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32954547" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.21257485" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32954547" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26796407" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.09730539" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.25508606" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.21303074" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.29721814" />
       <window_info anchor="bottom" id="Problems" order="14" />
       <window_info anchor="right" id="Bean Validation" order="8" weight="0.32980332" />
       <window_info id="Web" order="6" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
@@ -843,10 +750,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="6" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="SpringBootApplicationConfigurationType">
@@ -864,21 +779,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="94" selection-start-line="94" selection-end-line="94" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/login/ILoginService.java" />
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.5.RELEASE/spring-web-5.0.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -900,13 +800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/EwipServerApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.16.20/lombok-1.16.20.pom">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285" />
@@ -919,24 +812,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/tk/mybatis/mapper-core/1.0.1/mapper-core-1.0.1.jar!/tk/mybatis/mapper/entity/Condition.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -975,34 +854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IUserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -1010,19 +861,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2352">
-          <caret line="129" column="48" lean-forward="true" selection-start-line="129" selection-start-column="48" selection-end-line="129" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/admin.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/css/admin.css" />
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/plugins/layuiAdmin/layui/css/admin.css" />
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/UserController.java" />
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IUserService.java" />
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/mvc/WebMvcConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2206">
@@ -1058,23 +898,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/console.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="43" selection-end-line="327" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/console.html" />
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/login.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1099,53 +923,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/style/template.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="e#688#689#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-            <element signature="e#825#826#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="48" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/config.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1154,42 +933,229 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="439" column="21" selection-start-line="439" selection-start-column="16" selection-end-line="439" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240">
-          <caret line="9" column="86" selection-start-line="9" selection-start-column="86" selection-end-line="9" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="321" column="34" lean-forward="true" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/view.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/layui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="19">
+          <caret line="1" column="4894" selection-start-line="1" selection-start-column="4894" selection-end-line="1" selection-end-column="4894" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/EwipServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-eureka/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="25" selection-start-line="25" selection-end-line="28" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="54" column="7" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/console.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2907">
+          <caret line="234" column="3" lean-forward="true" selection-start-line="234" selection-start-column="3" selection-end-line="234" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/login.js" />
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8322">
+          <caret line="438" column="4" selection-start-line="438" selection-start-column="4" selection-end-line="440" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="1" column="76" lean-forward="true" selection-start-line="1" selection-start-column="76" selection-end-line="1" selection-end-column="76" />
+          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#2224#2225#0" expanded="true" />
+            <element signature="e#2249#2250#0" expanded="true" />
+            <element signature="e#2285#2286#0" expanded="true" />
+            <element signature="e#2317#2318#0" expanded="true" />
+            <element signature="e#2357#2358#0" expanded="true" />
+            <element signature="e#2393#2394#0" expanded="true" />
+            <element signature="e#2424#2425#0" expanded="true" />
+            <element signature="e#2451#2452#0" expanded="true" />
+            <element signature="e#2484#2485#0" expanded="true" />
+            <element signature="e#2513#2514#0" expanded="true" />
+            <element signature="e#2548#2549#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2615#2616#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
+            <element signature="e#2679#2680#0" expanded="true" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+            <element signature="e#2771#2772#0" expanded="true" />
+            <element signature="e#2803#2804#0" expanded="true" />
+            <element signature="e#2831#2832#0" expanded="true" />
+            <element signature="e#2864#2865#0" expanded="true" />
+            <element signature="e#2892#2893#0" expanded="true" />
+            <element signature="e#2923#2924#0" expanded="true" />
+            <element signature="e#2949#2950#0" expanded="true" />
+            <element signature="e#2984#2985#0" expanded="true" />
+            <element signature="e#3017#3018#0" expanded="true" />
+            <element signature="e#3053#3054#0" expanded="true" />
+            <element signature="e#3081#3082#0" expanded="true" />
+            <element signature="e#3131#3132#0" expanded="true" />
+            <element signature="e#3173#3174#0" expanded="true" />
+            <element signature="e#3231#3232#0" expanded="true" />
+            <element signature="e#3281#3282#0" expanded="true" />
+            <element signature="e#3321#3322#0" expanded="true" />
+            <element signature="e#3353#3354#0" expanded="true" />
+            <element signature="e#3397#3398#0" expanded="true" />
+            <element signature="e#3433#3434#0" expanded="true" />
+            <element signature="e#3481#3482#0" expanded="true" />
+            <element signature="e#3521#3522#0" expanded="true" />
+            <element signature="e#3571#3572#0" expanded="true" />
+            <element signature="e#3613#3614#0" expanded="true" />
+            <element signature="e#3655#3656#0" expanded="true" />
+            <element signature="e#3689#3690#0" expanded="true" />
+            <element signature="e#3735#3736#0" expanded="true" />
+            <element signature="e#3773#3774#0" expanded="true" />
+            <element signature="e#3815#3816#0" expanded="true" />
+            <element signature="e#3849#3850#0" expanded="true" />
+            <element signature="e#3892#3893#0" expanded="true" />
+            <element signature="e#3926#3927#0" expanded="true" />
+            <element signature="e#3965#3966#0" expanded="true" />
+            <element signature="e#3995#3996#0" expanded="true" />
+            <element signature="e#4045#4046#0" expanded="true" />
+            <element signature="e#4089#4090#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IEmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/EmployeeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IEmployeeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IEmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="e#669#670#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/common/PageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+            <element signature="e#826#827#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#962#963#0" expanded="true" />
+            <element signature="e#996#997#0" expanded="true" />
           </folding>
         </state>
       </provider>
