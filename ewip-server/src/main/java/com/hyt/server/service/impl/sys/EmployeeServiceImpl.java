@@ -27,6 +27,7 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
 
     @Override
     public PageInfo<Employee> selectAll(Map<String, Object> map) {
+        System.out.println(map);
         MybatisPage.getPageSize(map);
         PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
         List<Employee> userInfoList = this.employeeMapper.findAll(map);

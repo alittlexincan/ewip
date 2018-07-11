@@ -54,8 +54,8 @@ public interface IEmployeeService {
      * @param id
      * @return
      */
-    @PostMapping("/employee/delete/batch")
-    JSONObject deleteByIds(@RequestParam("id") String id);
+    @PostMapping("/employee/delete")
+    JSONObject deleteBatch(@RequestParam("id") String id);
 
     /**
      * 根据用户id查询用户详细信息

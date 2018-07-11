@@ -54,7 +54,7 @@ public class Employee {
     private String phone;
 
     @Column(name = "email",length = 50)
-    private Integer email;
+    private String email;
 
     @Column(name = "sex",length = 1)
     private Integer sex;
@@ -67,7 +67,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String loginName, String loginPassword, String name, String areaId, String areaName, String areaLevel, String orgId, String orgName, String phone, Integer email, Integer sex, Date createTime) {
+    public Employee(String loginName, String loginPassword, String name, String areaId, String areaName, String areaLevel, String orgId, String orgName, String phone, String email, Integer sex, Date createTime) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
         this.name = name;
@@ -122,7 +122,7 @@ public class Employee {
         return phone;
     }
 
-    public Integer getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -174,7 +174,7 @@ public class Employee {
         this.phone = phone;
     }
 
-    public void setEmail(Integer email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

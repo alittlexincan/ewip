@@ -65,9 +65,9 @@ public class EmployeeController {
      * @param id
      * @return
      */
-    @PostMapping("/delete/batch")
-    JSONObject deleteByIds(@RequestParam String id){
-        return this.employeeService.deleteByIds(id);
+    @PostMapping("/delete")
+    JSONObject deleteBatch(@RequestParam(value = "id") String id){
+        return this.employeeService.deleteBatch(id);
     }
 
     /**

@@ -13,13 +13,11 @@ layui.use(['form'], function(){
             }
         }
         ,loginPassword: [/(.+){6,12}$/, '密码必须是6到12位']
+
     });
 
     //监听提交
     form.on('submit(submit)', function(data){
-        console.log(data)
-        let param = JSON.stringify(data.field);
-        console.log(param)
         $.ajax({
             async:true,
             type: "POST",

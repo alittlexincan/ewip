@@ -57,7 +57,7 @@ public class EmployeeController {
         if(num>0){
             return ResultResponse.make(200,"添加员工成功",user);
         }
-        return ResultResponse.err("添加员工失败");
+        return ResultResponse.make(500,"添加员工失败",null);
     }
 
     @ApiOperation(value="修改员工信息",httpMethod="POST", notes="根据用户ID，修改参数列表员工信息")
@@ -78,7 +78,7 @@ public class EmployeeController {
         if(num>0){
             return ResultResponse.make(200,"修改用户成功");
         }
-        return ResultResponse.err("修改用户失败");
+        return ResultResponse.make(500,"修改用户失败");
     }
 
     @ApiOperation(value="删除员工详细信息",httpMethod = "DELETE", notes="根据url的用户id来删除员工详细信息")
@@ -91,21 +91,20 @@ public class EmployeeController {
         if(num>0){
           return  ResultResponse.make(200,"删除员工成功");
         }
-        return ResultResponse.err("删除员工失败");
+        return ResultResponse.make(500,"删除员工失败");
     }
 
     @ApiOperation(value="批量删除员工详细信息",httpMethod = "POST", notes="根据一批用户id来删除员工详细信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "员工ID", required = true, dataType = "String", paramType="query")
     })
-    @PostMapping("/delete/batch")
-    public ResultObject<Object> deleteByIds(@RequestParam String id) {
-        id = "'"+id.replaceAll(",","','")+"'";
+    @PostMapping("/delete")
+    public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
         Integer num = this.employeeService.deleteByIds(id);
         if(num>0){
             return  ResultResponse.make(200,"删除员工成功");
         }
-        return ResultResponse.err("删除员工失败");
+        return ResultResponse.make(500,"删除员工失败");
     }
 
     @ApiOperation(value="查询员工详细信息",httpMethod = "GET", notes="根据url的用户id来查询员工详细信息")
