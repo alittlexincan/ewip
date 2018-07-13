@@ -8,70 +8,70 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * 员工信息接口层
+ * 地区信息接口层
  * @Author: JiangXincan
  * @Description:
  * @Date: Created in 17:04 2018-4-18
  * @Modified By:
  */
-@Service("employeeService")
+@Service("areaService")
 @FeignClient("EWIP-SERVER")
-public interface IEmployeeService {
+public interface IAreaService {
 
     /**
-     * 用户登录信息
+     * 添加地区信息
      * @param map
      * @return
      */
-    @PostMapping("/employee/login")
-    JSONObject login(@RequestParam Map<String, Object> map);
-
-    /**
-     * 添加用户信息
-     * @param map
-     * @return
-     */
-    @PostMapping("/employee/insert")
+    @PostMapping("/area/insert")
     JSONObject insert(@RequestParam Map<String, Object> map);
 
     /**
-     * 修改用户信息
+     * 修改地区信息
      * @param map
      * @return
      */
-    @PostMapping("/employee/update")
+    @PostMapping("/area/update")
     JSONObject update(@RequestParam Map<String, Object> map);
 
     /**
-     * 根据用户id删除用户信息
+     * 根据地区id删除地区信息
      * @param id
      * @return
      */
-    @DeleteMapping("/employee/delete/{id}")
+    @DeleteMapping("/area/delete/{id}")
     JSONObject deleteById(@PathVariable(value = "id") String id);
 
     /**
-     * 根据ids批量删除用户信息
+     * 根据ids批量删除地区信息
      * @param id
      * @return
      */
-    @PostMapping("/employee/delete")
+    @PostMapping("/area/delete")
     JSONObject deleteBatch(@RequestParam("id") String id);
 
     /**
-     * 根据用户id查询用户详细信息
+     * 根据用户id查询地区详细信息
      * @param id
      * @return
      */
-    @GetMapping("/employee/select/{id}")
+    @GetMapping("/area/select/{id}")
     JSONObject selectById(@PathVariable(value = "id") String id);
 
     /**
-     * 分页查询用户信息
+     * 分页查询地区信息
      * @param map
      * @return
      */
-    @GetMapping("/employee/select")
+    @GetMapping("/area/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+    /**
+     * 分页查询地区信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/area/tree")
+    JSONObject getAreaTree(@RequestParam Map<String, Object> map);
 
 }

@@ -12,7 +12,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -112,7 +111,7 @@ public class EmployeeController {
             @ApiImplicitParam(name = "id", value = "员工ID", required = true, dataType = "String", paramType="path")
     })
     @GetMapping("/select/{id}")
-    public ResultObject<Employee> selectById(@PathVariable(value = "id") String id) {
+    public ResultObject<Object> selectById(@PathVariable(value = "id") String id) {
         return ResultResponse.ok(this.employeeService.selectById(id));
     }
 
@@ -133,7 +132,7 @@ public class EmployeeController {
             @ApiImplicitParam(name="areaId",value="用户所属地区", dataType = "String",paramType = "query")
     })
     @GetMapping("/select")
-    public ResultObject<List<Employee>> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+    public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         PageInfo<Employee> pageInfo = this.employeeService.selectAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }

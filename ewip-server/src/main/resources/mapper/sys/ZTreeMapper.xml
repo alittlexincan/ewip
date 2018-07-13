@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.sys.IZTreeMapper">
+
+    <resultMap id="ZTreeResultMap" type="com.hyt.server.entity.sys.ZTree">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="area_name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
+    </resultMap>
+
+
+    <!-- 查询地区信息树 -->
+    <select id="getAreaTree" resultMap="ZTreeResultMap">
+
+        SELECT
+            id, p_id, area_name, code, level
+        FROM area where 1=1
+        <if test="id != null">AND id = #{id}</if>
+        <if test="areaName != null">AND area_name LIKE '${areaName}%'</if>
+        <if test="code != null">AND code = #{code}</if>
+        <if test="pId != null">AND p_id = #{pId}</if>
+        <if test="level != null">AND level = #{level}</if>
+
+    </select>
+
+
+</mapper>

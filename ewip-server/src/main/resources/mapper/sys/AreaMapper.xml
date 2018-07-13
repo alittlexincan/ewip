@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.sys.IAreaMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Area">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+    </resultMap>
+
+    <resultMap id="ZTreeResultMap" type="com.hyt.server.entity.sys.ZTree">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="area_name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
+    </resultMap>
+
+
+    <!-- 查询地区信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+
+        a.id,
+        a.area_name,
+        a.code,
+        a.p_id,
+        (select b.area_name from area b where b.id = a.p_id) parent_name,
+        a.level,
+        a.create_time
+
+        FROM area a where 1=1
+        <if test="id != null">AND a.id = #{id}</if>
+        <if test="areaName != null">AND a.area_name LIKE '${areaName}%'</if>
+        <if test="code != null">AND a.code = #{code}</if>
+        <if test="pId != null">AND a.p_id = #{pId}</if>
+        <if test="level != null">AND a.level = #{level}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY a.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+    
+    <select id="getAreaZTree" resultMap="ZTreeResultMap">
+
+        select id,area_name name, p_id from  area where 1=1
+        <if test="id != null">AND a.id = #{id}</if>
+        <if test="areaName != null">AND a.area_name LIKE '${areaName}%'</if>
+        <if test="code != null">AND a.code = #{code}</if>
+        <if test="pId != null">AND a.p_id = #{pId}</if>
+        <if test="level != null">AND a.level = #{level}</if>
+
+    </select>
+
+
+</mapper>

@@ -8,70 +8,62 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * 员工信息接口层
+ * 机构信息接口层
  * @Author: JiangXincan
  * @Description:
  * @Date: Created in 17:04 2018-4-18
  * @Modified By:
  */
-@Service("employeeService")
+@Service("organizationService")
 @FeignClient("EWIP-SERVER")
-public interface IEmployeeService {
+public interface IOrganizationService {
 
     /**
-     * 用户登录信息
+     * 添加机构信息
      * @param map
      * @return
      */
-    @PostMapping("/employee/login")
-    JSONObject login(@RequestParam Map<String, Object> map);
-
-    /**
-     * 添加用户信息
-     * @param map
-     * @return
-     */
-    @PostMapping("/employee/insert")
+    @PostMapping("/area/insert")
     JSONObject insert(@RequestParam Map<String, Object> map);
 
     /**
-     * 修改用户信息
+     * 修改机构信息
      * @param map
      * @return
      */
-    @PostMapping("/employee/update")
+    @PostMapping("/area/update")
     JSONObject update(@RequestParam Map<String, Object> map);
 
     /**
-     * 根据用户id删除用户信息
+     * 根据机构id删除机构信息
      * @param id
      * @return
      */
-    @DeleteMapping("/employee/delete/{id}")
+    @DeleteMapping("/area/delete/{id}")
     JSONObject deleteById(@PathVariable(value = "id") String id);
 
     /**
-     * 根据ids批量删除用户信息
+     * 根据ids批量删除机构信息
      * @param id
      * @return
      */
-    @PostMapping("/employee/delete")
+    @PostMapping("/area/delete")
     JSONObject deleteBatch(@RequestParam("id") String id);
 
     /**
-     * 根据用户id查询用户详细信息
+     * 根据用户id查询机构详细信息
      * @param id
      * @return
      */
-    @GetMapping("/employee/select/{id}")
+    @GetMapping("/area/select/{id}")
     JSONObject selectById(@PathVariable(value = "id") String id);
 
     /**
-     * 分页查询用户信息
+     * 分页查询机构信息
      * @param map
      * @return
      */
-    @GetMapping("/employee/select")
+    @GetMapping("/area/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
 }
