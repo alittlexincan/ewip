@@ -16,4 +16,6 @@ public interface IAreaService extends IBaseService<Area> {
 
     PageInfo<Area> selectAll(Map<String, Object> map);
 
+    Area selectById(String id);
+
 }

@@ -33,7 +33,10 @@ public class AreaController {
         @ApiImplicitParam(name="areaName",value="地区名称",required = true, dataType = "String",paramType = "query"),
         @ApiImplicitParam(name="code",value="地区编码",required = true, dataType = "String",paramType = "query"),
         @ApiImplicitParam(name="pId", value="上级地区", required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="level",value="地区级别", required = true,dataType = "Integer",paramType = "query")
+        @ApiImplicitParam(name="level",value="地区级别", required = true,dataType = "Integer",paramType = "query"),
+        @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
+        @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
+        @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -113,7 +116,10 @@ public class AreaController {
         @ApiImplicitParam(name="areaName",value="地区名称", dataType = "String",paramType = "query"),
         @ApiImplicitParam(name="code",value="地区编码", dataType = "String",paramType = "query"),
         @ApiImplicitParam(name="pId",value="上级地区", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="level",value="地区级别", dataType = "Integer",paramType = "query")
+        @ApiImplicitParam(name="level",value="地区级别", dataType = "Integer",paramType = "query"),
+        @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
+        @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
+        @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {

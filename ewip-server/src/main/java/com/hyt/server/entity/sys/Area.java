@@ -38,23 +38,36 @@ public class Area {
     @Column(name = "level",length = 1)
     private int level;
 
+    @Column(name = "longitude")
+    private Double longitude;
+
+    @Column(name = "latitude")
+    private Double latitude;
+
+    @Column(name = "altitude")
+    private Double altitude;
+
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 
 
-    @Column(name = "parent_name")
+    @Column(name = "parent_name", table = "area")
     private String parentName;
 
 
     public Area() {
     }
 
-    public Area(String areaName, String code, String pId, int level, Date createTime, String parentName) {
+    public Area(String areaName, String code, String pId, int level, Double longitude, Double latitude, Double altitude, Date createTime, String parentName) {
         this.areaName = areaName;
         this.code = code;
         this.pId = pId;
         this.level = level;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.altitude = altitude;
         this.createTime = createTime;
         this.parentName = parentName;
     }
@@ -113,5 +126,29 @@ public class Area {
 
     public void setParentName(String parentName) {
         this.parentName = parentName;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(Double altitude) {
+        this.altitude = altitude;
     }
 }

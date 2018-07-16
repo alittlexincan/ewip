@@ -8,31 +8,26 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
     </resultMap>
 
-    <resultMap id="ZTreeResultMap" type="com.hyt.server.entity.sys.ZTree">
-        <id column="id" jdbcType="VARCHAR" property="id"/>
-        <result column="area_name" jdbcType="VARCHAR" property="name"/>
-        <result column="code" jdbcType="VARCHAR" property="code"/>
-        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
-        <result column="level" jdbcType="SMALLINT" property="level"/>
-    </resultMap>
-
-
     <!-- 查询地区信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-
-        a.id,
-        a.area_name,
-        a.code,
-        a.p_id,
-        (select b.area_name from area b where b.id = a.p_id) parent_name,
-        a.level,
-        a.create_time
-
+            a.id,
+            a.area_name,
+            a.code,
+            a.p_id,
+            (select b.area_name from area b where b.id = a.p_id) parent_name,
+            a.level,
+            a.longitude,
+            a.latitude,
+            a.altitude,
+            a.create_time
         FROM area a where 1=1
         <if test="id != null">AND a.id = #{id}</if>
         <if test="areaName != null">AND a.area_name LIKE '${areaName}%'</if>
@@ -48,16 +43,22 @@
             </otherwise>
         </choose>
     </select>
-    
-    <select id="getAreaZTree" resultMap="ZTreeResultMap">
 
-        select id,area_name name, p_id from  area where 1=1
-        <if test="id != null">AND a.id = #{id}</if>
-        <if test="areaName != null">AND a.area_name LIKE '${areaName}%'</if>
-        <if test="code != null">AND a.code = #{code}</if>
-        <if test="pId != null">AND a.p_id = #{pId}</if>
-        <if test="level != null">AND a.level = #{level}</if>
-
+    <!-- 根据地区id查询地区信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+            a.id,
+            a.area_name,
+            a.code,
+            a.p_id,
+            (select b.area_name from area b where b.id = a.p_id) parent_name,
+            a.level,
+            a.longitude,
+            a.latitude,
+            a.altitude,
+            a.create_time
+        FROM area a where 1=1
+        <if test="id != null">AND a.id = #{id, jdbcType=VARCHAR}</if>
     </select>
 
 

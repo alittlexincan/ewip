@@ -33,4 +33,9 @@ public class AreaServiceImpl extends AbstractService<Area> implements IAreaServi
         return new PageInfo<>(areaList);
     }
 
+    @Override
+    public Area selectById(String id){
+        return this.areaMapper.selectById(id);
+    }
+
 }

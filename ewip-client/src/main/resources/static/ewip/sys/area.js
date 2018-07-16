@@ -1,16 +1,17 @@
-//
-// layui.config({
-//     base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
-// }).extend({ //设定模块别名
-//     treeselect: 'treeselect' //如果 mymod.js 是在根目录，也可以不用设定别名
-//     ,mod1: 'modules' //相对于上述 base 目录的子目录
-// });
 
-layui.use(["table","form","laytpl","layer"], function(){
+layui.config({
+    base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
+}).extend({ //设定模块别名
+    selectTree: 'selectTree' //如果 mymod.js 是在根目录，也可以不用设定别名
+    ,mod1: 'modules' //相对于上述 base 目录的子目录
+});
+
+layui.use(["table","form","laytpl","layer","selectTree"], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
+        ,selectTree = layui.selectTree
         ,$ = layui.$;   			// 引用layui的jquery
 
 
@@ -120,44 +121,30 @@ layui.use(["table","form","laytpl","layer"], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加员工信息"
-                ,area: ['600px','420px']
+                ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset:'50px'
                 ,btn: ['添加', '取消']
-                ,content:"<div id='addEmployee' style='padding:20px 20px 0 20px'></div>"
+                ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
-                    laytpl(addEmployeeDiv.innerHTML).render([], function(html){
+                    laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
-                        $("#addEmployee").empty().append(html);
-
-                        $.ajax({
-                            async:false
-                            ,type: 'POST'
-                            ,data: {}
-                            ,url: '/client/tree/area'
-                            ,dataType: 'json'
-                            ,success: function(json){
-                                initSelectTree("pId", json.data, false);
-                            }
+                        $("#addDiv").empty().append(html);
+                        // 初始化下拉树
+                        selectTree.render({
+                            'id': 'pId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
                         });
                     });
                     form.render();
+
                 }
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
-                    form.on("submit(subbmitAddBtn)", function(data){
-                       /* let pId = data.field.pId;
-                        if(pId.length == 0){
-                            $("#pId").css({border: '1px solid red;'});
-                            layer.msg('<div><i class="layui-icon layui-icon-face-cry" style="font-size: 30px; color: red;float:left;"></i><span>&nbsp;请选择上级地区</span></div>',{
-                                anim:6,
-                                time: 4000,
-                                skin: 'demo-class'
-                            });
-                            return false;
-                        }*/
+                    form.on("submit(submitAddBtn)", function(data){
                         submitServer({
                             index: index
                             ,type: 'POST'
@@ -166,7 +153,7 @@ layui.use(["table","form","laytpl","layer"], function(){
                         });
                     });
                     // 触发表单按钮点击事件
-                    $("#subbmitAddBtn").click();
+                    $("#submitAddBtn").click();
                 }
             });
         }
@@ -226,18 +213,29 @@ layui.use(["table","form","laytpl","layer"], function(){
                 ,maxmin:true
                 ,offset: '50px'
                 ,btn: ['修改', '取消']
-                ,content:"<div id='updateEmployee' style='padding:20px 20px 0 20px'>adsfds</div>"
+                ,content:"<div id='updateDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
-                    laytpl(updateEmployeeDiv.innerHTML).render(param, function(html){
+                    laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
-                        $("#updateEmployee").empty().append(html);
+                        $("#updateDiv").empty().append(html);
+                        // 地区级别下拉框赋值
+                        $("select[name='level']").val(param.level);
+
+                        // 初始化下拉树
+                        selectTree.render({
+                            'id': 'pId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.pId
+                        });
+
                     });
                     form.render();
                 }
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
-                    form.on("submit(subbmitUpdateBtn)", function(data){
+                    form.on("submit(submitUpdateBtn)", function(data){
                         data.field.id = param.id;
                         // 数据提交到后台，通用方法
                         submitServer({
@@ -248,7 +246,7 @@ layui.use(["table","form","laytpl","layer"], function(){
                         });
                     });
                     // 触发表单按钮点击事件
-                    $("#subbmitUpdateBtn").click();
+                    $("#submitUpdateBtn").click();
                 }
             });
         }
