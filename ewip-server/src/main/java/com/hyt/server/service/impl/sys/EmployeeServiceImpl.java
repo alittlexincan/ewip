@@ -37,8 +37,12 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
 
     @Override
     public Employee login(Map<String, Object> map) {
-        return employeeMapper.login(map);
+        return this.employeeMapper.login(map);
+    }
 
+    @Override
+    public Employee selectById(Map<String, Object> map) {
+        return this.employeeMapper.login(map);
     }
 
 }

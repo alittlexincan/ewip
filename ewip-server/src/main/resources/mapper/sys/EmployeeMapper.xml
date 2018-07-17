@@ -8,25 +8,43 @@
         <result column="login_password" jdbcType="VARCHAR" property="loginPassword"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
-        <result column="org_id" jdbcType="VARCHAR" property="orgId"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="sex" jdbcType="SMALLINT" property="sex"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        id, login_name, login_password, name, area_id, org_id, phone, email, sex, create_time
-    </sql>
-
     <!-- 查询所有用户信息 -->
-    <select id="findAll" resultMap="BaseResultMap">
+    <select id="findAll"  resultMap="BaseResultMap">
         select
-          <include refid="Base_Column_List"/>
-        FROM employee u where 1=1
-        <if test="areaId != null">and area_id = #{areaId}</if>
-        <if test="loginName != null">AND login_name LIKE '${loginName}%'</if>
-        <if test="name != null">AND name like '${name}%'</if>
+            e.id,
+            e.login_name,
+            e.login_password,
+            e.name,
+            e.area_id,
+            a.area_name,
+            a.level,
+            e.organization_id,
+            o.organization_name,
+            e.phone,
+            e.email,
+            e.sex,
+            e.create_time
+        FROM employee e
+        LEFT JOIN area a on a.id = e.area_id
+        LEFT JOIN organization o on o.id = e.organization_id
+        where 1=1
+        <if test="id != null and id != ''">and e.id = #{id}</if>
+        <if test="loginName != null and loginName != ''">AND e.login_name LIKE '${loginName}%'</if>
+        <if test="name != null and name != ''">AND e.name like '${name}%'</if>
+        <if test="areaId != null and areaId != ''">and e.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">and e.organization_id = #{organizationId}</if>
+        <if test="phone != null and phone != ''">and e.phone like '${phone}%'</if>
+        <if test="sex != null and sex != ''">and e.sex = #{sex}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
@@ -38,15 +56,33 @@
     </select>
 
     <!-- 用户登录信息 -->
-    <select id="login" parameterType="map" resultType="com.hyt.server.entity.sys.Employee">
+    <select id="login" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
-        FROM employee u where 1=1
-        <if test="loginName != null">
-            AND login_name = #{loginName}
+            e.id,
+            e.login_name,
+            e.login_password,
+            e.name,
+            e.area_id,
+            a.area_name,
+            a.level,
+            e.organization_id,
+            o.organization_name,
+            e.phone,
+            e.email,
+            e.sex,
+            e.create_time
+        FROM employee e
+        LEFT JOIN area a on a.id = e.area_id
+        LEFT JOIN organization o on o.id = e.organization_id
+        where 1=1
+        <if test="id != null and id != ''">
+            AND e.id = #{id}
         </if>
-        <if test="loginPassword != null">
-            AND login_password = #{loginPassword}
+        <if test="loginName != null and loginName != ''">
+            AND e.login_name = #{loginName}
+        </if>
+        <if test="loginPassword != null and loginPassword != ''">
+            AND e.login_password = #{loginPassword}
         </if>
     </select>
 

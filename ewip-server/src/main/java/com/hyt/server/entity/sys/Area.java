@@ -47,20 +47,19 @@ public class Area {
     @Column(name = "altitude")
     private Double altitude;
 
-
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 
-
-    @Column(name = "parent_name", table = "area")
     private String parentName;
+
+    private int child;
 
 
     public Area() {
     }
 
-    public Area(String areaName, String code, String pId, int level, Double longitude, Double latitude, Double altitude, Date createTime, String parentName) {
+    public Area(String areaName, String code, String pId, int level, Double longitude, Double latitude, Double altitude, Date createTime, String parentName, int child) {
         this.areaName = areaName;
         this.code = code;
         this.pId = pId;
@@ -70,6 +69,7 @@ public class Area {
         this.altitude = altitude;
         this.createTime = createTime;
         this.parentName = parentName;
+        this.child = child;
     }
 
     public String getId() {
@@ -112,22 +112,6 @@ public class Area {
         this.level = level;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
     public Double getLongitude() {
         return longitude;
     }
@@ -150,5 +134,29 @@ public class Area {
 
     public void setAltitude(Double altitude) {
         this.altitude = altitude;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public int getChild() {
+        return child;
+    }
+
+    public void setChild(int child) {
+        this.child = child;
     }
 }

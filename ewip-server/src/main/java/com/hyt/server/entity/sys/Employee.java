@@ -38,17 +38,8 @@ public class Employee {
     @Column(name = "area_id",length = 64)
     private String areaId;
 
-    @Column(name = "area_name",length = 50)
-    private String areaName;
-
-    @Column(name = "area_level",length = 1)
-    private String areaLevel;
-
-    @Column(name = "org_id",length = 64)
-    private String orgId;
-
-    @Column(name = "org_name",length = 50)
-    private String orgName;
+    @Column(name = "organization_id",length = 64)
+    private String organizationId;
 
     @Column(name = "phone",length = 11)
     private String phone;
@@ -63,126 +54,132 @@ public class Employee {
     @Column(name = "create_time")
     private Date createTime;
 
+    private String organizationName;
+
+    private String areaName;
+
+    private String level;
+
 
     public Employee() {
     }
 
-    public Employee(String loginName, String loginPassword, String name, String areaId, String areaName, String areaLevel, String orgId, String orgName, String phone, String email, Integer sex, Date createTime) {
+    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, String areaName, String level) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
         this.name = name;
         this.areaId = areaId;
-        this.areaName = areaName;
-        this.areaLevel = areaLevel;
-        this.orgId = orgId;
-        this.orgName = orgName;
+        this.organizationId = organizationId;
         this.phone = phone;
         this.email = email;
         this.sex = sex;
         this.createTime = createTime;
+        this.organizationName = organizationName;
+        this.areaName = areaName;
+        this.level = level;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public String getLoginPassword() {
-        return loginPassword;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAreaId() {
-        return areaId;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public String getAreaLevel() {
-        return areaLevel;
-    }
-
-    public String getOrgId() {
-        return orgId;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLoginName() {
+        return loginName;
     }
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
 
+    public String getLoginPassword() {
+        return loginPassword;
+    }
+
     public void setLoginPassword(String loginPassword) {
         this.loginPassword = loginPassword;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getAreaId() {
+        return areaId;
+    }
+
     public void setAreaId(String areaId) {
         this.areaId = areaId;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
+    public String getOrganizationId() {
+        return organizationId;
     }
 
-    public void setAreaLevel(String areaLevel) {
-        this.areaLevel = areaLevel;
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
     }
 
-    public void setOrgId(String orgId) {
-        this.orgId = orgId;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getSex() {
+        return sex;
     }
 
     public void setSex(Integer sex) {
         this.sex = sex;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

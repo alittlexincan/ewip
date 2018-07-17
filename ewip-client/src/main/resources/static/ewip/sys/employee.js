@@ -1,7 +1,15 @@
-layui.use(["table","form","laytpl","layer"], function(){
+layui.config({
+    base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
+}).extend({ //设定模块别名
+    selectTree: 'selectTree' //如果 mymod.js 是在根目录，也可以不用设定别名
+    ,mod1: 'modules' //相对于上述 base 目录的子目录
+});
+
+layui.use(["table","form","laytpl","layer","selectTree"], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
+        ,selectTree = layui.selectTree
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$;				// 引用layui的jquery
 
@@ -30,11 +38,30 @@ layui.use(["table","form","laytpl","layer"], function(){
             ,{field: 'loginName', title: '登录名称', sort: true}
             ,{field: 'name', title: '员工名称', width:100, sort: true}
             ,{field: 'sex', title: '性别', width: 80, sort: true, templet: sexFormat}
-            ,{field: 'orgName', title: '所属机构', sort: true}
+            ,{field: 'organizationName', title: '所属机构', sort: true}
             ,{field: 'phone', title: '电话号码', width:120, sort: true}
             ,{field: 'email', title: '员工邮箱', sort: true}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', fixed: 'right', toolbar: '#btnGroupOption'}
         ]]
+    });
+
+    /**
+     * 初始化下拉树(地区)
+     */
+    selectTree.render({
+        'id': 'searchAreaId'
+        ,'url': '/client/tree/area'
+        ,'isMultiple': false
+        ,'isVerify': false
+    });
+    /**
+     * 初始化下拉树(机构)
+     */
+    selectTree.render({
+        'id': 'searchOrganizationId'
+        ,'url': '/client/tree/organization'
+        ,'isMultiple': false
+        ,'isVerify': false
     });
 
     /**
@@ -58,10 +85,17 @@ layui.use(["table","form","laytpl","layer"], function(){
     /**
      * 修改后重新刷新列表，curr: 1重新从第 1 页开始
      */
-    let reloadTable = function () {
+    let reloadTable = function (param) {
         table.reload('table', {
             page: {
                 curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                loginName: param ==undefined ? '' : param.loginName
+                ,name: param ==undefined ? '' : param.name
+                ,areaId: param == undefined ? '' : param.areaId
+                ,organizationId: param == undefined ? '' : param.organizationId
+
             }
         });
     };
@@ -111,6 +145,18 @@ layui.use(["table","form","laytpl","layer"], function(){
                     laytpl(addEmployeeDiv.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addEmployee").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                        });
+                        // 初始化下拉树(机构)
+                        selectTree.render({
+                            'id': 'addOrgId'
+                            ,'url': '/client/tree/organization'
+                            ,'isMultiple': false
+                        });
                     });
                     form.render();
                 }
@@ -166,7 +212,7 @@ layui.use(["table","form","laytpl","layer"], function(){
                     index: index
                     ,param: null
                     ,type: 'DELETE'
-                    ,url: '/client/employee/delete/' + data.id,
+                    ,url: '/client/employee/delete/' + obj.data.id,
                 });
             });
         }
@@ -191,6 +237,21 @@ layui.use(["table","form","laytpl","layer"], function(){
                     laytpl(updateEmployeeDiv.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateEmployee").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                        });
+                        // 初始化下拉树(机构)
+                        selectTree.render({
+                            'id': 'updateOrganizationId'
+                            ,'url': '/client/tree/organization'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.organizationId
+
+                        });
                     });
                     form.render();
                 }
@@ -212,6 +273,13 @@ layui.use(["table","form","laytpl","layer"], function(){
             });
         }
     };
+
+    /**
+     * 监听头部搜索
+     */
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
+    });
 
     //监听列表中按钮事件
     table.on('tool(table)', function(obj){

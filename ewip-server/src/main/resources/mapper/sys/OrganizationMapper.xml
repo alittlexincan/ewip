@@ -8,23 +8,30 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="child" jdbcType="INTEGER" property="child"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-
-    <sql id="Base_Column_List">
-        id, organization_name, code, p_id, area_id, create_time
-    </sql>
 
     <!-- 查询机构信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-          <include refid="Base_Column_List"/>
+          o.id,
+          o.organization_name,
+          o.code,
+          o.p_id,
+          (select b.organization_name from organization b where b.id = o.p_id) parent_name,
+          o.area_id,
+          (select a.area_name from area a where a.id = o.area_id) area_name,
+          (select count(*) from organization org where org.p_id = o.id) child,
+          o.create_time
         FROM organization o where 1=1
-        <if test="id != null">and id = #{id}</if>
-        <if test="organizationName != null">AND organization_name LIKE '${organizationName}%'</if>
-        <if test="code != null">AND code = #{code}</if>
-        <if test="pId != null">AND p_id = #{pId}</if>
-        <if test="areaId != null">AND area_id = #{areaId}</if>
+        <if test="id != null and id != ''">and id = #{id}</if>
+        <if test="organizationName != null and organizationName != ''">AND o.organization_name LIKE '${organizationName}%'</if>
+        <if test="code != null and code != ''">AND o.code = #{code}</if>
+        <if test="pId != null and pId != ''">AND o.p_id = #{pId}</if>
+        <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
@@ -33,6 +40,21 @@
                 ORDER BY create_time DESC
             </otherwise>
         </choose>
+    </select>
+
+    <!-- 根据地区id查询地区信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        o.id,
+        o.organization_name,
+        o.code,
+        o.p_id,
+        (select b.organization_name from organization b where b.id = o.p_id) parent_name,
+        o.area_id,
+        (select a.area_name from area a where a.id = o.area_id) area_name,
+        o.create_time
+        FROM organization o where 1=1
+        <if test="id != null and id != ''">and id = #{id, jdbcType=VARCHAR}</if>
     </select>
 
 </mapper>

@@ -16,7 +16,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
 
 
     /**
-     * 格式化性别
+     * 格式化级别
      * @param d
      * @returns {string}
      */
@@ -49,7 +49,21 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ]]
     });
 
-
+    /**
+     * 修改后重新刷新列表，curr: 1重新从第 1 页开始
+     */
+    let reloadTable = function (param) {
+        table.reload('table', {
+            page: {
+                curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                areaName: param == undefined ? '' : param.areaName
+                ,code: param == undefined ? '' : param.code
+                ,level: param == undefined ? '' : param.level
+            }
+        });
+    };
 
     /**
      * 自定义验证规则
@@ -61,7 +75,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,pId: function (value) {
 
             if(value.length == 0) {
-                $("#pIdShow").css("border-color","red");
+                $("#addPIdShow").css("border-color","red");
                 return '请选择上级地区';
             }
         }
@@ -72,20 +86,10 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
         ,code: function (value) {
             if(value.length == 0) return '请输入地区编码';
-            if(value.length >= 100000000000 && value.length <= 999999999999) return '地区编码范围值为[100000000000, 999999999999]';
+            if(!(value >= 100000000000 && value <= 999999999999)) return '地区编码范围值为[100000000000, 999999999999]';
         }
     });
 
-    /**
-     * 修改后重新刷新列表，curr: 1重新从第 1 页开始
-     */
-    let reloadTable = function () {
-        table.reload('table', {
-            page: {
-                curr: 1
-            }
-        });
-    };
     /**
      * 数据提交到后台（通用发方法）
      * @param option
@@ -111,16 +115,16 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
 
     /**
      * 统一按钮操作对象
-     * @type {{addBtn: 添加员工信息, deleteBtn: 批量删除信息, deleteOption: 删除单个员工信息, updateOption: 修改员工信息}}
+     * @type {{addBtn: 添加信息, deleteBtn: 批量删除信息, deleteOption: 删除单个信息, updateOption: 修改信息}}
      */
     let active = {
         /**
-         * 工具条：添加员工信息
+         * 工具条：添加地区信息
          */
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加员工信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加地区信息"
                 ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true
@@ -134,7 +138,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         $("#addDiv").empty().append(html);
                         // 初始化下拉树
                         selectTree.render({
-                            'id': 'pId'
+                            'id': 'addPId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                         });
@@ -165,10 +169,10 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
-                layer.msg('请选中员工进行删除', {time: 2000});
+                layer.msg('请选中地区进行删除', {time: 2000});
                 return false;
             }
-            layer.confirm('确定删除这批用户？', function(index){
+            layer.confirm('确定删除这批地区？', function(index){
                 var id = '';
                 for(var i = 0, len = data.length; i<len; i++){
                     id += ",'" + data[i].id + "'";
@@ -183,11 +187,11 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
         /**
-         * 列表中：删除选中的员工信息
+         * 列表中：删除选中的地区信息
          * @param obj
          */
         ,'deleteOption': function (obj) {
-            layer.confirm('确定删除该用户？', function(index){
+            layer.confirm('确定删除该地区？', function(index){
                 obj.del();
                 // 数据提交到后台，通用方法
                 submitServer({
@@ -199,7 +203,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
         /**
-         * 列表中：修改员工信息
+         * 列表中：修改地区信息
          * @param obj
          */
         ,'updateOption': function (obj) {
@@ -207,7 +211,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改员工信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改地区信息"
                 ,area: '500px'
                 ,shade: 0.3
                 ,maxmin:true
@@ -224,7 +228,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
 
                         // 初始化下拉树
                         selectTree.render({
-                            'id': 'pId'
+                            'id': 'updatePId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.pId
@@ -252,12 +256,23 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
     };
 
-    //监听列表中按钮事件
+    /**
+     * 监听头部搜索
+     */
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
+    });
+
+    /**
+     * 监听列表中按钮事件
+     */
     table.on('tool(table)', function(obj){
         active[obj.event] ? active[obj.event].call(this, obj) : '';
     });
 
-    // 监控表头工具条按钮事件
+    /**
+     * 监控表头工具条按钮事件
+     */
     $('.tableBar .layui-btn').on('click', function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';

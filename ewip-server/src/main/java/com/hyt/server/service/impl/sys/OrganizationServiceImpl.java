@@ -39,4 +39,8 @@ public class OrganizationServiceImpl extends AbstractService<Organization> imple
         return new PageInfo<>(organizationList);
     }
 
+    @Override
+    public Organization selectById(String id){
+        return this.organizationMapper.selectById(id);
+    }
 }

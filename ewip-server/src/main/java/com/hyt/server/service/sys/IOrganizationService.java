@@ -3,6 +3,7 @@ package com.hyt.server.service.sys;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.Organization;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface IOrganizationService extends IBaseService<Organization> {
 
     PageInfo<Organization> selectAll(Map<String, Object> map);
+
+    Organization selectById(@Param(value="id") String id);
 
 }

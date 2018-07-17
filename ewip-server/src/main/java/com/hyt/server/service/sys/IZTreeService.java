@@ -16,4 +16,6 @@ public interface IZTreeService extends IBaseService<ZTree> {
 
     List<ZTree> getAreaTree(Map<String, Object> map);
 
+    List<ZTree> getOrganizationTree(Map<String, Object> map);
+
 }

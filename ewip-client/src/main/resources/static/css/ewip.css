@@ -23,9 +23,9 @@ div::-webkit-scrollbar-thumb {
 .tree-content {
     display: none;
     position: absolute;
-    height: 200px;
+    max-height: 200px;
     left: 0 !important;
-    top: 38px !important;
+    top: 37px !important;
     background: #ffffff;
     z-index: 9999999;
     border: 1px solid #C9C9C9 !important;

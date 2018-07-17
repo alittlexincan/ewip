@@ -23,7 +23,7 @@ public interface IOrganizationService {
      * @param map
      * @return
      */
-    @PostMapping("/area/insert")
+    @PostMapping("/organization/insert")
     JSONObject insert(@RequestParam Map<String, Object> map);
 
     /**
@@ -31,7 +31,7 @@ public interface IOrganizationService {
      * @param map
      * @return
      */
-    @PostMapping("/area/update")
+    @PostMapping("/organization/update")
     JSONObject update(@RequestParam Map<String, Object> map);
 
     /**
@@ -39,7 +39,7 @@ public interface IOrganizationService {
      * @param id
      * @return
      */
-    @DeleteMapping("/area/delete/{id}")
+    @DeleteMapping("/organization/delete/{id}")
     JSONObject deleteById(@PathVariable(value = "id") String id);
 
     /**
@@ -47,7 +47,7 @@ public interface IOrganizationService {
      * @param id
      * @return
      */
-    @PostMapping("/area/delete")
+    @PostMapping("/organization/delete")
     JSONObject deleteBatch(@RequestParam("id") String id);
 
     /**
@@ -55,7 +55,7 @@ public interface IOrganizationService {
      * @param id
      * @return
      */
-    @GetMapping("/area/select/{id}")
+    @GetMapping("/organization/select/{id}")
     JSONObject selectById(@PathVariable(value = "id") String id);
 
     /**
@@ -63,7 +63,7 @@ public interface IOrganizationService {
      * @param map
      * @return
      */
-    @GetMapping("/area/select")
+    @GetMapping("/organization/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
 }

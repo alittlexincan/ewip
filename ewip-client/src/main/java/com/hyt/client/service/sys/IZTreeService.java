@@ -19,11 +19,19 @@ import java.util.Map;
 public interface IZTreeService {
 
     /**
-     * 分页查询地区信息
+     * 查询地区信息树
      * @param map
      * @return
      */
     @PostMapping("/tree/area")
     JSONObject getAreaTree(@RequestParam Map<String, Object> map);
+
+    /**
+     * 查询地区信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/organization")
+    JSONObject getOrganizationTree(@RequestParam Map<String, Object> map);
 
 }

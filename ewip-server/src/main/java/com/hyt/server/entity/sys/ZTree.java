@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  * Copyright (C), 2015-2018
@@ -18,7 +17,6 @@ import javax.persistence.Table;
  */
 
 @ApiModel(value = "ZTree",description = "地区树信息")
-@Table(name = "area")
 public class ZTree {
 
     @Id
@@ -37,18 +35,22 @@ public class ZTree {
     @Column(name = "level")
     private int level;
 
+    @Column(name = "area_id")
+    private String areaId;
+
     private Boolean open;
 
 
     public ZTree() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, Boolean open) {
+    public ZTree(String id, String name, String code, String pId, int level, String areaId, Boolean open) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.pId = pId;
         this.level = level;
+        this.areaId = areaId;
         this.open = open;
     }
 
@@ -92,7 +94,15 @@ public class ZTree {
         this.level = level;
     }
 
-    public Boolean isOpen() {
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+
+    public Boolean getOpen() {
         return open;
     }
 

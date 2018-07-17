@@ -36,21 +36,31 @@ public class Organization {
     private String pId;
 
     @Column(name = "area_id",length = 64)
-    private int areaId;
+    private String areaId;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 
+
+    private String parentName;
+
+    private String areaName;
+
+    private int child;
+
     public Organization() {
     }
 
-    public Organization(String organizationName, String code, String pId, int areaId, Date createTime) {
+    public Organization(String organizationName, String code, String pId, String areaId, Date createTime, String parentName, String areaName, int child) {
         this.organizationName = organizationName;
         this.code = code;
         this.pId = pId;
         this.areaId = areaId;
         this.createTime = createTime;
+        this.parentName = parentName;
+        this.areaName = areaName;
+        this.child = child;
     }
 
     public String getId() {
@@ -85,11 +95,11 @@ public class Organization {
         this.pId = pId;
     }
 
-    public int getAreaId() {
+    public String getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(int areaId) {
+    public void setAreaId(String areaId) {
         this.areaId = areaId;
     }
 
@@ -99,5 +109,29 @@ public class Organization {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public int getChild() {
+        return child;
+    }
+
+    public void setChild(int child) {
+        this.child = child;
     }
 }

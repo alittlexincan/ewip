@@ -18,4 +18,6 @@ public interface IEmployeeService extends IBaseService<Employee> {
 
     Employee login(Map<String, Object> map);
 
+    Employee selectById(Map<String, Object> map);
+
 }

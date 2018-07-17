@@ -12,6 +12,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -112,7 +113,9 @@ public class EmployeeController {
     })
     @GetMapping("/select/{id}")
     public ResultObject<Object> selectById(@PathVariable(value = "id") String id) {
-        return ResultResponse.ok(this.employeeService.selectById(id));
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        return ResultResponse.ok(this.employeeService.selectById(map));
     }
 
     @ApiOperation(value = "查询员工信息列表", httpMethod = "GET", notes = "根据查询条件分页查询所有员工信息")

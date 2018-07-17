@@ -4,10 +4,11 @@
 
     <resultMap id="ZTreeResultMap" type="com.hyt.server.entity.sys.ZTree">
         <id column="id" jdbcType="VARCHAR" property="id"/>
-        <result column="area_name" jdbcType="VARCHAR" property="name"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
     </resultMap>
 
 
@@ -15,13 +16,29 @@
     <select id="getAreaTree" resultMap="ZTreeResultMap">
 
         SELECT
-            id, p_id, area_name, code, level
+            id, p_id, area_name name, code, level
         FROM area where 1=1
-        <if test="id != null">AND id = #{id}</if>
-        <if test="areaName != null">AND area_name LIKE '${areaName}%'</if>
-        <if test="code != null">AND code = #{code}</if>
-        <if test="pId != null">AND p_id = #{pId}</if>
-        <if test="level != null">AND level = #{level}</if>
+        <if test="id != null and id != ''">AND id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND id = #{areaId}</if>
+        <if test="areaName != null and areaName != ''">AND area_name LIKE '${areaName}%'</if>
+        <if test="code != null and code != ''">AND code = #{code}</if>
+        <if test="pId != null and pId != ''">AND p_id = #{pId}</if>
+        <if test="level != null and level != ''">AND level = #{level}</if>
+
+    </select>
+
+    <!-- 查询机构信息树 -->
+    <select id="getOrganizationTree" resultMap="ZTreeResultMap">
+
+        SELECT
+          id, p_id, organization_name name, code, area_id
+        FROM organization where 1=1
+        <if test="id != null and id != ''">AND id = #{id}</if>
+        <if test="organizationId != null and organizationId != ''">AND id = #{organizationId}</if>
+        <if test="organizationName != null and organizationName != ''">AND organizationName LIKE '${organizationName}%'</if>
+        <if test="code != null and code != ''">AND code = #{code}</if>
+        <if test="pId != null and pId != ''">AND p_id = #{pId}</if>
+        <if test="areaId != null and areaId != ''">AND level = #{areaId}</if>
 
     </select>
 

@@ -37,4 +37,18 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         return list;
     }
 
+    @Override
+    public List<ZTree> getOrganizationTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getOrganizationTree(map);
+        if(list.size() == 0) return null;
+        for(ZTree tree : list){
+            if(tree.getLevel() == 0 || tree.getLevel() == 1){
+                tree.setOpen(true);
+            }else{
+                tree.setOpen(false);
+            }
+        }
+        return list;
+    }
+
 }

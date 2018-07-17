@@ -33,4 +33,13 @@ public class ZTreeController {
         return this.zTreeService.getAreaTree(map);
     }
 
+    /**
+     * 获取地区树
+     * @param map
+     * @return
+     */
+    @PostMapping("/organization")
+    JSONObject getOrganizationTree(@RequestParam Map<String,Object> map){
+        return this.zTreeService.getOrganizationTree(map);
+    }
 }
