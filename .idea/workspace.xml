@@ -2,36 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="格式化">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/ZTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/ZTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IOrganizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IOrganizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IZTreeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IZTreeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/employee.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/selectTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/selectTree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ZTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ZTreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IOrganizationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IOrganizationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IZTreeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IZTreeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/EmployeeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/OrganizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/OrganizationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ZTreeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ZTreeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IOrganizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IOrganizationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IZTreeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IZTreeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/AreaMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/AreaMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/OrganizationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/OrganizationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ZTreeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ZTreeMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -82,8 +53,8 @@
       <file leaf-file-name="organization.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="263" column="56" selection-start-line="263" selection-start-column="56" selection-end-line="263" selection-end-column="56" />
+            <state relative-caret-position="39">
+              <caret line="199" column="41" selection-start-line="199" selection-start-column="41" selection-end-line="199" selection-end-column="41" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -505,8 +476,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EwipServerApplication" />
         <item itemvalue="Spring Boot.EwipClientApplication" />
+        <item itemvalue="Spring Boot.EwipServerApplication" />
         <item itemvalue="Spring Boot.EwipEurekaApplication" />
       </list>
     </recent_temporary>
@@ -595,7 +566,7 @@
       <workItem from="1531478477508" duration="1033000" />
       <workItem from="1531525895540" duration="18531000" />
       <workItem from="1531701133048" duration="15276000" />
-      <workItem from="1531787310836" duration="31058000" />
+      <workItem from="1531787310836" duration="31514000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -613,10 +584,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="538361000" />
+    <option name="totallyTimeSpent" value="538817000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1219,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="263" column="56" selection-start-line="263" selection-start-column="56" selection-end-line="263" selection-end-column="56" />
+        <state relative-caret-position="39">
+          <caret line="199" column="41" selection-start-line="199" selection-start-column="41" selection-end-line="199" selection-end-column="41" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />

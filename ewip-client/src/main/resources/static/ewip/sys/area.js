@@ -172,6 +172,18 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 layer.msg('请选中地区进行删除', {time: 2000});
                 return false;
             }
+
+            var id = '',count = 0;
+            for(var i = 0, len = data.length; i<len; i++){
+                id += ",'" + data[i].id + "'";
+                count += data[i].child;
+            }
+
+            if(count > 0){
+                layer.msg('选中数据存在子节点，请先删除子节点', {time: 2000});
+                return false;
+            }
+            
             layer.confirm('确定删除这批地区？', function(index){
                 var id = '';
                 for(var i = 0, len = data.length; i<len; i++){
