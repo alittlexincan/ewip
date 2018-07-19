@@ -21,11 +21,11 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
      * @returns {string}
      */
     let levelFormat = function(d){
-        if(d.level == 0) return '国家级';
-        if(d.level == 1) return '省级';
-        if(d.level == 2) return '市级';
-        if(d.level == 3) return '县级';
-        if(d.level == 4) return '乡镇级';
+        if(d.level == 0) return "<span class='layui-btn layui-btn-danger layui-btn-xs ewip-cursor-default'>国家级</span>";
+        if(d.level == 1) return "<span class='layui-btn layui-btn-warm layui-btn-xs ewip-cursor-default'>省级</span>";
+        if(d.level == 2) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>市级</span>";
+        if(d.level == 3) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>县级</span>";
+        if(d.level == 4) return "<span class='layui-btn layui-btn-disabled layui-btn-xs ewip-cursor-default'>乡镇级</span>";
     };
 
     /**
@@ -39,13 +39,13 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,height: 'full-200'
         ,limits:[5,10,20,50,100]
         ,cols: [[
-            {type: 'checkbox',fixed: 'left'}
+            {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'code', title: '地区编码', sort: true}
             ,{field: 'areaName', title: '地区名称', sort: true}
             ,{field: 'parentName', title: '上级地区', sort: true}
             ,{field: 'level', title: '地区级别',sort: true, templet: levelFormat}
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', fixed: 'right', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 

@@ -10,6 +10,7 @@
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="child" jdbcType="INTEGER" property="child"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
@@ -23,6 +24,7 @@
           o.p_id,
           (select b.organization_name from organization b where b.id = o.p_id) parent_name,
           o.area_id,
+          o.type,
           (select a.area_name from area a where a.id = o.area_id) area_name,
           (select count(*) from organization org where org.p_id = o.id) child,
           o.create_time
@@ -51,6 +53,7 @@
         o.p_id,
         (select b.organization_name from organization b where b.id = o.p_id) parent_name,
         o.area_id,
+        o.type,
         (select a.area_name from area a where a.id = o.area_id) area_name,
         o.create_time
         FROM organization o where 1=1

@@ -14,18 +14,14 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,selectTree = layui.selectTree
         ,$ = layui.$;   			// 引用layui的jquery
 
-
     /**
-     * 格式化性别
+     * 格式化机构类型
      * @param d
      * @returns {string}
      */
-    let levelFormat = function(d){
-        if(d.level == 0) return '国家级';
-        if(d.level == 1) return '省级';
-        if(d.level == 2) return '市级';
-        if(d.level == 3) return '县级';
-        if(d.level == 4) return '乡镇级';
+    let typeFormat = function(d){
+        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>发布中心</span>";
+        if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>预案单位</span>";
     };
 
     /**
@@ -39,13 +35,14 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,height: 'full-200'
         ,limits:[5,10,20,50,100]
         ,cols: [[
-            {type: 'checkbox',fixed: 'left'}
+            {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'code', title: '机构编码', sort: true}
             ,{field: 'organizationName', title: '机构名称', sort: true}
             ,{field: 'parentName', title: '上级机构', sort: true}
-            ,{field: 'areaName', title: '所属地区',sort: true}
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', fixed: 'right', toolbar: '#btnGroupOption'}
+            ,{field: 'areaName', title: '所属地区', sort: true}
+            ,{field: 'type', title: '机构类型',sort: true, templet: typeFormat}
+            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -100,6 +97,9 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 $("#addPId .addPIdShow, #updatePId .updatePIdShow").css("border-color","red");
                 return '请选择上级机构';
             }
+        }
+        ,type: function (value) {
+            if(value == "") "请选择机构类型";
         }
         ,organizationName: function(value){
             if(value.length == 0) return '请输入机构名称';
@@ -177,7 +177,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitAddBtn)", function(data){
-
                         // 数据提交到后台
                         submitServer({
                             index: index
@@ -263,7 +262,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         $("#updateDiv").empty().append(html);
                         // 地区级别下拉框赋值
                         $("select[name='level']").val(param.level);
-
+                        $("select[name='type']").val(param.type);
                         // 初始化下拉树(地区)
                         selectTree.render({
                             'id': 'updateAreaId'

@@ -38,6 +38,9 @@ public class Organization {
     @Column(name = "area_id",length = 64)
     private String areaId;
 
+    @Column(name = "type",length = 1)
+    private int type;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -52,11 +55,12 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(String organizationName, String code, String pId, String areaId, Date createTime, String parentName, String areaName, int child) {
+    public Organization(String organizationName, String code, String pId, String areaId, int type, Date createTime, String parentName, String areaName, int child) {
         this.organizationName = organizationName;
         this.code = code;
         this.pId = pId;
         this.areaId = areaId;
+        this.type = type;
         this.createTime = createTime;
         this.parentName = parentName;
         this.areaName = areaName;
@@ -101,6 +105,14 @@ public class Organization {
 
     public void setAreaId(String areaId) {
         this.areaId = areaId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public Date getCreateTime() {

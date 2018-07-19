@@ -20,8 +20,8 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      * @returns {string}
      */
     let typeFormat = function(d){
-        if(d.type == 0) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>渠道</span>";
-        if(d.type == 1) return "<span class='layui-btn layui-btn-danger layui-btn-xs ewip-cursor-default'>手段</span>";
+        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>渠道</span>";
+        if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>手段</span>";
     };
 
     /**
