@@ -31,3 +31,32 @@ div::-webkit-scrollbar-thumb {
     border: 1px solid #C9C9C9 !important;
     overflow-y: auto;
 }
+
+.ewip-cursor-default{
+    cursor: default;
+}
+.ewip-upload-input{
+    width: 90%;
+    border-radius: 0!important;
+    float: left;
+}
+.ewip-upload-btn{
+    border:none;
+    height: 38px;
+    line-height: 1.3;
+    width: 10%;
+    background: #009688;
+    color:white;
+    border-radius: 0 2px 2px 0;
+    -webkit-border-radius: 0 2px 2px 0;
+    -moz-border-radius: 0 2px 2px 0;
+    -ws-border-radius: 0 2px 2px 0;
+    -o-border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+/**
+    更改layui 表格单元格高度为自适应
+ */
+.layui-table-cell{
+    height: auto;
+}

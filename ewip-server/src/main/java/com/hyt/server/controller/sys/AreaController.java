@@ -63,9 +63,9 @@ public class AreaController {
         Area area = JSON.parseObject(json.toJSONString(), new TypeReference<Area>() {});
         int num = this.areaService.update(area);
         if(num>0){
-            return ResultResponse.make(200,"修改用户成功");
+            return ResultResponse.make(200,"修改地区成功");
         }
-        return ResultResponse.make(500,"修改用户失败");
+        return ResultResponse.make(500,"修改地区失败");
     }
 
     @ApiOperation(value="删除地区信息",httpMethod = "DELETE", notes="根据url的用户id来删除地区信息")
@@ -89,9 +89,9 @@ public class AreaController {
     public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
         Integer num = this.areaService.deleteByIds(id);
         if(num>0){
-            return  ResultResponse.make(200,"删除员工成功");
+            return  ResultResponse.make(200,"删除地区成功");
         }
-        return ResultResponse.make(500,"删除员工失败");
+        return ResultResponse.make(500,"删除地区失败");
     }
 
     @ApiOperation(value="查询地区信息",httpMethod = "POST", notes="根据url的地区id来查询地区信息")

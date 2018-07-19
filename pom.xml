@@ -63,6 +63,12 @@
             <artifactId>fastjson</artifactId>
             <version>${alibaba.fastjson.version}</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>commons-io</groupId>-->
+            <!--<artifactId>commons-io</artifactId>-->
+            <!--<version>2.5</version>-->
+        <!--</dependency>-->
+
         <!-- 引用自定义插件 -->
         <dependency>
             <groupId>com.xincan</groupId>

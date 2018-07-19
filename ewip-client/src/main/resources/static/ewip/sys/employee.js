@@ -142,7 +142,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,content:"<div id='addEmployee' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
-                    laytpl(addEmployeeDiv.innerHTML).render([], function(html){
+                    laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addEmployee").empty().append(html);
                         // 初始化下拉树(地区)
@@ -234,7 +234,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,content:"<div id='updateEmployee' style='padding:20px 20px 0 20px'>adsfds</div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
-                    laytpl(updateEmployeeDiv.innerHTML).render(param, function(html){
+                    laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateEmployee").empty().append(html);
                         // 初始化下拉树(地区)

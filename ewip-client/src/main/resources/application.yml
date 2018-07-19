@@ -1,21 +1,3 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /client
-
 spring:
-  application:
-    name: ewip-client
-  thymeleaf:
-    cache: false
-    mode: LEGACYHTML5
-  mvc:
-    favicon:
-      enabled: false
-
-eureka:
-  client:
-    service-url:
-      default-zone: http://127.0.0.1:8761/eureka/
-  instance:
-    ip-address: true
+  profiles:
+    active: dev

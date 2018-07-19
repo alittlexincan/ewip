@@ -183,7 +183,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 layer.msg('选中数据存在子节点，请先删除子节点', {time: 2000});
                 return false;
             }
-            
+
             layer.confirm('确定删除这批地区？', function(index){
                 var id = '';
                 for(var i = 0, len = data.length; i<len; i++){
