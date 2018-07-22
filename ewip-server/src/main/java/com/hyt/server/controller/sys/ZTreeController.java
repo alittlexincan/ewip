@@ -51,8 +51,21 @@ public class ZTreeController {
             @ApiImplicitParam(name="areaId",value="所属地区", dataType = "String",paramType = "query")
     })
     @PostMapping("/organization")
-    public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+    public ResultObject<Object> getOrganizationTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         List<ZTree> areaTree = this.zTreeService.getOrganizationTree(map);
+        return ResultResponse.ok(areaTree);
+    }
+
+    @ApiOperation(value = "查询灾种树", httpMethod = "POST", notes = "根据查询条件查询灾种树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="code",value="灾种编码", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId",value="上级灾种", dataType = "String",paramType = "query")
+    })
+    @PostMapping("/disaster")
+    public ResultObject<Object> getDisasterTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> areaTree = this.zTreeService.getDisasterTree(map);
         return ResultResponse.ok(areaTree);
     }
 }

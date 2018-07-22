@@ -30,7 +30,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,elem: '#table'
         ,url:'/client/employee/select'
         ,page:true
-        ,height: 'full-200'
+        ,height: 'full-180'
         ,limits:[5,10,20,50,100]
         ,cols: [[
             {type: 'checkbox',fixed: 'left'}

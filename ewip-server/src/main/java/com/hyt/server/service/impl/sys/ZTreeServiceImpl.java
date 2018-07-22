@@ -51,4 +51,13 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         return list;
     }
 
+    @Override
+    public List<ZTree> getDisasterTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getDisasterTree(map);
+        if(list.size() == 0) return null;
+        for(ZTree tree : list) {
+            tree.setOpen(true);
+        }
+        return list;
+    }
 }

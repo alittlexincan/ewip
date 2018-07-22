@@ -1,5 +1,6 @@
 package com.hyt.client.controller.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IZTreeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,9 @@ public class ZTreeController {
      * @return
      */
     @PostMapping("/area")
-    JSONObject getAreaTree(@RequestParam Map<String,Object> map){
-        return this.zTreeService.getAreaTree(map);
+    JSONArray getAreaTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getAreaTree(map);
+        return json.getJSONArray("data");
     }
 
     /**
@@ -39,7 +41,20 @@ public class ZTreeController {
      * @return
      */
     @PostMapping("/organization")
-    JSONObject getOrganizationTree(@RequestParam Map<String,Object> map){
-        return this.zTreeService.getOrganizationTree(map);
+    JSONArray getOrganizationTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getOrganizationTree(map);
+        return json.getJSONArray("data");
     }
+
+    /**
+     * 获取地区树
+     * @param map
+     * @return
+     */
+    @PostMapping("/disaster")
+    JSONArray getDisasterTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getDisasterTree(map);
+        return json.getJSONArray("data");
+    }
+
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.sys.IDisasterMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Disaster">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="SMALLINT" property="code"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="is_config" jdbcType="INTEGER" property="isConfig"/>
+        <result column="child" jdbcType="INTEGER" property="child"/>
+        <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <!-- 查询渠道手段信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+            d.id,
+            d.name,
+            d.code,
+            d.icon,
+            d.p_id,
+            d.type,
+            d.is_config,
+            (select dis.name from disaster dis where dis.id = d.p_id) parent_name,
+            (select count(*) from disaster di where di.p_id = d.id) child,
+            d.create_time
+        FROM disaster d where 1=1
+        <if test="id != null and id != ''">AND d.id = #{id}</if>
+        <if test="name != null and name != ''">AND d.name LIKE '${name}%'</if>
+        <if test="pId != null and pId != ''">AND d.p_id = #{pId}</if>
+        <if test="type != null and type != ''">AND d.type = #{type}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY d.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 根据地区id查询渠道手段信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+            d.id,
+            d.name,
+            d.code,
+            d.icon,
+            d.p_id,
+            d.type,
+            d.is_config,
+            d.create_time
+        FROM disaster d where 1=1
+        <if test="id != null and id != ''">AND d.id = #{id}</if>
+    </select>
+
+</mapper>

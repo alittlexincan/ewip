@@ -27,11 +27,19 @@ public interface IZTreeService {
     JSONObject getAreaTree(@RequestParam Map<String, Object> map);
 
     /**
-     * 查询地区信息树
+     * 查询机构信息树
      * @param map
      * @return
      */
     @PostMapping("/tree/organization")
     JSONObject getOrganizationTree(@RequestParam Map<String, Object> map);
+
+    /**
+     * 查询灾种信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/disaster")
+    JSONObject getDisasterTree(@RequestParam Map<String, Object> map);
 
 }

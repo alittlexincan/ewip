@@ -1,5 +1,8 @@
 
-layui.define(function(exports){
+layui.define(['zTree'], function(exports){
+
+    var $ = layui.$,
+        zTree = layui.zTree;
 
     var beforeClick = function(treeId, treeNode) {
         var check = (treeNode && !treeNode.isParent);
@@ -8,8 +11,6 @@ layui.define(function(exports){
     };
 
     var onClick = function(event, treeId, treeNode) {
-        var inputShow = treeId.substring(0, treeId.length - 4);
-        $("#" + inputShow +"Show").css("border-color","#e6e6e6");
         var zTree = $.fn.zTree.getZTreeObj(treeId);
         if (zTree.setting.check.enable == true) {
             zTree.checkNode(treeNode, !treeNode.checked, false)
@@ -43,6 +44,7 @@ layui.define(function(exports){
             ids = ids.substring(0, ids.length - 1);
         }
         treeId = treeId.substring(0, treeId.length - 4);
+        $("#"+treeId+" ."+treeId+"Show").css("border-color","#e6e6e6");
         $("#" + treeId + " ." + treeId + "Show").attr("value", names);
         $("#" + treeId + " ." + treeId + "Show").attr("title", names);
         $("." + treeId + "TreeDiv ." + treeId + "Hide").attr("value", ids);
@@ -67,8 +69,8 @@ layui.define(function(exports){
             ,data: param.data|{}
             ,url: param.url
             ,dataType: 'json'
-            ,success: function(json){
-                treeData = json.data;
+            ,success: function(data){
+                treeData = data;
             }
         });
         return treeData;
@@ -86,7 +88,6 @@ layui.define(function(exports){
 
     var selectTree = {
         "render": function(option) {
-            var data = getData(option);
             var setting = {
                 view: {
                     dblClickExpand: false,
@@ -152,12 +153,18 @@ layui.define(function(exports){
                 }
 
             });
-            var tree = $.fn.zTree.init($("." + option.id + "TreeDiv' #" + option.id + "Tree"), setting, data);
+
+            var idTree = option.id;
+            option.id = "." + option.id + "TreeDiv #" + option.id + "Tree";
+            option.setting = setting;
+            option.data = getData(option);
+            // 初始化树
+            var tree = zTree.sync(option);
             // 如果有选中项则回填选中结果
             if(option.checkNodeId != undefined && option.checkNodeId != null){
                 var node = tree.getNodeByParam("id",option.checkNodeId, null);
                 tree.selectNode(node,true);//将指定ID的节点选中
-                onClick(event, option.id + "Tree", node)
+                onClick(event, idTree + "Tree", node)
             }
 
         }

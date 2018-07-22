@@ -32,7 +32,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,elem: '#table'
         ,url:'/client/organization/select'
         ,page:true
-        ,height: 'full-200'
+        ,height: 'full-180'
         ,limits:[5,10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
@@ -92,7 +92,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             }
         }
         ,pId: function (value) {
-
             if(value.length == 0) {
                 $("#addPId .addPIdShow, #updatePId .updatePIdShow").css("border-color","red");
                 return '请选择上级机构';

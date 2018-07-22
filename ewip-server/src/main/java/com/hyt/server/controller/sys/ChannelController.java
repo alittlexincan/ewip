@@ -50,10 +50,10 @@ public class ChannelController {
     @ApiOperation(value="修改渠道手段信息",httpMethod="POST", notes="根据渠道手段ID，修改参数列表渠道手段信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String", required = true,paramType = "query"),
-        @ApiImplicitParam(name="name",value="渠道手段名称",required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="icon",value="渠道手段图标",required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="pId", value="所属渠道", required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="type",value="渠道手段类型", required = true,dataType = "Integer",paramType = "query")
+        @ApiImplicitParam(name="name",value="渠道手段名称", dataType = "String",paramType = "query"),
+        @ApiImplicitParam(name="icon",value="渠道手段图标", dataType = "String",paramType = "query"),
+        @ApiImplicitParam(name="pId", value="所属渠道", dataType = "String",paramType = "query"),
+        @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query")
     })
     @PostMapping("/update")
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -66,7 +66,7 @@ public class ChannelController {
         return ResultResponse.make(500,"修改渠道手段失败");
     }
 
-    @ApiOperation(value="删除渠道手段信息",httpMethod = "DELETE", notes="根据url的用户id来删除渠道手段信息")
+    @ApiOperation(value="删除渠道手段信息",httpMethod = "DELETE", notes="根据url的渠道手段id来删除渠道手段信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")
     })
@@ -133,8 +133,7 @@ public class ChannelController {
     public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         JSONObject json = new JSONObject(map);
         Channel channel = JSON.parseObject(json.toJSONString(), new TypeReference<Channel>() {});
-        List<Channel> obj = this.channelService.select(channel);
-        return ResultResponse.ok(obj);
+        return ResultResponse.ok(this.channelService.select(channel));
     }
 
 }

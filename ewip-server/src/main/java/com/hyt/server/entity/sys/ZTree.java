@@ -40,11 +40,13 @@ public class ZTree {
 
     private Boolean open;
 
+    private int type;
+
 
     public ZTree() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, String areaId, Boolean open) {
+    public ZTree(String id, String name, String code, String pId, int level, String areaId, Boolean open, int type) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -52,6 +54,7 @@ public class ZTree {
         this.level = level;
         this.areaId = areaId;
         this.open = open;
+        this.type = type;
     }
 
     public String getId() {
@@ -108,5 +111,13 @@ public class ZTree {
 
     public void setOpen(Boolean open) {
         this.open = open;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

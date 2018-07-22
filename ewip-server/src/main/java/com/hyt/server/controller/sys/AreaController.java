@@ -81,7 +81,7 @@ public class AreaController {
         return ResultResponse.make(500,"删除地区失败");
     }
 
-    @ApiOperation(value="批量删除地区信息",httpMethod = "POST", notes="根据一批用户id来删除地区信息")
+    @ApiOperation(value="批量删除地区信息",httpMethod = "POST", notes="根据一批地区id来删除地区信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "id", value = "地区ID", required = true, dataType = "String", paramType="query")
     })

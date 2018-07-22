@@ -46,7 +46,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,elem: '#table'
         ,url:'/client/channel/select'
         ,page:true
-        ,height: 'full-200'
+        ,height: 'full-180'
         ,limit:5
         ,limits:[5,10,20,50,100]
         ,cols: [[
@@ -230,7 +230,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
-                layer.msg('请选中机构进行删除', {time: 2000});
+                layer.msg('请选中渠道手段进行删除', {time: 2000});
                 return false;
             }
 

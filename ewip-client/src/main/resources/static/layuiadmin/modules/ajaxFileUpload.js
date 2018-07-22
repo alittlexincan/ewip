@@ -1,4 +1,3 @@
-
 layui.define(function(exports){
 
     var jQuery = layui.jquery;

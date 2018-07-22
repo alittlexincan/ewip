@@ -9,6 +9,7 @@
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="type" jdbcType="SMALLINT" property="type"/>
         <result column="child" jdbcType="INTEGER" property="child"/>
+        <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
