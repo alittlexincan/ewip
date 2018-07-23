@@ -40,3 +40,6 @@ website:    http://code.google.com/p/jquerytree/
     -o-border-radius: 0 2px 2px 0;
     cursor: pointer;
 }
+.layui-select-disabled input{
+    color:black!important;
+}

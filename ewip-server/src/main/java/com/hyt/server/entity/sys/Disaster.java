@@ -41,6 +41,12 @@ public class Disaster {
     @Column(name = "type",length = 1)
     private int type;
 
+    @Column(name = "disaster_color",length = 1)
+    private int disasterColor;
+
+    @Column(name = "disaster_level",length = 1)
+    private int disasterLevel;
+
     @Column(name = "is_config",length = 1)
     private int isConfig;
 
@@ -55,12 +61,14 @@ public class Disaster {
     public Disaster() {
     }
 
-    public Disaster(String name, String code, String pId, String icon, int type, int isConfig, Date createTime, int child, String parentName) {
+    public Disaster(String name, String code, String pId, String icon, int type, int disasterColor, int disasterLevel, int isConfig, Date createTime, int child, String parentName) {
         this.name = name;
         this.code = code;
         this.pId = pId;
         this.icon = icon;
         this.type = type;
+        this.disasterColor = disasterColor;
+        this.disasterLevel = disasterLevel;
         this.isConfig = isConfig;
         this.createTime = createTime;
         this.child = child;
@@ -113,6 +121,22 @@ public class Disaster {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public int getDisasterColor() {
+        return disasterColor;
+    }
+
+    public void setDisasterColor(int disasterColor) {
+        this.disasterColor = disasterColor;
+    }
+
+    public int getDisasterLevel() {
+        return disasterLevel;
+    }
+
+    public void setDisasterLevel(int disasterLevel) {
+        this.disasterLevel = disasterLevel;
     }
 
     public int getIsConfig() {

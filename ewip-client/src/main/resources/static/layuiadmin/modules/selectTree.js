@@ -1,8 +1,11 @@
 
-layui.define(['zTree'], function(exports){
+layui.define(['form','zTree'], function(exports){
 
     var $ = layui.$,
-        zTree = layui.zTree;
+        zTree = layui.zTree,
+        form = layui.form,
+
+        param = null;
 
     var beforeClick = function(treeId, treeNode) {
         var check = (treeNode && !treeNode.isParent);
@@ -33,12 +36,22 @@ layui.define(['zTree'], function(exports){
     };
 
     var assignment = function(treeId, nodes) {
+
         var names = "";
         var ids = "";
         for (var i = 0, l = nodes.length; i < l; i++) {
             names += nodes[i].name + ",";
             ids += nodes[i].id + ",";
+            if(param.setData != undefined && param.range != undefined){
+                var setData = param.setData;
+                var range = param.range;
+                for(var j = 0; j<setData.length; j++){
+                    $(range + " input[name='"+setData[j]+"']").val(nodes[i][setData[j]]);
+                    $(range + " select[name='"+setData[j]+"']").val(nodes[i][setData[j]]);
+                }
+            }
         }
+        form.render();
         if (names.length > 0) {
             names = names.substring(0, names.length - 1);
             ids = ids.substring(0, ids.length - 1);
@@ -48,6 +61,9 @@ layui.define(['zTree'], function(exports){
         $("#" + treeId + " ." + treeId + "Show").attr("value", names);
         $("#" + treeId + " ." + treeId + "Show").attr("title", names);
         $("." + treeId + "TreeDiv ." + treeId + "Hide").attr("value", ids);
+
+
+
     };
 
     var onBodyDown = function(event) {
@@ -84,10 +100,17 @@ layui.define(['zTree'], function(exports){
      * @param chkboxType 多选框类型{"Y": "ps", "N": "s"}
      * @param checkNodeId 数据回显时的树节点id
      * @param isVerify    是否验证：false: true
+     * @param range       当前标签范围，通常配合setData
+     * @param setData     需要给当前 range 中文本框元素赋值的name属性数组
      */
 
     var selectTree = {
+        /**
+         * 初始化下拉树
+         * @param option
+         */
         "render": function(option) {
+            param = option;
             var setting = {
                 view: {
                     dblClickExpand: false,
@@ -164,9 +187,9 @@ layui.define(['zTree'], function(exports){
             if(option.checkNodeId != undefined && option.checkNodeId != null){
                 var node = tree.getNodeByParam("id",option.checkNodeId, null);
                 tree.selectNode(node,true);//将指定ID的节点选中
-                onClick(event, idTree + "Tree", node)
+                onClick(event, idTree + "Tree", node);
             }
-
+            return tree;
         }
     };
     //输出test接口

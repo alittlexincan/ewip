@@ -42,11 +42,15 @@ public class ZTree {
 
     private int type;
 
+    private int disasterColor;
+
+    private int disasterLevel;
+
 
     public ZTree() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, String areaId, Boolean open, int type) {
+    public ZTree(String id, String name, String code, String pId, int level, String areaId, Boolean open, int type, int disasterColor, int disasterLevel) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -55,6 +59,8 @@ public class ZTree {
         this.areaId = areaId;
         this.open = open;
         this.type = type;
+        this.disasterColor = disasterColor;
+        this.disasterLevel = disasterLevel;
     }
 
     public String getId() {
@@ -119,5 +125,21 @@ public class ZTree {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public int getDisasterColor() {
+        return disasterColor;
+    }
+
+    public void setDisasterColor(int disasterColor) {
+        this.disasterColor = disasterColor;
+    }
+
+    public int getDisasterLevel() {
+        return disasterLevel;
+    }
+
+    public void setDisasterLevel(int disasterLevel) {
+        this.disasterLevel = disasterLevel;
     }
 }

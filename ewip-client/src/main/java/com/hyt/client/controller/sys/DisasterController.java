@@ -107,7 +107,7 @@ public class DisasterController {
     }
 
     /**
-     * 根据地区id删除灾种信息
+     * 根据灾种id删除灾种级别信息
      * @param id
      * @return
      */
@@ -117,6 +117,25 @@ public class DisasterController {
         if(json.getInteger("code") == 200){
             String fileName = this.uploadPath + map.get("fileName").toString();
             UploadFileUtil.deleteFile(fileName);
+        }
+        return json;
+    }
+
+    /**
+     * 根据ids批量删除灾种级别信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/delete/level")
+    JSONObject deleteLevelBatch(@RequestParam Map<String, Object> map){
+        JSONObject json = this.disasterService.deleteBatch(map.get("id").toString());
+        if(json.getInteger("code") == 200){
+            String[] fileName = map.get("fileName").toString().split(",");
+            String[] url = new String[fileName.length];
+            for(int i = 0; i<fileName.length; i++){
+                url[i] = this.uploadPath + this.disaster + "/" + fileName[i];
+            }
+            UploadFileUtil.deleteFile(url);
         }
         return json;
     }
