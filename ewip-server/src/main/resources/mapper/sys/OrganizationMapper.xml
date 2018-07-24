@@ -39,7 +39,7 @@
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY create_time DESC
+                ORDER BY o.create_time DESC
             </otherwise>
         </choose>
     </select>
@@ -57,7 +57,7 @@
         (select a.area_name from area a where a.id = o.area_id) area_name,
         o.create_time
         FROM organization o where 1=1
-        <if test="id != null and id != ''">and id = #{id, jdbcType=VARCHAR}</if>
+        <if test="id != null and id != ''">and o.id = #{id, jdbcType=VARCHAR}</if>
     </select>
 
 </mapper>

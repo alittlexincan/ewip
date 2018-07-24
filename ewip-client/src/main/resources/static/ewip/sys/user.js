@@ -1,65 +1,18 @@
 layui.config({
     base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
-    ajaxFileUpload: 'ajaxFileUpload' //如果 mymod.js 是在根目录，也可以不用设定别名
-    ,selectTree: 'selectTree'
+    selectTree: 'selectTree'
     ,zTree: 'zTree'
-    ,disaster: 'disaster'
 });
 
-layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTree', 'disaster'], function(){
+layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
-        ,ajaxFileUpload = layui.ajaxFileUpload
         ,selectTree = layui.selectTree
-        ,zTree = layui.zTree
-        ,disaster = layui.disaster;
-
-
-    /**
-     * 格式化灾种类型
-     * @param d
-     * @returns {string}
-     */
-    let typeFormat = function(d){
-        if(d.type == -1) return "<span class='layui-btn layui-btn-xs layui-btn-normal ewip-cursor-default'>根节点</span>";
-        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>事件</span>";
-        if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>灾种</span>";
-    };
-
-    /**
-     * 图片格式化
-     * @param d
-     * @returns {string}
-     */
-    let iconFormat = function(d){
-        if(d.icon!="" && d.icon!=null) {
-            return "<img src='/client/"+d.icon+"'  style='width:50px;height:50px;' >";
-        }else{
-            return "暂无图片";
-        }
-    };
-
-    /**
-     * 颜色转换
-     * @param d
-     * @returns {string}
-     */
-    let colorFormat = function(d){
-        return disaster.color(d.disasterColor);
-    };
-
-    /**
-     * 级别转换
-     * @param d
-     * @returns {string}
-     */
-    let levelFormat = function(d){
-        return disaster.level(d.disasterLevel);
-    };
+        ,zTree = layui.zTree;
 
     /**
      * 加载表格
@@ -67,20 +20,19 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/disaster/select'
+        ,url:'/client/user/select'
         ,page:true
         ,height: 'full-180'
-        ,limit:5
         ,limits:[5,10,20,50,100]
-        ,where:{isConfig: 1}
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'code', title: '灾种编码', sort: true}
-            ,{field: 'name', title: '灾种名称', sort: true}
-            ,{field: 'disasterColor', title: '灾种颜色', sort: true, templet:colorFormat}
-            ,{field: 'disasterLevel', title: '灾种级别', templet: levelFormat }
-            ,{field: 'icon', title: '图&nbsp;&nbsp;标', width:80, templet: iconFormat }
+            ,{field: 'name', title: '受众名称', sort: true}
+            ,{field: 'code', title: '终端号码',sort: true}
+            ,{field: 'userGroupName', title: '所属群组', sort: true}
+            ,{field: 'areaName', title: '所属地区'}
+            ,{field: 'organizationName', title: '所属机构'}
+            ,{field: 'channelName', title: '终端类别'}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
@@ -136,35 +88,41 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
     });
 
     /**
-     * 灾种树点击事件
+     * 群组树点击事件
      * @param event
      * @param treeId
      * @param treeNode
      */
-    var disasterClick = function(event, treeId, treeNode){
+    var userGroupClick = function(event, treeId, treeNode){
+        var where = {};
+        if(treeNode.type == 1){
+            where.userGroupId = null;
+            where.organizationId = treeNode.organizationId;
+        }else {
+            where.organizationId = null;
+            where.userGroupId = treeNode.id;
+        }
         table.reload('table', {
             page: {
                 curr: 1
             },
-            where: { //设定异步数据接口的额外参数，任意设
-                pId: treeNode.id
-            }
+            where: where
         });
     };
     /**
-     * 初始化加载灾种树
+     * 初始化加载群组树
      */
-    var disasterZtree = zTree.async({
-        id: "#disasterTree",
+    var userGroupZtree = zTree.async({
+        id: "#organizationGroupTree",
         setting: {
             async:{
                 enable:true,
-                url: "/client/tree/disaster",
+                url: "/client/tree/organization/group",
                 autoParam:["id"],
                 dataType:"json",
             },
             check: {
-                enable: true,
+                enable: false,
                 chkboxType: {"Y":"", "N": ""},
                 chkStyle:"checkbox"
             },
@@ -174,34 +132,11 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                 }
             },
             callback:{
-                onClick:disasterClick
+                onClick:userGroupClick
             }
         }
     });
 
-
-    /**
-     * 数据提交到后台（通用发方法）
-     * @param option
-     */
-    let submitFile = function(option){
-        ajaxFileUpload.render({
-            async: option.async
-            ,url : option.url
-            ,type: option.type
-            ,param : option.param//需要传递的数据 json格式
-            ,files : option.files
-            ,dataType: 'json'
-        },function (json) {
-            if(option.index != null) layer.close(option.index);
-            if(json.code == 200){
-                // 刷新列表
-                reloadTable();
-            }
-            // 弹出提示信息，2s后自动关闭
-            layer.msg(json.msg, {time: 2000});
-        });
-    };
 
     /**
      * 提交到后台
@@ -218,7 +153,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                 if(option.index != null) layer.close(option.index);
                 if(json.code == 200){
                     // 异步刷新地区树
-                    disasterZtree.reAsyncChildNodes(null, "refresh");
+                    userGroupZtree.reAsyncChildNodes(null, "refresh");
                 }
                 // 弹出提示信息，2s后自动关闭
                 layer.msg(json.msg, {time: 2000});
@@ -233,12 +168,12 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
      */
     let active = {
         /**
-         * 工具条：添加灾种信息
+         * 工具条：添加群组信息
          */
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加灾种信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加群组信息"
                 ,area: ['600px','400px']
                 ,shade: 0.3
                 ,maxmin:true
@@ -253,7 +188,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         // 初始化下拉树
                         selectTree.render({
                             'id': 'addPId'
-                            ,'url': '/client/tree/disaster'
+                            ,'url': '/client/tree/user/group'
                             ,'isMultiple': false
                         });
                     });
@@ -267,7 +202,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/disaster/insert'
+                            ,url: '/client/user/group/insert'
                             ,type: 'POST'
                             ,param: data.field
                             ,dataType: 'json'
@@ -279,27 +214,26 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
             });
         }
         /**
-         * 工具条：修改灾种信息
+         * 工具条：修改群组信息
          * @param obj
          */
         ,'updateBarBtn': function (obj) {
             // 获取灾种树选中节点
-            var nodes = disasterZtree.getCheckedNodes(true);
+            var nodes = userGroupZtree.getCheckedNodes(true);
             if(nodes.length == 0){
-                layer.msg('请选中灾种进行修改', {time: 2000});
+                layer.msg('请选中群组进行修改', {time: 2000});
                 return false;
             }
             if(nodes.length > 1){
-                layer.msg('请选中一个灾种进行修改', {time: 2000});
+                layer.msg('请选中一个群组进行修改', {time: 2000});
                 return false;
             }
             var param = nodes[0];
-            console.log(param);
 
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改灾种信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改群组信息"
                 ,area: ['600px','500px']
                 ,shade: 0.3
                 ,maxmin:true
@@ -317,7 +251,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         // 初始化下拉树
                         selectTree.render({
                             'id': 'updatePId'
-                            ,'url': '/client/tree/disaster'
+                            ,'url': '/client/tree/user/group'
                             ,'isMultiple': false
                             ,'checkNodeId': param.pId
                         });
@@ -333,7 +267,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/disaster/update'
+                            ,url: '/client/user/group/update'
                             ,type: 'POST'
                             ,param: data.field
                             ,dataType: 'json'
@@ -345,15 +279,15 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
             });
         }
         /**
-         * 工具条：批量删除灾种信息
+         * 工具条：批量删除群组信息
          * @returns {boolean}
          */
         ,'deleteBarBtn': function(){
             // 获取灾种树选中节点
-            var nodes = disasterZtree.getCheckedNodes(true);
+            var nodes = userGroupZtree.getCheckedNodes(true);
             
             if(nodes.length == 0){
-                layer.msg('请选中灾种进行删除', {time: 2000});
+                layer.msg('请选中群组进行删除', {time: 2000});
                 return false;
             }
             var id = '', count =0, level = -1;
@@ -372,12 +306,12 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                 return false;
             }
 
-            layer.confirm('确定删除选中灾种？', function(index){
+            layer.confirm('确定删除选中群组？', function(index){
                 // 数据提交到后台，通用方法
                 submit({
                     index: index
                     ,async: 'true'
-                    ,url: '/client/disaster/delete'
+                    ,url: '/client/user/group/delete'
                     ,type: 'POST'
                     ,param: {id: id.substring(1)}
                     ,dataType: 'json'
@@ -385,10 +319,10 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
             });
         }
         /**
-         * 工具条：批量删除灾种信息
+         * 工具条：批量删除受众信息
          * @returns {boolean}
          */
-        ,'deleteLevelBarBtn': function(){
+        ,'deleteUserBarBtn': function(){
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
@@ -396,34 +330,31 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                 return false;
             }
 
-            var id = '', file='';
+            var id = '';
             for(var i = 0, len = data.length; i<len; i++){
                 id += ",'" + data[i].id + "'";
-                var icon =data[i].icon;
-                var iconIndex = (icon.lastIndexOf("\\")+1)||(icon.lastIndexOf("/")+1);
-                file += "," + icon.substring(iconIndex, icon.length);
             }
 
             layer.confirm('确定删除选中灾种？', function(index){
                 // 数据提交到后台，通用方法
-                submitFile({
+                submit({
                     index: index
                     ,async: 'true'
-                    ,url: '/client/disaster/delete/level'
+                    ,url: '/client/user/delete'
                     ,type: 'POST'
-                    ,param: {id: id.substring(1), fileName: file.substring(1)}
+                    ,param: {id: id.substring(1)}
                     ,dataType: 'json'
                     ,files: []
                 });
             });
         }
         /**
-         * 工具条：灾种级别配置信息
+         * 工具条：添加受众信息
          */
-        ,'configLevelBarBtn': function(){
+        ,'addUserBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 灾种级别配置"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加受众信息"
                 ,area: ['600px','500px']
                 ,shade: 0.3
                 ,maxmin:true
@@ -437,20 +368,13 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         $("#configDiv").empty().append(html);
                         // 初始化下拉树
                         selectTree.render({
-                            'id': 'configAddPId'
-                            ,'url': '/client/tree/disaster'
+                            'id': 'addUserPId'
+                            ,'url': '/client/tree/user/group'
                             ,'isMultiple': false
                             ,'range':'#configDiv'
                             ,'setData':['type','name','code']
                         });
-                        // 点击上传按钮，出发文件按钮
-                        $('#addUploadBtn').on('click', function(){
-                            $("#addFile").click();
-                        });
-                        // 选择上传文件
-                        $("#addFile").change(function (e) {
-                            $("#configDiv input[name='icon']").val($(this).val());
-                        });
+
                         // 监听color颜色单选
                         form.on('radio(color)', function (data) {
                             $('#configDiv input[name="levelName"]').val(disaster.chooseColorToLevel(data.value).name);
@@ -468,13 +392,12 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitConfigAddBtn)", function(data){
                         // 数据提交到后台，通用方法
-                        submitFile({
+                        submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/disaster/insert/level'
+                            ,url: '/client/user/insert'
                             ,type: 'POST'
                             ,param: data.field
-                            ,files: ['addFile']
                             ,dataType: 'json'
                         });
                     });
@@ -485,23 +408,25 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
         }
 
         /**
-         * 列表中：删除选中的灾种信息
+         * 列表中：删除选中的受众信息
          * @param obj
          */
         ,'deleteOption': function (obj) {
-            layer.confirm('确定删除该灾种？', function(index){
+            layer.confirm('确定删除该受众？', function(index){
                 obj.del();
                 // 数据提交到后台，通用方法
                 submit({
                     index: index
-                    ,param: {fileName: obj.data.icon}
+                    ,async: 'true'
+                    ,url: '/client/user/delete/' + obj.data.id
                     ,type: 'POST'
-                    ,url: '/client/disaster/delete/' + obj.data.id,
+                    ,param: {fileName: obj.data.icon}
+                    ,dataType: 'json'
                 });
             });
         }
         /**
-         * 列表中：修改灾种级别信息
+         * 列表中：修改受众信息
          * @param obj
          */
         ,'updateOption': function (obj) {
@@ -509,7 +434,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改灾种级别信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改受众信息"
                 ,area: ['600px','500px']
                 ,shade: 0.3
                 ,maxmin:true
@@ -523,21 +448,14 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                         $("#updateDiv").empty().append(html);
                         // 初始化下拉树
                         selectTree.render({
-                            'id': 'configUpdatePId'
-                            ,'url': '/client/tree/disaster'
+                            'id': 'updatePId'
+                            ,'url': '/client/tree/user/group'
                             ,'isMultiple': false
                             ,'range':'#updateDiv'
                             ,'setData':['type','name','code']
                             ,'checkNodeId': param.pId
                         });
-                        // 点击上传按钮，出发文件按钮
-                        $('#updateUploadBtn').on('click', function(){
-                            $("#updateFile").click();
-                        });
-                        // 选择上传文件
-                        $("#updateFile").change(function (e) {
-                            $("input[name='icon']").val($(this).val());
-                        });
+
                         $('#updateDiv select[name="type"]').val(param.type);
                         // 灾种颜色赋值
                         $("#updateDiv input[name='disasterColor'][value='"+param.disasterColor+"']").attr("checked",true);
@@ -558,17 +476,13 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitConfigUpdateBtn)", function(data){
                         data.field.id = param.id;
-                        var icon = data.field.icon;
-                        var iconIndex = (icon.lastIndexOf("\\")+1)||(icon.lastIndexOf("/")+1);
-                        data.field.icon = icon.substring(iconIndex, icon.length);
                         // 数据提交到后台，通用方法
-                        submitFile({
+                        submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/disaster/update/level'
+                            ,url: '/client/user/user'
                             ,type: 'POST'
                             ,param: data.field
-                            ,files: ['updateFile']
                             ,dataType: 'json'
                         });
                     });

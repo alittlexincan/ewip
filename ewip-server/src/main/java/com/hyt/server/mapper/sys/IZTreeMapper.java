@@ -24,4 +24,8 @@ public interface IZTreeMapper extends IBaseMapper<ZTree> {
 
     List<ZTree> getDisasterTree(Map<String, Object> map);
 
+    List<ZTree> getUserGroupTree(Map<String, Object> map);
+
+    List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map);
+
 }

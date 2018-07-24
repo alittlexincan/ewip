@@ -3,7 +3,8 @@ package com.hyt.client.service.sys;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -41,5 +42,16 @@ public interface IZTreeService {
      */
     @PostMapping("/tree/disaster")
     JSONObject getDisasterTree(@RequestParam Map<String, Object> map);
+
+    /**
+     * 查询群组信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/user/group")
+    JSONObject getUserGroupTree(@RequestParam Map<String, Object> map);
+
+    @PostMapping("/tree/organization/group")
+    JSONObject getOrganizationUserGroupTree(Map<String, Object> map);
 
 }

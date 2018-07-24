@@ -20,4 +20,8 @@ public interface IZTreeService extends IBaseService<ZTree> {
 
     List<ZTree> getDisasterTree(Map<String, Object> map);
 
+    List<ZTree> getUserGroupTree(Map<String, Object> map);
+
+    List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map);
+
 }

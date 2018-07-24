@@ -50,7 +50,7 @@
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY create_time DESC
+                ORDER BY e.create_time DESC
             </otherwise>
         </choose>
     </select>

@@ -57,4 +57,25 @@ public class ZTreeController {
         return json.getJSONArray("data");
     }
 
+    /**
+     * 获取群组树
+     * @param map
+     * @return
+     */
+    @PostMapping("/user/group")
+    JSONArray getUserGroupTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getUserGroupTree(map);
+        return json.getJSONArray("data");
+    }
+
+    /**
+     * 获取群组树
+     * @param map
+     * @return
+     */
+    @PostMapping("/organization/group")
+    JSONArray getOrganizationUserGroupTree(Map<String, Object> map){
+        JSONObject json =  this.zTreeService.getOrganizationUserGroupTree(map);
+        return json.getJSONArray("data");
+    }
 }

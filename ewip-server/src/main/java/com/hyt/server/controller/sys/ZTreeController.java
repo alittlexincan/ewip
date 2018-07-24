@@ -52,8 +52,8 @@ public class ZTreeController {
     })
     @PostMapping("/organization")
     public ResultObject<Object> getOrganizationTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
-        List<ZTree> areaTree = this.zTreeService.getOrganizationTree(map);
-        return ResultResponse.ok(areaTree);
+        List<ZTree> organizationTree = this.zTreeService.getOrganizationTree(map);
+        return ResultResponse.ok(organizationTree);
     }
 
     @ApiOperation(value = "查询灾种树", httpMethod = "POST", notes = "根据查询条件查询灾种树信息")
@@ -65,7 +65,30 @@ public class ZTreeController {
     })
     @PostMapping("/disaster")
     public ResultObject<Object> getDisasterTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
-        List<ZTree> areaTree = this.zTreeService.getDisasterTree(map);
-        return ResultResponse.ok(areaTree);
+        List<ZTree> disasterTree = this.zTreeService.getDisasterTree(map);
+        return ResultResponse.ok(disasterTree);
     }
+
+    @ApiOperation(value = "查询群组树", httpMethod = "POST", notes = "根据查询条件查询群组树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="群组ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="群组名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId",value="上级群组", dataType = "String",paramType = "query")
+    })
+    @PostMapping("/user/group")
+    public ResultObject<Object> getUserGroupTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> userGroupTree = this.zTreeService.getUserGroupTree(map);
+        return ResultResponse.ok(userGroupTree);
+    }
+
+    @ApiOperation(value = "查询机构群组树", httpMethod = "POST", notes = "根据查询条件查询机构群组树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query")
+    })
+    @PostMapping("/organization/group")
+    public ResultObject<Object> getOrganizationUserGroupTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> organizationUserGroupTree = this.zTreeService.getOrganizationUserGroupTree(map);
+        return ResultResponse.ok(organizationUserGroupTree);
+    }
+
 }

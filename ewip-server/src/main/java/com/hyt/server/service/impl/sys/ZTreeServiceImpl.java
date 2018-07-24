@@ -60,4 +60,24 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         }
         return list;
     }
+
+    @Override
+    public List<ZTree> getUserGroupTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getUserGroupTree(map);
+        if(list.size() == 0) return null;
+        for(ZTree tree : list) {
+            tree.setOpen(true);
+        }
+        return list;
+    }
+
+    @Override
+    public List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getOrganizationUserGroupTree(map);
+        if(list.size() == 0) return null;
+        for(ZTree tree : list) {
+            tree.setOpen(true);
+        }
+        return list;
+    }
 }

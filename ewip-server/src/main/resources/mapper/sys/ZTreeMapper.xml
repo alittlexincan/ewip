@@ -21,6 +21,16 @@
         <result column="type" jdbcType="SMALLINT" property="type"/>
     </resultMap>
 
+    <resultMap id="ZTreeUserGroupResultMap" type="com.hyt.server.entity.sys.ZTree">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+    </resultMap>
+
 
     <!-- 查询地区信息树 -->
     <select id="getAreaTree" resultMap="ZTreeResultMap">
@@ -55,7 +65,7 @@
     <!-- 查询灾种信息树 -->
     <select id="getDisasterTree" resultMap="ZTreeDisasterResultMap">
 
-        select
+        SELECT
             d.id,
             d.name,
             d.code,
@@ -74,5 +84,50 @@
 
     </select>
 
+    <!-- 查询群组树 -->
+    <select id="getUserGroupTree" resultMap="ZTreeUserGroupResultMap">
+        SELECT
+        ug.id,
+        ug.p_id,
+        ug.name,
+        ug.area_id,
+        a.area_name,
+        ug.organization_id,
+        o.organization_name
+        FROM user_group ug
+        LEFT JOIN area a on a.id = ug.area_id
+        LEFT JOIN organization o on o.id = ug.organization_id
+        <if test="id != null and id != ''">AND ug.id = #{id}</if>
+        <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
+        <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
 
+    </select>
+
+    <!--机构对应群组树-->
+    <select id="getOrganizationUserGroupTree" resultMap="ZTreeUserGroupResultMap">
+        (SELECT
+                id,
+                p_id,
+                organization_name name,
+                area_id,
+                id organization_id,
+                1 type
+            FROM
+                organization
+            where 1=1
+            <if test=" organizationId != null and organizationId !='' "> and id = #{organizationId} </if>
+        ) UNION ALL (
+            SELECT
+                id,
+                organization_id p_id,
+                name,
+                area_id,
+                organization_id,
+                2 type
+            FROM
+                user_group
+            where 1=1
+          <if test=" organizationId != null and organizationId !='' "> and organization_id = #{organizationId} </if>
+        )
+    </select>
 </mapper>

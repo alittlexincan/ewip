@@ -1,66 +1,64 @@
 package com.hyt.server.entity.sys;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Copyright (C), 2015-2018
- * FileName: ZTree
+ * FileName: Area
  * Author:   JiangXincan
  * Date:     2018-4-30 10:44
- * Description: ZTree实体类
+ * Description: 群组实体类
  * History:
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
 
-@ApiModel(value = "ZTree",description = "地区树信息")
-public class ZTree {
+@ApiModel(value = "UserGroup",description = "群组信息")
+@Table(name = "user_group")
+public class UserGroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",length = 64)
     private String id;
 
+    @Column(name = "name",length = 50)
     private String name;
 
-    private String code;
-
+    @Column(name = "p_id",length = 64)
     private String pId;
 
-    private int level;
-
+    @Column(name = "area_id",length = 64)
     private String areaId;
 
+    @Column(name = "organization_id",length = 64)
     private String organizationId;
 
-    private Boolean open;
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "create_time")
+    private Date createTime;
 
-    private int type;
-
-    private int disasterColor;
-
-    private int disasterLevel;
+    private String parentName;
 
     private String areaName;
 
     private String organizationName;
 
 
-    public ZTree() {
+    public UserGroup() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName) {
-        this.id = id;
+    public UserGroup(String name, String pId, String areaId, String organizationId, Date createTime, String parentName, String areaName, String organizationName) {
         this.name = name;
-        this.code = code;
         this.pId = pId;
-        this.level = level;
         this.areaId = areaId;
         this.organizationId = organizationId;
-        this.open = open;
-        this.type = type;
-        this.disasterColor = disasterColor;
-        this.disasterLevel = disasterLevel;
+        this.createTime = createTime;
+        this.parentName = parentName;
         this.areaName = areaName;
         this.organizationName = organizationName;
     }
@@ -81,28 +79,12 @@ public class ZTree {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getpId() {
         return pId;
     }
 
     public void setpId(String pId) {
         this.pId = pId;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public String getAreaId() {
@@ -121,36 +103,20 @@ public class ZTree {
         this.organizationId = organizationId;
     }
 
-    public Boolean getOpen() {
-        return open;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setOpen(Boolean open) {
-        this.open = open;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public int getType() {
-        return type;
+    public String getParentName() {
+        return parentName;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getDisasterColor() {
-        return disasterColor;
-    }
-
-    public void setDisasterColor(int disasterColor) {
-        this.disasterColor = disasterColor;
-    }
-
-    public int getDisasterLevel() {
-        return disasterLevel;
-    }
-
-    public void setDisasterLevel(int disasterLevel) {
-        this.disasterLevel = disasterLevel;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public String getAreaName() {
