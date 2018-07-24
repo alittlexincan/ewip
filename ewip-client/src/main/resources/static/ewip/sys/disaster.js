@@ -136,6 +136,24 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
     });
 
     /**
+     * 灾种树点击事件
+     * @param event
+     * @param treeId
+     * @param treeNode
+     */
+    var disasterClick = function(event, treeId, treeNode){
+
+        table.reload('table', {
+            page: {
+                curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                pId: treeNode.id
+            }
+        });
+
+    };
+    /**
      * 初始化加载灾种树
      */
     var disasterZtree = zTree.async({
@@ -158,7 +176,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                 }
             },
             callback:{
-                onClick:null
+                onClick:disasterClick
             }
         }
     });
