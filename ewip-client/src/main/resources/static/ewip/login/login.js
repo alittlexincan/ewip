@@ -25,7 +25,6 @@ layui.use(['form'], function(){
             url: "employee/login",
             dataType: "json",
             success: function(json){
-                console.log(json);
                 if(json.code == 200 && json.data != null){
                     window.location.href = 'index';
                 }else{

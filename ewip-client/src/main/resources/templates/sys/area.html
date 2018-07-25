@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
-    <!--<link rel="stylesheet" th:href="@{/layuiadmin/ztree/css/metroStyle/metroStyle.css}" media="all">-->
     <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
 
 </head>
@@ -62,7 +61,7 @@
                 <script type="text/html" id="btnGroupOption">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     {{# if(d.level == 0 || d.child != 0) { }}
-                        <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                        <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
                     {{# }else{ }}
                         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
                     {{# } }}
@@ -195,9 +194,7 @@
         </div>
     </div>
 
-    <!--<script th:src="@{/layuiadmin/ztree/js/jquery-1.4.4.min.js}" ></script>-->
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-    <!--<script th:src="@{/layuiadmin/ztree/js/jquery.ztree.all.js}" charset="utf-8"></script>-->
     <script th:src="@{/ewip/sys/area.js}" charset="utf-8"></script>
 
 </body>
