@@ -33,39 +33,7 @@
     <favorites_list name="ewip" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="area.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="583">
-              <caret line="281" column="25" selection-start-line="281" selection-start-column="25" selection-end-line="281" selection-end-column="25" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="area.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="55" column="66" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -79,7 +47,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find />
+      <find>\n\n���ļ��޷��� Teleport Ultra ����, ��Ϊ ������������ļ�δ�ҵ���  \n\n�����ڷ������ϴ���?</find>
       <find>areaTree</find>
       <find>渠道手段</find>
       <find>gif</find>
@@ -170,7 +138,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="92" />
     <option name="y" value="233" />
     <option name="width" value="898" />
@@ -635,7 +603,7 @@
       <workItem from="1532308313901" duration="30766000" />
       <workItem from="1532394576753" duration="34204000" />
       <workItem from="1532483223453" duration="848000" />
-      <workItem from="1532494909876" duration="6885000" />
+      <workItem from="1532494909876" duration="7246000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -653,11 +621,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="744237000" />
+    <option name="totallyTimeSpent" value="744598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50075644" side_tool="true" weight="0.39820358" />
@@ -1085,28 +1052,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="55" column="66" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="66" />
+        <state relative-caret-position="406">
+          <caret line="61" column="93" lean-forward="true" selection-start-line="61" selection-start-column="82" selection-end-line="61" selection-end-column="93" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="281" column="25" selection-start-line="281" selection-start-column="25" selection-end-line="281" selection-end-column="25" />
+        <state relative-caret-position="526">
+          <caret line="281" column="24" selection-start-line="281" selection-start-column="19" selection-end-line="281" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
         </state>
       </provider>
     </entry>
