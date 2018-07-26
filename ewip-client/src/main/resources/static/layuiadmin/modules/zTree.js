@@ -3828,8 +3828,6 @@ layui.define(function(exports){
             }
         })(jQuery);
 
-
-    // fileupload
     var zTree = {
         /**
          * 同步加载树

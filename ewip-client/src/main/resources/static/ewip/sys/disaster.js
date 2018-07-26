@@ -70,8 +70,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
         ,url:'/client/disaster/select'
         ,page:true
         ,height: 'full-180'
-        ,limit:5
-        ,limits:[5,10,20,50,100]
+        ,limits:[10,20,50,100]
         ,where:{isConfig: 1}
         ,cols: [[
             {type: 'checkbox'}
@@ -435,14 +434,21 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                     laytpl(configAddPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#configDiv").empty().append(html);
-                        // 初始化下拉树
+                        // 初始化下拉灾种拉树
                         selectTree.render({
                             'id': 'configAddPId'
                             ,'url': '/client/tree/disaster'
                             ,'isMultiple': false
-                            ,'range':'#configDiv'
-                            ,'setData':['type','name','code']
+                            ,clickNode:function (event, treeId, treeNode) {
+                                $("#configDiv select[name='type']").val(treeNode.type);
+                                $("#configDiv input[name='name']").val(treeNode.name);
+                                $("#configDiv input[name='code']").val(treeNode.code);
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                                form.render("select");
+                            }
                         });
+
                         // 点击上传按钮，出发文件按钮
                         $('#addUploadBtn').on('click', function(){
                             $("#addFile").click();

@@ -36,7 +36,7 @@ public class ZTreeController {
     }
 
     /**
-     * 获取地区树
+     * 获取机构树
      * @param map
      * @return
      */
@@ -47,13 +47,24 @@ public class ZTreeController {
     }
 
     /**
-     * 获取地区树
+     * 获取灾种树
      * @param map
      * @return
      */
     @PostMapping("/disaster")
     JSONArray getDisasterTree(@RequestParam Map<String,Object> map){
         JSONObject json =  this.zTreeService.getDisasterTree(map);
+        return json.getJSONArray("data");
+    }
+
+    /**
+     * 获取灾种级别树
+     * @param map
+     * @return
+     */
+    @PostMapping("/disaster/level")
+    JSONArray getDisasterLevelTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getDisasterLevelTree(map);
         return json.getJSONArray("data");
     }
 
@@ -69,7 +80,7 @@ public class ZTreeController {
     }
 
     /**
-     * 获取群组树
+     * 获取机构群组树
      * @param map
      * @return
      */

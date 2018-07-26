@@ -1,5 +1,8 @@
 package com.hyt.server.config.common.result;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Copyright (C), 2015-2018, 本人专属封装
  * FileName: ResultObject
@@ -10,17 +13,23 @@ package com.hyt.server.config.common.result;
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
+@ApiModel(value = "ResultObject<T>",description = "状态返回信息")
 public class ResultObject<T> {
 
     // 响应结果编码
+    @ApiModelProperty(name="code", value="响应结果编码")
     public int code;
 
     // 响应结果信息
+    @ApiModelProperty(name="code", value="响应结果信息")
     private String msg;
 
+    // 统计列表总数
+    @ApiModelProperty(name="count",value="统计列表总数（如果列表存在）")
     private long count;
 
     // 响应结果数据
+    @ApiModelProperty(name="data",value="响应结果数据")
     private T data;
 
     public ResultObject<T> setCode(ResultCode retCode) {

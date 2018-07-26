@@ -10,13 +10,13 @@ layui.define(function(exports){
          * @param option
          * @returns {*}
          */
-        "color": function(option) {
+        "color": function(option, bg) {
             var obj = parseInt(option);
             if(!isNaN(obj)){
-                if(obj == 0) return '红色';
-                if(obj == 1) return '橙色';
-                if(obj == 2) return '黄色';
-                if(obj == 3) return '蓝色';
+                if(obj == 0) return bg == undefined || bg == "" || bg == null ? "红色" : "<span class='ewip-btn-tips ewip-red'>红色</span>";
+                if(obj == 1) return bg == undefined || bg == "" || bg == null ? "橙色" : "<span class='ewip-btn-tips ewip-orange'>橙色</span>";
+                if(obj == 2) return bg == undefined || bg == "" || bg == null ? "黄色" : "<span class='ewip-btn-tips ewip-yellow'>黄色</span>";
+                if(obj == 3) return bg == undefined || bg == "" || bg == null ? "蓝色" : "<span class='ewip-btn-tips ewip-blue'>蓝色</span>";
             }else{
                 if(obj == '红色') return 0;
                 if(obj == '橙色') return 1;

@@ -24,8 +24,9 @@
             ug.organization_id,
             o.organization_name
         FROM user_group ug
-        INNER JOIN area a on a.id = ug.area_id
-        INNER JOIN organization o on o.id = ug.organization_id
+        left JOIN area a on a.id = ug.area_id
+        left JOIN organization o on o.id = ug.organization_id
+        where 1=1
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
@@ -52,8 +53,9 @@
             ug.organization_id,
             o.organization_name
         FROM user_group ug
-        INNER JOIN area a on a.id = ug.area_id
-        INNER JOIN organization o on o.id = ug.organization_id
+        left JOIN area a on a.id = ug.area_id
+        left JOIN organization o on o.id = ug.organization_id
+        where 1=1
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
     </select>
 

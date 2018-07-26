@@ -4,6 +4,7 @@ import com.hyt.server.config.common.universal.AbstractService;
 import com.hyt.server.entity.sys.ZTree;
 import com.hyt.server.mapper.sys.IZTreeMapper;
 import com.hyt.server.service.sys.IZTreeService;
+import com.xincan.utils.disaster.DisasterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +55,21 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
     @Override
     public List<ZTree> getDisasterTree(Map<String, Object> map) {
         List<ZTree> list = this.zTreeMapper.getDisasterTree(map);
-        if(list.size() == 0) return null;
-        for(ZTree tree : list) {
+        if (list.size() == 0) return null;
+        for (ZTree tree : list) {
+            tree.setOpen(true);
+        }
+        return list;
+    }
+
+    @Override
+    public List<ZTree> getDisasterLevelTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getDisasterLevelTree(map);
+        if (list.size() == 0) return null;
+        for (ZTree tree : list) {
+            if(tree.getIsConfig() == 1){
+                tree.setName(tree.getName() + "[" + DisasterUtil.parseColorString(tree.getDisasterColor()) + "][" + DisasterUtil.parseLevelString(tree.getDisasterLevel()) + "]");
+            }
             tree.setOpen(true);
         }
         return list;

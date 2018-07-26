@@ -44,6 +44,14 @@ public interface IZTreeService {
     JSONObject getDisasterTree(@RequestParam Map<String, Object> map);
 
     /**
+     * 查询灾种级别信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/disaster/level")
+    JSONObject getDisasterLevelTree(@RequestParam Map<String, Object> map);
+
+    /**
      * 查询群组信息树
      * @param map
      * @return

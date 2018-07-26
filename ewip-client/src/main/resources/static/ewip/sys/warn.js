@@ -3,16 +3,37 @@ layui.config({
 }).extend({ //设定模块别名
     selectTree: 'selectTree'
     ,zTree: 'zTree'
+    ,disaster: 'disaster'
 });
 
-layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
+layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
         ,selectTree = layui.selectTree
-        ,zTree = layui.zTree;
+        ,zTree = layui.zTree
+        ,disaster = layui.disaster;
+
+    /**
+     * 颜色转换
+     * @param d
+     * @returns {string}
+     */
+    let colorFormat = function(d){
+        return disaster.color(d.disasterColor,"bg");
+    };
+
+    /**
+     * 级别转换
+     * @param d
+     * @returns {string}
+     */
+    let levelFormat = function(d){
+        return disaster.level(d.disasterLevel);
+    };
+
 
     /**
      * 加载表格
@@ -20,19 +41,18 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/user/select'
+        ,url:'/client/warn/select'
         ,page:true
         ,height: 'full-180'
         ,limits:[5,10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'name', title: '受众名称', sort: true}
-            ,{field: 'code', title: '终端号码',sort: true}
-            ,{field: 'channelName', title: '所属渠道'}
-            ,{field: 'userGroupName', title: '所属群组', sort: true}
-            ,{field: 'organizationName', title: '所属机构'}
-            ,{field: 'areaName', title: '所属地区'}
+            ,{field: 'disasterName', title: '预警名称', sort: true}
+            ,{field: 'disasterColor', title: '预警颜色', sort: true, templet:colorFormat}
+            ,{field: 'disasterLevel', title: '预警级别', templet: levelFormat }
+            ,{field: 'content', title: '预警内容', sort: true}
+            ,{field: 'instruction', title: '防御指南'}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
@@ -53,9 +73,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 curr: 1
             },
             where: { //设定异步数据接口的额外参数，任意设
-                name: param == undefined ? '' : param.name
-                ,code: param == undefined ? '' : param.code
-                ,channelId: param == undefined ? '' : param.channelId
+                disasterName: param == undefined ? '' : param.disasterName
+                ,disasterColor: param == undefined ? '' : param.disasterColor
+                ,disasterLevel: param == undefined ? '' : param.disasterLevel
             }
         });
     };
@@ -77,48 +97,24 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 return '请选择所属机构';
             }
         }
-        ,userGroupId: function(value){
+        ,disasterId: function(value){
             if(value.length == 0) {
-                $("#addUserGroupId .addUserGroupIdShow, #updateUserGroupId .updateUserGroupIdShow").css("border-color","red");
-                return '请选择所属机构';
+                $("#addDisasterId .addDisasterIdShow, #updateDisasterId .updateDisasterIdShow").css("border-color","red");
+                return '请选择灾种';
             }
         }
-        ,channelId: function (value) {
-            if(value.length == 0) return '请选择终端类型';
+        ,content: function (value) {
+            if(value.length == 0)  return '请选输入预警内容';
+            if(value.length > 10)  return '预警内容长度不能大于500';
         }
-        ,name: function (value) {
-            if(value.length == 0)  return '请选输入终端名称';
-            if(value.length > 10)  return '渠道手段长度不能大于10';
-        }
-        ,code: function (value) {
+        ,instruction: function (value) {
             if(value.length == 0) return '请输入终端编码';
-            if(value.length > 100) return '终端编码长度不能大于100';
+            if(value.length > 100) return '终端编码长度不能大于500';
         }
     });
 
-    /**
-     * 查询渠道手段下拉列表
-     * @param callback
-     */
-    let searchChannel = function(){
-        $.ajax({
-            async:true
-            ,type: "POST"
-            ,data: {type:0} // 0：表示渠道
-            ,url: "/client/channel/list"
-            ,dataType: 'json'
-            ,success: function(json){
-                var result = json.data;
-                for(var i = 0; i<result.length; i++){
-                    $("#searchChannelId").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
-                }
-                form.render('select');
-            }
-        });
-    };
-    searchChannel();
 
-    /**
+    /**78i
      * 查询渠道手段下拉列表
      * @param callback
      */
@@ -141,31 +137,23 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
      * @param treeId
      * @param treeNode
      */
-    var userGroupClick = function(event, treeId, treeNode){
-        var where = {};
-        if(treeNode.type == 1){
-            where.userGroupId = null;
-            where.organizationId = treeNode.organizationId;
-        }else {
-            where.organizationId = null;
-            where.userGroupId = treeNode.id;
-        }
+    var organizationClick = function(event, treeId, treeNode){
         table.reload('table', {
             page: {
                 curr: 1
             },
-            where: where
+            where: { organizationId: treeNode.id}
         });
     };
     /**
-     * 初始化加载群组树
+     * 初始化加载机构树
      */
-    var userGroupZtree = zTree.async({
-        id: "#organizationGroupTree",
+    var organizationZtree = zTree.async({
+        id: "#organizationTree",
         setting: {
             async:{
                 enable:true,
-                url: "/client/tree/organization/group",
+                url: "/client/tree/organization",
                 autoParam:["id"],
                 dataType:"json",
             },
@@ -180,7 +168,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 }
             },
             callback:{
-                onClick:userGroupClick
+                onClick:organizationClick
             }
         }
     });
@@ -218,12 +206,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
      */
     let active = {
         /**
-         * 工具条：添加受众信息
+         * 工具条：添加预警配置信息
          */
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加群组信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加预警配置信息"
                 ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true
@@ -247,21 +235,35 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
                         });
-                        // 初始化下拉群组拉树
+                        // 初始化下拉灾种级别拉树
                         selectTree.render({
-                            'id': 'addUserGroupId'
-                            ,'url': '/client/tree/organization/group'
+                            'id': 'addDisasterId'
+                            ,'url': '/client/tree/disaster/level'
                             ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                if(treeNode.isConfig==1){
+                                    var name = treeNode.name;
+                                    name = name.substring(0, name.indexOf("["));
+                                    treeNode.name = name;
+                                    $("#addDiv input[name='disasterName']").val(name);
+                                    $("#addDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                    $("#addDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                    selectTree.setValue(treeId,treeNode);
+                                    selectTree.hideTree();
+                                    form.render("select");
+                                }
+                                return false;
+                            }
                         });
                         // 渠道下拉绑定
-                        selectChannel(function (result) {
-                            if(result!=null){
-                                for(var i = 0; i<result.length; i++){
-                                    $("#addDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
-                                }
-                            }
-                            form.render('select');
-                        });
+                        // selectChannel(function (result) {
+                        //     if(result!=null){
+                        //         for(var i = 0; i<result.length; i++){
+                        //             $("#addDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                        //         }
+                        //     }
+                        //     form.render('select');
+                        // });
                     });
                     // 渲染表单
                     form.render();
@@ -273,7 +275,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                         submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/user/insert'
+                            ,url: '/client/warn/insert'
                             ,type: 'POST'
                             ,param: data.field
                             ,dataType: 'json'
@@ -301,12 +303,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 id += ",'" + data[i].id + "'";
             }
 
-            layer.confirm('确定删除选中受众？', function(index){
+            layer.confirm('确定删除选中预警配置？', function(index){
                 // 数据提交到后台，通用方法
                 submit({
                     index: index
                     ,async: 'true'
-                    ,url: '/client/user/delete'
+                    ,url: '/client/warn/delete'
                     ,type: 'POST'
                     ,param: {id: id.substring(1)}
                     ,dataType: 'json'
@@ -315,14 +317,14 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         }
 
         /**
-         * 列表中：修改受众信息
+         * 列表中：修改预警配置信息
          * @param obj
          */
         ,'updateOption': function (obj) {
             var param = obj.data;
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改受众信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改预警配置信息"
                 ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true
@@ -334,7 +336,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
-
                         // 初始化下拉地区拉树
                         selectTree.render({
                             'id': 'updateAreaId'
@@ -349,24 +350,34 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             ,'isMultiple': false
                             ,'checkNodeId': param.organizationId
                         });
-                        // 初始化下拉群组拉树
+                        // 初始化下拉灾种级别拉树
                         selectTree.render({
-                            'id': 'updateUserGroupId'
-                            ,'url': '/client/tree/organization/group'
+                            'id': 'updateDisasterId'
+                            ,'url': '/client/tree/disaster/level'
                             ,'isMultiple': false
-                            ,'checkNodeId': param.userGroupId
-                        });
-                        // 渠道下拉绑定
-                        selectChannel(function (result) {
-                            if(result!=null){
-                                for(var i = 0; i<result.length; i++){
-                                    $("#updateDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                            ,'checkNodeId': param.disasterId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                if(treeNode.isConfig==1){
+                                    var name = treeNode.name;
+                                    name = name.substring(0, name.indexOf("["));
+                                    treeNode.name = name;
+                                    $("#updateDiv input[name='disasterName']").val(name);
+                                    $("#updateDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                    $("#updateDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                    selectTree.setValue(treeId,treeNode);
+                                    selectTree.hideTree();
+                                    form.render("select");
                                 }
+                                return false;
                             }
-                            // 地区级别下拉框赋值
-                            $("#updateDiv select[name='channelId']").val(param.channelId);
-                            form.render('select');
                         });
+                        console.log(param);
+                        $("#updateDiv input[name='disasterName']").val(param.disasterName);
+                        $("#updateDiv select[name='disasterColor']").val(param.disasterColor);
+                        $("#updateDiv select[name='disasterLevel']").val(param.disasterLevel);
+                        $("#updateDiv textarea[name='content']").val(param.content);
+                        $("#updateDiv textarea[name='instruction']").val(param.instruction);
+                        form.render('select');
                     });
                     form.render();
                 }
@@ -378,7 +389,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                         submit({
                             index: index
                             ,async: 'true'
-                            ,url: '/client/user/update'
+                            ,url: '/client/warn/update'
                             ,type: 'POST'
                             ,param: data.field
                             ,dataType: 'json'
@@ -391,17 +402,17 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         }
 
         /**
-         * 列表中：删除选中的受众信息
+         * 列表中：删除选中的预警配置信息
          * @param obj
          */
         ,'deleteOption': function (obj) {
-            layer.confirm('确定删除该受众？', function(index){
+            layer.confirm('确定删除该预警配置？', function(index){
                 obj.del();
                 // 数据提交到后台，通用方法
                 submit({
                     index: index
                     ,async: 'true'
-                    ,url: '/client/user/delete/' + obj.data.id
+                    ,url: '/client/warn/delete/' + obj.data.id
                     ,type: 'DELETE'
                     ,param: {fileName: obj.data.icon}
                     ,dataType: 'json'

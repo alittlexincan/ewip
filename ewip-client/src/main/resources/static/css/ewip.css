@@ -40,6 +40,30 @@ website:    http://code.google.com/p/jquerytree/
     -o-border-radius: 0 2px 2px 0;
     cursor: pointer;
 }
+
+.ewip-btn-tips{
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    -wibkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ws-border-radius: 3px;
+}
+.ewip-red{
+    background-color: red;
+}
+.ewip-orange{
+    background-color: orange;
+}
+.ewip-yellow{
+    background-color: yellow;
+    color: #499787;
+}
+.ewip-blue{
+    background-color: blue;
+}
+
 .layui-select-disabled input{
     color:black!important;
 }

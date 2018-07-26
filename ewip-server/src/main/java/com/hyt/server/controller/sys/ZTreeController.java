@@ -59,13 +59,26 @@ public class ZTreeController {
     @ApiOperation(value = "查询灾种树", httpMethod = "POST", notes = "根据查询条件查询灾种树信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="灾种ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="areaName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="灾种名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="code",value="灾种编码", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="pId",value="上级灾种", dataType = "String",paramType = "query")
     })
     @PostMapping("/disaster")
     public ResultObject<Object> getDisasterTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         List<ZTree> disasterTree = this.zTreeService.getDisasterTree(map);
+        return ResultResponse.ok(disasterTree);
+    }
+
+    @ApiOperation(value = "查询灾种级别树", httpMethod = "POST", notes = "根据查询条件查询灾种树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="code",value="灾种编码", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId",value="上级灾种", dataType = "String",paramType = "query")
+    })
+    @PostMapping("/disaster/level")
+    public ResultObject<Object> getDisasterLevelTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> disasterTree = this.zTreeService.getDisasterLevelTree(map);
         return ResultResponse.ok(disasterTree);
     }
 

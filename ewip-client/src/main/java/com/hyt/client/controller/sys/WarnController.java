@@ -1,7 +1,7 @@
 package com.hyt.client.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hyt.client.service.sys.IUserGroupService;
+import com.hyt.client.service.sys.IWarnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,76 +9,76 @@ import java.util.Map;
 
 /**
  * @Author: JiangXincan
- * @Description: 群组信息控制层
+ * @Description: 预警配置信息控制层
  * @Date: Created in 10:07 2018-4-19
  * @Modified By:
  */
 @RestController
-@RequestMapping("group")
-public class UserGroupController {
+@RequestMapping("warn")
+public class WarnController {
 
     @Autowired
-    private IUserGroupService userGroupService;
+    private IWarnService warnService;
 
     /**
-     * 添加群组信息
+     * 添加预警配置信息
      * @param map
      * @return
      */
     @PostMapping("/insert")
-    public JSONObject insert(@RequestParam Map<String, Object> map){
-        return this.userGroupService.insert(map);
+    public JSONObject insert(@RequestParam Map<String,Object> map){
+        return this.warnService.insert(map);
     }
 
-
     /**
-     * 修改群组信息
+     * 修改预警配置信息
      * @param map
      * @return
      */
     @PostMapping("/update")
     public JSONObject update(@RequestParam Map<String,Object> map){
-        return this.userGroupService.update(map);
+        return this.warnService.update(map);
     }
 
     /**
-     * 根据群组ID删除群组信息
+     * 根据预警配置ID删除预警配置信息
      * @param id
      * @return
      */
     @DeleteMapping("/delete/{id}")
     public JSONObject deleteById(@PathVariable(value = "id") String id){
-        return this.userGroupService.deleteById(id);
+        return this.warnService.deleteById(id);
     }
 
     /**
-     * 批量删除群组信息
+     * 批量删除预警配置信息
      * @param id
      * @return
      */
     @PostMapping("/delete")
     public JSONObject deleteBatch(@RequestParam(value = "id") String id){
-        return this.userGroupService.deleteBatch(id);
+        return this.warnService.deleteBatch(id);
     }
 
     /**
-     * 根据群组ID查询受众信息
+     * 根据预警配置ID查询预警配置信息
      * @param id
      * @return
      */
     @PostMapping("/select/{id}")
     public JSONObject selectById(@PathVariable(value = "id") String id){
-        return this.userGroupService.selectById(id);
+        return this.warnService.selectById(id);
     }
 
+
     /**
-     * 分页查询群组信息
+     * 分页查询预警配置信息
      * @param map
      * @return
      */
     @GetMapping("/select")
     public JSONObject selectAll(@RequestParam Map<String,Object> map){
-        return this.userGroupService.selectAll(map);
+        return this.warnService.selectAll(map);
     }
 
 }

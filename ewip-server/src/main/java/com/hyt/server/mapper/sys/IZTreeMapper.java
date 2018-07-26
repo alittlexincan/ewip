@@ -18,14 +18,46 @@ import java.util.Map;
 @Repository("zTreeMapper")
 public interface IZTreeMapper extends IBaseMapper<ZTree> {
 
+    /**
+     * 查询地区数据
+     * @param map
+     * @return
+     */
     List<ZTree> getAreaTree(Map<String, Object> map);
 
+    /**
+     * 查询机构树
+     * @param map
+     * @return
+     */
     List<ZTree> getOrganizationTree(Map<String, Object> map);
 
+    /**
+     * 查询灾种数据
+     * @param map
+     * @return
+     */
     List<ZTree> getDisasterTree(Map<String, Object> map);
 
+    /**
+     * 查询灾种级别树
+     * @param map
+     * @return
+     */
+    List<ZTree> getDisasterLevelTree(Map<String, Object> map);
+
+    /**
+     * 查询用户组树
+     * @param map
+     * @return
+     */
     List<ZTree> getUserGroupTree(Map<String, Object> map);
 
+    /**
+     * 查询机构对应群组树
+     * @param map
+     * @return
+     */
     List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map);
 
 }

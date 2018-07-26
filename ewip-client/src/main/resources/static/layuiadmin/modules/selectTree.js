@@ -2,10 +2,7 @@
 layui.define(['form','zTree'], function(exports){
 
     var $ = layui.$,
-        zTree = layui.zTree,
-        form = layui.form,
-
-        param = null;
+        zTree = layui.zTree;
 
     var beforeClick = function(treeId, treeNode) {
         var check = (treeNode && !treeNode.isParent);
@@ -20,7 +17,7 @@ layui.define(['form','zTree'], function(exports){
             assignment(treeId, zTree.getCheckedNodes());
         } else {
             assignment(treeId, zTree.getSelectedNodes());
-            hideMenu();
+            selectTree.hideTree();
         }
     };
 
@@ -29,47 +26,29 @@ layui.define(['form','zTree'], function(exports){
         assignment(treeId, zTree.getCheckedNodes());
     };
 
-    var hideMenu = function() {
-        $(".select-tree").removeClass("layui-form-selected");
-        $(".tree-content").fadeOut("fast");
-        $("body").unbind("mousedown", onBodyDown);
-    };
-
     var assignment = function(treeId, nodes) {
-
         var names = "";
         var ids = "";
         for (var i = 0, l = nodes.length; i < l; i++) {
             names += nodes[i].name + ",";
             ids += nodes[i].id + ",";
-            if(param.setData != undefined && param.range != undefined){
-                var setData = param.setData;
-                var range = param.range;
-                for(var j = 0; j<setData.length; j++){
-                    $(range + " input[name='"+setData[j]+"']").val(nodes[i][setData[j]]);
-                    $(range + " select[name='"+setData[j]+"']").val(nodes[i][setData[j]]);
-                }
-            }
         }
-        form.render();
         if (names.length > 0) {
             names = names.substring(0, names.length - 1);
             ids = ids.substring(0, ids.length - 1);
         }
         treeId = treeId.substring(0, treeId.length - 4);
         $("#"+treeId+" ."+treeId+"Show").css("border-color","#e6e6e6");
-        $("#" + treeId + " ." + treeId + "Show").attr("value", names);
-        $("#" + treeId + " ." + treeId + "Show").attr("title", names);
-        $("." + treeId + "TreeDiv ." + treeId + "Hide").attr("value", ids);
 
-
-
-    };
-
-    var onBodyDown = function(event) {
-        if ($(event.target).parents(".tree-content").html() == null) {
-            hideMenu();
+        if(names.indexOf('[') > -1){
+            var name = names.substring(0,names.indexOf('['));
+            $("#" + treeId + " ." + treeId + "Show").attr("value", name);
+            $("#" + treeId + " ." + treeId + "Show").attr("title", name);
+        }else{
+            $("#" + treeId + " ." + treeId + "Show").attr("value", names);
+            $("#" + treeId + " ." + treeId + "Show").attr("title", names);
         }
+        $("." + treeId + "TreeDiv ." + treeId + "Hide").attr("value", ids);
     };
 
     /**
@@ -82,7 +61,7 @@ layui.define(['form','zTree'], function(exports){
         $.ajax({
             async:false
             ,type: 'POST'
-            ,data: param.data|{}
+            ,data: param.data||{}
             ,url: param.url
             ,dataType: 'json'
             ,success: function(data){
@@ -100,8 +79,8 @@ layui.define(['form','zTree'], function(exports){
      * @param chkboxType 多选框类型{"Y": "ps", "N": "s"}
      * @param checkNodeId 数据回显时的树节点id
      * @param isVerify    是否验证：false: true
-     * @param range       当前标签范围，通常配合setData
-     * @param setData     需要给当前 range 中文本框元素赋值的name属性数组
+     * @param checkNode   点击节点函数
+     * @param clickNode   选中节点函数
      */
 
     var selectTree = {
@@ -110,7 +89,6 @@ layui.define(['form','zTree'], function(exports){
          * @param option
          */
         "render": function(option) {
-            param = option;
             var setting = {
                 view: {
                     dblClickExpand: false,
@@ -128,8 +106,8 @@ layui.define(['form','zTree'], function(exports){
                     chkboxType: {"Y": "ps", "N": "s"}
                 },
                 callback: {
-                    onClick: onClick,
-                    onCheck: onCheck
+                    onClick: option.clickNode != undefined ? option.clickNode : onClick,
+                    onCheck: option.checkNode != undefined ? option.checkNode : onCheck
                 }
             };
             if (option.isMultiple) {
@@ -146,8 +124,7 @@ layui.define(['form','zTree'], function(exports){
             "<i class= 'layui-edge' ></i>" +
             "</div>");
 
-            var treeHtml = "";
-            treeHtml += "<div class='tree-content scrollbar " + option.id + "TreeDiv'>";
+            var treeHtml = "<div class='tree-content scrollbar " + option.id + "TreeDiv'>";
             // 是否参与校验
             if(option.isVerify != undefined && option.isVerify == false){
                 treeHtml += "   <input hidden class='" + option.id + "Hide' name='" + inputName + "' >";
@@ -160,21 +137,15 @@ layui.define(['form','zTree'], function(exports){
             $("#" + option.id).parent().append(treeHtml);
             $("#" + option.id).bind("click", function () {
                 if ($(this).parent().find(".tree-content").css("display") !== "none") {
-                    hideMenu();
+                    selectTree.hideTree();
                 } else {
                     $(this).addClass("layui-form-selected");
                     var Offset = $(this).offset();
                     var width = $(this).width() - 2;
-                    $(this).parent().find(".tree-content").css({
-                        left: Offset.left + "px",
-                        top: Offset.top + $(this).height() + "px"
-                    }).slideDown("fast");
-                    $(this).parent().find(".tree-content").css({
-                        width: width
-                    });
-                    $("body").bind("mousedown", onBodyDown);
+                    $(this).parent().find(".tree-content").css({left: Offset.left + "px", top: Offset.top + $(this).height() + "px" }).slideDown("fast");
+                    $(this).parent().find(".tree-content").css({width: width});
+                    $("body").bind("mousedown", selectTree.onBodyDown);
                 }
-
             });
 
             var idTree = option.id;
@@ -188,8 +159,38 @@ layui.define(['form','zTree'], function(exports){
                 var node = tree.getNodeByParam("id",option.checkNodeId, null);
                 tree.selectNode(node,true);//将指定ID的节点选中
                 onClick(event, idTree + "Tree", node);
+
             }
             return tree;
+        }
+        /**
+         * 点击事件后赋值
+         * @param treeId
+         * @param treeNode
+         */
+        ,"setValue":function (treeId, treeNode) {
+            treeId = treeId.substring(0, treeId.length - 4);
+            $("#"+treeId+" ."+treeId+"Show").css("border-color","#e6e6e6");
+            $("#" + treeId + " ." + treeId + "Show").attr("value", treeNode.name);
+            $("#" + treeId + " ." + treeId + "Show").attr("title", treeNode.name);
+            $("." + treeId + "TreeDiv ." + treeId + "Hide").attr("value", treeNode.id);
+        }
+        /**
+         * 隐藏弹出层
+         */
+        ,"hideTree":function () {
+            $(".select-tree").removeClass("layui-form-selected");
+            $(".tree-content").fadeOut("fast");
+            $("body").unbind("mousedown", selectTree.onBodyDown);
+        }
+        /**
+         * 点击div之外关闭层
+         * @param event
+         */
+        ,"onBodyDown":function (event) {
+            if ($(event.target).parents(".tree-content").html() == null) {
+                selectTree.hideTree();
+            }
         }
     };
     //输出test接口

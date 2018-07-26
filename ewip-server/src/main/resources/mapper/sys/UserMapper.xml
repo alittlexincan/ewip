@@ -45,18 +45,18 @@
         LEFT JOIN channel c on c.id = u.channel_id
         where 1=1
         <if test="id != null and id != ''">AND u.id = #{id}</if>
-        <if test="name != null and areaName != ''">AND u.area_name LIKE '${name}%'</if>
+        <if test="name != null and name != ''">AND u.name LIKE '${name}%'</if>
         <if test="code != null and code != ''">AND u.code = #{code}</if>
         <if test="userGroupId != null and userGroupId != ''">AND u.user_group_id = #{userGroupId}</if>
         <if test="channelId != null and channelId != ''">AND u.channel_id = #{channelId}</if>
-        <if test="areaId != null and areaId != ''">AND u.areaI=_id = #{areaId}</if>
+        <if test="areaId != null and areaId != ''">AND u.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND u.organization_id = #{organizationId}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY a.create_time DESC
+                ORDER BY u.create_time DESC
             </otherwise>
         </choose>
     </select>
