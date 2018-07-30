@@ -12,6 +12,7 @@
         <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
         <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
         <result column="is_config" jdbcType="SMALLINT" property="isConfig"/>
+        <result column="is_strategy" jdbcType="SMALLINT" property="isStrategy"/>
         <result column="child" jdbcType="INTEGER" property="child"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -29,6 +30,7 @@
             d.disaster_color,
             d.disaster_level,
             d.is_config,
+            d.is_strategy,
             (select dis.name from disaster dis where dis.id = d.p_id) parent_name,
             (select count(*) from disaster di where di.p_id = d.id) child,
             d.create_time
@@ -61,9 +63,19 @@
             d.disaster_color,
             d.disaster_level,
             d.is_config,
+            d.is_strategy,
             d.create_time
         FROM disaster d where 1=1
         <if test="id != null and id != ''">AND d.id = #{id}</if>
     </select>
+
+
+    <!--更新策略配置，是否进行过策略配置-->
+    <update id="updateStrategyById">
+        update disaster set is_strategy = #{isStrategy} where id in
+        <foreach collection="id.split(',')" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
 
 </mapper>

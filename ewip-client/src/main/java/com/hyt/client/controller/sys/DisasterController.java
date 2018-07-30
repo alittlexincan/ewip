@@ -56,6 +56,17 @@ public class DisasterController {
     }
 
     /**
+     * 修改灾种信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/update/strategy")
+    JSONObject updateStrategy(@RequestParam Map<String,Object> map){
+        System.out.println(map);
+        return this.disasterService.updateStrategyById(map);
+    }
+
+    /**
      * 添加灾种级别信息
      * @param map
      * @param file

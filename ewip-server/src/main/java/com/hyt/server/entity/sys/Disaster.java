@@ -50,6 +50,9 @@ public class Disaster {
     @Column(name = "is_config",length = 1)
     private int isConfig;
 
+    @Column(name = "is_strategy",length = 1)
+    private int isStrategy;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -61,7 +64,7 @@ public class Disaster {
     public Disaster() {
     }
 
-    public Disaster(String name, String code, String pId, String icon, int type, int disasterColor, int disasterLevel, int isConfig, Date createTime, int child, String parentName) {
+    public Disaster(String name, String code, String pId, String icon, int type, int disasterColor, int disasterLevel, int isConfig, int isStrategy, Date createTime, int child, String parentName) {
         this.name = name;
         this.code = code;
         this.pId = pId;
@@ -70,6 +73,7 @@ public class Disaster {
         this.disasterColor = disasterColor;
         this.disasterLevel = disasterLevel;
         this.isConfig = isConfig;
+        this.isStrategy = isStrategy;
         this.createTime = createTime;
         this.child = child;
         this.parentName = parentName;
@@ -145,6 +149,14 @@ public class Disaster {
 
     public void setIsConfig(int isConfig) {
         this.isConfig = isConfig;
+    }
+
+    public int getIsStrategy() {
+        return isStrategy;
+    }
+
+    public void setIsStrategy(int isStrategy) {
+        this.isStrategy = isStrategy;
     }
 
     public Date getCreateTime() {

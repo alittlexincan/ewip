@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>预警配置管理</title>
+    <title>策略配置管理</title>
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -23,6 +23,7 @@
     <!-- 添加弹出层 -->
     <script id="addPop" type="text/html">
         <div class="layui-form layui-form-pane">
+            <input type="hidden" value="" name="name" placeholder="策略名称"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">所属地区</label>
                 <div class="layui-input-block">
@@ -68,16 +69,39 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">预警内容</label>
-                <div class="layui-input-block">
-                    <textarea type="text" name="content" placeholder="请输入预警内容" autocomplete="off" class="layui-textarea"></textarea>
+                <label class="layui-form-label">流程配置</label>
+                <div class="layui-input-block ewip-div-border">
+                    <div class="processContent">
+                        <div class="process">
+                            <div class="entryTitle">录入</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="0"  lay-skin="primary" checked disabled></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">审核</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">签发</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">应急办签发</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">发布</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="4" lay-skin="primary" checked disabled></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">防御指南</label>
-                <div class="layui-input-block">
-                    <textarea type="text" name="instruction" placeholder="请输入防御指南" autocomplete="off" class="layui-textarea"></textarea>
-                </div>
+                <label class="layui-form-label">渠道配置</label>
+                <div class="layui-input-block ewip-div-border" id="addChannelId"></div>
             </div>
 
             <div class="layui-form-item layui-hide" >
@@ -90,79 +114,103 @@
 
     <!-- 修改弹出层 -->
     <script id="updatePop" type="text/html">
-            <div class="layui-form layui-form-pane">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">所属地区</label>
-                    <div class="layui-input-block">
-                        <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
-                    </div>
+        <div class="layui-form layui-form-pane">
+            <input type="hidden" name="name" value="{{d.name}}" placeholder="策略名称"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">所属机构</label>
-                    <div class="layui-input-block">
-                        <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
-                    </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属机构</label>
+                <div class="layui-input-block">
+                    <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">灾种名称</label>
-                    <div class="layui-input-block">
-                        <input type="hidden" name="disasterName">
-                        <div id="updateDisasterId" name="disasterId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择灾种名称"></div>
-                    </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种名称</label>
+                <div class="layui-input-block">
+                    <input type="hidden" name="disasterName">
+                    <div id="updateDisasterId" name="disasterId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择灾种名称"></div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">灾种颜色</label>
-                    <div class="layui-input-block">
-                        <select name="disasterColor" placeholder="请选择预警颜色" disabled>
-                            <option value="">请选择预警颜色</option>
-                            <option value="0">红色</option>
-                            <option value="1">橙色</option>
-                            <option value="2">黄色</option>
-                            <option value="3">蓝色</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种颜色</label>
+                <div class="layui-input-block">
+                    <select name="disasterColor" placeholder="请选择预警颜色" disabled>
+                        <option value="">请选择预警颜色</option>
+                        <option value="0">红色</option>
+                        <option value="1">橙色</option>
+                        <option value="2">黄色</option>
+                        <option value="3">蓝色</option>
+                    </select>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">灾种级别</label>
-                    <div class="layui-input-block">
-                        <select name="disasterLevel" placeholder="请选择预警级别" disabled>
-                            <option value="">请选择预警级别</option>
-                            <option value="0">Ⅰ级/特别重大</option>
-                            <option value="1">Ⅱ级/重大</option>
-                            <option value="2">Ⅲ级/较大</option>
-                            <option value="3">Ⅳ级/一般</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种级别</label>
+                <div class="layui-input-block">
+                    <select name="disasterLevel" placeholder="请选择预警级别" disabled>
+                        <option value="">请选择预警级别</option>
+                        <option value="0">Ⅰ级/特别重大</option>
+                        <option value="1">Ⅱ级/重大</option>
+                        <option value="2">Ⅲ级/较大</option>
+                        <option value="3">Ⅳ级/一般</option>
+                    </select>
                 </div>
+            </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">预警内容</label>
-                    <div class="layui-input-block">
-                        <textarea type="text" name="content" placeholder="请输入预警内容" autocomplete="off" class="layui-textarea"></textarea>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">防御指南</label>
-                    <div class="layui-input-block">
-                        <textarea type="text" name="instruction" placeholder="请输入防御指南" autocomplete="off" class="layui-textarea"></textarea>
-                    </div>
-                </div>
-
-                <div class="layui-form-item layui-hide" >
-                    <div class="layui-input-block layui-col-md-offset4">
-                        <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">修改</button>
+            <div class="layui-form-item">
+                <label class="layui-form-label">流程配置</label>
+                <div class="layui-input-block ewip-div-border">
+                    <div class="processContent">
+                        <div class="process">
+                            <div class="entryTitle">录入</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="0"  lay-skin="primary" checked disabled></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">审核</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">签发</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">应急办签发</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary"></div>
+                        </div>
+                        <div class="process-line"></div>
+                        <div class="process">
+                            <div class="entryTitle">发布</div>
+                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="4" lay-skin="primary" checked disabled></div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">渠道配置</label>
+                <div class="layui-input-block ewip-div-border" id="updateChannelId"></div>
+            </div>
+
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">修改</button>
+                </div>
+            </div>
+        </div>
     </script>
 
     <div class="layui-fluid">
         <div class="layui-row layui-col-space8">
             <div class="layui-col-sm3 ewip-panel-left">
                 <div class="layui-card">
-                    <div class="layui-card-header">机构展示</div>
+                    <div class="layui-card-header">灾种配置</div>
                     <div class="layui-card-body">
-                        <ul id="organizationTree" class="ztree ewip-left-tree"></ul>
+                        <ul id="disasterLevelTree" class="ztree ewip-left-tree"></ul>
                     </div>
                 </div>
             </div>
@@ -172,7 +220,7 @@
                     <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input type="text" name="disaster_name" placeholder="请输入预警名称" autocomplete="off" class="layui-input">
+                                <input type="text" name="disasterName" placeholder="请输入预警名称" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
                                 <select id="searchDisasterColor" name="disasterColor" placeholder="请选择预警颜色">
@@ -218,7 +266,7 @@
     </div>
 
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-    <script th:src="@{/ewip/sys/warn.js}" charset="utf-8"></script>
+    <script th:src="@{/ewip/sys/strategy.js}" charset="utf-8"></script>
 
 </body>
 </html>

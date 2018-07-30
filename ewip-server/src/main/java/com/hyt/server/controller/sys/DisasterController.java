@@ -70,6 +70,21 @@ public class DisasterController {
         return ResultResponse.make(500,"修改渠灾种失败");
     }
 
+    @ApiOperation(value="修改策略配置标识",httpMethod="POST", notes="根据灾种ID，策略标识修改灾种信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="灾种ID", dataType = "String", required = true,paramType = "query"),
+            @ApiImplicitParam(name="isStrategy",value="策略配置", required = true, dataType = "Integer",paramType = "query")
+    })
+    @PostMapping("/update/strategy")
+    public ResultObject<Object> updateStrategyById(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        System.out.println(map);
+        int num = this.disasterService.updateStrategyById(map);
+        if(num>0){
+            return ResultResponse.make(200,"修改策略配置成功",null);
+        }
+        return ResultResponse.make(500,"修改策略配置失败",null);
+    }
+
     @ApiOperation(value="删除灾种信息",httpMethod = "DELETE", notes="根据url的灾种id来删除灾种信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")

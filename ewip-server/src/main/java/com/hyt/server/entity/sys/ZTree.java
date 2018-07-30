@@ -47,11 +47,13 @@ public class ZTree {
 
     private int isConfig;
 
+    private int isStrategy;
+
 
     public ZTree() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig) {
+    public ZTree(String id, String name, String code, String pId, int level, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -66,6 +68,7 @@ public class ZTree {
         this.areaName = areaName;
         this.organizationName = organizationName;
         this.isConfig = isConfig;
+        this.isStrategy = isStrategy;
     }
 
     public String getId() {
@@ -178,5 +181,13 @@ public class ZTree {
 
     public void setIsConfig(int isConfig) {
         this.isConfig = isConfig;
+    }
+
+    public int getIsStrategy() {
+        return isStrategy;
+    }
+
+    public void setIsStrategy(int isStrategy) {
+        this.isStrategy = isStrategy;
     }
 }

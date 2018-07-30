@@ -43,6 +43,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,elem: '#table'
         ,url:'/client/warn/select'
         ,page:true
+        ,even: true
         ,height: 'full-180'
         ,limits:[5,10,20,50,100]
         ,cols: [[
@@ -371,7 +372,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 return false;
                             }
                         });
-                        console.log(param);
                         $("#updateDiv input[name='disasterName']").val(param.disasterName);
                         $("#updateDiv select[name='disasterColor']").val(param.disasterColor);
                         $("#updateDiv select[name='disasterLevel']").val(param.disasterLevel);

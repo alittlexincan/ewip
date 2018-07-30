@@ -18,4 +18,11 @@ public interface IDisasterService extends IBaseService<Disaster> {
 
     Disaster selectById(String id);
 
+    /**
+     * 更新策略配置，是否进行过策略配置
+     * @param map
+     * @return
+     */
+    int updateStrategyById(Map<String, Object> map);
+
 }

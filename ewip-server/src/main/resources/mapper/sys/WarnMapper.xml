@@ -35,7 +35,6 @@
           warn w
         LEFT JOIN area a on a.id = w.area_id
         LEFT JOIN organization o on o.id = w.organization_id
-        LEFT JOIN disaster d on d.id = w.disaster_id
         where 1=1
         <if test="id != null and id != ''">AND w.id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND w.area_id = #{areaId}</if>
@@ -72,7 +71,6 @@
           warn w
         LEFT JOIN area a on a.id = w.area_id
         LEFT JOIN organization o on o.id = w.organization_id
-        LEFT JOIN disaster d on d.id = w.disaster_id
         where 1=1
         <if test="id != null and id != ''">AND w.id = #{id}</if>
     </select>

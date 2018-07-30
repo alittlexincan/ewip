@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.sys.IStrategyMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Strategy">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="disaster_id" jdbcType="VARCHAR" property="disasterId"/>
+        <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
+        <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
+        <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
+        <result column="flow" jdbcType="VARCHAR" property="flow"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+    </resultMap>
+
+    <!-- 查询地区信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+            s.id,
+            s.name,
+            s.area_id,
+            s.organization_id,
+            s.disaster_id,
+            s.disaster_name,
+            s.disaster_color,
+            s.disaster_level,
+            s.flow,
+            s.channel_id,
+            a.area_name,
+            o.organization_name
+        FROM
+          strategy s
+        LEFT JOIN area a on a.id = s.area_id
+        LEFT JOIN organization o on o.id = s.organization_id
+        where 1=1
+        <if test="id != null and id != ''">AND s.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND s.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND s.organization_id = #{organizationId}</if>
+        <if test="disasterId != null and disasterId != ''">
+            AND s.disaster_id in (SELECT id from disaster where p_id = #{disasterId} or id=#{disasterId})
+        </if>
+        <if test="disasterName != null and disasterName != ''">AND s.disaster_name = #{disasterName}</if>
+        <if test="disasterColor != null and disasterColor != ''">AND s.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">AND s.disaster_level = #{disasterLevel}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY s.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 根据地区id查询地区信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+            s.id,
+            s.name,
+            s.area_id,
+            s.organization_id,
+            s.disaster_id,
+            s.disaster_name,
+            s.disaster_color,
+            s.disaster_level,
+            s.flow,
+            s.channel_id,
+            a.area_name,
+            o.organization_name
+        FROM
+          strategy s
+        LEFT JOIN area a on a.id = s.area_id
+        LEFT JOIN organization o on o.id = s.organization_id
+        where 1=1
+        <if test="id != null and id != ''">AND s.id = #{id}</if>
+    </select>
+
+
+</mapper>

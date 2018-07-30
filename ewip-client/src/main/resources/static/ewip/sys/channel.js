@@ -46,6 +46,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,elem: '#table'
         ,url:'/client/channel/select'
         ,page:true
+        ,even: true
         ,height: 'full-180'
         ,limit:5
         ,limits:[5,10,20,50,100]

@@ -19,6 +19,7 @@
         <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
         <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
         <result column="is_config" jdbcType="SMALLINT" property="isConfig"/>
+        <result column="is_strategy" jdbcType="SMALLINT" property="isStrategy"/>
         <result column="type" jdbcType="SMALLINT" property="type"/>
     </resultMap>
 
@@ -76,6 +77,7 @@
             d.disaster_color,
             d.disaster_level,
             d.is_config,
+            d.is_strategy,
             d.create_time
         FROM disaster d where is_config = 0
         <if test="id != null and id != ''">AND d.id = #{id}</if>
@@ -98,6 +100,7 @@
             d.disaster_color,
             d.disaster_level,
             d.is_config,
+            d.is_strategy,
             d.create_time
         FROM disaster d where 1=1
         <if test="id != null and id != ''">AND d.id = #{id}</if>

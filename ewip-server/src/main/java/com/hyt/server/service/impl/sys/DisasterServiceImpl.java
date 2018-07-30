@@ -38,4 +38,14 @@ public class DisasterServiceImpl extends AbstractService<Disaster> implements ID
         return this.disasterMapper.selectById(id);
     }
 
+    /**
+     * 更新策略配置，是否进行过策略配置
+     * @param map
+     * @return
+     */
+    @Override
+    public int updateStrategyById(Map<String, Object> map){
+        return this.disasterMapper.updateStrategyById(map);
+    }
+
 }

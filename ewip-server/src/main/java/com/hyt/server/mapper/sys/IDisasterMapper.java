@@ -32,4 +32,11 @@ public interface IDisasterMapper extends IBaseMapper<Disaster> {
      */
     Disaster selectById(@Param(value = "id") String id);
 
+    /**
+     * 更新策略配置，是否进行过策略配置
+     * @param map
+     * @return
+     */
+    int updateStrategyById(Map<String, Object> map);
+
 }

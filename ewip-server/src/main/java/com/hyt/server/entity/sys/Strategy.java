@@ -17,14 +17,17 @@ import java.util.Date;
  * 作者姓名           修改时间           版本号              描述
  */
 
-@ApiModel(value = "Warn",description = "预警配置")
-@Table(name = "warn")
-public class Warn {
+@ApiModel(value = "Strategy",description = "预警配置")
+@Table(name = "strategy")
+public class Strategy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
+
+    @Column(name = "name",length = 100)
+    private String name;
 
     @Column(name = "area_id",length = 64)
     private String areaId;
@@ -44,11 +47,11 @@ public class Warn {
     @Column(name = "disaster_level",length = 1)
     private int disasterLevel;
 
-    @Column(name = "content",length = 1000)
-    private String content;
+    @Column(name = "flow",length = 50)
+    private String flow;
 
-    @Column(name = "instruction",length = 1000)
-    private String instruction;
+    @Column(name = "channel_id",length = 500)
+    private String channelId;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
@@ -58,19 +61,19 @@ public class Warn {
 
     private String organizationName;
 
-
-    public Warn() {
+    public Strategy() {
     }
 
-    public Warn(String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String instruction, Date createTime, String areaName, String organizationName) {
+    public Strategy(String name, String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String flow, String channelId, Date createTime, String areaName, String organizationName) {
+        this.name = name;
         this.areaId = areaId;
         this.organizationId = organizationId;
         this.disasterId = disasterId;
         this.disasterName = disasterName;
         this.disasterColor = disasterColor;
         this.disasterLevel = disasterLevel;
-        this.content = content;
-        this.instruction = instruction;
+        this.flow = flow;
+        this.channelId = channelId;
         this.createTime = createTime;
         this.areaName = areaName;
         this.organizationName = organizationName;
@@ -82,6 +85,14 @@ public class Warn {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAreaId() {
@@ -132,20 +143,20 @@ public class Warn {
         this.disasterLevel = disasterLevel;
     }
 
-    public String getContent() {
-        return content;
+    public String getFlow() {
+        return flow;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setFlow(String flow) {
+        this.flow = flow;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public String getChannelId() {
+        return channelId;
     }
 
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
     public Date getCreateTime() {
