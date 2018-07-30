@@ -18,8 +18,6 @@ layui.use(['form'], function(){
 
     //监听提交
     form.on('submit(submit)', function(data){
-        console.log(data);
-        console.log("github");
         $.ajax({
             async:true,
             type: "POST",
