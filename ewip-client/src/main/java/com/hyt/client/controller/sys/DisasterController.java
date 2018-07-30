@@ -62,7 +62,6 @@ public class DisasterController {
      */
     @PostMapping("/update/strategy")
     JSONObject updateStrategy(@RequestParam Map<String,Object> map){
-        System.out.println(map);
         return this.disasterService.updateStrategyById(map);
     }
 
