@@ -1,8 +1,7 @@
 package com.hyt.server.config.core.druid;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +19,9 @@ import java.sql.SQLException;
  * <author>          <time>          <version>          <desc>
  * 作者姓名          修改时间         版本号             描述
  */
+@Slf4j
 @Configuration
 public class DruidDataSourceConfigurer {
-
-    private Logger logger = LoggerFactory.getLogger(DruidDataSourceConfigurer.class);
 
     @Value("${spring.datasource.druid.url}")
     private String dbUrl;
@@ -102,7 +100,7 @@ public class DruidDataSourceConfigurer {
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
-            logger.error("druid configuration initialization filter", e);
+            log.error("druid configuration initialization filter", e);
         }
         datasource.setConnectionProperties(connectionProperties);
         return datasource;
