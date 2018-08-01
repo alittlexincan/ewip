@@ -43,24 +43,24 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警颜色:</label>
                                 <div class="layui-input-block">
-                                    <select  name="disasterColor" lay-verify="required" placeholder="请选择预警颜色">
+                                    <select  name="disasterColor" disabled lay-verify="required" placeholder="请选择预警颜色">
                                         <option value="">请选择预警颜色</option>
-                                        <option value="0">蓝色</option>
-                                        <option value="1">黄色</option>
-                                        <option value="2">橙色</option>
-                                        <option value="3">红色</option>
+                                        <option value="0">红色</option>
+                                        <option value="1">橙色</option>
+                                        <option value="2">黄色</option>
+                                        <option value="3">蓝色</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警级别:</label>
                                 <div class="layui-input-block">
-                                    <select  name="disasterLevel" lay-verify="required" placeholder="请选择预警级别">
+                                    <select  name="disasterLevel" disabled lay-verify="required" placeholder="请选择预警级别">
                                         <option value="">请选择预警级别</option>
-                                        <option value="0">I(一级)</option>
-                                        <option value="1">II(二级)</option>
-                                        <option value="2">III(三级)</option>
-                                        <option value="3">IV(四级)</option>
+                                        <option value="0">Ⅰ级/特别重大</option>
+                                        <option value="1">Ⅱ级/重大</option>
+                                        <option value="2">Ⅲ级/较大</option>
+                                        <option value="3">Ⅳ级/一般</option>
                                     </select>
                                 </div>
                             </div>
@@ -85,19 +85,19 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">发布时间:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" readonly id="editTime" name="editTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+                                    <input type="text" readonly id="editTime" name="editTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择发布时间">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预期发生时间:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" readonly id="forecastTime" name="forecastTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+                                    <input type="text" readonly id="forecastTime" name="forecastTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择预期发布时间">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">失效时间:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" readonly id="invalidTime" name="invalidTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="yyyy-MM-dd HH:mm:ss">
+                                    <input type="text" readonly id="invalidTime" name="invalidTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择失效时间">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -133,7 +133,7 @@
                             <div class="layui-card">
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-picture warn-card-hader-icon"></i>预警图标</span></div>
                                 <div class="layui-card-body warn-icon">
-                                    <img th:src="@{/channel/07-微博.png}" alt="短信" />
+                                    <img th:src="@{/disaster/11A00-0.gif}" alt="短信" />
                                 </div>
                             </div>
                         </div>
@@ -184,8 +184,8 @@
                                 <div class="layui-card-body">
 
                                         <div class="channel-option">
-                                            <div><span class="layui-btn layui-btn-sm">全选</span></div>
-                                            <div><span class="layui-btn layui-btn-sm layui-btn-danger">反选</span></div>
+                                            <div><span class="layui-btn layui-btn-sm" data-event="channel-list">全选</span></div>
+                                            <div><span class="layui-btn layui-btn-sm layui-btn-danger" data-event="channel-list">取消</span></div>
                                         </div>
                                         <div class="channel-list">
                                             <!--<div class="imgbox" data-id="1" data-title="短信" data-channel="01-短信" data-type="tabAdd">-->
