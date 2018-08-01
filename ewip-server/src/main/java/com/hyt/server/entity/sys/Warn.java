@@ -32,6 +32,9 @@ public class Warn {
     @Column(name = "organization_id",length = 64)
     private String organizationId;
 
+    @Column(name = "channel_id",length = 64)
+    private String channelId;
+
     @Column(name = "disaster_id",length = 64)
     private String disasterId;
 
@@ -65,9 +68,10 @@ public class Warn {
     public Warn() {
     }
 
-    public Warn(String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String measure, String instruction, Date createTime, String areaName, String organizationName) {
+    public Warn(String areaId, String organizationId, String channelId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String measure, String instruction, Date createTime, String areaName, String organizationName) {
         this.areaId = areaId;
         this.organizationId = organizationId;
+        this.channelId = channelId;
         this.disasterId = disasterId;
         this.disasterName = disasterName;
         this.disasterColor = disasterColor;
@@ -102,6 +106,14 @@ public class Warn {
 
     public void setOrganizationId(String organizationId) {
         this.organizationId = organizationId;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
     public String getDisasterId() {

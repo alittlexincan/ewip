@@ -98,6 +98,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 return '请选择所属机构';
             }
         }
+        ,channelId: function(value){
+            if(value.length == 0) return '请选择发布渠道';
+        }
         ,disasterId: function(value){
             if(value.length == 0) {
                 $("#addDisasterId .addDisasterIdShow, #updateDisasterId .updateDisasterIdShow").css("border-color","red");
@@ -105,12 +108,16 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             }
         }
         ,content: function (value) {
-            if(value.length == 0)  return '请选输入预警内容';
-            if(value.length > 10)  return '预警内容长度不能大于500';
+            if(value.length == 0)  return '请输入预警内容';
+            if(value.length > 10)  return '预警内容长度不能大于1000';
+        }
+        ,measure: function (value) {
+            if(value.length == 0)  return '请输入政府应对措施';
+            if(value.length > 10)  return '政府应对措施内容长度不能大于1000';
         }
         ,instruction: function (value) {
-            if(value.length == 0) return '请输入终端编码';
-            if(value.length > 100) return '终端编码长度不能大于500';
+            if(value.length == 0) return '请输入防御指南';
+            if(value.length > 100) return '防御指南长度不能大于1000';
         }
     });
 
@@ -149,7 +156,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     /**
      * 初始化加载机构树
      */
-    var organizationZtree = zTree.async({
+    zTree.async({
         id: "#organizationTree",
         setting: {
             async:{
@@ -235,6 +242,15 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             'id': 'addOrganizationId'
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
+                        });
+                        // 渠道下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#addDiv .channel").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            form.render('select');
                         });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({
@@ -341,6 +357,17 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
                             ,'checkNodeId': param.organizationId
+                        });
+                        // 渠道下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#updateDiv .channel").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            // 地区级别下拉框赋值
+                            $("#updateDiv .channel").val(param.channelId);
+                            form.render('select');
                         });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({

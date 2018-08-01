@@ -30,12 +30,13 @@ public class WarnController {
 
     @ApiOperation(value="添加预警配置信息",httpMethod="POST",notes="根据参数列表添加预警配置信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="area_id",value="地区ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId",value="渠道ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
@@ -54,12 +55,13 @@ public class WarnController {
     @ApiOperation(value="修改预警配置信息",httpMethod="POST", notes="根据预警配置ID，修改参数列表预警配置信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="预警配置ID", dataType = "String", required = true,paramType = "query"),
-            @ApiImplicitParam(name="area_id",value="地区ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId",value="渠道ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
@@ -120,12 +122,13 @@ public class WarnController {
             @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
 
             @ApiImplicitParam(name="id",value="预警配置ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="area_id",value="地区ID",  dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId",value="渠道ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
