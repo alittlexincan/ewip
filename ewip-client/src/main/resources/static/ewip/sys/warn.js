@@ -256,15 +256,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 return false;
                             }
                         });
-                        // 渠道下拉绑定
-                        // selectChannel(function (result) {
-                        //     if(result!=null){
-                        //         for(var i = 0; i<result.length; i++){
-                        //             $("#addDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
-                        //         }
-                        //     }
-                        //     form.render('select');
-                        // });
                     });
                     // 渲染表单
                     form.render();
@@ -372,10 +363,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 return false;
                             }
                         });
+                        console.log(param);
                         $("#updateDiv input[name='disasterName']").val(param.disasterName);
                         $("#updateDiv select[name='disasterColor']").val(param.disasterColor);
                         $("#updateDiv select[name='disasterLevel']").val(param.disasterLevel);
                         $("#updateDiv textarea[name='content']").val(param.content);
+                        $("#updateDiv textarea[name='measure']").val(param.measure);
                         $("#updateDiv textarea[name='instruction']").val(param.instruction);
                         form.render('select');
                     });

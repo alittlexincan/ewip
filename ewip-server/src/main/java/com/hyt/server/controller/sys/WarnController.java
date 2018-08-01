@@ -37,6 +37,7 @@ public class WarnController {
             @ApiImplicitParam(name="disaster_color",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="disaster_level",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
     })
     @PostMapping("/insert")
@@ -60,6 +61,7 @@ public class WarnController {
             @ApiImplicitParam(name="disaster_color",value="灾种颜色", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="disaster_level",value="灾种级别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
     })
     @PostMapping("/update")
@@ -125,6 +127,7 @@ public class WarnController {
             @ApiImplicitParam(name="disaster_color",value="灾种颜色", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="disaster_level",value="灾种级别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="content",value="预警内容", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="measure",value="政府应对措施", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="instruction",value="防御指南", dataType = "String", paramType = "query")
     })
     @GetMapping("/select")

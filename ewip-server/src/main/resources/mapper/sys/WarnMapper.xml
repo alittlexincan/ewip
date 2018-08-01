@@ -11,6 +11,7 @@
         <result column="disaster_color" jdbcType="INTEGER" property="disasterColor"/>
         <result column="disaster_level" jdbcType="INTEGER" property="disasterLevel"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="measure" jdbcType="VARCHAR" property="measure"/>
         <result column="instruction" jdbcType="VARCHAR" property="instruction"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
@@ -28,6 +29,7 @@
             w.disaster_color,
             w.disaster_level,
             w.content,
+            w.measure,
             w.instruction,
             a.area_name,
             o.organization_name
@@ -64,6 +66,7 @@
             w.disaster_color,
             w.disaster_level,
             w.content,
+            w.measure,
             w.instruction,
             a.area_name,
             o.organization_name

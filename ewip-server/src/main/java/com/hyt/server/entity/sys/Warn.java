@@ -47,7 +47,10 @@ public class Warn {
     @Column(name = "content",length = 1000)
     private String content;
 
-    @Column(name = "instruction",length = 1000)
+    @Column(name = "measure",length = 2000)
+    private String measure;
+
+    @Column(name = "instruction",length = 2000)
     private String instruction;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
@@ -62,7 +65,7 @@ public class Warn {
     public Warn() {
     }
 
-    public Warn(String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String instruction, Date createTime, String areaName, String organizationName) {
+    public Warn(String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String measure, String instruction, Date createTime, String areaName, String organizationName) {
         this.areaId = areaId;
         this.organizationId = organizationId;
         this.disasterId = disasterId;
@@ -70,6 +73,7 @@ public class Warn {
         this.disasterColor = disasterColor;
         this.disasterLevel = disasterLevel;
         this.content = content;
+        this.measure = measure;
         this.instruction = instruction;
         this.createTime = createTime;
         this.areaName = areaName;
@@ -138,6 +142,14 @@ public class Warn {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
     public String getInstruction() {
