@@ -2807,7 +2807,7 @@ layui.define(function(exports){
                     n.isHover = false;
                     n.editNameFlag = false;
                 },
-                //update zTreeObj, add method of edit
+                //update zTreeObj, add method of warn
                 _zTreeTools = function(setting, zTreeTools) {
                     zTreeTools.cancelEditName = function(newName) {
                         var root = data.getRoot(this.setting);
@@ -2913,7 +2913,7 @@ layui.define(function(exports){
                         //right click can't drag & drop
                         if (eventMouseDown.button == 2 || !setting.edit.enable || (!setting.edit.drag.isCopy && !setting.edit.drag.isMove)) return true;
 
-                        //input of edit node name can't drag & drop
+                        //input of warn node name can't drag & drop
                         var target = eventMouseDown.target,
                             _nodes = data.getRoot(setting).curSelectedList,
                             nodes = [];
@@ -3419,7 +3419,7 @@ layui.define(function(exports){
                             return;
                         }
                         var aObj = $$(node, consts.id.A, setting),
-                            editStr = "<span class='" + consts.className.BUTTON + " edit' id='" + node.tId + consts.id.EDIT + "' title='"+tools.apply(setting.edit.renameTitle, [setting.treeId, node], setting.edit.renameTitle)+"' treeNode"+consts.id.EDIT+" style='display:none;'></span>";
+                            editStr = "<span class='" + consts.className.BUTTON + " warn' id='" + node.tId + consts.id.EDIT + "' title='"+tools.apply(setting.edit.renameTitle, [setting.treeId, node], setting.edit.renameTitle)+"' treeNode"+consts.id.EDIT+" style='display:none;'></span>";
                         aObj.append(editStr);
 
                         $$(node, consts.id.EDIT, setting).bind('click',

@@ -22,6 +22,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     let typeFormat = function(d){
         if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>发布中心</span>";
         if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>预案单位</span>";
+        if(d.type == 2) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>应急办</span>";
     };
 
     /**
