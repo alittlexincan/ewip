@@ -32,17 +32,17 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,page:true
         ,even: true
         ,height: 'full-180'
-        ,limits:[5,10,20,50,100]
+        ,limits:[10,20,50,100]
         ,cols: [[
-            {type: 'checkbox',fixed: 'left'}
+            {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'loginName', title: '登录名称', sort: true}
-            ,{field: 'name', title: '员工名称', width:100, sort: true}
-            ,{field: 'sex', title: '性别', width: 80, sort: true, templet: sexFormat}
+            ,{field: 'name', title: '员工名称', sort: true}
+            ,{field: 'sex', title: '性别', sort: true, templet: sexFormat}
             ,{field: 'organizationName', title: '所属机构', sort: true}
-            ,{field: 'phone', title: '电话号码', width:120, sort: true}
+            ,{field: 'phone', title: '电话号码', sort: true}
             ,{field: 'email', title: '员工邮箱', sort: true}
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', fixed: 'right', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -79,6 +79,18 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,name: function (value) {
             if(value.length == 0){
                 return '用户名称不能为空';
+            }
+        }
+        ,areaId: function(value){
+            if(value.length == 0) {
+                $("#addAreaId .addAreaIdShow, #updateAreaId .updateAreaIdShow").css("border-color","red");
+                return '请选择所属地区';
+            }
+        }
+        ,organizationId: function(value){
+            if(value.length == 0) {
+                $("#addOrganizationId .addOrganizationIdShow, #updateOrganizationId .updateOrganizationIdShow").css("border-color","red");
+                return '请选择所属机构';
             }
         }
     });
@@ -154,7 +166,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         });
                         // 初始化下拉树(机构)
                         selectTree.render({
-                            'id': 'addOrgId'
+                            'id': 'addOrganizationId'
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
                         });

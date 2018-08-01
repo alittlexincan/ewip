@@ -5,6 +5,7 @@ import com.hyt.client.service.sys.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -26,8 +27,11 @@ public class EmployeeController {
      * @return
      */
     @PostMapping("/login")
-    JSONObject login(@RequestParam Map<String,Object> map){
-        return this.employeeService.login(map);
+    JSONObject login(HttpSession session, @RequestParam Map<String, Object> map){
+        JSONObject json = this.employeeService.login(map);
+        System.out.println("用户登录==>>>  " + json.get("data"));
+        session.setAttribute("employee",json.get("data"));
+        return json;
     }
 
     /**

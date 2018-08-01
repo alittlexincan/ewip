@@ -47,7 +47,9 @@ public class EmployeeController {
             @ApiImplicitParam(name="name",value="真实名称", required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="sex",value="用户性别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="phone",value="用户电话",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="areaId",value="用户所属地区",required = true, dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="email",value="用户邮箱", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="用户所属地区",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="用户所属机构",required = true, dataType = "String",paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -68,7 +70,9 @@ public class EmployeeController {
             @ApiImplicitParam(name="name",value="真实名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="sex",value="用户性别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="phone",value="用户电话", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="areaId",value="用户所属地区", dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="email",value="用户邮箱", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="用户所属地区", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="用户所属机构", dataType = "String",paramType = "query")
     })
     @PostMapping("/update")
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -126,13 +130,16 @@ public class EmployeeController {
             @ApiImplicitParam(name="sortOrder",value="排序规则(ASC,DESC)，默认DESC", defaultValue = "DESC",dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="startTime",value="开始时间", dataType = "Date",paramType = "query"),
             @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
+
             @ApiImplicitParam(name="id",value="用户ID", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="loginName",value="登陆名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="loginPassword",value="登陆密码", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="name",value="真实名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="sex",value="用户性别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="phone",value="用户电话", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="areaId",value="用户所属地区", dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="email",value="用户邮箱", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="用户所属地区", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="用户所属机构", dataType = "String",paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
