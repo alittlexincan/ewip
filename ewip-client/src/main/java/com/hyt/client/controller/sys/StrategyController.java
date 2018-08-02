@@ -81,4 +81,14 @@ public class StrategyController {
         return this.strategyService.selectAll(map);
     }
 
+    /**
+     * 多条件查询策略配置信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/config")
+    public JSONObject selectCoinfig(@RequestParam Map<String,Object> map){
+        return this.strategyService.selectConfig(map);
+    }
+
 }

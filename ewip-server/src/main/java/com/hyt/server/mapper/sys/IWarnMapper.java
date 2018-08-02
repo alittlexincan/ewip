@@ -32,4 +32,11 @@ public interface IWarnMapper extends IBaseMapper<Warn> {
      */
     Warn selectById(@Param(value = "id") String id);
 
+    /**
+     * 多条件查询预警配置信息
+     * @param map
+     * @return
+     */
+    Warn selectConfig(Map<String, Object> map);
+
 }

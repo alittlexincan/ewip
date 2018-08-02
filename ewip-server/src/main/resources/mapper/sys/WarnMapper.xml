@@ -6,7 +6,6 @@
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
-        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
         <result column="disaster_id" jdbcType="VARCHAR" property="disasterId"/>
         <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
         <result column="disaster_color" jdbcType="INTEGER" property="disasterColor"/>
@@ -17,15 +16,15 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
     </resultMap>
 
-    <!-- 查询地区信息 -->
+    <!-- 查询预警配置信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
             w.id,
             w.area_id,
             w.organization_id,
-            w.channel_id,
             w.disaster_id,
             w.disaster_name,
             w.disaster_color,
@@ -57,13 +56,12 @@
         </choose>
     </select>
 
-    <!-- 根据地区id查询地区信息 -->
+    <!-- 根据预警配置id查询预警配置信息 -->
     <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT
             w.id,
             w.area_id,
             w.organization_id,
-            w.channel_id,
             w.disaster_id,
             w.disaster_name,
             w.disaster_color,
@@ -79,6 +77,31 @@
         LEFT JOIN organization o on o.id = w.organization_id
         where 1=1
         <if test="id != null and id != ''">AND w.id = #{id}</if>
+    </select>
+
+    <!-- 多条件查询预警配置信息 -->
+    <select id="selectConfig" resultMap="BaseResultMap">
+        SELECT
+            w.id,
+            w.area_id,
+            w.organization_id,
+            w.disaster_id,
+            w.disaster_name,
+            w.disaster_color,
+            w.disaster_level,
+            w.content,
+            w.measure,
+            w.instruction
+        FROM
+          warn w
+        where 1=1
+        <if test="id != null and id != ''">AND w.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND w.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND w.organization_id = #{organizationId}</if>
+        <if test="disasterId != null and disasterId != ''">AND w.disaster_id = #{disasterId}</if>
+        <if test="disasterName != null and disasterName != ''">AND w.disaster_name = #{disasterName}</if>
+        <if test="disasterColor != null and disasterColor != ''">AND w.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">AND w.disaster_level = #{disasterLevel}</if>
     </select>
 
 

@@ -19,6 +19,7 @@
         <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
         <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
         <result column="is_config" jdbcType="SMALLINT" property="isConfig"/>
+        <result column="img" jdbcType="VARCHAR" property="img"/>
         <result column="is_strategy" jdbcType="SMALLINT" property="isStrategy"/>
         <result column="type" jdbcType="SMALLINT" property="type"/>
     </resultMap>
@@ -71,7 +72,7 @@
             d.id,
             d.name,
             d.code,
-            d.icon,
+            d.icon img,
             d.p_id,
             d.type,
             d.disaster_color,
@@ -94,7 +95,7 @@
             d.id,
             d.name,
             d.code,
-            d.icon,
+            d.icon img,
             d.p_id,
             d.type,
             d.disaster_color,

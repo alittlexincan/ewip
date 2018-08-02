@@ -81,4 +81,14 @@ public class WarnController {
         return this.warnService.selectAll(map);
     }
 
+    /**
+     * 多条件查询预警配置信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/config")
+    public JSONObject selectConfig(@RequestParam Map<String,Object> map){
+        return this.warnService.selectConfig(map);
+    }
+
 }

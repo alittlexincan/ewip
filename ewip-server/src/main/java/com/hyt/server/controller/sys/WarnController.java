@@ -139,5 +139,24 @@ public class WarnController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value = "多条件查询预警配置信息", httpMethod = "GET", notes = "根据多条件查询预警配置信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="预警配置ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "Integer",paramType = "query")
+    })
+    @GetMapping("/config")
+    public ResultObject<Object> selectConfig(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        try {
+            return  ResultResponse.make(200,"查询预警配置成功", this.warnService.selectConfig(map));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ResultResponse.make(500,"查询预警配置失败", null);
+    }
 
 }

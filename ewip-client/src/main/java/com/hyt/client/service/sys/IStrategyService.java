@@ -67,4 +67,12 @@ public interface IStrategyService {
     @GetMapping("/strategy/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
+    /**
+     * 多条件查询策略配置信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/strategy/config")
+    JSONObject selectConfig(@RequestParam Map<String, Object> map);
+
 }

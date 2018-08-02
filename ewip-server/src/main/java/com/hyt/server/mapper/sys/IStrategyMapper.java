@@ -32,4 +32,11 @@ public interface IStrategyMapper extends IBaseMapper<Strategy> {
      */
     Strategy selectById(@Param(value = "id") String id);
 
+    /**
+     * 根据策略id查询策略配置信息
+     * @param map
+     * @return
+     */
+    Strategy selectConfig(Map<String, Object> map);
+
 }

@@ -38,4 +38,9 @@ public class StrategyServiceImpl extends AbstractService<Strategy> implements IS
         return this.strategyMapper.selectById(id);
     }
 
+    @Override
+    public Strategy selectConfig(Map<String, Object> map){
+        return this.strategyMapper.selectConfig(map);
+    }
+
 }

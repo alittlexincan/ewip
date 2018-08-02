@@ -53,6 +53,12 @@ public class Strategy {
     @Column(name = "channel_id",length = 500)
     private String channelId;
 
+    @Column(name = "measure",length = 2000)
+    private String measure;
+
+    @Column(name = "instruction",length = 2000)
+    private String instruction;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -64,7 +70,7 @@ public class Strategy {
     public Strategy() {
     }
 
-    public Strategy(String name, String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String flow, String channelId, Date createTime, String areaName, String organizationName) {
+    public Strategy(String name, String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String flow, String channelId, String measure, String instruction, Date createTime, String areaName, String organizationName) {
         this.name = name;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -74,6 +80,8 @@ public class Strategy {
         this.disasterLevel = disasterLevel;
         this.flow = flow;
         this.channelId = channelId;
+        this.measure = measure;
+        this.instruction = instruction;
         this.createTime = createTime;
         this.areaName = areaName;
         this.organizationName = organizationName;
@@ -157,6 +165,22 @@ public class Strategy {
 
     public void setChannelId(String channelId) {
         this.channelId = channelId;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 
     public Date getCreateTime() {

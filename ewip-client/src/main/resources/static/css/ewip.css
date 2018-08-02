@@ -223,6 +223,9 @@ website:    http://code.google.com/p/jquerytree/
 }
 
 /* 渠道 start*/
+.edit{
+    padding: 5px;
+}
 .edit .warn-icon{
     padding: 2px;
     text-align: center;

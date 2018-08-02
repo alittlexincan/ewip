@@ -9,35 +9,27 @@
     <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
-
 </head>
 <body>
-
     <div class="layui-fluid edit">
         <div class="layui-form layui-form-pane">
             <div class="layui-row layui-col-space5">
                 <!--基础信息-->
-                <div class="layui-col-md3 layui-col-sm3">
+                <div class="layui-col-md3 layui-col-sm3 basis">
                     <div class="layui-card">
                         <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-form warn-card-hader-icon"></i>基础信息</span> </div>
                         <div class="layui-card-body warn-form">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">发布单位:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="title" lay-verify="required" placeholder="请选择发布单位" autocomplete="off" class="layui-input">
+                                    <input type="text" id="organizationName" readonly="readonly" name="organizationName" lay-verify="required" placeholder="请输入发布单位" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警名称:</label>
                                 <div class="layui-input-block">
-                                    <select  name="disasterName" lay-verify="required" placeholder="请选择预警名称">
-                                        <option value="">请选择预警名称</option>
-                                        <option value="0">暴雨</option>
-                                        <option value="1">大风</option>
-                                        <option value="2">暴雪</option>
-                                        <option value="3">雷电</option>
-                                        <option value="4">台风</option>
-                                    </select>
+                                    <input type="hidden" name="disasterName">
+                                    <div id="addDisasterId" name="disasterId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择预警名称"></div>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -73,7 +65,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警信息类型:</label>
                                 <div class="layui-input-block">
-                                    <select class="form-control" lay-verify="required" placeholder="请选择预警信息类型">
+                                    <select class="form-control" name="type" lay-verify="required" placeholder="请选择预警信息类型">
                                         <option value="Actual">实际</option>
                                         <option value="Exercise">演练</option>
                                         <option value="Test" selected>测试</option>
@@ -103,21 +95,21 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">国突备案:</label>
                                 <div class="layui-input-block">
-                                    <input type="radio" name="keepRecord" value="0" title="否" checked>
-                                    <input type="radio" name="keepRecord" value="1" title="是">
+                                    <input type="radio" name="record" value="0" title="否" checked>
+                                    <input type="radio" name="record" value="1" title="是">
                                 </div>
                             </div>
                             <hr class="ewip-hr">
                             <div class="layui-form-item">
                                 <label class="layui-form-label">政府应对措施:</label>
                                 <div class="layui-input-block">
-                                    <textarea lay-verify="required" placeholder="请输入政府应对措施" class="layui-textarea"></textarea>
+                                    <textarea name="measure" lay-verify="required" placeholder="请输入政府应对措施" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">防御指南:</label>
                                 <div class="layui-input-block">
-                                    <textarea lay-verify="required" placeholder="请输入防御指南" class="layui-textarea"></textarea>
+                                    <textarea name="instruction" lay-verify="required" placeholder="请输入防御指南" class="layui-textarea"></textarea>
                                 </div>
                             </div>
 
@@ -133,7 +125,7 @@
                             <div class="layui-card">
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-picture warn-card-hader-icon"></i>预警图标</span></div>
                                 <div class="layui-card-body warn-icon">
-                                    <img th:src="@{/disaster/11A00-0.gif}" alt="短信" />
+                                    <img th:src="@{/images/3.jpg}" alt="短信" />
                                 </div>
                             </div>
                         </div>
@@ -247,31 +239,42 @@
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-upload-drag warn-card-hader-icon"></i>附件上传</span></div>
                                 <div class="layui-card-body warn-file-list-height warn-center">
 
+                                    <!--文件上传初始化信息信息-->
                                     <div class="warn-upload-msg">
                                         <i class="layui-icon layui-icon-upload-drag"></i>
                                         <span>点击上传</span>
                                     </div>
-                                    <!--<table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-even="">-->
-                                        <!--<thead>-->
-                                            <!--<tr><th>编号</th><th>文件名称</th><th>文件大小</th><th>文件类型</th><th>操作</th></tr>-->
-                                        <!--</thead>-->
-                                        <!--<tbody>-->
-                                            <!--<tr data-index="0" class="">-->
+
+                                    <!--存放文本框列表-->
+                                    <div class="warn-file-list layui-hide"></div>
+                                    <!--文件信息展示列表-->
+                                    <table cellspacing="0" cellpadding="0" border="0"  class="layui-table layui-hide warn-file-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">编号</th>
+                                                <th style="text-align: center">文件名称</th>
+                                                <th style="text-align: center">文件大小</th>
+                                                <th style="text-align: center">文件类型</th>
+                                                <th style="text-align: center">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--<tr>-->
                                                 <!--<td>1</td>-->
                                                 <!--<td>abc.jpg</td>-->
                                                 <!--<td>128k</td>-->
                                                 <!--<td>jpg</td>-->
-                                                <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
+                                                <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
                                             <!--</tr>-->
-                                            <!--<tr data-index="0" class="">-->
+                                            <!--<tr>-->
                                                 <!--<td>1</td>-->
                                                 <!--<td>abc.jpg</td>-->
                                                 <!--<td>128k</td>-->
                                                 <!--<td>jpg</td>-->
-                                                <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
+                                                <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
                                             <!--</tr>-->
-                                        <!--</tbody>-->
-                                    <!--</table>-->
+                                        </tbody>
+                                    </table>
 
                                 </div>
                             </div>
@@ -287,6 +290,7 @@
                             <div class="layui-card-body warn-center">
                                 <div class="layui-inline">
                                     <button class="layui-btn layuiadmin-button-btn" lay-submit="submit" lay-filter="submit">提交</button>
+                                    <button class="layui-btn layuiadmin-button-btn layui-btn-danger fileUpload">文件上传</button>
                                 </div>
                             </div>
                         </div>
@@ -299,6 +303,5 @@
 
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
     <script th:src="@{/ewip/warn/edit.js}" charset="utf-8"></script>
-
 </body>
 </html>

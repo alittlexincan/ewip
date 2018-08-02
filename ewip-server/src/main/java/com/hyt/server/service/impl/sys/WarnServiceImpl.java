@@ -38,4 +38,9 @@ public class WarnServiceImpl extends AbstractService<Warn> implements IWarnServi
         return this.warnMapper.selectById(id);
     }
 
+    @Override
+    public Warn selectConfig(Map<String, Object> map){
+        return this.warnMapper.selectConfig(map);
+    }
+
 }

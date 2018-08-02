@@ -18,4 +18,6 @@ public interface IWarnService extends IBaseService<Warn> {
 
     Warn selectById(String id);
 
+    Warn selectConfig(Map<String, Object> map);
+
 }

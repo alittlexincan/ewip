@@ -121,24 +121,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         }
     });
 
-
-    /**78i
-     * 查询渠道手段下拉列表
-     * @param callback
-     */
-    let selectChannel = function(callback){
-        $.ajax({
-            async:true
-            ,type: "POST"
-            ,data: {type:0} // 0：表示渠道
-            ,url: "/client/channel/list"
-            ,dataType: 'json'
-            ,success: function(json){
-                callback(json.data.length > 0 ? json.data : null);
-            }
-        });
-    };
-
     /**
      * 群组树点击事件
      * @param event
@@ -242,15 +224,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             'id': 'addOrganizationId'
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
-                        });
-                        // 渠道下拉绑定
-                        selectChannel(function (result) {
-                            if(result!=null){
-                                for(var i = 0; i<result.length; i++){
-                                    $("#addDiv .channel").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
-                                }
-                            }
-                            form.render('select');
                         });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({
@@ -358,17 +331,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             ,'isMultiple': false
                             ,'checkNodeId': param.organizationId
                         });
-                        // 渠道下拉绑定
-                        selectChannel(function (result) {
-                            if(result!=null){
-                                for(var i = 0; i<result.length; i++){
-                                    $("#updateDiv .channel").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
-                                }
-                            }
-                            // 地区级别下拉框赋值
-                            $("#updateDiv .channel").val(param.channelId);
-                            form.render('select');
-                        });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({
                             'id': 'updateDisasterId'
@@ -390,7 +352,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 return false;
                             }
                         });
-                        console.log(param);
                         $("#updateDiv input[name='disasterName']").val(param.disasterName);
                         $("#updateDiv select[name='disasterColor']").val(param.disasterColor);
                         $("#updateDiv select[name='disasterLevel']").val(param.disasterLevel);

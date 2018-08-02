@@ -67,4 +67,12 @@ public interface IWarnService {
     @GetMapping("/warn/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
+    /**
+     * 分页查询预警配置信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/warn/config")
+    JSONObject selectConfig(@RequestParam Map<String, Object> map);
+
 }

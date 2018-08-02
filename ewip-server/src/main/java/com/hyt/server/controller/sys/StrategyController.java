@@ -30,14 +30,14 @@ public class StrategyController {
 
     @ApiOperation(value="添加策略配置信息",httpMethod="POST",notes="根据参数列表添加策略配置信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="area_id",value="策略配置ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="flow",value="策略流程", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="channel",value="渠道配置", required = true, dataType = "String", paramType = "query")
+            @ApiImplicitParam(name="channelId",value="渠道配置", required = true, dataType = "String", paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -52,15 +52,15 @@ public class StrategyController {
 
     @ApiOperation(value="修改策略配置信息",httpMethod="POST", notes="根据策略配置ID，修改参数列表策略配置信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="策略配置ID", dataType = "String", required = true,paramType = "query"),
-            @ApiImplicitParam(name="area_id",value="策略配置ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="id",value="策略配置ID", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="flow",value="策略流程", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="channel",value="渠道配置", dataType = "String", paramType = "query")
+            @ApiImplicitParam(name="channelId",value="渠道配置", dataType = "String", paramType = "query")
     })
     @PostMapping("/update")
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -118,14 +118,14 @@ public class StrategyController {
             @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
 
             @ApiImplicitParam(name="id",value="策略配置ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="area_id",value="策略配置ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organization_id",value="机构ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_id", value="灾种ID", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_name",value="灾种名称", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disaster_color",value="灾种颜色", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="disaster_level",value="灾种级别", required = true, dataType = "Integer",paramType = "query"),
-            @ApiImplicitParam(name="flow",value="策略流程", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="channel",value="渠道配置", required = true, dataType = "String", paramType = "query")
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="flow",value="策略流程", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="channelId",value="渠道配置", dataType = "String", paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
@@ -133,5 +133,24 @@ public class StrategyController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value = "多条件查询策略配置信息", httpMethod = "GET", notes = "根据多条件查询策略配置信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="策略配置ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterName",value="灾种名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "Integer",paramType = "query")
+    })
+    @GetMapping("/config")
+    public ResultObject<Object> selectConfig(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        try {
+            return  ResultResponse.make(200,"查询策略配置成功", this.strategyService.selectConfig(map));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ResultResponse.make(500,"查询策略配置失败", null);
+    }
 
 }

@@ -18,4 +18,5 @@ public interface IStrategyService extends IBaseService<Strategy> {
 
     Strategy selectById(String id);
 
+    Strategy selectConfig(Map<String, Object> map);
 }
