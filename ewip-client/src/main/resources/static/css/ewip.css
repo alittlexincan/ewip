@@ -223,9 +223,6 @@ website:    http://code.google.com/p/jquerytree/
 }
 
 /* 渠道 start*/
-.edit{
-    padding: 5px;
-}
 .edit .warn-icon{
     padding: 2px;
     text-align: center;
@@ -339,6 +336,65 @@ website:    http://code.google.com/p/jquerytree/
     font-size: 36px;
     top: 36px;
 }
+
+/*预警编辑tab页*/
+.edit .warn-tab{
+    position: relative;
+    padding: 0px;
+    height: 318px;
+    border-radius: 0;
+    box-shadow: none;
+    left: -1px;
+    top: -1px;
+    width: 100%;
+    border-bottom: none;
+}
+.edit .layui-tab .warn-tab-title{
+    width: 90%;
+    margin-left: 5%;
+    overflow: hidden;
+}
+.edit .layui-tab .warn-tab-title > li{
+    padding: 0;
+    margin: 0;
+    width: 95px;
+}
+.edit .warn-tab .warn-tab-content{
+    padding: 5px;
+    height: 100%;
+}
+.edit .warn-tab .warn-tab-content > div{
+    height: calc(100% - 50px);
+}
+
+.edit .layui-tab-bar{
+    display: none;
+}
+
+.edit .warn-tab-prev{
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 5%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    margin: 0 15px 0 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.edit .warn-tab-next{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 5%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+}
+
 /* 预警编辑 end*/
 
 

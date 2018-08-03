@@ -1,11 +1,12 @@
 layui.config({
     base: '/client/layuiadmin/modules/'
 }).extend({
-    zTree: 'zTree',
-    selectTree: 'selectTree'
+    zTree: 'zTree'
+    ,selectTree: 'selectTree'
+    ,disaster: 'disaster'
 });
 
-layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree'], function(){
+layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree','disaster'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
@@ -15,7 +16,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,laydate = layui.laydate
         ,zTree = layui.zTree
         ,selectTree = layui.selectTree
-        ,employee = layui.sessionData("ewip").employee; // 当前登录用户信息
+        ,employee = layui.sessionData("ewip").employee // 当前登录用户信息
+        ,disaster = layui.disaster;
 
 
     /**
@@ -46,7 +48,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 layer.msg("该预警没有匹配到预警内容", {time: 2000});
                 return false;
             }
-
+            // 预警标题
+            $(".basis input[name='title']").val(param.organizationName + "发布" + param.disasterName + disaster.color(param.disasterColor) + "["+disaster.level(param.disasterLevel)+"]预警");
             // 预警名称
             $(".basis input[name='disasterName']").val(param.disasterName);
             // 预警颜色
@@ -134,6 +137,18 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,"setWarn": function (result) {
             //console.log(result);
         }
+        /**
+         * tab选项卡左移按钮
+         */
+        ,"warn-tab-prev": function () {
+            alert("prev");
+        }
+        /**
+         * tab选项卡右移按钮
+         */
+        ,"warn-tab-next": function () {
+            alert("next");
+        }
     };
 
 
@@ -195,6 +210,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     var param = {
                         areaId: employee.areaId                     // 地区ID
                         ,organizationId: employee.organizationId    // 机构ID
+                        ,organizationName: employee.organizationName// 机构名称
                         ,disasterId: treeNode.id                    // 灾种ID
                         ,disasterName: name                         // 灾种及名称
                         ,disasterColor: treeNode.disasterColor      // 灾种颜色
@@ -314,7 +330,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             // 获取选中文件信息
             var file = $(this)[0].files[0], size = file.size;
 
-            var s = (size/1204) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
+            // 计算文件大小
+            var s = (size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
 
             // 拼接文件内容
             var html = "<tr>";
@@ -345,6 +362,62 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         });
 
     });
+
+
+    /**
+     * tab选项卡点击切换
+     */
+    element.on('tab(warn-tab)', function(data){
+        console.log(this); //当前Tab标题所在的原始DOM元素
+        console.log(data.index); //得到当前Tab的所在下标
+        console.log(data.elem); //得到当前的Tab大容器
+    });
+
+
+    /**
+     * tab选项卡删除监听事件
+     */
+    element.on('tabDelete(warn-tab)', function(data){
+        console.log(this); //当前Tab标题所在的原始DOM元素
+        console.log(data.index); //得到当前Tab的所在下标
+        console.log(data.elem); //得到当前的Tab大容器
+    });
+
+
+    /**
+     * tab选项卡前按钮移动操作
+     */
+    var tabIndex = 0;
+    $(".warn-tab").on('click','.warn-tab-prev',function () {
+        // title可视化宽度
+        var width = $(".warn-tab-title").width();
+        // 获取可视化区域li的个数，四舍五入
+        var move = Math.round(width/95);
+        if(tabIndex > 0){
+            tabIndex--;
+            var moveWidth = move * 95 * tabIndex;
+            $(".warn-tab-title > li:nth-child(1)").css({"margin-left": -moveWidth});
+        }
+    });
+    /**
+     * tab选项卡后按钮移动操作
+     */
+    $(".warn-tab").on('click','.warn-tab-next',function () {
+        // title可视化宽度
+        var width = $(".warn-tab-title").width();
+        // 获取可视化区域li的个数，四舍五入
+        var move = Math.round(width/95);
+        // li的总个数
+        var count = $(".warn-tab-title > li").length;
+        if(move * (tabIndex + 1) < count){
+            tabIndex++;
+            var moveWidth = move * 95 * tabIndex;
+            $(".warn-tab-title > li:nth-child(1)").css({"margin-left": -moveWidth});
+
+        }
+
+    });
+
 
 
     /**

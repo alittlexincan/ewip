@@ -212,24 +212,44 @@
                         <div class="layui-col-xs9 layui-col-md9">
                             <div class="layui-card">
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon warn-card-hader-icon">&#xe618;</i>预警内容</span></div>
-                                <div class="layui-card-body warn-card-body-height">
 
-                                    <!--预警内容-->
-                                    <div class="layui-col-md9">
-                                        预警内容
+                                <div class="layui-tab layui-tab-card warn-tab" lay-filter="warn-tab" lay-allowclose="true">
+
+                                    <div class="layui-icon layadmin-tabs-control layui-icon-prev warn-tab-prev"></div>
+                                    <ul class="layui-tab-title warn-tab-title">
+                                        <li class="layui-this" lay-id="1">短信</li>
+                                        <li lay-id="2">声讯</li>
+                                        <li lay-id="3">APP</li>
+                                        <li lay-id="4">大喇叭</li>
+                                        <li lay-id="5">显示屏</li>
+                                        <li lay-id="6">网站</li>
+                                        <li lay-id="7">微博</li>
+                                        <li lay-id="8">微信</li>
+                                        <li lay-id="9">北斗</li>
+                                        <li lay-id="10">电视</li>
+                                        <li lay-id="11">广播</li>
+                                        <li lay-id="12">传真</li>
+                                    </ul>
+                                    <div class="layui-tab-content warn-tab-content">
+                                        <div class="layui-tab-item layui-show">短信</div>
+                                        <div class="layui-tab-item">声讯</div>
+                                        <div class="layui-tab-item">APP</div>
+                                        <div class="layui-tab-item">大喇叭</div>
+                                        <div class="layui-tab-item">显示屏</div>
+                                        <div class="layui-tab-item">网站</div>
+                                        <div class="layui-tab-item">微博</div>
+                                        <div class="layui-tab-item">微信</div>
+                                        <div class="layui-tab-item">北斗</div>
+                                        <div class="layui-tab-item">电视</div>
+                                        <div class="layui-tab-item">广播</div>
+                                        <div class="layui-tab-item">传真</div>
                                     </div>
-
-                                    <!--受众树-->
-                                    <div class="layui-col-md3">
-                                        受众树
-                                    </div>
-
+                                    <div class="layui-icon layadmin-tabs-control layui-icon-next warn-tab-next"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <!--文件列表-->
                 <div class="layui-col-md9 layui-col-sm9">
@@ -239,7 +259,7 @@
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-upload-drag warn-card-hader-icon"></i>附件上传</span></div>
                                 <div class="layui-card-body warn-file-list-height warn-center">
 
-                                    <!--文件上传初始化信息信息-->
+                                    <!--文件上传初始化信息-->
                                     <div class="warn-upload-msg">
                                         <i class="layui-icon layui-icon-upload-drag"></i>
                                         <span>点击上传</span>
