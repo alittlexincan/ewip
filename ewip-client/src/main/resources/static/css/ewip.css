@@ -402,6 +402,13 @@ website:    http://code.google.com/p/jquerytree/
     overflow: auto;
     overflow-x: hidden;
 }
+.edit .warn-card-content-list .warn-content-skip{
+    line-height: 220px;
+    text-align: center;
+    font-size: 26px;
+    color: #2f9688;
+
+}
 .edit .warn-card-content-list .warn-content-item{
     padding: 5px;
     height: 100px;
@@ -425,6 +432,12 @@ website:    http://code.google.com/p/jquerytree/
 .edit .warn-card-content-list .warn-content-body > div{
     outline: none;
     padding: 0 5px 0 8px;
+}
+.edit .warn-card-content-list .warn-content-body > textarea{
+    outline: none;
+    height: 76px;
+    min-height: unset;
+    padding: 1px 5px;
 }
 /* 预警编辑 end*/
 

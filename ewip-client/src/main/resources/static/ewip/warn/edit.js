@@ -117,69 +117,80 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,"setStrategyAndChannel":function (result) {
             var channelIds = result.channelId
                 ,flow = result.flow;
-
             // 流程赋值
             flow.split(",").forEach(function (item) {
                 $(".process-list .process input[type='checkbox'][value='"+item+"']").attr("checked","checked");
                 form.render("checkbox");
             });
-
             // 渠道赋值
             channelIds.split(",").forEach(function (item) {
                 $(".channel-list .imgbox[data-id='"+item+"']").addClass("active");
             });
         }
         /**
-         * 获取预警信息后对政府应急措施、防御指南、预警内容进行处理
-         * @param result
+         * 预警内容拼接
+         * @param param
          */
-        ,"setWarn": function (result) {
-
-            console.log(result);
-
+        ,"setWarnContent": function (result) {
+            // 循环渠道
             result.channelId.split(",").forEach(function (channelId) {
 
-               var channel = $(".channel-list .imgbox[data-id='"+channelId+"']")
-               ,channelName = $(channel).data("title")
-               ,html = "";
-                    html += "<div class='layui-row layui-col-space5'>";
-                    html += "	<div class='layui-col-xs9 layui-col-md9'>";
-                    html += "		<div class='layui-card warn-card-content'>";
-                    html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
-                    html += "			<div  class='layui-card-body warn-card-content-list'>";
+                var channel = $(".channel-list .imgbox[data-id='"+channelId+"']")
+                    ,channelName = $(channel).data("title")
+                    ,html = "";
+                html += "<div class='layui-row layui-col-space5'>";
+                html += "	<div class='layui-col-xs9 layui-col-md9'>";
+                html += "		<div class='layui-card warn-card-content'>";
+                html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
+                html += "			<div  class='layui-card-body warn-card-content-list content_"+channelId+"'>";
+                // 循环地区
+                result.areaId.split(",").forEach(function (areaId) {
                     html += "				<div class='layui-row layui-col-space5'>";
                     html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                    html += "						<div>新疆维吾尔自治区</div>";
+                    html += "						<div>"+employee.areaName+"</div>";
                     html += "					</div>";
                     html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "						<div contenteditable='true'>"+result.content+"</div>";
+                    html += "                       <textarea type='text' name='content_"+channelId+"_"+areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+result.content+"</textarea>";
                     html += "					</div>";
                     html += "				</div>";
-                    html += "			</div>";
-                    html += "		</div>";
-                    html += "	</div>";
-                    html += "	<div class='layui-col-xs3 layui-col-md3'>";
-                    html += "		<div class='layui-card warn-card-content'>";
-                    html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>受众群组</span></div>";
-                    html += "			<div  class='layui-card-body warn-card-content-list'>";
-                    html += "				受众信息树";
-                    html += "			</div>";
-                    html += "		</div>";
-                    html += "	</div>";
-                    html += "</div>"
-                // 追加预警内容tab选项卡
-                ,element.tabAdd('warn-tab', {
+                });
+                html += "			</div>";
+                html += "		</div>";
+                html += "	</div>";
+                html += "	<div class='layui-col-xs3 layui-col-md3'>";
+                html += "		<div class='layui-card warn-card-content'>";
+                html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>受众群组</span></div>";
+                html += "			<div  class='layui-card-body warn-card-content-list'>";
+                html += "				受众信息树";
+                html += "			</div>";
+                html += "		</div>";
+                html += "	</div>";
+                html += "</div>"
+                    // 追加预警内容tab选项卡
+                    ,element.tabAdd('warn-tab', {
                     title: channelName
                     ,content: html //支持传入html
                     ,id: channelId
                 });
+
             });
+
+        }
+        /**
+         * 获取预警信息后对政府应急措施、防御指南、预警内容tab页进行处理
+         * @param result
+         */
+        ,"setWarn": function (result) {
+            // 地区选中
+            var node = initAreaTree.getNodeByParam(result.areaId, null);
+            initAreaTree.checkNode(node,true,true);
+            // 先清除tab页所有内容
+            $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
+            active.setWarnContent(result);
             // 默认展开第一个tab页
             element.tabChange('warn-tab', result.channelId.split(",")[0]);
         }
     };
-
-
 
     /**
      * 初始化页面基础信息
@@ -262,32 +273,30 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     /**
      * 初始化加载群组树
      */
-    var initAreaTree = function () {
-        zTree.async({
-            id: "#areaTree",
-            setting: {
-                async:{
-                    enable:true,
-                    url: "/client/tree/area",
-                    autoParam:["id"],
-                    dataType:"json",
-                },
-                check: {
-                    enable: true,
-                    chkboxType: {"Y":"", "N": ""},
-                    chkStyle:"checkbox"
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                },
-                callback:{
-                    onClick:null
+    var initAreaTree =  zTree.async({
+        id: "#areaTree",
+        setting: {
+            async:{
+                enable:true,
+                url: "/client/tree/area",
+                autoParam:["id"],
+                dataType:"json",
+            },
+            check: {
+                enable: true,
+                chkboxType: {"Y":"", "N": ""},
+                chkStyle:"checkbox"
+            },
+            data: {
+                simpleData: {
+                    enable: true
                 }
+            },
+            callback:{
+                onClick:null
             }
-        });
-    };
+        }
+    });
 
     /**
      * 初始化加载渠道
@@ -319,7 +328,14 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      */
     $(".channel-option").on("click", "div > span", function(element) {
         var text = $(this).text(),
-            event = $(this).data("event");
+            event = $(this).data("event"),
+        disasterName = $("#disasterName").val();
+        // 如果没有选中灾种，则提示
+        if(disasterName == null || disasterName.length == 0){
+            // 弹出提示信息，2s后自动关闭
+            layer.msg("请先选择预警", {time: 2000});
+            return false;
+        }
 
         if(text == '全选'){
             $("." + event + " .imgbox").addClass("active");
@@ -331,6 +347,13 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 渠道点击单选、取消选择
      */
     $(".channel-list").on("click", ".imgbox", function(element) {
+        var disasterName = $("#disasterName").val();
+        // 如果没有选中灾种，则提示
+        if(disasterName == null || disasterName.length == 0){
+            // 弹出提示信息，2s后自动关闭
+            layer.msg("请先选择预警", {time: 2000});
+            return false;
+        }
         if($(this).hasClass("active")){
             $(this).removeClass("active");
         }else{
@@ -466,5 +489,4 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     initPageMsg();          // 初始化页面加载信息
     disasterLevelZtree();   // 初始化加载灾种级别树
     initChannelList();      // 初始化加载渠道
-    initAreaTree();         // 初始化加载地区
 });
