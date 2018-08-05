@@ -361,7 +361,6 @@ website:    http://code.google.com/p/jquerytree/
 }
 .edit .warn-tab .warn-tab-content{
     padding: 5px;
-    height: 100%;
 }
 .edit .warn-tab .warn-tab-content > div{
     height: calc(100% - 50px);
@@ -394,7 +393,39 @@ website:    http://code.google.com/p/jquerytree/
     text-align: center;
     border: 1px solid #e6e6e6;
 }
-
+.edit .warn-card-content{
+    border: 1px solid #e6e6e6;
+}
+.edit .warn-card-content-list{
+    padding: 5px;
+    height: 228px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.edit .warn-card-content-list .warn-content-item{
+    padding: 5px;
+    height: 100px;
+    border: 1px solid #e6e6e6;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ws-border-radius: 3px;
+}
+.edit .warn-card-content-list .warn-content-title > div,
+.edit .warn-card-content-list .warn-content-body > div{
+    border: 1px solid #e6e6e6;
+    min-height: 74px;
+}
+.edit .warn-card-content-list .warn-content-title > div{
+    text-align: right;
+    padding-right: 5px;
+}
+.edit .warn-card-content-list .warn-content-body > div{
+    outline: none;
+    padding: 0 5px 0 8px;
+}
 /* 预警编辑 end*/
 
 

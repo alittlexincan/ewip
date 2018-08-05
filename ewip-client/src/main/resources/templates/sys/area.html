@@ -73,9 +73,9 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区级别</label>
                             <div class="layui-input-block">
-                                <select name="level" lay-verify="level" placeholder="请选择地区级别">
+                                <select name="level" lay-verify="level" placeholder="请选择地区级别" lay-filter="level">
                                     <option value="">请选择地区级别</option>
-                                    <option value="0">国家级</option>
+                                    <!--<option value="0">国家级</option>-->
                                     <option value="1">省级</option>
                                     <option value="2">市级</option>
                                     <option value="3">县级</option>
@@ -83,12 +83,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="layui-form-item">
+
+
+                        <div class="layui-form-item pId">
                             <label class="layui-form-label">上级地区</label>
                             <div class="layui-input-block">
                                 <div id="addPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
                             </div>
                         </div>
+
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区名称</label>
                             <div class="layui-input-block">
@@ -134,9 +138,9 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区级别</label>
                             <div class="layui-input-block">
-                                <select name="level" lay-verify="level" placeholder="请选择地区级别">
+                                <select name="level" lay-verify="level" placeholder="请选择地区级别" lay-filter="level">
                                     <option value="">请选择地区级别</option>
-                                    <option value="0">国家级</option>
+                                    <!--<option value="0">国家级</option>-->
                                     <option value="1">省级</option>
                                     <option value="2">市级</option>
                                     <option value="3">县级</option>
@@ -144,12 +148,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">上级地区</label>
-                            <div class="layui-input-block">
-                                <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
+
+                            <div class="layui-form-item pId">
+                                <label class="layui-form-label">上级地区</label>
+                                <div class="layui-input-block">
+                                    <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
+                                </div>
                             </div>
-                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区名称</label>
                             <div class="layui-input-block">

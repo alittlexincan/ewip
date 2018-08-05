@@ -63,8 +63,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             // 预警图标赋值
             $(".warn-icon > img").attr("src",param.icon);
             form.render("select");
-            console.log("--------------");
-            console.log(param);
         }
 
         /**
@@ -105,6 +103,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     if(json.code == 200 && json.data != null){
                         param.measure = json.data.measure;          // 政府应对措施
                         param.instruction = json.data.instruction;  // 防御指南
+                        param.content = json.data.content;
                         callback(param);
                     }else{
                         param.step = 1;
@@ -135,19 +134,48 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param result
          */
         ,"setWarn": function (result) {
-            //console.log(result);
-        }
-        /**
-         * tab选项卡左移按钮
-         */
-        ,"warn-tab-prev": function () {
-            alert("prev");
-        }
-        /**
-         * tab选项卡右移按钮
-         */
-        ,"warn-tab-next": function () {
-            alert("next");
+
+            console.log(result);
+
+            result.channelId.split(",").forEach(function (channelId) {
+
+               var channel = $(".channel-list .imgbox[data-id='"+channelId+"']")
+               ,channelName = $(channel).data("title")
+               ,html = "";
+                    html += "<div class='layui-row layui-col-space5'>";
+                    html += "	<div class='layui-col-xs9 layui-col-md9'>";
+                    html += "		<div class='layui-card warn-card-content'>";
+                    html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
+                    html += "			<div  class='layui-card-body warn-card-content-list'>";
+                    html += "				<div class='layui-row layui-col-space5'>";
+                    html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    html += "						<div>新疆维吾尔自治区</div>";
+                    html += "					</div>";
+                    html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    html += "						<div contenteditable='true'>"+result.content+"</div>";
+                    html += "					</div>";
+                    html += "				</div>";
+                    html += "			</div>";
+                    html += "		</div>";
+                    html += "	</div>";
+                    html += "	<div class='layui-col-xs3 layui-col-md3'>";
+                    html += "		<div class='layui-card warn-card-content'>";
+                    html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>受众群组</span></div>";
+                    html += "			<div  class='layui-card-body warn-card-content-list'>";
+                    html += "				受众信息树";
+                    html += "			</div>";
+                    html += "		</div>";
+                    html += "	</div>";
+                    html += "</div>"
+                // 追加预警内容tab选项卡
+                ,element.tabAdd('warn-tab', {
+                    title: channelName
+                    ,content: html //支持传入html
+                    ,id: channelId
+                });
+            });
+            // 默认展开第一个tab页
+            element.tabChange('warn-tab', result.channelId.split(",")[0]);
         }
     };
 
@@ -221,7 +249,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     active.getStrategyMsg(param, active.setStrategyAndChannel);
                     // 获取预警信息，并匹配预警内容
                     active.getWarnMsg(param, active.setWarn);
-
                     // 基础信息配置
                     active.setBasis(param);
 
@@ -276,7 +303,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 if(json.code == 200 && json.data != null){
                     var html ="";
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-type='tabAdd'>";
+                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' >";
                         html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
                         html += "<span>"+currentValue.name+"</span>";
                         html += "</div>";

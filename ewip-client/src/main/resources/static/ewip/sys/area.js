@@ -28,6 +28,10 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         if(d.level == 4) return "<span class='layui-btn layui-btn-disabled layui-btn-xs ewip-cursor-default'>乡镇级</span>";
     };
 
+    let nameFormat = function(d){
+      return d.parentName != null && d.parentName != "" ? d.parentName : "中国";
+    };
+
     /**
      * 加载表格
      */
@@ -44,7 +48,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{type: 'numbers', title: '编号'}
             ,{field: 'code', title: '地区编码', sort: true}
             ,{field: 'areaName', title: '地区名称', sort: true}
-            ,{field: 'parentName', title: '上级地区', sort: true}
+            ,{field: 'parentName', title: '上级地区', sort: true, templet:nameFormat}
             ,{field: 'level', title: '地区级别',sort: true, templet: levelFormat}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
         ]]
@@ -75,10 +79,12 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
         ,pId: function (value) {
 
-            if(value.length == 0) {
-                $("#addPIdShow").css("border-color","red");
-                return '请选择上级地区';
-            }
+           if($(".pId").hasClass("layui-hide") == false){
+               if(value.length == 0) {
+                   $("#addPId .addPIdShow, #updatePId .updatePIdShow").css("border-color","red");
+                   return '请选择上级地区';
+               }
+           }
         }
         ,areaName: function(value){
             if(value.length == 0) return '请输入地区名称';
@@ -221,6 +227,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
          */
         ,'updateOption': function (obj) {
             let param = obj.data;
+            console.log(param);
+
             //示范一个公告层
             layer.open({
                 type: 1
@@ -239,13 +247,19 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         // 地区级别下拉框赋值
                         $("select[name='level']").val(param.level);
 
-                        // 初始化下拉树
-                        selectTree.render({
+                        var settings = {
                             'id': 'updatePId'
-                            ,'url': '/client/tree/area'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.pId
-                        });
+                            , 'url': '/client/tree/area'
+                            , 'isMultiple': false
+                        };
+                        if(param.pId != null && param.pId !=""){
+                            settings.checkNodeId = param.pId
+                        }else{
+                            $(".pId").addClass("layui-hide");
+                        }
+                        // 初始化下拉树
+                        selectTree.render(settings);
+
 
                     });
                     form.render();
@@ -254,6 +268,11 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitUpdateBtn)", function(data){
                         data.field.id = param.id;
+
+                        if($(".pId").hasClass("layui-hide")){
+                            data.field.pId = "";
+                        }
+
                         // 数据提交到后台，通用方法
                         submitServer({
                             index: index
@@ -268,6 +287,18 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
     };
+
+    /**
+     * 添加时，如果选择的是省级，则隐藏上级地区
+     */
+    form.on('select(level)', function(data){
+        if(data.value == 1){
+            $(".pId").addClass("layui-hide");
+        }else{
+            $(".pId").removeClass("layui-hide");
+        }
+    });
+
 
     /**
      * 监听头部搜索
