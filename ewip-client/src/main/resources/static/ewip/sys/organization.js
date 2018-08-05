@@ -26,6 +26,16 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     };
 
     /**
+     * 格式化机构类型
+     * @param d
+     * @returns {string}
+     */
+    let nameFormat = function(d){
+        if(d.parentName == "") return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>没有上级机构</span>";
+        return d.parentName;
+    };
+
+    /**
      * 加载表格
      */
     table.render({
@@ -41,7 +51,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{type: 'numbers', title: '编号'}
             ,{field: 'code', title: '机构编码', sort: true}
             ,{field: 'organizationName', title: '机构名称', sort: true}
-            ,{field: 'parentName', title: '上级机构', sort: true}
+            ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
             ,{field: 'areaName', title: '所属地区', sort: true}
             ,{field: 'type', title: '机构类型',sort: true, templet: typeFormat}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
@@ -93,14 +103,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 return '请选择所属地区';
             }
         }
-        ,pId: function (value) {
-            if(value.length == 0) {
-                $("#addPId .addPIdShow, #updatePId .updatePIdShow").css("border-color","red");
-                return '请选择上级机构';
-            }
-        }
         ,type: function (value) {
-            if(value == "") "请选择机构类型";
+            if(value == "") return "请选择机构类型";
         }
         ,organizationName: function(value){
             if(value.length == 0) return '请输入机构名称';

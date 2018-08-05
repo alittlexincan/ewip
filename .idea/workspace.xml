@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -50,7 +48,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="area.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="organization.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="organization.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1026">
+              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="225" column="49" lean-forward="true" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="area.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-297">
@@ -66,8 +95,8 @@
       <file leaf-file-name="area.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2850">
-              <caret line="150" selection-start-line="150" selection-end-line="150" />
+            <state relative-caret-position="89">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
             </state>
           </provider>
         </entry>
@@ -156,8 +185,6 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/warn.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/edit/area.js" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/user.html" />
@@ -196,8 +223,10 @@
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js" />
       </list>
     </option>
   </component>
@@ -796,7 +825,7 @@
       <workItem from="1533084994343" duration="37224000" />
       <workItem from="1533172865315" duration="31239000" />
       <workItem from="1533258661428" duration="31076000" />
-      <workItem from="1533448706141" duration="524000" />
+      <workItem from="1533448706141" duration="2990000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -910,7 +939,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533279139720</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="修改地区管理添加bug，可选可配上级地区">
+      <created>1533449273313</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1533449273313</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -919,7 +955,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="991378000" />
+    <option name="totallyTimeSpent" value="993844000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -942,11 +978,11 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32954547" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.6663158" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.80625" visible="true" weight="0.26421052" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.80625" visible="true" weight="0.32105264" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.25508606" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
       <window_info anchor="bottom" id="Problems" order="14" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.21145834" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.21145834" />
       <window_info anchor="right" id="Bean Validation" order="8" weight="0.32980332" />
       <window_info id="Web" order="6" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
       <window_info anchor="right" id="Theme Preview" order="7" />
@@ -994,7 +1030,8 @@
     <MESSAGE value="修改员工管理功能，在用户登录的地方添加登录session" />
     <MESSAGE value="预警编辑添加预警和策略配置、文件自定义上传控件" />
     <MESSAGE value="开发layui tab预警静态tab切换，预警title拼接，tab左右移动" />
-    <option name="LAST_COMMIT_MESSAGE" value="开发layui tab预警静态tab切换，预警title拼接，tab左右移动" />
+    <MESSAGE value="修改地区管理添加bug，可选可配上级地区" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改地区管理添加bug，可选可配上级地区" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1028,20 +1065,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="117" column="20" lean-forward="true" selection-start-line="117" selection-start-column="20" selection-end-line="124" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/EmployeeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -1286,6 +1309,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="100" column="8" selection-start-line="100" selection-start-column="8" selection-end-line="105" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1329,20 +1357,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="233" column="81" selection-start-line="233" selection-start-column="44" selection-end-line="233" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="173" column="34" selection-start-line="173" selection-start-column="34" selection-end-line="173" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="97" column="94" lean-forward="true" selection-start-line="97" selection-start-column="16" selection-end-line="97" selection-end-column="94" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1367,13 +1393,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2850">
-          <caret line="150" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-297">
@@ -1382,6 +1401,45 @@
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/OrganizationMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/organization.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/organization.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="225" column="49" lean-forward="true" selection-start-line="225" selection-start-column="49" selection-end-line="225" selection-end-column="49" />
         </state>
       </provider>
     </entry>
