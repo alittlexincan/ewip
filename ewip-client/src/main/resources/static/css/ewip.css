@@ -423,7 +423,7 @@ website:    http://code.google.com/p/jquerytree/
 .edit .warn-card-content-list .warn-content-title > div,
 .edit .warn-card-content-list .warn-content-body > div{
     border: 1px solid #e6e6e6;
-    min-height: 74px;
+    min-height: 70px;
 }
 .edit .warn-card-content-list .warn-content-title > div{
     text-align: right;
@@ -435,8 +435,8 @@ website:    http://code.google.com/p/jquerytree/
 }
 .edit .warn-card-content-list .warn-content-body > textarea{
     outline: none;
-    height: 76px;
-    min-height: unset;
+    height: 72px;
+    min-height: 72px;
     padding: 1px 5px;
 }
 /* 预警编辑 end*/
