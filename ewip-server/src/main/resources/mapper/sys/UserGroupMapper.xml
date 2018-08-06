@@ -8,9 +8,11 @@
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
     </resultMap>
 
     <!-- 查询群组信息 -->
@@ -22,16 +24,20 @@
             ug.area_id,
             a.area_name,
             ug.organization_id,
-            o.organization_name
+            o.organization_name,
+            ug.channel_id,
+            c.name channel_name
         FROM user_group ug
         left JOIN area a on a.id = ug.area_id
         left JOIN organization o on o.id = ug.organization_id
+        left JOIN channel c on c.id = ug.channel_id
         where 1=1
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
         <if test="areaId != null and areaId != ''">AND ug.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND ug.organization_id = #{organizationId}</if>
+        <if test="channelId != null and channelId != ''">AND ug.channel_id = #{channelId}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
@@ -51,10 +57,13 @@
             ug.area_id,
             a.area_name,
             ug.organization_id,
-            o.organization_name
+            o.organization_name,
+            ug.channel_id,
+            c.name channelName
         FROM user_group ug
         left JOIN area a on a.id = ug.area_id
         left JOIN organization o on o.id = ug.organization_id
+        left JOIN channel c on c.id = ug.channel_id
         where 1=1
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
     </select>
