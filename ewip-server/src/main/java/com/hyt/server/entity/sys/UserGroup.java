@@ -38,6 +38,9 @@ public class UserGroup {
     @Column(name = "organization_id",length = 64)
     private String organizationId;
 
+    @Column(name = "channel_id",length = 64)
+    private String channelId;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -48,19 +51,23 @@ public class UserGroup {
 
     private String organizationName;
 
+    private String channelName;
+
 
     public UserGroup() {
     }
 
-    public UserGroup(String name, String pId, String areaId, String organizationId, Date createTime, String parentName, String areaName, String organizationName) {
+    public UserGroup(String name, String pId, String areaId, String organizationId, String channelId, Date createTime, String parentName, String areaName, String organizationName, String channelName) {
         this.name = name;
         this.pId = pId;
         this.areaId = areaId;
         this.organizationId = organizationId;
+        this.channelId = channelId;
         this.createTime = createTime;
         this.parentName = parentName;
         this.areaName = areaName;
         this.organizationName = organizationName;
+        this.channelName = channelName;
     }
 
     public String getId() {
@@ -103,6 +110,14 @@ public class UserGroup {
         this.organizationId = organizationId;
     }
 
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -133,5 +148,13 @@ public class UserGroup {
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public void setChannelName(String channelName) {
+        this.channelName = channelName;
     }
 }
