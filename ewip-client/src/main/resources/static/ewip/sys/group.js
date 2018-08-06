@@ -24,11 +24,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         ,page:true
         ,even: true
         ,height: 'full-180'
-        ,limits:[5,10,20,50,100]
+        ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '群组名称', sort: true}
+            ,{field: 'channelName', title: '所属渠道'}
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'organizationName', title: '所属机构'}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
@@ -56,6 +57,22 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         });
     };
 
+    /**
+     * 查询渠道手段下拉列表
+     * @param callback
+     */
+    let selectChannel = function(callback){
+        $.ajax({
+            async:true
+            ,type: "POST"
+            ,data: {type:0} // 0：表示渠道
+            ,url: "/client/channel/list"
+            ,dataType: 'json'
+            ,success: function(json){
+                callback(json.data.length > 0 ? json.data : null);
+            }
+        });
+    };
 
     /**
      * 初始化下拉树(机构)
@@ -83,6 +100,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 $("#addOrganizationId .addOrganizationIdShow, #updateOrganizationId .updateOrganizationIdShow").css("border-color","red");
                 return '请选择所属机构';
             }
+        }
+        ,channelId: function (value) {
+            if(value.length == 0) return '请选择所属渠道';
         }
         ,type: function (value) {
             if(value.length == 0) return '请选择灾种类型';
@@ -214,6 +234,15 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
                         });
+                        // 渠道下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#addDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            form.render('select');
+                        });
                     });
                     // 渲染表单
                     form.render();
@@ -325,7 +354,17 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             // ,'setData':['type','name','code']
                             ,'checkNodeId': param.organizationId
                         });
-
+                        // 渠道下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#updateDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            // 地区级别下拉框赋值
+                            $("#updateDiv select[name='channelId']").val(param.channelId);
+                            form.render('select');
+                        });
                     });
                     form.render();
                 }

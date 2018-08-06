@@ -48,8 +48,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,page:true
         ,even: true
         ,height: 'full-180'
-        ,limit:5
-        ,limits:[5,10,20,50,100]
+        ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
