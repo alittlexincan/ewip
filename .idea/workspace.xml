@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Disaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Disaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IChannelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IChannelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ChannelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ChannelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IChannelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IChannelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,21 +56,180 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="edit.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
+      <file leaf-file-name="UserGroup.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/UserGroup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="185" column="24" lean-forward="true" selection-start-line="185" selection-start-column="24" selection-end-line="185" selection-end-column="24" />
+            <state relative-caret-position="-241">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="group.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/group.js">
+      <file leaf-file-name="Warn.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="175" selection-end-column="50" />
+            <state relative-caret-position="775">
+              <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
               <folding>
+                <element signature="e#1620#1621#0" expanded="true" />
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1684#1685#0" expanded="true" />
+                <element signature="e#1717#1718#0" expanded="true" />
+                <element signature="e#1746#1747#0" expanded="true" />
+                <element signature="e#1790#1791#0" expanded="true" />
+                <element signature="e#1826#1827#0" expanded="true" />
+                <element signature="e#1867#1868#0" expanded="true" />
+                <element signature="e#1904#1905#0" expanded="true" />
+                <element signature="e#1964#1965#0" expanded="true" />
+                <element signature="e#2016#2017#0" expanded="true" />
+                <element signature="e#2053#2054#0" expanded="true" />
+                <element signature="e#2086#2087#0" expanded="true" />
+                <element signature="e#2138#2139#0" expanded="true" />
+                <element signature="e#2182#2183#0" expanded="true" />
+                <element signature="e#2221#2222#0" expanded="true" />
+                <element signature="e#2256#2257#0" expanded="true" />
+                <element signature="e#2312#2313#0" expanded="true" />
+                <element signature="e#2360#2361#0" expanded="true" />
+                <element signature="e#2401#2402#0" expanded="true" />
+                <element signature="e#2437#2438#0" expanded="true" />
+                <element signature="e#2496#2497#0" expanded="true" />
+                <element signature="e#2546#2547#0" expanded="true" />
+                <element signature="e#2587#2588#0" expanded="true" />
+                <element signature="e#2623#2624#0" expanded="true" />
+                <element signature="e#2682#2683#0" expanded="true" />
+                <element signature="e#2732#2733#0" expanded="true" />
+                <element signature="e#2766#2767#0" expanded="true" />
+                <element signature="e#2796#2797#0" expanded="true" />
+                <element signature="e#2842#2843#0" expanded="true" />
+                <element signature="e#2880#2881#0" expanded="true" />
+                <element signature="e#2914#2915#0" expanded="true" />
+                <element signature="e#2944#2945#0" expanded="true" />
+                <element signature="e#2990#2991#0" expanded="true" />
+                <element signature="e#3028#3029#0" expanded="true" />
+                <element signature="e#3066#3067#0" expanded="true" />
+                <element signature="e#3100#3101#0" expanded="true" />
+                <element signature="e#3154#3155#0" expanded="true" />
+                <element signature="e#3200#3201#0" expanded="true" />
+                <element signature="e#3235#3236#0" expanded="true" />
+                <element signature="e#3268#3269#0" expanded="true" />
+                <element signature="e#3318#3319#0" expanded="true" />
+                <element signature="e#3362#3363#0" expanded="true" />
+                <element signature="e#3397#3398#0" expanded="true" />
+                <element signature="e#3428#3429#0" expanded="true" />
+                <element signature="e#3476#3477#0" expanded="true" />
+                <element signature="e#3516#3517#0" expanded="true" />
+                <element signature="e#3559#3560#0" expanded="true" />
+                <element signature="e#3598#3599#0" expanded="true" />
+                <element signature="e#3662#3663#0" expanded="true" />
+                <element signature="e#3718#3719#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZTree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+              <folding>
+                <element signature="e#4010#4011#0" expanded="true" />
+                <element signature="e#4054#4055#0" expanded="true" />
+                <element signature="e#4084#4085#0" expanded="true" />
+                <element signature="e#4110#4111#0" expanded="true" />
+                <element signature="e#4148#4149#0" expanded="true" />
+                <element signature="e#4178#4179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Channel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+              <folding>
+                <element signature="e#1396#1397#0" expanded="true" />
+                <element signature="e#1421#1422#0" expanded="true" />
+                <element signature="e#1457#1458#0" expanded="true" />
+                <element signature="e#1485#1486#0" expanded="true" />
+                <element signature="e#1516#1517#0" expanded="true" />
+                <element signature="e#1543#1544#0" expanded="true" />
+                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1615#1616#0" expanded="true" />
+                <element signature="e#1646#1647#0" expanded="true" />
+                <element signature="e#1673#1674#0" expanded="true" />
+                <element signature="e#1713#1714#0" expanded="true" />
+                <element signature="e#1745#1746#0" expanded="true" />
+                <element signature="e#1775#1776#0" expanded="true" />
+                <element signature="e#1801#1802#0" expanded="true" />
+                <element signature="e#1839#1840#0" expanded="true" />
+                <element signature="e#1869#1870#0" expanded="true" />
+                <element signature="e#1901#1902#0" expanded="true" />
+                <element signature="e#1928#1929#0" expanded="true" />
+                <element signature="e#1969#1970#0" expanded="true" />
+                <element signature="e#2001#2002#0" expanded="true" />
+                <element signature="e#2036#2037#0" expanded="true" />
+                <element signature="e#2069#2070#0" expanded="true" />
+                <element signature="e#2119#2120#0" expanded="true" />
+                <element signature="e#2163#2164#0" expanded="true" />
+                <element signature="e#2196#2197#0" expanded="true" />
+                <element signature="e#2224#2225#0" expanded="true" />
+                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="e#2301#2302#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IChannelService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IChannelService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ChannelServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <folding>
+                <element signature="e#1310#1311#0" expanded="true" />
+                <element signature="e#1371#1372#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IChannelMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IChannelMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="channel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/channel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-228">
+              <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -69,31 +237,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ewip.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
+      <file leaf-file-name="ChannelMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="439" column="21" selection-start-line="439" selection-start-column="21" selection-end-line="439" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
-              <folding>
-                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="577">
+              <caret line="67" column="72" selection-start-line="67" selection-start-column="72" selection-end-line="67" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -156,17 +304,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/strategy.js" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/login/login.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/ewip-server/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/druid/DruidDataSourceConfigurer.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/warn.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/edit/area.js" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/user.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/strategy.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/group.html" />
@@ -180,7 +319,6 @@
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/employee.js" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ZTreeMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IStrategyService.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IStrategyService.java" />
@@ -188,12 +326,10 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/StrategyServiceImpl.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IWarnService.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/WarnController.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/StrategyController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/StrategyController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/WarnController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/StrategyMapper.xml" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/warn.html" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/WarnMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IWarnService.java" />
@@ -207,6 +343,18 @@
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Disaster.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IChannelService.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ChannelServiceImpl.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IChannelMapper.java" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" />
       </list>
     </option>
   </component>
@@ -239,8 +387,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -455,6 +603,99 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="warn" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sys" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -529,7 +770,7 @@
     </option>
     <option name="contentProportion" value="0.20973782" />
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
+  <component name="RunManager" selected="Spring Boot.EwipServerApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -608,8 +849,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EwipClientApplication" />
         <item itemvalue="Spring Boot.EwipServerApplication" />
+        <item itemvalue="Spring Boot.EwipClientApplication" />
         <item itemvalue="Spring Boot.EwipEurekaApplication" />
       </list>
     </recent_temporary>
@@ -722,7 +963,8 @@
       <workItem from="1533084994343" duration="37224000" />
       <workItem from="1533172865315" duration="31239000" />
       <workItem from="1533258661428" duration="31076000" />
-      <workItem from="1533448706141" duration="10509000" />
+      <workItem from="1533448706141" duration="10801000" />
+      <workItem from="1533517281656" duration="3044000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -850,7 +1092,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533451738455</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="预警编辑渠道选中判断，tab清空赋值判断，地区树动态赋值">
+      <created>1533460040336</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1533460040336</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -859,7 +1108,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1001363000" />
+    <option name="totallyTimeSpent" value="1004699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -883,7 +1132,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32954547" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.6663158" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.80625" weight="0.20736842" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.80625" visible="true" weight="0.4" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.25508606" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
       <window_info anchor="bottom" id="Problems" order="14" />
@@ -937,7 +1186,8 @@
     <MESSAGE value="开发layui tab预警静态tab切换，预警title拼接，tab左右移动" />
     <MESSAGE value="修改地区管理添加bug，可选可配上级地区" />
     <MESSAGE value="修改机构添加、修改功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改机构添加、修改功能" />
+    <MESSAGE value="预警编辑渠道选中判断，tab清空赋值判断，地区树动态赋值" />
+    <option name="LAST_COMMIT_MESSAGE" value="预警编辑渠道选中判断，tab清空赋值判断，地区树动态赋值" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -971,97 +1221,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/EmployeeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="49" column="98" selection-start-line="49" selection-start-column="98" selection-end-line="49" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/layui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="4818" selection-start-line="1" selection-start-column="4818" selection-end-line="1" selection-end-column="4818" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="190" column="30" lean-forward="true" selection-start-line="190" selection-start-column="30" selection-end-line="190" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/disaster.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="184" column="16" lean-forward="true" selection-start-line="184" selection-start-column="16" selection-end-line="186" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ZTreeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1387">
-          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/DisasterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1873">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ZTreeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1132">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/universal/IBaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="80" column="6" selection-start-line="80" selection-start-column="6" selection-end-line="80" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IStrategyService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ZTreeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2109">
-          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IStrategyMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -1074,11 +1233,6 @@
         <state relative-caret-position="532">
           <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IStrategyService.java">
@@ -1106,20 +1260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1936">
           <caret line="104" column="109" selection-start-line="104" selection-start-column="109" selection-end-line="104" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="82" column="27" selection-start-line="82" selection-start-column="27" selection-end-line="82" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="89" column="27" selection-start-line="89" selection-start-column="27" selection-end-line="89" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1238,21 +1378,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/area.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-297">
           <caret line="255" column="60" lean-forward="true" selection-start-line="255" selection-start-column="60" selection-end-line="255" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1281,10 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1026">
           <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1302,14 +1427,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
+        <state relative-caret-position="8341">
           <caret line="439" column="21" selection-start-line="439" selection-start-column="21" selection-end-line="439" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
+        <state relative-caret-position="570">
           <caret line="30" column="73" selection-start-line="30" selection-start-column="73" selection-end-line="30" selection-end-column="73" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -1327,30 +1452,439 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/group.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
+        <state relative-caret-position="3306">
           <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="175" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/zTree.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72663">
+        <state relative-caret-position="-72663" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Area.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#1861#1862#0" expanded="true" />
+            <element signature="e#1897#1898#0" expanded="true" />
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#1960#1961#0" expanded="true" />
+            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#2039#2040#0" expanded="true" />
+            <element signature="e#2079#2080#0" expanded="true" />
+            <element signature="e#2110#2111#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+            <element signature="e#2177#2178#0" expanded="true" />
+            <element signature="e#2209#2210#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
+            <element signature="e#2265#2266#0" expanded="true" />
+            <element signature="e#2303#2304#0" expanded="true" />
+            <element signature="e#2333#2334#0" expanded="true" />
+            <element signature="e#2366#2367#0" expanded="true" />
+            <element signature="e#2394#2395#0" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2471#2472#0" expanded="true" />
+            <element signature="e#2507#2508#0" expanded="true" />
+            <element signature="e#2539#2540#0" expanded="true" />
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2631#2632#0" expanded="true" />
+            <element signature="e#2666#2667#0" expanded="true" />
+            <element signature="e#2697#2698#0" expanded="true" />
+            <element signature="e#2745#2746#0" expanded="true" />
+            <element signature="e#2785#2786#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#2899#2900#0" expanded="true" />
+            <element signature="e#2939#2940#0" expanded="true" />
+            <element signature="e#2974#2975#0" expanded="true" />
+            <element signature="e#3007#3008#0" expanded="true" />
+            <element signature="e#3057#3058#0" expanded="true" />
+            <element signature="e#3101#3102#0" expanded="true" />
+            <element signature="e#3138#3139#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3223#3224#0" expanded="true" />
+            <element signature="e#3267#3268#0" expanded="true" />
+            <element signature="e#3300#3301#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#3371#3372#0" expanded="true" />
+            <element signature="e#3405#3406#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="185" column="24" lean-forward="true" selection-start-line="185" selection-start-column="24" selection-end-line="185" selection-end-column="24" />
+        <state relative-caret-position="150">
+          <caret line="324" lean-forward="true" selection-start-line="324" selection-end-line="324" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Disaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
+          <folding>
+            <element signature="e#2181#2182#0" expanded="true" />
+            <element signature="e#2217#2218#0" expanded="true" />
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2276#2277#0" expanded="true" />
+            <element signature="e#2303#2304#0" expanded="true" />
+            <element signature="e#2343#2344#0" expanded="true" />
+            <element signature="e#2375#2376#0" expanded="true" />
+            <element signature="e#2406#2407#0" expanded="true" />
+            <element signature="e#2433#2434#0" expanded="true" />
+            <element signature="e#2473#2474#0" expanded="true" />
+            <element signature="e#2505#2506#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+            <element signature="e#2599#2600#0" expanded="true" />
+            <element signature="e#2629#2630#0" expanded="true" />
+            <element signature="e#2660#2661#0" expanded="true" />
+            <element signature="e#2687#2688#0" expanded="true" />
+            <element signature="e#2727#2728#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2818#2819#0" expanded="true" />
+            <element signature="e#2859#2860#0" expanded="true" />
+            <element signature="e#2891#2892#0" expanded="true" />
+            <element signature="e#2932#2933#0" expanded="true" />
+            <element signature="e#2968#2969#0" expanded="true" />
+            <element signature="e#3027#3028#0" expanded="true" />
+            <element signature="e#3077#3078#0" expanded="true" />
+            <element signature="e#3118#3119#0" expanded="true" />
+            <element signature="e#3154#3155#0" expanded="true" />
+            <element signature="e#3213#3214#0" expanded="true" />
+            <element signature="e#3263#3264#0" expanded="true" />
+            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3330#3331#0" expanded="true" />
+            <element signature="e#3379#3380#0" expanded="true" />
+            <element signature="e#3419#3420#0" expanded="true" />
+            <element signature="e#3457#3458#0" expanded="true" />
+            <element signature="e#3490#3491#0" expanded="true" />
+            <element signature="e#3543#3544#0" expanded="true" />
+            <element signature="e#3587#3588#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+            <element signature="e#3655#3656#0" expanded="true" />
+            <element signature="e#3705#3706#0" expanded="true" />
+            <element signature="e#3749#3750#0" expanded="true" />
+            <element signature="e#3782#3783#0" expanded="true" />
+            <element signature="e#3810#3811#0" expanded="true" />
+            <element signature="e#3853#3854#0" expanded="true" />
+            <element signature="e#3887#3888#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3957#3958#0" expanded="true" />
+            <element signature="e#4009#4010#0" expanded="true" />
+            <element signature="e#4053#4054#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Organization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="69" column="27" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+          <folding>
+            <element signature="e#1799#1800#0" expanded="true" />
+            <element signature="e#1835#1836#0" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="true" />
+            <element signature="e#1906#1907#0" expanded="true" />
+            <element signature="e#1945#1946#0" expanded="true" />
+            <element signature="e#2009#2010#0" expanded="true" />
+            <element signature="e#2065#2066#0" expanded="true" />
+            <element signature="e#2096#2097#0" expanded="true" />
+            <element signature="e#2123#2124#0" expanded="true" />
+            <element signature="e#2163#2164#0" expanded="true" />
+            <element signature="e#2195#2196#0" expanded="true" />
+            <element signature="e#2225#2226#0" expanded="true" />
+            <element signature="e#2251#2252#0" expanded="true" />
+            <element signature="e#2289#2290#0" expanded="true" />
+            <element signature="e#2319#2320#0" expanded="true" />
+            <element signature="e#2352#2353#0" expanded="true" />
+            <element signature="e#2381#2382#0" expanded="true" />
+            <element signature="e#2425#2426#0" expanded="true" />
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2520#2521#0" expanded="true" />
+            <element signature="e#2561#2562#0" expanded="true" />
+            <element signature="e#2593#2594#0" expanded="true" />
+            <element signature="e#2628#2629#0" expanded="true" />
+            <element signature="e#2661#2662#0" expanded="true" />
+            <element signature="e#2711#2712#0" expanded="true" />
+            <element signature="e#2755#2756#0" expanded="true" />
+            <element signature="e#2792#2793#0" expanded="true" />
+            <element signature="e#2825#2826#0" expanded="true" />
+            <element signature="e#2877#2878#0" expanded="true" />
+            <element signature="e#2921#2922#0" expanded="true" />
+            <element signature="e#2956#2957#0" expanded="true" />
+            <element signature="e#2987#2988#0" expanded="true" />
+            <element signature="e#3035#3036#0" expanded="true" />
+            <element signature="e#3075#3076#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+            <element signature="e#3136#3137#0" expanded="true" />
+            <element signature="e#3179#3180#0" expanded="true" />
+            <element signature="e#3213#3214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Strategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="90" column="27" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
+          <folding>
+            <element signature="e#2589#2590#0" expanded="true" />
+            <element signature="e#2625#2626#0" expanded="true" />
+            <element signature="e#2653#2654#0" expanded="true" />
+            <element signature="e#2684#2685#0" expanded="true" />
+            <element signature="e#2711#2712#0" expanded="true" />
+            <element signature="e#2751#2752#0" expanded="true" />
+            <element signature="e#2783#2784#0" expanded="true" />
+            <element signature="e#2816#2817#0" expanded="true" />
+            <element signature="e#2845#2846#0" expanded="true" />
+            <element signature="e#2889#2890#0" expanded="true" />
+            <element signature="e#2925#2926#0" expanded="true" />
+            <element signature="e#2966#2967#0" expanded="true" />
+            <element signature="e#3003#3004#0" expanded="true" />
+            <element signature="e#3063#3064#0" expanded="true" />
+            <element signature="e#3115#3116#0" expanded="true" />
+            <element signature="e#3152#3153#0" expanded="true" />
+            <element signature="e#3185#3186#0" expanded="true" />
+            <element signature="e#3237#3238#0" expanded="true" />
+            <element signature="e#3281#3282#0" expanded="true" />
+            <element signature="e#3320#3321#0" expanded="true" />
+            <element signature="e#3355#3356#0" expanded="true" />
+            <element signature="e#3411#3412#0" expanded="true" />
+            <element signature="e#3459#3460#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3536#3537#0" expanded="true" />
+            <element signature="e#3595#3596#0" expanded="true" />
+            <element signature="e#3645#3646#0" expanded="true" />
+            <element signature="e#3686#3687#0" expanded="true" />
+            <element signature="e#3722#3723#0" expanded="true" />
+            <element signature="e#3781#3782#0" expanded="true" />
+            <element signature="e#3831#3832#0" expanded="true" />
+            <element signature="e#3862#3863#0" expanded="true" />
+            <element signature="e#3889#3890#0" expanded="true" />
+            <element signature="e#3929#3930#0" expanded="true" />
+            <element signature="e#3961#3962#0" expanded="true" />
+            <element signature="e#3997#3998#0" expanded="true" />
+            <element signature="e#4029#4030#0" expanded="true" />
+            <element signature="e#4079#4080#0" expanded="true" />
+            <element signature="e#4121#4122#0" expanded="true" />
+            <element signature="e#4155#4156#0" expanded="true" />
+            <element signature="e#4185#4186#0" expanded="true" />
+            <element signature="e#4231#4232#0" expanded="true" />
+            <element signature="e#4269#4270#0" expanded="true" />
+            <element signature="e#4307#4308#0" expanded="true" />
+            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#4395#4396#0" expanded="true" />
+            <element signature="e#4441#4442#0" expanded="true" />
+            <element signature="e#4476#4477#0" expanded="true" />
+            <element signature="e#4509#4510#0" expanded="true" />
+            <element signature="e#4559#4560#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4638#4639#0" expanded="true" />
+            <element signature="e#4669#4670#0" expanded="true" />
+            <element signature="e#4717#4718#0" expanded="true" />
+            <element signature="e#4757#4758#0" expanded="true" />
+            <element signature="e#4800#4801#0" expanded="true" />
+            <element signature="e#4839#4840#0" expanded="true" />
+            <element signature="e#4903#4904#0" expanded="true" />
+            <element signature="e#4959#4960#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-583">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/UserGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-241">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Warn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
+          <folding>
+            <element signature="e#1620#1621#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="e#1746#1747#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1826#1827#0" expanded="true" />
+            <element signature="e#1867#1868#0" expanded="true" />
+            <element signature="e#1904#1905#0" expanded="true" />
+            <element signature="e#1964#1965#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2053#2054#0" expanded="true" />
+            <element signature="e#2086#2087#0" expanded="true" />
+            <element signature="e#2138#2139#0" expanded="true" />
+            <element signature="e#2182#2183#0" expanded="true" />
+            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2256#2257#0" expanded="true" />
+            <element signature="e#2312#2313#0" expanded="true" />
+            <element signature="e#2360#2361#0" expanded="true" />
+            <element signature="e#2401#2402#0" expanded="true" />
+            <element signature="e#2437#2438#0" expanded="true" />
+            <element signature="e#2496#2497#0" expanded="true" />
+            <element signature="e#2546#2547#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2623#2624#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2732#2733#0" expanded="true" />
+            <element signature="e#2766#2767#0" expanded="true" />
+            <element signature="e#2796#2797#0" expanded="true" />
+            <element signature="e#2842#2843#0" expanded="true" />
+            <element signature="e#2880#2881#0" expanded="true" />
+            <element signature="e#2914#2915#0" expanded="true" />
+            <element signature="e#2944#2945#0" expanded="true" />
+            <element signature="e#2990#2991#0" expanded="true" />
+            <element signature="e#3028#3029#0" expanded="true" />
+            <element signature="e#3066#3067#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3154#3155#0" expanded="true" />
+            <element signature="e#3200#3201#0" expanded="true" />
+            <element signature="e#3235#3236#0" expanded="true" />
+            <element signature="e#3268#3269#0" expanded="true" />
+            <element signature="e#3318#3319#0" expanded="true" />
+            <element signature="e#3362#3363#0" expanded="true" />
+            <element signature="e#3397#3398#0" expanded="true" />
+            <element signature="e#3428#3429#0" expanded="true" />
+            <element signature="e#3476#3477#0" expanded="true" />
+            <element signature="e#3516#3517#0" expanded="true" />
+            <element signature="e#3559#3560#0" expanded="true" />
+            <element signature="e#3598#3599#0" expanded="true" />
+            <element signature="e#3662#3663#0" expanded="true" />
+            <element signature="e#3718#3719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/ZTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+          <folding>
+            <element signature="e#4010#4011#0" expanded="true" />
+            <element signature="e#4054#4055#0" expanded="true" />
+            <element signature="e#4084#4085#0" expanded="true" />
+            <element signature="e#4110#4111#0" expanded="true" />
+            <element signature="e#4148#4149#0" expanded="true" />
+            <element signature="e#4178#4179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
+          <folding>
+            <element signature="e#1396#1397#0" expanded="true" />
+            <element signature="e#1421#1422#0" expanded="true" />
+            <element signature="e#1457#1458#0" expanded="true" />
+            <element signature="e#1485#1486#0" expanded="true" />
+            <element signature="e#1516#1517#0" expanded="true" />
+            <element signature="e#1543#1544#0" expanded="true" />
+            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1615#1616#0" expanded="true" />
+            <element signature="e#1646#1647#0" expanded="true" />
+            <element signature="e#1673#1674#0" expanded="true" />
+            <element signature="e#1713#1714#0" expanded="true" />
+            <element signature="e#1745#1746#0" expanded="true" />
+            <element signature="e#1775#1776#0" expanded="true" />
+            <element signature="e#1801#1802#0" expanded="true" />
+            <element signature="e#1839#1840#0" expanded="true" />
+            <element signature="e#1869#1870#0" expanded="true" />
+            <element signature="e#1901#1902#0" expanded="true" />
+            <element signature="e#1928#1929#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2001#2002#0" expanded="true" />
+            <element signature="e#2036#2037#0" expanded="true" />
+            <element signature="e#2069#2070#0" expanded="true" />
+            <element signature="e#2119#2120#0" expanded="true" />
+            <element signature="e#2163#2164#0" expanded="true" />
+            <element signature="e#2196#2197#0" expanded="true" />
+            <element signature="e#2224#2225#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2301#2302#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/channel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-228">
+          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/common/universal/IBaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IChannelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ChannelServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding>
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1371#1372#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IChannelMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="67" column="72" selection-start-line="67" selection-start-column="72" selection-end-line="67" selection-end-column="72" />
         </state>
       </provider>
     </entry>

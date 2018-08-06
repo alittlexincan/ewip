@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.Channel;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,5 +18,7 @@ public interface IChannelService extends IBaseService<Channel> {
     PageInfo<Channel> selectAll(Map<String, Object> map);
 
     Channel selectById(String id);
+
+    List<Channel> selectByParam(Map<String, Object> map);
 
 }

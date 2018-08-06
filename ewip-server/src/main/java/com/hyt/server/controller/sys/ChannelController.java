@@ -131,9 +131,7 @@ public class ChannelController {
     })
     @PostMapping("/list")
     public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
-        JSONObject json = new JSONObject(map);
-        Channel channel = JSON.parseObject(json.toJSONString(), new TypeReference<Channel>() {});
-        return ResultResponse.ok(this.channelService.select(channel));
+        return ResultResponse.ok(this.channelService.selectByParam(map));
     }
 
 }

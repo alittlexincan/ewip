@@ -36,18 +36,18 @@ public class Channel {
     private String pId;
 
     @Column(name = "type",length = 1)
-    private int type;
+    private Integer type;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 
-    private int child;
+    private Integer child;
 
     public Channel() {
     }
 
-    public Channel(String name, String icon, String pId, int type, Date createTime, int child) {
+    public Channel(String name, String icon, String pId, Integer type, Date createTime, Integer child) {
         this.name = name;
         this.icon = icon;
         this.pId = pId;
@@ -88,11 +88,11 @@ public class Channel {
         this.pId = pId;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -104,11 +104,11 @@ public class Channel {
         this.createTime = createTime;
     }
 
-    public int getChild() {
+    public Integer getChild() {
         return child;
     }
 
-    public void setChild(int child) {
+    public void setChild(Integer child) {
         this.child = child;
     }
 }

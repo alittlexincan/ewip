@@ -32,4 +32,6 @@ public interface IChannelMapper extends IBaseMapper<Channel> {
      */
     Channel selectById(@Param(value = "id") String id);
 
+    List<Channel> selectByParam(Map<String, Object> map);
+
 }

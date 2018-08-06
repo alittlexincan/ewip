@@ -39,32 +39,32 @@ public class Disaster {
     private String icon;
 
     @Column(name = "type",length = 1)
-    private int type;
+    private Integer type;
 
     @Column(name = "disaster_color",length = 1)
-    private int disasterColor;
+    private Integer disasterColor;
 
     @Column(name = "disaster_level",length = 1)
-    private int disasterLevel;
+    private Integer disasterLevel;
 
     @Column(name = "is_config",length = 1)
-    private int isConfig;
+    private Integer isConfig;
 
     @Column(name = "is_strategy",length = 1)
-    private int isStrategy;
+    private Integer isStrategy;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 
-    private int child;
+    private Integer child;
 
     private String parentName;
 
     public Disaster() {
     }
 
-    public Disaster(String name, String code, String pId, String icon, int type, int disasterColor, int disasterLevel, int isConfig, int isStrategy, Date createTime, int child, String parentName) {
+    public Disaster(String name, String code, String pId, String icon, Integer type, Integer disasterColor, Integer disasterLevel, Integer isConfig, Integer isStrategy, Date createTime, Integer child, String parentName) {
         this.name = name;
         this.code = code;
         this.pId = pId;
@@ -119,43 +119,43 @@ public class Disaster {
         this.icon = icon;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public int getDisasterColor() {
+    public Integer getDisasterColor() {
         return disasterColor;
     }
 
-    public void setDisasterColor(int disasterColor) {
+    public void setDisasterColor(Integer disasterColor) {
         this.disasterColor = disasterColor;
     }
 
-    public int getDisasterLevel() {
+    public Integer getDisasterLevel() {
         return disasterLevel;
     }
 
-    public void setDisasterLevel(int disasterLevel) {
+    public void setDisasterLevel(Integer disasterLevel) {
         this.disasterLevel = disasterLevel;
     }
 
-    public int getIsConfig() {
+    public Integer getIsConfig() {
         return isConfig;
     }
 
-    public void setIsConfig(int isConfig) {
+    public void setIsConfig(Integer isConfig) {
         this.isConfig = isConfig;
     }
 
-    public int getIsStrategy() {
+    public Integer getIsStrategy() {
         return isStrategy;
     }
 
-    public void setIsStrategy(int isStrategy) {
+    public void setIsStrategy(Integer isStrategy) {
         this.isStrategy = isStrategy;
     }
 
@@ -167,11 +167,11 @@ public class Disaster {
         this.createTime = createTime;
     }
 
-    public int getChild() {
+    public Integer getChild() {
         return child;
     }
 
-    public void setChild(int child) {
+    public void setChild(Integer child) {
         this.child = child;
     }
 

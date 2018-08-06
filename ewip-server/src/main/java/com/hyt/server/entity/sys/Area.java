@@ -36,7 +36,7 @@ public class Area {
     private String pId;
 
     @Column(name = "level",length = 1)
-    private int level;
+    private Integer level;
 
     @Column(name = "longitude")
     private Double longitude;
@@ -53,13 +53,13 @@ public class Area {
 
     private String parentName;
 
-    private int child;
+    private Integer child;
 
 
     public Area() {
     }
 
-    public Area(String areaName, String code, String pId, int level, Double longitude, Double latitude, Double altitude, Date createTime, String parentName, int child) {
+    public Area(String areaName, String code, String pId, Integer level, Double longitude, Double latitude, Double altitude, Date createTime, String parentName, Integer child) {
         this.areaName = areaName;
         this.code = code;
         this.pId = pId;
@@ -104,11 +104,11 @@ public class Area {
         this.pId = pId;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -152,11 +152,11 @@ public class Area {
         this.parentName = parentName;
     }
 
-    public int getChild() {
+    public Integer getChild() {
         return child;
     }
 
-    public void setChild(int child) {
+    public void setChild(Integer child) {
         this.child = child;
     }
 }

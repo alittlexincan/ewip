@@ -39,7 +39,7 @@ public class Organization {
     private String areaId;
 
     @Column(name = "type",length = 1)
-    private int type;
+    private Integer type;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
@@ -50,12 +50,12 @@ public class Organization {
 
     private String areaName;
 
-    private int child;
+    private Integer child;
 
     public Organization() {
     }
 
-    public Organization(String organizationName, String code, String pId, String areaId, int type, Date createTime, String parentName, String areaName, int child) {
+    public Organization(String organizationName, String code, String pId, String areaId, Integer type, Date createTime, String parentName, String areaName, Integer child) {
         this.organizationName = organizationName;
         this.code = code;
         this.pId = pId;
@@ -107,11 +107,11 @@ public class Organization {
         this.areaId = areaId;
     }
 
-    public int getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -139,11 +139,11 @@ public class Organization {
         this.areaName = areaName;
     }
 
-    public int getChild() {
+    public Integer getChild() {
         return child;
     }
 
-    public void setChild(int child) {
+    public void setChild(Integer child) {
         this.child = child;
     }
 }

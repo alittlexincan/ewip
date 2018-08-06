@@ -39,10 +39,10 @@ public class Warn {
     private String disasterName;
 
     @Column(name = "disaster_color",length = 1)
-    private int disasterColor;
+    private Integer disasterColor;
 
     @Column(name = "disaster_level",length = 1)
-    private int disasterLevel;
+    private Integer disasterLevel;
 
     @Column(name = "content",length = 1000)
     private String content;
@@ -63,21 +63,6 @@ public class Warn {
 
 
     public Warn() {
-    }
-
-    public Warn(String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String content, String measure, String instruction, Date createTime, String areaName, String organizationName) {
-        this.areaId = areaId;
-        this.organizationId = organizationId;
-        this.disasterId = disasterId;
-        this.disasterName = disasterName;
-        this.disasterColor = disasterColor;
-        this.disasterLevel = disasterLevel;
-        this.content = content;
-        this.measure = measure;
-        this.instruction = instruction;
-        this.createTime = createTime;
-        this.areaName = areaName;
-        this.organizationName = organizationName;
     }
 
     public String getId() {
@@ -120,19 +105,19 @@ public class Warn {
         this.disasterName = disasterName;
     }
 
-    public int getDisasterColor() {
+    public Integer getDisasterColor() {
         return disasterColor;
     }
 
-    public void setDisasterColor(int disasterColor) {
+    public void setDisasterColor(Integer disasterColor) {
         this.disasterColor = disasterColor;
     }
 
-    public int getDisasterLevel() {
+    public Integer getDisasterLevel() {
         return disasterLevel;
     }
 
-    public void setDisasterLevel(int disasterLevel) {
+    public void setDisasterLevel(Integer disasterLevel) {
         this.disasterLevel = disasterLevel;
     }
 

@@ -38,4 +38,9 @@ public class ChannelServiceImpl extends AbstractService<Channel> implements ICha
         return this.channelMapper.selectById(id);
     }
 
+    @Override
+    public List<Channel> selectByParam(Map<String, Object> map){
+        return  this.channelMapper.selectByParam(map);
+    }
+
 }

@@ -42,10 +42,10 @@ public class Strategy {
     private String disasterName;
 
     @Column(name = "disaster_color",length = 1)
-    private int disasterColor;
+    private Integer disasterColor;
 
     @Column(name = "disaster_level",length = 1)
-    private int disasterLevel;
+    private Integer disasterLevel;
 
     @Column(name = "flow",length = 50)
     private String flow;
@@ -70,7 +70,8 @@ public class Strategy {
     public Strategy() {
     }
 
-    public Strategy(String name, String areaId, String organizationId, String disasterId, String disasterName, int disasterColor, int disasterLevel, String flow, String channelId, String measure, String instruction, Date createTime, String areaName, String organizationName) {
+
+    public Strategy(String name, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String flow, String channelId, String measure, String instruction, Date createTime, String areaName, String organizationName) {
         this.name = name;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -135,19 +136,19 @@ public class Strategy {
         this.disasterName = disasterName;
     }
 
-    public int getDisasterColor() {
+    public Integer getDisasterColor() {
         return disasterColor;
     }
 
-    public void setDisasterColor(int disasterColor) {
+    public void setDisasterColor(Integer disasterColor) {
         this.disasterColor = disasterColor;
     }
 
-    public int getDisasterLevel() {
+    public Integer getDisasterLevel() {
         return disasterLevel;
     }
 
-    public void setDisasterLevel(int disasterLevel) {
+    public void setDisasterLevel(Integer disasterLevel) {
         this.disasterLevel = disasterLevel;
     }
 
