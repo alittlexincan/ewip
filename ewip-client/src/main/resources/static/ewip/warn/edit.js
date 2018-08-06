@@ -269,6 +269,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 ,content: html //支持传入html
                 ,id: param.id
             });
+            console.log("shuchu");
             // 默认展开第一个tab页
             element.tabChange('warn-tab', 'choose-tab');
             element.render();
