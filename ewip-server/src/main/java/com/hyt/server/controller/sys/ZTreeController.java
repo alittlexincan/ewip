@@ -94,6 +94,21 @@ public class ZTreeController {
         return ResultResponse.ok(userGroupTree);
     }
 
+    @ApiOperation(value = "查询用户组对用受众个数树", httpMethod = "POST", notes = "根据查询条件查询群组对应用户个数树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="群组ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="群组名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId",value="上级群组", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId",value="渠道ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query")
+    })
+    @PostMapping("/user/group/count")
+    public ResultObject<Object> getUserGroupCountTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> userGroupTree = this.zTreeService.getUserGroupCountTree(map);
+        return ResultResponse.ok(userGroupTree);
+    }
+
     @ApiOperation(value = "查询机构群组树", httpMethod = "POST", notes = "根据查询条件查询机构群组树信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query")

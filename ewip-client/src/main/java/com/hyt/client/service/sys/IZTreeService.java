@@ -59,6 +59,19 @@ public interface IZTreeService {
     @PostMapping("/tree/user/group")
     JSONObject getUserGroupTree(@RequestParam Map<String, Object> map);
 
+    /**
+     * 查询群组对应受众个数信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/user/group/count")
+    JSONObject getUserGroupCountTree(@RequestParam Map<String, Object> map);
+
+    /**
+     * 查询机构对应群组信息树
+     * @param map
+     * @return
+     */
     @PostMapping("/tree/organization/group")
     JSONObject getOrganizationUserGroupTree(Map<String, Object> map);
 

@@ -320,7 +320,10 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                             ,'url': '/client/tree/disaster'
                             ,'isMultiple': false
                             ,'checkNodeId': param.pId
+
                         });
+
+
 
                     });
                     form.render();
@@ -534,8 +537,16 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                             ,'url': '/client/tree/disaster'
                             ,'isMultiple': false
                             ,'range':'#updateDiv'
-                            ,'setData':['type','name','code']
+                            //,'setData':['type','name','code']
                             ,'checkNodeId': param.pId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                $("#updateDiv select[name='type']").val(treeNode.type);
+                                $("#updateDiv input[name='name']").val(treeNode.name);
+                                $("#updateDiv input[name='code']").val(treeNode.code);
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                                form.render("select");
+                            }
                         });
                         // 点击上传按钮，出发文件按钮
                         $('#updateUploadBtn').on('click', function(){

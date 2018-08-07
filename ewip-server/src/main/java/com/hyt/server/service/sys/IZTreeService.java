@@ -50,6 +50,14 @@ public interface IZTreeService extends IBaseService<ZTree> {
     List<ZTree> getUserGroupTree(Map<String, Object> map);
 
     /**
+     * 查询用户组对用受众个数树
+     * @param map
+     * @return
+     */
+    List<ZTree> getUserGroupCountTree(Map<String, Object> map);
+
+
+    /**
      * 查询机构对应群组树
      * @param map
      * @return

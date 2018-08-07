@@ -85,6 +85,23 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         return list;
     }
 
+    /**
+     * 查询用户组对用受众个数树
+     * @param map
+     * @return
+     */
+    @Override
+    public List<ZTree> getUserGroupCountTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getUserGroupCountTree(map);
+        if(list.size() == 0) return null;
+        for(ZTree tree : list) {
+            tree.setName(tree.getName() + "(" +tree.getCount()+ ")");
+            tree.setOpen(true);
+        }
+        return list;
+    }
+
+
     @Override
     public List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map) {
         List<ZTree> list = this.zTreeMapper.getOrganizationUserGroupTree(map);

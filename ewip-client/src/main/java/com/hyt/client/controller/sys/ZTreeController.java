@@ -80,6 +80,18 @@ public class ZTreeController {
     }
 
     /**
+     * 获取群组对应受众个数树
+     * @param map
+     * @return
+     */
+    @PostMapping("/user/group/count")
+    JSONArray getUserGroupCountTree(@RequestParam Map<String,Object> map){
+        System.out.println(map);
+        JSONObject json =  this.zTreeService.getUserGroupCountTree(map);
+        return json.getJSONArray("data");
+    }
+
+    /**
      * 获取机构群组树
      * @param map
      * @return

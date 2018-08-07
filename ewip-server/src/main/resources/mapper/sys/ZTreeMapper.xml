@@ -27,7 +27,9 @@
     <resultMap id="ZTreeUserGroupResultMap" type="com.hyt.server.entity.sys.ZTree">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
@@ -116,6 +118,7 @@
         ug.id,
         ug.p_id,
         ug.name,
+        ug.channel_id,
         ug.area_id,
         a.area_name,
         ug.organization_id,
@@ -123,9 +126,38 @@
         FROM user_group ug
         LEFT JOIN area a on a.id = ug.area_id
         LEFT JOIN organization o on o.id = ug.organization_id
+        where 1=1
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
+        <if test="areaId != null and areaId != ''">AND ug.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND ug.organization_id = #{organizationId}</if>
+        <if test="channelId != null and channelId != ''">AND ug.channel_id = #{channelId}</if>
+
+    </select>
+
+    <!-- 查询群组对应受众个数树 -->
+    <select id="getUserGroupCountTree" resultMap="ZTreeUserGroupResultMap">
+        SELECT
+            ug.id,
+            ug.p_id,
+            ug.name,
+            ug.channel_id,
+            ug.area_id,
+            (SELECT count(1) from user u where u.user_group_id = ug.id) count
+        FROM
+          user_group ug
+        where 1=1
+        <if test="id != null and id != ''">AND ug.id = #{id}</if>
+        <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
+        <if test="areaId != null and areaId != ''">
+            AND ug.area_id in
+            <foreach collection="areaId.split(',')" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="organizationId != null and organizationId != ''">AND ug.organization_id = #{organizationId}</if>
+        <if test="channelId != null and channelId != ''">AND ug.channel_id = #{channelId}</if>
 
     </select>
 

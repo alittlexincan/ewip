@@ -3846,7 +3846,7 @@ layui.define(function(exports){
             return jQuery.fn.zTree.init(jQuery(option.id), option.setting);
         }
         /**
-         * 获取选中节点checkbox
+         * 根据id获取指定ztree树
          * @param option
          * @returns {*}
          */

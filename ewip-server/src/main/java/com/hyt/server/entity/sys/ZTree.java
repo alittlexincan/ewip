@@ -29,6 +29,8 @@ public class ZTree {
 
     private int level;
 
+    private String channelId;
+
     private String areaId;
 
     private String organizationId;
@@ -51,15 +53,18 @@ public class ZTree {
 
     private String img;
 
+    private int count;
+
     public ZTree() {
     }
 
-    public ZTree(String id, String name, String code, String pId, int level, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img) {
+    public ZTree(String id, String name, String code, String pId, int level, String channelId, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img, int count) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.pId = pId;
         this.level = level;
+        this.channelId = channelId;
         this.areaId = areaId;
         this.organizationId = organizationId;
         this.open = open;
@@ -71,6 +76,7 @@ public class ZTree {
         this.isConfig = isConfig;
         this.isStrategy = isStrategy;
         this.img = img;
+        this.count = count;
     }
 
     public String getId() {
@@ -111,6 +117,14 @@ public class ZTree {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 
     public String getAreaId() {
@@ -199,5 +213,13 @@ public class ZTree {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
