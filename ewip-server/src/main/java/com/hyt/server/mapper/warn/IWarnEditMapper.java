@@ -4,6 +4,8 @@ import com.hyt.server.config.common.universal.IBaseMapper;
 import com.hyt.server.entity.warn.WarnEdit;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 
 /**
  * @Author: JiangXincan
@@ -13,5 +15,19 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("warnEditMapper")
 public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
+
+    /**
+     * 修改预警状态
+     * @param map
+     * @return
+     */
+    int updateStatus(Map<String, Object> map);
+
+    /**
+     * 修改预警当前流程
+     * @param map
+     * @return
+     */
+    int updateCurrentFlow(Map<String, Object> map);
 
 }

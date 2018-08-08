@@ -74,6 +74,9 @@ public class WarnEdit {
     @Column(name = "flow",length = 50)
     private String flow;
 
+    @Column(name = "current_flow",length = 1)
+    private Integer currentFlow;
+
     @Column(name = "status",length = 1)
     private Integer status;
 
@@ -81,14 +84,10 @@ public class WarnEdit {
     @Column(name = "create_time")
     private Date createTime;
 
-    private String areaName;
-
-    private String organizationName;
-
     public WarnEdit() {
     }
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, String areaName, String organizationName) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer status, Date createTime) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -104,10 +103,9 @@ public class WarnEdit {
         this.measure = measure;
         this.instruction = instruction;
         this.flow = flow;
+        this.currentFlow = currentFlow;
         this.status = status;
         this.createTime = createTime;
-        this.areaName = areaName;
-        this.organizationName = organizationName;
     }
 
     public String getId() {
@@ -238,6 +236,14 @@ public class WarnEdit {
         this.flow = flow;
     }
 
+    public Integer getCurrentFlow() {
+        return currentFlow;
+    }
+
+    public void setCurrentFlow(Integer currentFlow) {
+        this.currentFlow = currentFlow;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -254,19 +260,4 @@ public class WarnEdit {
         this.createTime = createTime;
     }
 
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getOrganizationName() {
-        return organizationName;
-    }
-
-    public void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
-    }
 }

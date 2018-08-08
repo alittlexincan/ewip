@@ -56,5 +56,4 @@ public class WarnEditController {
         return ResultResponse.make(500,"添加预警信息失败",null);
     }
 
-
 }

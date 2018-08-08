@@ -18,15 +18,19 @@
         <result column="record" jdbcType="SMALLINT" property="record"/>
         <result column="measure" jdbcType="VARCHAR" property="measure"/>
         <result column="instruction" jdbcType="VARCHAR" property="instruction"/>
+        <result column="flow" jdbcType="VARCHAR" property="flow"/>
+        <result column="current_flow" jdbcType="SMALLINT" property="currentFlow"/>
         <result column="status" jdbcType="SMALLINT" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-
-        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
-        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
     </resultMap>
 
     <!-- 修改预警状态 -->
     <update id="updateStatus">
-        update warn_edit set status = #{staus} where id = #{warnEdidId}
+        update warn_edit set status = #{status} where id = #{id}
+    </update>
+
+    <!-- 修改预警当前流程 -->
+    <update id="updateCurrentFlow">
+        update warn_edit set current_flow = #{currentFlow} where id = #{id}
     </update>
 </mapper>

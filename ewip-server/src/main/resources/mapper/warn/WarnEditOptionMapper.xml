@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.warn.IWarnEditOptionMapper">
+
+    <resultMap id="FlowResultMap" type="com.hyt.server.entity.warn.WarnEditOption">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="disaster_id" jdbcType="VARCHAR" property="disasterId"/>
+        <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
+        <result column="disaster_color" jdbcType="VARCHAR" property="disasterColor"/>
+        <result column="disaster_level" jdbcType="VARCHAR" property="disasterLevel"/>
+        <result column="disaster_icon" jdbcType="VARCHAR" property="disasterIcon"/>
+        <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
+        <result column="current_flow" jdbcType="INTEGER" property="currentFlow"/>
+        <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
+        <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
+    </resultMap>
+
+    <!--根据条件查询预警编辑流程信息-->
+    <select id="selectFlowByParam" resultMap="FlowResultMap">
+        select
+            we.id,
+            we.title,
+            we.area_id,
+            we.organization_id,
+            we.disaster_id,
+            d.name disaster_name,
+            d.disaster_color,
+            d.disaster_level,
+            d.icon disaster_icon,
+            we.warn_type,
+            we.edit_time,
+            we.current_flow,
+            wef.employee_name
+        from
+          warn_edit we
+        LEFT JOIN warn_edit_flow wef on wef.warn_edit_id = we.id
+        LEFT JOIN disaster d on d.id = we.disaster_id
+        where 1=1
+        <if test="disasterId != null and disasterId != ''">and we.disaster_Id = #{disasterId}</if>
+        <if test="disasterColor != null and disasterColor != ''">and we.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">and we.disaster_level = #{disasterLevel}</if>
+        <if test="warnType != null and warnType != ''">and we.warn_type = #{warnType}</if>
+
+        <if test="areaId != null and areaId != ''">and we.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">and we.organization_id = #{organizationId}</if>
+        <if test="currentFlow != null and currentFlow != ''">and we.current_flow = #{currentFlow} and wef.flow = #{currentFlow}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY we.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>

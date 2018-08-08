@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * @Author: JiangXincan
- * @Description: 地区管理接口层
+ * @Description: 预警编辑接口层
  * @Date: Created in 16:29 2018-4-18
  * @Modified By:
  */
@@ -24,4 +24,5 @@ public interface IWarnEditService extends IBaseService<WarnEdit> {
      * @return
      */
     WarnEdit insert(Map<String, Object> map);
+
 }

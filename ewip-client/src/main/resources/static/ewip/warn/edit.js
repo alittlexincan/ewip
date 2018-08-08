@@ -810,7 +810,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         // 数据提交到后台，通用方法
         var param = data.field;
         param.currentFlow = 0;                      // 当前预警流程预警录入
-        param.advice = param.title + "请您审核";     // 流程意见
+        param.advice = "您好：" + param.title + "请您处理";     // 流程意见
         param.status = 0;                           // 预警状态：0：未发布；1：以发布；2：解除
 
         // 流程获取
@@ -873,7 +873,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             return file;
         };
 
-        console.log(param);
         ajaxFileUpload.render({
             async: true
             ,url : "/client/warn/edit/insert"
@@ -883,9 +882,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             ,dataType: 'json'
         },function (json) {
             if(json.code == 200){
+                // 弹出提示信息，2s后自动关闭
+                layer.msg(json.msg, {time: 2000},function(){
+                    window.location.href = "/client/home";
+                });
             }
-            // 弹出提示信息，2s后自动关闭
-            layer.msg(json.msg, {time: 2000});
+
         });
 
     });

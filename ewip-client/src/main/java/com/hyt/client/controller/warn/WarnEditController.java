@@ -59,4 +59,14 @@ public class WarnEditController {
         return this.warnEditService.insert(map);
     }
 
+    /**
+     * 根据参数列表添加预警编辑流程信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/insert/flow")
+    public JSONObject insertFlow(@RequestParam Map<String,Object> map){
+        return this.warnEditService.insertFlow(map);
+    }
+
 }
