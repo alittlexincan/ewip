@@ -38,8 +38,8 @@ public class WarnEditFlow {
     @Column(name = "organization_name",length = 100)
     private String organizationName;
 
-    @Column(name = "login_name",length = 50)
-    private String loginName;
+    @Column(name = "employee_id",length = 64)
+    private String employeeId;
 
     @Column(name = "employee_name",length = 50)
     private String employeeName;
@@ -54,12 +54,12 @@ public class WarnEditFlow {
     public WarnEditFlow() {
     }
 
-    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String loginName, String employeeName, String advice, Date createTime) {
+    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String advice, Date createTime) {
         this.warnEditId = warnEditId;
         this.flow = flow;
         this.organizationId = organizationId;
         this.organizationName = organizationName;
-        this.loginName = loginName;
+        this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.advice = advice;
         this.createTime = createTime;
@@ -105,12 +105,12 @@ public class WarnEditFlow {
         this.organizationName = organizationName;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getEmployeeName() {

@@ -203,7 +203,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         WarnEditFlow warnEditFlow = new WarnEditFlow();
         warnEditFlow.setWarnEditId(warnEditId);
         warnEditFlow.setFlow(json.getInteger("currentFlow"));
-        warnEditFlow.setLoginName(json.getString("loginName"));
+        warnEditFlow.setEmployeeId(json.getString("employeeId"));
         warnEditFlow.setEmployeeName(json.getString("employeeName"));
         warnEditFlow.setOrganizationId(json.getString("organizationId"));
         warnEditFlow.setOrganizationName(json.getString("organizationName"));

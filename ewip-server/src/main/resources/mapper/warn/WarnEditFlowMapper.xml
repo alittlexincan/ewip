@@ -8,7 +8,7 @@
         <result column="flow" jdbcType="INTEGER" property="flow"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
-        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="employee_id" jdbcType="VARCHAR" property="employeeId"/>
         <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
         <result column="advice" jdbcType="VARCHAR" property="advice"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -17,9 +17,9 @@
 
     <!-- 预警编辑流程批量插入 -->
     <insert id="insert" >
-        insert into warn_edit_flow (id, warn_edit_id, flow, organization_id, organization_name, login_name, employee_name, advice, create_time )
+        insert into warn_edit_flow (id, warn_edit_id, flow, organization_id, organization_name, employee_id, employee_name, advice, create_time )
         values
-        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow}, #{organizationId}, #{organizationName}, #{loginName}, #{employeeName}, #{advice},  now())
+        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow}, #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName}, #{advice},  now())
     </insert>
 
 </mapper>

@@ -47,7 +47,7 @@ public class WarnEditController {
     @PostMapping("/insert")
     public JSONObject insert(HttpSession session, @RequestParam Map<String,Object> map, @RequestParam("warnFile") MultipartFile[] files){
         Map<String, Object> employee = (Map<String, Object>) session.getAttribute("employee");
-        map.put("loginName",employee.get("loginName"));
+        map.put("employeeId",employee.get("id"));
         map.put("employeeName",employee.get("name"));
         map.put("areaId",employee.get("areaId"));
         map.put("areaName",employee.get("areaName"));
