@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.warn.IWarnEditFileMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.warn.WarnEditFile">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="warn_edit_id" jdbcType="VARCHAR" property="warnEditId"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
+        <result column="user_group_id" jdbcType="VARCHAR" property="userGroupId"/>
+        <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+
+    </resultMap>
+
+    <!-- 预警编辑对应文件批量插入 -->
+    <insert id="insertList" >
+        insert into warn_edit_file (id, warn_edit_id, url, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            ( REPLACE(UUID(),'-',''), #{item.warnEditId}, #{item.url}, now())
+        </foreach>
+    </insert>
+
+</mapper>

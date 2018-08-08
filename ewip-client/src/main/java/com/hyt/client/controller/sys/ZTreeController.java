@@ -86,7 +86,6 @@ public class ZTreeController {
      */
     @PostMapping("/user/group/count")
     JSONArray getUserGroupCountTree(@RequestParam Map<String,Object> map){
-        System.out.println(map);
         JSONObject json =  this.zTreeService.getUserGroupCountTree(map);
         return json.getJSONArray("data");
     }

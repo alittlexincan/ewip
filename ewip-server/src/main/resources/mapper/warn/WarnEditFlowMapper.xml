@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.warn.IWarnEditFlowMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.warn.WarnEditFlow">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="warn_edit_id" jdbcType="VARCHAR" property="warnEditId"/>
+        <result column="flow" jdbcType="INTEGER" property="flow"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
+        <result column="advice" jdbcType="VARCHAR" property="advice"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+
+    </resultMap>
+
+    <!-- 预警编辑流程批量插入 -->
+    <insert id="insert" >
+        insert into warn_edit_flow (id, warn_edit_id, flow, organization_id, organization_name, login_name, employee_name, advice, create_time )
+        values
+        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow}, #{organizationId}, #{organizationName}, #{loginName}, #{employeeName}, #{advice},  now())
+    </insert>
+
+</mapper>

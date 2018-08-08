@@ -65,7 +65,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警信息类型:</label>
                                 <div class="layui-input-block">
-                                    <select class="form-control" name="type" lay-verify="required" placeholder="请选择预警信息类型">
+                                    <select class="form-control" name="warnType" lay-verify="required" placeholder="请选择预警信息类型">
                                         <option value="Actual">实际</option>
                                         <option value="Exercise">演练</option>
                                         <option value="Test" selected>测试</option>
@@ -83,13 +83,13 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预期发生时间:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" readonly id="forecastTime" name="forecastTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择预期发布时间">
+                                    <input type="text" readonly id="forecastTime" name="forecastTime" autocomplete="off" class="layui-input" placeholder="请选择预期发布时间">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">失效时间:</label>
                                 <div class="layui-input-block">
-                                    <input type="text" readonly id="invalidTime" name="invalidTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择失效时间">
+                                    <input type="text" readonly id="invalidTime" name="invalidTime" autocomplete="off" class="layui-input" placeholder="请选择失效时间">
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -143,17 +143,17 @@
                                         <div class="process-line"></div>
                                         <div class="process">
                                             <div class="entryTitle">审核</div>
-                                            <div class="entryYuan flow"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary"></div>
+                                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary"></div>
                                         </div>
                                         <div class="process-line"></div>
                                         <div class="process">
                                             <div class="entryTitle">签发</div>
-                                            <div class="entryYuan flow"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary"></div>
+                                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary"></div>
                                         </div>
                                         <div class="process-line "></div>
                                         <div class="process">
                                             <div class="entryTitle">应急办签发</div>
-                                            <div class="entryYuan flow"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary"></div>
+                                            <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary"></div>
                                         </div>
                                         <div class="process-line"></div>
                                         <div class="process">

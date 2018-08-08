@@ -4,9 +4,10 @@ layui.config({
     zTree: 'zTree'
     ,selectTree: 'selectTree'
     ,disaster: 'disaster'
+    ,ajaxFileUpload: 'ajaxFileUpload'
 });
 
-layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree','disaster'], function(){
+layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree','disaster', 'ajaxFileUpload'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
@@ -16,8 +17,9 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,laydate = layui.laydate
         ,zTree = layui.zTree
         ,selectTree = layui.selectTree
-        ,employee = layui.sessionData("ewip").employee // 当前登录用户信息
-        ,disaster = layui.disaster;
+        ,disaster = layui.disaster
+        ,ajaxFileUpload = layui.ajaxFileUpload
+        ,employee = layui.sessionData("ewip").employee; // 当前登录用户信息
 
 
     /**
@@ -160,7 +162,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,"setStrategyAndChannel":function (result) {
             var channelIds = result.channelId
                 ,flow = result.flow;
-
             // 清空流程样式
             $(".process-list .process input[type='checkbox']").prop("checked",false);
             // 清空渠道样式
@@ -246,15 +247,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          */
         ,"setAreaWarnContent":function (result) {
             if(result.checked == false){
-
                 var bool = true;
                 // 如果当前地区节点取消勾选，则删除指定该地区对应所有渠道的预警内容删除
                 // 如果最后一个地区取消掉，则将bool变量置为false
                 result.channelId.forEach(function (channelId) {
-
                     // 获取每个渠道对应的受众树
                     var userGroupZtree = zTree.getZTree("group_"+channelId);
-
                     for(var i = 0; i<result.area.length; i++){
                         $(".warn-item_"+channelId+"_"+result.area[i].areaId).remove();
                         // 获取当前渠道下全部受众节点，如果取消勾选地区，则将当前地区、渠道对应的受众删除
@@ -264,10 +262,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                             }
                         });
                     }
-
-                    if($(".content_"+channelId+" > div").length == 0){
-                        bool = false;
-                    }
+                    if($(".content_"+channelId+" > div").length == 0) bool = false;
                 });
                 // 如果bool为false，说明没有选中地区，则对应的所有渠道tab页删除，添加tab页提示信息
                 if(bool == false){
@@ -331,10 +326,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                                     var userGroupZtree = zTree.getZTree("group_"+channelId);
                                     userGroupZtree.addNodes(null, json);
                                 }
-
                             }
                         });
-
                     });
                 }
                 element.render();
@@ -402,7 +395,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          */
         ,"channelOneClick": function (obj) {
             var channelId = $(obj).data("id");
-
             if($(obj).hasClass("active")){
                 // 获取选中渠道
                 var param = {
@@ -705,9 +697,9 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         // 文件唯一标志
         var index = new Date().getTime();
         // 1:拼接文件文本框
-        $(".warn-file-list").append("<input type='file' name='warn-"+index+"' data-index='"+index+"'>");
+        $(".warn-file-list").append("<input type='file' id='warn-"+index+"' name='warnFile' class='warn-"+index+"' data-file-index='"+index+"'>");
         // 2: 触发文件文本框
-        $(".warn-file-list > input[name='warn-"+index+"']").click().change(function () {
+        $(".warn-file-list > .warn-"+index).click().change(function () {
             // 如果是最先添加则显示文件表格
             if($(".warn-file-table").hasClass("layui-hide")){
                 $(".warn-file-table").removeClass("layui-hide");
@@ -724,15 +716,15 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             html += "   <td>" + file.name + "</td>";
             html += "   <td>" + s + "</td>";
             html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
-            html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-name='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
+            html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
             html += "</tr>";
             //追加到文件列表
             $(".warn-file-table > tbody").append(html);
             // 点击列表删除事件，删除当前行，并且删除，文件文本框
             $(".warn-file-table > tbody > tr > td > a").on("click",function () {
-                var fileName = $(this).data("fileName");
+                var fileClass = $(this).data("fileClass");
                 // 删除文件文本框
-                $(".warn-file-list input[type='file'][name='"+fileName+"']").remove();
+                $(".warn-file-list > ." + fileClass).remove();
                 // 删除当前行
                 $(this).parent().parent().remove();
 
@@ -816,12 +808,87 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      */
     form.on("submit(submit)", function(data){
         // 数据提交到后台，通用方法
-        console.log(data);
+        var param = data.field;
+        param.currentFlow = 0;                      // 当前预警流程预警录入
+        param.advice = param.title + "请您审核";     // 流程意见
+        param.status = 0;                           // 预警状态：0：未发布；1：以发布；2：解除
+
+        // 流程获取
+        param.flow = function(){
+            var flow = "";
+            $(".process-list .process input[type='checkbox'][name='flow']:checked").each(function () {
+                flow += "," + $(this).val();
+            });
+            return flow.substring(1);
+        }();
+
+        // 渠道处理
+        param.channel = function(){
+            var channel = [];
+            $(".channel-list .imgbox.active").each(function () {
+                channel.push({
+                    channelId: $(this).data("id"),
+                    channelName: $(this).data("title")
+                });
+            });
+            return JSON.stringify(channel).replace(/\"/g,"'");
+        }();
+
+        // 地区处理
+        param.area = function(){
+            var area = [];
+            initAreaTree.getCheckedNodes(true).forEach(function (item) {
+                area.push({
+                    areaId: item.id,
+                    areaName: item.name
+                });
+            });
+            return JSON.stringify(area).replace(/\"/g,"'");
+        }();
+
+        // 群组处理
+        param.group = function(){
+            var group = {};
+            $(".channel-list .imgbox.active").each(function () {
+                var channelId = $(this).data("id")
+                    ,channelGroup = [];
+                zTree.getZTree("group_"+channelId).getCheckedNodes(true).forEach(function (item) {
+                    channelGroup.push({
+                        userGroupId: item.id,
+                        userGroupName: item.name
+                    });
+                });
+                group[channelId] = channelGroup;
+            });
+            return JSON.stringify(group).replace(/\"/g,"'");
+        }();
+
+        // 上传文件名称处理
+        var files = function () {
+            delete param.warnFile;
+            var file = [];
+            $(".warn-file-list > input[type='file']").each(function () {
+                file.push("warn-" + $(this).data("fileIndex"));
+            });
+            return file;
+        };
+
+        console.log(param);
+        ajaxFileUpload.render({
+            async: true
+            ,url : "/client/warn/edit/insert"
+            ,type: "POST"
+            ,param : param//需要传递的数据 json格式
+            ,files : files()
+            ,dataType: 'json'
+        },function (json) {
+            if(json.code == 200){
+            }
+            // 弹出提示信息，2s后自动关闭
+            layer.msg(json.msg, {time: 2000});
+        });
+
     });
-
-
-
-
 
 
     /**
