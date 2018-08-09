@@ -13,7 +13,9 @@
         <result column="disaster_level" jdbcType="VARCHAR" property="disasterLevel"/>
         <result column="disaster_icon" jdbcType="VARCHAR" property="disasterIcon"/>
         <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
+        <result column="flow" jdbcType="VARCHAR" property="flow"/>
         <result column="current_flow" jdbcType="INTEGER" property="currentFlow"/>
+        <result column="next_flow" jdbcType="INTEGER" property="nextFlow"/>
         <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
         <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
     </resultMap>
@@ -32,7 +34,9 @@
             d.icon disaster_icon,
             we.warn_type,
             we.edit_time,
+            we.flow,
             we.current_flow,
+            we.next_flow,
             wef.employee_name
         from
           warn_edit we
@@ -45,8 +49,8 @@
         <if test="warnType != null and warnType != ''">and we.warn_type = #{warnType}</if>
 
         <if test="areaId != null and areaId != ''">and we.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">and we.organization_id = #{organizationId}</if>
-        <if test="currentFlow != null and currentFlow != ''">and we.current_flow = #{currentFlow} and wef.flow = #{currentFlow}</if>
+        <if test="organizationId != null and organizationId != ''">and wef.organization_id = #{organizationId}</if>
+        <if test="nextFlow != null and nextFlow != ''">and we.next_flow = #{nextFlow}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}

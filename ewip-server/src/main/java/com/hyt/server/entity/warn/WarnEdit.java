@@ -74,8 +74,11 @@ public class WarnEdit {
     @Column(name = "flow",length = 50)
     private String flow;
 
-    @Column(name = "current_flow",length = 1)
+    @Column(name = "current_flow",length = 2)
     private Integer currentFlow;
+
+    @Column(name = "next_flow",length = 2)
+    private Integer nextFlow;
 
     @Column(name = "status",length = 1)
     private Integer status;
@@ -87,7 +90,7 @@ public class WarnEdit {
     public WarnEdit() {
     }
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer status, Date createTime) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -104,6 +107,7 @@ public class WarnEdit {
         this.instruction = instruction;
         this.flow = flow;
         this.currentFlow = currentFlow;
+        this.nextFlow = nextFlow;
         this.status = status;
         this.createTime = createTime;
     }
@@ -244,6 +248,14 @@ public class WarnEdit {
         this.currentFlow = currentFlow;
     }
 
+    public Integer getNextFlow() {
+        return nextFlow;
+    }
+
+    public void setNextFlow(Integer nextFlow) {
+        this.nextFlow = nextFlow;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -259,5 +271,4 @@ public class WarnEdit {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
 }

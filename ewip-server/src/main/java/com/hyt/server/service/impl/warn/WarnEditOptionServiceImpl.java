@@ -1,8 +1,6 @@
 package com.hyt.server.service.impl.warn;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
@@ -60,18 +58,32 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     @Override
     @Transactional
     public int insert(Map<String, Object> map){
-        // 插入流程表记录流程信息
+
         JSONObject json = new JSONObject(map);
-        WarnEditFlow warnEditFlow = JSON.parseObject(json.toJSONString(), new TypeReference<WarnEditFlow>() {});
-        warnEditFlow.setWarnEditId(map.get("id").toString());
+        System.out.println(json);
+
+        // 如果下一个流程为应急办签发则，则先查询当前机构同级对应的应急办机构信息
+        // 然后将应急办机构信息并入到流程中
+        if(json.getInteger("nextFlow") == 3){
+
+        }
+
+        WarnEditFlow warnEditFlow = new WarnEditFlow(
+                json.getString("id"),
+                json.getInteger("currentFlow"),
+                json.getString("organizationId"),
+                json.getString("organizationName"),
+                json.getString("employeeId"),
+                json.getString("employeeName"),
+                json.getString("advice")
+        );
         this.warnEditFlowMapper.insert(warnEditFlow);
-        // 如果status==4说明发布中心发布了此预警，此时更改预警状态为已发布
-        if(map.get("status").equals("1")){
+        // 如果status==1说明发布中心发布了此预警，此时更改预警状态为已发布
+        if(json.getInteger("status") == 1){
             this.warnEditMapper.updateStatus(map);
         }
-        // 更改预警表当前预警流程
-        map.put("currentFlow", warnEditFlow.getFlow());
-        return  this.warnEditMapper.updateCurrentFlow(map);
+        // 修改预警当前流程和即将进入的下一个流程
+        return  this.warnEditMapper.updateFlow(map);
     }
 
     /**

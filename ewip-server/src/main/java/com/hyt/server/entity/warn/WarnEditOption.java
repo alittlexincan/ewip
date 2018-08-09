@@ -44,14 +44,18 @@ public class WarnEditOption {
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date editTime;
 
+    private String flow;
+
     private Integer currentFlow;
+
+    private Integer nextFlow;
 
     private String employeeName;
 
     public WarnEditOption() {
     }
 
-    public WarnEditOption(String id, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, Integer currentFlow, String employeeName) {
+    public WarnEditOption(String id, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, String flow, Integer currentFlow, Integer nextFlow, String employeeName) {
         this.id = id;
         this.title = title;
         this.areaId = areaId;
@@ -63,7 +67,9 @@ public class WarnEditOption {
         this.disasterIcon = disasterIcon;
         this.warnType = warnType;
         this.editTime = editTime;
+        this.flow = flow;
         this.currentFlow = currentFlow;
+        this.nextFlow = nextFlow;
         this.employeeName = employeeName;
     }
 
@@ -155,12 +161,28 @@ public class WarnEditOption {
         this.editTime = editTime;
     }
 
+    public String getFlow() {
+        return flow;
+    }
+
+    public void setFlow(String flow) {
+        this.flow = flow;
+    }
+
     public Integer getCurrentFlow() {
         return currentFlow;
     }
 
     public void setCurrentFlow(Integer currentFlow) {
         this.currentFlow = currentFlow;
+    }
+
+    public Integer getNextFlow() {
+        return nextFlow;
+    }
+
+    public void setNextFlow(Integer nextFlow) {
+        this.nextFlow = nextFlow;
     }
 
     public String getEmployeeName() {

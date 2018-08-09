@@ -24,10 +24,10 @@ public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
     int updateStatus(Map<String, Object> map);
 
     /**
-     * 修改预警当前流程
+     * 修改预警当前流程和即将进入的下一个流程
      * @param map
      * @return
      */
-    int updateCurrentFlow(Map<String, Object> map);
+    int updateFlow(Map<String, Object> map);
 
 }

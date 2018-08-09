@@ -124,6 +124,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         warnEdit.setInstruction(json.getString("instruction"));
         warnEdit.setFlow(json.getString("flow"));
         warnEdit.setCurrentFlow(json.getInteger("currentFlow"));
+        warnEdit.setNextFlow(json.getInteger("nextFlow"));
         warnEdit.setStatus(json.getInteger("status")); // 预警编辑时此状态为0，预警真正发布之后修改此状态为1 （0：未发布；1：以发布；2：解除）
         this.warnEditMapper.insertSelective(warnEdit);
         return  warnEdit;

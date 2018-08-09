@@ -79,7 +79,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
         id: 'table'
         ,elem: '#table'
         ,url:'/client/warn/option/select/flow'
-        ,where:{currentFlow: 1, areaId:employee.areaId, organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
+        ,where:{nextFlow: 2, areaId:employee.areaId, organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
         ,page:true
         ,even: true
         ,height: 'full-180'
@@ -176,6 +176,19 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
                         if(data.field.advice.length == 0){
                           data.field.advice = "签发通过";
                         }
+
+                        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
+                        data.field.currentFlow = 2; // 将要修改的流程值
+                        // 总流程
+                        var flow = param.flow.split(",");
+                        // 获取下一个流程
+                        data.field.nextFlow = flow[flow.indexOf(data.field.flow) + 1];
+
+                        //预警状态：0：未发布；1：以发布；2：解除
+                        data.field.status = 0;
+
+                        console.log(data.field);
+                        return false;
 
                         // 数据提交到后台，通用方法
                         submitServer({
