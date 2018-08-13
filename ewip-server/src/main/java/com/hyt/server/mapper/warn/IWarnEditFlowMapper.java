@@ -4,6 +4,8 @@ import com.hyt.server.config.common.universal.IBaseMapper;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 
 /**
  * @Author: JiangXincan
@@ -15,5 +17,9 @@ import org.springframework.stereotype.Repository;
 public interface IWarnEditFlowMapper extends IBaseMapper<WarnEditFlow> {
 
     int insert(WarnEditFlow warnEditFlow);
+
+    int updateFlow(Map<String, Object> map);
+
+    int updateOption(Map<String, Object> map);
 
 }

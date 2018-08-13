@@ -4,6 +4,7 @@
 
     <resultMap id="FlowResultMap" type="com.hyt.server.entity.warn.WarnEditOption">
         <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="warn_edit_flow_id" jdbcType="VARCHAR" property="warnEditFlowId"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
@@ -15,7 +16,6 @@
         <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
         <result column="flow" jdbcType="VARCHAR" property="flow"/>
         <result column="current_flow" jdbcType="INTEGER" property="currentFlow"/>
-        <result column="next_flow" jdbcType="INTEGER" property="nextFlow"/>
         <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
         <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
     </resultMap>
@@ -35,22 +35,31 @@
             we.warn_type,
             we.edit_time,
             we.flow,
-            we.current_flow,
-            we.next_flow,
-            wef.employee_name
+            wef.flow current_flow,
+            (
+            case
+            when wef.flow = 3 then
+              wef.employee_name
+            when wef.flow = 4 then
+              wef.employee_name
+            else wef.employee_name END
+            ) employee_name,
+            wef.id warn_edit_flow_id
         from
           warn_edit we
         LEFT JOIN warn_edit_flow wef on wef.warn_edit_id = we.id
         LEFT JOIN disaster d on d.id = we.disaster_id
-        where 1=1
+        where
+          status = 0
         <if test="disasterId != null and disasterId != ''">and we.disaster_Id = #{disasterId}</if>
         <if test="disasterColor != null and disasterColor != ''">and we.disaster_color = #{disasterColor}</if>
         <if test="disasterLevel != null and disasterLevel != ''">and we.disaster_level = #{disasterLevel}</if>
         <if test="warnType != null and warnType != ''">and we.warn_type = #{warnType}</if>
-
         <if test="areaId != null and areaId != ''">and we.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">and wef.organization_id = #{organizationId}</if>
-        <if test="nextFlow != null and nextFlow != ''">and we.next_flow = #{nextFlow}</if>
+        <if test="currentFlow != null and currentFlow != ''">and wef.flow = #{currentFlow}</if>
+        <if test="isOption != null and isOption != ''">and wef.is_option = #{isOption}</if>
+
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}

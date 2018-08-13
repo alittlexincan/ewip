@@ -35,7 +35,7 @@ public class WarnEditFlow {
     @Column(name = "organization_id",length = 64)
     private String organizationId;
 
-    @Column(name = "organization_name",length = 100)
+    @Column(name = "organization_name",length = 50)
     private String organizationName;
 
     @Column(name = "employee_id",length = 64)
@@ -44,8 +44,23 @@ public class WarnEditFlow {
     @Column(name = "employee_name",length = 50)
     private String employeeName;
 
+    @Column(name = "up_organization_id",length = 64)
+    private String upOrganizationId;
+
+    @Column(name = "up_organization_name",length = 50)
+    private String upOrganizationName;
+
+    @Column(name = "up_employee_id",length = 64)
+    private String upEmployeeId;
+
+    @Column(name = "up_employee_name",length = 50)
+    private String upEmployeeName;
+
     @Column(name = "advice",length = 2000)
     private String advice;
+
+    @Column(name = "is_option",length = 1)
+    private Integer isOption;
 
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
@@ -54,24 +69,34 @@ public class WarnEditFlow {
     public WarnEditFlow() {
     }
 
-    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String advice) {
+    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String upOrganizationId, String upOrganizationName, String upEmployeeId, String upEmployeeName, String advice, Integer isOption) {
         this.warnEditId = warnEditId;
         this.flow = flow;
         this.organizationId = organizationId;
         this.organizationName = organizationName;
         this.employeeId = employeeId;
         this.employeeName = employeeName;
+        this.upOrganizationId = upOrganizationId;
+        this.upOrganizationName = upOrganizationName;
+        this.upEmployeeId = upEmployeeId;
+        this.upEmployeeName = upEmployeeName;
         this.advice = advice;
+        this.isOption = isOption;
     }
 
-    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String advice, Date createTime) {
+    public WarnEditFlow(String warnEditId, Integer nextFlow, String organizationId, String organizationName, String employeeId, String employeeName, String upOrganizationId, String upOrganizationName, String upEmployeeId, String upEmployeeName, String advice, Integer isOption, Date createTime) {
         this.warnEditId = warnEditId;
         this.flow = flow;
         this.organizationId = organizationId;
         this.organizationName = organizationName;
         this.employeeId = employeeId;
         this.employeeName = employeeName;
+        this.upOrganizationId = upOrganizationId;
+        this.upOrganizationName = upOrganizationName;
+        this.upEmployeeId = upEmployeeId;
+        this.upEmployeeName = upEmployeeName;
         this.advice = advice;
+        this.isOption = isOption;
         this.createTime = createTime;
     }
 
@@ -131,12 +156,52 @@ public class WarnEditFlow {
         this.employeeName = employeeName;
     }
 
+    public String getUpOrganizationId() {
+        return upOrganizationId;
+    }
+
+    public void setUpOrganizationId(String upOrganizationId) {
+        this.upOrganizationId = upOrganizationId;
+    }
+
+    public String getUpOrganizationName() {
+        return upOrganizationName;
+    }
+
+    public void setUpOrganizationName(String upOrganizationName) {
+        this.upOrganizationName = upOrganizationName;
+    }
+
+    public String getUpEmployeeId() {
+        return upEmployeeId;
+    }
+
+    public void setUpEmployeeId(String upEmployeeId) {
+        this.upEmployeeId = upEmployeeId;
+    }
+
+    public String getUpEmployeeName() {
+        return upEmployeeName;
+    }
+
+    public void setUpEmployeeName(String upEmployeeName) {
+        this.upEmployeeName = upEmployeeName;
+    }
+
     public String getAdvice() {
         return advice;
     }
 
     public void setAdvice(String advice) {
         this.advice = advice;
+    }
+
+    public Integer getIsOption() {
+        return isOption;
+    }
+
+    public void setIsOption(Integer isOption) {
+        this.isOption = isOption;
     }
 
     public Date getCreateTime() {

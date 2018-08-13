@@ -60,4 +60,15 @@
         <if test="id != null and id != ''">and o.id = #{id, jdbcType=VARCHAR}</if>
     </select>
 
+    <!-- 根据机构ID，机构类型查询同级的其他机构信息 -->
+    <select id="selectSameGradeByParam"  resultMap="BaseResultMap">
+        SELECT
+          id,
+          organization_name
+        from organization
+        where area_id = (
+          SELECT area_id from organization where id = #{organizationId}
+        )
+        AND type = #{type}
+    </select>
 </mapper>

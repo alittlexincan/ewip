@@ -32,4 +32,11 @@ public interface IOrganizationMapper extends IBaseMapper<Organization> {
      */
     Organization selectById(@Param(value="id") String id);
 
+    /**
+     * 根据机构ID，机构类型查询同级的其他机构信息
+     * @param map
+     * @return
+     */
+    Organization selectSameGradeByParam(Map<String, Object> map);
+    
 }

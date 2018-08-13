@@ -10,16 +10,48 @@
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
         <result column="employee_id" jdbcType="VARCHAR" property="employeeId"/>
         <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
+
+        <result column="up_organization_id" jdbcType="VARCHAR" property="upOrganizationId"/>
+        <result column="up_organization_name" jdbcType="VARCHAR" property="upOrganizationName"/>
+        <result column="up_employee_id" jdbcType="VARCHAR" property="upEmployeeId"/>
+        <result column="up_employee_name" jdbcType="VARCHAR" property="upEmployeeName"/>
+
         <result column="advice" jdbcType="VARCHAR" property="advice"/>
+        <result column="is_option" jdbcType="INTEGER" property="isOption"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
 
     </resultMap>
 
     <!-- 预警编辑流程批量插入 -->
     <insert id="insert" >
-        insert into warn_edit_flow (id, warn_edit_id, flow, organization_id, organization_name, employee_id, employee_name, advice, create_time )
+        insert into warn_edit_flow (id, warn_edit_id, flow,
+        organization_id, organization_name, employee_id, employee_name,
+        advice, is_option, create_time )
         values
-        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow}, #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName}, #{advice},  now())
+        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow},
+        #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName},
+        #{advice}, #{isOption},  now())
     </insert>
+
+    <!--修改（主要针对流程应急办签发、发布中心发布时修改）-->
+    <update id="updateFlow">
+        update
+          warn_edit_flow
+        set
+          organization_id = #{organizationId}, organization_name = #{organizationName},
+          employee_id = #{employeeId}, employee_name = #{employeeName},
+          advice = #{advice},
+          is_option = #{isOption}
+        where id = #{id}
+    </update>
+
+    <!--修改（主要针对流程应急办签发、发布中心发布时修改是否操作过当前流程状态）-->
+    <update id="updateOption">
+        update
+          warn_edit_flow
+        set
+          is_option = #{isOption}
+        where warn_edit_id = #{id} and flow <![CDATA[ <= ]]> #{flow}
+    </update>
 
 </mapper>

@@ -23,6 +23,8 @@ public class WarnEditOption {
     @Id
     private String id;
 
+    private String warnEditFlowId;
+
     private String title;
 
     private String areaId;
@@ -48,15 +50,14 @@ public class WarnEditOption {
 
     private Integer currentFlow;
 
-    private Integer nextFlow;
-
     private String employeeName;
 
     public WarnEditOption() {
     }
 
-    public WarnEditOption(String id, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, String flow, Integer currentFlow, Integer nextFlow, String employeeName) {
+    public WarnEditOption(String id, String warnEditFlowId, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, String flow, Integer currentFlow, String employeeName) {
         this.id = id;
+        this.warnEditFlowId = warnEditFlowId;
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -69,7 +70,6 @@ public class WarnEditOption {
         this.editTime = editTime;
         this.flow = flow;
         this.currentFlow = currentFlow;
-        this.nextFlow = nextFlow;
         this.employeeName = employeeName;
     }
 
@@ -79,6 +79,14 @@ public class WarnEditOption {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getWarnEditFlowId() {
+        return warnEditFlowId;
+    }
+
+    public void setWarnEditFlowId(String warnEditFlowId) {
+        this.warnEditFlowId = warnEditFlowId;
     }
 
     public String getTitle() {
@@ -175,14 +183,6 @@ public class WarnEditOption {
 
     public void setCurrentFlow(Integer currentFlow) {
         this.currentFlow = currentFlow;
-    }
-
-    public Integer getNextFlow() {
-        return nextFlow;
-    }
-
-    public void setNextFlow(Integer nextFlow) {
-        this.nextFlow = nextFlow;
     }
 
     public String getEmployeeName() {

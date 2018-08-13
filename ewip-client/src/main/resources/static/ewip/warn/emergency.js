@@ -79,7 +79,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
         id: 'table'
         ,elem: '#table'
         ,url:'/client/warn/option/select/flow'
-        ,where:{nextFlow: 3, areaId:employee.areaId, organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
+        ,where:{currentFlow: 3, isOption: 0, areaId:employee.areaId,organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
         ,page:true
         ,even: true
         ,height: 'full-180'
@@ -93,7 +93,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             ,{field: 'disasterColor',   title: '预警颜色',      width:90, templet:colorFormat}
             ,{field: 'disasterLevel',   title: '预警级别',      width:140,templet: levelFormat}
             ,{field: 'currentFlow',     title: '当前流程',      width:90, templet: flowFormat}
-            ,{field: 'employeeName',    title: '审核人员',      width:120, sort: true}
+            ,{field: 'employeeName',    title: '提交人员',      width:120, sort: true}
             ,{field: 'warnType',        title: '预警类型',      sort: true, templet: warnTypeFormat}
             ,{field: 'editTime',        title: '编辑时间',      width:160, sort: true}
             ,{title: '操&nbsp;&nbsp;作', align:'center',        width:160,toolbar: '#btnGroupOption'}
@@ -172,21 +172,16 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitUpdateBtn)", function(data){
-                        data.field.id = param.id;
+                        // 预警编辑基础信息主键ID
+                        data.field.warnEditId = param.id;
+                        // 预警编辑流程信息主键ID
+                        data.field.id = param.warnEditFlowId;
+                        // 如果不填审核信息，则默认通过
                         if(data.field.advice.length == 0){
                           data.field.advice = "应急办签发通过";
                         }
-
                         // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-                        data.field.currentFlow = 3; // 将要修改的流程值
-                        // 总流程
-                        var flow = param.flow.split(",");
-                        // 获取下一个流程
-                        data.field.nextFlow = flow[flow.indexOf(data.field.flow) + 1];
-
-                        //预警状态：0：未发布；1：以发布；2：解除
-                        data.field.status = 0;
-
+                        data.field.currentFlow = param.currentFlow;
                         // 数据提交到后台，通用方法
                         submitServer({
                             index: index

@@ -3,7 +3,9 @@ package com.hyt.server.service.impl.warn;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.server.config.common.universal.AbstractService;
+import com.hyt.server.entity.sys.Organization;
 import com.hyt.server.entity.warn.*;
+import com.hyt.server.mapper.sys.IOrganizationMapper;
 import com.hyt.server.mapper.warn.*;
 import com.hyt.server.service.warn.IWarnEditService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +43,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      * 预警编辑 流程信息 数据接口层
      */
     @Autowired
-    private IWarnEditFlowMapper iWarnEditFlowMapper;
+    private IWarnEditFlowMapper warnEditFlowMapper;
 
     /**
      * 预警编辑 受众信息 数据接口层
@@ -53,6 +56,9 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      */
     @Autowired
     private IWarnEditFileMapper warnEditFileMapper;
+
+    @Autowired
+    private IOrganizationMapper organizationMapper;
 
 
 
@@ -203,15 +209,37 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      * @return
      */
     private int addWarnEditFlow(JSONObject json, String warnEditId){
-        WarnEditFlow warnEditFlow = new WarnEditFlow();
-        warnEditFlow.setWarnEditId(warnEditId);
-        warnEditFlow.setFlow(json.getInteger("currentFlow"));
-        warnEditFlow.setEmployeeId(json.getString("employeeId"));
-        warnEditFlow.setEmployeeName(json.getString("employeeName"));
-        warnEditFlow.setOrganizationId(json.getString("organizationId"));
-        warnEditFlow.setOrganizationName(json.getString("organizationName"));
-        warnEditFlow.setAdvice(json.getString("advice"));
-        return this.iWarnEditFlowMapper.insert(warnEditFlow);
+
+        String[] flow = json.getString("flow").split(",");
+
+        for(int i = 0; i<flow.length; i++){
+            int currentFlow = Integer.parseInt(flow[i]);
+            WarnEditFlow warnEditFlow = new WarnEditFlow();
+            warnEditFlow.setWarnEditId(warnEditId);
+            warnEditFlow.setFlow(currentFlow);
+            if(currentFlow == 3 || currentFlow == 4){
+                Map<String, Object> map = new HashMap<>();
+                map.put("areaId",json.getString("areaId"));
+                map.put("organizationId",json.getString("organizationId"));
+                map.put("type", currentFlow == 3 ? 2 : 0); // 2:查询同级应急办  // 0:查询同级发布中心
+                Organization organization = this.organizationMapper.selectSameGradeByParam(map);
+                warnEditFlow.setEmployeeId(null);
+                warnEditFlow.setEmployeeName(null);
+                warnEditFlow.setOrganizationId(organization.getId());
+                warnEditFlow.setOrganizationName(organization.getOrganizationName());
+            }else {
+                warnEditFlow.setEmployeeId(json.getString("employeeId"));
+                warnEditFlow.setEmployeeName(json.getString("employeeName"));
+                warnEditFlow.setOrganizationId(json.getString("organizationId"));
+                warnEditFlow.setOrganizationName(json.getString("organizationName"));
+            }
+            warnEditFlow.setAdvice(json.getString("advice"));
+            warnEditFlow.setIsOption(0);
+            this.warnEditFlowMapper.insert(warnEditFlow);
+        }
+
+        return 1;
+
     }
 
     /**

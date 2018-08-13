@@ -376,7 +376,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             // 初始化预警复制内容，本地缓存
             active.warnContent = result.content;
             // 地区选中
-            var node = initAreaTree.getNodeByParam(result.areaId, null);
+            var node = initAreaTree.getNodeByParam("id",result.areaId, null);
             initAreaTree.checkNode(node,true,true);
             // 先清除tab页所有内容
             $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
@@ -813,18 +813,17 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         param.advice = "您好：" + param.title + "请您处理";     // 流程意见
         param.status = 0;                           // 预警状态：0：未发布；1：以发布；2：解除
 
-
         // 流程处理
         param.flow = function(){
-            var flow = "", process = [];
+            var flow = "";
             $(".process-list .process input[type='checkbox'][name='flow']:checked").each(function () {
                 flow += "," + $(this).val();
-                process.push(parseInt($(this).val()));
+                // process.push(parseInt($(this).val()));
             });
             // 当前预警流程预警录入
-            param.currentFlow = 0;
+            // param.currentFlow = 0;
             // 根据当前预警流程，获取下一个预警流程
-            param.nextFlow = process[process.indexOf(param.currentFlow) + 1];
+            // param.nextFlow = process[process.indexOf(param.currentFlow) + 1];
             return flow.substring(1);
         }();
 
@@ -890,7 +889,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             if(json.code == 200){
                 // 弹出提示信息，2s后自动关闭
                 layer.msg(json.msg, {time: 2000},function(){
-                    window.location.href = "/client/home";
+                    location.reload();
                 });
             }
 
