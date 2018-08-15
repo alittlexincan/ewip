@@ -1,15 +1,13 @@
 package com.hyt.server.controller.warn;
 
+import com.hyt.server.anno.Emergency;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -47,6 +45,7 @@ public class WarnEditController {
             @ApiImplicitParam(name="isSend", value="是否发布", required = true, dataType = "Integet", paramType = "query")
     })
     @PostMapping("/insert")
+    @Emergency
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
 
         WarnEdit warnEdit = this.warnEditService.insert(map);
@@ -54,6 +53,12 @@ public class WarnEditController {
             return ResultResponse.make(200,"添加预警信息成功",map);
         }
         return ResultResponse.make(500,"添加预警信息失败",null);
+    }
+
+    @GetMapping("/name")
+    @Emergency
+    public String name(@RequestParam("name") String name){
+        return name;
     }
 
 }
