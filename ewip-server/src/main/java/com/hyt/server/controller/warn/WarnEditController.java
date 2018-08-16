@@ -7,7 +7,10 @@ import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -54,11 +57,4 @@ public class WarnEditController {
         }
         return ResultResponse.make(500,"添加预警信息失败",null);
     }
-
-    @GetMapping("/name")
-    @Emergency
-    public String name(@RequestParam("name") String name){
-        return name;
-    }
-
 }
