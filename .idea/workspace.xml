@@ -4,14 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/DisasterMapper.xml" line="53" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/warn/RecordServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/warn/IRecordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/aspect/EmergencyAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/aspect/EmergencyAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/warn/WarnEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/warn/WarnEditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/ewip-eureka/target/" />
@@ -63,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/warn/RecordServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -315,12 +308,12 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\login" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\plugins\layui\css" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\warn" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\resources\mapper\warn" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\templates\warn" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.hyt.server.service.impl.warn" />
@@ -329,12 +322,12 @@
       <recent name="com.hyt.server.entity.warn" />
       <recent name="com.hyt.server.service.warn" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\warn" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\resources\mapper\warn" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\templates\warn" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\login" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip" />
+      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\plugins\layui\css" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -574,7 +567,7 @@
       <workItem from="1534125474268" duration="44721000" />
       <workItem from="1534317428063" duration="1609000" />
       <workItem from="1534319502153" duration="12001000" />
-      <workItem from="1534383918238" duration="1190000" />
+      <workItem from="1534383918238" duration="1562000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -779,7 +772,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534319169986</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="添加切面编程">
+      <created>1534386522584</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1534386522584</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -788,7 +788,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1241085000" />
+    <option name="totallyTimeSpent" value="1241457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -872,7 +872,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="git测试" />
     <MESSAGE value="添加过滤文件信息" />
     <MESSAGE value="修改druid配置项中日志输出方式" />
     <MESSAGE value="修改数据源地址" />
@@ -897,7 +896,8 @@
     <MESSAGE value="修改预警流程：添加下一步流程" />
     <MESSAGE value="添加注解" />
     <MESSAGE value="清除废弃文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="清除废弃文件" />
+    <MESSAGE value="添加切面编程" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加切面编程" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1323,7 +1323,7 @@
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/warn/RecordServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>

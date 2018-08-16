@@ -16,7 +16,7 @@ public class RecordServiceImpl implements IRecordService {
     @Override
     public int record(JSONObject json) {
 
-        System.out.println(json);
+
 
         return 0;
     }
