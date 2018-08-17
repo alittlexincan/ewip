@@ -15,12 +15,12 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
 
 
     /**
-     * 格式化渠道类型
+     * 格式化发布类型
      * @param d
      * @returns {string}
      */
     let typeFormat = function(d){
-        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>渠道</span>";
+        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>发布</span>";
         if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>手段</span>";
     };
 
@@ -52,7 +52,8 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'name', title: '渠道手段名称', sort: true}
+            ,{field: 'name', title: '发布手段名称', sort: true}
+            ,{field: 'code', title: '发布手段编码', sort: true}
             ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', templet: iconFormat }
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
@@ -75,7 +76,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
     };
 
     /**
-     * 查询渠道手段下拉列表
+     * 查询发布手段下拉列表
      * @param callback
      */
     let selectChannel = function(callback){
@@ -96,14 +97,17 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      */
     form.verify({
         name: function (value) {
-            if(value.length == 0)  return '请选输入渠道手段名称';
-            if(value.length > 10)  return '渠道手段长度不能大于10';
+            if(value.length == 0)  return '请选输入发布手段名称';
+            if(value.length > 10)  return '发布手段长度不能大于10';
+        }
+        ,code: function (value) {
+            if(value=="" || value == null) return '请输入发布手段编码';
         }
         ,type: function (value) {
-            if(value=="" || value == null) return '请选择类型';
+            if(value=="" || value == null) return '请选择发布手段类型';
         }
         ,icon: function(value){
-            if(value.length == 0) return '请上传渠道手段logo';
+            if(value.length == 0) return '请上传发布手段logo';
         }
     });
 
@@ -160,13 +164,13 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      */
     let active = {
         /**
-         * 工具条：添加渠道手段信息
+         * 工具条：添加发布手段信息
          */
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加渠道手段信息"
-                ,area: ['600px','500px']
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加发布手段信息"
+                ,area: ['700px','500px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset:'50px'
@@ -179,7 +183,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
                         $("#addDiv").empty().append(html);
                     });
 
-                    // 渠道下拉绑定
+                    // 发布下拉绑定
                     selectChannel(function (result) {
                         if(result!=null){
                             for(var i = 0; i<result.length; i++){
@@ -230,7 +234,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
-                layer.msg('请选中渠道手段进行删除', {time: 2000});
+                layer.msg('请选中发布手段进行删除', {time: 2000});
                 return false;
             }
 
@@ -248,7 +252,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
                 return false;
             }
 
-            layer.confirm('确定删除这批渠道手段？', function(index){
+            layer.confirm('确定删除这批发布手段？', function(index){
                 // 数据提交到后台，通用方法
                 submit({
                     index: index
@@ -259,11 +263,11 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             });
         }
         /**
-         * 列表中：删除选中的渠道手段信息
+         * 列表中：删除选中的发布手段信息
          * @param obj
          */
         ,'deleteOption': function (obj) {
-            layer.confirm('确定删除该渠道手段？', function(index){
+            layer.confirm('确定删除该发布手段？', function(index){
                 obj.del();
                 // 数据提交到后台，通用方法
                 submit({
@@ -275,7 +279,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             });
         }
         /**
-         * 列表中：修改渠道手段信息
+         * 列表中：修改发布手段信息
          * @param obj
          */
         ,'updateOption': function (obj) {
@@ -284,8 +288,8 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改渠道手段信息"
-                ,area: ['600px','500px']
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改发布手段信息"
+                ,area: ['700px','500px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
@@ -294,7 +298,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
                     laytpl(updatePop.innerHTML).render(param, function(html){
-                        // 渠道下拉绑定
+                        // 发布下拉绑定
                         selectChannel(function (result) {
                             if(result!=null){
                                 for(var i = 0; i<result.length; i++){

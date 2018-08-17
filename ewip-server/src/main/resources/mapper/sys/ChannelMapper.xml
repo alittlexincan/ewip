@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Channel">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="type" jdbcType="SMALLINT" property="type"/>
@@ -18,6 +19,7 @@
         select
         c.id,
         c.name,
+        c.code,
         c.icon,
         c.p_id,
         type,
@@ -43,6 +45,7 @@
         select
         c.id,
         c.name,
+        c.code,
         c.icon,
         c.p_id,
         type,
@@ -56,6 +59,7 @@
         select
         c.id,
         c.name,
+        c.code,
         c.icon,
         c.p_id,
         type,

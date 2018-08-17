@@ -29,6 +29,9 @@ public class Channel {
     @Column(name = "name",length = 50)
     private String name;
 
+    @Column(name = "code",length = 50)
+    private String code;
+
     @Column(name = "icon",length = 12)
     private String icon;
 
@@ -47,8 +50,9 @@ public class Channel {
     public Channel() {
     }
 
-    public Channel(String name, String icon, String pId, Integer type, Date createTime, Integer child) {
+    public Channel(String name, String code, String icon, String pId, Integer type, Date createTime, Integer child) {
         this.name = name;
+        this.code = code;
         this.icon = icon;
         this.pId = pId;
         this.type = type;
@@ -70,6 +74,14 @@ public class Channel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getIcon() {
