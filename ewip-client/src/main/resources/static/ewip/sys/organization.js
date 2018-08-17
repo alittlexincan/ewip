@@ -113,7 +113,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
         ,code: function (value) {
             if(value.length == 0) return '请输入机构编码';
-            if(!(value >= 100000000000 && value <= 999999999999)) return '机构编码范围值为[100000000000, 999999999999]';
+            if(!(value >= 10000000000000 && value <= 99999999999999)) return '机构编码范围值为[10000000000000, 99999999999999]';
         }
     });
 

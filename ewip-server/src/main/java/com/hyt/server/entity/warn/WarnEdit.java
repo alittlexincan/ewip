@@ -87,10 +87,14 @@ public class WarnEdit {
     @Column(name = "create_time")
     private Date createTime;
 
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "send_time")
+    private Date sendTime;
+
     public WarnEdit() {
     }
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime, Date sendTime) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -110,6 +114,7 @@ public class WarnEdit {
         this.nextFlow = nextFlow;
         this.status = status;
         this.createTime = createTime;
+        this.sendTime = sendTime;
     }
 
     public String getId() {
@@ -270,5 +275,13 @@ public class WarnEdit {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(Date sendTime) {
+        this.sendTime = sendTime;
     }
 }

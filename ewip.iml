@@ -72,6 +72,10 @@
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.20" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.44" level="project" />
     <orderEntry type="library" name="Maven: com.xincan:xincan-utils:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-net:commons-net:3.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.7" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.0.4.RELEASE" level="project" />
