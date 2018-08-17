@@ -599,7 +599,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 if(json.code == 200 && json.data != null){
                     var html ="";
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' >";
+                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
                         html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
                         html += "<span>"+currentValue.name+"</span>";
                         html += "</div>";
@@ -833,7 +833,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             $(".channel-list .imgbox.active").each(function () {
                 channel.push({
                     channelId: $(this).data("id"),
-                    channelName: $(this).data("title")
+                    channelName: $(this).data("title"),
+                    channelCode: $(this).data("code")
                 });
             });
             return JSON.stringify(channel).replace(/\"/g,"'");

@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/channel.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/channel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -49,75 +47,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChannelController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/ChannelController.java">
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            <state relative-caret-position="304">
+              <caret line="187" column="72" selection-start-line="187" selection-start-column="72" selection-end-line="187" selection-end-column="72" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChannelMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml">
+      <file leaf-file-name="edit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WarnController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/WarnController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="50" column="54" lean-forward="true" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strategy.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/strategy.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="WarnEditServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/warn/WarnEditServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="channel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/channel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="103" column="62" lean-forward="true" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="channel.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="92" column="47" lean-forward="true" selection-start-line="92" selection-start-column="47" selection-end-line="92" selection-end-column="47" />
+            <state relative-caret-position="380">
+              <caret line="847" column="36" lean-forward="true" selection-start-line="847" selection-start-column="36" selection-end-line="847" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -185,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/warn/IWarnEditService.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/warn/WarnEditOptionController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/warn/IWarnEditOptionService.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/warn/IWarnEditOptionService.java" />
@@ -205,7 +147,6 @@
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ZTreeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/warn/WarnEditServiceImpl.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/warn/IWarnEditMapper.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/emergency.js" />
@@ -236,6 +177,8 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/sys/Channel.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/ChannelMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js" />
       </list>
     </option>
   </component>
@@ -329,7 +272,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
+              <item name="warn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -348,7 +291,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
+              <item name="warn" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -530,7 +473,7 @@
     </option>
     <option name="contentProportion" value="0.20973782" />
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipServerApplication">
+  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -609,8 +552,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EwipServerApplication" />
         <item itemvalue="Spring Boot.EwipClientApplication" />
+        <item itemvalue="Spring Boot.EwipServerApplication" />
         <item itemvalue="Spring Boot.EwipEurekaApplication" />
       </list>
     </recent_temporary>
@@ -953,7 +896,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534386926198</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="发布手段添加手段编码">
+      <created>1534472053131</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1534472053131</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -962,7 +912,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1259347000" />
+    <option name="totallyTimeSpent" value="1259984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -985,10 +935,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32954547" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.6663158" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8052083" visible="true" weight="0.22947368" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8052083" visible="true" weight="0.22947368" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.25508606" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.26302084" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.18489583" />
       <window_info anchor="bottom" id="Problems" order="14" />
       <window_info anchor="right" id="Bean Validation" order="8" weight="0.32980332" />
       <window_info id="Web" order="6" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
@@ -1074,7 +1024,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改druid配置项中日志输出方式" />
     <MESSAGE value="修改数据源地址" />
     <MESSAGE value="开发预警编辑前端静态页部分完成" />
     <MESSAGE value="完善预警编辑页面，添加时间加载" />
@@ -1099,7 +1048,8 @@
     <MESSAGE value="清除废弃文件" />
     <MESSAGE value="添加切面编程" />
     <MESSAGE value="清除输出打印项" />
-    <option name="LAST_COMMIT_MESSAGE" value="清除输出打印项" />
+    <MESSAGE value="发布手段添加手段编码" />
+    <option name="LAST_COMMIT_MESSAGE" value="发布手段添加手段编码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,34 +1121,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IZTreeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/ZTreeServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="57" lean-forward="true" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -1210,13 +1132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="71" column="26" lean-forward="true" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-197">
-          <caret line="813" column="76" selection-start-line="813" selection-start-column="76" selection-end-line="813" selection-end-column="76" />
         </state>
       </provider>
     </entry>
@@ -1647,8 +1562,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="92" column="47" lean-forward="true" selection-start-line="92" selection-start-column="47" selection-end-line="92" selection-end-column="47" />
+        <state relative-caret-position="475">
+          <caret line="98" column="22" lean-forward="true" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/WarnController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="50" column="54" lean-forward="true" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/strategy.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="847" column="36" lean-forward="true" selection-start-line="847" selection-start-column="36" selection-end-line="847" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="187" column="72" selection-start-line="187" selection-start-column="72" selection-end-line="187" selection-end-column="72" />
         </state>
       </provider>
     </entry>
