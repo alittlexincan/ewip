@@ -49,7 +49,6 @@ public class RecordServiceImpl implements IRecordService {
         // 1：生成CAP协议文件
         String pathUrl = XMLUtil.setRecordXML(json,"d:/");
 
-        System.out.println(pathUrl);
         // ftp 基础配置信息
         FTPConfig config = new FTPConfig(this.url, this.port, this.path, this.loginName, this.loginPassword,localFile);
         // ftp 登录
