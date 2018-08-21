@@ -57,10 +57,11 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     @Autowired
     private IWarnEditFileMapper warnEditFileMapper;
 
+    /**
+     * 预警编辑 机构信息 数据接口层
+     */
     @Autowired
     private IOrganizationMapper organizationMapper;
-
-
 
     /**
      * 添加预警相关信息
@@ -89,20 +90,26 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         JSONObject group = JSONObject.parseObject(json.getString("group"));
         json.put("group",group);
 
+        System.out.println(json);
+
         // 1：添加预警编辑基本信息
         WarnEdit warnEdit = addWarnEdit(json);
 
+        // 预警基础信息ID
+        String warnEditId = warnEdit.getId();
+
         // 2：添加预警编辑内容信息
-        addWarnEditContent(json, warnEdit.getId());
+        addWarnEditContent(json, warnEditId);
 
         // 3：添加预警编辑群组信息
-        addWarnEditUser(json, warnEdit.getId());
+        addWarnEditUser(json, warnEditId);
 
         // 4：添加预警编辑流程信息
-        addWarnEditFlow(json, warnEdit.getId());
+        addWarnEditFlow(json, warnEditId);
 
         // 5：添加预警编辑上传文件信息
-        addWarnEditFile(json, warnEdit.getId());
+        addWarnEditFile(json, warnEditId);
+
         return warnEdit;
     }
 
@@ -122,6 +129,8 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         warnEdit.setDisasterColor(json.getInteger("disasterColor"));
         warnEdit.setDisasterLevel(json.getInteger("disasterLevel"));
         warnEdit.setWarnType(json.getString("warnType"));
+        warnEdit.setMsgType(json.getString("msgType"));
+        warnEdit.setScope(json.getString("scope"));
         warnEdit.setEditTime(json.getTimestamp("editTime"));
         warnEdit.setForecastTime(json.getTimestamp("forecastTime"));
         warnEdit.setInvalidTime(json.getTimestamp("invalidTime"));
@@ -253,13 +262,17 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         JSONArray files = json.getJSONArray("files");
         if(files != null){
             for(int i = 0; i<files.size(); i++){
+                JSONObject file = files.getJSONObject(i);
                 WarnEditFile warnEditFile = new WarnEditFile();
                 warnEditFile.setWarnEditId(warnEditId);
-                warnEditFile.setUrl((String)files.get(i));
+                warnEditFile.setName(file.getString("name"));
+                warnEditFile.setSize(file.getString("size"));
+                warnEditFile.setUrl(file.getString("url"));
                 list.add(warnEditFile);
             }
             return this.warnEditFileMapper.insertList(list);
         }
         return 0;
     }
+
 }

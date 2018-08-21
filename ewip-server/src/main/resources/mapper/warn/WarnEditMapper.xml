@@ -11,7 +11,10 @@
         <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
         <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
         <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
+        <result column="disaster_code" jdbcType="VARCHAR" property="disasterCode"/>
         <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
+        <result column="msg_type" jdbcType="VARCHAR" property="msgType"/>
+        <result column="scope" jdbcType="VARCHAR" property="scope"/>
         <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
         <result column="forecast_time" jdbcType="TIMESTAMP" property="forecastTime"/>
         <result column="invalid_time" jdbcType="TIMESTAMP" property="invalidTime"/>
@@ -24,6 +27,31 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
     </resultMap>
+
+    <select id="selectByWarnEditId" resultMap="BaseResultMap">
+        select
+          we.id,
+          we.area_id,
+          we.organization_id,
+          we.disaster_id,
+          we.warn_type,
+          we.edit_time,
+          we.forecast_time,
+          we.invalid_time,
+          we.record,
+          we.measure,
+          we.instruction,
+          we.msg_type,
+          we.scope,
+          we.send_time,
+          d.name disaster_name,
+          d.code disaster_code,
+          d.disaster_color,
+          d.disaster_level
+        from warn_edit we
+		LEFT JOIN disaster d on d.id = we.disaster_id
+        where we.id = #{warnEditId}
+    </select>
 
     <!-- 修改预警状态 -->
     <update id="updateStatus">

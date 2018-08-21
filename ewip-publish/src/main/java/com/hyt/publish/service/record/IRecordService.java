@@ -1,4 +1,4 @@
-package com.hyt.server.service.warn;
+package com.hyt.publish.service.record;
 
 import com.alibaba.fastjson.JSONObject;
 

@@ -5,6 +5,7 @@ import com.hyt.server.entity.warn.WarnEditContent;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -17,4 +18,11 @@ import java.util.List;
 public interface IWarnEditContentMapper extends IBaseMapper<WarnEditContent> {
 
     int insertList(List<WarnEditContent> list);
+
+    /**
+     * 根据id查询当前预警内容信息
+     * @param map
+     * @return
+     */
+    List<WarnEditContent> selectByWarnEditId(Map<String, Object> map);
 }

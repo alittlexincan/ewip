@@ -58,6 +58,8 @@ public class Employee {
 
     private Integer organizationType;
 
+    private String organizationCode;
+
     private String areaName;
 
     private String level;
@@ -66,7 +68,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, Integer organizationType, String areaName, String level) {
+    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
         this.name = name;
@@ -78,6 +80,7 @@ public class Employee {
         this.createTime = createTime;
         this.organizationName = organizationName;
         this.organizationType = organizationType;
+        this.organizationCode = organizationCode;
         this.areaName = areaName;
         this.level = level;
     }
@@ -176,6 +179,14 @@ public class Employee {
 
     public void setOrganizationType(Integer organizationType) {
         this.organizationType = organizationType;
+    }
+
+    public String getOrganizationCode() {
+        return organizationCode;
+    }
+
+    public void setOrganizationCode(String organizationCode) {
+        this.organizationCode = organizationCode;
     }
 
     public String getAreaName() {

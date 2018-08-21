@@ -43,6 +43,7 @@ public class WarnEditOptionController {
         map.put("employeeName",employee.get("name"));
         map.put("organizationId",employee.get("organizationId"));
         map.put("organizationName",employee.get("organizationName"));
+        map.put("organizationCode",employee.get("organizationCode"));
         return this.warnEditOptionService.insert(map);
     }
 

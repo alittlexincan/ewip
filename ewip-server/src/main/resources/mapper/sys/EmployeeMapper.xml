@@ -12,6 +12,7 @@
         <result column="level" jdbcType="SMALLINT" property="level"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="organization_code" jdbcType="VARCHAR" property="organizationCode"/>
         <result column="organization_type" jdbcType="VARCHAR" property="organizationType"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
@@ -31,6 +32,7 @@
             a.level,
             e.organization_id,
             o.organization_name,
+            o.code organization_code,
             o.type organization_type,
             e.phone,
             e.email,
@@ -69,6 +71,7 @@
             a.level,
             e.organization_id,
             o.organization_name,
+            o.code organization_code,
             o.type organization_type,
             e.phone,
             e.email,

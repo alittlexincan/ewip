@@ -50,6 +50,12 @@ public class WarnEdit {
     @Column(name = "warn_type",length = 20)
     private String warnType;
 
+    @Column(name = "scope",length = 20)
+    private String scope;
+
+    @Column(name = "msg_type",length = 20)
+    private String msgType;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "edit_time")
     private Date editTime;
@@ -91,10 +97,12 @@ public class WarnEdit {
     @Column(name = "send_time")
     private Date sendTime;
 
+    private String disasterCode;
+
     public WarnEdit() {
     }
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime, Date sendTime) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime, Date sendTime, String disasterCode) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -103,6 +111,8 @@ public class WarnEdit {
         this.disasterColor = disasterColor;
         this.disasterLevel = disasterLevel;
         this.warnType = warnType;
+        this.scope = scope;
+        this.msgType = msgType;
         this.editTime = editTime;
         this.forecastTime = forecastTime;
         this.invalidTime = invalidTime;
@@ -115,6 +125,7 @@ public class WarnEdit {
         this.status = status;
         this.createTime = createTime;
         this.sendTime = sendTime;
+        this.disasterCode = disasterCode;
     }
 
     public String getId() {
@@ -187,6 +198,22 @@ public class WarnEdit {
 
     public void setWarnType(String warnType) {
         this.warnType = warnType;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public String getMsgType() {
+        return msgType;
+    }
+
+    public void setMsgType(String msgType) {
+        this.msgType = msgType;
     }
 
     public Date getEditTime() {
@@ -283,5 +310,13 @@ public class WarnEdit {
 
     public void setSendTime(Date sendTime) {
         this.sendTime = sendTime;
+    }
+
+    public String getDisasterCode() {
+        return disasterCode;
+    }
+
+    public void setDisasterCode(String disasterCode) {
+        this.disasterCode = disasterCode;
     }
 }

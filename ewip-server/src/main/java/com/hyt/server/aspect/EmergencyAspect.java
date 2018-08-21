@@ -1,7 +1,6 @@
 package com.hyt.server.aspect;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hyt.server.service.warn.IRecordService;
 import javassist.*;
 import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.LocalVariableAttribute;
@@ -12,7 +11,6 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -24,8 +22,8 @@ public class EmergencyAspect {
     /**
      * 接入国突对接接口
      */
-    @Autowired
-    private IRecordService recordService;
+//    @Autowired
+//    private IRecordService recordService;
 
 
     @Pointcut("@annotation(com.hyt.server.anno.Emergency)")
@@ -59,12 +57,12 @@ public class EmergencyAspect {
         // 如果record==0，则不需要国突上报，否则上报或备案
         int record = json.getInteger("record");
         if(record == 1){
-            int num = this.recordService.record(json);
-            if(num == 1) {
-                System.out.println("====国突对接成功====");
-            }else {
-                System.out.println("====国突对接失败====");
-            }
+//            int num = this.recordService.record(json);
+//            if(num == 1) {
+//                System.out.println("====国突对接成功====");
+//            }else {
+//                System.out.println("====国突对接失败====");
+//            }
         }
     }
 

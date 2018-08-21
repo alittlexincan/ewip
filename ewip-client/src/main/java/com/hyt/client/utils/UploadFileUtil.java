@@ -1,6 +1,7 @@
 package com.hyt.client.utils;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -78,15 +79,19 @@ public class UploadFileUtil {
         JSONArray array = new JSONArray();
         try {
             for(MultipartFile file : files){
+                JSONObject json = new JSONObject();
                 String fileName = file.getOriginalFilename();
-                //判断是否有文件且是否为图片文件
-                if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isImageFile(fileName)) {
+                //判断是否有文件
+                if(fileName!=null) {
                     //创建输出文件对象
                     File outFile = new File(uploadPath + "/" + level + "/" + fileName);
                     //拷贝文件到输出文件对象
                     FileUtils.copyInputStreamToFile(file.getInputStream(), outFile);
                 }
-                array.add("/" + level + "/" + fileName);
+                json.put("name", fileName);
+                json.put("size",file.getSize());
+                json.put("url","/" + level + "/" + fileName);
+                array.add(json);
             }
             return array;
         } catch (Exception e) {

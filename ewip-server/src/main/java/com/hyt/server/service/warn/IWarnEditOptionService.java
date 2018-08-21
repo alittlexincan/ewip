@@ -1,5 +1,6 @@
 package com.hyt.server.service.warn;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.warn.WarnEditOption;
@@ -26,7 +27,7 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      * @param map
      * @return
      */
-    int insert(Map<String, Object> map);
+    JSONObject insert(Map<String, Object> map);
 
     /**
      * 修改预警状态

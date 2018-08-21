@@ -1,9 +1,10 @@
-package com.hyt.server.service.impl.warn;
+package com.hyt.publish.service.impl.record;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hyt.server.service.warn.IRecordService;
+import com.hyt.publish.service.record.IRecordService;
 import com.xincan.utils.ftp.FTPConfig;
 import com.xincan.utils.ftp.FTPUtil;
+import com.xincan.utils.xml.XMLUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -44,9 +45,12 @@ public class RecordServiceImpl implements IRecordService {
 
     @Override
     public int record(JSONObject json) {
-        System.out.println(json);
+
+        // 1：生成CAP协议文件
+        XMLUtil.setRecordXML(json,"d:/");
+
         // ftp 基础配置信息
-        FTPConfig config = new FTPConfig(this.url, this.port, this.path, this.loginName, this.loginPassword,null);
+        FTPConfig config = new FTPConfig(this.url, this.port, this.path, this.loginName, this.loginPassword,localFile);
         // ftp 登录
         FTPUtil.ftpLogin(config);
         File file = new File("D:\\images\\channel\\01-短信.png");

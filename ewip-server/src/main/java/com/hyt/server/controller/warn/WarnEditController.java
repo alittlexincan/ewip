@@ -1,6 +1,5 @@
 package com.hyt.server.controller.warn;
 
-import com.hyt.server.anno.Emergency;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEdit;
@@ -48,7 +47,6 @@ public class WarnEditController {
             @ApiImplicitParam(name="isSend", value="是否发布", required = true, dataType = "Integet", paramType = "query")
     })
     @PostMapping("/insert")
-    @Emergency
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
 
         WarnEdit warnEdit = this.warnEditService.insert(map);

@@ -99,6 +99,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             $(".basis input[name='disasterName']").val(param.disasterName);
             // 预警颜色
             $(".basis select[name='disasterColor']").val(param.disasterColor);
+            // 预警颜色
+            $(".basis input[name='disasterCode']").val(param.disasterCode);
             // 预警级别
             $(".basis select[name='disasterLevel']").val(param.disasterLevel);
             // 政府应对措施
@@ -484,6 +486,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      */
     var initPageMsg = function(){
         $("#organizationName").val(employee.organizationName);
+        $("#organizationCode").val(employee.organizationCode);
     };
 
     /**
@@ -538,10 +541,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         areaId: employee.areaId                     // 地区ID
                         ,organizationId: employee.organizationId    // 机构ID
                         ,organizationName: employee.organizationName// 机构名称
+                        ,organizationCode: employee.organizationCode// 机构编码
                         ,disasterId: treeNode.id                    // 灾种ID
-                        ,disasterName: name                         // 灾种及名称
+                        ,disasterName: name                         // 灾种名称
                         ,disasterColor: treeNode.disasterColor      // 灾种颜色
                         ,disasterLevel: treeNode.disasterLevel      // 灾种级别
+                        ,disasterCode: treeNode.code                // 灾种编码
                         ,icon: "/client/"+treeNode.img              // 灾种图标
                     };
                     // 获取策略信息, 并设置流程、渠道
@@ -813,6 +818,11 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         param.advice = "您好：" + param.title + "请您处理";     // 流程意见
         param.status = 0;                           // 预警状态：0：未发布；1：以发布；2：解除
 
+        // 预警信息状态：[Alert（首次）,Update（更新）,Cancel（解除）,Ack（确认）,Error（错误）]，目前只采用“Alert”“Update”“Cancel”三个枚举值，其余枚举值保留，暂不使用。
+        param.msgType = "Alert";
+        // 发布范围：[Public（公开）,Restricted（限制权限）,Private（特定地址）],固定使用“Public”值，其余两个枚举值保留，暂不使用。
+        param.scope = "Public";
+
         // 流程处理
         param.flow = function(){
             var flow = "";
@@ -846,7 +856,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             initAreaTree.getCheckedNodes(true).forEach(function (item) {
                 area.push({
                     areaId: item.id,
-                    areaName: item.name
+                    areaName: item.name,
+                    areaCode: item.code
                 });
             });
             return JSON.stringify(area).replace(/\"/g,"'");
@@ -878,6 +889,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             });
             return file;
         };
+
 
         ajaxFileUpload.render({
             async: true

@@ -1,14 +1,17 @@
 package com.hyt.server.controller.warn;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEditOption;
+import com.hyt.server.service.warn.IPublishService;
 import com.hyt.server.service.warn.IWarnEditOptionService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,6 +28,9 @@ public class WarnEditOptionController {
 
     @Autowired
     private IWarnEditOptionService warnEditOptionService;
+
+    @Autowired
+    private IPublishService publishService;
 
     @ApiOperation(value="分页查询预警编辑流程信息",httpMethod="POST",notes="根据参数列表分页查询预警编辑流程信息")
     @ApiImplicitParams({
@@ -50,11 +56,20 @@ public class WarnEditOptionController {
     })
     @PostMapping("/insert/flow")
     public ResultObject<Object> insertFlow(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
-        int num = this.warnEditOptionService.insert(map);
-        if(num > 0){
-            return ResultResponse.make(200,"添加预警编辑流程成功",map);
+        JSONObject result = this.warnEditOptionService.insert(map);
+
+        int status = result.getInteger("status");
+        System.out.println(result.toJSONString());
+        if(status > 0){
+            // 发布后调用分发接口
+            if(status == 4){
+                Map<String, Object> param = new HashMap<>(result);
+                this.publishService.publish(param);
+            }
+
+            return ResultResponse.make(200,result.getString("msg"),map);
         }
-        return ResultResponse.make(500,"添加预警编辑流程失败",null);
+        return ResultResponse.make(500,"操作失败",null);
     }
 
     @ApiOperation(value="修改预警状态",httpMethod="POST",notes="根据参数列表修改预警状态信息")

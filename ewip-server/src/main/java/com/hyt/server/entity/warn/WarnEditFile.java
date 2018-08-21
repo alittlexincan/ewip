@@ -29,6 +29,12 @@ public class WarnEditFile {
     @Column(name = "warn_edit_id",length = 64)
     private String warnEditId;
 
+    @Column(name = "name",length = 100)
+    private String name;
+
+    @Column(name = "size",length = 50)
+    private String size;
+
     @Column(name = "url",length = 200)
     private String url;
 
@@ -39,8 +45,10 @@ public class WarnEditFile {
     public WarnEditFile() {
     }
 
-    public WarnEditFile(String warnEditId, String url, Date createTime) {
+    public WarnEditFile(String warnEditId, String name, String size, String url, Date createTime) {
         this.warnEditId = warnEditId;
+        this.name = name;
+        this.size = size;
         this.url = url;
         this.createTime = createTime;
     }
@@ -59,6 +67,22 @@ public class WarnEditFile {
 
     public void setWarnEditId(String warnEditId) {
         this.warnEditId = warnEditId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getUrl() {

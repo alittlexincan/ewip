@@ -10,7 +10,33 @@
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
 
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+        <result column="channel_code" jdbcType="VARCHAR" property="channelCode"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="area_code" jdbcType="VARCHAR" property="areaCode"/>
+
+
     </resultMap>
+
+    <!--根据预警基础信息id查询对应的内容信息-->
+    <select id="selectByWarnEditId" resultMap="BaseResultMap">
+
+        SELECT
+            wec.id,
+            wec.warn_edit_id,
+            wec.content,
+            wec.channel_id,
+            c.name channel_name,
+            c.code channel_code,
+            wec.area_id,
+            a.area_name,
+            a.code area_code
+        FROM
+            warn_edit_content wec
+        LEFT JOIN area a on a.id = wec.area_id
+        LEFT JOIN channel c on c.id = wec.channel_id
+        where wec.warn_edit_id = #{warnEditId}
+    </select>
 
     <!-- 预警内容批量插入 -->
     <insert id="insertList" >

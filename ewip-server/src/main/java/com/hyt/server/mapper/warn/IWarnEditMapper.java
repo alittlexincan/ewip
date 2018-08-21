@@ -23,4 +23,11 @@ public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
      */
     int updateStatus(Map<String, Object> map);
 
+    /**
+     * 根据id查询当前预警基本信息
+     * @param map
+     * @return
+     */
+    WarnEdit selectByWarnEditId(Map<String, Object> map);
+
 }

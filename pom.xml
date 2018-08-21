@@ -20,6 +20,7 @@
         <module>ewip-eureka</module>
         <module>ewip-client</module>
         <module>ewip-server</module>
+        <module>ewip-publish</module>
     </modules>
 
     <properties>
