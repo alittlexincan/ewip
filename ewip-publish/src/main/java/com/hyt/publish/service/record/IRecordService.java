@@ -10,6 +10,10 @@ import com.alibaba.fastjson.JSONObject;
  */
 public interface IRecordService {
 
-    int record(JSONObject json);
-
+    /**
+     * 国突对接（ftp方式）
+     * @param json
+     * @return
+     */
+    void record(JSONObject json);
 }

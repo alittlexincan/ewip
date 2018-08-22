@@ -196,7 +196,6 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 result.put("content_" + wec.getChannelId() + "_" + wec.getAreaId(), wec.getContent());
             }
 
-//            JSONArray channelArray = new JSONArray();
             List<String> channelId = new ArrayList<>();
             List<JSONObject> channelArray = channels.stream().filter(// 过滤去重
                 channel -> {
@@ -206,8 +205,6 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 }
             ).collect(Collectors.toList());
 
-
-//            JSONArray areaArray = new JSONArray();
             List<String> areaId = new ArrayList<>();
             List<JSONObject> areaArray = areas.stream().filter(// 过滤去重
                 area -> {
