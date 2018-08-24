@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.hyt.publish.entity.WechatTemplate;
 import com.hyt.publish.entity.WechatTemplateParam;
 import com.hyt.publish.service.wechat.IWechatService;
+import com.xincan.utils.disaster.DisasterUtil;
+import com.xincan.utils.disaster.MsgTypeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +16,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -98,40 +98,44 @@ public class WechatServiceImpl implements IWechatService {
         }
         log.info("成功获取微信token: 【{}】" ,accessToken);
 
-
         // 2：获取所有关注用户信息，提取用户openId
-
+        // 如果okUser有值，则说明是手动发送
         if(okUser.length() > 0){
             userList = Arrays.asList(okUser.split(","));
         }else{
             getUserList(accessToken, "");
         }
 
-
         log.info("微信用户openId列表：{}",JSON.toJSON(userList));
 
+        // 3：获取灾种信息
+        JSONObject disaster = DisasterUtil.getDisasterInfo(json.getInteger("disasterColor"));
 
-        // 3：获取灾种颜色
-        String disasterColor = getColor(json.getInteger("disasterColor"));
+        // 获取灾种名称
+        String disasterName = json.getString("disasterName");
 
+        // 获取灾种颜色(rgb)
+        String rgb = disaster.getString("rgb");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // 获取灾种颜色(名称)
+        String color = disaster.getString("color");
+
         userList.forEach(
             u -> {
                 WechatTemplate tem = new WechatTemplate();
                 tem.setTemplateId(warnTemplate);
-                tem.setTopColor(disasterColor);
-                tem.setToUser("o8OZjuNAwTe2wmL5GMiswmHxEuKA");
+                tem.setTopColor(rgb);
+                tem.setToUser(u);
                 tem.setUrl("");
                 List<WechatTemplateParam> paras = new ArrayList<>();
-                paras.add(new WechatTemplateParam("first","测试：华池县气象局发布高温蓝色预警信号[V级/一般]",disasterColor));
-                paras.add(new WechatTemplateParam("keyword1","华池县气象局",disasterColor));
-                paras.add(new WechatTemplateParam("keyword2","高温",disasterColor));
-                paras.add(new WechatTemplateParam("keyword3","蓝色",disasterColor));
-                paras.add(new WechatTemplateParam("keyword4",(sdf.format(new Date())),"#0000FF"));
-                paras.add(new WechatTemplateParam("remark","华池县气象台于2018年8月22日16时05分发布高温蓝色预警信号",disasterColor));
+                paras.add(new WechatTemplateParam("first",getTitle(json, disaster), rgb));
+                paras.add(new WechatTemplateParam("keyword1",json.getString("organizationName"), rgb));
+                paras.add(new WechatTemplateParam("keyword2",disasterName, rgb));
+                paras.add(new WechatTemplateParam("keyword3",color, rgb));
+                paras.add(new WechatTemplateParam("keyword4",json.getString("sendTime"), rgb));
+                paras.add(new WechatTemplateParam("remark",json.getJSONObject("content").getString("content"), rgb));
                 tem.setTemplateParamList(paras);
-                log.info(JSON.toJSON(tem).toString());
+                log.info(tem.toJSON());
                 ResponseEntity<JSONObject> result = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);
                 log.info(result.getBody().toJSONString());
             }
@@ -172,12 +176,22 @@ public class WechatServiceImpl implements IWechatService {
         }
     }
 
-    private String getColor(Integer disasterColor){
-        if(disasterColor == 0) return "#FF0000";
-        if(disasterColor == 1) return "#FFA500";
-        if(disasterColor == 2) return "#FFFF00";
-        if(disasterColor == 3) return "#0000FF";
-        return null;
 
+
+    /**
+     * 获取标题
+     *
+     * @param json
+     * @return
+     */
+    private String getTitle(JSONObject json, JSONObject disaster){
+        String title = json.getString("organizationName");
+        String msgType = json.getString("msgType");
+        title += MsgTypeUtil.parseMsgType(msgType);
+        title += json.getString("disasterName");
+        title += disaster.getString("color");
+        title += "预警信号";
+        title += disaster.getString("level");
+        return title;
     }
 }

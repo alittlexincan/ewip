@@ -1,5 +1,6 @@
 package com.hyt.publish.controller.publish;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.publish.service.record.IRecordService;
@@ -50,11 +51,17 @@ public class PublishController {
         JSONArray channelArray = json.getJSONArray("channel");
         for(int i = 0; i<channelArray.size(); i++){
 
-            JSONObject channel = channelArray.getJSONObject(i);
+            String code = channelArray.getJSONObject(i).getString("channelCode");
 
-            if(channel.getString("channelCode").equals("SMS")) this.wechatService.wechat(json);
+            // 短信
+            if(code.equals("SMS")) {
+                setParam(json, "SMS");
+            }
 
-
+            // 微信
+            if(code.equals("WECHAT")){
+                this.wechatService.wechat(setParam(json, "WECHAT"));
+            }
         }
         // 如果record国突标识为1，则需要对接国突
         // 生成CAP协议文件，将其通过FTP上传到国突平台对应的文件夹下
@@ -62,6 +69,33 @@ public class PublishController {
         if(record == 1){
             this.recordService.record(json);
         }
+    }
+
+    /**
+     * 提取当前渠道下对应的预警内容等信息
+     * @param json
+     * @param code
+     * @return
+     */
+    private JSONObject setParam(JSONObject json, String code){
+        JSONObject result = JSON.parseObject(json.toJSONString());
+        JSONObject currentContent = new JSONObject();
+        JSONArray channels = result.getJSONArray("channel");
+        JSONObject content = result.getJSONObject("content");
+        for(int i = 0; i<channels.size(); i++){
+            JSONObject channel = channels.getJSONObject(i);
+            if(channel.getString("channelCode").equals(code)) {
+                currentContent = content.getJSONArray(channel.getString("channelId")).getJSONObject(0);
+                break;
+            }
+        }
+        result.remove("channel");
+        result.remove("content");
+        result.put("content",currentContent);
+        System.out.println("============="+code+"=================");
+        System.out.println(result);
+        return result;
 
     }
+
 }

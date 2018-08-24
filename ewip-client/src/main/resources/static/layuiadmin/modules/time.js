@@ -45,18 +45,18 @@ layui.define(function(exports){
         return fmt;
     }
 
-        /**
-         * 检查是不是两位数字，不足补全
-         * @param str
-         * @returns {string | *}
-         */
-        var check = function(str){
-            str=str.toString();
-            if(str.length<2){
-                str='0'+ str;
-            }
-            return str;
-        };
+    /**
+     * 检查是不是两位数字，不足补全
+     * @param str
+     * @returns {string | *}
+     */
+    var check = function(str){
+        str=str.toString();
+        if(str.length<2){
+            str='0'+ str;
+        }
+        return str;
+    };
 
 
     /**
@@ -98,21 +98,18 @@ layui.define(function(exports){
         }
 
         /**
-         * date 类型时间转换
-         * @param option
-         * @returns {*}
-         */
-        ,"formatTypeDate": function(date, fmt) {
-            return disaster.formatTypeDate(date,fmt);
-        }
-
-        /**
          * 获取当前系统时间
          * @param fmt
          * @returns {string | void | *}
          */
         ,"getCurrentTime":function (fmt) {
-           return (new Date()).pattern(fmt)
+            return (new Date()).pattern(fmt)
+        }
+        ,
+        "formatStringTime":function (str, fmt) {
+            var time = str.replace(/-/g,"/");//一般得到的时间的格式都是：yyyy-MM-dd hh24:mi:ss，所以我就用了这个做例子，是/的格式，就不用replace了。
+            var date = new Date(time);//将字符串转化为时间
+            return date.pattern(fmt);
         }
 
     };

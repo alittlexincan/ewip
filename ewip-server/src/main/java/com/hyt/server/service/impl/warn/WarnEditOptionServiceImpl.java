@@ -118,7 +118,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
 
             // 读取预警信息，即将推送到分发服务
             // 1：获取预警基本信息
-           result = getWarnEditInfo(map);
+            result = getWarnEditInfo(map);
 
             // 2：获取预警内容
             getWarnEditContentInfo(result, map);
@@ -191,30 +191,34 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 area.put("areaName",wec.getAreaName());
                 area.put("areaCode",wec.getAreaCode());
                 areas.add(area);
-
-                // 组装预警内容
-                result.put("content_" + wec.getChannelId() + "_" + wec.getAreaId(), wec.getContent());
             }
 
+            // 渠道
             List<String> channelId = new ArrayList<>();
             List<JSONObject> channelArray = channels.stream().filter(// 过滤去重
-                channel -> {
-                    boolean flag = !channelId.contains(channel.getString("channelId"));
-                    channelId.add(channel.getString("channelId"));
-                    return flag;
-                }
+                    channel -> {
+                        boolean flag = !channelId.contains(channel.getString("channelId"));
+                        channelId.add(channel.getString("channelId"));
+                        return flag;
+                    }
             ).collect(Collectors.toList());
 
+            // 地区
             List<String> areaId = new ArrayList<>();
             List<JSONObject> areaArray = areas.stream().filter(// 过滤去重
-                area -> {
-                    boolean flag = !areaId.contains(area.getString("areaId"));
-                    areaId.add(area.getString("areaId"));
-                    return flag;
-                }
+                    area -> {
+                        boolean flag = !areaId.contains(area.getString("areaId"));
+                        areaId.add(area.getString("areaId"));
+                        return flag;
+                    }
             ).collect(Collectors.toList());
-            result.put("channel",JSONArray.parseArray(JSON.toJSONString(channelArray)));
-            result.put("area",JSONArray.parseArray(JSON.toJSONString(areaArray)));
+
+            // 预警内容
+            Map<String, List<WarnEditContent>> content = list.stream().collect(Collectors.groupingBy(WarnEditContent::getChannelId));
+
+            result.put("channel",channelArray);
+            result.put("area",areaArray);
+            result.put("content",content);
         }
     }
 
@@ -250,17 +254,17 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 JSONArray userGroupArray = new JSONArray();
                 // 组装群组下的受众
                 list.stream()
-                .filter(p -> p.getUserGroupId().equals(weu.getUserGroupId()))
-                .collect(Collectors.toList())
-                .forEach(ug -> {
-                    JSONObject g = new JSONObject();
-                    g.put("userName", ug.getUserName());
-                    g.put("userCode", ug.getUserCode());
-                    g.put("longitude", ug.getLongitude());
-                    g.put("latitude", ug.getLatitude());
-                    g.put("altitude", ug.getAltitude());
-                    userGroupArray.add(g);
-                });
+                        .filter(p -> p.getUserGroupId().equals(weu.getUserGroupId()))
+                        .collect(Collectors.toList())
+                        .forEach(ug -> {
+                            JSONObject g = new JSONObject();
+                            g.put("userName", ug.getUserName());
+                            g.put("userCode", ug.getUserCode());
+                            g.put("longitude", ug.getLongitude());
+                            g.put("latitude", ug.getLatitude());
+                            g.put("altitude", ug.getAltitude());
+                            userGroupArray.add(g);
+                        });
                 // 在当前渠道下追加群组
                 group.put(weu.getChannelId(), groupArray);
                 // 当前群组下追加受众用户

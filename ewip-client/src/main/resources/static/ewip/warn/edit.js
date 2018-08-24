@@ -5,9 +5,10 @@ layui.config({
     ,selectTree: 'selectTree'
     ,disaster: 'disaster'
     ,ajaxFileUpload: 'ajaxFileUpload'
+    ,time:'time'
 });
 
-layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree','disaster', 'ajaxFileUpload'], function(){
+layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTree','disaster', 'ajaxFileUpload','time'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
@@ -19,6 +20,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         ,selectTree = layui.selectTree
         ,disaster = layui.disaster
         ,ajaxFileUpload = layui.ajaxFileUpload
+        ,time=layui.time
         ,employee = layui.sessionData("ewip").employee; // 当前登录用户信息
 
 
@@ -184,7 +186,16 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param param
          */
         ,"setWarnContent": function (result) {
-            var areas = new Set();
+            // 拼接预警内容前缀
+            var areas = new Set()
+                ,editTime = $(".basis #editTime").val()
+                ,warnType = $(".basis select[name='warnType']").val()
+                ,disasterName = $(".basis input[name='disasterName']").val() || result.disasterName
+                ,disasterColor = $(".basis select[name='disasterColor']").val() || result.disasterColor
+                ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+            if(warnType == "Test"){
+                title = "测试："+title;
+            }
             // 循环渠道
             result.channelId.forEach(function (channelId) {
                 var channel = $(".channel-list .imgbox[data-id='"+channelId+"']")
@@ -203,7 +214,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     html += "						<div>"+area.areaName+"</div>";
                     html += "					</div>";
                     html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+active.warnContent+"</textarea>";
+                    html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
                     html += "					</div>";
                     html += "				</div>";
                 });
@@ -286,6 +297,17 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     // 拼接预警内容
                     active.setWarnContent(result);
                 }else{
+
+                    // 拼接预警内容前缀
+                    var editTime = $(".basis #editTime").val()
+                        ,warnType = $(".basis select[name='warnType']").val()
+                        ,disasterName = $(".basis #disasterName").val()
+                        ,disasterColor = $(".basis select[name='disasterColor']").val()
+                        ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                    if(warnType == "Test"){
+                        title = "测试："+title;
+                    }
+
                     // 循环渠道
                     result.channelId.forEach(function (channelId) {
                         var html = "" , areas = new Set();
@@ -297,7 +319,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                             html += "						<div>"+area.areaName+"</div>";
                             html += "					</div>";
                             html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                            html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+active.warnContent+"</textarea>";
+                            html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+ title + active.warnContent+"</textarea>";
                             html += "					</div>";
                             html += "				</div>";
                         });
