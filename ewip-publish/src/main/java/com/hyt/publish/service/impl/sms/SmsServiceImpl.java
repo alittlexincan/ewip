@@ -75,24 +75,18 @@ public class SmsServiceImpl implements ISmsService {
     @Override
     @Async
     public JSONObject sms(JSONObject json) {
-
         // 返回结果信息
         JSONObject result = new JSONObject();
-
         // 1：解析数据
         JSONObject sendMessage = sendMessage(json);
-
         // 获取发送用户和内容
         String userList = sendMessage.getString("userList"),
         content = sendMessage.getString("content");
-
         // 2：短信发送授权获取mas_user_id用户登录id
         String authorizeUrl = this.authorizeUrl + "?ec_name=" + this.ecName + "&user_name=" + this.authorizeUserName + "&user_passwd=" + this.authorizeUserPassword;
         log.info("短信授权URL：【" + authorizeUrl + "】");
-
         JSONObject authorize = this.restTemplate.getForObject(authorizeUrl,JSONObject.class);
         log.info("短信授权返回信息：【" + authorizeUrl +"】");
-
         // 获取用户登录ID
         String mas_user_id = authorize.getString("mas_user_id");
         // 获取access_token
@@ -104,12 +98,9 @@ public class SmsServiceImpl implements ISmsService {
         }
         // 3：短信加密属性
         String mac = MD5Util.md5toUpperCase32(mas_user_id + userList + content + this.sign + "" + access_token);
-
         // 4：短信发送路径
         String sendUrl = this.sendUrl + "?mas_user_id=" +mas_user_id + "&mobiles=" + userList + "&content=" + content + "&sign=" + this.sign + "&serial=&mac=" + mac;
-
         log.info("短信发送URL：【" + sendUrl + "】");
-
         // 5：短信发送
         JSONObject send = this.restTemplate.postForObject(sendUrl,"", JSONObject.class);
         log.info("短信发送返回信息：【" + send +"】");
