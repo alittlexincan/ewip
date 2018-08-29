@@ -4,14 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.publish.service.record.IRecordService;
+import com.hyt.publish.service.sms.ISmsService;
 import com.hyt.publish.service.wechat.IWechatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -26,6 +24,12 @@ import java.util.Map;
 @RequestMapping("/publish")
 @EnableAsync
 public class PublishController {
+
+    /**
+     * 发布渠道：对接微信接口
+     */
+    @Autowired
+    private ISmsService smsService;
 
     /**
      * 发布渠道：对接微信接口
@@ -51,17 +55,19 @@ public class PublishController {
         JSONArray channelArray = json.getJSONArray("channel");
         for(int i = 0; i<channelArray.size(); i++){
 
+            // 获取渠道编码
             String code = channelArray.getJSONObject(i).getString("channelCode");
 
             // 短信
             if(code.equals("SMS")) {
-                setParam(json, "SMS");
+                this.smsService.sms(setParam(json, "SMS"));
             }
 
             // 微信
             if(code.equals("WECHAT")){
                 this.wechatService.wechat(setParam(json, "WECHAT"));
             }
+
         }
         // 如果record国突标识为1，则需要对接国突
         // 生成CAP协议文件，将其通过FTP上传到国突平台对应的文件夹下
@@ -70,6 +76,34 @@ public class PublishController {
             this.recordService.record(json);
         }
     }
+
+
+    /**
+     * 短信发布接口
+     * @param map
+     * @return
+     */
+    @PostMapping("/sms")
+    public JSONObject sms(@RequestBody Map<String, Object> map){
+        JSONObject result = new JSONObject();
+        JSONObject json = new JSONObject(map);
+        this.smsService.sms(json);
+        result.put("status",200);
+        return result;
+    }
+
+    /**
+     * 微信发布接口
+     * @param map
+     * @return
+     */
+    @PostMapping("/wechat")
+    public JSONObject wechat(@RequestBody Map<String, Object> map){
+        JSONObject json = new JSONObject(map);
+        return this.wechatService.wechat(json);
+    }
+
+
 
     /**
      * 提取当前渠道下对应的预警内容等信息
@@ -92,10 +126,6 @@ public class PublishController {
         result.remove("channel");
         result.remove("content");
         result.put("content",currentContent);
-        System.out.println("============="+code+"=================");
-        System.out.println(result);
         return result;
-
     }
-
 }
