@@ -191,49 +191,4 @@ public class SmsServiceImpl implements ISmsService {
         return result;
     }
 
-
-    public static void main(String[] args) {
-        JSONArray array = new JSONArray();
-        array.add("aaa");array.add("bbb");array.add("ccc");
-        array.add("ddd");array.add("eee");array.add("fff");
-        array.add("ggg");array.add("hhh");
-        array.add("iii");array.add("jjj");array.add("kkk");
-        array.add("lll");array.add("mmm");array.add("nnn");
-        array.add("ooo");array.add("ppp");array.add("qqq");
-        array.add("rrr");array.add("sss");array.add("ttt");
-        array.add("uuu");array.add("vvv");array.add("www");
-        array.add("xxx");array.add("yyy");array.add("zzz");
-
-//        List list = array.toJavaList(String.class);
-//
-//        int listSize = array.size();
-//        int toIndex = 10,keyToken = 0;
-//        JSONObject res = new JSONObject();     //用map存起来新的分组后数据
-//
-//        for(int i = 0;i<list.size();i += 10){
-//            if(i + 10 > listSize){        //作用为toIndex最后没有100条数据则剩余几条newList中就装几条
-//                toIndex=listSize-i;
-//            }
-//            List newList = list.subList(i,i+toIndex);
-//            res.put("send-"+keyToken, newList);
-//            keyToken++;
-//        }
-
-
-
-//        int listSize = array.size();
-//        int toIndex = 10,keyToken = 0;
-//        JSONObject res = new JSONObject();     //用map存起来新的分组后数据
-//
-//        for(int i = 0; i<array.size(); i += 10){
-//            if(i + 10 > listSize){        //作用为toIndex最后没有100条数据则剩余几条newList中就装几条
-//                toIndex = listSize - i;
-//            }
-//            List newList = array.subList(i,i+toIndex);
-//            res.put("send-"+keyToken, newList);
-//            keyToken++;
-//        }
-
-//        System.out.println(res);
-    }
 }
