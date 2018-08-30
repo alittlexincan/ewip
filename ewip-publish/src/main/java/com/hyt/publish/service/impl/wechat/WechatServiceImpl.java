@@ -75,6 +75,10 @@ public class WechatServiceImpl implements IWechatService {
     @Value("${wechat.ok.user}")
     private String okUser;
 
+    // 每批次发送条数(微信平台要求上限不超过1000条每批次)
+    @Value("${wechat.number}")
+    private Integer number;
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -123,8 +127,15 @@ public class WechatServiceImpl implements IWechatService {
         // 获取灾种颜色(名称)
         String color = disaster.getString("color");
 
-        userList.forEach(
-            u -> {
+        // 获取用户总个数
+        int count = userList.size();
+        for (int i = 0; i < count; i += this.number) {
+            if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
+                this.number = count - i;
+            }
+            StringBuilder sb = new StringBuilder();
+            userList.subList(i, i + this.number).forEach(u -> {
+                sb.append("," + u);
                 WechatTemplate tem = new WechatTemplate();
                 tem.setTemplateId(warnTemplate);
                 tem.setTopColor(rgb);
@@ -138,15 +149,16 @@ public class WechatServiceImpl implements IWechatService {
                 paras.add(new WechatTemplateParam("keyword4",json.getString("sendTime"), rgb));
                 paras.add(new WechatTemplateParam("remark",json.getJSONObject("content").getString("content"), rgb));
                 tem.setTemplateParamList(paras);
-                log.info(tem.toJSON());
+                log.info("模板信息：" + tem.toJSON());
                 ResponseEntity<JSONObject> rest = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);
-                log.info(rest.getBody().toJSONString());
-            }
-        );
+                log.info("微信推送回执结果：" + rest.getBody().toJSONString());
+            });
+            log.info("微信每批次发送用户：" + sb.toString().substring(1));
+        }
+
         log.info("微信推送成功");
         json.put("status", 200);
         json.put("message","微信推送成功");
-
         return json;
     }
 
@@ -157,54 +169,27 @@ public class WechatServiceImpl implements IWechatService {
      * @param userOpenId  下一个openId
      */
     private List<String> getUserList(String accessToken, String userOpenId){
-
-//        userListUrl = userListUrl.replace("{accessToken}", accessToken).replace("{userOpenId}",userOpenId);
-//        JSONObject users = this.restTemplate.getForObject(userListUrl, JSONObject.class);
-//
-//        String nextOpenId = users.getString("next_openid");
-//        if(nextOpenId == null){
-//            log.info("微信获取用户列表失败  {}", users);
-//            return;
-//        }else {
-//
-//            if (users.getInteger("count") == 0) {
-//                log.info("微信获取用户列表信息提取完毕");
-//                return;
-//            } else {
-//                JSONArray userArray = users.getJSONObject("data").getJSONArray("openid");
-//                for (int i = 0; i < userArray.size(); i++) {
-//                    String openId = userArray.getString(i);
-//                    userList.add(openId);
-//                }
-//                getUserList(accessToken, nextOpenId);
-//            }
-//        }
-
         List<String> userList = new ArrayList<>();
-        Integer count = -1;
+        Integer count = -1, total = 0;
         String next_openId = userOpenId;
-
         while (count==-1 || count > 0){
-            userListUrl = userListUrl.replace("{accessToken}", accessToken).replace("{userOpenId}",next_openId);
-            JSONObject users = this.restTemplate.getForObject(userListUrl, JSONObject.class);
-
+            if(total.equals(count)) break;
+            String userUrl = this.userListUrl.replace("{accessToken}", accessToken).replace("{userOpenId}",next_openId);
+            JSONObject users = this.restTemplate.getForObject(userUrl, JSONObject.class);
             next_openId = users.getString("next_openid");
             count = users.getInteger("count");
-
+            total = users.getInteger("total");
             if(next_openId == null){
                 count = 0;
                 log.info("微信获取用户列表失败  {}", users);
             }else {
-                if(count != 0){
-                    JSONArray userArray = users.getJSONObject("data").getJSONArray("openid");
-                    List<String> list = JSONObject.parseArray(userArray.toJSONString(), String.class);
-                    userList.addAll(list);
-                }
+                if(count == 0)return userList;
+                JSONArray userArray = users.getJSONObject("data").getJSONArray("openid");
+                List<String> list = JSONObject.parseArray(userArray.toJSONString(), String.class);
+                userList.addAll(list);
             }
         }
-
         return userList;
-
     }
 
 
