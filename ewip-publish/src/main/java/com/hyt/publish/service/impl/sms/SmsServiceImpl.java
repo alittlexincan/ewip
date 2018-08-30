@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 
 /**
  * @Author: JiangXincan
@@ -62,6 +64,12 @@ public class SmsServiceImpl implements ISmsService {
     @Value("${sms.send.url}")
     private String sendUrl;
 
+    /**
+     * 每批次发送条数(云MAS平台要求上限不超过200条每批次)
+     */
+    @Value("${sms.number}")
+    private Integer number;
+
     @Autowired
     RestTemplate restTemplate;
 
@@ -78,10 +86,11 @@ public class SmsServiceImpl implements ISmsService {
         // 返回结果信息
         JSONObject result = new JSONObject();
         // 1：解析数据
-        JSONObject sendMessage = sendMessage(json);
+        JSONObject sendMessage = setMessage(json);
         // 获取发送用户和内容
-        String userList = sendMessage.getString("userList"),
-        content = sendMessage.getString("content");
+        JSONArray userArray = sendMessage.getJSONArray("userArray");
+        // 获取发送内容
+        String content = sendMessage.getString("content");
         // 2：短信发送授权获取mas_user_id用户登录id
         String authorizeUrl = this.authorizeUrl + "?ec_name=" + this.ecName + "&user_name=" + this.authorizeUserName + "&user_passwd=" + this.authorizeUserPassword;
         log.info("短信授权URL：【" + authorizeUrl + "】");
@@ -92,53 +101,139 @@ public class SmsServiceImpl implements ISmsService {
         // 获取access_token
         String access_token = authorize.getString("access_token");
         if(mas_user_id == null){
-            result.put("status",500);
-            result.put("message","短信发送授权失败");
+            result.put("status", 500);
+            result.put("message", "短信发送授权失败");
+            log.info("短信发送授权失败");
             return result;
+        }else {
+            // 获取用户总个数
+            int count = userArray.size();
+            for (int i = 0; i < userArray.size(); i += this.number) {
+                if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
+                    this.number = count - i;
+                }
+                List userList = userArray.subList(i, i + this.number);
+                StringBuilder sb = new StringBuilder();
+                userList.forEach(u -> {
+                    sb.append("," + u);
+                });
+                // 拼接发送参数
+                JSONObject param = new JSONObject();
+                param.put("mas_user_id", mas_user_id);
+                param.put("access_token", access_token);
+                param.put("content", content);
+                param.put("userList", sb.toString().substring(1));
+                // 短信发送
+                result = send(param);
+                log.info("按每200条短信发送批次用户ID：【" + sb.toString().substring(1) +"】,发送结果：" + result);
+            }
         }
+        return result;
+    }
+
+
+    /**
+     * 短信发送
+     * @param json      基础传输数据
+     * @return
+     */
+    private JSONObject send(JSONObject json){
+        // 返回结果信息
+        JSONObject result = new JSONObject();
+        String mas_user_id = json.getString("mas_user_id")
+                ,userList = json.getString("userList")
+                ,content = json.getString("content")
+                ,access_token = json.getString("access_token");
         // 3：短信加密属性
         String mac = MD5Util.md5toUpperCase32(mas_user_id + userList + content + this.sign + "" + access_token);
         // 4：短信发送路径
-        String sendUrl = this.sendUrl + "?mas_user_id=" +mas_user_id + "&mobiles=" + userList + "&content=" + content + "&sign=" + this.sign + "&serial=&mac=" + mac;
+        String sendUrl = this.sendUrl + "?mas_user_id=" + mas_user_id + "&mobiles=" + userList + "&content=" + content + "&sign=" + this.sign + "&serial=&mac=" + mac;
         log.info("短信发送URL：【" + sendUrl + "】");
         // 5：短信发送
-        JSONObject send = this.restTemplate.postForObject(sendUrl,"", JSONObject.class);
-        log.info("短信发送返回信息：【" + send +"】");
+        JSONObject send = this.restTemplate.postForObject(sendUrl, "", JSONObject.class);
+        log.info("短信发送返回信息：【" + send + "】");
         String retCode = send.getString("RET-CODE");
-        if(retCode == null){
+        if (retCode == null) {
+            result.put("status",500);
+            result.put("message","短信发送失败");
             log.info("短信发送失败");
-            json.put("status",500);
-            json.put("message","短信发送失败");
-            return json;
+            return result;
+        }else {
+            result.put("status",200);
+            result.put("message","短信发送成功");
+            log.info("短信发送成功");
+            return result;
         }
-        log.info("短信发送成功");
-        json.put("status", 200);
-        json.put("message","短信发送成功");
-        return json;
     }
+
+
 
     /**
      * 获取短信发送信息和受众
      * @param param
      * @return
      */
-    private JSONObject sendMessage(JSONObject param){
+    private JSONObject setMessage(JSONObject param){
         JSONObject result = new JSONObject();
         // 获取发送内容
         String content = param.getJSONObject("content").getString("content");
         // 获取发送受众
         JSONObject user = param.getJSONObject("user");
-        String userList = "";
+        JSONArray array = new JSONArray();
         for (String u : user.keySet()) {
-            JSONArray userArray = user.getJSONArray(u);
-            for(int i = 0; i < userArray.size(); i++){
-                JSONObject usr = userArray.getJSONObject(i);
-                userList += "," + usr.getString("userCode");
-            }
+            user.getJSONArray(u).forEach( us ->{
+                JSONObject j = (JSONObject) us;
+                array.add(j.getString("userCode"));
+            });
         }
         result.put("content", content);
-        result.put("userList", userList.substring(1));
+        result.put("userArray", array);
         return result;
     }
 
+
+    public static void main(String[] args) {
+        JSONArray array = new JSONArray();
+        array.add("aaa");array.add("bbb");array.add("ccc");
+        array.add("ddd");array.add("eee");array.add("fff");
+        array.add("ggg");array.add("hhh");
+        array.add("iii");array.add("jjj");array.add("kkk");
+        array.add("lll");array.add("mmm");array.add("nnn");
+        array.add("ooo");array.add("ppp");array.add("qqq");
+        array.add("rrr");array.add("sss");array.add("ttt");
+        array.add("uuu");array.add("vvv");array.add("www");
+        array.add("xxx");array.add("yyy");array.add("zzz");
+
+//        List list = array.toJavaList(String.class);
+//
+//        int listSize = array.size();
+//        int toIndex = 10,keyToken = 0;
+//        JSONObject res = new JSONObject();     //用map存起来新的分组后数据
+//
+//        for(int i = 0;i<list.size();i += 10){
+//            if(i + 10 > listSize){        //作用为toIndex最后没有100条数据则剩余几条newList中就装几条
+//                toIndex=listSize-i;
+//            }
+//            List newList = list.subList(i,i+toIndex);
+//            res.put("send-"+keyToken, newList);
+//            keyToken++;
+//        }
+
+
+
+//        int listSize = array.size();
+//        int toIndex = 10,keyToken = 0;
+//        JSONObject res = new JSONObject();     //用map存起来新的分组后数据
+//
+//        for(int i = 0; i<array.size(); i += 10){
+//            if(i + 10 > listSize){        //作用为toIndex最后没有100条数据则剩余几条newList中就装几条
+//                toIndex = listSize - i;
+//            }
+//            List newList = array.subList(i,i+toIndex);
+//            res.put("send-"+keyToken, newList);
+//            keyToken++;
+//        }
+
+//        System.out.println(res);
+    }
 }
