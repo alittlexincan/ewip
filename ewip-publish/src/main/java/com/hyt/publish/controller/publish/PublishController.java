@@ -60,7 +60,7 @@ public class PublishController {
 
             // 短信
             if(code.equals("SMS")) {
-//                this.smsService.sms(setParam(json, "SMS"));
+                this.smsService.sms(setParam(json, "SMS"));
             }
 
             // 微信
@@ -73,7 +73,7 @@ public class PublishController {
         // 生成CAP协议文件，将其通过FTP上传到国突平台对应的文件夹下
         int record = json.getInteger("record");
         if(record == 1){
-//            this.recordService.record(json);
+            this.recordService.record(json);
         }
     }
 
