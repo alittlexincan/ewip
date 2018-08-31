@@ -92,8 +92,8 @@ public class WarnEditOptionController {
     public ResultObject<Object> getWechatWarnInfo(){
         List<Map<String, Object>> list = this.warnEditOptionService.getWechatWarnInfo();
         if (list.size() > 0){
-            return ResultResponse.make(200,"添加预警编辑流程成功",list);
+            return ResultResponse.make(200,"微信获取当天所有预警信息成功",list);
         }
-        return ResultResponse.make(500,"添加预警编辑流程失败",null);
+        return ResultResponse.make(500,"微信获取当天所有预警信息失败",null);
     }
 }
