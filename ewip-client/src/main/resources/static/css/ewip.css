@@ -442,4 +442,137 @@ website:    http://code.google.com/p/jquerytree/
 /* 预警编辑 end*/
 
 
+/* 一键发布 start*/
+.one .warn-icon{
+    padding: 2px;
+    text-align: center;
+    height: 85px;
+}
+.one .warn-icon > img{
+    width: 100%;
+    height: 100%;
+}
+.one .layui-card-body .channel-option{
+    float: left;
+    margin-right: 10px;
+}
+.one .layui-card-body .channel-option div{
+    margin-top: 9px;
+}
 
+.one .layui-card-body .channel-list{
+    display: inline-block;
+}
+
+.one .layui-card-body .imgbox{
+    width: 58px;
+    border: 3px solid rgb(230, 232, 232);
+    position: relative;
+    margin-right: 5px;
+    float: left;
+}
+
+.one .layui-card-body .imgbox:hover,
+.one .layui-card-body .imgbox.active{
+    border-color: rgb(20, 180, 140);
+    cursor: pointer;
+}
+
+.one .layui-card-body .imgbox:hover:after,
+.one .layui-card-body .imgbox.active:after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 18px solid rgb(20, 180, 140);
+    border-left: 18px solid transparent;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.one .layui-card-body .imgbox:hover:before,
+.one .layui-card-body .imgbox.active:before{
+    content: '';
+    width: 10px;
+    height: 5px;
+    margin: 0 auto;
+    border-left: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+    position: absolute;
+    bottom: 2px;
+    right: -1px;
+    z-index: 2;
+    transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+    -moz-transform: rotate(-50deg);
+    -webkit-transform: rotate(-50deg);
+    -o-transform: rotate(-50deg);
+}
+
+.one .layui-card-body .imgbox img{
+    width: 100%;
+    height: 100%;
+}
+.one .layui-card-body .imgbox span{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    float: left;
+    margin-top: -6px;
+}
+.one .layui-card-body .channel-option div {
+    margin-top: 9px;
+}
+.one .warn-card-body-height {
+    height: 265px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.one .warn-card-content-list {
+    padding: 5px;
+    height: 275px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.one .warn-card-content-list .warn-content-skip {
+    line-height: 275px;
+    text-align: center;
+    font-size: 26px;
+    color: #2f9688;
+}
+.one .warn-upload-msg {
+    color: #2f9688;
+    cursor: pointer;
+    height: 100%;
+    background-image: linear-gradient(45deg,rgba(216, 210, 210, 0.25) 25%,transparent 0,transparent 75%,rgba(216, 210, 210, 0.25) 0),
+    linear-gradient(45deg,rgba(216, 210, 210, 0.25) 25%,transparent 0,transparent 75%,rgba(216, 210, 210, 0.25) 0);
+    background-size: 30px 30px;
+    background-position: 0px 0, 15px 15px;
+}
+.one .warn-upload-msg > i {
+    font-size: 90px;
+    position: relative;
+    top: 64px;
+}
+.one .warn-upload-msg > span {
+    position: relative;
+    font-size: 36px;
+    top: 36px;
+}
+.one .warn-upload-msg > i {
+    font-size: 90px;
+    position: relative;
+    top: 64px;
+}
+.one .warn-center {
+    text-align: center;
+}
+
+.one .warn-file-list-height {
+    height: 132px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* 一键发布 end*/

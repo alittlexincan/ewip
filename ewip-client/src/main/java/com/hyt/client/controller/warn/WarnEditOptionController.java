@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.InetAddress;
 import java.util.Map;
 
 /**
@@ -82,33 +81,31 @@ public class WarnEditOptionController {
     public JSONArray getWechatWarnInfo(HttpServletRequest request){
         JSONArray array = new JSONArray();
         try {
-        InetAddress a = IPUtil.getLocalHostLANAddress();
-        a.getHostAddress();
+            String ip = IPUtil.getLocalHostLANAddress().getHostAddress();
 
-        String ip = a.getHostAddress();
-        String uri = request.getScheme() + "://" + ip + ":" + request.getServerPort() + request.getContextPath();
-        System.out.println(uri);
+            String uri = request.getScheme() + "://" + ip + ":" + request.getServerPort() + request.getContextPath();
+            System.out.println(uri);
 
 
-        JSONArray data = this.warnEditOptionService.getWechatWarnInfo().getJSONArray("data");
-        if (data == null || data.size() > 0) {
-            data.forEach(warn -> {
-                JSONObject w = JSONObject.parseObject(warn.toString());
-                JSONObject json = new JSONObject();
-                JSONObject disaster = DisasterUtil.getDisasterInfo(w.getInteger("disasterColor"));
-                json.put("eventType", w.getString("eventType")); // 灾种编码
-                json.put("headline", w.getString("organizationName") + MsgTypeUtil.parseMsgType(w.getString("msgType")) + w.getString("disasterName") + disaster.getString("color") + "预警" + disaster.getString("level"));             // 发布标题
-                json.put("sender", w.getString("organizationName"));    // 机构编码
-                json.put("effective", w.getString("effective"));        // 发布时间
-                json.put("instruction", w.getString("instruction"));    // 防御指南
-                json.put("description", w.getString("description"));    // 采取措施
-                json.put("img", uri + w.getString("img"));   // 预警图标
-                array.add(json);
-            });
+            JSONArray data = this.warnEditOptionService.getWechatWarnInfo().getJSONArray("data");
+            if (data == null || data.size() > 0) {
+                data.forEach(warn -> {
+                    JSONObject w = JSONObject.parseObject(warn.toString());
+                    JSONObject json = new JSONObject();
+                    JSONObject disaster = DisasterUtil.getDisasterInfo(w.getInteger("disasterColor"));
+                    json.put("eventType", w.getString("eventType")); // 灾种编码
+                    json.put("headline", w.getString("organizationName") + MsgTypeUtil.parseMsgType(w.getString("msgType")) + w.getString("disasterName") + disaster.getString("color") + "预警" + disaster.getString("level"));             // 发布标题
+                    json.put("sender", w.getString("organizationName"));    // 机构编码
+                    json.put("effective", w.getString("effective"));        // 发布时间
+                    json.put("instruction", w.getString("instruction"));    // 防御指南
+                    json.put("description", w.getString("description"));    // 采取措施
+                    json.put("img", uri + "/" + w.getString("img"));   // 预警图标
+                    array.add(json);
+                });
+            }
+        }catch (Exception e){
+            e.getMessage();
         }
-    }catch (Exception e){
-        e.getMessage();
-    }
         return array;
     }
 

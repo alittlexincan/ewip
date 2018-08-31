@@ -11,8 +11,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 
 /**
  * @Author: JiangXincan
@@ -112,9 +110,8 @@ public class SmsServiceImpl implements ISmsService {
                 if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
                     this.number = count - i;
                 }
-                List userList = userArray.subList(i, i + this.number);
                 StringBuilder sb = new StringBuilder();
-                userList.forEach(u -> {
+                userArray.subList(i, i + this.number).forEach( u -> {
                     sb.append("," + u);
                 });
                 // 拼接发送参数
