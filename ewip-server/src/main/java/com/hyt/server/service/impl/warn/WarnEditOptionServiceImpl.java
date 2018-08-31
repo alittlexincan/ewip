@@ -294,6 +294,10 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         }else {
             result.put("files", new JSONArray());
         }
+    }
 
+    @Override
+    public List<Map<String, Object>> getWechatWarnInfo(){
+        return this.warnEditOptionMapper.getWechatWarnInfo();
     }
 }

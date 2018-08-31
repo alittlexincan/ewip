@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.warn.WarnEditOption;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,5 +36,7 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      * @return
      */
     int updateStatus(Map<String, Object> map);
+
+    List<Map<String, Object>> getWechatWarnInfo();
 
 }

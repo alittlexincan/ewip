@@ -69,5 +69,29 @@
             </otherwise>
         </choose>
     </select>
+    
+    <select id="getWechatWarnInfo" resultType="map">
+
+        select
+            DISTINCT we.id
+            ,d.code  eventType
+            ,d.icon img
+            ,d.name disasterName
+            ,d.disaster_color disasterColor
+            ,d.disaster_level disasterLevel
+            ,o.organization_name organizationName
+            ,we.msg_type msgType
+            ,DATE_FORMAT(we.send_time,'%Y-%m-%d %H:%i:%s') effective
+            ,wec.content description
+            ,we.instruction
+        from warn_edit we
+        LEFT JOIN disaster d on d.id = we.disaster_id
+        LEFT JOIN organization o on o.id = we.organization_id
+        LEFT JOIN warn_edit_content wec on wec.warn_edit_id = we.id
+
+        where DATE_FORMAT(we.send_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+        and status > 0
+
+    </select>
 
 </mapper>

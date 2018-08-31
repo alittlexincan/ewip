@@ -44,4 +44,7 @@ public interface IWarnEditOptionService {
     @PostMapping("/warn/option/update/status")
     JSONObject updateStatus(@RequestParam Map<String, Object> map);
 
+    @GetMapping("/warn/option/wechat")
+    JSONObject getWechatWarnInfo();
+
 }

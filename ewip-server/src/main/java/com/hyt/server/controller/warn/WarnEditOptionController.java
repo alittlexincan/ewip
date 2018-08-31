@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,7 +65,7 @@ public class WarnEditOptionController {
             // 发布后调用分发接口
             if(status == 4){
                 Map<String, Object> param = new HashMap<>(result);
-                this.publishService.publish(param);
+                //this.publishService.publish(param);
             }
 
             return ResultResponse.make(200,result.getString("msg"),map);
@@ -86,4 +87,13 @@ public class WarnEditOptionController {
         return ResultResponse.make(500,"添加预警编辑流程失败",null);
     }
 
+    @ApiOperation(value="微信获取当天所有预警信息",httpMethod="GET",notes="微信获取当天所有预警信息")
+    @GetMapping("/wechat")
+    public ResultObject<Object> getWechatWarnInfo(){
+        List<Map<String, Object>> list = this.warnEditOptionService.getWechatWarnInfo();
+        if (list.size() > 0){
+            return ResultResponse.make(200,"添加预警编辑流程成功",list);
+        }
+        return ResultResponse.make(500,"添加预警编辑流程失败",null);
+    }
 }

@@ -18,4 +18,6 @@ import java.util.Map;
 public interface IWarnEditOptionMapper extends IBaseMapper<WarnEditOption> {
 
     List<WarnEditOption> selectFlowByParam(Map<String, Object> map);
+
+    List<Map<String, Object>> getWechatWarnInfo();
 }
