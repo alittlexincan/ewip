@@ -14,7 +14,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-
+@SuppressWarnings("unchecked")
 @Component
 @Aspect
 public class EmergencyAspect {
@@ -46,24 +46,31 @@ public class EmergencyAspect {
      * @throws Throwable
      */
     @After("emergency()")
-    public void before(JoinPoint joinPoint)  throws Throwable {
-        String classType = joinPoint.getTarget().getClass().getName();
-        Class<?> clazz = Class.forName(classType);
-        String clazzName = clazz.getName();
-        String methodName = joinPoint.getSignature().getName(); //获取方法名称
-        Object[] args = joinPoint.getArgs();//参数
-        JSONObject json = getFieldsName(this.getClass(), clazzName, methodName, args);//获取被切参数名称及参数值
+    public void before(JoinPoint joinPoint){
+        try{
 
-        // 如果record==0，则不需要国突上报，否则上报或备案
-        int record = json.getInteger("record");
-        if(record == 1){
+            String classType = joinPoint.getTarget().getClass().getName();
+            Class<?> clazz = Class.forName(classType);
+            String clazzName = clazz.getName();
+            String methodName = joinPoint.getSignature().getName(); //获取方法名称
+            Object[] args = joinPoint.getArgs();//参数
+            JSONObject json = getFieldsName(this.getClass(), clazzName, methodName, args);//获取被切参数名称及参数值
+
+            // 如果record==0，则不需要国突上报，否则上报或备案
+            int record = json.getInteger("record");
+            if(record == 1){
 //            int num = this.recordService.record(json);
 //            if(num == 1) {
 //                System.out.println("====国突对接成功====");
 //            }else {
 //                System.out.println("====国突对接失败====");
 //            }
+            }
+
+        }catch (Exception e){
+            e.getMessage();
         }
+
     }
 
     /**

@@ -11,19 +11,16 @@
 
     <groupId>com.hyt</groupId>
     <artifactId>ewip-publish</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>ewip-publish</name>
     <description>ewip-publish project for Spring Boot</description>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
     </dependencies>
 
 </project>

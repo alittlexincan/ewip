@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * <author>          <time>          <version>          <desc>
  * 作者姓名           修改时间           版本号              描述
  */
+@SuppressWarnings("unchecked")
 @Configuration
 public class DruidMonitorConfigurer {
     /**

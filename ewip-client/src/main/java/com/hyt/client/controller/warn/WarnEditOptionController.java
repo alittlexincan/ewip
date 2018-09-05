@@ -20,6 +20,7 @@ import java.util.Map;
  * @Date: Created in 10:07 2018-4-19
  * @Modified By:
  */
+@SuppressWarnings("unchecked")
 @RestController
 @RequestMapping("warn/option")
 public class WarnEditOptionController {
