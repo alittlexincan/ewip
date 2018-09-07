@@ -597,53 +597,59 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             initAreaTree.checkAllNodes(false);
             // 清空对应的内容
             $(".warn-card-content-list").empty().append("<div class='layui-col-xs12 layui-col-md12 warn-content-skip'>请选择业务类型</div>");
-            // 清空对应的受众
             // 清除tab页所有内容
             $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
             // 拼回默认提示
             active.defaultWarnMsg({id:'choose-tab',title:'温馨提示',msg:'请选择业务类型'});
-            $(".warn-tab").removeAttribute("lay-allowclose");
             return false;
         }
         // 给全局业务类型赋值
         active.type = type;
-        // 默认勾选当前地区
-        var node = initAreaTree.getNodeByParam("id",employee.areaId, null);
-        initAreaTree.checkNode(node,true,true);
-        // 加载默认第一个渠道
-        $(".channel-list").children().eq(0).addClass("active");
-        // 加载对应的内容
-        var param = {
-            organizationId: employee.organizationId
-            ,areas: function () {
-                var area = [];
-                initAreaTree.getCheckedNodes(true).forEach(function (item) {
-                    area.push({
-                        areaId: item.id,
-                        areaName: item.name,
-                        areaCode: item.code
-                    });
-                });
-                return area;
-            }()
-            ,channels: function () {
-                var channel = [];
-                $(".channel-list .imgbox.active").each(function () {
-                    channel.push({
-                        channelId: $(this).data("id"),
-                        channelName: $(this).data("title"),
-                        channelCode: $(this).data("code")
-                    });
-                });
-                return channel;
 
-            }()
-        };
-        // 拼接内容
-        active.setContent(param);
-        // 加载对应的受众
-        active.setGroupUsers(param);
+        // 判断渠道是否选中
+        if($(".channel-list").find(".active").length == 0) {
 
+
+
+
+            // 默认勾选当前地区
+            var node = initAreaTree.getNodeByParam("id", employee.areaId, null);
+            initAreaTree.checkNode(node, true, true);
+            // 加载默认第一个渠道
+            $(".channel-list").children().eq(0).addClass("active");
+
+            // 加载对应的内容
+            var param = {
+                organizationId: employee.organizationId
+                , areas: function () {
+                    var area = [];
+                    initAreaTree.getCheckedNodes(true).forEach(function (item) {
+                        area.push({
+                            areaId: item.id,
+                            areaName: item.name,
+                            areaCode: item.code
+                        });
+                    });
+                    return area;
+                }()
+                , channels: function () {
+                    var channel = [];
+                    $(".channel-list .imgbox.active").each(function () {
+                        channel.push({
+                            channelId: $(this).data("id"),
+                            channelName: $(this).data("title"),
+                            channelCode: $(this).data("code")
+                        });
+                    });
+                    return channel;
+
+                }()
+            };
+            // 拼接内容
+            active.setContent(param);
+            // 加载对应的受众
+            active.setGroupUsers(param);
+        }
     });
 
     /**
