@@ -55,6 +55,19 @@ layui.define(function(exports){
             if(option == 2) return {level: 2, name:'Ⅲ级/较大'};
             if(option == 3) return {level: 3, name:'Ⅳ级/一般'};
         }
+
+        /**
+         * 一键发布信息类型：0：短期预报；1：中期预报；2：长期预报；3：气象专题专报；4：重大气象专题专报
+         * @param option
+         * @returns {*}
+         */
+        ,"chooseMessageToType":function (option) {
+            if(option == 0) return {level: 0, name:'短期预报'};
+            if(option == 1) return {level: 1, name:'中期预报'};
+            if(option == 2) return {level: 2, name:'长期预报'};
+            if(option == 3) return {level: 3, name:'气象专题专报'};
+            if(option == 4) return {level: 4, name:'重大气象专题专报'};
+        }
     };
     //输出test接口
     exports('disaster', disaster);

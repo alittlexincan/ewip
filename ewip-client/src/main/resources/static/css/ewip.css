@@ -392,6 +392,7 @@ website:    http://code.google.com/p/jquerytree/
     line-height: 40px;
     text-align: center;
     border: 1px solid #e6e6e6;
+    cursor: pointer;
 }
 .edit .warn-card-content{
     border: 1px solid #e6e6e6;
@@ -541,6 +542,21 @@ website:    http://code.google.com/p/jquerytree/
     font-size: 26px;
     color: #2f9688;
 }
+.one .warn-card-content-list .warn-content-title > div {
+    text-align: right;
+    padding-right: 5px;
+}
+
+.one .warn-card-content-list .warn-content-title > div, .edit .warn-card-content-list .warn-content-body > div {
+    border: 1px solid #e6e6e6;
+    min-height: 70px;
+}
+.one .warn-card-content-list .warn-content-body > textarea {
+    outline: none;
+    height: 72px;
+    min-height: 72px;
+    padding: 1px 5px;
+}
 .one .warn-upload-msg {
     color: #2f9688;
     cursor: pointer;
@@ -574,5 +590,106 @@ website:    http://code.google.com/p/jquerytree/
     overflow: auto;
     overflow-x: hidden;
 }
+
+/*一键发布tab页*/
+.one .warn-tab{
+    position: relative;
+    padding: 0px;
+    height: 284px;
+    border-radius: 0;
+    box-shadow: none;
+    left: -1px;
+    top: -1px;
+    width: 100%;
+    border-bottom: none;
+}
+.one .layui-tab .warn-tab-title{
+    width: 90%;
+    margin-left: 5%;
+    overflow: hidden;
+}
+.one .layui-tab .warn-tab-title > li{
+    padding: 0;
+    margin: 0;
+    width: 95px;
+}
+.one .warn-tab .warn-tab-content{
+    padding: 5px;
+}
+.one .warn-tab .warn-tab-content > div{
+    height: calc(100% - 50px);
+}
+
+.one .warn-tab .layui-tab-bar{
+    display: none;
+}
+
+.one .warn-tab .warn-tab-prev{
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 5%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    margin: 0 15px 0 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.one .warn-tab .warn-tab-next{
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 5%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    z-index: 1;
+    cursor: pointer;
+}
+.one .warn-tab .warn-card-content{
+    border: 1px solid #e6e6e6;
+}
+
+.one .warn-tab .warn-content-skip{
+    line-height: 220px;
+    text-align: center;
+    font-size: 26px;
+    color: #2f9688;
+
+}
+.one .warn-tab .warn-content-item{
+    padding: 5px;
+    height: 100px;
+    border: 1px solid #e6e6e6;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ws-border-radius: 3px;
+}
+.one .warn-tab .warn-content-title > div,
+.one .warn-tab .warn-content-body > div{
+    border: 1px solid #e6e6e6;
+    min-height: 70px;
+}
+.one .warn-tab .warn-content-title > div{
+    text-align: right;
+    padding-right: 5px;
+}
+.one .warn-tab .warn-content-body > div{
+    outline: none;
+    padding: 0 5px 0 8px;
+}
+.one .warn-tab .warn-content-body > textarea{
+    outline: none;
+    height: 72px;
+    min-height: 72px;
+    padding: 1px 5px;
+}
+/* 一键发布tab页 end*/
 
 /* 一键发布 end*/
