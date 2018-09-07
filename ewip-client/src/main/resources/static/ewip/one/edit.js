@@ -608,10 +608,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
 
         // 判断渠道是否选中
         if($(".channel-list").find(".active").length == 0) {
-
-
-
-
             // 默认勾选当前地区
             var node = initAreaTree.getNodeByParam("id", employee.areaId, null);
             initAreaTree.checkNode(node, true, true);

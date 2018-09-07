@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/one/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/one/edit.js" afterDir="false" />
-    </list>
+    <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/ewip-eureka/target/" />
@@ -900,7 +897,7 @@
       <workItem from="1535592539833" duration="29350000" />
       <workItem from="1535678328085" duration="26584000" />
       <workItem from="1536112596767" duration="24439000" />
-      <workItem from="1536196442807" duration="28948000" />
+      <workItem from="1536196442807" duration="30371000" />
     </task>
     <task id="LOCAL-00001" summary="还原提交">
       <created>1530325947977</created>
@@ -1238,7 +1235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536290649206</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据">
+      <created>1536292103071</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1536292103071</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1247,7 +1251,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1523674000" />
+    <option name="totallyTimeSpent" value="1525097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -1331,7 +1335,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="预警编辑添加数据入库（操作5张表）" />
     <MESSAGE value="预警编辑修改审核人信息" />
     <MESSAGE value="添加说明" />
     <MESSAGE value="登录页添加预警logo，主页修改" />
@@ -1356,7 +1359,8 @@
     <MESSAGE value="添加mvn手工打包更新出现的问题" />
     <MESSAGE value="一键发布前端静态页面开发完毕" />
     <MESSAGE value="一键发布前端静页面，添加类型选择清空功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="一键发布前端静页面，添加类型选择清空功能" />
+    <MESSAGE value="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
