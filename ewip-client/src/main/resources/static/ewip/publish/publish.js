@@ -708,9 +708,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             return file;
         };
 
+        console.log(param);
+
+        return false;
         ajaxFileUpload.render({
             async: true
-            ,url : "/client/warn/edit/insert"
+            ,url : "/client/publish/edit/insert"
             ,type: "POST"
             ,param : param//需要传递的数据 json格式
             ,files : files()
