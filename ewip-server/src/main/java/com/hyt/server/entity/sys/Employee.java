@@ -23,7 +23,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",length = 36)
+    @Column(name = "id",length = 64)
     private String id;
 
     @Column(name = "login_name",length = 25)

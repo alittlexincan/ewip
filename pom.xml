@@ -38,6 +38,7 @@
         <tk.mybatis>2.0.1</tk.mybatis>
         <com.github.pagehelper>1.2.5</com.github.pagehelper>
         <xincan.version>1.0.0</xincan.version>
+        <org.apache.shiro>1.4.0</org.apache.shiro>
     </properties>
 
     <dependencies>
