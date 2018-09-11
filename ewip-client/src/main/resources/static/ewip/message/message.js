@@ -654,6 +654,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
     form.on("submit(submit)", function(data){
         // 数据提交到后台，通用方法
         var param = data.field;
+        param.template = 2;  // 微信模板类型：1：气象灾害预警提醒；2：服务提醒通知；3：突发事件预警提醒；
 
         // 渠道处理
         param.channel = function(){
@@ -698,6 +699,13 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             return JSON.stringify(group).replace(/\"/g,"'");
         }();
 
+        // 获取文件内容
+        $("textarea[name^='content_']").each(function () {
+            var name = $(this).attr("name");
+            param[name] = $(this).val();
+        });
+
+
         // 上传文件名称处理
         var files = function () {
             delete param.warnFile;
@@ -708,12 +716,9 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             return file;
         };
 
-        console.log(param);
-
-        return false;
         ajaxFileUpload.render({
             async: true
-            ,url : "/client/publish/edit/insert"
+            ,url : "/client/message/insert"
             ,type: "POST"
             ,param : param//需要传递的数据 json格式
             ,files : files()

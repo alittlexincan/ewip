@@ -1,4 +1,4 @@
-package com.hyt.server.service.warn;
+package com.hyt.server.service.publish;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;

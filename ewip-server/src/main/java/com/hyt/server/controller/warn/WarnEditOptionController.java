@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEditOption;
-import com.hyt.server.service.warn.IPublishService;
+import com.hyt.server.service.publish.IPublishService;
 import com.hyt.server.service.warn.IWarnEditOptionService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +65,7 @@ public class WarnEditOptionController {
             // 发布后调用分发接口
             if(status == 4){
                 Map<String, Object> param = new HashMap<>(result);
-                //this.publishService.publish(param);
+                //this.publishService.message(param);
             }
 
             return ResultResponse.make(200,result.getString("msg"),map);

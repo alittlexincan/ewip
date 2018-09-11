@@ -1575,7 +1575,7 @@ layui.define(function(exports){
                             tmp_icoObj = $$(newLast, consts.id.ICON, setting);
                             if (parentNode == root) {
                                 if (children.length == 1) {
-                                    //node was root, and ztree has only publish root after move node
+                                    //node was root, and ztree has only message root after move node
                                     view.replaceSwitchClass(newLast, tmp_switchObj, consts.line.ROOT);
                                 } else {
                                     var tmp_first_switchObj = $$(children[0], consts.id.SWITCH, setting);

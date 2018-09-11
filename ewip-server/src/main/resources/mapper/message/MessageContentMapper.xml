@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.message.IMessageContentMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.message.MessageContent">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="message_id" jdbcType="VARCHAR" property="messageId"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <!-- 一见发布基础信息对应信息内容批量插入 -->
+    <insert id="insertList" >
+        insert into message_content (id, message_id, area_id, channel_id, content, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            ( REPLACE(UUID(),'-',''), #{item.messageId}, #{item.areaId}, #{item.channelId}, #{item.content}, now())
+        </foreach>
+    </insert>
+
+
+</mapper>
