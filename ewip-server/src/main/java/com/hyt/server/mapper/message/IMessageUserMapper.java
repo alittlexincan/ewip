@@ -5,6 +5,7 @@ import com.hyt.server.entity.message.MessageUser;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -16,5 +17,8 @@ import java.util.List;
  */
 @Repository("messageUserMapper")
 public interface IMessageUserMapper extends IBaseMapper<MessageUser> {
+
     int insertList(List<MessageUser> list);
+
+    List<MessageUser> selectByMessageId(Map<String, Object> map);
 }

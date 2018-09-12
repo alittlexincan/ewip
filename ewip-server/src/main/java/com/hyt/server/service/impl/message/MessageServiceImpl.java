@@ -12,13 +12,13 @@ import com.hyt.server.mapper.message.IMessageFileMapper;
 import com.hyt.server.mapper.message.IMessageMapper;
 import com.hyt.server.mapper.message.IMessageUserMapper;
 import com.hyt.server.service.message.IMessageService;
+import com.hyt.server.service.publish.IPublishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -43,6 +43,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
     @Autowired
     private IMessageFileMapper messageFileMapper;
+
+    @Autowired
+    private IPublishService publishService;
 
     /**
      * 添加一键发布相关信息
@@ -73,8 +76,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         JSONObject group = JSONObject.parseObject(json.getString("group"));
         json.put("group",group);
 
-        System.out.println(json);
-
         // 1: 添加一键发布基础信息
         Message message = this.addMessage(json);
         String messageId = message.getId();
@@ -84,6 +85,23 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         this.addMessageUser(json, messageId);
         // 4：添加一键发布上传文件
         this.addMessageFile(json, messageId);
+
+
+
+
+
+
+        // 组装一键发布内容,渠道，地区信息
+        this.getMessageContentInfo(json, messageId);
+
+        // 组装一键发布群组、受众
+        this.getMessaggeUserInfo(json, messageId);
+
+        System.out.println(json);
+        Map<String, Object> param = json;
+
+        // 调用分发平台
+        this.publishService.publish(param);
 
         return message;
     }
@@ -198,5 +216,122 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
             return this.messageFileMapper.insertList(list);
         }
         return 0;
+    }
+
+
+    /**
+     * 根据id获取预警内容信息
+     * @param result
+     * @param messageId
+     */
+    private void getMessageContentInfo (JSONObject result, String messageId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("messageId", messageId);
+        List<MessageContent> list = this.messageContentMapper.selectByMessageId(map);
+        if (list.size() > 0){
+
+            List<JSONObject> channels = new ArrayList<>();
+            List<JSONObject> areas = new ArrayList<>();
+
+            for(MessageContent mc : list){
+                // 组装发布渠道 去重
+                JSONObject channel = new JSONObject();
+                channel.put("channelId",mc.getChannelId());
+                channel.put("channelName",mc.getChannelName());
+                channel.put("channelCode",mc.getChannelCode());
+                channels.add(channel);
+
+                // 组装影响地区 去重
+                JSONObject area = new JSONObject();
+                area.put("areaId",mc.getAreaId());
+                area.put("areaName",mc.getAreaName());
+                area.put("areaCode",mc.getAreaCode());
+                areas.add(area);
+            }
+
+            // 渠道
+            List<String> channelId = new ArrayList<>();
+            List<JSONObject> channelArray = channels.stream().filter(// 过滤去重
+                    channel -> {
+                        boolean flag = !channelId.contains(channel.getString("channelId"));
+                        channelId.add(channel.getString("channelId"));
+                        return flag;
+                    }
+            ).collect(Collectors.toList());
+
+            // 地区
+            List<String> areaId = new ArrayList<>();
+            List<JSONObject> areaArray = areas.stream().filter(// 过滤去重
+                    area -> {
+                        boolean flag = !areaId.contains(area.getString("areaId"));
+                        areaId.add(area.getString("areaId"));
+                        return flag;
+                    }
+            ).collect(Collectors.toList());
+
+            // 预警内容
+            Map<String, List<MessageContent>> content = list.stream().collect(Collectors.groupingBy(MessageContent::getChannelId));
+
+            result.put("channel",channelArray);
+            result.put("area",areaArray);
+            result.put("content",content);
+        }
+    }
+
+
+    /**
+     * 根据id获取预警发布对象信息
+     * @param result
+     * @param messageId
+     * @return
+     */
+    private void getMessaggeUserInfo(JSONObject result, String messageId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("messageId", messageId);
+        List<MessageUser> list = this.messageUserMapper.selectByMessageId(map);
+        if(list.size() > 0){
+            // 组装渠道下的群组，一个渠道可能对应多个群组
+            JSONObject group = new JSONObject();
+            // 组装渠道下的用户，一个群组可能对应多个用户
+            JSONObject user = new JSONObject();
+            // 渠道去重
+            Map<String, List<MessageUser>> groupList = list.stream().collect(Collectors.groupingBy(MessageUser::getChannelId));
+            list.forEach(ms -> {
+                // 群组过滤不必要字段
+                JSONArray groupArray = new JSONArray();
+                // 渠道对应的群组去重
+                groupList.get(ms.getChannelId()).stream().collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getChannelId() + ";" + o.getUserGroupId()))),
+                        ArrayList::new
+                )).forEach( gr -> {
+                    JSONObject g = new JSONObject();
+                    g.put("userGroupId", gr.getUserGroupId());
+                    g.put("userGroupName", gr.getUserGroupName());
+                    groupArray.add(g);
+                });
+                // 用户过滤不必要字段
+                JSONArray userGroupArray = new JSONArray();
+                // 组装群组下的受众
+                list.stream()
+                        .filter(p -> p.getUserGroupId().equals(ms.getUserGroupId()))
+                        .collect(Collectors.toList())
+                        .forEach(ug -> {
+                            JSONObject g = new JSONObject();
+                            g.put("userName", ug.getUserName());
+                            g.put("userCode", ug.getUserCode());
+                            g.put("channelCode", ug.getChannelCode());
+                            g.put("longitude", ug.getLongitude());
+                            g.put("latitude", ug.getLatitude());
+                            g.put("altitude", ug.getAltitude());
+                            userGroupArray.add(g);
+                        });
+                // 在当前渠道下追加群组
+                group.put(ms.getChannelId(), groupArray);
+                // 当前群组下追加受众用户
+                user.put(ms.getUserGroupId(), userGroupArray);
+            });
+            result.put("user", user);
+            result.put("group", group);
+        }
     }
 }

@@ -54,11 +54,13 @@ public class WarnEditUser {
 
     private String channelName;
 
+    private String channelCode;
+
     public WarnEditUser() {
     }
 
 
-    public WarnEditUser(String warnEditId, String channelId, String userGroupId, String userGroupName, Date createTime, String userName, String userCode, Double longitude, Double latitude, Double altitude, String channelName) {
+    public WarnEditUser(String warnEditId, String channelId, String userGroupId, String userGroupName, Date createTime, String userName, String userCode, Double longitude, Double latitude, Double altitude, String channelName, String channelCode) {
         this.warnEditId = warnEditId;
         this.channelId = channelId;
         this.userGroupId = userGroupId;
@@ -70,6 +72,7 @@ public class WarnEditUser {
         this.latitude = latitude;
         this.altitude = altitude;
         this.channelName = channelName;
+        this.channelCode = channelCode;
     }
 
     public String getId() {
@@ -166,5 +169,13 @@ public class WarnEditUser {
 
     public void setChannelName(String channelName) {
         this.channelName = channelName;
+    }
+
+    public String getChannelCode() {
+        return channelCode;
+    }
+
+    public void setChannelCode(String channelCode) {
+        this.channelCode = channelCode;
     }
 }

@@ -180,7 +180,9 @@ public class SmsServiceImpl implements ISmsService {
         for (String u : user.keySet()) {
             user.getJSONArray(u).forEach( us ->{
                 JSONObject j = (JSONObject) us;
-                array.add(j.getString("userCode"));
+                if(j.getString("channelCode").equals("SMS")){
+                    array.add(j.getString("userCode"));
+                }
             });
         }
         result.put("content", content);

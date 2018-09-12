@@ -21,6 +21,7 @@
         <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
         <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
         <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+        <result column="channel_code" jdbcType="VARCHAR" property="channelCode"/>
         <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName"/>
     </resultMap>
 
@@ -34,6 +35,7 @@
             u.altitude,
             u.channel_id,
             c.name channel_name,
+            c.code channel_code,
             u.user_group_id,
             weu.user_group_name
         FROM

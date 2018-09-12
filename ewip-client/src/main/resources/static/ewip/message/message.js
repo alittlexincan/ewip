@@ -447,8 +447,13 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             // 动态追加群组树
             active.setGroupUsers(param);
         }else{
+            // 1：取消渠道勾选
             $("." + event + " .imgbox").removeClass("active");
-            // 清除tab页所有内容
+
+            // 2：清空内容回填提示信息
+            $(".warn-card-content-list").empty().append("<div class='layui-col-xs12 layui-col-md12 warn-content-skip'>请选择业务类型</div>");
+
+            // 3：清除tab页所有内容
             $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
             // 拼回默认提示
             active.defaultWarnMsg({id:'choose-tab',title:'温馨提示',msg:'请选择渠道'});
@@ -701,8 +706,15 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
 
         // 获取文件内容
         $("textarea[name^='content_']").each(function () {
-            var name = $(this).attr("name");
-            param[name] = $(this).val();
+            var name = $(this).attr("name"),
+                typeName = "";
+            // 0：短期预报；1：中期预报；2：长期预报；3：气象专题专报；4：重大气象专题专报
+            if(param.type==0) typeName = "【短期预报】";
+            if(param.type==1) typeName = "【中期预报】";
+            if(param.type==2) typeName = "【长期预报】";
+            if(param.type==3) typeName = "【气象专题专报】";
+            if(param.type==4) typeName = "【重大气象专题专报】";
+            param[name] = typeName + ":" + $(this).val();
         });
 
 
@@ -727,7 +739,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             if(json.code == 200){
                 // 弹出提示信息，2s后自动关闭
                 layer.msg(json.msg, {time: 2000},function(){
-                    location.reload();
+                    //location.reload();
                 });
             }
         });

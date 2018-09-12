@@ -11,6 +11,18 @@ import java.util.Map;
 @FeignClient("EWIP-PUBLISH")
 public interface IPublishService {
 
+    /**
+     * 预警调用分发平台接口
+     * @param map
+     */
     @PostMapping("/publish/")
     void publish(@RequestBody Map<String, Object> map);
+
+
+    /**
+     * 一键式发布调用分发平台接口
+     * @param map
+     */
+    @PostMapping("/publish/sms")
+    void sms(@RequestBody Map<String, Object> map);
 }

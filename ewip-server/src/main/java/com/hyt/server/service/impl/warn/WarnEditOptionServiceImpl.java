@@ -260,6 +260,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                             JSONObject g = new JSONObject();
                             g.put("userName", ug.getUserName());
                             g.put("userCode", ug.getUserCode());
+                            g.put("channelCode", ug.getChannelCode());
                             g.put("longitude", ug.getLongitude());
                             g.put("latitude", ug.getLatitude());
                             g.put("altitude", ug.getAltitude());

@@ -9,7 +9,32 @@
         <result column="channel_id" jdbcType="VARCHAR" property="channelId"/>
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+        <result column="channel_code" jdbcType="VARCHAR" property="channelCode"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="area_code" jdbcType="VARCHAR" property="areaCode"/>
     </resultMap>
+
+    <!--根据预警基础信息id查询对应的内容信息-->
+    <select id="selectByMessageId" resultMap="BaseResultMap">
+
+        SELECT
+            mc.id,
+            mc.message_id,
+            mc.content,
+            mc.channel_id,
+            c.name channel_name,
+            c.code channel_code,
+            mc.area_id,
+            a.area_name,
+            a.code area_code,
+            mc.create_time
+        FROM
+            message_content mc
+        LEFT JOIN area a on a.id = mc.area_id
+        LEFT JOIN channel c on c.id = mc.channel_id
+        where mc.message_id = #{messageId}
+    </select>
 
     <!-- 一见发布基础信息对应信息内容批量插入 -->
     <insert id="insertList" >

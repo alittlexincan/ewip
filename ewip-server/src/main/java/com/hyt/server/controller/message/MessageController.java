@@ -28,16 +28,17 @@ public class MessageController {
     @Autowired
     private IMessageService messageService;
 
+
     @ApiOperation(value="添加一键发布信息",httpMethod="POST",notes="根据参数列表添加一键发布信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="title", value="发布标题",required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="areaId", value="地区ID",required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="areaName", value="地区名称",required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="organizationId", value="机构ID", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="organizationId", value="机构名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationName", value="机构名称", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="type", value="业务类型", required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="template", value="是否发布", required = true, dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name="sendTime", value="预警编辑时间", required = true, dataType = "Date", paramType = "query")
+            @ApiImplicitParam(name="template", value="微信模板类型", required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="sendTime", value="一键发布时间", required = true, dataType = "Date", paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){

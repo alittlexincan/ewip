@@ -5,6 +5,7 @@ import com.hyt.server.entity.message.MessageContent;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -16,5 +17,13 @@ import java.util.List;
  */
 @Repository("messageContentMapper")
 public interface IMessageContentMapper extends IBaseMapper<MessageContent> {
+
     int insertList(List<MessageContent> list);
+
+    /**
+     * 根据id查询当前一键发布内容信息
+     * @param map
+     * @return
+     */
+    List<MessageContent> selectByMessageId(Map<String, Object> map);
 }

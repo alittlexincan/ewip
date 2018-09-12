@@ -71,10 +71,15 @@ public class PublishController {
         }
         // 如果record国突标识为1，则需要对接国突
         // 生成CAP协议文件，将其通过FTP上传到国突平台对应的文件夹下
-        int record = json.getInteger("record");
-        if(record == 1){
-            this.recordService.record(json);
+//        JSON.hasOwnProperty(“propertyName”)
+
+        if(json.containsKey("record")){
+            int record = json.getInteger("record");
+            if(record == 1){
+                this.recordService.record(json);
+            }
         }
+
     }
 
 
