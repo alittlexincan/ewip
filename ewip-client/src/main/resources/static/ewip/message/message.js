@@ -728,6 +728,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             return file;
         };
 
+        console.log(param);
+
         ajaxFileUpload.render({
             async: true
             ,url : "/client/message/insert"
