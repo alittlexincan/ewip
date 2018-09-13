@@ -86,11 +86,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         // 4：添加一键发布上传文件
         this.addMessageFile(json, messageId);
 
-
-
-
-
-
         // 组装一键发布内容,渠道，地区信息
         this.getMessageContentInfo(json, messageId);
 
@@ -227,6 +222,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     private void getMessageContentInfo (JSONObject result, String messageId){
         Map<String, Object> map = new HashMap<>();
         map.put("messageId", messageId);
+        System.out.println(result);
         List<MessageContent> list = this.messageContentMapper.selectByMessageId(map);
         if (list.size() > 0){
 

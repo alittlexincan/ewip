@@ -65,7 +65,7 @@ public class WarnEditOptionController {
             // 发布后调用分发接口
             if(status == 4){
                 Map<String, Object> param = new HashMap<>(result);
-                //this.publishService.message(param);
+                this.publishService.publish(param);
             }
 
             return ResultResponse.make(200,result.getString("msg"),map);

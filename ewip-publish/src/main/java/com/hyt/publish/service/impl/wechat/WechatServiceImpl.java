@@ -87,15 +87,10 @@ public class WechatServiceImpl implements IWechatService {
     public JSONObject wechat(JSONObject json) {
 
         JSONObject result = new JSONObject();
-        // 存放用户openId列表
-        List<String> userList = null;
-
         log.info("===============微信推送=====================");
-
         // 1：通过tokenUrl获取access_token
         log.info("获取微信tokenUrl: 【{}】",tokenUrl);
         JSONObject token = this.restTemplate.getForObject(tokenUrl,JSONObject.class);
-
         String accessToken = token.getString("access_token");
         if(accessToken == null){
             log.info("微信推送获取TOKEN失败！{}", token);
@@ -104,31 +99,99 @@ public class WechatServiceImpl implements IWechatService {
             return result;
         }
         log.info("成功获取微信token: 【{}】" ,accessToken);
-
-        // 2：获取所有关注用户信息，提取用户openId
-        // 如果okUser有值，则说明是手动发送
-        if(okUser.length() > 0){
-            userList = Arrays.asList(okUser.split(","));
-        }else{
-            userList = getUserList(accessToken, "");
+        if(json.containsKey("template")){
+            return this.sendMessageTemplate(json, accessToken);
         }
+        return this.sendWarnTemplate(json, accessToken);
+    }
+
+    /**
+     * 发送一键式发布模板消息
+     * @param json
+     * @param accessToken
+     * @return
+     */
+    private JSONObject sendMessageTemplate(JSONObject json, String accessToken){
+
+        JSONObject result = new JSONObject();
+
+        // 2：获取所有关注用户信息，提取用户openId: 如果okUser有值，则说明是手动发送
+        List<String> userList = okUser.length() > 0 ? Arrays.asList(okUser.split(",")) : getUserList(accessToken, "");
+        log.info("微信用户openId列表：{}",JSON.toJSON(userList));
+
+        // 设置模板字体颜色
+        String rgb = "#000000";
+
+        // 获取用户总个数
+        int count = userList.size();
+        if(count <= 0){
+            log.info("微信暂无关注用户");
+            result.put("status", 500);
+            result.put("message","微信暂无关注用户");
+            return result;
+        }
+        for (int i = 0; i < count; i += this.number) {
+            if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
+                this.number = count - i;
+            }
+            StringBuilder sb = new StringBuilder();
+            userList.subList(i, i + this.number).forEach(u -> {
+                sb.append("," + u);
+                WechatTemplate tem = new WechatTemplate();
+                tem.setTemplateId(serviceTemplate);
+                tem.setTopColor(rgb);
+                tem.setToUser(u);
+                tem.setUrl("");
+                List<WechatTemplateParam> paras = new ArrayList<>();
+                paras.add(new WechatTemplateParam("first",json.getString("title"), rgb));
+                paras.add(new WechatTemplateParam("keyword1",MsgTypeUtil.parseOneType(json.getInteger("type")), rgb));
+                paras.add(new WechatTemplateParam("keyword2",json.getString("sendTime"), rgb));
+                paras.add(new WechatTemplateParam("remark",json.getJSONObject("content").getString("content"), rgb));
+                tem.setTemplateParamList(paras);
+                log.info("模板信息：" + tem.toJSON());
+                ResponseEntity<JSONObject> rest = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);
+                log.info("微信推送回执结果：" + rest.getBody().toJSONString());
+            });
+            log.info("微信每批次发送用户：" + sb.toString().substring(1));
+        }
+        log.info("微信推送成功");
+        result.put("status", 200);
+        result.put("message","微信推送成功");
+        return result;
+    }
+
+    /**
+     * 发送预警模板消息
+     * @param json
+     * @param accessToken
+     * @return
+     */
+    private JSONObject sendWarnTemplate(JSONObject json, String accessToken){
+
+        JSONObject result = new JSONObject();
+
+        // 2：获取所有关注用户信息，提取用户openId: 如果okUser有值，则说明是手动发送
+        List<String> userList = okUser.length() > 0 ? Arrays.asList(okUser.split(",")) : getUserList(accessToken, "");
 
         log.info("微信用户openId列表：{}",JSON.toJSON(userList));
 
         // 3：获取灾种信息
         JSONObject disaster = DisasterUtil.getDisasterInfo(json.getInteger("disasterColor"));
-
         // 获取灾种名称
-        String disasterName = json.getString("disasterName");
-
+        String disasterName = json.getString("disasterName")
         // 获取灾种颜色(rgb)
-        String rgb = disaster.getString("rgb");
-
+        , rgb = disaster.getString("rgb")
         // 获取灾种颜色(名称)
-        String color = disaster.getString("color");
+        ,color = disaster.getString("color");
 
         // 获取用户总个数
         int count = userList.size();
+        if(count <= 0){
+            log.info("微信暂无关注用户");
+            result.put("status", 500);
+            result.put("message","微信暂无关注用户");
+            return result;
+        }
         for (int i = 0; i < count; i += this.number) {
             if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
                 this.number = count - i;
@@ -142,7 +205,7 @@ public class WechatServiceImpl implements IWechatService {
                 tem.setToUser(u);
                 tem.setUrl("");
                 List<WechatTemplateParam> paras = new ArrayList<>();
-                paras.add(new WechatTemplateParam("first",getTitle(json, disaster), rgb));
+                paras.add(new WechatTemplateParam("first",getWarnTitle(json, disaster), rgb));
                 paras.add(new WechatTemplateParam("keyword1",json.getString("organizationName"), rgb));
                 paras.add(new WechatTemplateParam("keyword2",disasterName, rgb));
                 paras.add(new WechatTemplateParam("keyword3",color, rgb));
@@ -155,11 +218,10 @@ public class WechatServiceImpl implements IWechatService {
             });
             log.info("微信每批次发送用户：" + sb.toString().substring(1));
         }
-
         log.info("微信推送成功");
-        json.put("status", 200);
-        json.put("message","微信推送成功");
-        return json;
+        result.put("status", 200);
+        result.put("message","微信推送成功");
+        return result;
     }
 
 
@@ -194,12 +256,12 @@ public class WechatServiceImpl implements IWechatService {
 
 
     /**
-     * 获取标题
+     * 获取预警模板标题
      *
      * @param json
      * @return
      */
-    private String getTitle(JSONObject json, JSONObject disaster){
+    private String getWarnTitle(JSONObject json, JSONObject disaster){
         String title = json.getString("organizationName");
         String msgType = json.getString("msgType");
         title += MsgTypeUtil.parseMsgType(msgType);
@@ -209,4 +271,5 @@ public class WechatServiceImpl implements IWechatService {
         title += disaster.getString("level");
         return title;
     }
+
 }
