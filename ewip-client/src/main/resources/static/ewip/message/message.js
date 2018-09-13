@@ -56,7 +56,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
                         enable:true,
                         url: '/client/tree/user/group/count',
                         autoParam:["id"],
-                        otherParam: { "areaId":option.areaId, "organizationId": option.organizationId, "channelId":option.channelId},
+                        otherParam: { "areaId":option.areaId, "channelId":option.channelId},
                         dataType:"json",
                         dataFilter:function (treeId, parentNode, responseData) {
                             if(responseData!=null){
@@ -153,7 +153,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
                     // 获取当前渠道下全部受众节点，如果取消勾选地区，则将当前地区、渠道对应的受众删除
                     userGroupZtree.getNodes().forEach(function (item) {
                         if(area.areaId == item.areaId && item.channelId == channel.channelId) remove.push(item);
-
                     });
                     for(var i = 0; i<remove.length; i++) userGroupZtree.removeNode(remove[i]);
                 });

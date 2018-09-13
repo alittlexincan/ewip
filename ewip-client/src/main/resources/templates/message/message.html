@@ -88,7 +88,7 @@
                 </div>
 
                 <!-- 影响地区 -->
-                <div th:class="${session.employee.level eq '2' ? 'layui-col-xs3 layui-col-md3 layui-col-lg3 layui-hide' : 'layui-col-xs3 layui-col-md3 layui-col-lg3'}">
+                <div th:class="${session.employee.level eq '3' ? 'layui-col-xs3 layui-col-md3 layui-col-lg3 layui-hide' : 'layui-col-xs3 layui-col-md3 layui-col-lg3'}">
                     <div class="layui-card">
                         <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>影响地区</span></div>
                         <div  class="layui-card-body warn-card-body-height">
@@ -98,7 +98,7 @@
                 </div>
 
                 <!-- 预警内容 -->
-                <div th:class="${session.employee.level eq '2' ? 'layui-col-xs8 layui-col-md8 layui-col-lg8' : 'layui-col-xs5 layui-col-md5 layui-col-lg5'}">
+                <div th:class="${session.employee.level eq '3' ? 'layui-col-xs8 layui-col-md8 layui-col-lg8' : 'layui-col-xs5 layui-col-md5 layui-col-lg5'}">
                     <div class="layui-card">
                         <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon warn-card-hader-icon">&#xe618;</i>预警编辑</span></div>
                         <div  class="layui-card-body warn-card-content-list">
