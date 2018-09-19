@@ -69,7 +69,9 @@
             </otherwise>
         </choose>
     </select>
-    
+
+
+    <!--微信接口获取当前预警信息-->
     <select id="getWechatWarnInfo" resultType="map">
 
         select

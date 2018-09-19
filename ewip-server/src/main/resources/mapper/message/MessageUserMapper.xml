@@ -28,23 +28,21 @@
     <select id="selectByMessageId" resultMap="BaseUserResultMap">
         SELECT
             u.id,
-            u.name user_name,
-            u.code user_code,
+            u. NAME user_name,
+            u. CODE user_code,
             u.longitude,
             u.latitude,
             u.altitude,
-            u.channel_id,
-            c.name channel_name,
-            c.code channel_code,
-            u.user_group_id,
+            mu.channel_id,
+            c. NAME channel_name,
+            c. CODE channel_code,
+            mu.user_group_id,
             mu.user_group_name
         FROM
-            user u
-        LEFT JOIN message_user mu on mu.user_group_id = u.user_group_id
-        LEFT JOIN channel c on c.id = u.channel_id
+            message_user mu
+        LEFT JOIN user u on mu.user_group_id = u.user_group_id
+        LEFT JOIN channel c on c.id = mu.channel_id
         where mu.message_id = #{messageId}
-
-
     </select>
 
     <!-- 一键发布受众批量插入 -->

@@ -5,6 +5,7 @@ import com.hyt.server.entity.message.MessageFile;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -17,5 +18,12 @@ import java.util.List;
 public interface IMessageFileMapper extends IBaseMapper<MessageFile> {
 
     int insertList(List<MessageFile> list);
+
+    /**
+     * 根据id查询当前一键发布上传文件信息
+     * @param map
+     * @return
+     */
+    List<MessageFile> selectByMessageId(Map<String, Object> map);
 
 }

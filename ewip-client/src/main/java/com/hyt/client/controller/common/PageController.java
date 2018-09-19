@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Copyright (C), 2015-2018
  * @FileName: PageController
@@ -62,14 +65,14 @@ public class PageController {
      *  页面跳转通用方法
      * @param model  模块目录
      * @param name   模块名称
-     * @param option 模块操作
+     * @param option 传输数据
      * @return
      */
     @RequestMapping("/page/{model}/{name}/{option}")
     public ModelAndView page(@PathVariable("model") String model,@PathVariable("name") String name, @PathVariable("option") String option){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName(model + "/" + name);
-        return mv;
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", option);
+        return new ModelAndView(model + "/" + name, map);
     }
 
 }

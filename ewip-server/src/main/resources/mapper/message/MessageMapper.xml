@@ -15,4 +15,46 @@
     </resultMap>
 
 
+    <!-- 分页查询一键发布列表信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+            id,
+            title,
+            organization_id,
+            organization_name,
+            area_id,
+            area_name,
+            type,
+            send_time
+        FROM message where 1=1
+        <if test="id != null and id != ''">AND id = #{id}</if>
+        <if test="title != null and title != ''">AND title LIKE '${title}%'</if>
+        <if test="type != null and type != ''">AND type = #{type}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY send_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <!--根据ID查询一键发布信息-->
+
+    <select id="selectByMessageId" resultMap="BaseResultMap">
+        select
+            id,
+            organization_id,
+            organization_name,
+            area_id,
+            area_name,
+            title,
+            type,
+            send_time
+        FROM message
+        where id = #{messageId}
+    </select>
+
 </mapper>

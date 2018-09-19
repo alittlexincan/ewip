@@ -21,4 +21,16 @@
         </foreach>
     </insert>
 
+    <select id="selectByMessageId" resultMap="BaseResultMap">
+        SELECT
+            id,
+            message_id,
+            name,
+            size,
+            url
+        FROM
+            message_file
+        where message_id = #{messageId}
+    </select>
+
 </mapper>

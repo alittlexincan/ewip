@@ -1,7 +1,11 @@
 package com.hyt.server.service.impl.message;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hyt.server.config.common.page.MybatisPage;
 import com.hyt.server.config.common.universal.AbstractService;
 import com.hyt.server.entity.message.Message;
 import com.hyt.server.entity.message.MessageContent;
@@ -47,6 +51,50 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Autowired
     private IPublishService publishService;
 
+
+    @Override
+    public PageInfo<Message> selectAll(Map<String, Object> map) {
+        MybatisPage.getPageSize(map);
+        PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
+        List<Message> areaList = this.messageMapper.findAll(map);
+        return new PageInfo<>(areaList);
+    }
+
+
+    /**
+     * 根据ID查询一键发布信息
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public JSONObject detail(Map<String, Object> map) {
+
+        String messageId = map.get("messageId").toString();
+
+        // 1：根据ID查询对应一键发布信息
+        Message message = this.messageMapper.selectByMessageId(map);
+
+        // 2：组装一键发布基本信息
+        JSONObject result = (JSONObject) JSON.toJSON(message);
+
+        // 3：组装一键发布内容,渠道，地区信息
+        this.getMessageContentInfo(result, messageId);
+
+        // 4：组装一键发布群组、受众
+        this.getMessaggeUserInfo(result, messageId);
+
+        // 5：组装一键发布文件信息
+        this.getMessageFileInfo(result, messageId);
+
+        // 6：统计用户组对应受众个数
+        this.executeData(result);
+        System.out.println(result);
+
+        return result;
+    }
+
     /**
      * 添加一键发布相关信息
      * 1: 添加一键发布基础信息
@@ -60,7 +108,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Override
     @Transactional
     public Message insert(Map<String, Object> map) {
-
 
         JSONObject json = new JSONObject(map);
 
@@ -215,6 +262,16 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
 
     /**
+     * 根据id获取一键发布基本信息
+     * @param map
+     * @return
+     */
+    private JSONObject getMessageInfo(Map<String, Object> map){
+        Message message = this.messageMapper.selectByMessageId(map);
+        return (JSONObject) JSON.toJSON(message);
+    }
+
+    /**
      * 根据id获取预警内容信息
      * @param result
      * @param messageId
@@ -329,5 +386,58 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
             result.put("user", user);
             result.put("group", group);
         }
+    }
+
+    /**
+     * 根据id获取一键发布上传文件信息
+     * @param messageId
+     * @return
+     */
+    private void getMessageFileInfo(JSONObject result, String messageId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("messageId", messageId);
+        List<MessageFile> list = this.messageFileMapper.selectByMessageId(map);
+        if(list.size() > 0){
+            JSONArray fileArray = new JSONArray();
+            list.forEach(file -> {
+                JSONObject json = new JSONObject();
+                json.put("name", file.getName());
+                json.put("size", file.getSize());
+                json.put("url", file.getUrl());
+                fileArray.add(json);
+            });
+            result.put("files",fileArray);
+        }else {
+            result.put("files", new JSONArray());
+        }
+    }
+
+    /**
+     * 数据处理
+     * @param json
+     */
+    private void executeData(JSONObject json){
+        JSONArray channels = json.getJSONArray("channel");
+        JSONObject group = json.getJSONObject("group");
+        JSONObject user = json.getJSONObject("user");
+        channels.forEach( channel -> {
+            JSONObject chn = (JSONObject) channel;
+            String channelId = chn.getString("channelId");
+            JSONArray groups = group.getJSONArray(channelId);
+            if(groups!=null){
+                groups.forEach(gro -> {
+                    JSONObject g = (JSONObject) gro;
+                    JSONArray arr = user.getJSONArray(g.getString("userGroupId"));
+                    int num = 0;
+                    for (int i = 0; i<arr.size(); i++){
+                       JSONObject us = arr.getJSONObject(i);
+                        if(us.getString("userName")!=null) num++;
+                    }
+                    g.put("userGroupName", g.getString("userGroupName") + (num == 0 ? "" : "(" + num + ")"));
+
+                });
+            }
+        });
+
     }
 }
