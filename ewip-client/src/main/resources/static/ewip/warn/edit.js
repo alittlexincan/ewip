@@ -190,8 +190,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             var areas = new Set()
                 ,editTime = $(".basis #editTime").val()
                 ,warnType = $(".basis select[name='warnType']").val()
-                ,disasterName = $(".basis input[name='disasterName']").val() || result.disasterName
-                ,disasterColor = $(".basis select[name='disasterColor']").val() || result.disasterColor
+                ,disasterName = result.disasterName || $(".basis input[name='disasterName']").val()
+                ,disasterColor = result.disasterColor || $(".basis select[name='disasterColor']").val()
                 ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
             if(warnType == "Test"){
                 title = "测试："+title;
@@ -303,7 +303,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         ,warnType = $(".basis select[name='warnType']").val()
                         ,disasterName = $(".basis #disasterName").val()
                         ,disasterColor = $(".basis select[name='disasterColor']").val()
-                        ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                        ,title = result.area[0].areaName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
                     if(warnType == "Test"){
                         title = "测试："+title;
                     }
@@ -314,14 +314,14 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         // 循环地区 预警内容追加
                         result.area.forEach(function (area) {
                             areas.add(area.areaId);
-                            html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
-                            html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                            html += "						<div>"+area.areaName+"</div>";
-                            html += "					</div>";
-                            html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                            html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+ title + active.warnContent+"</textarea>";
-                            html += "					</div>";
-                            html += "				</div>";
+                            html += "<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
+                            html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                            html += "		<div>"+area.areaName+"</div>";
+                            html += "	</div>";
+                            html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                            html += "       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+ title + active.warnContent+"</textarea>";
+                            html += "	</div>";
+                            html += "</div>";
                         });
                         $(".content_"+channelId).append(html);
                         // 追加受众树
@@ -336,7 +336,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                                     }
                                     return id.substring(1);
                                 },
-                                "organizationId": employee.organizationId,
+                                // "organizationId": employee.organizationId,
                                 "channelId":channelId
                             }
                             ,url: '/client/tree/user/group/count'
@@ -584,7 +584,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     };
 
     /**
-     * 初始化加载群组树
+     * 初始化加载地区树
      */
     var initAreaTree =  zTree.async({
         id: "#areaTree",

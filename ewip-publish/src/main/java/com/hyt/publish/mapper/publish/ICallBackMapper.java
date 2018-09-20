@@ -13,4 +13,9 @@ public interface ICallBackMapper {
     int insertMainMsg(JSONObject json);
 
     int insertChildMsg(JSONArray array);
+
+    int insertMainWarn(JSONObject json);
+
+    int insertChildWarn(JSONArray array);
+
 }

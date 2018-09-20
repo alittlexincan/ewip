@@ -85,6 +85,7 @@ public class SmsServiceImpl implements ISmsService {
     @Override
     @Async
     public void sms(JSONObject json) {
+
         // 存储发送结果主表信息
         JSONObject main = new JSONObject();
         // 1：解析数据
@@ -170,13 +171,19 @@ public class SmsServiceImpl implements ISmsService {
             main.put("success", num);
             main.put("fail", userArray.size() - num);
             main.put("work","云MAS短信推送成功");
-            // 入库
-            System.out.println(main);
-            System.out.println(childArray);
-            // 插入回执状态主表信息
-            this.callBackMapper.insertMainMsg(main);
-            // 插入回执状态字表信息
-            this.callBackMapper.insertChildMsg(childArray);
+
+            // 如果灾种存在则说明发的是预警,否则是一键发布信息,分别存储在指定的回执状态表种
+            if(json.containsKey("disasterCode")){
+                // 插入回执状态主表信息
+                this.callBackMapper.insertMainWarn(main);
+                // 插入回执状态字表信息
+                this.callBackMapper.insertChildWarn(childArray);
+            }else {
+                // 插入回执状态主表信息
+                this.callBackMapper.insertMainMsg(main);
+                // 插入回执状态字表信息
+                this.callBackMapper.insertChildMsg(childArray);
+            }
         }
     }
 

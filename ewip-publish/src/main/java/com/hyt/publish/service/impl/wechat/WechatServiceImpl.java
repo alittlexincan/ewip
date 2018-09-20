@@ -111,10 +111,16 @@ public class WechatServiceImpl implements IWechatService {
         }else {
             result = this.sendWarnTemplate(json, accessToken);
         }
-        // 入库
-        System.out.println(result);
-        // 插入回执状态主表信息
-        this.callBackMapper.insertMainMsg(result);
+
+        // 如果灾种存在则说明发的是预警,否则是一键发布信息,分别存储在指定的回执状态表种
+        if(json.containsKey("disasterCode")){
+            // 插入回执状态主表信息
+            this.callBackMapper.insertMainWarn(result);
+        }else {
+            // 插入回执状态主表信息
+            this.callBackMapper.insertMainMsg(result);
+        }
+
     }
 
     /**
