@@ -51,7 +51,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Autowired
     private IPublishService publishService;
 
-
     @Override
     public PageInfo<Message> selectAll(Map<String, Object> map) {
         MybatisPage.getPageSize(map);
@@ -70,28 +69,19 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Override
     @Transactional
     public JSONObject detail(Map<String, Object> map) {
-
         String messageId = map.get("messageId").toString();
-
         // 1：根据ID查询对应一键发布信息
         Message message = this.messageMapper.selectByMessageId(map);
-
         // 2：组装一键发布基本信息
         JSONObject result = (JSONObject) JSON.toJSON(message);
-
         // 3：组装一键发布内容,渠道，地区信息
         this.getMessageContentInfo(result, messageId);
-
         // 4：组装一键发布群组、受众
         this.getMessaggeUserInfo(result, messageId);
-
         // 5：组装一键发布文件信息
         this.getMessageFileInfo(result, messageId);
-
         // 6：统计用户组对应受众个数
         this.executeData(result);
-        System.out.println(result);
-
         return result;
     }
 
@@ -139,7 +129,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         // 组装一键发布群组、受众
         this.getMessaggeUserInfo(json, messageId);
 
-        System.out.println(json);
+        json.put("id",messageId);
         Map<String, Object> param = json;
 
         // 调用分发平台
@@ -440,4 +430,5 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         });
 
     }
+
 }

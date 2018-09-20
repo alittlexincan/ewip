@@ -10,5 +10,5 @@ import com.alibaba.fastjson.JSONObject;
  */
 public interface ISmsService {
 
-    JSONObject sms(JSONObject json);
+    void sms(JSONObject json);
 }

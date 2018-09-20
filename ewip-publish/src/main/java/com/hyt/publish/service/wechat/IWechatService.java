@@ -10,6 +10,6 @@ import com.alibaba.fastjson.JSONObject;
  */
 public interface IWechatService {
 
-    JSONObject wechat(JSONObject json);
+    void wechat(JSONObject json);
 
 }

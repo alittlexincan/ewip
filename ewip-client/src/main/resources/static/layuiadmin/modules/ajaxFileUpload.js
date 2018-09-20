@@ -90,13 +90,13 @@ layui.define(function(exports){
                         status = isTimeout != "timeout" ? "success" : "error";
                         // Make sure that the request was successful or notmodified
                         if ( status != "error" ){
-                            // process the data (runs the xml through httpData regardless of callback)
+                            // process the data (runs the xml through httpData regardless of publish)
                             var data = jQuery.uploadHttpData( xml, s.dataType );
-                            // If a local callback was specified, fire it and pass it the data
+                            // If a local publish was specified, fire it and pass it the data
                             if ( s.success )
                                 s.success( data, status );
 
-                            // Fire the global callback
+                            // Fire the global publish
                             if( s.global )
                                 jQuery.event.trigger( "ajaxSuccess", [xml, s] );
                         } else
@@ -196,11 +196,11 @@ layui.define(function(exports){
         },
 
         handleError: function( s, xml, status, e ) {
-            // If a local callback was specified, fire it
+            // If a local publish was specified, fire it
             if ( s.error )
                 s.error( xml, status, e );
 
-            // Fire the global callback
+            // Fire the global publish
             if ( s.global )
                 jQuery.event.trigger( "ajaxError", [xml, s, e] );
         }

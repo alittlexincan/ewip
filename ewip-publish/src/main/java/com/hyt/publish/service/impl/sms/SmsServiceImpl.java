@@ -2,6 +2,7 @@ package com.hyt.publish.service.impl.sms;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hyt.publish.mapper.publish.ICallBackMapper;
 import com.hyt.publish.service.sms.ISmsService;
 import com.xincan.utils.md5.MD5Util;
 import lombok.extern.slf4j.Slf4j;
@@ -69,7 +70,10 @@ public class SmsServiceImpl implements ISmsService {
     private Integer number;
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private ICallBackMapper callBackMapper;
 
     /**
      * 短信发送
@@ -80,12 +84,12 @@ public class SmsServiceImpl implements ISmsService {
      */
     @Override
     @Async
-    public JSONObject sms(JSONObject json) {
-        // 返回结果信息
-        JSONObject result = new JSONObject();
+    public void sms(JSONObject json) {
+        // 存储发送结果主表信息
+        JSONObject main = new JSONObject();
         // 1：解析数据
         JSONObject sendMessage = setMessage(json);
-        // 获取发送用户和内容
+        // 获取发送用户
         JSONArray userArray = sendMessage.getJSONArray("userArray");
         // 获取发送内容
         String content = sendMessage.getString("content");
@@ -99,33 +103,81 @@ public class SmsServiceImpl implements ISmsService {
         // 获取access_token
         String access_token = authorize.getString("access_token");
         if(mas_user_id == null){
-            result.put("status", 500);
-            result.put("message", "短信发送授权失败");
             log.info("短信发送授权失败");
-            return result;
+            main.put("messageId", json.getString("id"));
+            main.put("channelCode", "SMS");
+            main.put("total", userArray.size());
+            main.put("success", 0);
+            main.put("fail", 0);
+            main.put("work","云MAS短信发送授权失败");
         }else {
-            // 获取用户总个数
-            int count = userArray.size();
-            for (int i = 0; i < userArray.size(); i += this.number) {
-                if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
-                    this.number = count - i;
-                }
-                StringBuilder sb = new StringBuilder();
-                userArray.subList(i, i + this.number).forEach( u -> {
-                    sb.append("," + u);
-                });
+
+            // 存储发送结果字表信息
+            JSONArray childArray = new JSONArray();
+            // 发送速率开始时间（限制10条/秒）
+            long start = System.currentTimeMillis();
+            int num = 0;
+            for (int i = 0; i < userArray.size(); i++) {
+                // 受众编码
+                String phone = userArray.getString(i);
                 // 拼接发送参数
                 JSONObject param = new JSONObject();
                 param.put("mas_user_id", mas_user_id);
                 param.put("access_token", access_token);
                 param.put("content", content);
-                param.put("userList", sb.toString().substring(1));
+                param.put("userList", phone);
                 // 短信发送
-                result = send(param);
-                log.info("按每200条短信发送批次用户ID：【" + sb.toString().substring(1) +"】,发送结果：" + result);
+                JSONObject send = send(param);
+                // 短信回执信息
+                String retCode = send.getString("RET-CODE");
+                if(retCode.equals("SC:0000")){
+                    num++;
+                    // 发送成功记录
+                    JSONObject success = new JSONObject();
+                    success.put("messageId",json.getString("id"));
+                    success.put("channelCode", "SMS");
+                    success.put("code", phone);
+                    success.put("status", 0);
+                    childArray.add(success);
+                }else{
+                    // 发送失败记录
+                    JSONObject fail = new JSONObject();
+                    fail.put("messageId",json.getString("id"));
+                    fail.put("channelCode", "SMS");
+                    fail.put("code", phone);
+                    fail.put("status", 1);
+                    childArray.add(fail);
+                }
+                // 短信限流处理
+                if((i+1)/10==0){
+                    // 发送速率结束时间
+                    long end = System.currentTimeMillis();
+                    // 计算时间差，如果小于1秒则等待时间差正好凑够1秒，为了防止有误在加50毫秒间隙，官方要求10条/秒，要留够时间间隙
+                    long res = end - start;
+                    if(res < 1000){
+                        try{
+                            Thread.sleep(1000- res + 50);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                    start = start + 1000 + 50;
+                }
             }
+            main.put("messageId", json.getString("id"));
+            main.put("channelCode", "SMS");
+            main.put("total", userArray.size());
+            main.put("success", num);
+            main.put("fail", userArray.size() - num);
+            main.put("work","云MAS短信推送成功");
+            // 入库
+            System.out.println(main);
+            System.out.println(childArray);
+            // 插入回执状态主表信息
+            this.callBackMapper.insertMainMsg(main);
+            // 插入回执状态字表信息
+            this.callBackMapper.insertChildMsg(childArray);
         }
-        return result;
     }
 
 
@@ -135,8 +187,6 @@ public class SmsServiceImpl implements ISmsService {
      * @return
      */
     private JSONObject send(JSONObject json){
-        // 返回结果信息
-        JSONObject result = new JSONObject();
         String mas_user_id = json.getString("mas_user_id")
                 ,userList = json.getString("userList")
                 ,content = json.getString("content")
@@ -147,23 +197,9 @@ public class SmsServiceImpl implements ISmsService {
         String sendUrl = this.sendUrl + "?mas_user_id=" + mas_user_id + "&mobiles=" + userList + "&content=" + content + "&sign=" + this.sign + "&serial=&mac=" + mac;
         log.info("短信发送URL：【" + sendUrl + "】");
         // 5：短信发送
-        JSONObject send = this.restTemplate.postForObject(sendUrl, "", JSONObject.class);
-        log.info("短信发送返回信息：【" + send + "】");
-        String retCode = send.getString("RET-CODE");
-        if (retCode == null) {
-            result.put("status",500);
-            result.put("message","短信发送失败");
-            log.info("短信发送失败");
-            return result;
-        }else {
-            result.put("status",200);
-            result.put("message","短信发送成功");
-            log.info("短信发送成功");
-            return result;
-        }
+        return this.restTemplate.postForObject(sendUrl, "", JSONObject.class);
+
     }
-
-
 
     /**
      * 获取短信发送信息和受众
