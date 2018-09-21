@@ -17,28 +17,25 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
         ,disaster = layui.disaster;
 
     /**
-     * 加载表格
+     * 初始化发布时间
      */
-    // table.render({
-    //     id: 'table'
-    //     ,elem: '#table'
-    //     ,url:''
-    //     ,page:false
-    //     ,even: true
-    //     ,limits:[10,20,50,100]
-    //     ,cols: [[
-    //         {type: 'checkbox'}
-    //         ,{type: 'numbers', title: '编号'}
-    //         ,{field: 'code', title: '地区编码', sort: true}
-    //         ,{field: 'areaName', title: '地区名称', sort: true}
-    //         ,{field: 'parentName', title: '上级地区', sort: true}
-    //         ,{field: 'level', title: '地区级别',sort: true}
-    //         ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
-    //     ]]
-    //     ,parseData:{}
-    // });
-
-
+    laydate.render({
+        elem: '#startTime'
+        ,type: 'date'
+        ,theme: 'molv'
+        ,value: new Date()
+        ,format: 'yyyy-MM-dd'
+    });
+    /**
+     * 初始化预计发生时间
+     */
+    laydate.render({
+        elem: '#endTime'
+        ,type: 'date'
+        ,value: new Date()
+        ,theme: 'molv'
+        ,format: 'yyyy-MM-dd'
+    });
 
     var active = {
 
@@ -175,6 +172,9 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
                     title : {
                         text: title + '渠道发布统计',
                     },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
                     legend: {
                         data:['总数','成功数']
                     },
@@ -276,30 +276,6 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
             });
         }
     };
-
-
-    /**
-     * 初始化发布时间
-     */
-    laydate.render({
-        elem: '#startTime'
-        ,type: 'date'
-        ,theme: 'molv'
-        ,value: new Date()
-        ,format: 'yyyy-MM-dd'
-    });
-    /**
-     * 初始化预计发生时间
-     */
-    laydate.render({
-        elem: '#endTime'
-        ,type: 'date'
-        ,value: new Date()
-        ,theme: 'molv'
-        ,format: 'yyyy-MM-dd'
-    });
-
-
 
     /**
      * 监听头部搜索

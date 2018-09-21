@@ -46,6 +46,19 @@ public class MessageMonitorServiceImpl  extends AbstractService<MessageMonitor> 
     }
 
     /**
+     * 根据条件查询一键发布信息受众接收详情
+     * @param map
+     * @return
+     */
+    @Override
+    public PageInfo<MessageMonitor> findMessageMonitorUsers(Map<String, Object> map){
+        MybatisPage.getPageSize(map);
+        PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
+        List<MessageMonitor> areaList = this.messageMonitorMapper.findMessageMonitorUsers(map);
+        return new PageInfo<>(areaList);
+    }
+
+    /**
      * 根据ID查询一键发布信息
      *
      * @param map

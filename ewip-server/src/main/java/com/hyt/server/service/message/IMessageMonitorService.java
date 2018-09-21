@@ -26,6 +26,13 @@ public interface IMessageMonitorService  extends IBaseService<MessageMonitor> {
     PageInfo<MessageMonitor> findMessageMonitor(Map<String, Object> map);
 
     /**
+     * 根据条件查询一键发布信息受众接收详情
+     * @param map
+     * @return
+     */
+    PageInfo<MessageMonitor> findMessageMonitorUsers(Map<String, Object> map);
+
+    /**
      * 根据ID查询一键发布信息（饼图）
      * @param map
      * @return

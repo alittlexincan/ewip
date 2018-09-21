@@ -1,8 +1,10 @@
 package com.hyt.server.entity.message;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * Copyright (C), 2015-2018
@@ -41,9 +43,18 @@ public class MessageMonitor{
 
     private int fail;
 
+    // 终端编码
+    private String code;
+
+    // 接收结果
+    private int status;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
     public MessageMonitor() {}
 
-    public MessageMonitor(String messageId, int type, int value, String name, String channelName, String channelCode, int total, int success, int fail) {
+    public MessageMonitor(String messageId, int type, int value, String name, String channelName, String channelCode, int total, int success, int fail, String code, int status, Date createTime) {
         this.messageId = messageId;
         this.type = type;
         this.value = value;
@@ -53,6 +64,9 @@ public class MessageMonitor{
         this.total = total;
         this.success = success;
         this.fail = fail;
+        this.code = code;
+        this.status = status;
+        this.createTime = createTime;
     }
 
     public String getMessageId() {
@@ -125,5 +139,29 @@ public class MessageMonitor{
 
     public void setFail(int fail) {
         this.fail = fail;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

@@ -76,11 +76,31 @@ layui.use(["table","form","laytpl","layer","selectTree","index"], function(){
          * 列表中：删除选中的地区信息
          * @param obj
          */
-        'detailOption': function (obj) {
+        'detailOption': (obj) => {
             var index = layer.open({
                 title: "<i class='layui-icon layui-icon-form'></i>信息详情"
                 ,type: 2
                 ,content: "/client/page/message/detail/" + obj.data.id
+                ,success: (layero, index) => {
+                    setTimeout( () => {
+                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
+                        });
+                    }, 500);
+                }
+            });
+            layer.full(index);
+        }
+        /**
+         * 列表中：删除选中的地区信息
+         * @param obj
+         */
+        ,"totalOption": (obj) => {
+            var index = layer.open({
+                title: "<i class='layui-icon layui-icon-form'></i>信息统计"
+                ,type: 2
+                ,anim: 1
+                ,content: "/client/page/message/oneDetail?id=" + obj.data.id + "&type=" + obj.data.type
                 ,success: (layero, index) => {
                     setTimeout( () => {
                         layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {

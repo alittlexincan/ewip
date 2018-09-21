@@ -26,6 +26,13 @@ public interface IMessageMonitorMapper  extends IBaseMapper<MessageMonitor> {
     List<MessageMonitor> findMessageMonitor(Map<String, Object> map);
 
     /**
+     * 根据条件查询一键发布信息受众接收详情
+     * @param map
+     * @return
+     */
+    List<MessageMonitor> findMessageMonitorUsers(Map<String, Object> map);
+
+    /**
      * 根据一键发布类型进行统计（饼图）
      * @param map
      * @return

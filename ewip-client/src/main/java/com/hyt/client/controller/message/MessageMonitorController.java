@@ -52,4 +52,15 @@ public class MessageMonitorController {
     JSONObject findMessageMonitor(@RequestParam Map<String, Object> map){
         return this.messageMonitorService.findMessageMonitor(map);
     }
+
+    /**
+     * 根据条件查询一键发布信息受众接收详情
+     * @param map
+     * @return
+     */
+    @GetMapping("/users")
+    JSONObject findMessageMonitorUsers(@RequestParam Map<String, Object> map){
+        return this.messageMonitorService.findMessageMonitorUsers(map);
+    }
+
 }

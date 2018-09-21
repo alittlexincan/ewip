@@ -11,6 +11,10 @@
         <result column="total" jdbcType="BIGINT" property="total"/>
         <result column="success" jdbcType="BIGINT" property="success"/>
         <result column="fail" jdbcType="BIGINT" property="fail"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="status" jdbcType="SMALLINT" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+
     </resultMap>
 
     <!--统计列表信息-->
@@ -27,7 +31,7 @@
         LEFT JOIN  channel c ON mcm.channel_code = c.code
         WHERE 1=1
         <if test="messageId != null and messageId != ''">
-            AND message_id = #{messageId}
+            AND mcm.message_id = #{messageId}
         </if>
         <if test="startTime != null and startTime != ''">
             <![CDATA[
@@ -49,6 +53,38 @@
             </otherwise>
         </choose>
     </select>
+
+    <!--根据条件查询一键发布信息受众接收详情-->
+    <select id="findMessageMonitorUsers" resultMap="BaseResultMap">
+        SELECT
+            mcc.message_id,
+            mcc.channel_code,
+            c.name channel_name,
+            mcc.code,
+            mcc.status,
+            mcc.create_time
+        FROM message_callback_child mcc
+        LEFT JOIN  channel c ON mcc.channel_code = c.code
+        WHERE 1=1
+        <if test="messageId != null and messageId != ''">
+            AND mcc.message_id = #{messageId}
+        </if>
+        <if test="channelCode != null and channelCode != ''">
+            AND mcc.channel_code = #{channelCode}
+        </if>
+        <if test="code != null and code != ''">
+            AND mcc.code = #{code}
+        </if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY mcc.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
 
     <!-- 根据一键发布类型进行统计（饼图） -->
     <select id="findMessageTypeTotal" resultMap="BaseResultMap">
@@ -113,6 +149,5 @@
             ]]>
         </if>
         GROUP BY mcm.channel_code
-
     </select>
 </mapper>

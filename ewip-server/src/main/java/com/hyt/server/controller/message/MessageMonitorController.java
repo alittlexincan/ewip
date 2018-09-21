@@ -45,6 +45,23 @@ public class MessageMonitorController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    /**
+     * 统计一键发布列表信息
+     * @param map
+     * @return
+     */
+    @ApiOperation(value="一键发布信息受众详情统计",httpMethod="GET",notes="根据条件查询一键发布信息受众接收详情（列表）")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="messageId", value="一键消息ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="channelCode", value="渠道编码", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="code", value="受众编码", required = true, dataType = "String", paramType = "query")
+    })
+    @GetMapping("/users")
+    public ResultObject<Object> findMessageMonitorUsers(@ApiParam(hidden = true) @RequestParam Map<String, Object> map){
+        PageInfo<MessageMonitor> pageInfo = this.messageMonitorService.findMessageMonitorUsers(map);
+        return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
+    }
+
 
     @ApiOperation(value="一键发布信息类型占比",httpMethod="POST",notes="统计一键发布信息类型占比（饼图）")
     @ApiImplicitParams({

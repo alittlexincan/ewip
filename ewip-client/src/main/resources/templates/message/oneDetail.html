@@ -14,11 +14,27 @@
 
     <!--消息id-->
     <input id="messageId" th:value="${id}" hidden />
+    <input id="type" th:value="${type}" hidden />
 
     <div class="layui-fluid one">
         <div class="layui-form layui-form-pane">
             <div class="layui-row layui-col-space5 basis">
-                <!-- 基础信息 -->
+                <!-- 统计图 -->
+                <div class="layui-col-xs12 layui-col-md12 layui-col-lg12">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-chart-screen warn-card-hader-icon"></i>一键发布统计信息</span></div>
+                        <div class="layui-card-body">
+                            <div class="layui-row layui-col-space5">
+                                <!--统计渠道发布成功树柱状图-->
+                                <div id="column" class="layui-col-xs12 layui-col-md12 layui-col-lg12" style="width:100%;height: 300px">
+                                    <div class="echarts-no-data"><span>暂无数据</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 根据条件查询受众 -->
                 <div class="layui-col-xs12 layui-col-md12 layui-col-lg12">
                     <div class="layui-card">
                         <div class="layui-card-header"> <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-search warn-card-hader-icon"></i>查询条件</span></div>
@@ -31,12 +47,6 @@
                                         </div>
                                     </div>
                                     <div class="layui-inline">
-                                        <div class="layui-input-inline">
-                                            <input type="text" id="endTime" name="endTime" placeholder="结束时间" autocomplete="off" class="layui-input">
-                                        </div>
-                                    </div>
-
-                                    <div class="layui-inline">
                                         <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
                                             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                                         </button>
@@ -46,34 +56,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 统计图 -->
-                <div class="layui-col-xs12 layui-col-md12 layui-col-lg12">
-                    <div class="layui-card">
-                        <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-chart-screen warn-card-hader-icon"></i>一键发布统计信息</span></div>
-                        <div class="layui-card-body">
-                            <div class="layui-row layui-col-space5">
-                                <!--统计发布渠道占比饼状图-->
-                                <div id="pie" class="layui-col-xs4 layui-col-md4 layui-col-lg4" style="height: 300px">
-                                    <div class="echarts-no-data"><span>暂无数据</span></div>
-                                </div>
-                                <!--统计渠道发布成功树柱状图-->
-                                <div id="column" class="layui-col-xs8 layui-col-md8 layui-col-lg8" style="height: 300px">
-                                    <div class="echarts-no-data"><span>暂无数据</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 发布渠道 -->
-                <div class="layui-col-xs12 layui-col-md12 layui-col-lg12">
-                    <div class="layui-card">
-                        <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-table warn-card-hader-icon"></i>统计信息</span></div>
-                        <div class="layui-card-body">
                             <!-- 列表信息 -->
                             <table class="layui-table" lay-filter="table" id="table"></table>
                         </div>
@@ -87,6 +70,6 @@
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
     <script th:src="@{/plugins/echarts/echarts.min.js}" ></script>
     <script th:src="@{/plugins/echarts/walden.js}" ></script>
-    <script th:src="@{/ewip/message/total.js}" charset="utf-8"></script>
+    <script th:src="@{/ewip/message/oneDetail.js}" charset="utf-8"></script>
     </body>
 </html>

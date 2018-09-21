@@ -29,6 +29,14 @@ public interface IMessageMonitorService {
     JSONObject findMessageMonitor(@RequestParam Map<String, Object> map);
 
     /**
+     * 根据条件查询一键发布信息受众接收详情
+     * @param map
+     * @return
+     */
+    @GetMapping("/message/monitor/users")
+    JSONObject findMessageMonitorUsers(@RequestParam Map<String, Object> map);
+
+    /**
      * 根据一键发布信息类型占比进行统计（饼图）
      * @param map
      * @return
