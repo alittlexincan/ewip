@@ -94,6 +94,13 @@ layui.use(["table","form","laytpl","layer","selectTree","index"], function(){
     };
 
     /**
+     * 监听头部搜索
+     */
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
+    });
+
+    /**
      * 监听列表中按钮事件
      */
     table.on('tool(table)', function(obj){

@@ -131,7 +131,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
         json.put("id",messageId);
         Map<String, Object> param = json;
-
+        System.out.println(json);
         // 调用分发平台
         this.publishService.publish(param);
 
@@ -213,7 +213,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
             for(int j = 0; j<groupArray.size(); j++){
                 JSONObject userGroup = groupArray.getJSONObject(j);
                 String userGroupName = userGroup.getString("userGroupName");
-                userGroupName = userGroupName.substring(0,userGroupName.indexOf("("));
+                if(userGroupName.indexOf("(") > -1){
+                    userGroupName = userGroupName.substring(0,userGroupName.indexOf("("));
+                }
                 MessageUser messageUser = new MessageUser();
                 messageUser.setMessageId(messageId);
                 messageUser.setChannelId(channel.getString("channelId"));
