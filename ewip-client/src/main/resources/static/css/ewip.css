@@ -43,7 +43,9 @@ website:    http://code.google.com/p/jquerytree/
 }
 
 /**更改layui start*/
-
+.layui-fluid{
+    padding: 5px;
+}
 /*表格单元格高度为自适应*/
 .layui-table-cell{height: auto;}
 

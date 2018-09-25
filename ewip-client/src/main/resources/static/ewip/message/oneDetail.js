@@ -17,10 +17,44 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
         ,disaster = layui.disaster;
 
     var active = {
+
+        /**
+         * 查询发布手段下拉列表
+         * @param callback
+         */
+        "selectChannel": (callback) =>{
+            $.ajax({
+                async:true
+                ,type: "POST"
+                ,data: {type:0}
+                ,url: "/client/channel/list"
+                ,dataType: 'json'
+                ,success: function(json){
+                    callback(json.data.length > 0 ? json.data : null);
+                }
+            });
+        }
+
+        /**
+         * 修改后重新刷新列表，curr: 1重新从第 1 页开始
+         */
+        ,"reloadTable": (param) => {
+            table.reload('table', {
+                page: {
+                    curr: 1
+                }
+                ,where: { //设定异步数据接口的额外参数，任意设
+                    channelCode: param.channelCode
+                    ,name: param.name
+                    ,messageId: $("#messageId").val()
+            }
+            });
+        }
+
         /**
          * 统计渠道发布成功树柱状图
          */
-        "channelColumnTotal": (id) => {
+        ,"channelColumnTotal": (id) => {
             var channelTotal = (data)=>{
                 var option = {
                     title : {
@@ -105,6 +139,7 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
          * @param result
          */
         ,"initTableTotal": () => {
+            console.log($("#channelCode").val());
             //展示已知数据
             table.render({
                 id: 'table'
@@ -114,14 +149,13 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
                 ,even: true
                 ,limits:[10,20,50,100]
                 ,where: { //设定异步数据接口的额外参数，任意设
-                    channelCode: $("#channelCode").val()
-                    ,code: $("#code").val()
-                    ,messageId: $("#messageId").val()
+                    messageId: $("#messageId").val()
                 }
                 ,cols: [[
                     {type: 'checkbox'}
                     ,{type: 'numbers', title: '编号'}
                     ,{field: 'channelName', title: '渠道名称', sort: true}
+                    ,{field: 'name', title: '终端名称', sort: true}
                     ,{field: 'code', title: '终端编码', sort: true}
                     ,{field: 'status', title: '接收状态', sort: true, templet: active.statusFormat}
                 ]]
@@ -129,12 +163,32 @@ layui.use(['table','form','element','zTree','laydate' , 'disaster'], function(){
         }
     };
 
+    /**
+     * 监听头部搜索
+     */
+    form.on('submit(search)', function(data){
+        console.log(data);
+        active.reloadTable(data.field);
+    });
+
+    /**
+     * 初始化延迟加载
+     */
     setTimeout(()=>{
         // 统计渠道发布成功树柱状图
         active.channelColumnTotal(document.getElementById("column"));
         // 统计数据列表
         active.initTableTotal();
-    },200)
+        // 发布渠道下拉绑定
+        active.selectChannel(function (result) {
+            if(result!=null){
+                for(var i = 0; i<result.length; i++){
+                    $(".channel").append("<option value='"+result[i].code+"'>"+result[i].name+"</option>");
+                }
+            }
+            form.render('select');
+        });
+    },200);
 
 
 });

@@ -44,10 +44,10 @@ public class WarnController {
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
         JSONObject json = new JSONObject(map);
-        Warn earnConfig = JSON.parseObject(json.toJSONString(), new TypeReference<Warn>() {});
-        int num = this.warnService.insert(earnConfig);
+        Warn warn = JSON.parseObject(json.toJSONString(), new TypeReference<Warn>() {});
+        int num = this.warnService.insert(warn);
         if(num>0){
-            return ResultResponse.make(200,"添加预警配置成功",earnConfig);
+            return ResultResponse.make(200,"添加预警配置成功",warn);
         }
         return ResultResponse.make(500,"添加预警配置失败",null);
     }

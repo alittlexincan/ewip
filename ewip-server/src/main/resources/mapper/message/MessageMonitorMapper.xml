@@ -57,20 +57,25 @@
     <!--根据条件查询一键发布信息受众接收详情-->
     <select id="findMessageMonitorUsers" resultMap="BaseResultMap">
         SELECT
-            mcc.message_id,
-            mcc.channel_code,
-            c.name channel_name,
-            mcc.code,
-            mcc.status,
-            mcc.create_time
+        mcc.message_id,
+        mcc.channel_code,
+        c.name channel_name,
+        u.name,
+        mcc.code,
+        mcc.status,
+        mcc.create_time
         FROM message_callback_child mcc
         LEFT JOIN  channel c ON mcc.channel_code = c.code
+        LEFT JOIN user u ON u.code = mcc.code
         WHERE 1=1
         <if test="messageId != null and messageId != ''">
             AND mcc.message_id = #{messageId}
         </if>
         <if test="channelCode != null and channelCode != ''">
             AND mcc.channel_code = #{channelCode}
+        </if>
+        <if test="name != null and name != ''">
+            AND u.name = #{name}
         </if>
         <if test="code != null and code != ''">
             AND mcc.code = #{code}
