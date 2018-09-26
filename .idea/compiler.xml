@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ewip-client" />
         <module name="ewip-eureka" />
+        <module name="ewip-monitor" />
         <module name="ewip-publish" />
         <module name="ewip-server" />
       </profile>
@@ -16,6 +17,7 @@
       <module name="ewip" target="1.8" />
       <module name="ewip-client" target="1.8" />
       <module name="ewip-eureka" target="1.8" />
+      <module name="ewip-monitor" target="1.8" />
       <module name="ewip-publish" target="1.8" />
       <module name="ewip-server" target="1.8" />
     </bytecodeTargetLevel>

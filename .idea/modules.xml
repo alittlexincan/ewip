@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ewip.iml" filepath="$PROJECT_DIR$/ewip.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-client/ewip-client.iml" filepath="$PROJECT_DIR$/ewip-client/ewip-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-eureka/ewip-eureka.iml" filepath="$PROJECT_DIR$/ewip-eureka/ewip-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-monitor/ewip-monitor.iml" filepath="$PROJECT_DIR$/ewip-monitor/ewip-monitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-publish/ewip-publish.iml" filepath="$PROJECT_DIR$/ewip-publish/ewip-publish.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-server/ewip-server.iml" filepath="$PROJECT_DIR$/ewip-server/ewip-server.iml" />
     </modules>

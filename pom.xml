@@ -18,9 +18,14 @@
 
     <modules>
         <module>ewip-eureka</module>
-        <module>ewip-publish</module>
+        <!--前端平台-->
         <module>ewip-client</module>
+        <!--业务平台-->
         <module>ewip-server</module>
+        <!--分发平台-->
+        <module>ewip-publish</module>
+        <!--监控平台-->
+        <module>ewip-monitor</module>
 
     </modules>
 
