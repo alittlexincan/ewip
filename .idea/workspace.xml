@@ -1,18 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_44.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_module_jackson_module_parameter_names_2_9_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_autoconfigure_1_2_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_spring_boot_starter_1_2_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_20_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_xincan_xincan_api_ui_layer_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_xincan_xincan_utils_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_zaxxer_HikariCP_2_7_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_core_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_schema_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spi_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_spring_web_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger2_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_springfox_springfox_swagger_common_2_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_annotations_1_5_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_swagger_swagger_models_1_5_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_persistence_api_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_7_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_7_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_10_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_10_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_21_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mapstruct_mapstruct_1_2_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_2_15_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_autoconfigure_1_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_spring_boot_mybatis_spring_boot_starter_1_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_16_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_reflections_reflections_0_9_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_core_1_2_0_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_plugin_spring_plugin_metadata_1_2_0_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_1_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_9_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_9_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_5_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_base_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_core_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_spring_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_spring_boot_autoconfigure_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_spring_boot_starter_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__tk_mybatis_mapper_weekend_1_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ewip.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <ignored path="$PROJECT_DIR$/ewip-eureka/target/" />
+    <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
     <ignored path="$PROJECT_DIR$/ewip-client/target/" />
     <ignored path="$PROJECT_DIR$/ewip-server/target/" />
-    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
+    <ignored path="$PROJECT_DIR$/ewip-eureka/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/ewip-publish/target/" />
-    <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,135 +100,48 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
-  <component name="CompilerWorkspaceConfiguration">
-    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="ewip" />
-  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-publish/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+    <leaf>
+      <file leaf-file-name="EwipClientApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-monitor/.gitignore">
+      <file leaf-file-name="application-dev.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="190">
+              <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-eureka/.gitignore">
+      <file leaf-file-name="application-dev.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="418">
+              <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/.gitignore">
+      <file leaf-file-name="application-dev.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="133">
+              <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-        <option value="CSS File" />
-        <option value="Enum" />
-        <option value="spring-beans.schema" />
-        <option value="Interface" />
-        <option value="HTML File" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>ZTreeUserGroupResultMap</find>
-      <find>setBasis</find>
-      <find>setStrategyAndChannel</find>
-      <find>setWarn</find>
-      <find>mybatis-spring-boot-starter</find>
-      <find>spring.aop.auto</find>
-      <find>addWarnRecord</find>
-      <find>organizationc</find>
-      <find>\&quot;</find>
-      <find>lxm</find>
-      <find>removeClass</find>
-      <find>URL</find>
-      <find>responseResult</find>
-      <find>.layui-card-body .channel-list</find>
-      <find>disasterLevelZtree</find>
-      <find>active</find>
-      <find>warn-tab-next</find>
-      <find>channelOneClick</find>
-      <find>getStrategyMsg</find>
-      <find>warn-card-content-list</find>
-      <find>setGroupUsers</find>
-      <find>seContent</find>
-      <find>setContent</find>
-      <find>$(&quot;.warn-card-content-list&quot;)</find>
-      <find>请输入预警内容</find>
-      <find>country</find>
-      <find>预警信号</find>
-      <find>initAreaTree</find>
-      <find>selectChannel</find>
-      <find>reloadTable</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>策略配置ID</replace>
-      <replace>layui-col-space12</replace>
-      <replace>layui-col-space6</replace>
-      <replace>layui-col-space5</replace>
-      <replace>策略配置</replace>
-      <replace>预警配置</replace>
-      <replace>layui-col-space10</replace>
-      <replace />
-      <replace>'</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -156,57 +149,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/channel.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/user.js" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/message/MessageMonitor.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/message/MessageMonitorMapper.xml" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/message/oneDetail.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/message/oneDetail.js" />
-        <option value="$PROJECT_DIR$/ewip-monitor/pom.xml" />
-        <option value="$PROJECT_DIR$/ewip-server/pom.xml" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/EwipServerApplication.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/page/MybatisPage.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/page/MySQLBaseQuery.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultCode.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultObject.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultResponse.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/AbstractService.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/BaseModel.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/IBaseMapper.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/IBaseService.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/templates/demo/demo.html" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/DemoController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/DemoRestController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/demo/DemoController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/common/BaseController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/EwipMonitorApplication.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/druid/DruidDataSourceConfigurer.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/druid/DruidMonitorConfigurer.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/service/impl/sys/AreaServiceImpl.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/service/sys/IAreaService.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/mapper/sys/IAreaMapper.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/sys/AreaController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/mapper/sys/AreaMapper.xml" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/mybatis/MybatisConfig.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/common/PageController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/demo/DemoRestController.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/swagger/Swagger2Config.java" />
+        <option value="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" />
         <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/mvc/WebMvcConfig.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/templates/main/index.html" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/static/ewip/sys/area.js" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/entity/sys/Area.java" />
-        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/static/css/ewip.css" />
-        <option value="$PROJECT_DIR$/ewip-server/.gitignore" />
-        <option value="$PROJECT_DIR$/ewip-client/.gitignore" />
-        <option value="$PROJECT_DIR$/ewip-eureka/.gitignore" />
-        <option value="$PROJECT_DIR$/ewip-monitor/.gitignore" />
-        <option value="$PROJECT_DIR$/ewip-publish/.gitignore" />
-        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -228,10 +173,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="476" />
-    <option name="y" value="110" />
-    <option name="width" value="1364" />
-    <option name="height" value="917" />
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="698" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -239,6 +184,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,93 +197,66 @@
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
               <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name=".mvn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-eureka" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
               <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
               <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-publish" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/JetBeanWorkSpace/JavaWorkSpace/ewip/ewip-server/src/main/java/com/hyt/server/mapper/message/IMessageFileMapper.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../XincanWorkSpace/xincan-uitls" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-monitor\src\main\resources" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\ewip\message" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\templates\message" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\resources\mapper\message" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.hyt.client.service.message" />
-      <recent name="com.hyt.client.controller.message" />
-      <recent name="com.hyt.server.entity.message" />
-      <recent name="com.hyt.server.mapper.message" />
-      <recent name="com.hyt.server.service.impl.message" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\plugins\echarts" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\plugins" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\entity" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static\images\login" />
-      <recent name="E:\JetBeanWork\JavaWorkSpace\ewip\ewip-client\src\main\resources\static" />
-    </key>
-  </component>
-  <component name="RestClientSettings">
-    <option name="REQUEST_HISTORY">
-      <list>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080" />
-          <option name="urlPath" value="" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-        <RestClientRequest>
-          <option name="httpMethod" value="GET" />
-          <option name="urlBase" value="http://localhost:8080/client/" />
-          <option name="urlPath" value="" />
-          <option name="textToSend" value="" />
-          <option name="filesToSend" value="" />
-        </RestClientRequest>
-      </list>
-    </option>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -348,9 +269,8 @@
         </RuleState>
       </list>
     </option>
-    <option name="contentProportion" value="0.20973782" />
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipMonitorApplication">
+  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -369,6 +289,16 @@
         <value defaultName="singleModule" />
       </option>
       <patterns />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
     </configuration>
     <configuration name="EwipClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ewip-client" />
@@ -413,10 +343,10 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.EwipServerApplication" />
-      <item itemvalue="Spring Boot.EwipClientApplication" />
       <item itemvalue="Spring Boot.EwipEurekaApplication" />
+      <item itemvalue="Spring Boot.EwipServerApplication" />
       <item itemvalue="Spring Boot.EwipPublishApplication" />
+      <item itemvalue="Spring Boot.EwipClientApplication" />
       <item itemvalue="Spring Boot.EwipMonitorApplication" />
     </list>
   </component>
@@ -425,1055 +355,102 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6328a76d-ad40-4fc2-afc8-5f26e2072716" name="Default" comment="" />
-      <created>1524036374726</created>
+      <changelist id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="" />
+      <created>1537950330461</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1524036374726</updated>
-      <workItem from="1524036378525" duration="6616000" />
-      <workItem from="1524043442621" duration="4233000" />
-      <workItem from="1524102739356" duration="15343000" />
-      <workItem from="1524185059070" duration="3761000" />
-      <workItem from="1524460283893" duration="1937000" />
-      <workItem from="1524475433083" duration="28000" />
-      <workItem from="1524475649032" duration="1443000" />
-      <workItem from="1524531844060" duration="8942000" />
-      <workItem from="1524660986903" duration="603000" />
-      <workItem from="1524709221471" duration="388000" />
-      <workItem from="1524731050074" duration="1581000" />
-      <workItem from="1524732666952" duration="2261000" />
-      <workItem from="1524736772071" duration="217000" />
-      <workItem from="1524792782928" duration="5687000" />
-      <workItem from="1524801834159" duration="32000" />
-      <workItem from="1524830128388" duration="1680000" />
-      <workItem from="1524873564613" duration="8485000" />
-      <workItem from="1524925483472" duration="33000" />
-      <workItem from="1524969001111" duration="4022000" />
-      <workItem from="1524975238949" duration="1909000" />
-      <workItem from="1524986312986" duration="260000" />
-      <workItem from="1524990172842" duration="6191000" />
-      <workItem from="1525051055408" duration="667000" />
-      <workItem from="1525051748098" duration="44064000" />
-      <workItem from="1525138830833" duration="2588000" />
-      <workItem from="1525233523733" duration="12382000" />
-      <workItem from="1525309082906" duration="23994000" />
-      <workItem from="1525395384829" duration="29300000" />
-      <workItem from="1525503907304" duration="1823000" />
-      <workItem from="1525526233172" duration="5078000" />
-      <workItem from="1525693140282" duration="2392000" />
-      <workItem from="1525698376874" duration="2062000" />
-      <workItem from="1525750564013" duration="15374000" />
-      <workItem from="1525854784462" duration="136000" />
-      <workItem from="1525933181304" duration="8822000" />
-      <workItem from="1526002722222" duration="5285000" />
-      <workItem from="1526017000521" duration="4651000" />
-      <workItem from="1526029961672" duration="2012000" />
-      <workItem from="1526123779662" duration="2832000" />
-      <workItem from="1526130901020" duration="7339000" />
-      <workItem from="1526173397460" duration="2632000" />
-      <workItem from="1526202784529" duration="663000" />
-      <workItem from="1530262764585" duration="2152000" />
-      <workItem from="1530313911504" duration="2162000" />
-      <workItem from="1530323345042" duration="489000" />
-      <workItem from="1530324592892" duration="29000" />
-      <workItem from="1530325554482" duration="1051000" />
-      <workItem from="1530328084284" duration="1557000" />
-      <workItem from="1530368837736" duration="603000" />
-      <workItem from="1530443358013" duration="438000" />
-      <workItem from="1530501895804" duration="7000" />
-      <workItem from="1530501931583" duration="3117000" />
-      <workItem from="1530512829671" duration="8282000" />
-      <workItem from="1530526224342" duration="669000" />
-      <workItem from="1530579738328" duration="6765000" />
-      <workItem from="1530587563556" duration="27472000" />
-      <workItem from="1530621338520" duration="1026000" />
-      <workItem from="1530665860259" duration="14193000" />
-      <workItem from="1530692919582" duration="1829000" />
-      <workItem from="1530755710013" duration="11403000" />
-      <workItem from="1530784932921" duration="6889000" />
-      <workItem from="1530838178485" duration="1587000" />
-      <workItem from="1531016522642" duration="8149000" />
-      <workItem from="1531098764886" duration="2091000" />
-      <workItem from="1531116318378" duration="1291000" />
-      <workItem from="1531133509638" duration="2489000" />
-      <workItem from="1531192930712" duration="595000" />
-      <workItem from="1531203009168" duration="15260000" />
-      <workItem from="1531274454401" duration="26062000" />
-      <workItem from="1531361078241" duration="29538000" />
-      <workItem from="1531444631278" duration="18198000" />
-      <workItem from="1531478477508" duration="1033000" />
-      <workItem from="1531525895540" duration="18531000" />
-      <workItem from="1531701133048" duration="15276000" />
-      <workItem from="1531787310836" duration="37612000" />
-      <workItem from="1531873394176" duration="42078000" />
-      <workItem from="1531962118621" duration="34397000" />
-      <workItem from="1532052884376" duration="22673000" />
-      <workItem from="1532144552556" duration="12619000" />
-      <workItem from="1532239028773" duration="1016000" />
-      <workItem from="1532254799654" duration="13836000" />
-      <workItem from="1532308313901" duration="30766000" />
-      <workItem from="1532394576753" duration="34204000" />
-      <workItem from="1532483223453" duration="848000" />
-      <workItem from="1532494909876" duration="24832000" />
-      <workItem from="1532573493681" duration="30507000" />
-      <workItem from="1532656417482" duration="23961000" />
-      <workItem from="1532846940803" duration="8374000" />
-      <workItem from="1532912579289" duration="21175000" />
-      <workItem from="1532951193419" duration="544000" />
-      <workItem from="1532951784378" duration="2454000" />
-      <workItem from="1532954257175" duration="338000" />
-      <workItem from="1532954615115" duration="1276000" />
-      <workItem from="1533001156215" duration="1448000" />
-      <workItem from="1533002623497" duration="39054000" />
-      <workItem from="1533084994343" duration="37224000" />
-      <workItem from="1533172865315" duration="31239000" />
-      <workItem from="1533258661428" duration="31076000" />
-      <workItem from="1533448706141" duration="10801000" />
-      <workItem from="1533517281656" duration="18565000" />
-      <workItem from="1533550686198" duration="1579000" />
-      <workItem from="1533603878745" duration="46927000" />
-      <workItem from="1533687295500" duration="52379000" />
-      <workItem from="1533776676879" duration="30717000" />
-      <workItem from="1533863121009" duration="20284000" />
-      <workItem from="1533911674915" duration="6337000" />
-      <workItem from="1534125474268" duration="44721000" />
-      <workItem from="1534317428063" duration="1609000" />
-      <workItem from="1534319502153" duration="12001000" />
-      <workItem from="1534383918238" duration="17881000" />
-      <workItem from="1534752805084" duration="89744000" />
-      <workItem from="1534987722883" duration="13124000" />
-      <workItem from="1535356287327" duration="4188000" />
-      <workItem from="1535421010075" duration="15747000" />
-      <workItem from="1535510071945" duration="27689000" />
-      <workItem from="1535592539833" duration="29350000" />
-      <workItem from="1535678328085" duration="26584000" />
-      <workItem from="1536112596767" duration="24439000" />
-      <workItem from="1536196442807" duration="40312000" />
-      <workItem from="1536542653172" duration="4201000" />
-      <workItem from="1536632225520" duration="7076000" />
-      <workItem from="1536642705671" duration="14780000" />
-      <workItem from="1536717856340" duration="14874000" />
-      <workItem from="1536744606942" duration="1066000" />
-      <workItem from="1536746032180" duration="1742000" />
-      <workItem from="1536747828962" duration="346000" />
-      <workItem from="1536800548871" duration="16676000" />
-      <workItem from="1536827388018" duration="16087000" />
-      <workItem from="1537149946235" duration="17234000" />
-      <workItem from="1537242158692" duration="112763000" />
-      <workItem from="1537513285070" duration="11098000" />
-      <workItem from="1537839980234" duration="8293000" />
-      <workItem from="1537859693248" duration="15657000" />
-      <workItem from="1537928777702" duration="3222000" />
+      <updated>1537950330461</updated>
+      <workItem from="1537950333091" duration="75000" />
+      <workItem from="1537950421130" duration="72000" />
+      <workItem from="1537950508915" duration="781000" />
     </task>
-    <task id="LOCAL-00016" summary="开发layui tab预警静态tab切换，预警title拼接，tab左右移动">
-      <created>1533279139720</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1533279139720</updated>
-    </task>
-    <task id="LOCAL-00017" summary="修改地区管理添加bug，可选可配上级地区">
-      <created>1533449273313</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1533449273313</updated>
-    </task>
-    <task id="LOCAL-00018" summary="修改机构添加、修改功能">
-      <created>1533451738455</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1533451738455</updated>
-    </task>
-    <task id="LOCAL-00019" summary="预警编辑渠道选中判断，tab清空赋值判断，地区树动态赋值">
-      <created>1533460040336</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1533460040336</updated>
-    </task>
-    <task id="LOCAL-00020" summary="修改渠道查询信息">
-      <created>1533522276887</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1533522276887</updated>
-    </task>
-    <task id="LOCAL-00021" summary="预警编辑，根据渠道加载地区对应受众和预警，根据地区加载渠道对应受众和预警，灾种管理修改灾种配置修改公能，整改">
-      <created>1533647607646</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1533647607647</updated>
-    </task>
-    <task id="LOCAL-00022" summary="预警编辑添加数据入库（操作5张表）">
-      <created>1533718048960</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1533718048960</updated>
-    </task>
-    <task id="LOCAL-00023" summary="预警编辑修改审核人信息">
-      <created>1533718843304</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1533718843304</updated>
-    </task>
-    <task id="LOCAL-00024" summary="添加说明">
-      <created>1533719359822</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1533719359822</updated>
-    </task>
-    <task id="LOCAL-00025" summary="登录页添加预警logo，主页修改">
-      <created>1533722503760</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1533722503760</updated>
-    </task>
-    <task id="LOCAL-00026" summary="预警录入、审核、签发、应急办签发、发布流程开发完毕">
-      <created>1533745619262</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1533745619262</updated>
-    </task>
-    <task id="LOCAL-00027" summary="修改预警流程：添加下一步流程">
-      <created>1533792322356</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1533792322356</updated>
-    </task>
-    <task id="LOCAL-00028" summary="添加注解">
-      <created>1534312508752</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1534312508752</updated>
-    </task>
-    <task id="LOCAL-00029" summary="清除废弃文件">
-      <created>1534319169986</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1534319169986</updated>
-    </task>
-    <task id="LOCAL-00030" summary="添加切面编程">
-      <created>1534386522584</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1534386522584</updated>
-    </task>
-    <task id="LOCAL-00031" summary="清除输出打印项">
-      <created>1534386926198</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1534386926198</updated>
-    </task>
-    <task id="LOCAL-00032" summary="发布手段添加手段编码">
-      <created>1534472053131</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1534472053131</updated>
-    </task>
-    <task id="LOCAL-00033" summary="添加CAP协议生成文件后返回地址">
-      <created>1534851854555</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1534851854555</updated>
-    </task>
-    <task id="LOCAL-00034" summary="添加CAP协议生成文件后返回地址">
-      <created>1534852063151</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1534852063151</updated>
-    </task>
-    <task id="LOCAL-00035" summary="添加CAP协议生成文件后返回地址">
-      <created>1534852244801</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1534852244801</updated>
-    </task>
-    <task id="LOCAL-00036" summary="国突对接完毕、cap协议生成、ftp传输完毕、日志添加完毕">
-      <created>1534907088596</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1534907088596</updated>
-    </task>
-    <task id="LOCAL-00037" summary="更新提交">
-      <created>1535098397789</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1535098397789</updated>
-    </task>
-    <task id="LOCAL-00038" summary="删除不必要得空行">
-      <created>1535542354439</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1535542354439</updated>
-    </task>
-    <task id="LOCAL-00039" summary="修改短信按批次200条发送，条数可在配置文件进行配置">
-      <created>1535606482870</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1535606482870</updated>
-    </task>
-    <task id="LOCAL-00040" summary="修改微信按批次1000条发送，条数可在配置文件进行配置">
-      <created>1535612223581</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1535612223581</updated>
-    </task>
-    <task id="LOCAL-00041" summary="添加手动发送微信受众">
-      <created>1535612268403</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1535612268403</updated>
-    </task>
-    <task id="LOCAL-00042" summary="开启国突对接短信对接微博对接">
-      <created>1535612302339</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1535612302339</updated>
-    </task>
-    <task id="LOCAL-00043" summary="删除不必要的代码">
-      <created>1535618583292</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1535618583292</updated>
-    </task>
-    <task id="LOCAL-00044" summary="修改微信读取预警内容提示信息">
-      <created>1535683606731</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1535683606732</updated>
-    </task>
-    <task id="LOCAL-00045" summary="添加一键式静态页">
-      <created>1535710481283</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1535710481283</updated>
-    </task>
-    <task id="LOCAL-00046" summary="添加mvn手工打包更新出现的问题">
-      <created>1536112751846</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1536112751846</updated>
-    </task>
-    <task id="LOCAL-00047" summary="一键发布前端静态页面开发完毕">
-      <created>1536286943826</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1536286943826</updated>
-    </task>
-    <task id="LOCAL-00048" summary="一键发布前端静页面，添加类型选择清空功能">
-      <created>1536290649206</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1536290649206</updated>
-    </task>
-    <task id="LOCAL-00049" summary="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据">
-      <created>1536292103071</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1536292103071</updated>
-    </task>
-    <task id="LOCAL-00050" summary="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据">
-      <created>1536296859471</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1536296859473</updated>
-    </task>
-    <task id="LOCAL-00051" summary="添加权限实体类">
-      <created>1536542788052</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1536542788052</updated>
-    </task>
-    <task id="LOCAL-00052" summary="添加一键发布信息并对接后台">
-      <created>1536657700202</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1536657700203</updated>
-    </task>
-    <task id="LOCAL-00053" summary="添加参数打印信息">
-      <created>1536747712387</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1536747712387</updated>
-    </task>
-    <task id="LOCAL-00054" summary="修改地区对应得群组">
-      <created>1536810402695</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1536810402695</updated>
-    </task>
-    <task id="LOCAL-00055" summary="一键发布对接短信渠道、微信渠道完成">
-      <created>1536819035771</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1536819035771</updated>
-    </task>
-    <task id="LOCAL-00056" summary="一键发布列表查询、详情展示">
-      <created>1537324448680</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1537324448680</updated>
-    </task>
-    <task id="LOCAL-00057" summary="1：分发平台添加数据库配置以及插件，修改分发批量数据发送为单条数据并返回状态，最后统一入库。&#10;2：一键发布详情静态页面开发。&#10;3：系统添加echarts插件">
-      <created>1537421176112</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1537421176112</updated>
-    </task>
-    <task id="LOCAL-00058" summary="1：分发平台添加预警发布回执信息主子表，并做信息回执。&#10;2：修改地区管理数据展示问题。&#10;3：修改预警发布智能匹配数据undefined问题。&#10;4：针对群组对应受众统计为0情况处理如果有则显示否则不显示。">
-      <created>1537427788317</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1537427788317</updated>
-    </task>
-    <task id="LOCAL-00059" summary="1：勾选地区：预警消息头根据进行地区名称动态追加；&#10;2：勾选地区：对应群组自动查询并挂载指定渠道数据（多渠道树）">
-      <created>1537428164776</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1537428164776</updated>
-    </task>
-    <task id="LOCAL-00060" summary="一键发布根据时间进行统计分析">
-      <created>1537510852196</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1537510852196</updated>
-    </task>
-    <task id="LOCAL-00061" summary="一键发布单条数据详情统计信息">
-      <created>1537524775845</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1537524775846</updated>
-    </task>
-    <task id="LOCAL-00062" summary="一键发布单条数据详情统计信息完成，修改框架间距">
-      <created>1537870343630</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1537870343631</updated>
-    </task>
-    <task id="LOCAL-00063" summary="过滤maven本身文件，不提交到github上">
-      <created>1537934202192</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1537934202192</updated>
-    </task>
-    <task id="LOCAL-00064" summary="过滤maven本身文件，不提交到github上">
-      <created>1537936722766</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1537936722766</updated>
-    </task>
-    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="static_ewip_sys_in_ewip-client - 2018.07.10 at 14h 30m 19s.xml">
-      <configuration name="static.ewip.sys in ewip-client" configurationId="JUnit" />
-    </history-entry>
-  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1782430000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="928000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.195629" side_tool="true" weight="0.3764833" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32980332" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info id="Structure" order="1" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49924356" weight="0.23300971" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32901832" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.20819849" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="3" />
-      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32901832" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.2837109" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.804371" weight="0.27615964" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.25458467" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32901832" />
-      <window_info anchor="bottom" id="Problems" order="14" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.1977612" />
-      <window_info anchor="right" id="Bean Validation" order="8" weight="0.32980332" />
-      <window_info id="Web" order="6" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31823084" />
-      <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info id="Favorites" order="5" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.804371" visible="true" weight="0.27615964" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.195629" side_tool="true" weight="0.3764833" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7966102" visible="true" weight="0.1977612" />
-      <window_info id="Favorites" order="5" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.32901832" />
-      <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Problems" order="14" />
-      <window_info id="Structure" order="1" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32980332" />
-      <window_info id="Web" order="6" sideWeight="0.20338982" side_tool="true" weight="0.25718608" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run Dashboard" order="14" weight="0.52095807" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47021943" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963397" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info id="Web" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info id="Image Layers" order="3" />
-      <window_info anchor="right" id="Bean Validation" order="8" weight="0.32980332" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.2837109" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32901832" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.31823084" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32901832" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49924356" weight="0.23300971" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.20819849" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.25458467" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改短信按批次200条发送，条数可在配置文件进行配置" />
-    <MESSAGE value="修改微信按批次1000条发送，条数可在配置文件进行配置" />
-    <MESSAGE value="添加手动发送微信受众" />
-    <MESSAGE value="开启国突对接短信对接微博对接" />
-    <MESSAGE value="删除不必要的代码" />
-    <MESSAGE value="修改微信读取预警内容提示信息" />
-    <MESSAGE value="添加一键式静态页" />
-    <MESSAGE value="添加mvn手工打包更新出现的问题" />
-    <MESSAGE value="一键发布前端静态页面开发完毕" />
-    <MESSAGE value="一键发布前端静页面，添加类型选择清空功能" />
-    <MESSAGE value="一键发布前端静页面，添加类型选择清空功能，再有业务类型的情况下保证不清空数据" />
-    <MESSAGE value="添加权限实体类" />
-    <MESSAGE value="添加一键发布信息并对接后台" />
-    <MESSAGE value="添加参数打印信息" />
-    <MESSAGE value="修改地区对应得群组" />
-    <MESSAGE value="一键发布对接短信渠道、微信渠道完成" />
-    <MESSAGE value="一键发布列表查询、详情展示" />
-    <MESSAGE value="1：分发平台添加数据库配置以及插件，修改分发批量数据发送为单条数据并返回状态，最后统一入库。&#10;2：一键发布详情静态页面开发。&#10;3：系统添加echarts插件" />
-    <MESSAGE value="1：分发平台添加预警发布回执信息主子表，并做信息回执。&#10;2：修改地区管理数据展示问题。&#10;3：修改预警发布智能匹配数据undefined问题。&#10;4：针对群组对应受众统计为0情况处理如果有则显示否则不显示。" />
-    <MESSAGE value="1：勾选地区：预警消息头根据进行地区名称动态追加；&#10;2：勾选地区：对应群组自动查询并挂载指定渠道数据（多渠道树）" />
-    <MESSAGE value="一键发布根据时间进行统计分析" />
-    <MESSAGE value="一键发布单条数据详情统计信息" />
-    <MESSAGE value="一键发布单条数据详情统计信息完成，修改框架间距" />
-    <MESSAGE value="修改monitor子服务删除不必要的东西" />
-    <MESSAGE value="过滤maven本身文件，不提交到github上" />
-    <option name="LAST_COMMIT_MESSAGE" value="过滤maven本身文件，不提交到github上" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/AreaServiceImpl.java</url>
-          <line>37</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <option name="time" value="221" />
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="map" language="JAVA" />
-        <watch expression="file" />
-        <watch expression="nextFlow" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>map</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>flow</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>flow.length</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>flow[i]</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>currentFlow</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>json.getString(&quot;flow&quot;).split(&quot;,&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>json.getString(&quot;flow&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>json</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-publish/pom.xml">
+    <entry file="file://$PROJECT_DIR$/ewip.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/pom.xml">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="21" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="31" selection-end-column="21" />
+        <state relative-caret-position="399">
+          <caret line="51" column="60" lean-forward="true" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-publish/src/main/java/com/hyt/publish/EwipPublishApplication.java">
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="171">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/demo/DemoController.java" />
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/config/core/druid/DruidDataSourceConfigurer.java">
+    <entry file="file://$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        <state relative-caret-position="190">
+          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/EwipMonitorApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/IBaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/BaseModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/result/ResultCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/page/MybatisPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/page/MySQLBaseQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/service/impl/sys/AreaServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/service/sys/IAreaService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/mapper/sys/AreaMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/AbstractService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1375">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/common/universal/IBaseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/mapper/sys/IAreaMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/mybatis/MybatisConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/druid/DruidDataSourceConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1287">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/druid/DruidMonitorConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/common/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/swagger/Swagger2Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="37" column="74" selection-start-line="37" selection-start-column="74" selection-end-line="37" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/demo/DemoRestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/common/PageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/area.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="205" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="21" selection-end-column="33" />
+        <state relative-caret-position="418">
+          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="22" column="3" selection-start-line="22" selection-end-line="22" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/templates/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/static/ewip/sys/area.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="34" column="7" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/controller/sys/AreaController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="22" selection-start-line="22" selection-end-line="22" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/config/core/mvc/WebMvcConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="75" column="34" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/static/images/none-img.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/static/images/3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/static/images/favicon.ico">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/static/css/ewip.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/java/com/hyt/monitor/entity/sys/Area.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="58" column="33" lean-forward="true" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-eureka/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-publish/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/.mvn/wrapper/maven-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-eureka/.mvn/wrapper/maven-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="133">
+          <caret line="34" column="33" lean-forward="true" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
         </state>
       </provider>
     </entry>
