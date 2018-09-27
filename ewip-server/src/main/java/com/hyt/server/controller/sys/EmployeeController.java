@@ -35,8 +35,8 @@ public class EmployeeController {
             @ApiImplicitParam(name="loginPassword",value="登陆密码",required = true, dataType = "String",paramType = "query")
     })
     @PostMapping("/login")
-    public ResultObject<Object> login(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
-        return ResultResponse.ok(this.employeeService.login(map));
+    public JSONObject login(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        return this.employeeService.login(map);
     }
 
 

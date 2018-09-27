@@ -35,6 +35,30 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+
+        <!-- shiro插件 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${org.apache.shiro}</version>
+        </dependency>
+
+        <!-- cache -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+        <!-- shiro-ehcache-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${org.apache.shiro}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

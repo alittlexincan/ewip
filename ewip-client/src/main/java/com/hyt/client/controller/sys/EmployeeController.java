@@ -2,9 +2,12 @@ package com.hyt.client.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IEmployeeService;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -21,18 +24,6 @@ public class EmployeeController {
     @Autowired
     private IEmployeeService employeeService;
 
-    /**
-     * 员工登录信息
-     * @param map
-     * @return
-     */
-    @PostMapping("/login")
-    JSONObject login(HttpSession session, @RequestParam Map<String, Object> map){
-        JSONObject json = this.employeeService.login(map);
-        System.out.println("用户登录==>>>  " + json.get("data"));
-        session.setAttribute("employee",json.get("data"));
-        return json;
-    }
 
     /**
      * 添加员工信息

@@ -7,31 +7,21 @@ layui.use(['form'], function(){
 
     //自定义验证规则
     form.verify({
-        loginName: function(value){
+        username: function(value){
             if(value.length == 0){
                 return '登录名称不能为空';
             }
         }
-        ,loginPassword: [/(.+){6,12}$/, '密码必须是6到12位']
+        ,password: [/(.+){6,12}$/, '密码必须是6到12位']
 
     });
 
-    //监听提交
-    form.on('submit(submit)', function(data){
-        $.ajax({
-            async:true,
-            type: "POST",
-            data: data.field,
-            url: "employee/login",
-            dataType: "json",
-            success: function(json){
-                if(json.code == 200 && json.data != null){
-                    window.location.href = 'index';
-                }else{
-                    layer.alert('用户名或密码错误');
-                }
-                return false;
-            }
-        });
+    /**
+     * 如果会话超时，不论停留在那个界面，都跳转到登录页
+     */
+    $(document).ready(function () {
+        if (window != top) {
+            top.location.href = location.href;
+        }
     });
 });

@@ -12,6 +12,12 @@ body{
     background-size: cover;
 }
 
+.layui-form-item{
+    margin-bottom: 0!important;
+}
+.layui-input-block{
+     margin-left: 0px;
+}
 .ewip .ewip-title{
     width: 100%;
     text-align: center;
@@ -30,7 +36,7 @@ body{
 .ewip .ewip-login-from{
     width: 30%;
     margin: 0 auto;
-    padding: 0 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
     background: #2835548a;
 }
 
@@ -61,4 +67,10 @@ body{
 }
 .ewip .ewip-float-right{
     float: right;
+}
+.ewip .ewip-float-left{
+    float: left;
+}
+.ewip .ewip-msg-color-red{
+    color: red;
 }

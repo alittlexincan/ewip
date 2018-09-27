@@ -1,11 +1,15 @@
 package com.hyt.client.controller.common;
 
+import com.alibaba.fastjson.JSONObject;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,26 +26,18 @@ import java.util.Map;
 @Controller
 public class PageController {
 
-    /**
-     * 进入登录界面
-     * @return
-     */
-    @RequestMapping("/")
-    public String signIn(){
-        return "main/login";
-    }
 
     /**
-     * 进入登录界面
+     * 进入框架界面
      * @return
      */
-    @RequestMapping("/index")
+    @RequestMapping({"/","/index"})
     public String index(){
         return "main/index";
     }
 
     /**
-     * 进入登录界面
+     * 进入主界面
      * @return
      */
     @RequestMapping("/home")
@@ -74,4 +70,42 @@ public class PageController {
         return new ModelAndView(model + "/" + name, map);
     }
 
+    @RequestMapping("/403")
+    public String unauthorizedRole(){
+        System.out.println("------没有权限-------");
+        return "/main/403";
+    }
+
+    /**
+     * 员工登录信息
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "/login")
+    String signIn(HttpServletRequest request, Map<String, Object> map){
+
+        System.out.println("HomeController.login()");
+        // 登录失败从request中获取shiro处理的异常信息。
+        // shiroLoginFailure:就是shiro异常类的全类名.
+        String exception = (String) request.getAttribute("shiroLoginFailure");
+        System.out.println("exception=" + exception);
+        String msg = "";
+        if (exception != null) {
+            if (UnknownAccountException.class.getName().equals(exception)) {
+                msg = "账号不存在";
+            }else if(AuthenticationException.class.getName().equals(exception)){
+                msg = "用户名或密码错误";
+            }else if (IncorrectCredentialsException.class.getName().equals(exception)) {
+                msg = "密码不正确";
+            } else if ("kaptchaValidateFailed".equals(exception)) {
+                msg = "验证码错误";
+            } else {
+                msg = exception;
+            }
+        }
+        map.put("msg", msg);
+        // 此方法不处理登录成功,由shiro进行处理
+        return "/main/login";
+
+    }
 }

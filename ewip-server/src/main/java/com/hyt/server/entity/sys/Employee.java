@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Copyright (C), 2015-2018
@@ -26,7 +27,7 @@ public class Employee {
     @Column(name = "id",length = 64)
     private String id;
 
-    @Column(name = "login_name",length = 25)
+    @Column(name = "login_name",length = 25, unique = true)
     private String loginName;
 
     @Column(name = "login_password",length = 64)
@@ -64,9 +65,7 @@ public class Employee {
 
     private String level;
 
-
-    public Employee() {
-    }
+    public Employee() {}
 
     public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level) {
         this.loginName = loginName;
