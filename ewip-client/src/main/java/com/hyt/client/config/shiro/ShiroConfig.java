@@ -43,8 +43,7 @@ public class ShiroConfig {
 	 */
 	@Bean("sessionListener")
 	public ShiroSessionListener sessionListener(){
-		ShiroSessionListener sessionListener = new ShiroSessionListener();
-		return sessionListener;
+		return new ShiroSessionListener();
 	}
 
 	/**
@@ -88,7 +87,7 @@ public class ShiroConfig {
 		//设为true后，只能通过http访问，javascript无法访问
 		//防止xss读取cookie
 		simpleCookie.setHttpOnly(true);
-		simpleCookie.setPath("/");
+		simpleCookie.setPath("/login");
 		//maxAge=-1表示浏览器关闭时失效此Cookie
 		simpleCookie.setMaxAge(-1);
 		return simpleCookie;
@@ -119,8 +118,7 @@ public class ShiroConfig {
 		//设置该属性 就不需要设置 ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
 		//暂时设置为 5秒 用来测试
 		sessionManager.setSessionValidationInterval(3600000);
-		sessionManager.setSessionValidationInterval(5000);
-
+//		sessionManager.setSessionValidationInterval(5000);
 		return sessionManager;
 	}
 
