@@ -1,6 +1,5 @@
 package com.hyt.client.controller.common;
 
-import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.AuthenticationException;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,12 +81,9 @@ public class PageController {
      */
     @RequestMapping(value = "/login")
     String signIn(HttpServletRequest request, Map<String, Object> map){
-
-        System.out.println("HomeController.login()");
         // 登录失败从request中获取shiro处理的异常信息。
         // shiroLoginFailure:就是shiro异常类的全类名.
         String exception = (String) request.getAttribute("shiroLoginFailure");
-        System.out.println("exception=" + exception);
         String msg = "";
         if (exception != null) {
             if (UnknownAccountException.class.getName().equals(exception)) {
