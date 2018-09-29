@@ -32,4 +32,5 @@ public interface IPermissionMapper extends IBaseMapper<Permission> {
      */
     List<Permission> findPermissionByRoleId(Map<String, Object> map);
 
+    List<Permission> selectByPermissionName(Map<String, Object> map);
 }

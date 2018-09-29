@@ -66,4 +66,14 @@ public interface IPermissionService {
     @GetMapping("/permission/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
+    /**
+     * 分页查询权限信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/permission/select/all")
+    JSONObject selectByPermissionName(@RequestParam Map<String, Object> map);
+
+
+
 }

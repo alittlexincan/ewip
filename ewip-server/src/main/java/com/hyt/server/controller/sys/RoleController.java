@@ -124,7 +124,7 @@ public class RoleController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
-    @ApiOperation(value = "查询角色信息列表", httpMethod = "GET", notes = "根据查询条件分页查询所有角色信息")
+    @ApiOperation(value = "查询角色信息", httpMethod = "GET", notes = "根据查询条件查询所有角色信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="page",value="当前页数", defaultValue="0", dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="size",value="每页条数", defaultValue="10", dataType = "Integer",paramType = "query"),

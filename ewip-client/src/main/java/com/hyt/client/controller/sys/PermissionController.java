@@ -82,4 +82,13 @@ public class PermissionController {
         return this.permissionService.selectAll(map);
     }
 
+    /**
+     * 分页查询权限信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/select/all")
+    JSONObject selectByPermissionName(@RequestParam Map<String,Object> map){
+        return this.permissionService.selectByPermissionName(map);
+    }
 }

@@ -19,7 +19,6 @@
             p.name,
             p.permission,
             p.type,
-            p.url,
             p.status,
             p.create_time
         FROM
@@ -39,6 +38,24 @@
         </choose>
     </select>
 
+    <!-- 查询权限列表 -->
+    <select id="selectByPermissionName"  resultMap="BaseResultMap">
+        SELECT
+            p.id,
+            p.name,
+            p.permission,
+            p.type,
+            p.status,
+            p.create_time
+        FROM
+          permission p
+        WHERE 1=1
+        <if test="id != null and id != ''">and p.id = #{id}</if>
+        <if test="name != null and name != ''">AND p.name like '${name}%'</if>
+        <if test="type != null and type != ''">and p.type = #{type}</if>
+        <if test="status != null and status != ''">and p.status = #{status}</if>
+    </select>
+
     <!-- 根据角色查询拥有权限信息 -->
     <select id="findPermissionByRoleId" resultMap="BaseResultMap">
         SELECT
@@ -46,7 +63,6 @@
             p.name,
             p.permission,
             p.type,
-            p.url,
             p.status,
             p.create_time
         FROM

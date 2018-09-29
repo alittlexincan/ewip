@@ -76,7 +76,20 @@
         </div>
     </script>
 
+    <!-- 修改弹出层 -->
+    <script id="permissionPop" type="text/html">
 
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <div class="layui-inline ewip-div-border permission"></div>
+            </div>
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitPermissionBtn" id="submitPermissionBtn">权限分配</button>
+                </div>
+            </div>
+        </div>
+    </script>
 
     <div class="layui-fluid">
         <div class="layui-card">
@@ -118,6 +131,7 @@
 
                 <!-- 列表：数据行操作 -->
                 <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="permissionOption"><i class="layui-icon layui-icon-delete"></i>权限分配</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
                 </script>

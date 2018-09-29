@@ -21,4 +21,6 @@ public interface IPermissionService extends IBaseService<Permission> {
 
     List<Permission> selectById(Map<String, Object> map);
 
+    List<Permission> selectByPermissionName(Map<String, Object> map);
+
 }

@@ -41,4 +41,9 @@ public class PermissionServiceImpl extends AbstractService<Permission> implement
         return this.permissionMapper.findPermissionByRoleId(map);
     }
 
+    @Override
+    public List<Permission> selectByPermissionName(Map<String, Object> map){
+        return this.permissionMapper.selectByPermissionName(map);
+    }
+
 }

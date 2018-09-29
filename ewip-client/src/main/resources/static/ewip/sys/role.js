@@ -44,9 +44,12 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{field: 'description', title: '角色说明', sort: true}
             ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
             ,{field: 'createTime', title: '创建时间',sort: true}
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
+
+
+
 
     /**
      * 修改后重新刷新列表，curr: 1重新从第 1 页开始
@@ -121,6 +124,23 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                             $("form select[name='id']").append("<option value='" + res.id + "'>" + res.role + "</option>");
                         });
                         form.render();
+                    }
+                }
+            });
+        }
+        /**
+         * 初始化查询条件角色下拉列表
+         */
+        ,"selectPermision": (callback)=>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {}
+                ,url: "/client/permission/select/all"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                            callback(json.data);
                     }
                 }
             });
@@ -220,8 +240,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
          */
         ,'updateOption': function (obj) {
             let param = obj.data;
-            console.log(param);
-
             //示范一个公告层
             layer.open({
                 type: 1
@@ -245,6 +263,53 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitUpdateBtn)", function(data){
+                        data.field.id = param.id;
+                        // 数据提交到后台，通用方法
+                        submitServer({
+                            index: index
+                            ,type: 'POST'
+                            ,param: data.field
+                            ,url: '/client/role/update'
+                        });
+                    });
+                    // 触发表单按钮点击事件
+                    $("#submitUpdateBtn").click();
+                }
+            });
+        }
+        /**
+         * 权限分配
+         */
+        ,"permissionOption": obj => {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 角色分配权限"
+                ,area: '500px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '200px'
+                ,btn: ['分配', '取消']
+                ,content:"<div id='permissionDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(permissionPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#permissionDiv").empty().append(html);
+
+                        active.selectPermision((res)=>{
+                            res.forEach((r)=>{
+                                $("#permissionDiv .permission").append("<input type='checkbox' name='permission' value='" + r.id + "' title='" + r.name + "' lay-skin='primary' />");
+                            });
+                        });
+
+                    });
+                    form.render();
+                }
+                ,yes: function(index, layero){
+                    //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
+                    form.on("submit(submitPermissionBtn)", function(data){
                         data.field.id = param.id;
                         // 数据提交到后台，通用方法
                         submitServer({

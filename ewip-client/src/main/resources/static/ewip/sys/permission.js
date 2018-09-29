@@ -45,14 +45,13 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,page:true
         ,even: true
         ,height: 'full-165'
-        ,limits:[10,20,50,100]
+        ,limits:[20,50,100]
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '权限名称', sort: true}
             ,{field: 'permission', title: '权限编码', sort: true}
             ,{field: 'type', title: '权限类型', sort: true, templet:typeFormat}
-            // ,{field: 'url', title: '配置路径', sort: true}
             ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
             ,{field: 'createTime', title: '创建时间',sort: true}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
@@ -81,9 +80,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         name: function (value) {
             if(value.length == 0) return '请输入权限名称';
             if(value.length > 10) return '权限名称不能超过10个字';
-        }
-        ,type: function(value){
-            if(value.length==0) return '请选择权限类型';
         }
         ,permission: function(value){
             if(value.length==0) return '请选择操作权限';
@@ -163,6 +159,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitAddBtn)", function(data){
+                        data.field.type="button";
+                        data.field.name = $("#addDiv select[name='permission']").find("option:selected").text();
                         submitServer({
                             index: index
                             ,type: 'POST'
