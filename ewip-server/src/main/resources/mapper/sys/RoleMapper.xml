@@ -28,7 +28,7 @@
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY r.create_time DESC
+                ORDER BY create_time DESC
             </otherwise>
         </choose>
     </select>

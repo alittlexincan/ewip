@@ -3,6 +3,7 @@ package com.hyt.client.controller.sys;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IAreaService;
 import com.hyt.client.service.sys.IPermissionService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
