@@ -14,25 +14,16 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,selectTree = layui.selectTree
         ,$ = layui.$;   			// 引用layui的jquery
 
-    /**
-     * 格式化机构类型
-     * @param d
-     * @returns {string}
-     */
-    let typeFormat = function(d){
-        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>发布中心</span>";
-        if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>预案单位</span>";
-        if(d.type == 2) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>应急办</span>";
-    };
 
     /**
-     * 格式化机构类型
+     * 是否启用
      * @param d
      * @returns {string}
      */
-    let nameFormat = function(d){
-        if(d.parentName == "") return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>没有上级机构</span>";
-        return d.parentName;
+
+    let statusFormat = function(d){
+        if(d.status == 0) return "<span class='layui-btn layui-btn-warm layui-btn-xs ewip-cursor-default'>禁用</span>";
+        if(d.status == 1) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>启用</span>";
     };
 
     /**
@@ -41,40 +32,20 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/organization/select'
+        ,url:'/client/role/select'
         ,page:true
         ,even: true
         ,height: 'full-165'
-        ,limits:[5,10,20,50,100]
+        ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'code', title: '机构编码', sort: true}
-            ,{field: 'organizationName', title: '机构名称', sort: true}
-            ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
-            ,{field: 'areaName', title: '所属地区', sort: true}
-            ,{field: 'type', title: '机构类型',sort: true, templet: typeFormat}
+            ,{field: 'role', title: '角色名称', sort: true}
+            ,{field: 'description', title: '角色说明', sort: true}
+            ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
+            ,{field: 'createTime', title: '创建时间',sort: true}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
         ]]
-    });
-
-    /**
-     * 初始化下拉树(地区)
-     */
-    selectTree.render({
-        'id': 'searchAreaId'
-        ,'url': '/client/tree/area'
-        ,'isMultiple': false
-        ,'isVerify': false
-    });
-    /**
-     * 初始化下拉树(机构)
-     */
-    selectTree.render({
-        'id': 'searchPId'
-        ,'url': '/client/tree/organization'
-        ,'isMultiple': false
-        ,'isVerify': false
     });
 
     /**
@@ -86,9 +57,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 curr: 1
             },
             where: { //设定异步数据接口的额外参数，任意设
-                organizationName: param == undefined ? '' : param.organizationName
-                ,areaId: param == undefined ? '' : param.areaId
-                ,pId: param == undefined ? '' : param.pId
+                id: param == undefined ? '' : param.id
+                ,status: param == undefined ? '' : param.status
             }
         });
     };
@@ -97,25 +67,15 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
      * 自定义验证规则
      */
     form.verify({
-        areaId: function (value) {
-            if(value.length == 0) {
-                $("#addAreaId .addAreaIdShow, #updateAreaId .updateAreaIdShow").css("border-color","red");
-                return '请选择所属地区';
-            }
+        role: function (value) {
+            if(value.length == 0) return '请输入角色名称';
+            if(value.length > 10) return '角色名称不能超过10个字';
         }
-        ,type: function (value) {
-            if(value == "") return "请选择机构类型";
-        }
-        ,organizationName: function(value){
-            if(value.length == 0) return '请输入机构名称';
-            if(value.length > 20) return '机构名称长度不能超过20位';
-
-        }
-        ,code: function (value) {
-            if(value.length == 0) return '请输入机构编码';
-            if(!(value >= 10000000000000 && value <= 99999999999999)) return '机构编码范围值为[10000000000000, 99999999999999]';
+        ,description: function(value){
+            if(value.length > 20) return '角色说明不能超过90个字';
         }
     });
+
 
     /**
      * 数据提交到后台（通用发方法）
@@ -142,20 +102,40 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
 
     /**
      * 统一按钮操作对象
-     * @type {{addBarBtn: 添加信息, deleteBarBtn: 批量删除信息, deleteOption: 删除单个信息, updateOption: 修改信息}}
+     * @type {{addBtn: 添加信息, deleteBtn: 批量删除信息, deleteOption: 删除单个信息, updateOption: 修改信息}}
      */
     let active = {
         /**
-         * 工具条：添加机构信息
+         * 初始化查询条件角色下拉列表
          */
-        'addBarBtn': function(){
+        "initRole": ()=>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {}
+                ,url: "/client/role/select/all"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        json.data.forEach((res)=>{
+                            $("form select[name='id']").append("<option value='" + res.id + "'>" + res.role + "</option>");
+                        });
+                        form.render();
+                    }
+                }
+            });
+        }
+        /**
+         * 工具条：添加角色信息
+         */
+        ,'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加地区信息"
-                ,area: ['600px','400px']
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加角色信息"
+                ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true
-                ,offset:'50px'
+                ,offset:'100px'
                 ,btn: ['添加', '取消']
                 ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
@@ -163,31 +143,17 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
-                        // 初始化下拉树(地区)
-                        selectTree.render({
-                            'id': 'addAreaId'
-                            ,'url': '/client/tree/area'
-                            ,'isMultiple': false
-                        });
-                        // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'addPId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                        });
                     });
                     form.render();
-
                 }
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitAddBtn)", function(data){
-                        // 数据提交到后台
                         submitServer({
                             index: index
                             ,type: 'POST'
                             ,param: data.field
-                            ,url: '/client/organization/insert'
+                            ,url: '/client/role/insert'
                         });
                     });
                     // 触发表单按钮点击事件
@@ -196,14 +162,14 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
         /**
-         * 工具条：批量删除信息
+         * 工具条：批量删除员工信息
          * @returns {boolean}
          */
         ,'deleteBarBtn': function(){
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
-                layer.msg('请选中机构进行删除', {time: 2000});
+                layer.msg('请选中角色进行删除', {time: 2000});
                 return false;
             }
 
@@ -218,46 +184,52 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 return false;
             }
 
-            layer.confirm('确定删除这批机构？', function(index){
+            layer.confirm('确定删除这批角色？', function(index){
+                var id = '';
+                for(var i = 0, len = data.length; i<len; i++){
+                    id += ",'" + data[i].id + "'";
+                }
                 // 数据提交到后台，通用方法
                 submitServer({
                     index: index
                     ,type: 'POST'
                     ,param: {id: id.substring(1)}
-                    ,url: '/client/organization/delete'
+                    ,url: '/client/role/delete'
                 });
             });
         }
         /**
-         * 列表中：删除选中的机构信息
+         * 列表中：删除选中的角色信息
          * @param obj
          */
         ,'deleteOption': function (obj) {
-            layer.confirm('确定删除该机构？', function(index){
+            layer.confirm('确定删除该角色？', function(index){
                 obj.del();
                 // 数据提交到后台，通用方法
                 submitServer({
                     index: index
                     ,param: null
                     ,type: 'DELETE'
-                    ,url: '/client/organization/delete/' + obj.data.id,
+                    ,url: '/client/role/delete/' + obj.data.id,
                 });
             });
         }
         /**
-         * 列表中：修改机构信息
+         * 列表中：修改角色信息
          * @param obj
          */
         ,'updateOption': function (obj) {
             let param = obj.data;
+            console.log(param);
+
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改机构信息"
-                ,area: ['600px','400px']
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改角色信息"
+                ,area: '500px'
                 ,shade: 0.3
                 ,maxmin:true
-                ,offset: '50px'
+                ,offset: '200px'
                 ,btn: ['修改', '取消']
                 ,content:"<div id='updateDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
                 ,success: function(layero,index){
@@ -265,25 +237,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
-                        // 地区级别下拉框赋值
-                        $("select[name='level']").val(param.level);
-                        $("select[name='type']").val(param.type);
-                        // 初始化下拉树(地区)
-                        selectTree.render({
-                            'id': 'updateAreaId'
-                            ,'url': '/client/tree/area'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.areaId
-                        });
-                        // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'updatePId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.pId
-
-                        });
-
+                        // 角色级别下拉框赋值
+                        $("#updateDiv input[type='radio'][name='status'][value='"+param.status+"']").attr("checked",true);
                     });
                     form.render();
                 }
@@ -296,7 +251,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                             index: index
                             ,type: 'POST'
                             ,param: data.field
-                            ,url: '/client/organization/update'
+                            ,url: '/client/role/update'
                         });
                     });
                     // 触发表单按钮点击事件
@@ -305,6 +260,18 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
     };
+
+    /**
+     * 添加时，如果选择的是省级，则隐藏上级角色
+     */
+    form.on('select(level)', function(data){
+        if(data.value == 1){
+            $(".pId").addClass("layui-hide");
+        }else{
+            $(".pId").removeClass("layui-hide");
+        }
+    });
+
 
     /**
      * 监听头部搜索
@@ -327,5 +294,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    // 初始化查询条件角色下拉列表
+    active.initRole();
 
 });

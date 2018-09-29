@@ -13,19 +13,16 @@
     <!-- 查询角色列表信息 -->
     <select id="findAll"  resultMap="BaseResultMap">
         SELECT
-            r.id,
-            r.role,
-            r.description,
-            r.status,
-            r.create_time
-        FROM role r
-        LEFT JOIN employee_role er on er.role_id = r.id
-        LEFT JOIN employee e on e.id = er.employee_id
+            id,
+            role,
+            description,
+            status,
+            create_time
+        FROM role
         WHERE 1=1
-        <if test="employeeId != null and employeeId != ''">and er.employee_id = #{employeeId}</if>
-        <if test="status != null and status != ''">and r.status = #{status}</if>
-        <if test="areaId != null and areaId != ''">and e.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">and e.organization_id = #{organizationId}</if>
+        <if test="id != null and id != ''">and id = #{id}</if>
+        <if test="status != null and status != ''">and status = #{status}</if>
+        <if test="role != null and role != ''">and role = #{role}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
@@ -34,6 +31,20 @@
                 ORDER BY r.create_time DESC
             </otherwise>
         </choose>
+    </select>
+
+    <!-- 查询角色 -->
+    <select id="selectByRoleName"  resultMap="BaseResultMap">
+        SELECT
+            id,
+            role,
+            description,
+            status,
+            create_time
+        FROM role
+        WHERE 1=1
+        <if test="status != null and status != ''">AND status = #{status}</if>
+        <if test="id != null and id != ''">AND id = #{id}</if>
     </select>
 
     <!-- 根据用户查询用户拥有的角色 -->

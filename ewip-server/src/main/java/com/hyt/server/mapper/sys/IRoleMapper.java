@@ -32,4 +32,10 @@ public interface IRoleMapper extends IBaseMapper<Role> {
      */
     List<Role> findRoleByEmployeeId(Map<String, Object> map);
 
+    /**
+     * 查询所有角色名称
+     * @param map
+     * @return
+     */
+    List<Role> selectByRoleName(Map<String, Object> map);
 }

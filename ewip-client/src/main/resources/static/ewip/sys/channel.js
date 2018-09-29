@@ -47,7 +47,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,url:'/client/channel/select'
         ,page:true
         ,even: true
-        ,height: 'full-180'
+        ,height: 'full-165'
         ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}

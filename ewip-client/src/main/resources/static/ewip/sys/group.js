@@ -23,7 +23,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         ,url:'/client/group/select'
         ,page:true
         ,even: true
-        ,height: 'full-180'
+        ,height: 'full-165'
         ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
@@ -35,9 +35,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
-            var panelHeight = $(".ewip-panel-right").height() - 7;
+            var panelHeight = $(".ewip-panel-right").height();
             var cardHeight = $(".ewip-panel-left .layui-card .layui-card-header").height();
-            $(".ewip-left-tree").height(panelHeight - cardHeight - 20 - 3);
+            $(".ewip-left-tree").height(panelHeight - cardHeight - 20 - 2);
             $(".ewip-left-tree").parent().css("overflow","auto");
         }
     });

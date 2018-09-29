@@ -82,7 +82,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
         ,where:{currentFlow: 1, isOption: 0, areaId:employee.areaId, organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
         ,page:true
         ,even: true
-        ,height: 'full-180'
+        ,height: 'full-165'
         ,limits:[10,20,50,100]
         ,cols: [[
             {type: 'checkbox'}
