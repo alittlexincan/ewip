@@ -55,7 +55,7 @@
               <dd><a lay-href="set/user/info.html" >基本资料</a></dd>
               <dd><a lay-href="set/user/password.html" >修改密码</a></dd>
               <hr>
-              <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+              <ddstyle="text-align: center;"><a th:href="@{/logout}">退出</a></dd>
             </dl>
           </li>
         </ul>
@@ -139,7 +139,7 @@
       </div>
 
       <!-- 页面标签 -->
-      <div class="layadmin-pagetabs" id="LAY_app_tabs">
+      <div class="layadmin-pagetabs" id="LAY_app_tabs" style="display: none;">
         <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
         <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
         <div class="layui-icon layadmin-tabs-control layui-icon-down">

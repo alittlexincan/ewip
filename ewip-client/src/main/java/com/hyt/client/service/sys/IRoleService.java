@@ -67,11 +67,27 @@ public interface IRoleService {
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
     /**
-     * 分页查询角色信息
+     * 查询角色信息
      * @param map
      * @return
      */
     @GetMapping("/role/select/all")
     JSONObject selectByRoleName(@RequestParam Map<String, Object> map);
+
+    /**
+     * 角色配置权限
+     * @param map
+     * @return
+     */
+    @PostMapping("/role/permission")
+    JSONObject insertRolePermission(@RequestParam Map<String, Object> map);
+
+    /**
+     * 根据角色ID查询拥有的权限信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/role/select/permission")
+    JSONObject selectRoleInPermission(@RequestParam Map<String,Object> map);
 
 }

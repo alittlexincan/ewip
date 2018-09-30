@@ -129,6 +129,23 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
         /**
+         * 根据角色id，查询拥有的角色
+         */
+        ,"selectRoleInPermision": (roleId, callback) =>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {roleId, roleId}
+                ,url: "/client/role/select/permission"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        callback(json.data);
+                    }
+                }
+            });
+        }
+        /**
          * 初始化查询条件角色下拉列表
          */
         ,"selectPermision": (callback)=>{
@@ -291,18 +308,25 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,maxmin:true
                 ,offset: '200px'
                 ,btn: ['分配', '取消']
-                ,content:"<div id='permissionDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
+                ,content:"<div id='permissionDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
                     laytpl(permissionPop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#permissionDiv").empty().append(html);
-
+                        // 查询系统中所有角色
                         active.selectPermision((res)=>{
-                            res.forEach((r)=>{
-                                $("#permissionDiv .permission").append("<input type='checkbox' name='permission' value='" + r.id + "' title='" + r.name + "' lay-skin='primary' />");
+                            res.forEach((permission)=>{
+                                $("#permissionDiv .permission").append("<input type='checkbox' name='permissionId' value='" + permission.id + "' title='" + permission.name + "' lay-skin='primary' />");
                             });
                         });
+                        // 查询该角色拥有的权限
+                        active.selectRoleInPermision(param.id, (res)=>{
+                            res.forEach((permission)=>{
+                                $("#permissionDiv .permission input[type='checkbox'][value='" + permission.id + "']").attr("checked","checked");
+                            });
+                        });
+
 
                     });
                     form.render();
@@ -310,17 +334,31 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitPermissionBtn)", function(data){
-                        data.field.id = param.id;
+                        data.field.roleId = param.id;
+                        var permissionId = "";
+                        $("#permissionDiv .permission input[type='checkbox'][name='permissionId']:checked").each(function(){
+                            permissionId += "," + $(this).val();
+                        });
+                        data.field.permissionId = permissionId.substring(1);
+
+                        if(permissionId == ""){
+                            layer.msg('请勾选权限', {
+                                time: 1000, //1s后自动关闭
+                            });
+                            return false;
+                        }
+
+                        console.log(data.field);
                         // 数据提交到后台，通用方法
                         submitServer({
                             index: index
                             ,type: 'POST'
                             ,param: data.field
-                            ,url: '/client/role/update'
+                            ,url: '/client/role/permission'
                         });
                     });
                     // 触发表单按钮点击事件
-                    $("#submitUpdateBtn").click();
+                    $("#submitPermissionBtn").click();
                 }
             });
         }

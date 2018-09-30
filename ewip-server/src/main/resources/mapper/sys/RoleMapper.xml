@@ -63,4 +63,33 @@
         </if>
     </select>
 
+    <!--角色分配权限-->
+    <insert id="insertRolePermission">
+        insert into role_permission (id, role_id, permission_id, create_time )
+        values
+        <foreach collection="permissionId.split(',')" item="item"  separator=","  >
+            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
+        </foreach>
+    </insert>
+
+    <!--根据角色ID查询对应的权限信息-->
+    <select id="selectRoleInPermission" resultMap="BaseResultMap">
+        SELECT
+            p.id,
+            p.name,
+            p.permission,
+            p.type,
+            p.status
+        FROM permission p
+        LEFT JOIN role_permission rp ON rp.permission_id = p.id
+        WHERE
+        p.status = 1
+        and rp.role_id = #{roleId}
+    </select>
+
+    <!--根据角色ID删除对应的权限信息-->
+    <delete id="deleteRoleInPermission">
+        DELETE FROM role_permission where role_id = #{roleId}
+    </delete>
+
 </mapper>

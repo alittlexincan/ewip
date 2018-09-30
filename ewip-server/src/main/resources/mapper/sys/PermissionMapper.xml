@@ -49,11 +49,12 @@
             p.create_time
         FROM
           permission p
-        WHERE 1=1
+        WHERE status = 1
         <if test="id != null and id != ''">and p.id = #{id}</if>
         <if test="name != null and name != ''">AND p.name like '${name}%'</if>
         <if test="type != null and type != ''">and p.type = #{type}</if>
         <if test="status != null and status != ''">and p.status = #{status}</if>
+        ORDER BY create_time DESC
     </select>
 
     <!-- 根据角色查询拥有权限信息 -->
@@ -68,7 +69,7 @@
         FROM
             permission p
         LEFT JOIN role_permission rp on rp.permission_id = p.id
-        WHERE 1=1
+        WHERE p.status = 1
         <if test="roleId != null and roleId != '' ">
             AND rp.role_id in
             <foreach item="item" index="index" collection="roleId.split(',')"  open="(" separator="," close=")">

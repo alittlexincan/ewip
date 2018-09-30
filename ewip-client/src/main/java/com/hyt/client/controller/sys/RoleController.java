@@ -91,4 +91,23 @@ public class RoleController {
         return this.roleService.selectByRoleName(map);
     }
 
+    /**
+     * 角色配置权限
+     * @param map
+     * @return
+     */
+    @PostMapping("/permission")
+    JSONObject insertRolePermission(@RequestParam Map<String,Object> map){
+        return this.roleService.insertRolePermission(map);
+    }
+
+    /**
+     * 根据角色ID查询拥有的权限信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/select/permission")
+    public JSONObject selectRoleInPermission(@RequestParam Map<String,Object> map){
+        return this.roleService.selectRoleInPermission(map);
+    }
 }
