@@ -28,6 +28,14 @@ body{
     padding: 10rem 0;
 }
 
+.ewip .ewip-login-title{
+    text-align: center;
+    color: #73dac6;
+    border-bottom: 1px solid #499788;
+    line-height: 40px;
+    font-size: 24px;
+}
+
 .ewip .ewip-from{
     width: 30%;
     margin: 0 auto;

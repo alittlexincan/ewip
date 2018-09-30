@@ -17,8 +17,8 @@
         </div>
 
         <form action="" class="layui-form ewip-login-from" method="post">
+            <div class="layui-form-item ewip-login-title">登&nbsp;录</div>
             <div class="layui-form-item">
-
                 <div class="layui-input-block">
                     <label class="ewip-login-icon"><i class="layui-icon layui-icon-username"></i></label>
                     <input type="text" class="layui-input ewip-login-input" id="username" name="username" lay-verify="username" autocomplete="off" placeholder="登录名称" />
@@ -40,9 +40,9 @@
 
             <div class="layui-form-item" style="margin-top: 20px;">
                 <span class="ewip-float-left ewip-msg-color-red" th:text="${msg}"></span>
-                <span class=" ewip-float-right">
+                <span class=" ewip-float-right" style="display: none;">
                     <a href="" class="ewip-link" style="float: left">忘记密码?</a>
-                    <span style="float: left">&nbsp;|&nbsp;</span>
+                    <span style="float: left;color:#59b9a7;">&nbsp;|&nbsp;</span>
                     <a href="" class="ewip-link" style="float: left">用户注册</a>
                 </span>
             </div>
