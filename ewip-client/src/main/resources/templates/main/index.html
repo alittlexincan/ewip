@@ -75,22 +75,20 @@
                 <cite>导航</cite>
               </a>
               <dl class="layui-nav-child">
-                <dd data-name="console" class="layui-this">
-                  <a lay-href="home/console.html">主页</a>
-                </dd>
+                <dd data-name="home" class="layui-this"><a lay-href="home">主页</a></dd>
               </dl>
             </li>
             <li data-name="template" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="预警编辑" lay-direction="2">
+              <a href="javascript:;" lay-tips="预警处理" lay-direction="2">
                 <i class="layui-icon layui-icon-template"></i>
                 <cite>预警处理</cite>
               </a>
               <dl class="layui-nav-child">
-                <dd><a lay-href="page/warn/edit">预警编辑</a></dd>
-                <dd><a lay-href="page/warn/verify">预警审核</a></dd>
-                <dd><a lay-href="page/warn/issue">预警签发</a></dd>
-                <dd><a lay-href="page/warn/emergency">应急办签发</a></dd>
-                <dd><a lay-href="page/warn/publish">发布中心发布</a></dd>
+                <dd data-name="edit"><a lay-href="page/warn/edit">预警编辑</a></dd>
+                <dd data-name="verify"><a lay-href="page/warn/verify">预警审核</a></dd>
+                <dd data-name="issue"><a lay-href="page/warn/issue">预警签发</a></dd>
+                <dd data-name="emergency"><a lay-href="page/warn/emergency">应急办签发</a></dd>
+                <dd data-name="publish"><a lay-href="page/warn/publish">发布中心发布</a></dd>
               </dl>
             </li>
 
@@ -100,9 +98,9 @@
                 <cite>发布处理</cite>
               </a>
               <dl class="layui-nav-child">
-                <dd data-name="meseageSend"><a lay-href="page/message/send" >一键发布</a></dd>
-                <dd data-name="meseageList"><a lay-href="page/message/list" >信息列表</a></dd>
-                <dd data-name="meseageTotal"><a lay-href="page/message/total" >信息统计</a></dd>
+                <dd data-name="send"><a lay-href="page/message/send" >一键发布</a></dd>
+                <dd data-name="list"><a lay-href="page/message/list" >信息列表</a></dd>
+                <dd data-name="total"><a lay-href="page/message/total" >信息统计</a></dd>
               </dl>
             </li>
 
@@ -124,14 +122,15 @@
             </li>
 
             <li data-name="app" class="layui-nav-item">
-              <a href="javascript:;" lay-tips="应用" lay-direction="2">
+              <a href="javascript:;" lay-tips="系统管理" lay-direction="2">
                 <i class="layui-icon layui-icon-app"></i>
                 <cite>系统管理</cite>
               </a>
               <dl class="layui-nav-child">
+                <dd data-name="menu"><a lay-href="page/sys/menu" >菜单管理</a></dd>
                 <dd data-name="employee"><a lay-href="page/sys/employee" >员工管理</a></dd>
-                <dd data-name="employee"><a lay-href="page/sys/role" >角色管理</a></dd>
-                <dd data-name="employee"><a lay-href="page/sys/permission" >权限管理</a></dd>
+                <dd data-name="role"><a lay-href="page/sys/role" >角色管理</a></dd>
+                <dd data-name="permission"><a lay-href="page/sys/permission" >权限管理</a></dd>
               </dl>
             </li>
           </ul>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * zTree树接口实现层
@@ -23,6 +24,30 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
 
     @Autowired
     private IZTreeMapper zTreeMapper;
+
+    /**
+     * 查询菜单数据
+     * @param map
+     * @return
+     */
+    @Override
+    public List<ZTree> getMenuTree(Map<String, Object> map){
+
+        List<ZTree> list = this.zTreeMapper.getMenuTree(map);
+        ZTree zTree = new ZTree();
+        zTree.setId("navigation");
+        zTree.setName("导航管理");
+        zTree.setCode("navigation");
+        zTree.setUrl("");
+        zTree.setpId("navigation");
+        zTree.setImg("");
+        zTree.setLevel(0);
+        zTree.setAreaId("");
+        zTree.setOrganizationId("");
+        zTree.setOpen(true);
+        list.add(zTree);
+        return list;
+    }
 
     @Override
     public List<ZTree> getAreaTree(Map<String, Object> map) {

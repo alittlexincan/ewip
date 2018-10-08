@@ -19,6 +19,15 @@ import java.util.Map;
 @FeignClient("EWIP-SERVER")
 public interface IZTreeService {
 
+
+    /**
+     * 查询菜单信息树
+     * @param map
+     * @return
+     */
+    @PostMapping("/tree/menu")
+    JSONObject getMenuTree(@RequestParam Map<String, Object> map);
+
     /**
      * 查询地区信息树
      * @param map

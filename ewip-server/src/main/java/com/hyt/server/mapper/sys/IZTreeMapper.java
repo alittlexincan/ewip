@@ -19,6 +19,13 @@ import java.util.Map;
 public interface IZTreeMapper extends IBaseMapper<ZTree> {
 
     /**
+     * 查询菜单数据
+     * @param map
+     * @return
+     */
+    List<ZTree> getMenuTree(Map<String, Object> map);
+
+    /**
      * 查询地区数据
      * @param map
      * @return

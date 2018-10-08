@@ -28,6 +28,22 @@ public class ZTreeController {
     @Autowired
     private IZTreeService zTreeService;
 
+
+    @ApiOperation(value = "查询菜单树", httpMethod = "POST", notes = "根据查询条件查询菜单树信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="菜单ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="菜单名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="code",value="菜单编码", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId",value="上级菜单", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="level",value="菜单级别", dataType = "Integer",paramType = "query")
+    })
+    @PostMapping("/menu")
+    public ResultObject<Object> getMenuTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> areaTree = this.zTreeService.getMenuTree(map);
+        return ResultResponse.ok(areaTree);
+    }
+
+
     @ApiOperation(value = "查询地区树", httpMethod = "POST", notes = "根据查询条件查询地区树信息")
     @ApiImplicitParams({
         @ApiImplicitParam(name="id",value="地区ID", dataType = "String",paramType = "query"),
@@ -45,7 +61,7 @@ public class ZTreeController {
     @ApiOperation(value = "查询机构树", httpMethod = "POST", notes = "根据查询条件查询机构树信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="机构ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="areaName",value="机构名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationName",value="机构名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="code",value="机构编码", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="pId",value="上级机构", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="areaId",value="所属地区", dataType = "String",paramType = "query")

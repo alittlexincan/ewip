@@ -79,8 +79,8 @@ layui.define(['form','zTree'], function(exports){
      * @param chkboxType 多选框类型{"Y": "ps", "N": "s"}
      * @param checkNodeId 数据回显时的树节点id
      * @param isVerify    是否验证：false: true
-     * @param checkNode   点击节点函数
-     * @param clickNode   选中节点函数
+     * @param checkNode   选中节点函数
+     * @param clickNode   点击节点函数
      */
 
     var selectTree = {

@@ -27,7 +27,7 @@ public class ZTree {
 
     private String pId;
 
-    private int level;
+    private int level;  // 级别
 
     private String channelId;
 
@@ -53,12 +53,15 @@ public class ZTree {
 
     private String img;
 
-    private int count;
+    private int count;  // 子集个数
 
-    public ZTree() {
-    }
+    private String url;
 
-    public ZTree(String id, String name, String code, String pId, int level, String channelId, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img, int count) {
+    private int turn; // 排序
+
+    public ZTree() {}
+
+    public ZTree(String id, String name, String code, String pId, int level, String channelId, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img, int count, String url, int turn) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -77,6 +80,8 @@ public class ZTree {
         this.isStrategy = isStrategy;
         this.img = img;
         this.count = count;
+        this.url = url;
+        this.turn = turn;
     }
 
     public String getId() {
@@ -221,5 +226,21 @@ public class ZTree {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 }

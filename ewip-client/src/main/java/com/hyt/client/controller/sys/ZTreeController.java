@@ -29,6 +29,18 @@ public class ZTreeController {
      * @param map
      * @return
      */
+    @PostMapping("/menu")
+    JSONArray getMenuTree(@RequestParam Map<String,Object> map){
+        JSONObject json =  this.zTreeService.getMenuTree(map);
+        return json.getJSONArray("data");
+    }
+
+
+    /**
+     * 获取地区树
+     * @param map
+     * @return
+     */
     @PostMapping("/area")
     JSONArray getAreaTree(@RequestParam Map<String,Object> map){
         JSONObject json =  this.zTreeService.getAreaTree(map);
