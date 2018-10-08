@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.sys.Area;
+import com.hyt.server.entity.sys.Menu;
 import com.hyt.server.entity.sys.Permission;
 import com.hyt.server.entity.sys.Role;
 import com.hyt.server.service.sys.IAreaService;
@@ -147,10 +148,37 @@ public class RoleController {
         return ResultResponse.make(500,"查询角色失败", null);
     }
 
-    @ApiOperation(value = "角色配置权限", httpMethod = "POST", notes = "角色配置权限")
+    @ApiOperation(value = "角色配置菜单", httpMethod = "POST", notes = "根据角色ID配置该角色拥有的菜单")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="role",value="权限ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="menuId",value="菜单ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
+    })
+    @PostMapping("/menu")
+    public ResultObject<Object> insertRoleMenu(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        int num = this.roleService.insertRoleMenu(map);
+        if(num > 0){
+            return  ResultResponse.make(200,"角色配置菜单成功", 0);
+        }
+        return ResultResponse.make(500,"角色配置菜单失败", null);
+    }
+
+    @ApiOperation(value = "查询角色配置的菜单", httpMethod = "GET", notes = "根据角色ID查询已经配置的菜单")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query")
+    })
+    @GetMapping("/select/menu")
+    public ResultObject<Object> selectRoleInMenu(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<Menu> list = this.roleService.selectRoleInMenu(map);
+        if(list.size() > 0){
+            return  ResultResponse.make(200,"查询角色对应配置的菜单成功", list);
+        }
+        return ResultResponse.make(500,"查询角色对应配置的菜单失败", null);
+    }
+
+    @ApiOperation(value = "角色配置权限", httpMethod = "POST", notes = "根据角色ID配置该权限拥有的权限")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="permissionId",value="权限ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
     })
     @PostMapping("/permission")
     public ResultObject<Object> insertRolePermission(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
@@ -169,9 +197,9 @@ public class RoleController {
     public ResultObject<Object> selectRoleInPermission(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         List<Permission> list = this.roleService.selectRoleInPermission(map);
         if(list.size() > 0){
-            return  ResultResponse.make(200,"角色配置权限成功", list);
+            return  ResultResponse.make(200,"查询角色拥有配置的权限成功", list);
         }
-        return ResultResponse.make(500,"角色配置权限失败", null);
+        return ResultResponse.make(500,"查询角色拥有配置的权限失败", null);
     }
 
 }

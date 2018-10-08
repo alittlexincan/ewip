@@ -3,14 +3,16 @@ layui.config({
     base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
     selectTree: 'selectTree' //如果 mymod.js 是在根目录，也可以不用设定别名
+    ,zTree: 'zTree'
     ,mod1: 'modules' //相对于上述 base 目录的子目录
 });
 
-layui.use(["table","form","laytpl","layer","selectTree"], function(){
+layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
+        ,zTree = layui.zTree
         ,selectTree = layui.selectTree
         ,$ = layui.$;   			// 引用layui的jquery
 
@@ -42,7 +44,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{type: 'numbers', title: '编号'}
             ,{field: 'role', title: '角色名称', sort: true}
             ,{field: 'description', title: '角色说明', sort: true}
-            ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
+            // ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
             ,{field: 'createTime', title: '创建时间',sort: true}
             ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption'}
         ]]
@@ -109,9 +111,30 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
      */
     let active = {
         /**
+         * 初始化菜单
+         */
+        selectMenuTree: null
+        /**
+         * 根据角色id，查询拥有的角色
+         */
+        ,"selectRoleInMenu": (roleId, callback) =>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {roleId, roleId}
+                ,url: "/client/role/select/menu"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        callback(json.data);
+                    }
+                }
+            });
+        }
+        /**
          * 初始化查询条件角色下拉列表
          */
-        "initRole": ()=>{
+        ,"initRole": ()=>{
             $.ajax({
                 async:false
                 ,type: "GET"
@@ -295,7 +318,103 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             });
         }
         /**
-         * 权限分配
+         * 分配菜单
+         */
+        ,"menuOption": obj => {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 角色分配菜单"
+                ,area: ['500px','550px']
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '200px'
+                ,btn: ['分配', '取消']
+                ,content:"<div id='menuDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(menuPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#menuDiv").empty().append(html);
+                        /**
+                         * 初始化加载地区树
+                         */
+                        active.selectMenuTree =  zTree.async({
+                            id: "#menu",
+                            setting: {
+                                async:{
+                                    enable:true,
+                                    url: "/client/tree/menu",
+                                    autoParam:["id"],
+                                    dataType:"json",
+                                    dataFilter:function (treeId, parentNode, responseData) {
+                                        if(responseData!=null){
+                                            for(var i = 0; i<responseData.length; i++){
+                                                if(responseData[i].id=='navigation')
+                                                    responseData[i].nocheck = true;
+                                                responseData[i].open = true;
+                                            }
+
+                                            // 根据选中的角色ID，查询该角色对应的菜单
+                                            active.selectRoleInMenu(param.id, (res)=>{
+                                                res.forEach((menu)=>{
+
+                                                    for(var i = 0; i<responseData.length; i++){
+                                                        if(responseData[i].id == menu.id){
+                                                            responseData[i].checked = true;
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+                                        return responseData;
+                                    }
+                                },
+                                check: {
+                                    enable: true,
+                                    chkboxType: {"Y":"ps", "N": "s"},
+                                    chkStyle:"checkbox"
+                                },
+                                data: {
+                                    simpleData: {
+                                        enable: true
+                                    }
+                                },
+                                callback:{
+                                    onClick:null,
+                                    onCheck:null
+                                }
+                            }
+                        });
+                    });
+
+                    form.render();
+                }
+                ,yes: function(index, layero){
+                    //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
+                    form.on("submit(submitMenuBtn)", function(data){
+                        data.field.roleId = param.id;
+                        var menuId = "";
+                        active.selectMenuTree.getCheckedNodes(true).forEach((node)=>{
+                            menuId += "," + node.id;
+                        });
+                        data.field.menuId = menuId.substring(1);
+                        // 数据提交到后台，通用方法
+                        submitServer({
+                            index: index
+                            ,type: 'POST'
+                            ,param: data.field
+                            ,url: '/client/role/menu'
+                        });
+                    });
+                    // 触发表单按钮点击事件
+                    $("#submitMenuBtn").click();
+                }
+            });
+        }
+        /**
+         * 分配权限
          */
         ,"permissionOption": obj => {
             let param = obj.data;

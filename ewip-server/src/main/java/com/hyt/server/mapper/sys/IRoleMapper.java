@@ -3,6 +3,7 @@ package com.hyt.server.mapper.sys;
 import com.alibaba.fastjson.JSONArray;
 import com.hyt.server.config.common.universal.IBaseMapper;
 import com.hyt.server.entity.sys.Employee;
+import com.hyt.server.entity.sys.Menu;
 import com.hyt.server.entity.sys.Permission;
 import com.hyt.server.entity.sys.Role;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,29 @@ public interface IRoleMapper extends IBaseMapper<Role> {
      * @return
      */
     List<Role> selectByRoleName(Map<String, Object> map);
+
+    /**
+     * 角色配置菜单
+     *
+     * @param map
+     * @return
+     */
+    int insertRoleMenu(Map<String, Object> map);
+
+    /**
+     * 根据角色ID查询对应的菜单信息
+     * @param map
+     * @return
+     */
+    List<Menu> selectRoleInMenu(Map<String, Object> map);
+
+    /**
+     * 根据角色ID删除拥有的菜单信息
+     * @param map
+     * @return
+     */
+    int deleteRoleInMenu(Map<String, Object> map);
+
 
     /**
      * 角色配置权限

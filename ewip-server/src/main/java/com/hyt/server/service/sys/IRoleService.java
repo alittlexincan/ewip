@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.Employee;
+import com.hyt.server.entity.sys.Menu;
 import com.hyt.server.entity.sys.Permission;
 import com.hyt.server.entity.sys.Role;
 
@@ -33,6 +34,20 @@ public interface IRoleService extends IBaseService<Role> {
      * @return
      */
     List<Role> selectByRoleName(Map<String, Object> map);
+
+    /**
+     * 角色配置菜单
+     * @param map
+     * @return
+     */
+    int insertRoleMenu(Map<String, Object> map);
+
+    /**
+     * 根据角色ID查询对应的菜单信息
+     * @param map
+     * @return
+     */
+    List<Menu> selectRoleInMenu(Map<String, Object> map);
 
     /**
      * 角色配置权限

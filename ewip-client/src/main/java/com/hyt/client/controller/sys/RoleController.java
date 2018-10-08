@@ -91,6 +91,27 @@ public class RoleController {
         return this.roleService.selectByRoleName(map);
     }
 
+
+    /**
+     * 根据角色ID查询拥有的权限信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/menu")
+    public JSONObject selectRoleMenu(@RequestParam Map<String,Object> map){
+        return this.roleService.insertRoleMenu(map);
+    }
+
+    /**
+     * 根据角色ID查询拥有的权限信息
+     * @param map
+     * @return
+     */
+    @GetMapping("select/menu")
+    public JSONObject selectRoleInMenu(@RequestParam Map<String,Object> map){
+        return this.roleService.selectRoleInMenu(map);
+    }
+
     /**
      * 角色配置权限
      * @param map
@@ -110,4 +131,5 @@ public class RoleController {
     public JSONObject selectRoleInPermission(@RequestParam Map<String,Object> map){
         return this.roleService.selectRoleInPermission(map);
     }
+
 }

@@ -74,6 +74,24 @@ public interface IRoleService {
     @GetMapping("/role/select/all")
     JSONObject selectByRoleName(@RequestParam Map<String, Object> map);
 
+
+    /**
+     * 角色配置菜单
+     * @param map
+     * @return
+     */
+    @PostMapping("/role/menu")
+    JSONObject insertRoleMenu(@RequestParam Map<String, Object> map);
+
+    /**
+     * 根据角色ID查询拥有的菜单信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/role/select/menu")
+    JSONObject selectRoleInMenu(@RequestParam Map<String,Object> map);
+
+
     /**
      * 角色配置权限
      * @param map

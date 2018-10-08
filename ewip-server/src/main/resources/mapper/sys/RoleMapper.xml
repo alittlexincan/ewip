@@ -10,6 +10,22 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
+    <resultMap id="BaseMenuMap" type="com.hyt.server.entity.sys.Menu">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+    </resultMap>
+
+    <resultMap id="BasePermissionMap" type="com.hyt.server.entity.sys.Permission">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="permission" jdbcType="VARCHAR" property="permission"/>
+        <result column="type" jdbcType="SMALLINT" property="type"/>
+        <result column="status" jdbcType="SMALLINT" property="status"/>
+    </resultMap>
+
+
     <!-- 查询角色列表信息 -->
     <select id="findAll"  resultMap="BaseResultMap">
         SELECT
@@ -63,6 +79,42 @@
         </if>
     </select>
 
+
+
+
+
+    <!--角色分配菜单-->
+    <insert id="insertRoleMenu">
+        insert into role_menu (id, role_id, menu_id, create_time )
+        values
+        <foreach collection="menuId.split(',')" item="item"  separator=","  >
+            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
+        </foreach>
+    </insert>
+
+    <!--根据角色ID查询对应的菜单信息-->
+    <select id="selectRoleInMenu" resultMap="BaseMenuMap">
+        SELECT
+            m.id,
+            m.name,
+            m.code,
+            m.url
+        FROM menu m
+        LEFT JOIN role_menu rm ON rm.menu_id = m.id
+        WHERE 1=1
+        AND rm.role_id = #{roleId}
+    </select>
+
+    <!--根据角色ID删除对应的菜单信息-->
+    <delete id="deleteRoleInMenu">
+        DELETE FROM role_menu where role_id = #{roleId}
+    </delete>
+
+
+
+
+
+
     <!--角色分配权限-->
     <insert id="insertRolePermission">
         insert into role_permission (id, role_id, permission_id, create_time )
@@ -73,7 +125,7 @@
     </insert>
 
     <!--根据角色ID查询对应的权限信息-->
-    <select id="selectRoleInPermission" resultMap="BaseResultMap">
+    <select id="selectRoleInPermission" resultMap="BasePermissionMap">
         SELECT
             p.id,
             p.name,

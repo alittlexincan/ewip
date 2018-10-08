@@ -1,17 +1,13 @@
 package com.hyt.server.service.impl.sys;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
 import com.hyt.server.config.common.universal.AbstractService;
-import com.hyt.server.entity.sys.Area;
+import com.hyt.server.entity.sys.Menu;
 import com.hyt.server.entity.sys.Permission;
 import com.hyt.server.entity.sys.Role;
-import com.hyt.server.mapper.sys.IAreaMapper;
 import com.hyt.server.mapper.sys.IRoleMapper;
-import com.hyt.server.service.sys.IAreaService;
 import com.hyt.server.service.sys.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +51,31 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     }
 
     /**
+     * 角色配置菜单
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public int insertRoleMenu(Map<String, Object> map) {
+        // 先删除该角色拥有的所有权限，然后在添加当前配置的权限
+        this.roleMapper.deleteRoleInMenu(map);
+        return  this.roleMapper.insertRoleMenu(map);
+    }
+
+    /**
+     * 根据角色ID查询对应的菜单信息
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    public List<Menu> selectRoleInMenu(Map<String, Object> map) {
+        return this.roleMapper.selectRoleInMenu(map);
+    }
+
+    /**
      * 角色配置权限
      *
      * @param map
@@ -63,14 +84,6 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     @Override
     @Transactional
     public int insertRolePermission(Map<String, Object> map) {
-//        String[] permissions = map.get("permissionId").toString().split(",");
-//        JSONArray roles = new JSONArray();
-//        for(int i = 0; i<permissions.length; i++){
-//            JSONObject rp = new JSONObject();
-//            rp.put("roleId", map.get("roleId"));
-//            rp.put("permissionId", permissions[i]);
-//            roles.add(rp);
-//        }
         // 先删除该角色拥有的所有权限，然后在添加当前配置的权限
         this.roleMapper.deleteRoleInPermission(map);
         return  this.roleMapper.insertRolePermission(map);
