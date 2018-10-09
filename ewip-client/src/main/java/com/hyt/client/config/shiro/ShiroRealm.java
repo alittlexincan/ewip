@@ -3,6 +3,7 @@ package com.hyt.client.config.shiro;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IEmployeeService;
+import com.hyt.client.service.sys.IRoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -22,6 +23,9 @@ public class ShiroRealm extends AuthorizingRealm {
     @Resource
     private IEmployeeService employeeService;
 
+    @Resource
+    private IRoleService roleService;
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("权限配置-->ShiroRealm.doGetAuthorizationInfo()");
@@ -31,27 +35,13 @@ public class ShiroRealm extends AuthorizingRealm {
         JSONArray perissions = userInfo.getJSONArray("perissions");
         roles.forEach(r -> {
             JSONObject role = (JSONObject) r;
-            System.out.println(role);
             authorizationInfo.addRole(role.getString("role"));
         });
 
         perissions.forEach(p -> {
             JSONObject perission = (JSONObject) p;
-            System.out.println(perission);
             authorizationInfo.addStringPermission(perission.getString("perission"));
         });
-
-
-//        roles.forEach(r -> {
-//            JSONObject role = (JSONObject) r;
-//            authorizationInfo.addRole(role.getString("role"));
-//            JSONArray perissions = role.getJSONArray("perissions");
-//            perissions.forEach(p -> {
-//                JSONObject perission = (JSONObject) p;
-//                authorizationInfo.addStringPermission(perission.getString("perission"));
-//            });
-//        });
-
         return authorizationInfo;
     }
 
@@ -66,19 +56,33 @@ public class ShiroRealm extends AuthorizingRealm {
         Map<String, Object> param = new HashMap<>();
         param.put("loginName", loginName);
         JSONObject employee = this.employeeService.login(param);
-
         if(employee == null) return null;
-
-        Subject subject = SecurityUtils.getSubject();
-        Session session = subject.getSession();
-        session.setAttribute("employee", employee);
-
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 employee, //用户名
                 employee.getString("loginPassword"), //密码
                 ByteSource.Util.bytes(employee.getString("loginName")),//salt=username+salt
                 getName()  //realm name
         );
+        Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        session.setAttribute("employee", employee);
+        employee.remove("loginPassword");
+
+//        JSONArray roles = employee.getJSONArray("roles");
+//        StringBuilder sb = new StringBuilder();
+//        if(roles.size() > 0){
+//            roles.forEach(r -> {
+//                JSONObject role = (JSONObject) r;
+//                sb.append("," + role.getString("roleId"));
+//            });
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("roleId",sb.toString().substring(1));
+//            JSONArray menus = this.roleService.selectRoleInMenu(map).getJSONArray("data");
+//            session.setAttribute("menus", menus);
+//        }else {
+//            session.setAttribute("menus", null);
+//        }
+
         return authenticationInfo;
     }
 

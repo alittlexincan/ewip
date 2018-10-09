@@ -7,12 +7,15 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.sys.Employee;
+import com.hyt.server.entity.sys.Permission;
+import com.hyt.server.entity.sys.Role;
 import com.hyt.server.service.sys.IEmployeeService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -147,5 +150,30 @@ public class EmployeeController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value="用户分配角色",httpMethod="POST",notes="根据用户信息分配角色信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="employeeId",value="用户ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="roleId",value="角色ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
+    })
+    @PostMapping("/insert/role")
+    public ResultObject<Object> insertEmployeeRole(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        int num = this.employeeService.insertEmployeeRole(map);
+        if(num > 0){
+            return  ResultResponse.make(200,"用户分配角色成功", 0);
+        }
+        return ResultResponse.make(500,"用户分配角色失败", null);
+    }
 
+    @ApiOperation(value = "查询用户配置的角色", httpMethod = "GET", notes = "根据用户ID查询已经配置的角色")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="employeeId",value="用户ID",required = true, dataType = "String",paramType = "query")
+    })
+    @GetMapping("/select/role")
+    public ResultObject<Object> selectEmployeeInRole(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<Role> list = this.employeeService.selectEmployeeInRole(map);
+        if(list.size() > 0){
+            return  ResultResponse.make(200,"查询用户拥有配置的角色成功", list);
+        }
+        return ResultResponse.make(500,"查询用户拥有配置的角色失败", null);
+    }
 }

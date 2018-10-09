@@ -13,12 +13,6 @@
 </head>
 <body>
 
-    <!-- 列表：数据行操作 -->
-    <script type="text/html" id="btnGroupOption">
-        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
-    </script>
-
     <!-- 添加弹出层 -->
     <script id="addPop" type="text/html">
         <div class="layui-form layui-form-pane">
@@ -149,6 +143,23 @@
         </div>
     </script>
 
+    <!-- 分配角色弹出层 -->
+    <script id="rolePop" type="text/html">
+        <div class="layui-form layui-form-pane">
+
+            <div class="layui-form-item">
+                <div class="layui-inline role"></div>
+            </div>
+
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitRoleBtn" id="submitRoleBtn">分配角色</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
     <div class="layui-fluid">
         <div class="layui-card">
             <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
@@ -185,6 +196,13 @@
                 </div>
             </form>
 
+            <!-- 列表：数据行操作 -->
+            <script type="text/html" id="btnGroupOption">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-edit"></i>分配角色</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+
             <div class="layui-card-body">
                 <div class="layui-btn-group tableBar">
                     <button class="layui-btn" data-type="addBarBtn">添加</button>
@@ -192,10 +210,7 @@
                 </div>
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>
-
-
             </div>
-
 
         </div>
 

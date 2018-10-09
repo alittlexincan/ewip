@@ -42,7 +42,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{field: 'organizationName', title: '所属机构', sort: true}
             ,{field: 'phone', title: '电话号码', sort: true}
             ,{field: 'email', title: '员工邮箱', sort: true}
-            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: 280, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -141,9 +141,43 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
      */
     let active = {
         /**
+         * 根据角色id，查询拥有的角色
+         */
+        "selectEmployeeInRole": (employeeId, callback) =>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {employeeId, employeeId}
+                ,url: "/client/employee/select/role"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        callback(json.data);
+                    }
+                }
+            });
+        }
+        /**
+         * 初始化查询条件角色
+         */
+        ,"selectRole": (callback)=>{
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: {}
+                ,url: "/client/role/select/all"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        callback(json.data);
+                    }
+                }
+            });
+        }
+        /**
          * 工具条：添加员工信息
          */
-        'addBarBtn': function(){
+        ,'addBarBtn': function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加员工信息"
@@ -282,6 +316,69 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     });
                     // 触发表单按钮点击事件
                     $("#subbmitUpdateBtn").click();
+                }
+            });
+        }/**
+         * 分配角色
+         */
+        ,"roleOption": obj => {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 用户分配角色"
+                ,area: '500px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '200px'
+                ,btn: ['分配', '取消']
+                ,content:"<div id='roleDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(rolePop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#roleDiv").empty().append(html);
+                        // 查询系统中所有角色
+                        active.selectRole((res)=>{
+                            res.forEach((role)=>{
+                                $("#roleDiv .role").append("<input type='checkbox' name='roleId' value='" + role.id + "' title='" + role.role + "' lay-skin='primary' />");
+                            });
+                        });
+                        // 查询该角色拥有的权限
+                        active.selectEmployeeInRole(param.id, (res)=>{
+                            res.forEach((role)=>{
+                                $("#roleDiv .role input[type='checkbox'][value='" + role.id + "']").attr("checked","checked");
+                            });
+                        });
+
+                    });
+                    form.render();
+                }
+                ,yes: function(index, layero){
+                    //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
+                    form.on("submit(submitRoleBtn)", function(data){
+                        data.field.employeeId = param.id;
+                        var roleId = "";
+                        $("#roleDiv .role input[type='checkbox'][name='roleId']:checked").each(function(){
+                            roleId += "," + $(this).val();
+                        });
+                        data.field.roleId = roleId.substring(1);
+                        if(roleId == ""){
+                            layer.msg('请勾选角色', {
+                                time: 1000, //1s后自动关闭
+                            });
+                            return false;
+                        }
+                        // 数据提交到后台，通用方法
+                        submitServer({
+                            index: index
+                            ,type: 'POST'
+                            ,param: data.field
+                            ,url: '/client/employee/insert/role'
+                        });
+                    });
+                    // 触发表单按钮点击事件
+                    $("#submitRoleBtn").click();
                 }
             });
         }

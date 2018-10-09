@@ -16,6 +16,7 @@ import com.hyt.server.mapper.sys.IRoleMapper;
 import com.hyt.server.service.sys.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -79,6 +80,29 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
     @Override
     public Employee selectById(Map<String, Object> map) {
         return this.employeeMapper.login(map);
+    }
+
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public int insertEmployeeRole(Map<String, Object> map) {
+        this.employeeMapper.deleteEmployeeInRole(map);
+        return this.employeeMapper.insertEmployeeRole(map);
+    }
+
+    /**
+     * 根据用户Id查询对应的角色信息
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    public List<Role> selectEmployeeInRole(Map<String, Object> map) {
+        return this.employeeMapper.selectEmployeeInRole(map);
     }
 
 }

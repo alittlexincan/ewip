@@ -74,4 +74,20 @@ public interface IEmployeeService {
     @GetMapping("/employee/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @PostMapping("/employee/insert/role")
+    JSONObject insertEmployeeRole(@RequestParam Map<String,Object> map);
+
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @GetMapping("/employee/select/role")
+    JSONObject selectEmployeeInRole(@RequestParam Map<String,Object> map);
+
 }

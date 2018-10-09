@@ -15,6 +15,9 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="p_id" jdbcType="VARCHAR" property="pId"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="turn" jdbcType="SMALLINT" property="turn"/>
     </resultMap>
 
     <resultMap id="BasePermissionMap" type="com.hyt.server.entity.sys.Permission">
@@ -74,13 +77,11 @@
         FROM role r
         LEFT JOIN employee_role er on er.role_id = r.id
         WHERE 1=1
+        AND r.status = 1
         <if test="employeeId != null and employeeId != ''">
             AND er.employee_id= #{employeeId}
         </if>
     </select>
-
-
-
 
 
     <!--角色分配菜单-->
@@ -95,24 +96,30 @@
     <!--根据角色ID查询对应的菜单信息-->
     <select id="selectRoleInMenu" resultMap="BaseMenuMap">
         SELECT
-            m.id,
-            m.name,
-            m.code,
-            m.url
+          m.id,
+          m.name,
+          m.code,
+          m.url,
+          m.p_id,
+          m.icon,
+          m.turn
         FROM menu m
         LEFT JOIN role_menu rm ON rm.menu_id = m.id
         WHERE 1=1
-        AND rm.role_id = #{roleId}
+        <if test="roleId != null and roleId != '' ">
+            AND rm.role_id in (
+            <foreach collection="roleId.split(',')" item="item"  separator=","  >
+                '${item}'
+            </foreach>
+            )
+        </if>
+
     </select>
 
     <!--根据角色ID删除对应的菜单信息-->
     <delete id="deleteRoleInMenu">
         DELETE FROM role_menu where role_id = #{roleId}
     </delete>
-
-
-
-
 
 
     <!--角色分配权限-->

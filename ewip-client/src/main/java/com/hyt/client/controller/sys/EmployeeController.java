@@ -94,5 +94,24 @@ public class EmployeeController {
         return this.employeeService.selectAll(map);
     }
 
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @PostMapping("/insert/role")
+    JSONObject insertEmployeeRole(@RequestParam Map<String,Object> map){
+        return this.employeeService.insertEmployeeRole(map);
+    }
+
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @GetMapping("/select/role")
+    JSONObject selectEmployeeInRole(@RequestParam Map<String,Object> map){
+        return this.employeeService.selectEmployeeInRole(map);
+    }
 
 }

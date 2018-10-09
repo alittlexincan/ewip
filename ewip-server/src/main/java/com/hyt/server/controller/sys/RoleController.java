@@ -150,7 +150,7 @@ public class RoleController {
 
     @ApiOperation(value = "角色配置菜单", httpMethod = "POST", notes = "根据角色ID配置该角色拥有的菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="roleId",value="角色ID",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="menuId",value="菜单ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
     })
     @PostMapping("/menu")
@@ -164,7 +164,7 @@ public class RoleController {
 
     @ApiOperation(value = "查询角色配置的菜单", httpMethod = "GET", notes = "根据角色ID查询已经配置的菜单")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="roleId",value="角色ID",required = true, dataType = "String",paramType = "query")
     })
     @GetMapping("/select/menu")
     public ResultObject<Object> selectRoleInMenu(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
@@ -177,7 +177,7 @@ public class RoleController {
 
     @ApiOperation(value = "角色配置权限", httpMethod = "POST", notes = "根据角色ID配置该权限拥有的权限")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="roleId",value="角色ID",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="permissionId",value="权限ID（多个','隔开）",required = true, dataType = "String",paramType = "query")
     })
     @PostMapping("/permission")
@@ -191,7 +191,7 @@ public class RoleController {
 
     @ApiOperation(value = "查询角色配置的权限", httpMethod = "GET", notes = "根据角色ID查询已经配置的权限")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="角色ID",required = true, dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="roleId",value="角色ID",required = true, dataType = "String",paramType = "query")
     })
     @GetMapping("/select/permission")
     public ResultObject<Object> selectRoleInPermission(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
