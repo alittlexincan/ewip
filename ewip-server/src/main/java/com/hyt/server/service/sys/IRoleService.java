@@ -1,5 +1,6 @@
 package com.hyt.server.service.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
@@ -47,7 +48,7 @@ public interface IRoleService extends IBaseService<Role> {
      * @param map
      * @return
      */
-    List<Menu> selectRoleInMenu(Map<String, Object> map);
+    JSONArray selectRoleInMenu(Map<String, Object> map);
 
     /**
      * 角色配置权限

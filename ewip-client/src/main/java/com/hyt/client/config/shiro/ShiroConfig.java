@@ -1,5 +1,6 @@
 package com.hyt.client.config.shiro;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -22,6 +23,15 @@ import java.util.*;
 
 @Configuration
 public class ShiroConfig {
+
+	/**
+	 * shiro集成thymeleaf
+	 * @return
+	 */
+	@Bean
+	public ShiroDialect shiroDialect() {
+		return new ShiroDialect();
+	}
 
 	/**
      * shiro缓存管理器;

@@ -1,5 +1,8 @@
 package com.hyt.server.service.impl.sys;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
@@ -71,8 +74,36 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
      * @return
      */
     @Override
-    public List<Menu> selectRoleInMenu(Map<String, Object> map) {
-        return this.roleMapper.selectRoleInMenu(map);
+    public JSONArray selectRoleInMenu(Map<String, Object> map) {
+
+        List<Menu> list = this.roleMapper.selectRoleInMenu(map);
+
+        JSONArray menus = new JSONArray();
+        JSONArray oneLevelArray = new JSONArray();
+        JSONArray twoLevelArray = new JSONArray();
+
+        list.forEach( m-> {
+            JSONObject menu = JSONObject.parseObject(JSON.toJSON(m).toString());
+            int level = menu.getInteger("level");
+            if(level==1) oneLevelArray.add(menu);
+            if(level==2) twoLevelArray.add(menu);
+        });
+
+        oneLevelArray.forEach( one -> {
+            JSONObject oneMenu = JSONObject.parseObject(one.toString());
+            String id = oneMenu.getString("id");
+            JSONArray child = new JSONArray();
+            twoLevelArray.forEach( two -> {
+
+                JSONObject twoMenu = JSONObject.parseObject(two.toString());
+                String pId = twoMenu.getString("pId");
+                if(id.equals(pId)) child.add(twoMenu);
+            });
+            oneMenu.put("child", child);
+            menus.add(oneMenu);
+        });
+
+        return menus;
     }
 
     /**

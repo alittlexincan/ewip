@@ -32,15 +32,15 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         JSONObject userInfo  = (JSONObject)principals.getPrimaryPrincipal();
         JSONArray roles = userInfo.getJSONArray("roles");
-        JSONArray perissions = userInfo.getJSONArray("perissions");
+        JSONArray permissions = userInfo.getJSONArray("permissions");
         roles.forEach(r -> {
             JSONObject role = (JSONObject) r;
             authorizationInfo.addRole(role.getString("role"));
         });
 
-        perissions.forEach(p -> {
-            JSONObject perission = (JSONObject) p;
-            authorizationInfo.addStringPermission(perission.getString("perission"));
+        permissions.forEach(p -> {
+            JSONObject permission = (JSONObject) p;
+            authorizationInfo.addStringPermission(permission.getString("permission"));
         });
         return authorizationInfo;
     }
@@ -68,20 +68,20 @@ public class ShiroRealm extends AuthorizingRealm {
         session.setAttribute("employee", employee);
         employee.remove("loginPassword");
 
-//        JSONArray roles = employee.getJSONArray("roles");
-//        StringBuilder sb = new StringBuilder();
-//        if(roles.size() > 0){
-//            roles.forEach(r -> {
-//                JSONObject role = (JSONObject) r;
-//                sb.append("," + role.getString("roleId"));
-//            });
-//            Map<String, Object> map = new HashMap<>();
-//            map.put("roleId",sb.toString().substring(1));
-//            JSONArray menus = this.roleService.selectRoleInMenu(map).getJSONArray("data");
-//            session.setAttribute("menus", menus);
-//        }else {
-//            session.setAttribute("menus", null);
-//        }
+        JSONArray roles = employee.getJSONArray("roles");
+        StringBuilder sb = new StringBuilder();
+        if(roles.size() > 0){
+            roles.forEach(r -> {
+                JSONObject role = (JSONObject) r;
+                sb.append("," + role.getString("id"));
+            });
+            Map<String, Object> map = new HashMap<>();
+            map.put("roleId",sb.toString().substring(1));
+            JSONArray menus = this.roleService.selectRoleInMenu(map).getJSONArray("data");
+            session.setAttribute("menus", menus);
+        }else {
+            session.setAttribute("menus", null);
+        }
 
         return authenticationInfo;
     }

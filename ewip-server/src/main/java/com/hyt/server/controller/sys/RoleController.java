@@ -1,6 +1,7 @@
 package com.hyt.server.controller.sys;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
@@ -168,9 +169,9 @@ public class RoleController {
     })
     @GetMapping("/select/menu")
     public ResultObject<Object> selectRoleInMenu(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
-        List<Menu> list = this.roleService.selectRoleInMenu(map);
-        if(list.size() > 0){
-            return  ResultResponse.make(200,"查询角色对应配置的菜单成功", list);
+        JSONArray array = this.roleService.selectRoleInMenu(map);
+        if(array.size() > 0){
+            return  ResultResponse.make(200,"查询角色对应配置的菜单成功", array);
         }
         return ResultResponse.make(500,"查询角色对应配置的菜单失败", null);
     }

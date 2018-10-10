@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="utf-8" />
     <title>用户管理</title>
@@ -8,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
-    <!--<link rel="stylesheet" th:href="@{/layuiadmin/ztree/css/metroStyle/metroStyle.css}" media="all">-->
     <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
 </head>
 <body>
@@ -198,7 +198,9 @@
 
             <!-- 列表：数据行操作 -->
             <script type="text/html" id="btnGroupOption">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-edit"></i>分配角色</a>
+                <shiro:hasPermission name="role">
+                    <a class="layui-btn layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-user"></i>分配角色</a>
+                </shiro:hasPermission>
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
             </script>

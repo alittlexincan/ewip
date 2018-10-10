@@ -266,7 +266,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         // 菜单级别下拉框赋值
                         $("#updateDiv select[name='level']").val(param.level);
 
-                        if(param.level == 2){
+                        if(param.level == 1){
                             $("#updateDiv .menu-url").hide();
                             $("#updateDiv .menu-icon").show();
                         }else{

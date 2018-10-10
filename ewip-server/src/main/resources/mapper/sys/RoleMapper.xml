@@ -18,6 +18,7 @@
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="turn" jdbcType="SMALLINT" property="turn"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
     </resultMap>
 
     <resultMap id="BasePermissionMap" type="com.hyt.server.entity.sys.Permission">
@@ -102,6 +103,7 @@
           m.url,
           m.p_id,
           m.icon,
+          m.level,
           m.turn
         FROM menu m
         LEFT JOIN role_menu rm ON rm.menu_id = m.id
