@@ -28,16 +28,16 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("权限配置-->ShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         JSONObject userInfo  = (JSONObject)principals.getPrimaryPrincipal();
         JSONArray roles = userInfo.getJSONArray("roles");
         JSONArray permissions = userInfo.getJSONArray("permissions");
+        // 角色注入shiro
         roles.forEach(r -> {
             JSONObject role = (JSONObject) r;
             authorizationInfo.addRole(role.getString("role"));
         });
-
+        // 权限注入shiro
         permissions.forEach(p -> {
             JSONObject permission = (JSONObject) p;
             authorizationInfo.addStringPermission(permission.getString("permission"));

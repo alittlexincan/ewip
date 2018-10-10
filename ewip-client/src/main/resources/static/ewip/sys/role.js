@@ -359,10 +359,16 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
                                             // 根据选中的角色ID，查询该角色对应的菜单
                                             active.selectRoleInMenu(param.id, (res)=>{
                                                 res.forEach((menu)=>{
-
                                                     for(var i = 0; i<responseData.length; i++){
                                                         if(responseData[i].id == menu.id){
                                                             responseData[i].checked = true;
+                                                        }
+                                                        if(menu.child.length>0){
+                                                            menu.child.forEach(child => {
+                                                                if(responseData[i].id == child.id){
+                                                                    responseData[i].checked = true;
+                                                                }
+                                                            });
                                                         }
                                                     }
                                                 });
