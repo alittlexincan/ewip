@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/role.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
@@ -21,14 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="role.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/role.js">
+      <file leaf-file-name="permission.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/permission.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="371" column="57" selection-start-line="371" selection-start-column="57" selection-end-line="371" selection-end-column="57" />
+            <state relative-caret-position="-399">
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -36,53 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoleMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/RoleMapper.xml">
+      <file leaf-file-name="permission.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1121">
-              <caret line="25" column="66" lean-forward="true" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
+            <state relative-caret-position="352">
+              <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShiroRealm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/config/shiro/ShiroRealm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="25" lean-forward="true" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="role.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/role.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+            <state relative-caret-position="190">
+              <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
               <folding>
+                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#2;n#ul#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#dd#0;n#dl#0;n#li#2;n#ul#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -92,29 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="employee.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html">
+      <file leaf-file-name="MessageServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/message/MessageServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="202" column="38" lean-forward="true" selection-start-line="202" selection-start-column="38" selection-end-line="202" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeeMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/EmployeeMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/menu.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="187" column="75" lean-forward="true" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
+            <state relative-caret-position="-1274">
+              <caret line="51" column="42" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -153,7 +105,6 @@
       <list>
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/PermissionServiceImpl.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/PermissionController.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/permission.js" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/PermissionMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" />
@@ -193,15 +144,16 @@
         <option value="$PROJECT_DIR$/ewip-client/pom.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/role.html" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/config/shiro/ShiroRealm.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/RoleMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/sys/IRoleService.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/sys/RoleController.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/sys/RoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/menu.js" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/employee.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/role.js" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/config/shiro/ShiroRealm.java" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html" />
+        <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" />
       </list>
     </option>
   </component>
@@ -586,6 +538,18 @@
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="message" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
               <item name="sys" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -705,7 +669,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
+  <component name="RunManager" selected="Spring Boot.EwipPublishApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -804,7 +768,7 @@
       <workItem from="1538269457441" duration="24660000" />
       <workItem from="1538960141085" duration="24776000" />
       <workItem from="1539055043927" duration="14902000" />
-      <workItem from="1539136329783" duration="11456000" />
+      <workItem from="1539136329783" duration="15829000" />
     </task>
     <task id="LOCAL-00001" summary="客户端添加shiro权限控制，并将数据添加到缓存，处理session过期登录页在iframe里面问题">
       <created>1538053001495</created>
@@ -890,11 +854,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539151491830</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="修改bug：角色对应菜单分配回显比对，错误修改；原因后台修改了菜单层级成为了树状">
+      <created>1539153915161</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1539153915161</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162830000" />
+    <option name="totallyTimeSpent" value="167203000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -907,7 +878,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -930,7 +900,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.45091695" />
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16791044" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24093817" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -961,7 +931,8 @@
     <MESSAGE value="角色配置菜单完毕" />
     <MESSAGE value="用户分配角色完成" />
     <MESSAGE value="动态菜单读取，部分权限限制" />
-    <option name="LAST_COMMIT_MESSAGE" value="动态菜单读取，部分权限限制" />
+    <MESSAGE value="修改bug：角色对应菜单分配回显比对，错误修改；原因后台修改了菜单层级成为了树状" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改bug：角色对应菜单分配回显比对，错误修改；原因后台修改了菜单层级成为了树状" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,27 +940,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/sys/IZTreeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/sys/IZTreeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/strategy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="462" column="27" lean-forward="true" selection-start-line="441" selection-start-column="24" selection-end-line="462" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-285" />
@@ -1279,28 +1229,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#dd#0;n#dl#0;n#li#2;n#ul#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/config/shiro/ShiroRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/sys/RoleMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1121">
@@ -1335,13 +1263,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/role.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
+        <state relative-caret-position="160">
           <caret line="371" column="57" selection-start-line="371" selection-start-column="57" selection-end-line="371" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/config/shiro/ShiroRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/sys/permission.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/message/MessageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1274">
+          <caret line="51" column="42" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/permission.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="69" column="60" lean-forward="true" selection-start-line="69" selection-start-column="60" selection-end-line="69" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#dd#0;n#dl#0;n#li#2;n#ul#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
