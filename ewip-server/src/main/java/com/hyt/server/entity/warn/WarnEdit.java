@@ -99,10 +99,14 @@ public class WarnEdit {
 
     private String disasterCode;
 
+    private String icon;
+
+    private String organizationName;
+
     public WarnEdit() {
     }
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime, Date sendTime, String disasterCode) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer currentFlow, Integer nextFlow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String organizationName) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -126,6 +130,8 @@ public class WarnEdit {
         this.createTime = createTime;
         this.sendTime = sendTime;
         this.disasterCode = disasterCode;
+        this.icon = icon;
+        this.organizationName = organizationName;
     }
 
     public String getId() {
@@ -318,5 +324,21 @@ public class WarnEdit {
 
     public void setDisasterCode(String disasterCode) {
         this.disasterCode = disasterCode;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 }

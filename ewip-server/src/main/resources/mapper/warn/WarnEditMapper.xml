@@ -26,13 +26,52 @@
         <result column="status" jdbcType="SMALLINT" property="status"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
     </resultMap>
+
+    <!-- 查询预警配置信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+            we.id,
+            we.title title,
+            we.disaster_id,
+            d.icon,
+            we.disaster_name,
+            we.disaster_color,
+            we.disaster_level,
+            we.warn_type,
+            we.msg_type,
+            we.scope,
+            we.status,
+            we.send_time
+        FROM
+          warn_edit we
+        LEFT JOIN disaster d on d.id = we.disaster_id
+        where 1=1
+        <if test="id != null and id != ''">AND we.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND we.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND we.organization_id = #{organizationId}</if>
+        <if test="disasterName != null and disasterName != ''">AND d.name = #{disasterName}</if>
+        <if test="disasterColor != null and disasterColor != ''">AND we.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">AND we.disaster_level = #{disasterLevel}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY we.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
 
     <select id="selectByWarnEditId" resultMap="BaseResultMap">
         select
           we.id,
+          we.title,
           we.area_id,
           we.organization_id,
+          o.organization_name,
           we.disaster_id,
           we.warn_type,
           we.edit_time,
@@ -50,6 +89,7 @@
           d.disaster_level
         from warn_edit we
 		LEFT JOIN disaster d on d.id = we.disaster_id
+		LEFT JOIN organization o on o.id = we.organization_id
         where we.id = #{warnEditId}
     </select>
 

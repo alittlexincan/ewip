@@ -729,3 +729,127 @@ website:    http://code.google.com/p/jquerytree/
 /* 一键发布tab页 end*/
 
 /* 一键发布 end*/
+
+/* 时间线 start*/
+.warn-icon-detial{
+    padding: 2px;
+    text-align: center;
+    height: 105px;
+    line-height: 105px;
+}
+
+.ewip-timeline-detial{
+    position: relative;
+    padding: 0;
+}
+
+.ewip-timeline-detial > .fangxiang{
+    opacity: 0;
+    background: #2f9688;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    top:60px;
+    z-index: 1;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+}
+
+.ewip-timeline-detial:hover > .fangxiang{
+    opacity: 1;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s; /* Firefox 4 */
+    -webkit-transition: opacity 1.5s; /* Safari and Chrome */
+    -o-transition: opacity 1.5s; /* Opera */
+}
+
+.ewip-timeline-detial > .ewip-timeline-left{
+    left: 20px;
+}
+
+.ewip-timeline-detial > .ewip-timeline-right{
+    right: 20px;
+}
+
+.ewip-timeline-detial > .ewip-timeline-box{
+    width: 84.5%;
+    overflow: hidden;
+    margin: 0 7.7%;
+}
+
+.ewip-timeline-list{
+    width: 10000px;
+    height: 120px;
+    margin-top: 30px;
+}
+.ewip-timeline-list > .ewip-timeline{
+    width: 200px;
+    height:1px;
+    background: #00b83f;
+    float: left;
+}
+.ewip-timeline-list > .ewip-timeline:first-child,
+.ewip-timeline-list > .ewip-timeline:last-child
+{
+    width: 100px;
+}
+
+.ewip-timeline-list > .timeline{
+
+    float: left;
+    position: relative;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid #00b83f;
+}
+
+.ewip-timeline-list > .timeline > .time{
+    position: relative;
+    top: -31px;
+    left: -65px;
+    width: 132px;
+    color: #009966;
+    font-weight: bold;
+}
+.ewip-timeline-list > .timeline > .content{
+    display: inline-block;
+    font-size: 10px;
+    position: relative;
+    top: -20px;
+    left: -100px;
+    width: 200px;
+    height: 100px;
+    background: #2f9688;
+    color: white;
+    overflow: auto;
+    overflow-x: hidden;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.ewip-timeline-list > .timeline > .content > ul{
+    padding: 0px 5px;
+}
+.ewip-timeline-list > .timeline > .content > ul > li:nth-child(2n + 1){
+    float: left;
+    width: 55px;
+}
+.ewip-timeline-list > .timeline > .content > ul > li:nth-child(2n){
+    float: left;
+    width:130px;
+}
+
+
+
+/* 时间线 end*/

@@ -22,4 +22,14 @@
       <module name="ewip-server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ewip" options="-Xlint:unchecked" />
+      <module name="ewip-client" options="-Xlint:unchecked" />
+      <module name="ewip-eureka" options="-Xlint:unchecked" />
+      <module name="ewip-monitor" options="-Xlint:unchecked" />
+      <module name="ewip-publish" options="-Xlint:unchecked" />
+      <module name="ewip-server" options="-Xlint:unchecked" />
+    </option>
+  </component>
 </project>

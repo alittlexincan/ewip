@@ -44,6 +44,26 @@ public interface IWarnEditOptionService {
     @PostMapping("/warn/option/update/status")
     JSONObject updateStatus(@RequestParam Map<String, Object> map);
 
+    /**
+     * 根据预警ID查询对应的预警详细信息
+     * @param map
+     * @return
+     */
+    @GetMapping("warn/option/detail")
+    JSONObject selectWarnEditDetail(@RequestParam Map<String,Object> map);
+
+    /**
+     * 根据预警ID查询对应的流程信息
+     * @param map
+     * @return
+     */
+    @GetMapping("warn/option/select/flow/id")
+    JSONObject selectFlowByWarnEditId(@RequestParam Map<String,Object> map);
+
+    /**
+     * 给微信提供发布预警信息
+     * @return
+     */
     @GetMapping("/warn/option/wechat")
     JSONObject getWechatWarnInfo();
 

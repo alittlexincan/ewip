@@ -2,17 +2,18 @@ package com.hyt.client.controller.warn;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hyt.client.controller.common.BaseController;
 import com.hyt.client.service.warn.IWarnEditService;
 import com.hyt.client.utils.UploadFileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -24,7 +25,7 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 @RestController
 @RequestMapping("warn/edit")
-public class WarnEditController {
+public class WarnEditController extends BaseController {
 
     /**
      * 获取上传的文件夹，具体路径参考application.properties中的配置
@@ -68,6 +69,27 @@ public class WarnEditController {
     @PostMapping("/insert/flow")
     public JSONObject insertFlow(@RequestParam Map<String,Object> map){
         return this.warnEditService.insertFlow(map);
+    }
+
+    /**
+     * 分页查询预警发布信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/select")
+    JSONObject selectAll(@RequestParam Map<String,Object> map){
+        return this.warnEditService.selectAll(map);
+    }
+
+    /**
+     * 文件下载
+     * @param map
+     * @return
+     */
+    @GetMapping("/download")
+    public void download(@RequestParam Map<String, Object> map, HttpServletRequest request, HttpServletResponse response){
+        File file = new File( this.uploadPath + "/" + map.get("url").toString());
+        downloadFile(file, request, response);
     }
 
 }

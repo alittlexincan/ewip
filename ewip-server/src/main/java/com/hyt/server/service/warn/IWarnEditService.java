@@ -1,8 +1,11 @@
 package com.hyt.server.service.warn;
 
+import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
+import com.hyt.server.entity.message.Message;
 import com.hyt.server.entity.warn.WarnEdit;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,6 +15,8 @@ import java.util.Map;
  * @Modified By:
  */
 public interface IWarnEditService extends IBaseService<WarnEdit> {
+
+    PageInfo<WarnEdit> findAll(Map<String, Object> map);
 
     /**
      * 添加预警相关信息

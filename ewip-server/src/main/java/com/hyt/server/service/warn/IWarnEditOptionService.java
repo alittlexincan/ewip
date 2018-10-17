@@ -3,6 +3,7 @@ package com.hyt.server.service.warn;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
+import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
 
 import java.util.List;
@@ -24,6 +25,13 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
     PageInfo<WarnEditOption> selectFlowByParam(Map<String, Object> map);
 
     /**
+     * 查询预警发布后详细信息
+     * @param map
+     * @return
+     */
+    JSONObject selectWarnEditDetail(Map<String, Object> map);
+
+    /**
      * 添加预警流程信息
      * @param map
      * @return
@@ -36,6 +44,13 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      * @return
      */
     int updateStatus(Map<String, Object> map);
+
+    /**
+     * 根据预警ID查询对应的预警流程
+     * @param map
+     * @return
+     */
+    List<WarnEditFlow> selectFlowByWarnEditId(Map<String, Object> map);
 
     List<Map<String, Object>> getWechatWarnInfo();
 

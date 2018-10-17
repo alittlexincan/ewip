@@ -230,8 +230,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "		</div>";
                 html += "	</div>";
                 html += "</div>"
-                    // 追加预警内容tab选项卡
-                    ,element.tabAdd('warn-tab', {
+                // 追加预警内容tab选项卡
+                ,element.tabAdd('warn-tab', {
                     title: channelName
                     ,content: html //支持传入html
                     ,id: channelId

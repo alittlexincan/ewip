@@ -2,8 +2,13 @@ package com.hyt.server.service.impl.warn;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hyt.server.config.common.page.MybatisPage;
 import com.hyt.server.config.common.universal.AbstractService;
+import com.hyt.server.entity.message.Message;
 import com.hyt.server.entity.sys.Organization;
+import com.hyt.server.entity.sys.Warn;
 import com.hyt.server.entity.warn.*;
 import com.hyt.server.mapper.sys.IOrganizationMapper;
 import com.hyt.server.mapper.warn.*;
@@ -62,6 +67,14 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      */
     @Autowired
     private IOrganizationMapper organizationMapper;
+
+    @Override
+    public PageInfo<WarnEdit> findAll(Map<String, Object> map) {
+        MybatisPage.getPageSize(map);
+        PageHelper.startPage(MybatisPage.page, MybatisPage.limit);
+        List<WarnEdit> list = this.warnEditMapper.findAll(map);
+        return new PageInfo<>(list);
+    }
 
     /**
      * 添加预警相关信息

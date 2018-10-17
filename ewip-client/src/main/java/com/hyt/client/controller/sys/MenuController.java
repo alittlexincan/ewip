@@ -30,15 +30,10 @@ public class MenuController {
      */
     @PostMapping("/insert")
     JSONObject insert(@RequestParam Map<String,Object> map){
-
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
-
         map.put("areaId", employee.getString("areaId"));
         map.put("organizationId", employee.getString("organizationId"));
-
-        System.out.println(map);
-
         return this.menuService.insert(map);
     }
 

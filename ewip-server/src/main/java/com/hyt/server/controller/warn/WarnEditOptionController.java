@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.warn.WarnEdit;
+import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
 import com.hyt.server.service.publish.IPublishService;
 import com.hyt.server.service.warn.IWarnEditOptionService;
@@ -85,6 +87,32 @@ public class WarnEditOptionController {
             return ResultResponse.make(200,"添加预警编辑流程成功",map);
         }
         return ResultResponse.make(500,"添加预警编辑流程失败",null);
+    }
+
+    @ApiOperation(value="根据预警ID查询发布后的预警详细信息",httpMethod="GET",notes="根据预警ID查询发布后的预警详细信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query")
+    })
+    @GetMapping("/detail")
+    public ResultObject<Object> selectWarnEditDetail(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = this.warnEditOptionService.selectWarnEditDetail(map);
+        if (json != null){
+            return ResultResponse.make(200,"查询警信息成功",json);
+        }
+        return ResultResponse.make(500,"查询预警信息失败",null);
+    }
+
+    @ApiOperation(value="根据预警ID查询发布后的预警流程信息",httpMethod="GET",notes="根据预警ID查询发布后的预警流程信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query")
+    })
+    @GetMapping("/select/flow/id")
+    public ResultObject<Object> selectFlowByWarnEditId(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        List<WarnEditFlow> list = this.warnEditOptionService.selectFlowByWarnEditId(map);
+        if (list.size() > 0){
+            return ResultResponse.make(200,"查询警流程成功",list);
+        }
+        return ResultResponse.make(500,"查询预警流程失败",null);
     }
 
     @ApiOperation(value="微信获取当天所有预警信息",httpMethod="GET",notes="微信获取当天所有预警信息")

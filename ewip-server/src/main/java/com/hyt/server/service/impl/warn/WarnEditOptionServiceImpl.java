@@ -74,6 +74,29 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     }
 
     /**
+     * 查询预警发布后详细信息
+     * @param map
+     * @return
+     */
+    public JSONObject selectWarnEditDetail(Map<String, Object> map){
+
+        // 1：获取预警基本信息
+        JSONObject result = getWarnEditInfo(map);
+
+        // 2：获取预警内容
+        getWarnEditContentInfo(result, map);
+
+        // 3：获取预警发布对象
+        getWarnEditUserInfo(result, map);
+
+        // 4：获取预警上传文件
+        getWarnEditFileInfo(result, map);
+
+        return result;
+    }
+
+
+    /**
      * 添加流程信息
      * warnEditFlow
      * @param map
@@ -295,6 +318,16 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         }else {
             result.put("files", new JSONArray());
         }
+    }
+
+    /**
+     * 根据预警ID查询对应的预警流程
+     * @param map
+     * @return
+     */
+    @Override
+    public List<WarnEditFlow> selectFlowByWarnEditId(Map<String, Object> map){
+        return this.warnEditFlowMapper.selectFlowByWarnEditId(map);
     }
 
     @Override

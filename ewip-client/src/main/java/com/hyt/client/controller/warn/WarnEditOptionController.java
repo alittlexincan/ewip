@@ -78,16 +78,37 @@ public class WarnEditOptionController {
         return this.warnEditOptionService.updateStatus(map);
     }
 
+    /**
+     * 根据预警ID查询对应的预警详细信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/detail")
+    JSONObject selectWarnEditDetail(@RequestParam Map<String,Object> map){
+        return this.warnEditOptionService.selectWarnEditDetail(map);
+    }
+
+    /**
+     * 根据预警ID查询对应的流程信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/select/flow/id")
+    JSONObject selectFlowByWarnEditId(@RequestParam Map<String,Object> map){
+        return this.warnEditOptionService.selectFlowByWarnEditId(map);
+    }
+
+    /**
+     * 给微信提供发布预警信息
+     * @param request
+     * @return
+     */
     @GetMapping("/wechat")
     public JSONArray getWechatWarnInfo(HttpServletRequest request){
         JSONArray array = new JSONArray();
         try {
             String ip = IPUtil.getLocalHostLANAddress().getHostAddress();
-
             String uri = request.getScheme() + "://" + ip + ":" + request.getServerPort() + request.getContextPath();
-            System.out.println(uri);
-
-
             JSONArray data = this.warnEditOptionService.getWechatWarnInfo().getJSONArray("data");
             if (data == null || data.size() > 0) {
                 data.forEach(warn -> {

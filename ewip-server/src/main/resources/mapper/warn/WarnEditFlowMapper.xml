@@ -22,6 +22,18 @@
 
     </resultMap>
 
+    <!-- 根据预警ID查询对应的流程 -->
+    <select id="selectFlowByWarnEditId" resultMap="BaseResultMap">
+        SELECT
+            flow,
+            organization_name,
+            employee_name,
+            advice,
+            create_time
+        from warn_edit_flow
+        where warn_edit_id = #{warnEditId}
+    </select>
+
     <!-- 预警编辑流程批量插入 -->
     <insert id="insert" >
         insert into warn_edit_flow (id, warn_edit_id, flow,

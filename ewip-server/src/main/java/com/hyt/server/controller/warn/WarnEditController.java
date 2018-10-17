@@ -1,15 +1,14 @@
 package com.hyt.server.controller.warn;
 
+import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.message.Message;
 import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -54,5 +53,24 @@ public class WarnEditController {
             return ResultResponse.make(200,"添加预警信息成功",map);
         }
         return ResultResponse.make(500,"添加预警信息失败",null);
+    }
+
+    @ApiOperation(value = "查询预警发布信息列表", httpMethod = "GET", notes = "根据查询条件分页查询预警发布信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="page",value="当前页数", defaultValue="0", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="size",value="每页条数", defaultValue="10", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="sortName",value="排序字段名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="sortOrder",value="排序规则(ASC,DESC)，默认DESC", defaultValue = "DESC",dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="startTime",value="开始时间", dataType = "Date",paramType = "query"),
+            @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
+
+            @ApiImplicitParam(name="disasterId",value="灾种ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "String",paramType = "query")
+    })
+    @GetMapping("/select")
+    public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        PageInfo<WarnEdit> pageInfo = this.warnEditService.findAll(map);
+        return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 }

@@ -34,4 +34,12 @@ public interface IWarnEditService {
     @PostMapping("/warn/edit/insert/flow")
     JSONObject insertFlow(@RequestParam Map<String, Object> map);
 
+    /**
+     * 分页查询预警发布信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/warn/edit/select")
+    JSONObject selectAll(@RequestParam Map<String,Object> map);
+
 }
