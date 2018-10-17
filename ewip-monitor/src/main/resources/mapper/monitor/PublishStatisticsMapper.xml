@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.monitor.mapper.monitor.PublishStatisticsMapper" >
+
+	<!--预警级别统计基础颜色数据-->
+	<select id="basicColor" resultType="map">
+	select * from (
+  		select  '0' colorId, '短期预报' name, '0' count  from  dual
+	  union all select  '1' colorId,'中期预报' name, '0' count  from  dual
+	  union all select  '2' colorId,'长期预报' name, '0' count  from  dual
+	  union all select  '3' colorId,'气象专题专报' name, '0' count  from  dual
+		union all select  '4' colorId,'重大气象专题专报' name, '0' count  from  dual
+	  )f where 1=1
+	</select>
+
+	<!--预警级别统计查询库中数据-->
+	<select id="drawWarnLevelTotal" resultType="map">
+		select type id, case type when 0 then '短期预报' when 1 then '中期预报' when 2 then '长期预报'
+		when 3 then '气象专题专报'  else '重大气象专题专报' end colorLevelName,COUNT(type) count
+		from message group by type
+		<!--	AND TO_CHAR(w.send_time, 'YYYY-MM-DD HH24:mi:ss') >= #{startTime}
+            AND TO_CHAR(w.send_time, 'YYYY-MM-DD HH24:mi:ss') <= #{endTime}-->
+	</select>
+
+	<!--发布地区统计-->
+	<select id="drawPublishAreaTotal" resultType="map">
+		select m.area_id areaId,a.area_name city ,COUNT(type) count,
+		case type when 0 then '短期预报' when 1 then '中期预报'
+		when 2 then '长期预报' when 3 then '气象专题专报'
+		else '重大气象专题专报' end colorLevelName
+		from message m
+		LEFT JOIN area a on m.area_id=a.id
+		group by area_id,type
+	</select>
+
+
+	<!--24小时预警列表-->
+	<select id="warnList" resultType="map">
+		SELECT * FROM (
+			select m.id ,m.title name,DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') sendTime,
+			case type when 0 then '短期预报' when 1 then '中期预报'
+			when 2 then '长期预报' when 3 then '气象专题专报'
+			else '重大气象专题专报' end type from message m
+		) tt limit ${min},${max}
+
+	</select>
+
+	<!--24小时预警列表数量-->
+	<select id="warnListCount" resultType="java.lang.Integer">
+		select count(1) from  message w where 1=1
+<!--		and w.send_time >= #{startTime}
+		and w.send_time <= #{endTime}-->
+	</select>
+
+	<select id="sendWarnStats" resultType="map">
+	select organization_id orgId,m.organization_name name ,COUNT(type) count,
+		case type when 0 then '短期预报' when 1 then '中期预报'
+		when 2 then '长期预报' when 3 then '气象专题专报'
+		else '重大气象专题专报' end type
+		from message m group by organization_id,type
+	</select>
+
+	<!--渠道基础信息-->
+	<select id="basicChannel" resultType="map">
+	     select id, name ,0 count  from channel
+	</select>
+
+	<!--发布渠道统计-->
+	<select id="channelStatistics" resultType="map">
+			select channelName,channelId ,count(channelId) count  from(
+		select c.message_id,c.channel_id channelId,ch.name channelName
+		from message_content c left JOIN channel ch on ch.id =c.channel_id
+		)s group by channelName,channelId
+	</select>
+
+	<!--各市预警统计-->
+	<select id="hourWarn" resultType="map">
+		select DATE_FORMAT(send_time, '%Y-%m-%d') sendTime,
+		case type when 0 then '短期预报' when 1 then '中期预报'
+		when 2 then '长期预报' when 3 then '气象专题专报'
+		else '重大气象专题专报' end type,
+		COUNT(type) count from message
+		GROUP BY sendTime,type order by sendTime desc
+	</select>
+
+	<!--任务Id列表-->
+	<select id="taskIdList" resultType="map">
+		select id taskId from warn_edit
+	</select>
+
+	<!--责任人以及受众列表-->
+	<select id="personNumList" resultType="map">
+		select city,COUNT(city) num from (
+		select u.id keyId, a.area_name city from warn_callback_child w
+		INNER JOIN user u ON u.code=w.code
+		inner join area a ON a.id=u.area_id) a
+		GROUP BY city
+	</select>
+	<!--责任人以及受众列表-->
+	<select id="channelUserList" resultType="map">
+		select c.id,c.name,sum(total) num from message_callback_main m
+		left join channel c on m.channel_code=c.code
+		group BY c.id
+	</select>
+
+</mapper>

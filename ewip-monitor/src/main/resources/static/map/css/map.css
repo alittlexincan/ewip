@@ -4022,7 +4022,7 @@ display: inline-block;
 	width: 20%;
 	border: 0.1rem solid #4192ad;
     background: #15318ae6;
-	border-radius: 4px 0 0 4px;
+	border-radius: 4px;
 	overflow: hidden;
 }
 
@@ -4216,8 +4216,8 @@ display: inline-block;
 
 .moduleContent .pop-search > .pop-search-content > .pop-content-channel > dl > i {
 	position: absolute;
-	top: 22%;
-	left: 30%;
+	top: 27%;
+	left: 38%;
 	font-size: 2rem;
 }
 

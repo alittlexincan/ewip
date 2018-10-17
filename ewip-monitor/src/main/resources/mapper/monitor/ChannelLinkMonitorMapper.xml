@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.monitor.mapper.monitor.IChannelMonMapper">
+	
+	<!--获取渠道链路监控状态 -->
+	<select id="getChannelLinkState" resultType="map">
+		select id channelId,name channelName,name sendMethod,1 deployType, 1 resultType from channel
+	</select>
+	
+	<!--获取最新预警发布所推送的渠道 -->
+	<select id="getNewSendWarnToChannel" resultType="map">
+		select c.id channelId,1 result from warn_edit_content w left join channel c on w.channel_id=c.id
+		where w.warn_edit_id =#{taskId}
+	</select>
+	
+	<!--获取最新预警信息 -->
+	<select id="getNewSendWarnInfo" resultType="map">
+		select distinct w.id taskId,d.icon img,c.content sendContent from warn_edit as w
+		left join disaster as d on w.disaster_id=d.id
+		left join warn_edit_content c on w.id =c.warn_edit_id
+		order by w.send_time desc LIMIT 1
+	</select>
+	
+</mapper>

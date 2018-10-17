@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.monitor.mapper.monitor.ISystemMonMapper">
+
+	<!-- 网络监控系统运行情况-->
+	<select id="systemMonitoring" resultType="map">
+		select id channelId,name channelName,name sendMethod,icon img,1 deployType, 1 resultType from channel
+	</select>
+
+	<!-- 网络监控 预警终端基础信息用于对比-->
+	<select id="terminalMonitorBasic" resultType="map">
+	 	select  id , name ,0 count ,'正常' serviceState from channel
+        union select  id , name ,0 count ,'异常' serviceState from channel
+	</select>
+
+	<!-- 网络监控 预警终端监控 -->
+	<select id="warnTerminalMonitor" resultType="map">
+	 	select  CHANNELID, name, count(SERVICESTATE) count,SERVICESTATE from (
+		select t.channelid,c.name, u.listid, case when u.servicestate=0 then '正常' else '异常' end SERVICESTATE, u.METHODCONTENT from SSD_EMS_SU_USERS u
+		left join ssd_ems_su_usertype t  on  u.listid=t.keyid
+		left join ssd_ems_sys_channel c on c.channeltype=t.channelid  where  t.grouptype='0' and t.orgid=#{orgId}
+		)
+	group by CHANNELID,name,SERVICESTATE
+	</select>
+
+</mapper>
