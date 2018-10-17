@@ -86,7 +86,8 @@
           d.name disaster_name,
           d.code disaster_code,
           d.disaster_color,
-          d.disaster_level
+          d.disaster_level,
+          d.icon
         from warn_edit we
 		LEFT JOIN disaster d on d.id = we.disaster_id
 		LEFT JOIN organization o on o.id = we.organization_id

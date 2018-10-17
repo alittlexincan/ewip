@@ -312,6 +312,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 JSONObject json = new JSONObject();
                 json.put("name", file.getName());
                 json.put("size", file.getSize());
+                json.put("url", file.getUrl());
                 fileArray.add(json);
             });
             result.put("files",fileArray);

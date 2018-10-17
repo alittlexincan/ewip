@@ -183,7 +183,7 @@ layui.use(['table','form','element','zTree', 'disaster'], function(){
          * 数据回显群组
          */
         ,"calBackFileList": (files) => {
-            if(files == null) return;
+            if(files == null  || files.length == 0) return;
             // 如果是最先添加则显示文件表格
             if($(".warn-file-table").hasClass("layui-hide")){
                 $(".warn-file-table").removeClass("layui-hide");

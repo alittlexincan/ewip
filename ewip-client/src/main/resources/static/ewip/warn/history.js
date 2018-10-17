@@ -46,7 +46,25 @@ layui.use(['table','form','element','zTree'], function(){
      * @type {{calBackChannelList: calBackChannelList, calBackAreaList: calBackAreaList, calBackContentList: calBackContentList, calBackUserList: calBackUserList, calBackFileList: calBackFileList, initPageMsg: initPageMsg}}
      */
     let active = {
-        "calBackWarnEditInfo": result => {
+
+        /**
+         * 流程转换
+         * 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布
+         * @param flow
+         */
+        "parseFlow": flow => {
+            if(flow == 0) return "录入";
+            if(flow == 1) return "审核";
+            if(flow == 2) return "签发";
+            if(flow == 3) return "应急办签发";
+            if(flow == 4) return "发布";
+        }
+
+        /**
+         * 回显预警基础信息
+         * @param result
+         */
+        ,"calBackWarnEditInfo": result => {
             // 回显发布机构
             $(".basis input[name='organizationName']").val(result.organizationName);
             // 回显标题
@@ -69,6 +87,8 @@ layui.use(['table','form','element','zTree'], function(){
             $(".basis textarea[name='measure']").val(result.measure);
             // 回显防御指南
             $(".basis textarea[name='instruction']").val(result.instruction);
+            // 回显预警图标
+            $(".warn-icon-detial > img").attr("src","/client"+result.icon).attr("title", result.disasterName);
         }
 
         /**
@@ -211,7 +231,7 @@ layui.use(['table','form','element','zTree'], function(){
          * 数据回显文件
          */
         ,"calBackFileList": (files) => {
-            if(files == null) return;
+            if(files == null || files.length == 0) return;
             // 如果是最先添加则显示文件表格
             if($(".warn-file-table").hasClass("layui-hide")){
                 $(".warn-file-table").removeClass("layui-hide");
@@ -286,7 +306,7 @@ layui.use(['table','form','element','zTree'], function(){
                             html += "		<ul>";
                             html += "			<li>操作机构:</li><li>" + flow.organizationName + "</li>";
                             html += "			<li>操作人员:</li><li>" + flow.employeeName + "</li>";
-                            html += "			<li>操作流程:</li><li>" + flow.flow + "</li>";
+                            html += "			<li>操作流程:</li><li>" + active.parseFlow(flow.flow) + "</li>";
                             html += "			<li>操作说明:</li><li>" + flow.advice + "</li>";
                             html += "		</ul>";
                             html += "	</div>";

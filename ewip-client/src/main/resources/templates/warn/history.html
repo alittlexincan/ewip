@@ -128,7 +128,7 @@
                             <div class="layui-card">
                                 <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-picture warn-card-hader-icon"></i>预警图标</span></div>
                                 <div class="layui-card-body warn-icon-detial">
-                                    <img th:src="@{/images/3.jpg}" alt="短信" />
+                                    <img />
                                 </div>
                             </div>
                         </div>
@@ -316,8 +316,7 @@
 
                                     <!--文件上传初始化信息-->
                                     <div class="warn-upload-msg">
-                                        <i class="layui-icon layui-icon-upload-drag"></i>
-                                        <span>点击上传</span>
+                                        <span>暂无上传文件</span>
                                     </div>
 
                                     <!--存放文本框列表-->
@@ -341,13 +340,6 @@
                                         <!--<td>jpg</td>-->
                                         <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
                                         <!--</tr>-->
-                                        <!--<tr>-->
-                                        <!--<td>1</td>-->
-                                        <!--<td>abc.jpg</td>-->
-                                        <!--<td>128k</td>-->
-                                        <!--<td>jpg</td>-->
-                                        <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
-                                        <!--</tr>-->
                                         </tbody>
                                     </table>
 
@@ -361,6 +353,6 @@
     </div>
 
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-    <script th:src="@{/ewip/warn/detail.js}" charset="utf-8"></script>
+    <script th:src="@{/ewip/warn/history.js}" charset="utf-8"></script>
 </body>
 </html>

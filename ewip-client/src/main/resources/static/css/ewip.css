@@ -737,6 +737,10 @@ website:    http://code.google.com/p/jquerytree/
     height: 105px;
     line-height: 105px;
 }
+.warn-icon-detial > img{
+    width: 95%;
+    height: 100px;
+}
 
 .ewip-timeline-detial{
     position: relative;

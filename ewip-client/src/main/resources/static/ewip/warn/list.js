@@ -235,9 +235,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
          */
         'detailOption': (obj) => {
             var index = layer.open({
-                title: "<i class='layui-icon layui-icon-form'></i>信息详情"
+                title: "<i class='layui-icon layui-icon-form'></i>预警追溯"
                 ,type: 2
-                ,content: "/client/page/warn/detail/" + obj.data.id
+                ,content: "/client/page/warn/history/" + obj.data.id
                 ,success: (layero, index) => {
                     setTimeout( () => {
                         layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
