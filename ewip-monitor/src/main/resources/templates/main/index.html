@@ -2,205 +2,98 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>地区管理</title>
+    <title>大庆市突发事件预警信息发布系统</title>
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
-    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
-    <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
-
+    <link rel="stylesheet" th:href="@{/map/plugin/bootstrap4/css/bootstrap.css}" media="all">
+    <link rel="stylesheet" th:href="@{/map/font/css/font-awesome.css}" media="all">
+    <link rel="stylesheet" th:href="@{/map/plugin/zTree_v3/css/awesomeStyle/awesome.css}" media="all">
+    <link rel="stylesheet" th:href="@{/map/css/map.css}" media="all">
 </head>
-<body>
-<div class="layui-fluid">
-    <div class="layui-card">
-        <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="areaName" placeholder="请输入地区名称" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="code" placeholder="请输入地区编码" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <select name="level" placeholder="请选择地区级别">
-                            <option value="">请选择地区级别</option>
-                            <option value="0">国家级</option>
-                            <option value="1">省级</option>
-                            <option value="2">市级</option>
-                            <option value="3">县级</option>
-                            <option value="4">乡镇级</option>
-                        </select>
-                    </div>
-                </div>
+<body class="moduleContent" >
+    <!-- 地区ID -->
+    <!--<input type="hidden" id="areaId" value="${areaId}"/>-->
+    <!--&lt;!&ndash; 地区编码 &ndash;&gt;-->
+    <!--<input type="hidden" id="areaCode" value="${areaCode}"/>-->
+    <!--&lt;!&ndash; 地区名称 &ndash;&gt;-->
+    <!--<input type="hidden" id="areaName" value="${system.areaName }"/>-->
+    <!--&lt;!&ndash; 地图展示GIS服务地址 &ndash;&gt;-->
+    <!--<input type="hidden" id="gisMapUrl" value="${system.gisMapUrl }"/>-->
+    <!--&lt;!&ndash; 地图放大缩小倍率 &ndash;&gt;-->
+    <!--<input type="hidden" id="zoom" value="${system.zoom }"/>-->
+    <!--&lt;!&ndash; 地图中心点 &ndash;&gt;-->
+    <!--<input type="hidden" id="centerPoint" value="${system.centerPoint }"/>-->
+    <!--&lt;!&ndash; 地图边界数据 &ndash;&gt;-->
+    <!--<input type="hidden" id="areaBorderData" value="${system.areaBorderData }"/>-->
+    <!--&lt;!&ndash; 地图边界 &ndash;&gt;-->
+    <!--<input type="hidden" id="areaBorder" value="${system.areaBorder }"/>-->
+    <!--&lt;!&ndash; 机构id &ndash;&gt;-->
+    <!--<input type="hidden" id="orgId" value="${orgId }"/>-->
+    <!--&lt;!&ndash; 机构名称 &ndash;&gt;-->
+    <!--<input type="hidden" id="orgName" value="${orgName }"/>-->
+    <!--&lt;!&ndash; 员工id &ndash;&gt;-->
+    <!--<input type="hidden" id="employeeId" value="${employeeId }"/>-->
+    <!-- 导航栏开始 -->
+    <nav class="navbar navbar-expand navbar-dark fixed-top p-0 bg-navy-blue">
 
-                <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
-                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                    </button>
-                    <button class="layui-btn layui-btn-danger" type="reset">
-                        <i class="layui-icon layui-icon-delete layuiadmin-button-btn"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <div class="layui-card-body">
-
-            <div class="layui-btn-group tableBar">
-                <button class="layui-btn" data-type="addBarBtn">添加</button>
-                <button class="layui-btn" data-type="deleteBarBtn">删除</button>
-            </div>
-
-            <!-- 列表：数据行操作 -->
-            <script type="text/html" id="btnGroupOption">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                {{# if(d.child != 0) { }}
-                <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
-                {{# }else{ }}
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
-                {{# } }}
-            </script>
-
-            <!-- 添加弹出层 -->
-            <script id="addPop" type="text/html">
-                <div class="layui-form layui-form-pane">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区级别</label>
-                        <div class="layui-input-block">
-                            <select name="level" lay-verify="level" placeholder="请选择地区级别" lay-filter="level">
-                                <option value="">请选择地区级别</option>
-                                <!--<option value="0">国家级</option>-->
-                                <option value="1">省级</option>
-                                <option value="2">市级</option>
-                                <option value="3">县级</option>
-                                <option value="4">乡镇级</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item pId">
-                        <label class="layui-form-label">上级地区</label>
-                        <div class="layui-input-block">
-                            <div id="addPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="areaName" lay-verify="areaName" autocomplete="off" placeholder="请输入地区名称" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区编码</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="code" lay-verify="code" placeholder="请输入地区编码" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区经度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="longitude" placeholder="请输入地区经度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区纬度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="latitude" placeholder="请输入地区纬度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">海拔高度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="altitude" placeholder="请输入海拔高度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item layui-hide" >
-                        <div class="layui-input-block layui-col-md-offset4">
-                            <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
-                        </div>
-                    </div>
-                </div>
-            </script>
-
-            <!-- 修改弹出层 -->
-            <script id="updatePop" type="text/html">
-
-                <div class="layui-form layui-form-pane">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区级别</label>
-                        <div class="layui-input-block">
-                            <select name="level" lay-verify="level" placeholder="请选择地区级别" lay-filter="level">
-                                <option value="">请选择地区级别</option>
-                                <!--<option value="0">国家级</option>-->
-                                <option value="1">省级</option>
-                                <option value="2">市级</option>
-                                <option value="3">县级</option>
-                                <option value="4">乡镇级</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item pId">
-                        <label class="layui-form-label">上级地区</label>
-                        <div class="layui-input-block">
-                            <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="areaName" lay-verify="areaName" value="{{d.areaName}}" autocomplete="off" placeholder="请输入地区名称" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区编码</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="code" lay-verify="code" value="{{d.code}}" placeholder="请输入地区编码" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区经度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="longitude" value="{{d.longitude}}" placeholder="请输入地区经度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地区纬度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="latitude" value="{{d.latitude}}" placeholder="请输入地区纬度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">海拔高度</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="altitude" value="{{d.altitude}}" placeholder="请输入海拔高度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item layui-hide" >
-                        <div class="layui-input-block layui-col-md-offset4">
-                            <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
-                        </div>
-                    </div>
-                </div>
-            </script>
-
-            <!-- 列表信息 -->
-            <table class="layui-table" lay-filter="table" id="table"></table>
+        <div class="col col-sm-4 col-md-4 " style="position: relative;" >
+            <ul class="navbar-nav  pr-0 flex-row-reverse" style="float:left">
+                <li title="渠道监控" class="nav-item mr-1 nav-menu-4"><i id="mapChannelLink"class="fa fa-dashboard" aria-hidden="true"></i></li>
+                <li title="网络监控" class="nav-item mr-1 nav-menu-4"><i id="mapNetworkMonitoring" class="fa fa-ravelry" aria-hidden="true"></i></li>
+                <!--<li title="辅助决策" class="nav-item mr-1 nav-menu-4"><i id="mapWarnHome" class="fa fa-map-o" aria-hidden="true"></i>-->
+                <li title="一键发布统计" class="nav-item mr-1 nav-menu-4"><i id="warnPublishSts" class="fa fa-bell" aria-hidden="true"></i></li>
+                <li title="预警信息" class="nav-item mr-1 nav-menu-4"><i id="warnMessage" class="fa fa-laptop" aria-hidden="true"></i></li>
+            </ul>
         </div>
-    </div>
-</div>
+        <ul class="navbar-nav title col col-sm-4 col-md-4 text-center">
+            <li class="nav-item col-sm-12 col-md-12">大庆市突发事件预警信息发布系统</li>
+        </ul>
 
-<script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-<script th:src="@{/ewip/sys/area.js}" charset="utf-8"></script>
+        <div class="col col-sm-4 col-md-4" id="top-tool">
+            <div class="navbar-nav pr-0 flex-row-reverse">
+                <span id="quit" class="map-option" title="退出"><i class="fa fa-power-off" aria-hidden="true"></i></span>
+            </div>
+            <div class="navbar-nav pr-0 flex-row-reverse">
+                <span id="serverManager" class="map-option" title="后台管理"><i class="fa fa-cog" aria-hidden="true"></i></span>
+            </div>
+            <ul class="navbar-nav modular-show"  style="float:right">
+            </ul>
+        </div>
+    </nav>
+    <!-- 导航栏结束 -->
 
+    <!-- 地图开始 -->
+    <div id="map" class="map"></div>
+    <!-- 地图结束 -->
+
+    <script th:src="@{/map/plugin/jQuery/jquery-3.2.1.min.js}" ></script>
+    <script th:src="@{/map/plugin/jQuery/popper.min.js}" ></script>
+    <script th:src="@{/map/echarts/echarts.min.js}" ></script>
+    <script th:src="@{/map/echarts/wonderland.js}" ></script>
+    <script th:src="@{/map/plugin/bootstrap4/js/bootstrap.min.js}" ></script>
+    <script th:src="@{/map/plugin/layDate-v5.0.5/laydate/laydate.js}" ></script>
+    <script th:src="@{/map/plugin/zTree_v3/js/jquery.ztree.core.js}" ></script>
+    <script th:src="@{/map/plugin/zTree_v3/js/jquery.ztree.excheck.js}" ></script>
+
+
+    <script th:src="@{/map/js/map-home-move.js}"></script>
+    <!-- 地图引用环境结束 -->
+    <script th:src="@{/map/js/map-moudle.js}"></script>
+    <!-- 汉字转拼音 -->
+    <script th:src="@{/map/js/changepinyin.js}"></script>
+
+    <!--<script th:src="@{/map/js/map-home-move.js}"></script>-->
+    <script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=4bb34f627d7b9b33c83ad8eeb1dcf255"></script>
+    <!-- 导航菜单控制层 -->
+    <script th:src="@{/map/js/map-controller.js}"></script>
+    <script>
+        let initMap = () => {
+            Globel.map = new T.Map('map');
+            Globel.map.centerAndZoom(new T.LngLat(108.00385, 36.41907), Globel.zoom);
+        };
+        initMap();
+    </script>
 </body>
+
 </html>
