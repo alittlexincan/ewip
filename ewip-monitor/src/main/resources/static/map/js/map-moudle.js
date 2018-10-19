@@ -10,5 +10,5 @@ var Globel = {
 	,radarIntervalid:null			//雷达定时器
 	,cloudIntervalid:null			//卫星云图定时器
     ,map : null 
-	,zoom : 12
+	,zoom : 9
 };

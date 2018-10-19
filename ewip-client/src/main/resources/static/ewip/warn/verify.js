@@ -152,49 +152,32 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
          */
         'updateOption': function (obj) {
             let param = obj.data;
-            layer.open({
-                type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 审核预警信息"
-                ,area: '500px'
-                ,shade: 0.3
-                ,maxmin:true
-                ,offset: '50px'
-                ,btn: ['审核', '取消']
-                ,content:"<div id='updateDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
-                ,success: function(layero,index){
-                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
-                    laytpl(updatePop.innerHTML).render(param, function(html){
-                        // 动态获取弹出层对象
-                        $("#updateDiv").empty().append(html);
-                    });
+            let index = layer.open({
+                title: "<i class='layui-icon layui-icon-form'></i>预警追溯"
+                ,type: 2
+                ,content: "/client/page/warn/flow/" + obj.data.id
+                ,success: (layero, index) => {
+                    let body = layui.layer.getChildFrame('body', index);
+                    // 预警编辑流程信息主键ID
+                    body.find("#id").val(param.warnEditFlowId);
+                    // 预警编辑基础信息主键ID
+                    body.find("#warnEditId").val(param.id);
+                    // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
+                    // 将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核
+                    body.find("#currentFlow").val(param.currentFlow);
                     form.render();
-                }
-                ,yes: function(index, layero){
-                    //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
-                    form.on("submit(submitUpdateBtn)", function(data){
-                        // 预警编辑基础信息主键ID
-                        data.field.warnEditId = param.id;
-                        // 预警编辑流程信息主键ID
-                        data.field.id = param.warnEditFlowId;
-                        // 如果不填审核信息，则默认通过
-                        if(data.field.advice.length == 0){
-                          data.field.advice = "审核通过";
-                        }
-                        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-                        // 将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核
-                        data.field.currentFlow = param.currentFlow;
-                        // 数据提交到后台，通用方法
-                        submitServer({
-                            index: index
-                            ,type: 'POST'
-                            ,param: data.field
-                            ,url: '/client/warn/option/insert/flow'
+                    setTimeout( () => {
+                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
                         });
-                    });
-                    // 触发表单按钮点击事件
-                    $("#submitUpdateBtn").click();
+                    }, 500);
+                }
+                ,end: function () {
+                    // 刷新列表
+                    reloadTable();
                 }
             });
+            layer.full(index);
         }
     };
 

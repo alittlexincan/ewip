@@ -31,7 +31,9 @@
             advice,
             create_time
         from warn_edit_flow
-        where warn_edit_id = #{warnEditId}
+        where
+        is_option = 1
+        AND warn_edit_id = #{warnEditId}
         ORDER BY flow DESC
     </select>
 

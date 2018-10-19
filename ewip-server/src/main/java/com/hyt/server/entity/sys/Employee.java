@@ -67,6 +67,18 @@ public class Employee {
 
     public Employee() {}
 
+    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime) {
+        this.loginName = loginName;
+        this.loginPassword = loginPassword;
+        this.name = name;
+        this.areaId = areaId;
+        this.organizationId = organizationId;
+        this.phone = phone;
+        this.email = email;
+        this.sex = sex;
+        this.createTime = createTime;
+    }
+
     public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
