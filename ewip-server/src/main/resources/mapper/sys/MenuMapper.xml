@@ -12,6 +12,7 @@
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="turn" jdbcType="INTEGER" property="turn"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
         <result column="child" jdbcType="INTEGER" property="child"/>
 
@@ -31,6 +32,7 @@
             m.level,
             m.area_id,
             m.organization_id,
+            m.turn,
             m.create_time
         FROM menu m
         <if test="id != null and id != ''">AND m.id = #{id}</if>
