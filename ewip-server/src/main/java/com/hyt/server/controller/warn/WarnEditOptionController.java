@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
-import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
 import com.hyt.server.service.publish.IPublishService;
@@ -13,7 +12,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,10 +26,15 @@ import java.util.Map;
 @RequestMapping("/warn/option")
 public class WarnEditOptionController {
 
-
+    /**
+     * 注入预警信息操作层
+     */
     @Autowired
     private IWarnEditOptionService warnEditOptionService;
 
+    /**
+     * 注入对接分发平台接口
+     */
     @Autowired
     private IPublishService publishService;
 
@@ -60,33 +63,18 @@ public class WarnEditOptionController {
     @PostMapping("/insert/flow")
     public ResultObject<Object> insertFlow(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
         JSONObject result = this.warnEditOptionService.insert(map);
-
+        // 获取流程状态值
         int status = result.getInteger("status");
         System.out.println(result.toJSONString());
         if(status > 0){
             // 发布后调用分发接口
-            if(status == 4){
-                Map<String, Object> param = new HashMap<>(result);
-                this.publishService.publish(param);
-            }
-
+//            if(status == 4){
+//                Map<String, Object> param = new HashMap<>(result);
+//                this.publishService.publish(param);
+//            }
             return ResultResponse.make(200,result.getString("msg"),map);
         }
         return ResultResponse.make(500,"操作失败",null);
-    }
-
-    @ApiOperation(value="修改预警状态",httpMethod="POST",notes="根据参数列表修改预警状态信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name="id", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name="status", value="预警状态", required = true, dataType = "String", paramType = "query")
-    })
-    @PostMapping("/update/status")
-    public ResultObject<Object> updateStatus(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
-        int num = this.warnEditOptionService.updateStatus(map);
-        if(num > 0){
-            return ResultResponse.make(200,"添加预警编辑流程成功",map);
-        }
-        return ResultResponse.make(500,"添加预警编辑流程失败",null);
     }
 
     @ApiOperation(value="根据预警ID查询发布后的预警详细信息",httpMethod="GET",notes="根据预警ID查询发布后的预警详细信息")

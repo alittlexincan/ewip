@@ -88,7 +88,7 @@ layui.use(['table','form','element','zTree'], function(){
             // 回显防御指南
             $(".basis textarea[name='instruction']").val(result.instruction);
             // 回显预警图标
-            $(".warn-icon-detial > img").attr("src","/client"+result.icon).attr("title", result.disasterName);
+            $(".warn-icon-detial > img").attr("src","/client/"+result.icon).attr("title", result.disasterName);
         }
 
         /**

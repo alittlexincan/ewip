@@ -48,7 +48,7 @@
         #{advice}, #{isOption},  now())
     </insert>
 
-    <!--修改（主要针对流程应急办签发、发布中心发布时修改）-->
+    <!--修改流程：流程变更时，修改对应的操作信息-->
     <update id="updateFlow">
         update
           warn_edit_flow
@@ -58,15 +58,6 @@
           advice = #{advice},
           is_option = #{isOption}
         where id = #{id}
-    </update>
-
-    <!--修改（主要针对流程应急办签发、发布中心发布时修改是否操作过当前流程状态）-->
-    <update id="updateOption">
-        update
-          warn_edit_flow
-        set
-          is_option = #{isOption}
-        where warn_edit_id = #{id} and flow <![CDATA[ <= ]]> #{flow}
     </update>
 
 </mapper>

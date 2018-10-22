@@ -324,7 +324,7 @@ layui.use(['table','form','element','zTree'], function(){
          * @param flow
          */
         ,"parseFlow": flow => {
-            if(flow==0) return "提交成功";
+            if(flow==0) return "录入";
             if(flow==1) return "审核通过";
             if(flow==2) return "签发通过";
             if(flow==3) return "应急办签发通过";
@@ -404,19 +404,19 @@ layui.use(['table','form','element','zTree'], function(){
         }
     });
 
-
     form.on("submit(submit)", function(data){
-
         // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-        // 将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核
-        let currentFlow = $("#currentFlow").val();
-
-        let param = {
-            id: $("#id").val()
-            ,warnEditId: $("#warnEditId").val()
-            ,currentFlow: $("#currentFlow").val()
-            ,advice: data.field.advice.length == 0 ? active.parseFlow(currentFlow) : data.field.advice
-        };
+        // 将字符串数组流程转换成数字类型数据流程
+        let flow = $("#flow").val()
+            // 当前选中数据得流程值
+            ,currentFlow = $("#currentFlow").val()
+            ,param = {
+                id: $("#id").val()
+                ,warnEditId: $("#warnEditId").val()
+                ,flow: flow
+                ,currentFlow: currentFlow
+                ,advice: data.field.advice.length == 0 ? active.parseFlow(currentFlow) : data.field.advice
+            };
 
         $.ajax({
             async:true
@@ -431,27 +431,7 @@ layui.use(['table','form','element','zTree'], function(){
                 layer.msg(json.msg, {time: 2000});
             }
         });
-
-        // 预警编辑基础信息主键ID
-        // data.field.warnEditId = param.id;
-        // // 预警编辑流程信息主键ID
-        // data.field.id = param.warnEditFlowId;
-        // // 如果不填审核信息，则默认通过
-        // if(data.field.advice.length == 0){
-        //   data.field.advice = "审核通过";
-        // }
-        // // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-        // // 将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核
-        // data.field.currentFlow = param.currentFlow;
-        // 数据提交到后台，通用方法
-        // submitServer({
-        //     index: index
-        //     ,type: 'POST'
-        //     ,param: data.field
-        //     ,url: '/client/warn/option/insert/flow'
-        // });
     });
-
 
     /**
      * 初始化加载项

@@ -13,12 +13,13 @@
 <body>
 
     <!--预警编辑流程信息主键ID-->
-    <input id="id"  hidden />
+    <input id="id"  type="text" />
     <!--预警编辑主表ID-->
-    <input id="warnEditId" hidden th:value="${id}" />
+    <input id="warnEditId" type="text" th:value="${id}" />
     <!--审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回-->
-    <!--将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核-->
-    <input id="currentFlow" hidden />
+    <input id="flow" type="text" />
+    <!-- 当前选中数据得流程值 -->
+    <input id="currentFlow" type="text" />
 
     <div class="layui-fluid edit">
         <div class="layui-form layui-form-pane">

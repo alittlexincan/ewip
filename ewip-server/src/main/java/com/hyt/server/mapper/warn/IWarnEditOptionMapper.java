@@ -17,7 +17,16 @@ import java.util.Map;
 @Repository("warnEditOptionMapper")
 public interface IWarnEditOptionMapper extends IBaseMapper<WarnEditOption> {
 
+    /**
+     * 根据预警参数信息获取流程信息
+     * @param map
+     * @return
+     */
     List<WarnEditOption> selectFlowByParam(Map<String, Object> map);
 
+    /**
+     * 给微信平台提供预警信息
+     * @return
+     */
     List<Map<String, Object>> getWechatWarnInfo();
 }

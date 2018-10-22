@@ -52,8 +52,7 @@ public class WarnEditOption {
 
     private String employeeName;
 
-    public WarnEditOption() {
-    }
+    public WarnEditOption() {}
 
     public WarnEditOption(String id, String warnEditFlowId, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, String flow, Integer currentFlow, String employeeName) {
         this.id = id;

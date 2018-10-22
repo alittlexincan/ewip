@@ -3,7 +3,6 @@ package com.hyt.server.controller.warn;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
-import com.hyt.server.entity.message.Message;
 import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
@@ -23,7 +22,9 @@ import java.util.Map;
 @RequestMapping("/warn/edit")
 public class WarnEditController {
 
-
+    /**
+     * 注入预警编辑接口
+     */
     @Autowired
     private IWarnEditService warnEditService;
 

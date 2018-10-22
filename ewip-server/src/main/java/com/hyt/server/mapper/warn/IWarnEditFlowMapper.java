@@ -24,10 +24,18 @@ public interface IWarnEditFlowMapper extends IBaseMapper<WarnEditFlow> {
      */
     List<WarnEditFlow> selectFlowByWarnEditId(Map<String, Object> map);
 
+    /**
+     * 插入流程信息
+     * @param warnEditFlow
+     * @return
+     */
     int insert(WarnEditFlow warnEditFlow);
 
+    /**
+     * 修改流程：流程变更时，修改对应的操作信息
+     * @param map
+     * @return
+     */
     int updateFlow(Map<String, Object> map);
-
-    int updateOption(Map<String, Object> map);
 
 }

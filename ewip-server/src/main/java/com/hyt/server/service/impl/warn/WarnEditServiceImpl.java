@@ -43,7 +43,6 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     @Autowired
     private IWarnEditContentMapper warnEditContentMapper;
 
-
     /**
      * 预警编辑 流程信息 数据接口层
      */
@@ -89,6 +88,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     @Override
     @Transactional
     public WarnEdit insert(Map<String, Object> map) {
+        // 存储回执信息
         JSONObject json = new JSONObject(map);
 
         // 获取渠道（将字符串转换为JSONArray数组对象）同key值数据覆盖
@@ -103,25 +103,12 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         JSONObject group = JSONObject.parseObject(json.getString("group"));
         json.put("group",group);
 
-        System.out.println(json);
-
-        // 1：添加预警编辑基本信息
-        WarnEdit warnEdit = addWarnEdit(json);
-
-        // 预警基础信息ID
-        String warnEditId = warnEdit.getId();
-
-        // 2：添加预警编辑内容信息
-        addWarnEditContent(json, warnEditId);
-
-        // 3：添加预警编辑群组信息
-        addWarnEditUser(json, warnEditId);
-
-        // 4：添加预警编辑流程信息
-        addWarnEditFlow(json, warnEditId);
-
-        // 5：添加预警编辑上传文件信息
-        addWarnEditFile(json, warnEditId);
+        WarnEdit warnEdit = addWarnEdit(json);  // 1：添加预警编辑基本信息
+        String warnEditId = warnEdit.getId();   // 2：预警基础信息ID
+        addWarnEditContent(json, warnEditId);   // 3：添加预警编辑内容信息
+        addWarnEditUser(json, warnEditId);      // 4：添加预警编辑群组信息
+        addWarnEditFlow(json, warnEditId);      // 5：添加预警编辑流程信息
+        addWarnEditFile(json, warnEditId);      // 6：添加预警编辑上传文件信息
 
         return warnEdit;
     }
@@ -151,8 +138,6 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         warnEdit.setMeasure(json.getString("measure"));
         warnEdit.setInstruction(json.getString("instruction"));
         warnEdit.setFlow(json.getString("flow"));
-        warnEdit.setCurrentFlow(json.getInteger("currentFlow"));
-        warnEdit.setNextFlow(json.getInteger("nextFlow"));
         warnEdit.setStatus(json.getInteger("status")); // 预警编辑时此状态为0，预警真正发布之后修改此状态为1 （0：未发布；1：以发布；2：解除）
         this.warnEditMapper.insertSelective(warnEdit);
         return  warnEdit;
@@ -234,40 +219,22 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      */
     private int addWarnEditFlow(JSONObject json, String warnEditId){
 
-        String[] flow = json.getString("flow").split(",");
+        Integer currentFlow =  json.getInteger("currentFlow");
+        Integer nextFlow =  json.getInteger("nextFlow");
+        String employeeId = json.getString("employeeId");
+        String employeeName = json.getString("employeeName");
+        String organizationId = json.getString("organizationId");
+        String organizationName = json.getString("organizationName");
+        String advice = json.getString("advice");
 
-        for(int i = 0; i<flow.length; i++){
-            int currentFlow = Integer.parseInt(flow[i]);
-            WarnEditFlow warnEditFlow = new WarnEditFlow();
-            warnEditFlow.setWarnEditId(warnEditId);
-            warnEditFlow.setFlow(currentFlow);
-            if(currentFlow == 3 || currentFlow == 4){
-                Map<String, Object> map = new HashMap<>();
-                map.put("areaId",json.getString("areaId"));
-                map.put("organizationId",json.getString("organizationId"));
-                map.put("type", currentFlow == 3 ? 2 : 0); // 2:查询同级应急办  // 0:查询同级发布中心
-                Organization organization = this.organizationMapper.selectSameGradeByParam(map);
-                warnEditFlow.setEmployeeId(null);
-                warnEditFlow.setEmployeeName(null);
-                warnEditFlow.setOrganizationId(organization.getId());
-                warnEditFlow.setOrganizationName(organization.getOrganizationName());
-            }else {
-                warnEditFlow.setEmployeeId(json.getString("employeeId"));
-                warnEditFlow.setEmployeeName(json.getString("employeeName"));
-                warnEditFlow.setOrganizationId(json.getString("organizationId"));
-                warnEditFlow.setOrganizationName(json.getString("organizationName"));
-            }
-            warnEditFlow.setAdvice(json.getString("advice"));
-            if(i==0){
-                warnEditFlow.setIsOption(1);
-            }else{
-                warnEditFlow.setIsOption(0);
-            }
+        // 添加当前录入流程信息
+        WarnEditFlow currentFlowInfo = new WarnEditFlow( warnEditId, currentFlow, organizationId, organizationName, employeeId, employeeName, advice, 1);
+        // 添加当前录入流程信息
+        WarnEditFlow nextFlowInfo = new WarnEditFlow( warnEditId, nextFlow, organizationId, organizationName, employeeId, employeeName, "待审核", 0);
 
-            this.warnEditFlowMapper.insert(warnEditFlow);
-        }
+        this.warnEditFlowMapper.insert(currentFlowInfo);
 
-        return 1;
+        return this.warnEditFlowMapper.insert(nextFlowInfo);
 
     }
 

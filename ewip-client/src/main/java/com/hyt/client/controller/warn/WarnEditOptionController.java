@@ -25,7 +25,6 @@ import java.util.Map;
 @RequestMapping("warn/option")
 public class WarnEditOptionController {
 
-
     /**
      * 获取上传的文件夹，具体路径参考application.properties中的配置
      */
@@ -37,7 +36,6 @@ public class WarnEditOptionController {
      */
     @Value("${web.disaster-path}")
     private String disaster;
-
 
     @Autowired
     private IWarnEditOptionService warnEditOptionService;
@@ -66,16 +64,6 @@ public class WarnEditOptionController {
         map.put("organizationName",employee.get("organizationName"));
         map.put("organizationCode",employee.get("organizationCode"));
         return this.warnEditOptionService.insert(map);
-    }
-
-    /**
-     * 修改预警状态
-     * @param map
-     * @return
-     */
-    @PostMapping("/update/status")
-    JSONObject updateStatus(@RequestParam Map<String,Object> map){
-        return this.warnEditOptionService.updateStatus(map);
     }
 
     /**

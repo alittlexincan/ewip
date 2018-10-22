@@ -39,19 +39,17 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
     JSONObject insert(Map<String, Object> map);
 
     /**
-     * 修改预警状态
-     * @param map
-     * @return
-     */
-    int updateStatus(Map<String, Object> map);
-
-    /**
      * 根据预警ID查询对应的预警流程
      * @param map
      * @return
      */
     List<WarnEditFlow> selectFlowByWarnEditId(Map<String, Object> map);
 
+
+    /**
+     * 微信提供预警发布信息接口
+     * @return
+     */
     List<Map<String, Object>> getWechatWarnInfo();
 
 }

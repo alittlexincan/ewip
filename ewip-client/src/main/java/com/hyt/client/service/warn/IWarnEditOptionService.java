@@ -37,14 +37,6 @@ public interface IWarnEditOptionService {
     JSONObject insert(@RequestParam Map<String, Object> map);
 
     /**
-     * 修改预警状态
-     * @param map
-     * @return
-     */
-    @PostMapping("/warn/option/update/status")
-    JSONObject updateStatus(@RequestParam Map<String, Object> map);
-
-    /**
      * 根据预警ID查询对应的预警详细信息
      * @param map
      * @return

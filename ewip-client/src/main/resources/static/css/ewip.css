@@ -126,6 +126,11 @@ website:    http://code.google.com/p/jquerytree/
 .ewip-div-border{
     border: 1px solid #e6e6e6;
 }
+.ewip-warn-table-msg{
+    font-size: 20px;
+    line-height: 200px;
+    color: #2f9688;
+}
 
 /* 画圆 */
 

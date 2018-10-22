@@ -69,6 +69,17 @@ public class WarnEditFlow {
     public WarnEditFlow() {
     }
 
+    public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String advice, Integer isOption) {
+        this.warnEditId = warnEditId;
+        this.flow = flow;
+        this.organizationId = organizationId;
+        this.organizationName = organizationName;
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
+        this.advice = advice;
+        this.isOption = isOption;
+    }
+
     public WarnEditFlow(String warnEditId, Integer flow, String organizationId, String organizationName, String employeeId, String employeeName, String upOrganizationId, String upOrganizationName, String upEmployeeId, String upEmployeeName, String advice, Integer isOption) {
         this.warnEditId = warnEditId;
         this.flow = flow;

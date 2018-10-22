@@ -38,7 +38,6 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     @Autowired
     private IWarnEditContentMapper warnEditContentMapper;
 
-
     /**
      * 预警发布对象信息数据访问层
      */
@@ -51,14 +50,17 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     @Autowired
     private IWarnEditFileMapper warnEditFileMapper;
 
-
-    @Autowired
-    private IWarnEditOptionMapper warnEditOptionMapper;
-
+    /**
+     * 预警流程数据访问层
+     */
     @Autowired
     private IWarnEditFlowMapper warnEditFlowMapper;
 
-
+    /**
+     * 预警信息操作数据访问层
+     */
+    @Autowired
+    private IWarnEditOptionMapper warnEditOptionMapper;
 
     /**
      * 根据条件查询预警编辑流程信息
@@ -79,22 +81,12 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
      * @return
      */
     public JSONObject selectWarnEditDetail(Map<String, Object> map){
-
-        // 1：获取预警基本信息
-        JSONObject result = getWarnEditInfo(map);
-
-        // 2：获取预警内容
-        getWarnEditContentInfo(result, map);
-
-        // 3：获取预警发布对象
-        getWarnEditUserInfo(result, map);
-
-        // 4：获取预警上传文件
-        getWarnEditFileInfo(result, map);
-
+        JSONObject result = getWarnEditInfo(map);   // 1：获取预警基本信息
+        getWarnEditContentInfo(result, map);        // 2：获取预警内容
+        getWarnEditUserInfo(result, map);           // 3：获取预警发布对象
+        getWarnEditFileInfo(result, map);           // 4：获取预警上传文件
         return result;
     }
-
 
     /**
      * 添加流程信息
@@ -105,20 +97,46 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     @Override
     @Transactional
     public JSONObject insert(Map<String, Object> map) {
-
+        // 存储返回的数据信息
         JSONObject result = new JSONObject();
+        // 获取基本信息
+        String warnEditId = map.get("warnEditId").toString()
+                ,employeeId = map.get("employeeId").toString()
+                ,employeeName = map.get("employeeName").toString()
+                ,organizationId = map.get("organizationId").toString()
+                ,organizationName = map.get("organizationName").toString();
 
+        // 获取总流程
+        String[] flow = map.get("flow").toString().split(",");
+        // 获取当前流程
         int currentFlow = Integer.parseInt(map.get("currentFlow").toString());
-
+        // 提取当前流程下标
+        int flowIndex = 0;
+        for(int i =0 ;i < flow.length; i++) {
+            if (flow[i].equals(currentFlow+""))  flowIndex = i;
+        }
+        // 根据当前流程下标，获取下一个流程
+        int nextFlow = flowIndex + 1 >= flow.length ? currentFlow : Integer.parseInt(flow[flowIndex + 1]);
+        // 组装下一个流程信息
+        if(currentFlow != 4){
+            WarnEditFlow warnEditFlow = new WarnEditFlow();
+            warnEditFlow.setWarnEditId(warnEditId);
+            warnEditFlow.setFlow(nextFlow);
+            warnEditFlow.setEmployeeId(employeeId);
+            warnEditFlow.setEmployeeName(employeeName);
+            warnEditFlow.setOrganizationId(organizationId);
+            warnEditFlow.setOrganizationName(organizationName);
+            // 如果当前流程为发布流程，则直接插入1，否则插入0
+            warnEditFlow.setIsOption(currentFlow == 4 ? 1 : 0);
+            warnEditFlow.setAdvice(map.get("advice").toString());
+            // 插入下一个流程信息
+            this.warnEditFlowMapper.insert(warnEditFlow);
+        }
+        // 当前流程操作状态
+        map.put("isOption",1);
+        // 修改当前流程操作状态和操作信息
         this.warnEditFlowMapper.updateFlow(map);
-
-        // 修改小于或等于当前流程状态为1
-        Map<String, Object> option = new HashMap<>();
-        option.put("id", map.get("warnEditId"));
-        option.put("flow", currentFlow);
-        option.put("isOption",1);
-        this.warnEditFlowMapper.updateOption(option);
-
+        // 流程操作完毕返回的数据信息
         if(currentFlow == 1){
             result.put("status", currentFlow);
             result.put("msg", "审核成功");
@@ -131,49 +149,31 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
             result.put("status", currentFlow);
             result.put("msg", "应急办签发成功");
         }
-
         if(currentFlow == 4){
-
-            // 如果status==1说明发布中心发布了此预警，此时更改预警基础信息表，预警状态为已发布
-            map.put("id", map.get("warnEditId"));
-            map.put("status", 1);
-            this.warnEditMapper.updateStatus(map);
-
+            // 更改预警编辑信息主表状态
+            Map<String, Object> updateWarnEditStatus = new HashMap<>();
+            updateWarnEditStatus.put("id", warnEditId);
+            updateWarnEditStatus.put("status", 1);
+            this.warnEditMapper.updateStatus(updateWarnEditStatus);
             // 读取预警信息，即将推送到分发服务
             // 1：获取预警基本信息
             result = getWarnEditInfo(map);
-
             // 2：获取预警内容
             getWarnEditContentInfo(result, map);
-
             // 3：获取预警发布对象
             getWarnEditUserInfo(result, map);
-
             // 4：获取预警上传文件
             getWarnEditFileInfo(result, map);
-
+            //组装返回信息
             result.put("status", currentFlow);
             result.put("msg", "发布成功");
-            result.put("employeeId",map.get("id"));
-            result.put("employeeName",map.get("name"));
-            result.put("organizationId",map.get("organizationId"));
-            result.put("organizationName",map.get("organizationName"));
+            result.put("employeeId",employeeId);
+            result.put("employeeName",employeeName);
+            result.put("organizationId",organizationId);
+            result.put("organizationName",organizationName);
             result.put("organizationCode",map.get("organizationCode"));
-
         }
-
         return result;
-    }
-
-    /**
-     * 修改预警状态
-     *
-     * @param map
-     * @return
-     */
-    @Override
-    public int updateStatus(Map<String, Object> map) {
-        return this.warnEditMapper.updateStatus(map);
     }
 
     /**
@@ -194,20 +194,18 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     private void getWarnEditContentInfo (JSONObject result, Map<String, Object> map){
         List<WarnEditContent> list = this.warnEditContentMapper.selectByWarnEditId(map);
         if (list.size() > 0){
-
+            // 组装渠道信息
             List<JSONObject> channels = new ArrayList<>();
-
+            // 组装地区信息
             List<JSONObject> areas = new ArrayList<>();
-
+            // 提取渠道，地区信息
             for(WarnEditContent wec : list){
-
                 // 组装发布渠道 去重
                 JSONObject channel = new JSONObject();
                 channel.put("channelId",wec.getChannelId());
                 channel.put("channelName",wec.getChannelName());
                 channel.put("channelCode",wec.getChannelCode());
                 channels.add(channel);
-
                 // 组装影响地区 去重
                 JSONObject area = new JSONObject();
                 area.put("areaId",wec.getAreaId());
@@ -215,8 +213,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 area.put("areaCode",wec.getAreaCode());
                 areas.add(area);
             }
-
-            // 渠道
+            // 渠道数据处理
             List<String> channelId = new ArrayList<>();
             List<JSONObject> channelArray = channels.stream().filter(// 过滤去重
                     channel -> {
@@ -225,8 +222,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                         return flag;
                     }
             ).collect(Collectors.toList());
-
-            // 地区
+            // 地区数据处理
             List<String> areaId = new ArrayList<>();
             List<JSONObject> areaArray = areas.stream().filter(// 过滤去重
                     area -> {
@@ -235,10 +231,8 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                         return flag;
                     }
             ).collect(Collectors.toList());
-
-            // 预警内容
+            // 预警内容处理
             Map<String, List<WarnEditContent>> content = list.stream().collect(Collectors.groupingBy(WarnEditContent::getChannelId));
-
             result.put("channel",channelArray);
             result.put("area",areaArray);
             result.put("content",content);
@@ -331,6 +325,10 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         return this.warnEditFlowMapper.selectFlowByWarnEditId(map);
     }
 
+    /**
+     * 给微信平台提供预警信息
+     * @return
+     */
     @Override
     public List<Map<String, Object>> getWechatWarnInfo(){
         return this.warnEditOptionMapper.getWechatWarnInfo();

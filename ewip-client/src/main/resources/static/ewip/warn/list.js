@@ -104,9 +104,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     let reloadTable = function (param) {
         console.log(param);
         table.reload('table', {
-            page: {
-                curr: 1
-            },
+            page: { curr: 1 },
             where: { //设定异步数据接口的额外参数，任意设
                 disasterName: param == undefined ? '' : param.disasterName
                 ,disasterColor: param == undefined ? '' : param.disasterColor
@@ -114,7 +112,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             }
         });
     };
-
 
     /**
      * 自定义验证规则
@@ -161,11 +158,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
      * @param treeId
      * @param treeNode
      */
-    var organizationClick = function(event, treeId, treeNode){
+    let organizationClick = function(event, treeId, treeNode){
         table.reload('table', {
-            page: {
-                curr: 1
-            },
+            page: { curr: 1 },
             where: { organizationId: treeNode.id}
         });
     };
@@ -196,33 +191,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             }
         }
     });
-
-
-    /**
-     * 提交到后台
-     * @param option
-     */
-    let submit = function (option) {
-        $.ajax({
-            async:option.async
-            ,type: option.type
-            ,data: option.param
-            ,url: option.url
-            ,dataType: option.dataType
-            ,success: function(json){
-                if(option.index != null) layer.close(option.index);
-                if(json.code == 200){
-                    // 异步刷新地区树
-                    // userGroupZtree.reAsyncChildNodes(null, "refresh");
-                    // 刷新列表
-                    reloadTable();
-                }
-                // 弹出提示信息，2s后自动关闭
-                layer.msg(json.msg, {time: 2000});
-            }
-        });
-
-    };
 
     /**
      * 统一按钮操作对象

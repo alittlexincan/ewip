@@ -92,7 +92,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             ,{field: 'disasterName',    title: '预警名称',      width:120}
             ,{field: 'disasterColor',   title: '预警颜色',      width:90, templet:colorFormat}
             ,{field: 'disasterLevel',   title: '预警级别',      width:140,templet: levelFormat}
-            ,{field: 'currentFlow',     title: '当前流程',      width:90, templet: flowFormat}
+            ,{field: 'currentFlow',     title: '当前流程',       width:90, templet: flowFormat}
             ,{field: 'employeeName',    title: '提交人员',      width:120, sort: true}
             ,{field: 'warnType',        title: '预警类型',      sort: true, templet: warnTypeFormat}
             ,{field: 'editTime',        title: '编辑时间',      width:160, sort: true}
@@ -106,37 +106,11 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
     let reloadTable = function (param) {
         console.log(param);
         table.reload('table', {
-            page: {
-                curr: 1
-            },
+            page: { curr: 1 },
             where: { //设定异步数据接口的额外参数，任意设
                 disasterColor: param == undefined ? '' : param.disasterColor
                 ,disasterLevel: param == undefined ? '' : param.disasterLevel
                 ,warnType: param == undefined ? '' : param.warnType
-            }
-        });
-    };
-
-
-    /**
-     * 数据提交到后台（通用发方法）
-     * @param option
-     */
-    let submitServer = function(option){
-        $.ajax({
-            async:true
-            ,type: option.type
-            ,data: option.param
-            ,url: option.url
-            ,dataType: 'json'
-            ,success: function(json){
-                if(option.index != null) layer.close(option.index);
-                if(json.code == 200){
-                    // 刷新列表
-                    reloadTable();
-                }
-                // 弹出提示信息，2s后自动关闭
-                layer.msg(json.msg, {time: 2000});
             }
         });
     };
@@ -157,20 +131,18 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
                     ,type: 2
                     ,content: "/client/page/warn/flow/" + obj.data.id
                     ,success: (layero, index) => {
-                        let body = layui.layer.getChildFrame('body', index);
-                        // 预警编辑流程信息主键ID
-                        body.find("#id").val(param.warnEditFlowId);
-                        // 预警编辑基础信息主键ID
-                        body.find("#warnEditId").val(param.id);
-                        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-                        // 将要修改的流程值 data.field.currentFlow = 1 将录入修改为审核
-                        body.find("#currentFlow").val(param.currentFlow);
+
+                        let body = layui.layer.getChildFrame('body', index);// 获取子iframe对象
+                        body.find("#id").val(param.warnEditFlowId);         // 预警编辑流程信息主键ID
+                        body.find("#warnEditId").val(param.id);             // 预警编辑基础信息主键ID
+                        body.find("#flow").val(param.flow);                 // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
+                        body.find("#currentFlow").val(param.currentFlow);   // 当前选中数据得流程值
                         form.render();
-                        setTimeout( () => {
-                            layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
-                                tips: 3
-                            });
+
+                        setTimeout(() => {
+                            layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', { tips: 3 });
                         }, 500);
+
                     }
                     ,end: function () {
                         // 刷新列表
@@ -180,7 +152,6 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             layer.full(index);
         }
     };
-
 
     /**
      * 监听头部搜索
