@@ -23,10 +23,10 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
      */
     let flowFormat = function(d){
         if(d.currentFlow == 0) return "<span class='layui-btn layui-btn-danger layui-btn-xs ewip-cursor-default'>录入</span>";
-        if(d.currentFlow == 1) return "<span class='layui-btn layui-btn-warm layui-btn-xs ewip-cursor-default'>审核</span>";
-        if(d.currentFlow == 2) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>签发</span>";
-        if(d.currentFlow == 3) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>应急办签发</span>";
-        if(d.currentFlow == 4) return "<span class='layui-btn layui-btn-disabled layui-btn-xs ewip-cursor-default'>发布</span>";
+        if(d.currentFlow == 1) return "<span class='layui-btn layui-btn-warm layui-btn-xs ewip-cursor-default'>待审核</span>";
+        if(d.currentFlow == 2) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>待签发</span>";
+        if(d.currentFlow == 3) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>待应急办签发</span>";
+        if(d.currentFlow == 4) return "<span class='layui-btn layui-btn-disabled layui-btn-xs ewip-cursor-default'>待发布</span>";
     };
 
     /**
@@ -79,7 +79,6 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
         id: 'table'
         ,elem: '#table'
         ,url:'/client/warn/option/select/flow'
-        // ,where:{beforeFlow: 4, isOption: 1, areaId:employee.areaId, organizationId: employee.organizationId} // 查询流程中预警编辑提交信息
         ,where:{
             currentFlow: 4
             ,isOption: 0

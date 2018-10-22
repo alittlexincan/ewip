@@ -13,13 +13,13 @@
 <body>
 
     <!--预警编辑流程信息主键ID-->
-    <input id="id"  type="text" />
+    <input id="id"  type="text" hidden />
     <!--预警编辑主表ID-->
-    <input id="warnEditId" type="text" th:value="${id}" />
+    <input id="warnEditId" type="text" th:value="${id}" hidden />
     <!--审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回-->
-    <input id="flow" type="text" />
+    <input id="flow" type="text" hidden />
     <!-- 当前选中数据得流程值 -->
-    <input id="currentFlow" type="text" />
+    <input id="currentFlow" type="text" hidden />
 
     <div class="layui-fluid edit">
         <div class="layui-form layui-form-pane">
@@ -319,7 +319,7 @@
                         <!--处理意见-->
                         <div class="layui-col-xs3 layui-col-md3">
                             <div class="layui-card">
-                                <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-edit warn-card-hader-icon"></i>处理意见</span></div>
+                                <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-edit warn-card-hader-icon"></i><span id="flowTitle"></span></span></span></div>
                                 <div class="layui-card-body warn-file-list-height warn-center">
                                     <textarea name="advice" class="layui-textarea"></textarea>
                                 </div>

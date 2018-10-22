@@ -49,7 +49,7 @@ layui.use(['table','form','element','zTree'], function(){
 
         /**
          * 流程转换
-         * 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布
+         * 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
          * @param flow
          */
         "parseFlow": flow => {
@@ -58,6 +58,8 @@ layui.use(['table','form','element','zTree'], function(){
             if(flow == 2) return "签发";
             if(flow == 3) return "应急办签发";
             if(flow == 4) return "发布";
+            if(flow == 5) return "保存代发";
+            if(flow == 6) return "驳回";
         }
 
         /**
@@ -89,6 +91,10 @@ layui.use(['table','form','element','zTree'], function(){
             $(".basis textarea[name='instruction']").val(result.instruction);
             // 回显预警图标
             $(".warn-icon-detial > img").attr("src","/client/"+result.icon).attr("title", result.disasterName);
+
+            // 设置流程标题
+            let currentFlow = $("#currentFlow").val();
+            $("#flowTitle").empty().append(active.parseFlow(currentFlow) + "意见");
         }
 
         /**
@@ -323,14 +329,14 @@ layui.use(['table','form','element','zTree'], function(){
          * 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
          * @param flow
          */
-        ,"parseFlow": flow => {
+        ,"parseFlowMsg": flow => {
             if(flow==0) return "录入";
             if(flow==1) return "审核通过";
             if(flow==2) return "签发通过";
             if(flow==3) return "应急办签发通过";
             if(flow==4) return "发布成功";
-            if(flow==5) return "保存代发";
-            if(flow==6) return "驳回";
+            if(flow==5) return "保存代发成功";
+            if(flow==6) return "信息驳回";
         }
     };
 
@@ -415,7 +421,7 @@ layui.use(['table','form','element','zTree'], function(){
                 ,warnEditId: $("#warnEditId").val()
                 ,flow: flow
                 ,currentFlow: currentFlow
-                ,advice: data.field.advice.length == 0 ? active.parseFlow(currentFlow) : data.field.advice
+                ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
             };
 
         $.ajax({
