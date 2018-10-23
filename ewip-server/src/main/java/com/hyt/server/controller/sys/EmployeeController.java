@@ -94,7 +94,7 @@ public class EmployeeController {
     })
     @DeleteMapping("/delete/{id}")
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
-        Integer num = this.employeeService.deleteById(id);
+        Integer num = this.employeeService.deleteByEmployeeId(id);
         if(num>0){
           return  ResultResponse.make(200,"删除员工成功");
         }
@@ -107,7 +107,7 @@ public class EmployeeController {
     })
     @PostMapping("/delete")
     public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
-        Integer num = this.employeeService.deleteByIds(id);
+        Integer num = this.employeeService.deleteByEmployeeIds(id);
         if(num>0){
             return  ResultResponse.make(200,"删除员工成功");
         }

@@ -18,10 +18,25 @@ import java.util.Map;
  */
 public interface IEmployeeService extends IBaseService<Employee> {
 
+    /**
+     * 根据条件分页查询员工信息
+     * @param map
+     * @return
+     */
     PageInfo<Employee> selectAll(Map<String,Object> map);
 
+    /**
+     * 员工登录
+     * @param map
+     * @return
+     */
     JSONObject login(Map<String, Object> map);
 
+    /**
+     * 根据员工id查询员工信息
+     * @param map
+     * @return
+     */
     Employee selectById(Map<String, Object> map);
 
     /**
@@ -37,5 +52,19 @@ public interface IEmployeeService extends IBaseService<Employee> {
      * @return
      */
     List<Role> selectEmployeeInRole(Map<String,Object> map);
+
+    /**
+     * 根据员工ID删除员工信息
+     * @param id
+     * @return
+     */
+    int deleteByEmployeeId(String id);
+
+    /**
+     * 根据员工ID批量删除员工信息
+     * @param id
+     * @return
+     */
+    int deleteByEmployeeIds(String id);
 
 }

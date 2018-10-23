@@ -18,8 +18,18 @@ import java.util.Map;
 @Repository("employeeMapper")
 public interface IEmployeeMapper extends IBaseMapper<Employee> {
 
+    /**
+     * 根据条件分页查询员工信息
+     * @param map
+     * @return
+     */
     List<Employee> findAll(Map<String,Object> map);
 
+    /**
+     * 员工登录信息查询
+     * @param map
+     * @return
+     */
     Employee login(Map<String,Object> map);
 
     /**
@@ -42,6 +52,13 @@ public interface IEmployeeMapper extends IBaseMapper<Employee> {
      * @return
      */
     int deleteEmployeeInRole(Map<String,Object> map);
+
+    /**
+     * 根据员工ID删除员工信息
+     * @param map
+     * @return
+     */
+    int deleteByEmployeeId(Map<String, Object> map);
 
 
 }

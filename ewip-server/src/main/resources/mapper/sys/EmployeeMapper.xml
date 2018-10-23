@@ -109,11 +109,6 @@
         </foreach>
     </insert>
 
-    <!--根据用户ID删除对应的角色信息-->
-    <delete id="deleteEmployeeInRole">
-        DELETE FROM employee_role where employee_id = #{employeeId}
-    </delete>
-
     <!--根据用户ID查询对应的角色信息-->
     <select id="selectEmployeeInRole" resultMap="BaseRoleMap">
         SELECT
@@ -130,5 +125,23 @@
             AND er.employee_id = #{employeeId}
         </if>
     </select>
+
+    <!--根据员工ID删除对应的角色信息-->
+    <delete id="deleteEmployeeInRole">
+        DELETE FROM employee_role WHERE employee_id IN (
+            <foreach collection="employeeId.split(',')" item="item" separator=",">
+                '${item}'
+            </foreach>
+        )
+    </delete>
+
+    <!--根据员工ID删除员工信息-->
+    <delete id="deleteByEmployeeId">
+        DELETE FROM employee WHERE id IN (
+            <foreach collection="employeeId.split(',')" item="item"  separator=","  >
+                '${item}'
+            </foreach>
+        )
+    </delete>
 
 </mapper>

@@ -17,6 +17,7 @@ import com.hyt.server.service.sys.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -39,6 +40,11 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
     @Autowired
     private IPermissionMapper permissionMapper;
 
+    /**
+     * 根据参数分页查询员工信息
+     * @param map
+     * @return
+     */
     @Override
     public PageInfo<Employee> selectAll(Map<String, Object> map) {
         System.out.println(map);
@@ -49,6 +55,11 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
     }
 
 
+    /**
+     * 员工登录查询
+     * @param map
+     * @return
+     */
     @Override
     public JSONObject login(Map<String, Object> map) {
         Employee employee = this.employeeMapper.login(map);
@@ -105,4 +116,41 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
         return this.employeeMapper.selectEmployeeInRole(map);
     }
 
+    /**
+     * 根据员工ID删除员工信息，以及对应角色信息
+     * @param id
+     * @return
+     */
+    @Override
+    public int deleteByEmployeeId(String id) {
+
+        if(StringUtils.isEmpty(id)) return 0;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("employeeId",id);
+        // 1：删除员工对应的角色
+        this.employeeMapper.deleteEmployeeInRole(map);
+        // 2：删除员工信息
+        this.employeeMapper.deleteByEmployeeId(map);
+        return 1;
+    }
+
+    /**
+     * 批量删除员工信息，以及对应角色信息
+     * @param id
+     * @return
+     */
+    @Override
+    public int deleteByEmployeeIds(String id) {
+
+        if(StringUtils.isEmpty(id)) return 0;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("employeeId",id);
+        // 1：删除员工对应的角色
+        this.employeeMapper.deleteEmployeeInRole(map);
+        // 2：删除员工信息
+        this.employeeMapper.deleteByEmployeeId(map);
+        return 1;
+    }
 }
