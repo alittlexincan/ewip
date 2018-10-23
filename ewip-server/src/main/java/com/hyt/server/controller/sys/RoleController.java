@@ -77,7 +77,7 @@ public class RoleController {
     })
     @DeleteMapping("/delete/{id}")
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
-        Integer num = this.roleService.deleteById(id);
+        Integer num = this.roleService.deleteByRoleId(id);
         if(num>0){
           return  ResultResponse.make(200,"删除角色成功");
         }
@@ -90,7 +90,7 @@ public class RoleController {
     })
     @PostMapping("/delete")
     public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
-        Integer num = this.roleService.deleteByIds(id);
+        Integer num = this.roleService.deleteByRoleIds(id);
         if(num>0){
             return  ResultResponse.make(200,"删除角色成功");
         }

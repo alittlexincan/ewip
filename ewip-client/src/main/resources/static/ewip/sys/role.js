@@ -235,7 +235,7 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
 
             var id = '',count = 0;
             for(var i = 0, len = data.length; i<len; i++){
-                id += ",'" + data[i].id + "'";
+                id += "," + data[i].id;
                 count += data[i].child;
             }
 
@@ -245,10 +245,6 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
             }
 
             layer.confirm('确定删除这批角色？', function(index){
-                var id = '';
-                for(var i = 0, len = data.length; i<len; i++){
-                    id += ",'" + data[i].id + "'";
-                }
                 // 数据提交到后台，通用方法
                 submitServer({
                     index: index

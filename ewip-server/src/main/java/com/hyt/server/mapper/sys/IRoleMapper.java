@@ -58,14 +58,6 @@ public interface IRoleMapper extends IBaseMapper<Role> {
     List<Menu> selectRoleInMenu(Map<String, Object> map);
 
     /**
-     * 根据角色ID删除拥有的菜单信息
-     * @param map
-     * @return
-     */
-    int deleteRoleInMenu(Map<String, Object> map);
-
-
-    /**
      * 角色配置权限
      *
      * @param map
@@ -81,10 +73,26 @@ public interface IRoleMapper extends IBaseMapper<Role> {
     List<Permission> selectRoleInPermission(Map<String, Object> map);
 
     /**
+     * 根据角色ID删除拥有的菜单信息
+     * @param map
+     * @return
+     */
+    int deleteByRoleId(Map<String, Object> map);
+
+    /**
+     * 根据角色ID删除拥有的菜单信息
+     * @param map
+     * @return
+     */
+    int deleteRoleInMenu(Map<String, Object> map);
+
+    /**
      * 根据角色ID删除拥有的权限信息
      * @param map
      * @return
      */
     int deleteRoleInPermission(Map<String, Object> map);
+
+    int deleteByRoleIds(Map<String, Object> map);
 
 }

@@ -15,7 +15,9 @@ import com.hyt.server.service.sys.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,20 +53,6 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     @Override
     public List<Role> selectByRoleName(Map<String, Object> map){
         return this.roleMapper.selectByRoleName(map);
-    }
-
-    /**
-     * 角色配置菜单
-     *
-     * @param map
-     * @return
-     */
-    @Override
-    @Transactional
-    public int insertRoleMenu(Map<String, Object> map) {
-        // 先删除该角色拥有的所有权限，然后在添加当前配置的权限
-        this.roleMapper.deleteRoleInMenu(map);
-        return  this.roleMapper.insertRoleMenu(map);
     }
 
     /**
@@ -107,6 +95,20 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     }
 
     /**
+     * 角色配置菜单
+     *
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public int insertRoleMenu(Map<String, Object> map) {
+        // 先删除该角色拥有的所有权限，然后在添加当前配置的权限
+        this.roleMapper.deleteRoleInMenu(map);
+        return  this.roleMapper.insertRoleMenu(map);
+    }
+
+    /**
      * 角色配置权限
      *
      * @param map
@@ -128,5 +130,52 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     @Override
     public List<Permission> selectRoleInPermission(Map<String, Object> map){
         return this.roleMapper.selectRoleInPermission(map);
+    }
+
+    /**
+     * 根据角色ID删除角色
+     * @param id
+     * @return
+     */
+    @Override
+    @Transactional
+    public int deleteByRoleId(String id) {
+        if(!StringUtils.isEmpty(id)) {
+            id = id.replaceAll("'","");
+            Map<String, Object> map = new HashMap<>();
+            map.put("roleId", id);
+            // 1：根据角色ID删除角色信息
+            this.roleMapper.deleteByRoleId(map);
+            // 2：根据角色ID删除对应的权限信息
+            this.roleMapper.deleteRoleInPermission(map);
+            // 3：根据角色ID删除对应的菜单信息
+            this.roleMapper.deleteRoleInMenu(map);
+
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * 根据一批角色ID删除角色
+     * @param id
+     * @return
+     */
+    @Transactional
+    @Override
+    public int deleteByRoleIds(String id) {
+        if(!StringUtils.isEmpty(id)){
+            Map<String, Object> map = new HashMap<>();
+                map.put("roleId", id);
+                // 1：根据角色ID删除角色信息
+                this.roleMapper.deleteByRoleId(map);
+                // 2：根据角色ID删除对应的权限信息
+                this.roleMapper.deleteRoleInPermission(map);
+                // 3：根据角色ID删除对应的菜单信息
+                this.roleMapper.deleteRoleInMenu(map);
+
+            return 1;
+        }
+        return 0;
     }
 }

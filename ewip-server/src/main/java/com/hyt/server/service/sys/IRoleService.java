@@ -27,6 +27,11 @@ public interface IRoleService extends IBaseService<Role> {
      */
     PageInfo<Role> selectAll(Map<String, Object> map);
 
+    /**
+     * 根据ID查询对应的角色
+     * @param map
+     * @return
+     */
     List<Role> selectById(Map<String, Object> map);
 
     /**
@@ -63,5 +68,20 @@ public interface IRoleService extends IBaseService<Role> {
      * @return
      */
     List<Permission> selectRoleInPermission(Map<String, Object> map);
+
+    /**
+     * 根据角色ID删除角色
+     * @param id
+     * @return
+     */
+    int deleteByRoleId(String id);
+
+    /**
+     * 根据一批角色ID删除角色
+     * @param id
+     * @return
+     */
+    int deleteByRoleIds(String id);
+
 
 }

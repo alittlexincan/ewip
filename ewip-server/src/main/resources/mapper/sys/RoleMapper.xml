@@ -85,15 +85,6 @@
     </select>
 
 
-    <!--角色分配菜单-->
-    <insert id="insertRoleMenu">
-        insert into role_menu (id, role_id, menu_id, create_time )
-        values
-        <foreach collection="menuId.split(',')" item="item"  separator=","  >
-            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
-        </foreach>
-    </insert>
-
     <!--根据角色ID查询对应的菜单信息-->
     <select id="selectRoleInMenu" resultMap="BaseMenuMap">
         SELECT
@@ -118,21 +109,6 @@
 
     </select>
 
-    <!--根据角色ID删除对应的菜单信息-->
-    <delete id="deleteRoleInMenu">
-        DELETE FROM role_menu where role_id = #{roleId}
-    </delete>
-
-
-    <!--角色分配权限-->
-    <insert id="insertRolePermission">
-        insert into role_permission (id, role_id, permission_id, create_time )
-        values
-        <foreach collection="permissionId.split(',')" item="item"  separator=","  >
-            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
-        </foreach>
-    </insert>
-
     <!--根据角色ID查询对应的权限信息-->
     <select id="selectRoleInPermission" resultMap="BasePermissionMap">
         SELECT
@@ -148,9 +124,52 @@
         and rp.role_id = #{roleId}
     </select>
 
+
+    <!--角色分配菜单-->
+    <insert id="insertRoleMenu">
+        insert into role_menu (id, role_id, menu_id, create_time )
+        values
+        <foreach collection="menuId.split(',')" item="item"  separator=","  >
+            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
+        </foreach>
+    </insert>
+
+    <!--角色分配权限-->
+    <insert id="insertRolePermission">
+        insert into role_permission (id, role_id, permission_id, create_time )
+        values
+        <foreach collection="permissionId.split(',')" item="item"  separator=","  >
+            (REPLACE(UUID(),'-',''), #{roleId}, '${item}', now())
+        </foreach>
+    </insert>
+
+    <!--根据角色ID删除对应的菜单信息-->
+    <delete id="deleteByRoleId">
+        DELETE FROM role where id in (
+            <foreach collection="roleId.split(',')" item="item"  separator=","  >
+                '${item}'
+            </foreach>
+        )
+
+    </delete>
+
     <!--根据角色ID删除对应的权限信息-->
     <delete id="deleteRoleInPermission">
-        DELETE FROM role_permission where role_id = #{roleId}
+        DELETE FROM role_permission where  role_id in (
+            <foreach collection="roleId.split(',')" item="item"  separator=","  >
+                '${item}'
+            </foreach>
+        )
     </delete>
+
+    <!--根据角色ID删除对应的菜单信息-->
+    <delete id="deleteRoleInMenu">
+        DELETE FROM role_menu where role_id in (
+            <foreach collection="roleId.split(',')" item="item"  separator=","  >
+                '${item}'
+            </foreach>
+        )
+    </delete>
+
 
 </mapper>
