@@ -54,6 +54,7 @@ public class WarnEditOptionController {
     @ApiImplicitParams({
             @ApiImplicitParam(name="warnEditId", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="flow", value="流程标识",required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="currentFlow", value="当前预警流程", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="organizationId", value="机构ID", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="organizationName", value="机构名称", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="employeeId", value="操作用户ID", required = true, dataType = "String", paramType = "query"),
@@ -75,6 +76,49 @@ public class WarnEditOptionController {
             return ResultResponse.make(200,result.getString("msg"),map);
         }
         return ResultResponse.make(500,"操作失败",null);
+    }
+
+
+    @ApiOperation(value="预警驳回",httpMethod="POST",notes="根据流程ID驳回预警信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="warnEditId", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="id", value="当前流程信息ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="flow", value="流程标识",required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="currentFlow", value="当前预警流程", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationId", value="机构ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationName", value="机构名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="employeeId", value="操作用户ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="employeeName", value="操作用户名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="advice", value="操作意见", required = true, dataType = "String", paramType = "query")
+    })
+    @PostMapping("/reject")
+    public ResultObject<Object> reject(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        int num = this.warnEditOptionService.reject(map);
+        if(num > 0){
+            return ResultResponse.make(200,"预警驳回成功",map);
+        }
+        return ResultResponse.make(500,"预警驳回失败",null);
+    }
+
+    @ApiOperation(value="预警终止",httpMethod="POST",notes="根据流程ID终止预警信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="warnEditId", value="预警编辑基本信息ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="id", value="当前流程信息ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="flow", value="流程标识",required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="currentFlow", value="当前预警流程", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationId", value="机构ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationName", value="机构名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="employeeId", value="操作用户ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="employeeName", value="操作用户名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="advice", value="操作意见", required = true, dataType = "String", paramType = "query")
+    })
+    @PostMapping("/stop")
+    public ResultObject<Object> stop(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        int num = this.warnEditOptionService.stop(map);
+        if(num > 0){
+            return ResultResponse.make(200,"预警终止成功",map);
+        }
+        return ResultResponse.make(500,"预警终止失败",null);
     }
 
     @ApiOperation(value="根据预警ID查询发布后的预警详细信息",httpMethod="GET",notes="根据预警ID查询发布后的预警详细信息")

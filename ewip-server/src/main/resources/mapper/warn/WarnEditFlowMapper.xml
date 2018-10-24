@@ -60,4 +60,8 @@
         where id = #{id}
     </update>
 
+    <!-- 根据预警流程ID删除预警流程 -->
+    <delete id="deleteFlowById">
+        DELETE FROM warn_edit_flow WHERE id = #{id}
+    </delete>
 </mapper>

@@ -37,6 +37,23 @@ public interface IWarnEditOptionService {
     JSONObject insert(@RequestParam Map<String, Object> map);
 
     /**
+     * 添加预警流程信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/warn/option/reject")
+    JSONObject reject(@RequestParam Map<String, Object> map);
+
+    /**
+     * 添加预警流程信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/warn/option/stop")
+    JSONObject stop(@RequestParam Map<String, Object> map);
+
+
+    /**
      * 根据预警ID查询对应的预警详细信息
      * @param map
      * @return

@@ -61,12 +61,6 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     @Autowired
     private IWarnEditFileMapper warnEditFileMapper;
 
-    /**
-     * 预警编辑 机构信息 数据接口层
-     */
-    @Autowired
-    private IOrganizationMapper organizationMapper;
-
     @Override
     public PageInfo<WarnEdit> findAll(Map<String, Object> map) {
         MybatisPage.getPageSize(map);
@@ -218,7 +212,6 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      * @return
      */
     private int addWarnEditFlow(JSONObject json, String warnEditId){
-
         Integer currentFlow =  json.getInteger("currentFlow");
         Integer nextFlow =  json.getInteger("nextFlow");
         String employeeId = json.getString("employeeId");
@@ -229,11 +222,9 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
 
         // 添加当前录入流程信息
         WarnEditFlow currentFlowInfo = new WarnEditFlow( warnEditId, currentFlow, organizationId, organizationName, employeeId, employeeName, advice, 1);
-        // 添加当前录入流程信息
+        // 添加下一个流程信息
         WarnEditFlow nextFlowInfo = new WarnEditFlow( warnEditId, nextFlow, organizationId, organizationName, employeeId, employeeName, "待审核", 0);
-
         this.warnEditFlowMapper.insert(currentFlowInfo);
-
         return this.warnEditFlowMapper.insert(nextFlowInfo);
 
     }

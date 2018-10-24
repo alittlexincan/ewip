@@ -34,33 +34,42 @@
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
             we.id,
-            we.title title,
-            we.disaster_id,
+            we.title,
+            d.name disaster_name,
             d.icon,
-            we.disaster_name,
-            we.disaster_color,
-            we.disaster_level,
+            d.disaster_color,
+            d.disaster_level,
+            wef.warn_edit_id,
+            wef.employee_id,
+            wef.employee_name,
+            wef.organization_id,
+            wef.organization_name,
+            wef.flow,
+            wef.advice,
             we.warn_type,
             we.msg_type,
             we.scope,
             we.status,
-            we.send_time
+            wef.create_time
         FROM
           warn_edit we
-        LEFT JOIN disaster d on d.id = we.disaster_id
-        where 1=1
-        <if test="id != null and id != ''">AND we.id = #{id}</if>
-        <if test="areaId != null and areaId != ''">AND we.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">AND we.organization_id = #{organizationId}</if>
-        <if test="disasterName != null and disasterName != ''">AND d.name = #{disasterName}</if>
-        <if test="disasterColor != null and disasterColor != ''">AND we.disaster_color = #{disasterColor}</if>
-        <if test="disasterLevel != null and disasterLevel != ''">AND we.disaster_level = #{disasterLevel}</if>
+        LEFT JOIN warn_edit_flow wef ON wef.warn_edit_id = we.id
+        LEFT JOIN disaster d ON d.id = we.disaster_id
+        WHERE 1=1
+        <if test="id != null and id != ''"> AND we.id = #{id} </if>
+        <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
+        <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
+        <if test="disasterName != null and disasterName != ''"> AND d.name = #{disasterName} </if>
+        <if test="disasterColor != null and disasterColor != ''"> AND we.disaster_color = #{disasterColor} </if>
+        <if test="disasterLevel != null and disasterLevel != ''"> AND we.disaster_level = #{disasterLevel} </if>
+        <if test="flow != null and flow != ''"> AND wef.flow = #{flow} </if>
+        GROUP BY wef.warn_edit_id HAVING MAX(wef.create_time)
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY we.create_time DESC
+                ORDER BY wef.create_time DESC
             </otherwise>
         </choose>
     </select>

@@ -67,7 +67,8 @@ public class WarnEditController {
 
             @ApiImplicitParam(name="disasterId",value="灾种ID", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="disasterColor",value="灾种颜色", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="disasterLevel",value="灾种级别", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="flow",value="预警流程", dataType = "Integer",paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {

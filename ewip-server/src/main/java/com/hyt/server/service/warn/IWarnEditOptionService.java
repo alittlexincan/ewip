@@ -5,7 +5,6 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
-
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +36,21 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      * @return
      */
     JSONObject insert(Map<String, Object> map);
+
+    /**
+     * 预警驳回
+     * @param map
+     * @return
+     */
+    int reject(Map<String, Object> map);
+
+    /**
+     * 预警终止
+     * @param map
+     * @return
+     */
+    int stop(Map<String, Object> map);
+
 
     /**
      * 根据预警ID查询对应的预警流程

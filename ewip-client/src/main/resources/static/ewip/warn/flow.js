@@ -49,7 +49,7 @@ layui.use(['table','form','element','zTree'], function(){
 
         /**
          * 流程转换
-         * 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
+         * 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回；7：终止
          * @param flow
          */
         "parseFlow": flow => {
@@ -57,9 +57,10 @@ layui.use(['table','form','element','zTree'], function(){
             if(flow == 1) return "审核";
             if(flow == 2) return "签发";
             if(flow == 3) return "应急办签发";
-            if(flow == 4) return "发布";
+            if(flow == 4) return "发布"
             if(flow == 5) return "保存代发";
             if(flow == 6) return "驳回";
+            if(flow == 7) return "终止";
         }
 
         /**
@@ -337,6 +338,27 @@ layui.use(['table','form','element','zTree'], function(){
             if(flow==4) return "发布成功";
             if(flow==5) return "保存代发成功";
             if(flow==6) return "信息驳回";
+            if(flow==7) return "信息终止";
+        }
+
+        /**
+         * 数据处理统一接口
+         * @param param
+         */
+        ,"execute": param => {
+            $.ajax({
+                async:true
+                ,type: "POST"
+                ,data: param.data
+                ,url: param.url
+                ,dataType: 'json'
+                ,success: function(json){
+                    let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    parent.layer.close(index); //再执行关闭
+                    // 弹出提示信息，2s后自动关闭
+                    layer.msg(json.msg, {time: 2000});
+                }
+            });
         }
     };
 
@@ -410,6 +432,9 @@ layui.use(['table','form','element','zTree'], function(){
         }
     });
 
+    /**
+     * 提交：按钮操作
+     */
     form.on("submit(submit)", function(data){
         // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
         // 将字符串数组流程转换成数字类型数据流程
@@ -417,27 +442,80 @@ layui.use(['table','form','element','zTree'], function(){
             // 当前选中数据得流程值
             ,currentFlow = $("#currentFlow").val()
             ,param = {
-                id: $("#id").val()
-                ,warnEditId: $("#warnEditId").val()
-                ,flow: flow
-                ,currentFlow: currentFlow
-                ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
+                url: "/client/warn/option/insert/flow"
+                ,data:{
+                    id: $("#id").val()
+                    ,warnEditId: $("#warnEditId").val()
+                    ,flow: flow
+                    ,currentFlow: currentFlow
+                    ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
+                }
             };
-
-        $.ajax({
-            async:true
-            ,type: "POST"
-            ,data: param
-            ,url: "/client/warn/option/insert/flow"
-            ,dataType: 'json'
-            ,success: function(json){
-                let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                parent.layer.close(index); //再执行关闭
-                // 弹出提示信息，2s后自动关闭
-                layer.msg(json.msg, {time: 2000});
-            }
-        });
+        // 数据处理
+        active.execute(param);
     });
+
+    /**
+     * 驳回：按钮操作
+     */
+    form.on("submit(reject)", function(data){
+        // 判断是否填写驳回原因
+        let len = data.field.advice;
+        if(len == 0){
+            layer.msg("请填写驳回原因", {time: 2000});
+            return false;
+        }
+        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回; 7：终止
+        // 将字符串数组流程转换成数字类型数据流程
+        let flow = $("#flow").val()
+            // 当前选中数据得流程值
+            ,currentFlow = $("#currentFlow").val()
+            ,param = {
+                url: "/client/warn/option/reject"
+                ,data:{
+                    id: $("#id").val()
+                    ,warnEditId: $("#warnEditId").val()
+                    ,flow: flow
+                    ,currentFlow: currentFlow
+                    ,advice: data.field.advice
+                }
+            };
+        // 数据处理
+        active.execute(param);
+    });
+
+    /**
+     * 终止：按钮操作
+     */
+    form.on("submit(stop)", function(data){
+
+        // 判断是否填写驳回原因
+        let len = data.field.advice;
+        if(len == 0){
+            layer.msg("请填写驳回原因", {time: 2000});
+            return false;
+        }
+
+        return false;
+        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
+        // 将字符串数组流程转换成数字类型数据流程
+        let flow = $("#flow").val()
+            // 当前选中数据得流程值
+            ,currentFlow = $("#currentFlow").val()
+            ,param = {
+                url: "/client/warn/option/stop"
+                ,data:{
+                    id: $("#id").val()
+                    ,warnEditId: $("#warnEditId").val()
+                    ,flow: flow
+                    ,currentFlow: currentFlow
+                    ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
+                }
+            };
+        // 数据处理
+        active.execute(param);
+    });
+
 
     /**
      * 初始化加载项

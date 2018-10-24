@@ -47,7 +47,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         return disaster.level(d.disasterLevel);
     };
 
-    // 预警信息状态：[Alert（首次）,Update（更新）,Cancel（解除）,Ack（确认）,Error（错误）]，目前只采用“Alert”“Update”“Cancel”三个枚举值，其余枚举值保留，暂不使用。
+    /**
+     * 预警信息状态：
+     * [Alert（首次）,Update（更新）,Cancel（解除）,Ack（确认）,Error（错误）]，目前只采用“Alert”“Update”“Cancel”三个枚举值，其余枚举值保留，暂不使用。
+     * @param d
+     * @returns {string}
+     */
     let warnTypeFormat = (d) => {
         if(d.warnType=="Actual") return "实际";
         if(d.warnType=="Exercise") return "演练";
@@ -55,7 +60,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         if(d.warnType=="Draft") return "草稿";
     };
 
-    // 预警信息类型：[Actual（实际）,Exercise（演练）,Test（测试）,Draft（草稿）],目前取值仅使用“Actual”和“Test”，其中 “Test”可用于发布测试预警， Exercise和Draft暂不使用
+    /**
+     * 预警信息类型：
+     * [Actual（实际）,Exercise（演练）,Test（测试）,Draft（草稿）],目前取值仅使用“Actual”和“Test”，其中 “Test”可用于发布测试预警， Exercise和Draft暂不使用
+     * @param d
+     * @returns {string}
+     */
     let msgTypeFormat = (d)=>{
         if(d.msgType=="Alert") return "首次";
         if(d.msgType=="Update") return "更新";
@@ -64,13 +74,34 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         if(d.msgType=="Error") return "错误";
     };
 
-    // 0：未发布；1：已发布；2：解除
+    /**
+     * 发布状态：
+     * 0：未发布；1：已发布；2：解除
+     * @param d
+     * @returns {string}
+     */
     let statusFormat = (d) => {
         if(d.status==0) return "未发布";
         if(d.status==1) return "已发布";
         if(d.status==2) return "以解除";
     };
 
+    /**
+     * 流程状态：
+     * 0：未发布；1：已发布；2：驳回；3：解除；4：终止
+     * @param d
+     * @returns {string}
+     */
+    let flowFormat = d => {
+        if(d.flow == 0) return "录入";
+        if(d.flow == 1) return "审核";
+        if(d.flow == 2) return "签发";
+        if(d.flow == 3) return "应急办签发";
+        if(d.flow == 4) return "发布"
+        if(d.flow == 5) return "保存代发";
+        if(d.flow == 6) return "驳回";
+        if(d.flow == 7) return "终止";
+    };
     /**
      * 加载表格
      */
@@ -93,7 +124,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'warnType', width:100, title: '信息类型', sort: true, templet: warnTypeFormat}
             ,{field: 'msgType', width:100, title: '信息状态', sort: true, templet: msgTypeFormat}
             ,{field: 'status',  width:100, title: '发布状态', templet: statusFormat}
-            ,{field: 'sendTime', width:160, title: '发布时间'}
+            ,{field: 'status',  width:100, title: '流程状态', templet: flowFormat}
+            ,{field: 'createTime', width:160, title: '操作时间'}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
@@ -114,100 +146,21 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     };
 
     /**
-     * 自定义验证规则
-     */
-    form.verify({
-        areaId: function(value){
-            if(value.length == 0) {
-                $("#addAreaId .addAreaIdShow, #updateAreaId .updateAreaIdShow").css("border-color","red");
-                return '请选择所属地区';
-            }
-        }
-        ,organizationId: function(value){
-            if(value.length == 0) {
-                $("#addOrganizationId .addOrganizationIdShow, #updateOrganizationId .updateOrganizationIdShow").css("border-color","red");
-                return '请选择所属机构';
-            }
-        }
-        ,channelId: function(value){
-            if(value.length == 0) return '请选择发布渠道';
-        }
-        ,disasterId: function(value){
-            if(value.length == 0) {
-                $("#addDisasterId .addDisasterIdShow, #updateDisasterId .updateDisasterIdShow").css("border-color","red");
-                return '请选择灾种';
-            }
-        }
-        ,content: function (value) {
-            if(value.length == 0)  return '请输入预警内容';
-            if(value.length > 10)  return '预警内容长度不能大于1000';
-        }
-        ,measure: function (value) {
-            if(value.length == 0)  return '请输入政府应对措施';
-            if(value.length > 10)  return '政府应对措施内容长度不能大于1000';
-        }
-        ,instruction: function (value) {
-            if(value.length == 0) return '请输入防御指南';
-            if(value.length > 100) return '防御指南长度不能大于1000';
-        }
-    });
-
-    /**
-     * 群组树点击事件
-     * @param event
-     * @param treeId
-     * @param treeNode
-     */
-    let organizationClick = function(event, treeId, treeNode){
-        table.reload('table', {
-            page: { curr: 1 },
-            where: { organizationId: treeNode.id}
-        });
-    };
-    /**
-     * 初始化加载机构树
-     */
-    zTree.async({
-        id: "#organizationTree",
-        setting: {
-            async:{
-                enable:true,
-                url: "/client/tree/organization",
-                autoParam:["id"],
-                dataType:"json",
-            },
-            check: {
-                enable: false,
-                chkboxType: {"Y":"", "N": ""},
-                chkStyle:"checkbox"
-            },
-            data: {
-                simpleData: {
-                    enable: true
-                }
-            },
-            callback:{
-                onClick:organizationClick
-            }
-        }
-    });
-
-    /**
      * 统一按钮操作对象
-     * @type {{addBarBtn: 添加信息, deleteBarBtn: 批量删除信息, deleteOption: 删除单个信息, updateOption: 修改信息}}
+     * @type {{historyOption: historyOption}}
      */
     let active = {
         /**
          * 列表中：删除选中的地区信息
          * @param obj
          */
-        'detailOption': (obj) => {
-            var index = layer.open({
+        historyOption: (obj) => {
+            let index = layer.open({
                 title: "<i class='layui-icon layui-icon-form'></i>预警追溯"
                 ,type: 2
                 ,content: "/client/page/warn/history/" + obj.data.id
                 ,success: (layero, index) => {
-                    setTimeout( () => {
+                    setTimeout(() => {
                         layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
@@ -236,7 +189,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
      * 监控表头工具条按钮事件
      */
     $('.tableBar .layui-btn').on('click', function(){
-        var type = $(this).data('type');
+        let type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
 

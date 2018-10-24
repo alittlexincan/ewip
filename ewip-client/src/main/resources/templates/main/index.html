@@ -66,12 +66,12 @@
         <div class="layui-side-scroll">
           <div class="layui-logo" style="background:#2f9688!important;box-shadow:none;box-sizing: unset;width: 190px;" lay-href="home/console.html"><span></span></div>
           <ul  class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-            <li th:each="menu, menuStat: ${session.menus}" data-name="template"  th:attr="class=${menuStat.first} ? 'layui-nav-item layui-nav-itemed' : 'layui-nav-item'">
+            <li th:each="menu, menuStat: ${session.menus}" th:attr="data-name=${menu.code}, class=${menuStat.first} ? 'layui-nav-item layui-nav-itemed' : 'layui-nav-item'">
               <a href="javascript:;"  th:attr="lay-tips=${menu.name}" lay-direction="2">
                 <i th:attr="class=${menu.icon}"></i><cite th:text="${menu.name}"></cite>
               </a>
-              <dl th:each="child: ${menu.child}" class="layui-nav-child">
-                <dd th:attr="data-name=${child.code}"><a th:attr="lay-href=${child.url}" th:text="${child.name}"></a></dd>
+              <dl th:each="child, childStat: ${menu.child}" class="layui-nav-child">
+                <dd th:attr="data-name=${child.code}, class=${childStat.first} ? 'layui-this' : ''"><a th:attr="lay-href=${child.url}" th:text="${child.name}"></a></dd>
               </dl>
             </li>
           </ul>

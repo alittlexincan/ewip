@@ -49,7 +49,7 @@ layui.use(['table','form','element','zTree'], function(){
 
         /**
          * 流程转换
-         * 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布
+         * 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回; 7：终止
          * @param flow
          */
         "parseFlow": flow => {
@@ -57,7 +57,10 @@ layui.use(['table','form','element','zTree'], function(){
             if(flow == 1) return "审核";
             if(flow == 2) return "签发";
             if(flow == 3) return "应急办签发";
-            if(flow == 4) return "发布";
+            if(flow == 4) return "发布"
+            if(flow == 5) return "保存代发";
+            if(flow == 6) return "驳回";
+            if(flow == 7) return "终止";
         }
 
         /**
@@ -295,7 +298,6 @@ layui.use(['table','form','element','zTree'], function(){
                 ,url: "/client/warn/option/select/flow/id"
                 ,dataType: 'json'
                 ,success: json => {
-                    console.log(json);
                     if(json.code == 200 && json.data != null){
                         let result = json.data, html = "";
                         result.forEach( flow => {

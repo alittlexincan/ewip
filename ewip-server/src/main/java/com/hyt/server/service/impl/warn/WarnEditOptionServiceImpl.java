@@ -177,6 +177,50 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
     }
 
     /**
+     * 预警：驳回操作
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public int reject(Map<String, Object> map) {
+
+        JSONObject json = new JSONObject(map);
+        // 1：删除当前此条预警流程
+        this.warnEditFlowMapper.deleteFlowById(map);
+
+        // 2：插入驳回预警流程(0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回; 7：终止)
+        WarnEditFlow warnEditFlow = new WarnEditFlow();
+        warnEditFlow.setWarnEditId(json.getString("warnEditId"));
+        warnEditFlow.setFlow(6);
+        warnEditFlow.setEmployeeId(json.getString("employeeId"));
+        warnEditFlow.setEmployeeName(json.getString("employeeName"));
+        warnEditFlow.setOrganizationId(json.getString("organizationId"));
+        warnEditFlow.setOrganizationName(json.getString("organizationName"));
+        // 如果当前流程为发布流程，则直接插入1，否则插入0
+        warnEditFlow.setIsOption(1);
+        warnEditFlow.setAdvice(json.getString("advice"));
+        this.warnEditFlowMapper.insert(warnEditFlow);
+
+        // 修改预警编辑表状态值，将数据修改为2驳回状态；(0：未发布；1：已发布；2：驳回；3：解除；4：终止)
+        Map<String, Object> param = new HashMap<>();
+        param.put("id", json.getString("warnEditId"));
+        param.put("status", 2);
+        this.warnEditMapper.updateStatus(map);
+        return 1;
+    }
+
+    /**
+     * 预警：终止操作
+     * @param map
+     * @return
+     */
+    @Override
+    public int stop(Map<String, Object> map) {
+        return 0;
+    }
+
+    /**
      * 根据id获取预警基本信息
      * @param map
      * @return

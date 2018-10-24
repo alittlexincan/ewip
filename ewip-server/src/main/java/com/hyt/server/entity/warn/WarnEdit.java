@@ -80,12 +80,6 @@ public class WarnEdit {
     @Column(name = "flow",length = 50)
     private String flow;
 
-//    @Column(name = "current_flow",length = 2)
-//    private Integer currentFlow;
-//
-//    @Column(name = "next_flow",length = 2)
-//    private Integer nextFlow;
-
     @Column(name = "status",length = 1)
     private Integer status;
 
@@ -103,10 +97,13 @@ public class WarnEdit {
 
     private String organizationName;
 
-    public WarnEdit() {
-    }
+    private String employeeId;
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String organizationName) {
+    private String employeeName;
+
+    public WarnEdit() {}
+
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String organizationName, String employeeId, String employeeName) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -130,7 +127,10 @@ public class WarnEdit {
         this.disasterCode = disasterCode;
         this.icon = icon;
         this.organizationName = organizationName;
+        this.employeeId = employeeId;
+        this.employeeName = employeeName;
     }
+
 
     public String getId() {
         return id;
@@ -322,5 +322,21 @@ public class WarnEdit {
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 }

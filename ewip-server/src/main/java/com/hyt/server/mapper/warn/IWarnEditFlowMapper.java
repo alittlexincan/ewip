@@ -38,4 +38,11 @@ public interface IWarnEditFlowMapper extends IBaseMapper<WarnEditFlow> {
      */
     int updateFlow(Map<String, Object> map);
 
+    /**
+     * 根据流程ID删除预警流程
+     * @param map
+     * @return
+     */
+    int deleteFlowById(Map<String, Object> map);
+
 }
