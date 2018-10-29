@@ -16,6 +16,7 @@ import com.hyt.server.service.warn.IWarnEditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +83,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     @Override
     @Transactional
     public WarnEdit insert(Map<String, Object> map) {
+
         // 存储回执信息
         JSONObject json = new JSONObject(map);
 
@@ -107,6 +109,75 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         return warnEdit;
     }
 
+    /**
+     * 重发预警信息
+     * 1：根据预警编辑ID删除与此相关的所有信息
+     * 2：添加预警编辑基本信息
+     * 3：添加预警编辑内容信息
+     * 4：添加预警编辑群组信息
+     * 5：添加预警编辑流程信息
+     * 5：添加预警编辑上传文件信息
+     * @param map
+     * @return
+     */
+    @Override
+    @Transactional
+    public WarnEdit resend(Map<String, Object> map){
+        // 存储回执信息
+        JSONObject json = new JSONObject(map);
+
+        // 根据预警编辑ID删除相关所有信息
+        deleteWarnEditAll(json);
+
+        // 获取渠道（将字符串转换为JSONArray数组对象）同key值数据覆盖
+        JSONArray channel =  JSONArray.parseArray(json.getString("channel"));
+        json.put("channel", channel);
+
+        // 获取地区（将字符串转换为JSONArray数组对象）同key值数据覆盖
+        JSONArray area = JSONArray.parseArray(json.getString("area"));
+        json.put("area",area);
+
+        // 获取群组（将字符串转换为JSONArray数组对象）同key值数据覆盖
+        JSONObject group = JSONObject.parseObject(json.getString("group"));
+        json.put("group",group);
+
+        WarnEdit warnEdit = addWarnEdit(json);  // 1：添加预警编辑基本信息
+        String warnEditId = warnEdit.getId();   // 2：预警基础信息ID
+        addWarnEditContent(json, warnEditId);   // 3：添加预警编辑内容信息
+        addWarnEditUser(json, warnEditId);      // 4：添加预警编辑群组信息
+        addWarnEditFlow(json, warnEditId);      // 5：添加预警编辑流程信息
+        addWarnEditFile(json, warnEditId);      // 6：添加预警编辑上传文件信息
+        updateEditFlow(json, warnEditId);       // 7: 将老的预警流程变更到新预警流程里面来（针对预警重发）
+        updateEditFlile(json, warnEditId);      // 8: 将老的预警文件信息更新到新的预警文件列表中
+        return warnEdit;
+    }
+
+    /**
+     * 重新发预警的情况下删除预警编辑信息、删除预警内容信息、删除预警对应的上传文件信息
+     * 保留流程信息
+     * @param json
+     */
+    private void deleteWarnEditAll(JSONObject json){
+
+        String warnEditId = json.getString("warnEditId");
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("warnEditId", warnEditId);
+        // 1: 根据预警编辑ID，删除预警编辑信息
+        this.warnEditMapper.deleteByWarnEditId(map);
+        // 2：根据预警编辑ID，删除预警内容信息
+        this.warnEditContentMapper.deleteContentByWarnEditId(map);
+        // 3: 根据预警编辑ID，删除预警对应群组受众信息
+        this.warnEditUserMapper.deleteUserByWarnEditId(map);
+        // 4：根据预警编辑ID，删除预警对应文件上传信息
+        String id = json.getString("deleteFile");
+        if(!StringUtils.isEmpty(id)){
+            Map<String, Object> file = new HashMap<>();
+            file.put("id", id);
+            this.warnEditFileMapper.deleteFileByWarnEditId(file);
+        }
+
+    }
 
     /**
      * 1：添加预警编辑基本信息
@@ -238,7 +309,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     private int addWarnEditFile(JSONObject json, String warnEditId){
         List<WarnEditFile> list = new ArrayList<>();
         JSONArray files = json.getJSONArray("files");
-        if(files != null){
+        if(files != null && files.size() > 0 ){
             for(int i = 0; i<files.size(); i++){
                 JSONObject file = files.getJSONObject(i);
                 WarnEditFile warnEditFile = new WarnEditFile();
@@ -253,4 +324,29 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         return 0;
     }
 
+    /**
+     * 将老的预警流程变更到新预警流程里面来（针对预警重发）
+     * @param json
+     * @param warnEditId
+     * @return
+     */
+    private int updateEditFlow(JSONObject json, String warnEditId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("oldEditId", json.getString("warnEditId"));
+        map.put("newEditId", warnEditId);
+        return this.warnEditFlowMapper.updateOldFlowByNewEditId(map);
+    }
+
+    /**
+     * 将老的预警文件信息更新到新的预警文件列表中
+     * @param json
+     * @param warnEditId
+     */
+    private int updateEditFlile(JSONObject json, String warnEditId) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("oldEditId", json.getString("warnEditId"));
+        map.put("newEditId", warnEditId);
+        return this.warnEditFileMapper.updateOldFileByNewEditId(map);
+    }
 }

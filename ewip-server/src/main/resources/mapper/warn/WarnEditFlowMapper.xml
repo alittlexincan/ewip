@@ -30,38 +30,46 @@
             employee_name,
             advice,
             create_time
-        from warn_edit_flow
-        where
+        FROM warn_edit_flow
+        WHERE
         is_option = 1
         AND warn_edit_id = #{warnEditId}
-        ORDER BY flow DESC
+        ORDER BY create_time DESC, flow DESC
     </select>
 
     <!-- 预警编辑流程批量插入 -->
     <insert id="insert" >
-        insert into warn_edit_flow (id, warn_edit_id, flow,
-        organization_id, organization_name, employee_id, employee_name,
-        advice, is_option, create_time )
-        values
+        INSERT INTO warn_edit_flow (id, warn_edit_id, flow,
+        organization_id, organization_name, employee_id, employee_name, advice, is_option, create_time )
+        VALUES
         ( REPLACE(UUID(),'-',''), #{warnEditId}, #{flow},
-        #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName},
-        #{advice}, #{isOption},  now())
+        #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName}, #{advice}, #{isOption},  now())
     </insert>
 
     <!--修改流程：流程变更时，修改对应的操作信息-->
     <update id="updateFlow">
-        update
-          warn_edit_flow
-        set
+        UPDATE warn_edit_flow
+        SET
           organization_id = #{organizationId}, organization_name = #{organizationName},
           employee_id = #{employeeId}, employee_name = #{employeeName},
           advice = #{advice},
-          is_option = #{isOption}
-        where id = #{id}
+          is_option = #{isOption}, create_time = NOW()
+        WHERE id = #{id}
     </update>
 
     <!-- 根据预警流程ID删除预警流程 -->
     <delete id="deleteFlowById">
         DELETE FROM warn_edit_flow WHERE id = #{id}
     </delete>
+
+    <!-- 根据预警编辑ID删除预警流程 -->
+    <delete id="deleteFlowByWarnEditId">
+        DELETE FROM warn_edit_flow WHERE warn_edit_id = #{warnEditId}
+    </delete>
+
+    <!--将老的预警流程变更到新预警流程里面来（针对预警重发）-->
+    <update id="updateOldFlowByNewEditId">
+        UPDATE warn_edit_flow SET warn_edit_id = #{newEditId} WHERE warn_edit_id = #{oldEditId}
+    </update>
+
 </mapper>

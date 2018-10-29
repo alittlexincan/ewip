@@ -201,23 +201,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         warnEditFlow.setIsOption(1);
         warnEditFlow.setAdvice(json.getString("advice"));
         this.warnEditFlowMapper.insert(warnEditFlow);
-
-        // 修改预警编辑表状态值，将数据修改为2驳回状态；(0：未发布；1：已发布；2：驳回；3：解除；4：终止)
-        Map<String, Object> param = new HashMap<>();
-        param.put("id", json.getString("warnEditId"));
-        param.put("status", 2);
-        this.warnEditMapper.updateStatus(map);
         return 1;
-    }
-
-    /**
-     * 预警：终止操作
-     * @param map
-     * @return
-     */
-    @Override
-    public int stop(Map<String, Object> map) {
-        return 0;
     }
 
     /**
@@ -315,7 +299,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 JSONArray userGroupArray = new JSONArray();
                 // 组装群组下的受众
                 list.stream()
-                        .filter(p -> p.getUserGroupId().equals(weu.getUserGroupId()))
+                        .filter(p -> p.getUserCode() != null && p.getUserGroupId().equals(weu.getUserGroupId()))
                         .collect(Collectors.toList())
                         .forEach(ug -> {
                             JSONObject g = new JSONObject();
@@ -348,6 +332,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
             JSONArray fileArray = new JSONArray();
             list.forEach(file -> {
                 JSONObject json = new JSONObject();
+                json.put("id", file.getId());
                 json.put("name", file.getName());
                 json.put("size", file.getSize());
                 json.put("url", file.getUrl());

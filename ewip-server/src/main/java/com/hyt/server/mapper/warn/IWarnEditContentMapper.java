@@ -25,4 +25,11 @@ public interface IWarnEditContentMapper extends IBaseMapper<WarnEditContent> {
      * @return
      */
     List<WarnEditContent> selectByWarnEditId(Map<String, Object> map);
+
+    /**
+     * 根据预警编辑ID，删除对应的预警内容
+     * @param map
+     * @return
+     */
+    int deleteContentByWarnEditId(Map<String, Object> map);
 }

@@ -47,4 +47,9 @@
         </foreach>
     </insert>
 
+    <!-- 根据预警编辑ID删除预警内容信息 -->
+    <delete id="deleteContentByWarnEditId">
+        DELETE FROM warn_edit_content WHERE warn_edit_id = #{warnEditId}
+    </delete>
+
 </mapper>

@@ -44,13 +44,6 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      */
     int reject(Map<String, Object> map);
 
-    /**
-     * 预警终止
-     * @param map
-     * @return
-     */
-    int stop(Map<String, Object> map);
-
 
     /**
      * 根据预警ID查询对应的预警流程

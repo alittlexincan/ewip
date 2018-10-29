@@ -56,6 +56,35 @@ public class WarnEditController {
         return ResultResponse.make(500,"添加预警信息失败",null);
     }
 
+    @ApiOperation(value="重发预警编辑信息",httpMethod="POST",notes="根据参数列表重发预警编辑信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="title", value="预警标题",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="warnEditId", value="重发预警编辑ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="areaId", value="地区ID",required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="organizationId", value="机构ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="disasterId", value="灾种ID", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="disasterName", value="灾种名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="disasterColor", value="灾种颜色", required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="disasterLevel", value="灾种级别", required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="warnType", value="预警信息类型", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="editTime", value="预警编辑时间", required = true, dataType = "Date", paramType = "query"),
+            @ApiImplicitParam(name="forecastTime", value="预计发生时间", required = true, dataType = "Date", paramType = "query"),
+            @ApiImplicitParam(name="invalid_time", value="失效时间", required = true, dataType = "Date", paramType = "query"),
+            @ApiImplicitParam(name="record", value="国突备案", required = true, dataType = "Integer", paramType = "query"),
+            @ApiImplicitParam(name="measure", value="政府应对措施", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="instruction", value="防御指南", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="isSend", value="是否发布", required = true, dataType = "Integet", paramType = "query")
+    })
+    @PostMapping("/resend")
+    public ResultObject<Object> resend(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        WarnEdit warnEdit = this.warnEditService.resend(map);
+        if(warnEdit.getId() != null){
+            return ResultResponse.make(200,"重发预警信息成功",map);
+        }
+        return ResultResponse.make(500,"重发预警信息失败",null);
+    }
+
+
     @ApiOperation(value = "查询预警发布信息列表", httpMethod = "GET", notes = "根据查询条件分页查询预警发布信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="page",value="当前页数", defaultValue="0", dataType = "Integer",paramType = "query"),

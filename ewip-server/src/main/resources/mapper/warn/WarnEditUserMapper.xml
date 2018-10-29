@@ -25,6 +25,7 @@
         <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName"/>
     </resultMap>
 
+    <!--根据预警编辑ID查询对应的受众信息-->
     <select id="selectByWarnEditId" resultMap="BaseUserResultMap">
         SELECT
             u.id,
@@ -33,27 +34,30 @@
             u.longitude,
             u.latitude,
             u.altitude,
-            u.channel_id,
+            weu.channel_id,
             c.name channel_name,
             c.code channel_code,
-            u.user_group_id,
+            weu.user_group_id,
             weu.user_group_name
         FROM
-            user u
-        LEFT JOIN warn_edit_user weu on weu.user_group_id = u.user_group_id
-        LEFT JOIN channel c on c.id = u.channel_id
-        where weu.warn_edit_id = #{warnEditId}
-
-
+            warn_edit_user weu
+        LEFT JOIN user u ON weu.user_group_id = u.user_group_id
+        LEFT JOIN channel c ON weu.channel_id = c.id
+        WHERE weu.warn_edit_id = #{warnEditId}
     </select>
 
     <!-- 预警编辑对应受众批量插入 -->
     <insert id="insertList" >
-        insert into warn_edit_user (id, warn_edit_id, channel_id, user_group_id, user_group_name, create_time )
-        values
+        INSERT INTO warn_edit_user (id, warn_edit_id, channel_id, user_group_id, user_group_name, create_time )
+        VALUES
         <foreach collection="list" item="item" separator=",">
             ( REPLACE(UUID(),'-',''), #{item.warnEditId}, #{item.channelId}, #{item.userGroupId}, #{item.userGroupName}, now())
         </foreach>
     </insert>
+
+    <!-- 根据预警编辑ID删除预警受众信息 -->
+    <delete id="deleteUserByWarnEditId">
+        DELETE FROM warn_edit_user WHERE warn_edit_id = #{warnEditId}
+    </delete>
 
 </mapper>

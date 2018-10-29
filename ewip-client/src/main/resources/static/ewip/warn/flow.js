@@ -485,39 +485,6 @@ layui.use(['table','form','element','zTree'], function(){
     });
 
     /**
-     * 终止：按钮操作
-     */
-    form.on("submit(stop)", function(data){
-
-        // 判断是否填写驳回原因
-        let len = data.field.advice;
-        if(len == 0){
-            layer.msg("请填写驳回原因", {time: 2000});
-            return false;
-        }
-
-        return false;
-        // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
-        // 将字符串数组流程转换成数字类型数据流程
-        let flow = $("#flow").val()
-            // 当前选中数据得流程值
-            ,currentFlow = $("#currentFlow").val()
-            ,param = {
-                url: "/client/warn/option/stop"
-                ,data:{
-                    id: $("#id").val()
-                    ,warnEditId: $("#warnEditId").val()
-                    ,flow: flow
-                    ,currentFlow: currentFlow
-                    ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
-                }
-            };
-        // 数据处理
-        active.execute(param);
-    });
-
-
-    /**
      * 初始化加载项
      */
     active.initPageMsg();                       // 初始化页面加载信息

@@ -18,14 +18,12 @@ import java.util.Map;
 @Repository("warnEditMapper")
 public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
 
-    List<WarnEdit> findAll(Map<String, Object> map);
-
     /**
-     * 修改预警状态
+     * 根据条件分页查询预警信息
      * @param map
      * @return
      */
-    int updateStatus(Map<String, Object> map);
+    List<WarnEdit> findAll(Map<String, Object> map);
 
     /**
      * 根据id查询当前预警基本信息
@@ -33,5 +31,19 @@ public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
      * @return
      */
     WarnEdit selectByWarnEditId(Map<String, Object> map);
+
+    /**
+     * 根据预警编辑ID修改预警状态
+     * @param map
+     * @return
+     */
+    int updateStatus(Map<String, Object> map);
+
+    /**
+     * 根据预警编辑ID删除预警编辑信息
+     * @param map
+     * @return
+     */
+    int deleteByWarnEditId(Map<String, Object> map);
 
 }

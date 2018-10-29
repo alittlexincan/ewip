@@ -25,4 +25,11 @@ public interface IWarnEditUserMapper extends IBaseMapper<WarnEditUser> {
      * @return
      */
     List<WarnEditUser> selectByWarnEditId(Map<String, Object> map);
+
+    /**
+     * 根据预警编辑ID，删除预警对应的群组受众信息
+     * @param map
+     * @return
+     */
+    int deleteUserByWarnEditId(Map<String, Object> map);
 }

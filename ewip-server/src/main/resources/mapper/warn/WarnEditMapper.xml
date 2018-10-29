@@ -32,48 +32,50 @@
 
     <!-- 查询预警配置信息 -->
     <select id="findAll" resultMap="BaseResultMap">
-        SELECT
-            we.id,
-            we.title,
-            d.name disaster_name,
-            d.icon,
-            d.disaster_color,
-            d.disaster_level,
-            wef.warn_edit_id,
-            wef.employee_id,
-            wef.employee_name,
-            wef.organization_id,
-            wef.organization_name,
-            wef.flow,
-            wef.advice,
-            we.warn_type,
-            we.msg_type,
-            we.scope,
-            we.status,
-            wef.create_time
-        FROM
-          warn_edit we
-        LEFT JOIN warn_edit_flow wef ON wef.warn_edit_id = we.id
-        LEFT JOIN disaster d ON d.id = we.disaster_id
-        WHERE 1=1
-        <if test="id != null and id != ''"> AND we.id = #{id} </if>
-        <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
-        <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
-        <if test="disasterName != null and disasterName != ''"> AND d.name = #{disasterName} </if>
-        <if test="disasterColor != null and disasterColor != ''"> AND we.disaster_color = #{disasterColor} </if>
-        <if test="disasterLevel != null and disasterLevel != ''"> AND we.disaster_level = #{disasterLevel} </if>
-        <if test="flow != null and flow != ''"> AND wef.flow = #{flow} </if>
-        GROUP BY wef.warn_edit_id HAVING MAX(wef.create_time)
+        SELECT * FROM (
+            SELECT
+                we.id,
+                we.title,
+                d.name disaster_name,
+                d.icon,
+                d.disaster_color,
+                d.disaster_level,
+                wef.warn_edit_id,
+                wef.employee_id,
+                wef.employee_name,
+                wef.organization_id,
+                wef.organization_name,
+                wef.flow,
+                wef.advice,
+                we.warn_type,
+                we.msg_type,
+                we.scope,
+                we.status,
+                wef.create_time
+            FROM
+              warn_edit we
+            LEFT JOIN warn_edit_flow wef  ON we.id = wef.warn_edit_id
+            LEFT JOIN disaster d 		  ON we.disaster_id = d.id
+            LEFT JOIN organization o 	  ON we.organization_id = o.id
+
+            WHERE 1=1
+                <if test="id != null and id != ''"> AND we.id = #{id} </if>
+                <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
+                <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
+                <if test="disasterName != null and disasterName != ''"> AND d.name = #{disasterName} </if>
+                <if test="disasterColor != null and disasterColor != ''"> AND we.disaster_color = #{disasterColor} </if>
+                <if test="disasterLevel != null and disasterLevel != ''"> AND we.disaster_level = #{disasterLevel} </if>
+                <if test="flow != null and flow != ''"> AND wef.flow = #{flow} </if>
+            ORDER BY wef.create_time desc LIMIT 1000000000000000
+        ) tab
+        GROUP BY tab.warn_edit_id
         <choose>
-            <when test="sortName !=null and sortName!='id'">
-                ORDER BY ${sortName} ${sortOrder}
-            </when >
-            <otherwise>
-                ORDER BY wef.create_time DESC
-            </otherwise>
+            <when test="sortName !=null and sortName!='id'"> ORDER BY ${sortName} ${sortOrder} </when >
+            <otherwise> ORDER BY tab.create_time DESC </otherwise>
         </choose>
     </select>
 
+    <!--根据预警编辑ID查询预警编辑信息-->
     <select id="selectByWarnEditId" resultMap="BaseResultMap">
         select
           we.id,
@@ -91,21 +93,27 @@
           we.instruction,
           we.msg_type,
           we.scope,
+          we.flow,
           we.send_time,
           d.name disaster_name,
           d.code disaster_code,
           d.disaster_color,
           d.disaster_level,
           d.icon
-        from warn_edit we
-		LEFT JOIN disaster d on d.id = we.disaster_id
-		LEFT JOIN organization o on o.id = we.organization_id
-        where we.id = #{warnEditId}
+        FROM warn_edit we
+		LEFT JOIN disaster d ON d.id = we.disaster_id
+		LEFT JOIN organization o ON o.id = we.organization_id
+        WHERE we.id = #{warnEditId}
     </select>
 
     <!-- 修改预警状态 -->
     <update id="updateStatus">
-        update warn_edit set status = #{status}, send_time = now() where id = #{id}
+        UPDATE warn_edit SET status = #{status}, send_time = now() WHERE id = #{id}
     </update>
+
+    <!-- 根据预警编辑ID删除预警编辑信息 -->
+    <delete id="deleteByWarnEditId">
+        DELETE FROM warn_edit WHERE id = #{warnEditId}
+    </delete>
 
 </mapper>

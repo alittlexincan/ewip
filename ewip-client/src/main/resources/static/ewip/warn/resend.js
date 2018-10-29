@@ -37,7 +37,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     });
 
 
-    var active = {
+    let active = {
         /**
          * 初始化预警内容
          */
@@ -46,7 +46,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * 渠道对应受众树加载
          * @param option
          */
-        ,"channelToUserGroup": function (option) {
+        ,"channelToUserGroup": option => {
             zTree.async({
                 id: '#group_'+option.channelId,
                 setting: {
@@ -58,7 +58,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         dataType:"json",
                         dataFilter:function (treeId, parentNode, responseData) {
                             if(responseData!=null){
-                                for(var i = 0; i<responseData.length; i++){
+                                for(let i = 0; i<responseData.length; i++){
                                     responseData[i].checked = true;
                                 }
                             }
@@ -86,7 +86,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * 基础信息配置
          * @param param
          */
-        ,"setBasis": function (param) {
+        ,"setBasis": param => {
             if(param.step==1){
                 layer.msg("该预警没有匹配到策略", {time: 2000});
                 return false;
@@ -97,7 +97,14 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             }
             // 预警标题
             $(".basis input[name='title']").val(param.organizationName + "发布" + param.disasterName + disaster.color(param.disasterColor) + "["+disaster.level(param.disasterLevel)+"]预警");
-
+            // 预警名称
+            $(".basis input[name='disasterName']").val(param.disasterName);
+            // 预警颜色
+            $(".basis select[name='disasterColor']").val(param.disasterColor);
+            // 预警颜色
+            $(".basis input[name='disasterCode']").val(param.disasterCode);
+            // 预警级别
+            $(".basis select[name='disasterLevel']").val(param.disasterLevel);
             // 政府应对措施
             $(".basis textarea[name='measure']").val(param.measure);
             // 防御指南
@@ -111,7 +118,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * 获取策略配置
          * @param param
          */
-        ,"getStrategyMsg": function (param, callback) {
+        ,"getStrategyMsg": (param, callback) => {
             $.ajax({
                 async:false
                 ,type: "GET"
@@ -134,7 +141,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param param
          * @param callback
          */
-        ,"getWarnMsg": function (param, callback) {
+        ,"getWarnMsg": (param, callback) => {
             $.ajax({
                 async:false
                 ,type: "GET"
@@ -179,15 +186,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param param
          */
         ,"setWarnContent": function (result) {
-
-            console.log(result);
-
             // 拼接预警内容前缀
             let areas = new Set()
                 ,editTime = $(".basis #editTime").val()
                 ,warnType = $(".basis select[name='warnType']").val()
-                ,disasterName = $(".basis input[name='disasterName']").val() || result.disasterName
-                ,disasterColor = $(".basis select[name='disasterColor']").val() || result.disasterColor
+                ,disasterName = result.disasterName || $(".basis input[name='disasterName']").val()
+                ,disasterColor = result.disasterColor || $(".basis select[name='disasterColor']").val()
                 ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
             if(warnType == "Test"){
                 title = "测试："+title;
@@ -226,8 +230,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "		</div>";
                 html += "	</div>";
                 html += "</div>"
-                // 追加预警内容tab选项卡
-                ,element.tabAdd('warn-tab', {
+                    // 追加预警内容tab选项卡
+                    ,element.tabAdd('warn-tab', {
                     title: channelName
                     ,content: html //支持传入html
                     ,id: channelId
@@ -298,7 +302,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         ,warnType = $(".basis select[name='warnType']").val()
                         ,disasterName = $(".basis #disasterName").val()
                         ,disasterColor = $(".basis select[name='disasterColor']").val()
-                        ,title = result.area[0].areaName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                        ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
                     if(warnType == "Test"){
                         title = "测试："+title;
                     }
@@ -492,13 +496,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         }
     };
 
-    /**
-     * 初始化页面基础信息
-     */
-    let initPageMsg = function(){
-        $("#organizationName").val(employee.organizationName);
-        $("#organizationCode").val(employee.organizationCode);
-    };
+
 
     /**
      * 初始化发布时间
@@ -560,16 +558,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         ,disasterCode: treeNode.code                // 灾种编码
                         ,icon: "/client/"+treeNode.img              // 灾种图标
                     };
-
-                    // 预警名称
-                    $(".basis input[name='disasterName']").val(param.disasterName);
-                    // 预警颜色
-                    $(".basis select[name='disasterColor']").val(param.disasterColor);
-                    // 预警颜色
-                    $(".basis input[name='disasterCode']").val(param.disasterCode);
-                    // 预警级别
-                    $(".basis select[name='disasterLevel']").val(param.disasterLevel);
-
                     // 获取策略信息, 并设置流程、渠道
                     active.getStrategyMsg(param, active.setStrategyAndChannel);
                     // 获取预警信息，并匹配预警内容
@@ -580,12 +568,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 return false;
             }
         });
-    };
+    }
 
     /**
      * 初始化加载地区树
      */
-    let initAreaTree =  zTree.async({
+    ,initAreaTree =  zTree.async({
         id: "#areaTree",
         setting: {
             async:{
@@ -609,12 +597,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 onCheck:active.areaCheck
             }
         }
-    });
+    })
 
     /**
      * 初始化加载渠道
      */
-    let initChannelList = function(){
+    ,initChannelList = function(){
         $.ajax({
             async:true
             ,type: "POST"
@@ -634,12 +622,263 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 }
             }
         });
+    }
+
+    /**
+     * 数据回显
+     */
+    ,callback = {
+        /**
+         * 数据回显预警基础信息
+         * @param result
+         */
+        calBackWarnEditInfo: result => {
+            // 回显发布机构
+            $(".basis input[name='organizationName']").val(result.organizationName);
+            // 回显标题
+            $(".basis input[name='title']").val(result.title).attr("title", result.title);
+
+            // 回显预警名称
+            $(".basis .addDisasterIdShow[name='disasterId']").attr("value", result.disasterName);
+            $(".basis .addDisasterIdHide[name='disasterId']").attr("value", result.disasterId);
+            $(".basis #disasterName").val(result.disasterName);
+
+            // 回显预警颜色
+            $(".basis select[name='disasterColor']").val(result.disasterColor);
+            // 回显预警级别
+            $(".basis select[name='disasterLevel']").val(result.disasterLevel);
+            // 预警信息类型
+            $(".basis select[name='warnType']").val(result.warnType);
+            // 回显发布时间
+            $(".basis input[name='sendTime']").val(result.sendTime);
+            // 回显预期发生时间
+            $(".basis input[name='forecastTime']").val(result.forecastTime);
+            // 回显生效时间
+            $(".basis input[name='invalidTime']").val(result.invalidTime);
+            // 回显政府应对措施
+            $(".basis textarea[name='measure']").val(result.measure);
+            // 回显防御指南
+            $(".basis textarea[name='instruction']").val(result.instruction);
+            // 回显预警图标
+            $(".warn-icon > img").attr("src","/client/"+result.icon).attr("title", result.disasterName);
+        }
+
+        /**
+         * 数据回显流程
+         * @param result
+         */
+        ,calBackWarnEditFlowInfo: result => {
+            result.split(",").forEach( flow => {
+                $(".process-list .process input[type='checkbox'][name='flow'][value='" + flow + "']").prop("checked", true);
+            });
+        }
+
+        /**
+         * 数据回显渠道
+         * @param result
+         */
+        ,calBackChannelList: result => {
+            result.forEach( channel => {
+                $(".channel-list > div[data-id='" + channel.channelId + "']").addClass("active");
+            });
+        }
+        /**
+         * 数据回显地区
+         */
+        ,calBackAreaList: result => {
+            if(result == null) return;
+            result.forEach( area => {
+                let node = initAreaTree.getNodeByParam("id",area.areaId, null);
+                initAreaTree.checkNode(node,true,true);
+            });
+        }
+        /**
+         * 数据回显内容
+         */
+        ,calBackContentList: result => {
+
+            // 拼接预警内容前缀
+            let editTime = $(".basis #editTime").val()
+                ,warnType = $(".basis select[name='warnType']").val()
+                ,disasterName = $(".basis #disasterName").val()
+                ,disasterColor = $(".basis select[name='disasterColor']").val()
+                ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+            if(warnType == "Test"){
+                title = "测试："+title;
+            }
+
+            // 循环渠道
+            result.channel.forEach(channel => {
+                let html = "";
+                html += "<div class='layui-row layui-col-space5'>";
+                html += "	<div class='layui-col-xs9 layui-col-md9'>";
+                html += "		<div class='layui-card warn-card-content'>";
+                html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
+                html += "			<div  class='layui-card-body warn-card-content-list content_" + channel.channelId + "'>";
+                // 循环地区
+                result.area.forEach(area => {
+                    html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
+                    html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    html += "						<div>" + area.areaName + "</div>";
+                    html += "					</div>";
+                    html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                    html += "					</div>";
+                    html += "				</div>";
+                });
+                html += "			</div>";
+                html += "		</div>";
+                html += "	</div>";
+                html += "	<div class='layui-col-xs3 layui-col-md3'>";
+                html += "		<div class='layui-card warn-card-content'>";
+                html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>" + channel.channelName+ "群组</span></div>";
+                html += "			<div  class='layui-card-body warn-card-content-list'>";
+                html += "				<div class='ztree' id='group_" + channel.channelId + "'></div>";
+                html += "			</div>";
+                html += "		</div>";
+                html += "	</div>";
+                html += "</div>"
+                    // 追加预警内容tab选项卡
+                    ,element.tabAdd('warn-tab', {
+                    title: channel.channelName
+                    ,content: html //支持传入html
+                    ,id: channel.channelId
+                });
+                // 赋值预警内容
+                let contents = result.content;
+                for(let key in contents){
+                    contents[key].forEach( obj => {
+                        if(active.warnContent == null) active.warnContent = obj.content.substring(title.length);
+                        $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
+                    });
+                }
+                // 删除tab id 为choose-tab的table页
+                element.tabDelete("warn-tab", "choose-tab");
+                // 默认展开第一个tab页
+                element.tabChange('warn-tab', result.channel[0].channelId);
+            });
+            element.render();
+        }
+
+        /**
+         * 数据回显群组
+         */
+        ,calBackUserList: (channels, groups, users) => {
+            if(channels == null && groups == null) return;
+            for(let key in groups){
+                let groupArray = groups[key];
+                let nodes = [];
+                groupArray.forEach( item => {
+
+                    let count = users[item.userGroupId].length; // 提取当前群组下对应的受众个数
+
+                    nodes.push({
+                        id: item.userGroupId
+                        ,name: count > 0 ? item.userGroupName +"(" + count + ")" : item.userGroupName
+                        ,pId: 0
+                        ,checked:true
+                    });
+                });
+
+                zTree.sync({
+                    id: '#group_'+key,
+                    setting: {
+                        data: {
+                            simpleData: {
+                                enable: true,
+                                idKey: "id",
+                                pIdKey: "pId",
+                                rootPId: 0
+                            }
+                        },
+                        check: {
+                            enable: true,
+                            chkboxType: {"Y":"", "N": ""},
+                            chkStyle:"checkbox"
+                        }
+                    },
+                    data: nodes
+                });
+            }
+        }
+
+        ,deleteFiles:new Set()
+
+        /**
+         * 数据回显文件
+         */
+        ,calBackFileList: files => {
+
+            if(files == null || files.length == 0) return;
+
+            if($(".warn-file-table").hasClass("layui-hide")){
+                $(".warn-file-table").removeClass("layui-hide");
+                // 3:隐藏初始化提示信息
+                $(".warn-upload-msg").addClass("layui-hide");
+            }
+            files.forEach( file => {
+                // 文件唯一标志
+                let index = new Date().getTime();
+                // 1:拼接文件文本框
+                $(".warn-file-list").append("<input type='file' id='warn-"+index+"' name='warnFile' class='warn-"+index+"' data-file-index='"+index+"'>");
+                // 计算文件大小
+                let s = (file.size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
+                // 拼接文件内容
+                let html = "<tr>";
+                    html += "   <td style='display: none;'>" + file.id + "</td>";
+                    html += "   <td>" + index + "</td>";
+                    html += "   <td>" + file.name + "</td>";
+                    html += "   <td>" + s + "</td>";
+                    html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
+                    html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
+                    html += "</tr>";
+                //追加到文件列表
+                $(".warn-file-table > tbody").append(html);
+            });
+        }
+    }
+
+    /**
+     * 初始化页面基础信息
+     */
+    ,callBackWarnMsg = () => {
+        $("#organizationName").val(employee.organizationName);
+        $("#organizationCode").val(employee.organizationCode);
+        $.ajax({
+            async:true
+            ,type: "GET"
+            ,data: {warnEditId: $("#warnEditId").val()}
+            ,url: "/client/warn/option/detail"
+            ,dataType: 'json'
+            ,success: json => {
+                if(json.code == 200 && json.data != null){
+                    let result = json.data;
+
+                    console.log(result);
+                    // 回显预警基础信息
+                    callback.calBackWarnEditInfo(result);
+                    // 预警流程数据回显
+                    callback.calBackWarnEditFlowInfo(result.flow);
+                    // 回显渠道
+                    callback.calBackChannelList(result.channel);
+                    // 回显地区
+                    callback.calBackAreaList(result.area);
+                    // 回显内容
+                    callback.calBackContentList(result);
+                    // 回显受众
+                    callback.calBackUserList(result.channel, result.group, result.user);
+                    // // 回显文件
+                    callback.calBackFileList(result.files);
+                    form.render();
+                }
+            }
+        });
     };
 
     /**
      * 渠道全选、反选
      */
-    $(".channel-option").on("click", "div > span", function(element) {
+    $(".channel-option").on("click", "div > span", function() {
         let text = $(this).text(),
             event = $(this).data("event"),
             disasterName = $("#disasterName").val();
@@ -738,29 +977,38 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             let s = (size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
             // 拼接文件内容
             let html = "<tr>";
-            html += "   <td>" + index + "</td>";
-            html += "   <td>" + file.name + "</td>";
-            html += "   <td>" + s + "</td>";
-            html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
-            html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
-            html += "</tr>";
+                html += "   <td></td>";
+                html += "   <td style='display: none;'>" + index + "</td>";
+                html += "   <td>" + file.name + "</td>";
+                html += "   <td>" + s + "</td>";
+                html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
+                html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
+                html += "</tr>";
             //追加到文件列表
             $(".warn-file-table > tbody").append(html);
-            // 点击列表删除事件，删除当前行，并且删除，文件文本框
-            $(".warn-file-table > tbody > tr > td > a").on("click",function () {
-                let fileClass = $(this).data("fileClass");
-                // 删除文件文本框
-                $(".warn-file-list > ." + fileClass).remove();
-                // 删除当前行
-                $(this).parent().parent().remove();
-
-                if($(".warn-file-table > tbody > tr").length == 0){
-                    $(".warn-file-table").addClass("layui-hide");
-                    // 3:隐藏初始化提示信息
-                    $(".warn-upload-msg").removeClass("layui-hide");
-                }
-            });
         });
+    });
+
+    /**
+     * 文件上传删除按钮
+     */
+    $(".warn-file-table").on("click", "a", function () {
+        let fileClass = $(this).data("fileClass");
+        // 删除文件文本框
+        $(".warn-file-list > #" + fileClass).remove();
+        // 删除当前行
+        $(this).parent().parent().remove();
+        // 保存删除的id
+        if($(this).parent().parent().eq(0).children("td").eq(0).text().length > 0){
+            callback.deleteFiles.add($(this).parent().parent().eq(0).children("td").eq(0).text());
+        }
+        // 如果最后一个删除，则还原样式
+        if($(".warn-file-table > tbody > tr").length == 0){
+            $(".warn-file-table").addClass("layui-hide");
+            // 3:隐藏初始化提示信息
+            $(".warn-upload-msg").removeClass("layui-hide");
+        }
+        return false;
     });
 
     /**
@@ -787,10 +1035,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 layer.msg("请至少选中一个渠道", {time: 2000});
                 return false;
             }
-
             // 删除渠道对应的样式
             $(".channel-list .imgbox.active[data-id='" + channelId + "']").removeClass("active");
-
         }
     });
 
@@ -833,6 +1079,9 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     form.on("submit(submit)", function(data){
         // 数据提交到后台，通用方法
         let param = data.field;
+
+        // 将要修改的预警信息ID
+        param.warnEditId = $("#warnEditId").val();
 
         param.advice = "您好：" + param.title + "请您处理";     // 流程意见
         param.status = 0;                                      // 预警状态：0：未发布；1：以发布；2：解除
@@ -884,8 +1133,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         param.group = function(){
             let group = {};
             $(".channel-list .imgbox.active").each(function () {
-                var channelId = $(this).data("id")
-                    ,channelGroup = [];
+                let channelId = $(this).data("id") ,channelGroup = [];
                 zTree.getZTree("group_"+channelId).getCheckedNodes(true).forEach(function (item) {
                     channelGroup.push({
                         userGroupId: item.id,
@@ -906,21 +1154,30 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             });
             return file;
         };
+        // 获取将要删除的文件
+        param.deleteFile = function(){
+            let ids = "";
+            callback.deleteFiles.forEach(function (element) {
+                ids += "," + element;
+            });
+            callback.deleteFiles = "";
+            return ids.substring(1);
+        }();
 
         // 数据提交
         ajaxFileUpload.render({
             async: true
-            ,url : "/client/warn/edit/insert"
+            ,url : "/client/warn/edit/resend"
             ,type: "POST"
             ,param : param//需要传递的数据 json格式
             ,files : files()
             ,dataType: 'json'
         },function (json) {
             if(json.code == 200){
+                let index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭
                 // 弹出提示信息，2s后自动关闭
-                layer.msg(json.msg, {time: 2000},function(){
-                    location.reload();
-                });
+                layer.msg(json.msg, {time: 2000});
             }
         });
 
@@ -929,7 +1186,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     /**
      * 初始化加载项
      */
-    initPageMsg();          // 初始化页面加载信息
-    disasterLevelZtree();   // 初始化加载灾种级别树
     initChannelList();      // 初始化加载渠道
+    disasterLevelZtree();   // 初始化加载灾种级别树
+    callBackWarnMsg();      // 初始化页面加载数据回显信息
 });

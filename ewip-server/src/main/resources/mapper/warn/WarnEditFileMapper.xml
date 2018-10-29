@@ -33,4 +33,26 @@
         </foreach>
     </insert>
 
+    <!-- 根据预警编辑上传文件ID删除预警上传文件 -->
+
+    <!-- 根据预警编辑ID删除预警上传文件 -->
+    <delete id="deleteFileByWarnEditId">
+        DELETE FROM warn_edit_file WHERE
+         <if test="id !=null and id != '' ">
+             id IN (
+                 <foreach collection="id.split(',')" item="item"  separator=","  >
+                     '${item}'
+                 </foreach>
+             )
+         </if>
+         <if test="warnEditId !=null and warnEditId != '' ">
+            warn_edit_id = #{warnEditId}
+         </if>
+    </delete>
+
+    <!--将老的预警文件信息更新到新的预警文件列表中（针对预警重发）-->
+    <update id="updateOldFileByNewEditId">
+        UPDATE warn_edit_file SET warn_edit_id = #{newEditId} WHERE warn_edit_id = #{oldEditId}
+    </update>
+
 </mapper>

@@ -30,4 +30,17 @@ public interface IWarnEditService extends IBaseService<WarnEdit> {
      */
     WarnEdit insert(Map<String, Object> map);
 
+    /**
+     * 重发预警信息
+     * 1：根据预警编辑ID删除与此相关的所有信息
+     * 2：添加预警编辑基本信息
+     * 3：添加预警编辑内容信息
+     * 4：添加预警编辑群组信息
+     * 5：添加预警编辑流程信息
+     * 6：添加预警编辑上传文件信息
+     * @param map
+     * @return
+     */
+    WarnEdit resend(Map<String, Object> map);
+
 }

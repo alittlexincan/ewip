@@ -25,4 +25,18 @@ public interface IWarnEditFileMapper extends IBaseMapper<WarnEditFile> {
      * @return
      */
     List<WarnEditFile> selectByWarnEditId(Map<String, Object> map);
+
+    /**
+     * 根据预警编辑ID，删除预警上传文件信息
+     * @param map
+     * @return
+     */
+    int deleteFileByWarnEditId(Map<String, Object> map);
+
+    /**
+     * 将老的预警文件信息更新到新的预警文件列表中
+     * @param map
+     * @return
+     */
+    int updateOldFileByNewEditId(Map<String, Object> map);
 }

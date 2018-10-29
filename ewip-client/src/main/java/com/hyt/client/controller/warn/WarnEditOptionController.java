@@ -83,23 +83,6 @@ public class WarnEditOptionController {
     }
 
     /**
-     * 预警终止
-     * @param map
-     * @return
-     */
-    @PostMapping("/stop")
-    JSONObject stop(HttpSession session, @RequestParam Map<String, Object> map){
-        Map<String, Object> employee = (Map<String, Object>) session.getAttribute("employee");
-        map.put("employeeId",employee.get("id"));
-        map.put("employeeName",employee.get("name"));
-        map.put("organizationId",employee.get("organizationId"));
-        map.put("organizationName",employee.get("organizationName"));
-        map.put("organizationCode",employee.get("organizationCode"));
-        return this.warnEditOptionService.stop(map);
-    }
-
-
-    /**
      * 根据预警ID查询对应的预警详细信息
      * @param map
      * @return

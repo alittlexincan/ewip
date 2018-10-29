@@ -39,8 +39,12 @@ public class WarnEditController extends BaseController {
     @Value("${web.warn-file-path}")
     private String warnFile;
 
+    /**
+     * 注入预警编辑业务访问接口
+     */
     @Autowired
     private IWarnEditService warnEditService;
+
     /**
      * 添加预警配置信息
      * @param map
@@ -62,14 +66,36 @@ public class WarnEditController extends BaseController {
     }
 
     /**
-     * 根据参数列表添加预警编辑流程信息
+     * 添加预警配置信息
      * @param map
      * @return
      */
-    @PostMapping("/insert/flow")
-    public JSONObject insertFlow(@RequestParam Map<String,Object> map){
-        return this.warnEditService.insertFlow(map);
+    @PostMapping("/resend")
+    public JSONObject resend(HttpSession session, @RequestParam Map<String,Object> map, @RequestParam("warnFile") MultipartFile[] files){
+        Map<String, Object> employee = (Map<String, Object>) session.getAttribute("employee");
+        map.put("employeeId",employee.get("id"));
+        map.put("employeeName",employee.get("name"));
+        map.put("areaId",employee.get("areaId"));
+        map.put("areaName",employee.get("areaName"));
+        map.put("organizationId",employee.get("organizationId"));
+        map.put("organizationName",employee.get("organizationName"));
+        if(files.length > 0){
+            // 文件开始上传
+            JSONArray file = UploadFileUtil.upload(files, uploadPath, warnFile);
+            map.put("files", file != null ? file.toJSONString() : "");
+        }
+        return this.warnEditService.resend(map);
     }
+
+//    /**
+//     * 根据参数列表添加预警编辑流程信息
+//     * @param map
+//     * @return
+//     */
+//    @PostMapping("/insert/flow")
+//    public JSONObject insertFlow(@RequestParam Map<String,Object> map){
+//        return this.warnEditService.insertFlow(map);
+//    }
 
     /**
      * 分页查询预警发布信息
@@ -77,7 +103,17 @@ public class WarnEditController extends BaseController {
      * @return
      */
     @GetMapping("/select")
-    JSONObject selectAll(@RequestParam Map<String,Object> map){
+    JSONObject select(HttpSession session, @RequestParam Map<String,Object> map){
+
+        Map<String, Object> employee = (Map<String, Object>) session.getAttribute("employee");
+//        map.put("employeeId",employee.get("id"));
+//        map.put("employeeName",employee.get("name"));
+        map.put("areaId",employee.get("areaId"));
+        map.put("areaName",employee.get("areaName"));
+        map.put("organizationId",employee.get("organizationId"));
+        map.put("organizationName",employee.get("organizationName"));
+        map.put("organizationType",employee.get("organizationType"));
+
         return this.warnEditService.selectAll(map);
     }
 
