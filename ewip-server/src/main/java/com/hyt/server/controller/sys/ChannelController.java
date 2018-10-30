@@ -31,10 +31,11 @@ public class ChannelController {
 
     @ApiOperation(value="添加渠道手段信息",httpMethod="POST",notes="根据参数列表添加渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name="name",value="渠道手段名称",required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="icon",value="渠道手段图标",required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="pId", value="所属渠道", required = true, dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="type",value="渠道手段类型", required = true,dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name="name",value="渠道手段名称",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="icon",value="渠道手段图标",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId", value="所属渠道", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段类型", required = true,dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段状态", required = true,dataType = "Integer",paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -49,11 +50,12 @@ public class ChannelController {
 
     @ApiOperation(value="修改渠道手段信息",httpMethod="POST", notes="根据渠道手段ID，修改参数列表渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String", required = true,paramType = "query"),
-        @ApiImplicitParam(name="name",value="渠道手段名称", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="icon",value="渠道手段图标", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="pId", value="所属渠道", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String", required = true,paramType = "query"),
+            @ApiImplicitParam(name="name",value="渠道手段名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="icon",value="渠道手段图标", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId", value="所属渠道", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段状态", required = true,dataType = "Integer",paramType = "query")
     })
     @PostMapping("/update")
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -66,9 +68,24 @@ public class ChannelController {
         return ResultResponse.make(500,"修改渠道手段失败");
     }
 
+    @ApiOperation(value="修改渠道是否启用禁用",httpMethod="POST", notes="根据渠道手段ID，修改参数列表渠道手段信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String", required = true,paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段状态", required = true,dataType = "Integer",paramType = "query")
+    })
+    @PostMapping("/update/status")
+    public ResultObject<Object> updateStatus(@ApiParam(hidden = true) @RequestParam Map<String, Object> map){
+        String msg = Integer.parseInt(map.get("status").toString()) == 0 ? "禁用" : "启用";
+        int num = this.channelService.updateStatus(map);
+        if(num>0){
+            return ResultResponse.make(200,"渠道"+msg+"成功");
+        }
+        return ResultResponse.make(500,"修改"+msg+"失败");
+    }
+
     @ApiOperation(value="删除渠道手段信息",httpMethod = "DELETE", notes="根据url的渠道手段id来删除渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")
+            @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")
     })
     @DeleteMapping("/delete/{id}")
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
@@ -81,7 +98,7 @@ public class ChannelController {
 
     @ApiOperation(value="批量删除渠道手段信息",httpMethod = "POST", notes="根据一批用户id来删除渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="query")
+            @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="query")
     })
     @PostMapping("/delete")
     public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
@@ -94,7 +111,7 @@ public class ChannelController {
 
     @ApiOperation(value="根据id查询渠道手段信息",httpMethod = "POST", notes="根据url的地区id来查询渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")
+            @ApiImplicitParam(name = "id", value = "渠道手段ID", required = true, dataType = "String", paramType="path")
     })
     @PostMapping("/select/{id}")
     public ResultObject<Object> selectById(@PathVariable(value = "id") String id) {
@@ -103,18 +120,19 @@ public class ChannelController {
 
     @ApiOperation(value = "查询渠道手段信息列表", httpMethod = "GET", notes = "根据查询条件分页查询所有渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name="page",value="当前页数", defaultValue="0", dataType = "Integer",paramType = "query"),
-        @ApiImplicitParam(name="size",value="每页条数", defaultValue="10", dataType = "Integer",paramType = "query"),
-        @ApiImplicitParam(name="sortName",value="排序字段名称", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="sortOrder",value="排序规则(ASC,DESC)，默认DESC", defaultValue = "DESC",dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="startTime",value="开始时间", dataType = "Date",paramType = "query"),
-        @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
+            @ApiImplicitParam(name="page",value="当前页数", defaultValue="0", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="size",value="每页条数", defaultValue="10", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="sortName",value="排序字段名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="sortOrder",value="排序规则(ASC,DESC)，默认DESC", defaultValue = "DESC",dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="startTime",value="开始时间", dataType = "Date",paramType = "query"),
+            @ApiImplicitParam(name="endTime",value="结束时间", dataType = "Date",paramType = "query"),
 
-        @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="name",value="渠道手段名称", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="icon",value="渠道手段图标", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="pId", value="所属渠道",  dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="渠道手段名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="icon",value="渠道手段图标", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId", value="所属渠道",  dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段状态", required = true,dataType = "Integer",paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
@@ -124,10 +142,11 @@ public class ChannelController {
 
     @ApiOperation(value = "查询渠道手段信息", httpMethod = "POST", notes = "根据查询条件查询所有渠道手段信息")
     @ApiImplicitParams({
-        @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="name",value="渠道手段名称",dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="pId", value="所属渠道",dataType = "String",paramType = "query"),
-        @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name="id",value="渠道手段ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="渠道手段名称",dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="pId", value="所属渠道",dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段类型", dataType = "Integer",paramType = "query"),
+            @ApiImplicitParam(name="type",value="渠道手段状态", required = true,dataType = "Integer",paramType = "query")
     })
     @PostMapping("/list")
     public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {

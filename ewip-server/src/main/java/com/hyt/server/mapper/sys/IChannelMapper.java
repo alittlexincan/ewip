@@ -34,4 +34,6 @@ public interface IChannelMapper extends IBaseMapper<Channel> {
 
     List<Channel> selectByParam(Map<String, Object> map);
 
+    int updateStatus(Map<String, Object> map);
+
 }

@@ -19,9 +19,19 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      * @param d
      * @returns {string}
      */
-    let typeFormat = function(d){
-        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>发布</span>";
+    let typeFormat = d => {
+        if(d.type == 0) return "<span class='layui-btn layui-btn-xs layui-btn-warm ewip-cursor-default'>渠道</span>";
         if(d.type == 1) return "<span class='layui-btn layui-btn-normal layui-btn-xs ewip-cursor-default'>手段</span>";
+    };
+
+    /**
+     * 格式化状态类型
+     * @param d
+     * @returns {string}
+     */
+    let statusFormat = d => {
+        if(d.status == 0) return "<input type='checkbox' name='status' data-id='" + d.id + "' lay-skin='switch' lay-filter='switchStatus' lay-text='启用|禁用'>";
+        if(d.status == 1) return "<input type='checkbox' name='status' checked='' data-id='" + d.id + "' lay-skin='switch' lay-filter='switchStatus' lay-text='启用|禁用'>";
     };
 
     /**
@@ -29,7 +39,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      * @param d
      * @returns {string}
      */
-    let iconFormat = function(d){
+    let iconFormat = d => {
         if(d!="" || d!=null) {
             return "<img src='/client/"+d.icon+"'  style='width:50px;height:50px;' >";
         }else{
@@ -54,8 +64,9 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '发布手段名称', sort: true}
             ,{field: 'code', title: '发布手段编码', sort: true}
-            ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', templet: iconFormat }
+            ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
+            ,{field: 'status', title: '状&nbsp;&nbsp;态', sort: true, templet: statusFormat }
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
@@ -349,6 +360,28 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
             });
         }
     };
+
+    //监听指定开关
+    form.on('switch(switchStatus)', function(data){
+        let param = {
+            status:Number(this.checked ? true : false)
+            ,id:$(data.elem).data("id")
+        };
+
+        $.ajax({
+            async:true
+            ,type: "POST"
+            ,data: param
+            ,url: "/client/channel/update/status"
+            ,dataType: 'json'
+            ,success: function(json){
+                if(json.code == 200){
+                    layer.msg(json.msg, {time:2000});
+                }
+            }
+        });
+
+    });
 
     /**
      * 监听头部搜索

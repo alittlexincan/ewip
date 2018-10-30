@@ -9,6 +9,7 @@
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="type" jdbcType="SMALLINT" property="type"/>
+        <result column="status" jdbcType="SMALLINT" property="status"/>
         <result column="child" jdbcType="INTEGER" property="child"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -21,8 +22,9 @@
         c.name,
         c.code,
         c.icon,
+        c.status,
         c.p_id,
-        type,
+        c.type,
         (select count(*) from channel ch where ch.p_id = c.id) child,
         c.create_time
         FROM channel c where 1=1
@@ -30,6 +32,7 @@
         <if test="name != null and name != ''">AND c.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>
         <if test="type != null and type != ''">AND c.type = #{type}</if>
+        <if test="status != null and status != ''">AND c.status = #{status}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
@@ -46,6 +49,7 @@
         c.id,
         c.name,
         c.code,
+        c.status,
         c.icon,
         c.p_id,
         type,
@@ -61,6 +65,7 @@
         c.name,
         c.code,
         c.icon,
+        c.status,
         c.p_id,
         type,
         (select count(*) from channel ch where ch.p_id = c.id) child,
@@ -71,5 +76,10 @@
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>
         <if test="type != null and type != ''">AND c.type = #{type}</if>
     </select>
+
+    <!--渠道是否开启禁用-->
+    <update id="updateStatus">
+        update channel set status = #{status} where id = #{id}
+    </update>
 
 </mapper>

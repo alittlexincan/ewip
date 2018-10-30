@@ -21,4 +21,11 @@ public interface IChannelService extends IBaseService<Channel> {
 
     List<Channel> selectByParam(Map<String, Object> map);
 
+    /**
+     * 修改渠道是否启用禁用
+     * @param map
+     * @return
+     */
+    int updateStatus(Map<String, Object> map);
+
 }

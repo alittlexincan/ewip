@@ -145,4 +145,14 @@ public class ChannelController {
         return this.channelService.selectList(map);
     }
 
+    /**
+     * 修改渠道是否启用禁用
+     * @param map
+     * @return
+     */
+    @PostMapping("/update/status")
+    JSONObject updateStatus(@RequestParam Map<String,Object> map){
+        return this.channelService.updateStatus(map);
+    }
+
 }

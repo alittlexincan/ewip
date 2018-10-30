@@ -74,4 +74,12 @@ public interface IChannelService {
     @PostMapping("/channel/list")
     JSONObject selectList(@RequestParam Map<String, Object> map);
 
+    /**
+     * 修改渠道是否启用禁用
+     * @param map
+     * @return
+     */
+    @PostMapping("/channel/update/status")
+    JSONObject updateStatus(@RequestParam Map<String, Object> map);
+
 }

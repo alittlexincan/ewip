@@ -43,4 +43,9 @@ public class ChannelServiceImpl extends AbstractService<Channel> implements ICha
         return  this.channelMapper.selectByParam(map);
     }
 
+    @Override
+    public int updateStatus(Map<String, Object> map){
+        return  this.channelMapper.updateStatus(map);
+    }
+
 }
