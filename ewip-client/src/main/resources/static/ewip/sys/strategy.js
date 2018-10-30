@@ -207,17 +207,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,url: option.url
             ,dataType: option.dataType
             ,success: function(json){
-                // if(option.index != null) layer.close(option.index);
                 if(json.code == 200){
                     callback(option.param,json);
-
-                    // 异步刷新地区树
-                    // disasterLevelTree.reAsyncChildNodes(null, "refresh");
-                    // // 刷新列表
-                    // reloadTable(null, 1);
                 }
-                // 弹出提示信息，2s后自动关闭
-                // layer.msg(json.msg, {time: 1000});
             }
         });
 
@@ -282,15 +274,14 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 return false;
                             }
                         });
-
+                        // 初始化渠道
                         selectChannel(function (data) {
-                            for(var i = 0; i<data.length; i++){
-                                if(data[i].name == '短信'){
-                                    $("#addChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary" checked disabled>');
+                            for(let i = 0; i<data.length; i++){
+                                if(data[i].status==1){
+                                    $("#addChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary" >');
                                 }else{
-                                    $("#addChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary">');
+                                    $("#addChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'(未部署)" lay-skin="primary" disabled>');
                                 }
-
                             }
                             form.render('checkbox');
                         });
@@ -312,6 +303,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         data.field.channelId = channelId.substring(1);
                         data.field.flow = flow.substring(1);
                         data.field.isStrategy = 1;
+
+                        if(channelId == ""){
+                            layer.msg("请配置发布渠道",{time: 2000});
+                            return false;
+                        }
+
                         submit({
                             async: 'false'
                             ,url: '/client/strategy/insert'
@@ -392,15 +389,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         }
                     });
                 });
-
-
-
-
-
-
-
-
-
             });
         }
 
@@ -473,10 +461,10 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         // 渠道查询并做数据回显
                         selectChannel(function (data) {
                             for(var i = 0; i<data.length; i++){
-                                if(data[i].name == '短信'){
-                                    $("#updateChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary" checked disabled>');
+                                if(data[i].status==1){
+                                    $("#updateChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary" >');
                                 }else{
-                                    $("#updateChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary">');
+                                    $("#updateChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'(未部署)" lay-skin="primary" disabled>');
                                 }
                             }
                             // 渠道数据回显
@@ -513,6 +501,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         data.field.channelId = channelId.substring(1);
                         data.field.flow = flow.substring(1);
                         data.field.isStrategy = 1;
+
+                        if(channelId == ""){
+                            layer.msg("请配置发布渠道",{time: 2000});
+                            return false;
+                        }
+
                         submit({
                             async: 'false'
                             ,url: '/client/strategy/update'

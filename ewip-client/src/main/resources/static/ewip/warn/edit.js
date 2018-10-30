@@ -179,9 +179,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param param
          */
         ,"setWarnContent": function (result) {
-
-            console.log(result);
-
             // 拼接预警内容前缀
             let areas = new Set()
                 ,editTime = $(".basis #editTime").val()
@@ -197,6 +194,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 let channel = $(".channel-list .imgbox[data-id='"+channelId+"']")
                     ,channelName = $(channel).data("title")
                     ,html = "";
+
                 html += "<div class='layui-row layui-col-space5'>";
                 html += "	<div class='layui-col-xs9 layui-col-md9'>";
                 html += "		<div class='layui-card warn-card-content'>";
@@ -625,8 +623,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 if(json.code == 200 && json.data != null){
                     let html ="";
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
-                        html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
+                        html += "<div class='"+(currentValue.status == 1 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                        html += "   <img class='"+(currentValue.status == 0 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
                         html += "<span>"+currentValue.name+"</span>";
                         html += "</div>";
                     });

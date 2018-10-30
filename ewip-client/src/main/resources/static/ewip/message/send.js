@@ -384,14 +384,24 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             ,dataType: 'json'
             ,success: function(json){
                 if(json.code == 200 && json.data != null){
-                    var html ="";
+                    // var html ="";
+                    // json.data.forEach(function (currentValue, index, arr) {
+                    //     html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                    //     html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
+                    //     html += "<span>"+currentValue.name+"</span>";
+                    //     html += "</div>";
+                    // });
+                    // $(".channel-list").empty().append(html);
+
+                    let html ="";
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
-                        html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
+                        html += "<div class='"+(currentValue.status == 1 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                        html += "   <img class='"+(currentValue.status == 0 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
                         html += "<span>"+currentValue.name+"</span>";
                         html += "</div>";
                     });
                     $(".channel-list").empty().append(html);
+
                 }
             }
         });
