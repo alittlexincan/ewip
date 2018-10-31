@@ -30,15 +30,18 @@ public class UserController {
 
     @ApiOperation(value="添加受众信息",httpMethod="POST",notes="根据参数列表添加受众信息")
     @ApiImplicitParams({
-                @ApiImplicitParam(name="name",value="受众名称",required = true, dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="code",value="终端号码",required = true, dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="userGroupId", value="群组ID", required = true, dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="channelId", value="渠道ID", required = true, dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
-                @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
-                @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
+            @ApiImplicitParam(name="name",value="受众名称",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="code",value="终端号码",required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="userGroupId", value="群组ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId", value="渠道ID", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="job",value="职务", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="duties",value="职责", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="address",value="详细地址", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
+            @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
+            @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -53,16 +56,19 @@ public class UserController {
 
     @ApiOperation(value="修改受众信息",httpMethod="POST", notes="根据受众ID，修改参数受众信息")
     @ApiImplicitParams({
-                @ApiImplicitParam(name="id",value="受众ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="name",value="受众名称", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="code",value="终端号码", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="userGroupId", value="群组ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="channelId", value="渠道ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
-                @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
-                @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
-                @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
+            @ApiImplicitParam(name="id",value="受众ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="name",value="受众名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="code",value="终端号码", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="userGroupId", value="群组ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelId", value="渠道ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="job",value="职务", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="duties",value="职责", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="address",value="详细地址", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="longitude",value="地区经度", dataType = "Double",paramType = "query"),
+            @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
+            @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
     @PostMapping("/update")
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -125,7 +131,10 @@ public class UserController {
             @ApiImplicitParam(name="userGroupId", value="群组ID", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="channelId", value="渠道ID", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="areaId",value="地区ID", dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query")
+            @ApiImplicitParam(name="organizationId",value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="job",value="职务", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="duties",value="职责", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="address",value="详细地址", dataType = "String",paramType = "query")
     })
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {

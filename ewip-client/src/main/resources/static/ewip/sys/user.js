@@ -224,7 +224,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加群组信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加受众信息"
                 ,area: '600px'
                 ,shade: 0.3
                 ,maxmin:true

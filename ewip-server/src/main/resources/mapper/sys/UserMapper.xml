@@ -13,6 +13,9 @@
         <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
         <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
         <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
+        <result column="job" jdbcType="VARCHAR" property="job"/>
+        <result column="duties" jdbcType="VARCHAR" property="duties"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
@@ -34,6 +37,9 @@
             o.organization_name,
             u.channel_id,
             c.name channel_name,
+            u.job,
+            u.duties,
+            u.address,
             u.longitude,
             u.latitude,
             u.altitude,
@@ -75,6 +81,9 @@
             o.organization_name,
             u.channel_id,
             c.name channel_name,
+            u.job,
+            u.duties,
+            u.address,
             u.longitude,
             u.latitude,
             u.altitude,

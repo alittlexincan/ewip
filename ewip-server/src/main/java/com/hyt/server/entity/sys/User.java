@@ -44,6 +44,15 @@ public class User {
     @Column(name = "organization_id",length = 64)
     private String organizationId;
 
+    @Column(name = "job",length = 50)
+    private String job;
+
+    @Column(name = "duties",length = 100)
+    private String duties;
+
+    @Column(name = "address", length = 255)
+    private String address;
+
     @Column(name = "longitude")
     private Double longitude;
 
@@ -66,16 +75,18 @@ public class User {
     private String organizationName;
 
 
-    public User() {
-    }
+    public User() {}
 
-    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
+    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String job, String duties, String address, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
         this.name = name;
         this.code = code;
         this.userGroupId = userGroupId;
         this.channelId = channelId;
         this.areaId = areaId;
         this.organizationId = organizationId;
+        this.job = job;
+        this.duties = duties;
+        this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
@@ -140,6 +151,30 @@ public class User {
 
     public void setOrganizationId(String organizationId) {
         this.organizationId = organizationId;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getDuties() {
+        return duties;
+    }
+
+    public void setDuties(String duties) {
+        this.duties = duties;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Double getLongitude() {
