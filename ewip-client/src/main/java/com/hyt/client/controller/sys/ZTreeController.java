@@ -108,7 +108,7 @@ public class ZTreeController {
      * @return
      */
     @PostMapping("/organization/group")
-    JSONArray getOrganizationUserGroupTree(Map<String, Object> map){
+    JSONArray getOrganizationUserGroupTree(@RequestParam Map<String, Object> map){
         JSONObject json =  this.zTreeService.getOrganizationUserGroupTree(map);
         return json.getJSONArray("data");
     }
