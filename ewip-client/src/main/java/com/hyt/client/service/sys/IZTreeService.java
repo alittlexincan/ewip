@@ -82,6 +82,6 @@ public interface IZTreeService {
      * @return
      */
     @PostMapping("/tree/organization/group")
-    JSONObject getOrganizationUserGroupTree(Map<String, Object> map);
+    JSONObject getOrganizationUserGroupTree(@RequestParam Map<String, Object> map);
 
 }

@@ -15,6 +15,9 @@
         <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
         <result column="job" jdbcType="VARCHAR" property="job"/>
         <result column="duties" jdbcType="VARCHAR" property="duties"/>
+        <result column="leader" jdbcType="VARCHAR" property="leader"/>
+        <result column="age" jdbcType="SMALLINT" property="age"/>
+        <result column="sex" jdbcType="SMALLINT" property="sex"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
@@ -39,6 +42,9 @@
             c.name channel_name,
             u.job,
             u.duties,
+            u.leader,
+            u.age,
+            u.sex,
             u.address,
             u.longitude,
             u.latitude,
@@ -83,6 +89,9 @@
             c.name channel_name,
             u.job,
             u.duties,
+            u.leader,
+            u.age,
+            u.sex,
             u.address,
             u.longitude,
             u.latitude,

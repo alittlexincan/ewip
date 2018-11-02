@@ -89,7 +89,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         }
         ,name: function (value) {
             if(value.length == 0)  return '请选输入终端名称';
-            if(value.length > 10)  return '渠道手段长度不能大于10';
+            if(value.length > 20)  return '渠道手段长度不能大于20';
         }
         ,code: function (value) {
             if(value.length == 0) return '请输入终端编码';
@@ -225,9 +225,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加受众信息"
-                ,area: '600px'
+                ,area: '700px'
                 ,shade: 0.3
-                ,maxmin:true
+                // ,maxmin:true
                 ,offset:'50px'
                 ,btn: ['添加', '取消']
                 ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
@@ -236,24 +236,28 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+
                         // 初始化下拉地区拉树
                         selectTree.render({
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                         });
+
                         // 初始化下拉机构拉树
                         selectTree.render({
                             'id': 'addOrganizationId'
                             ,'url': '/client/tree/organization'
                             ,'isMultiple': false
                         });
+
                         // 初始化下拉群组拉树
                         selectTree.render({
                             'id': 'addUserGroupId'
                             ,'url': '/client/tree/organization/group'
                             ,'isMultiple': false
                         });
+
                         // 渠道下拉绑定
                         selectChannel(function (result) {
                             if(result!=null){
@@ -324,9 +328,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 修改受众信息"
-                ,area: '600px'
+                ,area: '700px'
                 ,shade: 0.3
-                ,maxmin:true
+                // ,maxmin:true
                 ,offset: '50px'
                 ,btn: ['修改', '取消']
                 ,content:"<div id='updateDiv' style='padding:20px 20px 0 20px'></div>"
@@ -335,18 +339,24 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
-
+                        let areaId = "";
                         // 初始化下拉地区拉树
                         selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                console.log(treeNode);
+                                areaId = treeNode.id;
+                                return false;
+                            }
                         });
                         // 初始化下拉机构拉树
                         selectTree.render({
                             'id': 'updateOrganizationId'
                             ,'url': '/client/tree/organization'
+                            ,data:{areaId:areaId}
                             ,'isMultiple': false
                             ,'checkNodeId': param.organizationId
                         });

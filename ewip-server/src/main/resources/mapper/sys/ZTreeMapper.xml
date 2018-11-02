@@ -102,7 +102,7 @@
         <if test="organizationName != null and organizationName != ''">AND organizationName LIKE '${organizationName}%'</if>
         <if test="code != null and code != ''">AND code = #{code}</if>
         <if test="pId != null and pId != ''">AND p_id = #{pId}</if>
-        <if test="areaId != null and areaId != ''">AND level = #{areaId}</if>
+        <if test="areaId != null and areaId != ''">AND area_id = #{areaId}</if>
 
     </select>
 

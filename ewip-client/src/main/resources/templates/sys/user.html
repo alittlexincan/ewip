@@ -24,32 +24,44 @@
     <!-- 添加弹出层 -->
     <script id="addPop" type="text/html">
         <div class="layui-form layui-form-pane">
+
             <div class="layui-form-item">
-                <label class="layui-form-label">所属地区</label>
-                <div class="layui-input-block">
-                    <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属地区</label>
+                    <div class="layui-input-block">
+                        <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属机构</label>
+                    <div class="layui-input-inline">
+                        <div id="addOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="layui-form-item">
-                <label class="layui-form-label">所属机构</label>
-                <div class="layui-input-block">
-                    <div id="addOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属群组</label>
+                    <div class="layui-input-block">
+                        <div id="addUserGroupId" name="userGroupId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属群组"></div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">终端类别</label>
+                    <div class="layui-input-inline">
+                        <select name="channelId" lay-verify="channelId" placeholder="请选择终端类别">
+                            <option value="">请选择终端类别</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">所属群组</label>
-                <div class="layui-input-block">
-                    <div id="addUserGroupId" name="userGroupId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属群组"></div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">终端类别</label>
-                <div class="layui-input-block">
-                    <select name="channelId" lay-verify="channelId" placeholder="请选择终端类别">
-                        <option value="">请选择终端类别</option>
-                    </select>
-                </div>
-            </div>
+
+
+
+
             <div class="layui-form-item">
                 <label class="layui-form-label">受众名称</label>
                 <div class="layui-input-block">
@@ -62,17 +74,42 @@
                     <input type="text" name="code" lay-verify="code" placeholder="请输入终端号码" autocomplete="off" class="layui-input">
                 </div>
             </div>
+
+
+
             <div class="layui-form-item">
-                <label class="layui-form-label">职务</label>
+                <label class="layui-form-label">受众职务</label>
                 <div class="layui-input-block">
                     <input type="text" name="job" placeholder="请输入受众职务" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">职责</label>
+                <label class="layui-form-label">受众职责</label>
                 <div class="layui-input-block">
                     <input type="text" name="duties" placeholder="请输入受众职责" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">分管领导</label>
+                <div class="layui-input-block">
+                    <input type="text" name="leader" placeholder="请输入分管领导" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">受众年龄</label>
+                <div class="layui-input-block">
+                    <input type="text" name="age" placeholder="请输入受众年龄" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">受众性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="1" title="男" >
+                    <input type="radio" name="sex" value="0" title="女" checked="">
                 </div>
             </div>
 
@@ -112,32 +149,39 @@
     <!-- 修改弹出层 -->
     <script id="updatePop" type="text/html">
         <div class="layui-form layui-form-pane">
+
             <div class="layui-form-item">
-                <label class="layui-form-label">所属地区</label>
-                <div class="layui-input-block">
-                    <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属地区</label>
+                    <div class="layui-input-inline">
+                        <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属机构</label>
+                    <div class="layui-input-inline">
+                        <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                    </div>
                 </div>
             </div>
+
             <div class="layui-form-item">
-                <label class="layui-form-label">所属机构</label>
-                <div class="layui-input-block">
-                    <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属群组</label>
+                    <div class="layui-input-inline">
+                        <div id="updateUserGroupId" name="userGroupId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属群组"></div>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">终端类别</label>
+                    <div class="layui-input-inline">
+                        <select name="channelId" lay-verify="channelId" placeholder="请选择终端类别">
+                            <option value="">请选择终端类别</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">所属群组</label>
-                <div class="layui-input-block">
-                    <div id="updateUserGroupId" name="userGroupId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属群组"></div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">终端类别</label>
-                <div class="layui-input-block">
-                    <select name="channelId" lay-verify="channelId" placeholder="请选择终端类别">
-                        <option value="">请选择终端类别</option>
-                    </select>
-                </div>
-            </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">受众名称</label>
                 <div class="layui-input-block">
@@ -152,16 +196,42 @@
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">职务</label>
+                <label class="layui-form-label">受众职务</label>
                 <div class="layui-input-block">
                     <input type="text" name="job" value="{{d.job}}" placeholder="请输入受众职务" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label">职责</label>
+                <label class="layui-form-label">受众职责</label>
                 <div class="layui-input-block">
                     <input type="text" name="duties" value="{{d.duties}}" placeholder="请输入受众职责" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">分管领导</label>
+                <div class="layui-input-block">
+                    <input type="text" name="leader" value="{{d.leader}}" placeholder="请输入分管领导" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">受众年龄</label>
+                <div class="layui-input-block">
+                    <input type="text" name="age" value="{{d.age}}" placeholder="请输入受众年龄" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">受众性别</label>
+                <div class="layui-input-block">
+                    {{# if(d.sex==0){ }}
+                        <input type="radio" name="sex" value="1" title="男" >
+                        <input type="radio" name="sex" value="0" title="女" checked="checked">
+                    {{# }else{ }}
+                        <input type="radio" name="sex" value="1" title="男" checked="checked">
+                        <input type="radio" name="sex" value="0" title="女" >
+                    {{# } }}
                 </div>
             </div>
 

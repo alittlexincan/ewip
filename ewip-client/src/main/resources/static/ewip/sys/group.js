@@ -109,7 +109,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         }
         ,name: function (value) {
             if(value.length == 0)  return '请选输入灾种名称';
-            if(value.length > 10)  return '渠道手段长度不能大于10';
+            if(value.length > 50)  return '渠道手段长度不能大于50';
         }
         ,code: function (value) {
             if(value.length == 0) return '请输入灾种编码';

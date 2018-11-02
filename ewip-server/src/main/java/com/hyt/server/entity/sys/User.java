@@ -50,7 +50,16 @@ public class User {
     @Column(name = "duties",length = 100)
     private String duties;
 
-    @Column(name = "address", length = 255)
+    @Column(name = "leader", length = 50)
+    private String leader;
+
+    @Column(name = "age", length = 2)
+    private String age;
+
+    @Column(name = "sex", length = 1)
+    private String sex;
+
+    @Column(name = "address")
     private String address;
 
     @Column(name = "longitude")
@@ -77,7 +86,7 @@ public class User {
 
     public User() {}
 
-    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String job, String duties, String address, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
+    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String job, String duties, String address, String leader, String age, String sex, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
         this.name = name;
         this.code = code;
         this.userGroupId = userGroupId;
@@ -87,6 +96,9 @@ public class User {
         this.job = job;
         this.duties = duties;
         this.address = address;
+        this.leader = leader;
+        this.age = age;
+        this.sex = sex;
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
@@ -175,6 +187,30 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getLeader() {
+        return leader;
+    }
+
+    public void setLeader(String leader) {
+        this.leader = leader;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public Double getLongitude() {
