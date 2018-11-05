@@ -17,7 +17,7 @@
   
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
-      <div class="layui-header">
+      <div class="layui-header  ewip-header">
         <!-- 头部区域 -->
         <ul class="layui-nav layui-layout-left" style="z-index: 5;">
           <li class="layui-nav-item layadmin-flexible" lay-unselect>
@@ -35,13 +35,13 @@
           <li class="layui-nav-item" lay-unselect style="font-size: 26px;"><img style="width: 35px;" th:src="@{/images/login/logo.png}">&nbsp;华池县突发事件预警信息发布平台</li>
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
-          <li class="layui-nav-item" lay-unselect>
-            <a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">
-              <i class="layui-icon layui-icon-notice"></i>
-              <!-- 如果有新消息，则显示小圆点 -->
-              <span class="layui-badge-dot"></span>
-            </a>
-          </li>
+          <!--<li class="layui-nav-item" lay-unselect>-->
+            <!--<a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">-->
+              <!--<i class="layui-icon layui-icon-notice"></i>-->
+              <!--&lt;!&ndash; 如果有新消息，则显示小圆点 &ndash;&gt;-->
+              <!--<span class="layui-badge-dot"></span>-->
+            <!--</a>-->
+          <!--</li>-->
           <li class="layui-nav-item layui-hide-xs" lay-unselect>
             <a href="javascript:;" layadmin-event="fullscreen">
               <i class="layui-icon layui-icon-screen-full"></i>
@@ -64,7 +64,7 @@
 
       <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll">
-          <div class="layui-logo" style="background:#2f9688!important;box-shadow:none;box-sizing: unset;width: 190px;" lay-href="home/console.html"><span></span></div>
+          <!--<div class="layui-logo" style="background:#2f9688!important;box-shadow:none;box-sizing: unset;width: 190px;" lay-href="home/console.html"><span></span></div>-->
           <ul  class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
             <li th:each="menu, menuStat: ${session.menus}" th:attr="data-name=${menu.code}, class=${menuStat.first} ? 'layui-nav-item layui-nav-itemed' : 'layui-nav-item'">
               <a href="javascript:;"  th:attr="lay-tips=${menu.name}" lay-direction="2">
