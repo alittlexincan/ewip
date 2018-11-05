@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="渠道添加、修改功能，添加启用禁用">
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/main/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/css/iconfont.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/font/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/font/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/font/iconfont.woff" afterDir="false" />
+    <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="主页添加功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/login.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
@@ -55,7 +45,7 @@
           <entry key="HTML" value="2641" />
           <entry key="JAVA" value="6707" />
           <entry key="JavaScript" value="6961" />
-          <entry key="PLAIN_TEXT" value="467" />
+          <entry key="PLAIN_TEXT" value="476" />
           <entry key="Properties" value="165" />
           <entry key="SQL" value="99" />
           <entry key="XML" value="1547" />
@@ -106,7 +96,7 @@
           <entry key="java" value="6707" />
           <entry key="js" value="6961" />
           <entry key="properties" value="165" />
-          <entry key="txt" value="443" />
+          <entry key="txt" value="452" />
           <entry key="xml" value="1646" />
         </counts>
       </usages-collector>
@@ -118,8 +108,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+            <state relative-caret-position="317">
+              <caret line="150" column="1" selection-start-line="150" selection-start-column="1" selection-end-line="150" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -128,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="551">
-              <caret line="110" column="30" lean-forward="true" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
+              <caret line="110" column="30" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -311,8 +301,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="219" />
-    <option name="y" value="553" />
+    <option name="x" value="545" />
+    <option name="y" value="71" />
     <option name="width" value="1364" />
     <option name="height" value="917" />
   </component>
@@ -333,228 +323,6 @@
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
               <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="shiro" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="sys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="layui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="layui" type="462c0819:PsiDirectoryNode" />
-              <item name="alibaba" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="layui" type="462c0819:PsiDirectoryNode" />
-              <item name="alibaba" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layuiadmin" type="462c0819:PsiDirectoryNode" />
-              <item name="layui" type="462c0819:PsiDirectoryNode" />
-              <item name="font" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="message" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="warn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
               <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -585,7 +353,40 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="channel-link" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -728,7 +529,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/JetBeanWorkSpace/JavaWorkSpace/ewip/ewip-server/src/main/java/com/hyt/server/service/impl/warn/WarnEditOptionServiceImpl.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541407813338" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541408032698" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -763,7 +564,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
+  <component name="RunManager" selected="Spring Boot.EwipMonitorApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -871,9 +672,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.EwipEurekaApplication" />
         <item itemvalue="Spring Boot.EwipClientApplication" />
         <item itemvalue="Spring Boot.EwipServerApplication" />
-        <item itemvalue="Spring Boot.EwipEurekaApplication" />
         <item itemvalue="Spring Boot.EwipPublishApplication" />
       </list>
     </recent_temporary>
@@ -916,7 +717,7 @@
       <workItem from="1540871215835" duration="17925000" />
       <workItem from="1540899733796" duration="85000" />
       <workItem from="1540952076835" duration="1548000" />
-      <workItem from="1541380268284" duration="12184000" />
+      <workItem from="1541380268284" duration="12437000" />
     </task>
     <task id="LOCAL-00001" summary="客户端添加shiro权限控制，并将数据添加到缓存，处理session过期登录页在iframe里面问题">
       <created>1538053001495</created>
@@ -1128,11 +929,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541144799878</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="主页添加功能">
+      <created>1541407859440</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1541407859440</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="464330000" />
+    <option name="totallyTimeSpent" value="464583000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1145,9 +953,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748401" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1157,7 +964,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867885" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.349087" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.37701395" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3791622" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1188,7 +995,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改权限配置，修改角色配置" />
     <MESSAGE value="修改角色配置添加，角色配置权限" />
     <MESSAGE value="修改登录页样式，首页添加退出功能" />
     <MESSAGE value="菜单管理（增删改查）开发完毕" />
@@ -1213,7 +1019,8 @@
     <MESSAGE value="预警编辑、一键发布、策略配置添加渠道启用禁用过滤" />
     <MESSAGE value="渠道添加、修改功能，添加启用禁用" />
     <MESSAGE value="删除员工修改信息时，修改密码问题（后续单独做密码修改功能）" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除员工修改信息时，修改密码问题（后续单独做密码修改功能）" />
+    <MESSAGE value="主页添加功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="主页添加功能" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/warn/emergency.js">
@@ -1554,14 +1361,14 @@
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/main/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
-          <caret line="110" column="30" lean-forward="true" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
+          <caret line="110" column="30" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+        <state relative-caret-position="317">
+          <caret line="150" column="1" selection-start-line="150" selection-start-column="1" selection-end-line="150" selection-end-column="1" />
         </state>
       </provider>
     </entry>
