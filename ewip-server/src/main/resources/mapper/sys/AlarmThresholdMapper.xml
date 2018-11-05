@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.sys.IAlarmThresholdMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.AlarmThreshold">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="maxtmp" jdbcType="INTEGER" property="maxtmp"/>
+        <result column="mintmp" jdbcType="INTEGER" property="mintmp"/>
+        <result column="hour_rainnum" jdbcType="INTEGER" property="hourRainNum"/>
+        <result column="day_rainnum" jdbcType="INTEGER" property="dayRainNum"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <!-- 查询信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+            a.id,
+            a.name,
+            a.maxtmp,
+            a.mintmp,
+            a.hour_rainnum,
+            a.day_rainnum,
+            a.remarks,
+            a.create_time
+        FROM alarm_threshold a where 1=1
+        <if test="name != null and name != ''">AND a.name LIKE '${name}%'</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY a.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 根据id查询信息 -->
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+            a.id,
+            a.name,
+            a.maxtmp,
+            a.mintmp,
+            a.hour_rainnum,
+            a.day_rainnum,
+            a.remarks,
+            a.create_time
+        FROM area a where 1=1
+        <if test="id != null">AND a.id = #{id, jdbcType=VARCHAR}</if>
+    </select>
+
+
+</mapper>
