@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>历史灾害</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
+
+</head>
+<body>
+
+    <!-- 添加弹出层 -->
+    <script id="addPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害类型</label>
+                <div class="layui-input-block">
+                    <input type="text" name="type" lay-verify="type" autocomplete="off" placeholder="请输入地区名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害级别</label>
+                <div class="layui-input-block">
+                    <select name="color" placeholder="请选择灾害级别">
+                        <option value="">请选择灾害级别</option>
+                        <option value="0">红色</option>
+                        <option value="1">橙色</option>
+                        <option value="2">黄色</option>
+                        <option value="3">蓝色</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">规模等级</label>
+                <div class="layui-input-block">
+                    <div id="level" name="level" class="select-tree layui-form-select" autocomplete="off" placeholder="请输入规模等级"></div>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">危害程度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="damage" lay-verify="damage" autocomplete="off" placeholder="请输入危害程度" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="code" lay-verify="code" placeholder="请输入灾害编码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开始时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="start_time" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">结束时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="end_time" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">影响范围</label>
+                <div class="layui-input-block">
+                    <input type="text" name="scale" placeholder="请输入影响范围" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">经度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="lon" placeholder="请输入经度" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">纬度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="lat" placeholder="请输入纬度" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监测人员</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_people" placeholder="请输入监测人员" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监测时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_time" placeholder="请输入监测时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监管单位</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_organ" placeholder="请输入监管单位" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">联系方式</label>
+                <div class="layui-input-block">
+                    <input type="text" name="contact" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 修改弹出层 -->
+    <script id="updatePop" type="text/html">
+
+        <div class="layui-form layui-form-pane">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害类型</label>
+                <div class="layui-input-block">
+                    <input type="text" name="type" lay-verify="areaName" value="{{d.type}}" autocomplete="off" placeholder="请输入灾害类型" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害等级</label>
+                <div class="layui-input-block">
+                    <input type="text" name="color" lay-verify="code" value="{{d.color}}" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">规模等级</label>
+                <div class="layui-input-block">
+                    <input type="text" name="level" value="{{d.level}}" placeholder="请输入规模等级" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害编号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="code" value="{{d.code}}" placeholder="请输入灾害编号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾害名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" value="{{d.name}}" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">开始时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="start_time"  value="{{d.start_time}}" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">结束时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="end_time" value="{{d.start_time}}" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">影响范围</label>
+                <div class="layui-input-block">
+                    <input type="text" name="scale" value="{{d.scale}}" placeholder="请输入影响范围" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">经度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="lon" value="{{d.lon}}" placeholder="请输入经度" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">纬度</label>
+                <div class="layui-input-block">
+                    <input type="text" name="lat"  value="{{d.lat}}" placeholder="请输入纬度" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监测人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_people" value="{{d.monitor_people}}" placeholder="请输入监测人" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监测时间</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_time" value="{{d.monitor_time}}" placeholder="请输入监测时间" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">监管单位</label>
+                <div class="layui-input-block">
+                    <input type="text" name="monitor_organ" value="{{d.monitor_organ}}" placeholder="请输入监管单位" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">联系方式</label>
+                <div class="layui-input-block">
+                    <input type="text" name="contact" value="{{d.contact}}" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="type" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select name="color" placeholder="请选择灾害级别">
+                                <option value="">请选择灾害级别</option>
+                                <option value="0">红色</option>
+                                <option value="1">橙色</option>
+                                <option value="2">黄色</option>
+                                <option value="3">蓝色</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="scale" placeholder="请输入规模等级" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="damage" placeholder="请输入危害程度" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                        <button class="layui-btn layui-btn-danger" type="reset">
+                            <i class="layui-icon layui-icon-delete layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="layui-card-body">
+
+                <div class="layui-btn-group tableBar">
+                    <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                </div>
+
+                <!-- 列表：数据行操作 -->
+                <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </script>
+
+                <!-- 列表信息 -->
+                <table class="layui-table" lay-filter="table" id="table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
+    <script th:src="@{/ewip/base/disasterHistory.js}" charset="utf-8"></script>
+
+</body>
+</html>

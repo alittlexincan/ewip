@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IDisasterHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.DisasterHistory" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="severity" property="severity" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="damage" property="damage" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="scale" property="scale" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="monitor_people" property="monitorPeople" jdbcType="VARCHAR" />
+    <result column="monitor_time" property="monitorTime" jdbcType="TIMESTAMP" />
+    <result column="monitor_organ" property="monitorOrgan" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, type, severity, color, level, damage, code, name, start_time, end_time, scale, 
+    lon, lat, monitor_people, monitor_time, monitor_organ, contact
+  </sql>
+
+  <!-- 查询历史灾情信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    base_disaster_history
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="type != null and type != ''">AND type = #{type}</if>
+    <if test="severity!= null and severity != ''">AND severity = #{severity}</if>
+    <if test="color != null and color != ''">AND color = #{color} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY monitor_time DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IRiskGeologicMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.RiskGeologic" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="field_number" property="fieldNumber" jdbcType="VARCHAR" />
+    <result column="indoor_number" property="indoorNumber" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="street" property="street" jdbcType="VARCHAR" />
+    <result column="rock" property="rock" jdbcType="VARCHAR" />
+    <result column="scale" property="scale" jdbcType="VARCHAR" />
+    <result column="stability" property="stability" jdbcType="VARCHAR" />
+    <result column="economic_loss" property="economicLoss" jdbcType="VARCHAR" />
+    <result column="thread_people" property="threadPeople" jdbcType="INTEGER" />
+    <result column="thread_property" property="threadProperty" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="weather_causes" property="weatherCauses" jdbcType="VARCHAR" />
+    <result column="24h_prec" property="Prec24" jdbcType="DOUBLE" />
+    <result column="1h_prec" property="Prec1" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, district, lon, lat, field_number, indoor_number, type, street, rock, scale, 
+    stability, economic_loss, thread_people, thread_property, level, weather_causes, 
+    24h_prec, 1h_prec
+  </sql>
+  <!-- 查询地质灾害隐患点信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    base_risk_geologic
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <if test="type != null and type != ''">AND type = #{type} </if>
+    <if test="scale != null and scale != ''">AND scale = #{scale} </if>
+    <if test="stability != null and stability != ''">AND stability = #{stability} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>
