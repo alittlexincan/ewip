@@ -2,167 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="首页代码添加">
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/DisasterHistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/DisasterRouteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/DisasterTypeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/FacilityOfficeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/FacilityPublishController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/FacilityShelterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/FacilitySupplyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskDepressionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskFloodController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskForestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskGeologicController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskMountainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskSlopeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskWaterloggingAreaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskWaterloggingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/UnitAgriculturParkController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IDisasterHistoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IDisasterRouteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IDisasterTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IFacilityOfficeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IFacilityPublishService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IFacilityShelterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IFacilitySupplyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskDepressionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskFloodService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskForestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskGeologicService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskMountainService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskSlopeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskWaterloggingAreaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskWaterloggingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitAgriculturParkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/disasterHistory.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/disasterRoute.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/disasterType.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/facilityOffice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/facilityPublish.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/facilityShelter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/facilitySupply.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskDepression.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskFlood.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskForest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskGeologic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskMountain.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskSlope.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskWaterlogging.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/riskWaterloggingArea.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/unitAgriculturPark.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/disasterHistory.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/disasterRoute.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/disasterType.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/facilityOffice.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/facilityPublish.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/facilityShelter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/facilitySupply.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskDepression.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskFlood.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskForest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskGeologic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskMountain.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskSlope.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskWaterlogging.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskWaterloggingArea.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/unitAgriculturPark.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/DisasterHistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/DisasterRouteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/DisasterTypeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/FacilityOfficeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/FacilityPublishController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/FacilityShelterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/FacilitySupplyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskDepressionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskFloodController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskForestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskGeologicController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskMountainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskSlopeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskWaterloggingAreaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskWaterloggingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitAgriculturParkController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/DisasterHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/DisasterRoute.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/DisasterType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/FacilityOffice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/FacilityPublish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/FacilityShelter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/FacilitySupply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskDepression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskFlood.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskForest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskGeologic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskMountain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskSlope.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskWaterlogging.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskWaterloggingArea.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitAgriculturPark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IDisasterHistoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IDisasterRouteMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IDisasterTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IFacilityOfficeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IFacilityPublishMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IFacilityShelterMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IFacilitySupplyMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskDepressionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskFloodMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskForestMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskGeologicMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskMountainMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskSlopeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskWaterloggingAreaMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskWaterloggingMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitAgriculturParkMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IDisasterHistoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IDisasterRouteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IDisasterTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IFacilityOfficeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IFacilityPublishService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IFacilityShelterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IFacilitySupplyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskDepressionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskFloodService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskForestService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskGeologicService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskMountainService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskSlopeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskWaterloggingAreaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskWaterloggingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitAgriculturParkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/DisasterHistoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/DisasterRouteServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/DisasterTypeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/FacilityOfficeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/FacilityPublishServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/FacilityShelterServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/FacilitySupplyServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskDepressionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskFloodServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskForestServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskGeologicServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskMountainServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskSlopeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskWaterloggingAreaServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskWaterloggingServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitAgriculturParkServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/DisasterHistoryMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/DisasterRouteMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/DisasterTypeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/FacilityOfficeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/FacilityPublishMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/FacilityShelterMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/FacilitySupplyMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskDepressionMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskFloodMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskForestMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskGeologicMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskMountainMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskSlopeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskWaterloggingAreaMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskWaterloggingMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitAgriculturParkMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/UnitAttractionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/UnitSchoolController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/UnitSquareController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/UnitStationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitAttractionsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitSchoolService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitSquareService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitStationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitAttractionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitSchoolController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitSquareController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitStationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitAttractions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitSchool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitSquare.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitStation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitAttractionsMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitSchoolMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitSquareMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitStationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitAttractionsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitSchoolService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitSquareService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitStationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitAttractionsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitSchoolServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitSquareServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitStationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitAttractionsMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitSchoolMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitSquareMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitStationMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
@@ -207,7 +82,7 @@
           <entry key="JAVA" value="6912" />
           <entry key="JavaScript" value="7649" />
           <entry key="PLAIN_TEXT" value="527" />
-          <entry key="Properties" value="176" />
+          <entry key="Properties" value="201" />
           <entry key="SQL" value="100" />
           <entry key="XML" value="1717" />
         </counts>
@@ -220,12 +95,12 @@
           <entry key="gitignore" value="6" />
           <entry key="html" value="85" />
           <entry key="iml" value="2" />
-          <entry key="java" value="261" />
+          <entry key="java" value="269" />
           <entry key="js" value="120" />
           <entry key="png" value="28" />
-          <entry key="properties" value="21" />
+          <entry key="properties" value="25" />
           <entry key="svg" value="1" />
-          <entry key="xml" value="74" />
+          <entry key="xml" value="75" />
           <entry key="yml" value="1" />
         </counts>
       </usages-collector>
@@ -238,11 +113,11 @@
           <entry key="HTML" value="85" />
           <entry key="IDEA_MODULE" value="2" />
           <entry key="Image" value="30" />
-          <entry key="JAVA" value="261" />
+          <entry key="JAVA" value="269" />
           <entry key="JavaScript" value="120" />
-          <entry key="Properties" value="21" />
+          <entry key="Properties" value="25" />
           <entry key="SVG" value="1" />
-          <entry key="XML" value="74" />
+          <entry key="XML" value="75" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -256,7 +131,7 @@
           <entry key="html" value="2878" />
           <entry key="java" value="6912" />
           <entry key="js" value="7649" />
-          <entry key="properties" value="176" />
+          <entry key="properties" value="201" />
           <entry key="txt" value="503" />
           <entry key="xml" value="1817" />
         </counts>
@@ -267,59 +142,71 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/RiskFloodController.java">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitAttractions.java">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IRiskFloodService.java">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitAttractionsMapper.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitAttractionsService.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitAttractionsServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitAttractionsMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+            <state relative-caret-position="513">
+              <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/riskFlood.html">
+        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/RiskFloodMapper.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/RiskFloodController.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/RiskFlood.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IRiskFloodService.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/RiskFloodServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskFloodMapper.java">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
+        <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+            <state relative-caret-position="684">
+              <caret line="51" column="59" lean-forward="true" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -370,8 +257,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/warn/IWarnEditFlowMapper.java" />
-        <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/warn/WarnEditFlowMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/resend.html" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/warn/WarnEditController.java" />
         <option value="$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/utils/UploadFileUtil.java" />
@@ -421,6 +306,8 @@
         <option value="$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/warn/WarnEdit.java" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/mapper/warn/WarnEditOptionMapper.xml" />
         <option value="$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties" />
+        <option value="$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties" />
       </list>
     </option>
   </component>
@@ -439,10 +326,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="769" />
-    <option name="y" value="55" />
+    <option name="x" value="998" />
+    <option name="y" value="37" />
     <option name="width" value="1364" />
-    <option name="height" value="917" />
+    <option name="height" value="974" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -456,6 +343,32 @@
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
               <item name="ewip" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-monitor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -510,6 +423,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -520,6 +444,17 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -530,18 +465,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ewip" type="462c0819:PsiDirectoryNode" />
-              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
@@ -559,6 +484,16 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ewip" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ewip" type="462c0819:PsiDirectoryNode" />
+              <item name="ewip-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -577,7 +512,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/JetBeanWorkSpace/JavaWorkSpace/ewip/ewip-server/src/main/java/com/hyt/server/service/impl/warn/WarnEditOptionServiceImpl.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541493848530" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541498033087" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -593,11 +528,11 @@
       <recent name="com.hyt.client.service.jiekou" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\mapper" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\service\impl" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\service" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\entity" />
-      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\controller" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\resources\mapper\base" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\service\impl\base" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\service\base" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\mapper\base" />
+      <recent name="E:\JetBeanWorkSpace\JavaWorkSpace\ewip\ewip-server\src\main\java\com\hyt\server\entity\base" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -612,7 +547,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EwipEurekaApplication">
+  <component name="RunManager" selected="Spring Boot.EwipClientApplication">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -720,9 +655,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EwipEurekaApplication" />
         <item itemvalue="Spring Boot.EwipClientApplication" />
         <item itemvalue="Spring Boot.EwipServerApplication" />
+        <item itemvalue="Spring Boot.EwipEurekaApplication" />
         <item itemvalue="Spring Boot.EwipPublishApplication" />
       </list>
     </recent_temporary>
@@ -1017,7 +952,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="487632000" />
+    <option name="totallyTimeSpent" value="488221000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1032,7 +967,7 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20042644" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23827292" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1101,97 +1036,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="首页代码添加" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/layui/alibaba/css/iconfont.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/mapper/monitor/ChannelLinkMonitorMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="107" column="24" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/message/total.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/ueditor/ServerProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/utils/SendMailUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/ueditor/UeditorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1026">
-          <caret line="54" column="58" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/ueditor/UeditorServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-server/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-563" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/ueditor/ueditor.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/sys/alarmThreshold.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/layuiadmin/modules/productTemplate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/warn/edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1555,10 +1399,71 @@
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IRiskFloodMapper.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/resources/static/css/ewip.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/templates/base/unitAttractions.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/base/DisasterHistoryController.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/service/base/IUnitAttractionsService.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/controller/base/UnitAttractionsController.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/entity/base/UnitAttractions.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/mapper/base/IUnitAttractionsMapper.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/base/IUnitAttractionsService.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/java/com/hyt/server/service/impl/base/UnitAttractionsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/mapper/base/UnitAttractionsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/ewip/base/unitAttractions.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/ewip-server/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        <state relative-caret-position="494">
+          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/EwipClientApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-publish/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="72" selection-start-line="25" selection-start-column="72" selection-end-line="25" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ewip-monitor/src/main/resources/application-dev.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="51" column="59" lean-forward="true" selection-start-line="51" selection-start-column="59" selection-end-line="51" selection-end-column="59" />
         </state>
       </provider>
     </entry>
