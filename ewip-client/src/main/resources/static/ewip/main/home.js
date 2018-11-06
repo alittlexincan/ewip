@@ -202,7 +202,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             // };
 
             active.getData({type:"GET", url: "/client/warn/option/home", data:{}}, data => {
-
+                if(data == null) return;
                 data.forEach( res => {
                     let icon = createIcon(res.icon);						// 创建图标对象
                     let a = Math.floor(Math.random()*10+1);

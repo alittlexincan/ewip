@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <title>望奎县数据综合显示分析</title>
+        <meta name="renderer" content="webkit" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+        <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+        <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
+    </head>
+    <body class="base">
+        <div id="bdMap" class="layui-fluid"></div>
+        <div class="floatGoods" id="setUp" style="height:500px;width:300px;overflow:scroll">
+            <img src="/client/base/right.jpg" id="rightId" style="width:30px;position:fixed;bottom:10px;right:5px;font-size:0;line-height:0;z-index:100;"/>
+            <img src="/client/base/left.jpg" id="leftId" style="width:30px;position:fixed;bottom:10px;right:5px;font-size:0;line-height:0;z-index:100;display:none;"/>
+            <div class="triangle_border_left" id="ass">
+                <div id="manager">
+                    <ul class="tree">
+                        <li class="pro">
+                            <span class="open">气象数据</span>
+                            <ul class="show">
+                                <li id="stationId" data-flag="0"><input type="checkbox" name="notice"/>区域自动站</li>
+                                <li id="radarPTId"><input type="checkbox" name="notice"/>雷达拼图</li>
+                                <li id="warnId" data-flag="0"><input type="checkbox" name="notice"/>气象预警</li>
+                                <li id="disasterScopeId" data-flag="0"><input type="checkbox" name="notice"/>气象灾害影响范围</li>
+                                <li id="hisWarnId" data-flag="0"><input type="checkbox" name="notice" />历史气象灾情</li>
+                                <li id="serviceProductId"><input type="checkbox" name="notice"/>气象服务产品</li>
+                            </ul>
+                        </li>
+                        <li class="pro">
+                            <span class="open">重点单位</span>
+                            <ul class="show">
+                                <li id="weihuapinId" data-flag="0"><input type="checkbox" name="notice"/>危化品场所</li>
+                                <li id="nyyqId" data-flag="0"><input type="checkbox" name="notice"/>农业园区</li>
+                                <li id="nzwzzId" data-flag="0"><input type="checkbox" name="notice"/>农作物种植区</li>
+                                <li id="lvyouId" data-flag="0"><input type="checkbox" name="notice"/>旅游景区</li>
+                                <li id="gaosuId" data-flag="0"><input type="checkbox" name="notice"/>高速公路</li>
+                                <li id="qiaoliangId" data-flag="0"><input type="checkbox" name="notice"/>桥梁</li>
+                                <li id="difangId" data-flag="0"><input type="checkbox" name="notice"/>堤防</li>
+                                <li id="chezhanId" data-flag="0"><input type="checkbox" name="notice"/>车站</li>
+                                <li id="xuexiaoId" data-flag="0"><input type="checkbox" name="notice"/>学校</li>
+                                <li id="yiyuanId" data-flag="0"><input type="checkbox" name="notice"/>医院</li>
+                                <li id="guagnchangId" data-flag="0"><input type="checkbox" name="notice"/>广场</li>
+                                <li id="shangchangId" data-flag="0"><input type="checkbox" name="notice"/>商场</li>
+                                <li id="shuikuId" data-flag="0"><input type="checkbox" name="notice"/>水库</li>
+                            </ul>
+                        </li>
+                        <li class="pro">
+                            <span class="open" id="fengxianId">气象防灾减灾人员</span>
+                            <ul class="show">
+                                <li id="danweiPeopleId" data-flag="0"><input type="checkbox" name="notice"/>单位责任人</li>
+                                <li id="jicengPeopleId" data-flag="0"><input type="checkbox" name="notice"/>基层防御人员</li>
+                            </ul>
+                        </li>
+                        <li class="pro">
+                            <span class="open" id="fangzaiSheShiId">气象防灾减灾设施</span>
+                            <ul class="show">
+                                <li id="xianshipinId" data-flag="0"><input type="checkbox" name="notice"/>预警信息发布设施</li>
+                                <li id="yingjibinanId" data-flag="0"><input type="checkbox" name="notice"/>应急避难场所</li>
+                                <li id="wuzichubeiId" data-flag="0"><input type="checkbox" name="notice"/>应急物资储备场所</li>
+                                <li id="bangongId" data-flag="0"><input type="checkbox" name="notice"/>办公场所</li>
+                            </ul>
+                        </li>
+                        <li class="pro">
+                            <span class="open">其他行业</span>
+                            <ul class="show">
+                                <li id="dizhizaihaiId" data-flag="0"><input type="checkbox" name="notice"/>地质灾害隐患点</li>
+                                <li id="zhongxiaoheliuId" data-flag="0"><input type="checkbox" name="notice"/>中小河流洪水</li>
+                                <li id="shanhongId" data-flag="0"><input type="checkbox" name="notice"/>山洪</li>
+                                <li id="neilaoId" data-flag="0"><input type="checkbox" name="notice"/>内涝隐患点</li>
+                                <li id="yilaoquId" data-flag="0"><input type="checkbox" name="notice"/>易涝区</li>
+                                <li id="doupoId" data-flag="0"><input type="checkbox" name="notice"/>陡坡</li>
+                                <li id="wadiId" data-flag="0"><input type="checkbox" name="notice"/>洼地</li>
+                                <li id="zaiqingId" data-flag="0"><input type="checkbox" name="notice"/>实时灾情</li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div id="radarptpopup" class="hide" style="border:none; text-align:center;">
+                    <iframe src="http://www.nmc.cn/publish/radar/hei-long-jiang/ha-er-bin.htm" width="800" height="500" scrolling="auto" frameborder="0" ></iframe>
+            </div>
+            <!-- 获取服务产品消息 -->
+            <div style="border:1px solid #EB0000;background-color: rgba(89, 124, 130,1);" class="floatDiZhi hide" id="dizhiId">
+                <ul id="diZhiWarnId">
+                    <li id="productId" style='border:1px solid #fff;text-align: left;color:#FFFFFF;font-size:12px;'>望奎县气象局决策服务第1期</li>
+                    <li id="productId1" style='border:1px solid #fff;text-align: left;color:#FFFFFF;font-size:12px;'>决策服务信息第12期</li>
+                    <li id="productId2" style='border:1px solid #fff;text-align: left;color:#FFFFFF;font-size:12px;'>重大气象服务信息第7期</li>
+                    <li id="productId3" style='border:1px solid #fff;text-align: left;color:#FFFFFF;font-size:12px;'>望奎县气象灾害预警信号_2018110310_寒潮蓝色预警</li>
+                </ul>
+            </div>
+
+
+            <!--轮播-->
+            <div id="myCarousel" class="hide" style="width:100%;border:none; textalgin:center;">
+                <iframe src="../base/lunbo.html" width="500" height="600" scrolling="auto" frameborder="0" ></iframe>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ok4oagaOSbjuiFou6Ij8CmUz7cYYflqh"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+        <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
+        <script th:src="@{/ewip/base/base.js}" charset="utf-8"></script>
+        <script th:src="@{/plugins/pinyin/changepinyin.js}" charset="utf-8"></script>
+    </body>
+</html>
