@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IRiskMountainMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.RiskMountain" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="district_code" property="districtCode" jdbcType="VARCHAR" />
+    <result column="range_lon" property="rangeLon" jdbcType="VARCHAR" />
+    <result column="range_lat" property="rangeLat" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="measures" property="measures" jdbcType="VARCHAR" />
+    <result column="monitor_organ" property="monitorOrgan" jdbcType="VARCHAR" />
+    <result column="monitor_people" property="monitorPeople" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="weather_causes" property="weatherCauses" jdbcType="VARCHAR" />
+    <result column="24h_prec" property="Prec24" jdbcType="DOUBLE" />
+    <result column="1h_prec" property="Prec1" jdbcType="DOUBLE" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, code, lon, lat, province, province_code, city, city_code, district, district_code, 
+    range_lon, range_lat, level, measures, monitor_organ, monitor_people, contact, weather_causes, 
+    24h_prec, 1h_prec
+  </sql>
+  <!-- 查询山洪沟信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    base_risk_mountain
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <if test="level != null and level != ''">AND level = #{level} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>

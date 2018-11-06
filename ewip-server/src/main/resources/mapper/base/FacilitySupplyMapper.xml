@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IFacilitySupplyMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.FacilitySupply" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="existing" property="existing" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="VARCHAR" />
+    <result column="use" property="use" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, district, code, lon, lat, tel, type, name, existing, model, amount, use, address, 
+    unit, principal, phone
+  </sql>
+  <!-- 查询应急物资信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    base_facility_supply
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="district != null and district != ''">AND district = #{district}</if>
+    <if test="type != null and type != ''">AND type = #{type}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>

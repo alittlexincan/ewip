@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IFacilityShelterMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.FacilityShelter" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="capacity" property="capacity" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, district, address, code, area, capacity, unit, principal, tel, phone, lon, 
+    lat
+  </sql>
+  <!-- 查询应急避难所信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    base_facility_shelter
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="district != null and district != ''">AND district = #{district}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>
