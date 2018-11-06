@@ -115,13 +115,30 @@ website:    http://code.google.com/p/jquerytree/
     color: #3a807d;
 }
 
+.home .message .layadmin-shortcut > ul > li{
+    position: relative;
+}
+.home .message .layadmin-shortcut > ul > li > span{
+    position: absolute;
+    right: 0px;
+    top: -5px;
+    background: red;
+    color: white;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 20px;
+}
+
 .home .week .layui-card-body{
     padding: 1px;
 }
 
 .home .week #week-line{
     width: 100%;
-    height: 214px;
+    height: 253px;
 }
 
 .home .map .layui-card-body{
@@ -129,7 +146,7 @@ website:    http://code.google.com/p/jquerytree/
 }
 .home .map #container{
     width: 100%;
-    height: 574px;
+    height: 444px;
 }
 
 
@@ -162,6 +179,13 @@ website:    http://code.google.com/p/jquerytree/
 .home .shikuang .sk-item-list > ul > li > a > i{
     color: white;
     font-size: 40px;
+}
+
+.home .warn-list table tbody td>img{
+    width:40px;
+}
+.home .warn-list .layui-card-body{
+    padding:0 10px 10px 10px;
 }
 
 

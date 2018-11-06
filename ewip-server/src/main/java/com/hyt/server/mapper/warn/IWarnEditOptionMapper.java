@@ -1,6 +1,7 @@
 package com.hyt.server.mapper.warn;
 
 import com.hyt.server.config.common.universal.IBaseMapper;
+import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.entity.warn.WarnEditOption;
 import org.springframework.stereotype.Repository;
 
@@ -29,4 +30,10 @@ public interface IWarnEditOptionMapper extends IBaseMapper<WarnEditOption> {
      * @return
      */
     List<Map<String, Object>> getWechatWarnInfo();
+
+    /**
+     * 系统主页获取预警信息
+     * @return
+     */
+    List<WarnEdit> getHomeWarnInfo(Map<String, Object> map);
 }
