@@ -10,6 +10,7 @@ import com.hyt.server.service.sys.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,37 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     @Override
     public User selectById(String id){
         return this.userMapper.selectById(id);
+    }
+
+
+    @Override
+    public int insertUser(Map<String, Object> map) {
+
+        return this.userMapper.insertUser(map);
+    }
+
+    @Override
+    public int insertUserJob(Map<String, Object> map) {
+
+        return this.userMapper.insertUserJob(map);
+    }
+
+    @Override
+    public int updateUser(Map<String, Object> map) {
+
+        return this.userMapper.updateUser(map);
+    }
+
+    @Override
+    public int deleteUserJobById(String id) {
+        return this.userMapper.deleteUserJobById(id);
+    }
+
+    @Override
+    public int deleteUserJobByIds(String id) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("id",id);
+        return this.userMapper.deleteUserJobByIds(map);
     }
 
 }

@@ -18,4 +18,13 @@ public interface IUserService extends IBaseService<User> {
 
     User selectById(String id);
 
+    int insertUser(Map<String,Object> map);
+
+    int insertUserJob(Map<String,Object> map);
+
+    int updateUser(Map<String,Object> map);
+
+    int deleteUserJobById(String id);
+
+    int deleteUserJobByIds(String id);
 }

@@ -5,51 +5,13 @@ layui.define(function(exports){
      * 灾种相关数据转换
      */
     var productTemplate = {
-        "init":function(){
-            return '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p>\n' +
-                '    <br/>\n' +
-                '</p>\n' +
-                '<p style="text-align: center;">\n' +
-                '    <span style="font-size: 24px; color: rgb(191, 191, 191);">请选择产品模板！</span><span style="font-size: 24px; color: rgb(242, 242, 242);"></span>\n' +
-                '</p>';
-        },
         /**
          * 决策服务产品
          * @param option
          * @returns {*}
          */
         "getDecisionServiceProductTemplate": function(option) {
-            // var html ="<p style=\"text-align:center\"><strong><span style=\"font-size:29px;font-family:宋体;color:red\"></span></strong></p>";
-            //     html +="<p style=\"text-align:center\">";
-            //     html +="<span style=\"font-size:80px;font-family:宋体;color:red;position:relative;top:1px;letter-spacing:-1px\">芒种专题-模板</span>";
-            //     html +="</p>";
-            //     html +="<p style=\"text-align:center\">";
-            //     html +="<strong><span style=\"font-size:29px;font-family:宋体;color:red\"></span></strong><br/></p>";
-            //     html +="</p>";
-            //     html +="<p style=\"text-align:center\">西城区气象局&nbsp;&nbsp;签发人:局长&nbsp;&nbsp;2016年5月15日</p>\n";
-            //     html +="<p style=\"border-top: 1px solid red; border-bottom: none; border-right: none;border-left: none;align-content: center;\">  </p>\n";
-            // return html;
+            console.log(option);
             return '<p style="text-align:center">\n' +
                 '    <strong><span style="font-size:29px;font-family:宋体;color:red"></span></strong>\n' +
                 '</p>\n' +
@@ -91,7 +53,7 @@ layui.define(function(exports){
                 '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">西城区气象局</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
                 '</p>\n' +
                 '<p style="text-align: right;">\n' +
-                '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">2018年10月31日9时00分</span>\n' +
+                '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.dateTime+'</span>\n' +
                 '</p>\n' +
                 '<p style="text-indent:13px;line-height:37px">\n' +
                 '    <span style="font-size:21px;font-family:仿宋_GB2312;"><br/></span>\n' +
@@ -125,7 +87,7 @@ layui.define(function(exports){
                 '<p style="text-align:center"> ' +
                 '<strong><span style="font-size:29px;font-family:宋体;color:red"></span></strong><br/> ' +
                 '</p>' +
-                '<p style="text-align:center">西城区气象局&nbsp;&nbsp;签发人:局长&nbsp;&nbsp;2016年5月15日</p>\n' +
+                '<p style="text-align:center">西城区气象局&nbsp;&nbsp;签发人:局长&nbsp;&nbsp;'+option.dateTime+'</p>\n' +
                 '<p style="border-top: 2px solid red; border-bottom: none; border-right: none;border-left: none;align-content: center;">  </p>\n' +
                 '<p style="text-align:center">\n' +
                 '    <span style="font-size:23px">一周天气分析</span>\n' +
@@ -316,7 +278,7 @@ layui.define(function(exports){
                 '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">西城区气象局</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
                 '</p>\n' +
                 '<p style="text-align: right;">\n' +
-                '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">2018年10月31日</span>\n' +
+                '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.dateTime+'</span>\n' +
                 '</p>';
         }
     };

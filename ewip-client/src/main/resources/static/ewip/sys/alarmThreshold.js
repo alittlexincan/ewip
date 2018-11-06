@@ -185,7 +185,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改地区信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改信息"
                 ,area: '500px'
                 ,shade: 0.3
                 ,maxmin:true

@@ -12,7 +12,9 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @Author: JiangXincan
@@ -46,12 +48,28 @@ public class UserController {
             @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
             @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
+//    @PostMapping("/insert")
+//    public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+//        JSONObject json = new JSONObject(map);
+//        User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
+//        int num = this.userService.insert(user);
+//        if(num>0){
+//            return ResultResponse.make(200,"添加受众成功",user);
+//        }
+//        return ResultResponse.make(500,"添加受众失败",null);
+//    }
+
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        String uuidUser = UUID.randomUUID().toString().replace("-", "");
+        String uuidJob = UUID.randomUUID().toString().replace("-", "");
+        map.put("userId",uuidUser);
+        map.put("userJobId",uuidJob);
         JSONObject json = new JSONObject(map);
         User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
-        int num = this.userService.insert(user);
-        if(num>0){
+        int num = this.userService.insertUser(map);
+        int numJob = this.userService.insertUserJob(map);
+        if(num>0 && numJob>0){
             return ResultResponse.make(200,"添加受众成功",user);
         }
         return ResultResponse.make(500,"添加受众失败",null);
@@ -80,8 +98,14 @@ public class UserController {
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
         JSONObject json = new JSONObject(map);
         User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
-        int num = this.userService.update(user);
-        if(num>0){
+//        int num = this.userService.update(user);//修改主表
+        String uuidJob = UUID.randomUUID().toString().replace("-", "");
+        map.put("userJobId",uuidJob);
+        map.put("userId",map.get("id").toString());
+        int numJob = this.userService.insertUserJob(map);//插入子表
+        int num = this.userService.updateUser(map);//修改主表
+
+        if(num>0 && numJob>0){
             return ResultResponse.make(200,"修改受众成功");
         }
         return ResultResponse.make(500,"修改受众失败");
@@ -93,8 +117,10 @@ public class UserController {
     })
     @DeleteMapping("/delete/{id}")
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
-        Integer num = this.userService.deleteById(id);
-        if(num>0){
+
+        int jobNum = this.userService.deleteUserJobById(id);
+        int num = this.userService.deleteById(id);
+        if(num>0 && jobNum>0){
             return  ResultResponse.make(200,"删除受众成功");
         }
         return ResultResponse.make(500,"删除受众失败");
@@ -106,8 +132,9 @@ public class UserController {
     })
     @PostMapping("/delete")
     public ResultObject<Object> deleteBatch(@RequestParam(value = "id") String id) {
-        Integer num = this.userService.deleteByIds(id);
-        if(num>0){
+        int jobNum = this.userService.deleteUserJobByIds(id);
+        int  num = this.userService.deleteByIds(id);
+        if(num>0 && jobNum>0){
             return  ResultResponse.make(200,"删除受众成功");
         }
         return ResultResponse.make(500,"删除受众失败");

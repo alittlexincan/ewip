@@ -44,22 +44,19 @@ public class User {
     @Column(name = "organization_id",length = 64)
     private String organizationId;
 
-    @Column(name = "job",length = 50)
+    @Column(name = "job_id" ,length = 64)
+    private String jobId;
+
     private String job;
 
-    @Column(name = "duties",length = 100)
     private String duties;
 
-    @Column(name = "leader", length = 50)
     private String leader;
 
-    @Column(name = "age", length = 2)
     private String age;
 
-    @Column(name = "sex", length = 1)
     private String sex;
 
-    @Column(name = "address")
     private String address;
 
     @Column(name = "longitude")
@@ -86,19 +83,20 @@ public class User {
 
     public User() {}
 
-    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String job, String duties, String address, String leader, String age, String sex, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
+    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String jobId, String job, String duties, String leader, String age, String sex, String address, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
         this.name = name;
         this.code = code;
         this.userGroupId = userGroupId;
         this.channelId = channelId;
         this.areaId = areaId;
         this.organizationId = organizationId;
+        this.jobId = jobId;
         this.job = job;
         this.duties = duties;
-        this.address = address;
         this.leader = leader;
         this.age = age;
         this.sex = sex;
+        this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
@@ -165,6 +163,14 @@ public class User {
         this.organizationId = organizationId;
     }
 
+    public String getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
     public String getJob() {
         return job;
     }
@@ -179,14 +185,6 @@ public class User {
 
     public void setDuties(String duties) {
         this.duties = duties;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getLeader() {
@@ -211,6 +209,14 @@ public class User {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Double getLongitude() {

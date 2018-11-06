@@ -32,4 +32,22 @@ public interface IUserMapper extends IBaseMapper<User> {
      */
     User selectById(@Param(value = "id") String id);
 
+    /**
+     * 插入用户受众表
+     * @param map
+     * @return
+     */
+    int insertUser(Map<String,Object> map);
+    /**
+     * 插入用户职务表
+     * @param map
+     * @return
+     */
+    int insertUserJob(Map<String,Object> map);
+
+    int updateUser(Map<String,Object> map);
+
+    int deleteUserJobById(String id);
+
+    int deleteUserJobByIds(Map<String, Object> map);
 }

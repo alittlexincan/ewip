@@ -1,5 +1,6 @@
 package com.hyt.client.controller.common;
 
+import com.baidu.ueditor.ActionEnter;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.AuthenticationException;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +105,20 @@ public class PageController {
         map.put("msg", msg);
         // 此方法不处理登录成功,由shiro进行处理
         return "/main/login";
+    }
 
+    @RequestMapping(value="/config")
+    public void config(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("application/json");
+        String rootPath = request.getSession().getServletContext().getRealPath("/");
+        try {
+            String exec = new ActionEnter(request, rootPath).exec();
+            PrintWriter writer = response.getWriter();
+            writer.write(exec);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

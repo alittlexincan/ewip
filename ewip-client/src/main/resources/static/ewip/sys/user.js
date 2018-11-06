@@ -13,6 +13,14 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         ,$ = layui.$       			// 引用layui的jquery
         ,selectTree = layui.selectTree
         ,zTree = layui.zTree;
+    /**
+     * 格式化性别
+     * @param d
+     * @returns {string}
+     */
+    let sexFormat = function(d){
+        return d.sex == 0? '女' : '男';
+    };
 
     /**
      * 加载表格
@@ -34,6 +42,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             ,{field: 'userGroupName', title: '所属群组', sort: true}
             ,{field: 'organizationName', title: '所属机构'}
             ,{field: 'areaName', title: '所属地区'}
+            ,{field: 'age', title: '年龄'}
+            ,{field: 'sex', title: '性别', sort: true,templet: sexFormat }
+            ,{field: 'job', title: '职务',sort: true}
+            ,{field: 'duties', title: '职责'}
+            ,{field: 'leader', title: '领导', sort: true}
+            ,{field: 'address', title: '地址'}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
