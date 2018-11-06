@@ -49,19 +49,23 @@
                         <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>消息提醒</span>
                     </div>
                     <div class="layui-card-body">
-                        <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none">
+                        <div class="layui-carousel layadmin-carousel layadmin-shortcut">
                             <ul class="layui-row layui-col-space5 layui-this">
                                 <li class="layui-col-xs3">
                                     <a th:attr="lay-href='home'"><i class="layui-icon layui-icon-survey"></i><cite>待审核</cite></a>
+                                    <span>34</span>
                                 </li>
                                 <li class="layui-col-xs3">
                                     <a th:attr="lay-href='page/warn/edit'"><i class="layui-icon layui-icon-edit"></i><cite>待签发</cite></a>
+                                    <span>3</span>
                                 </li>
                                 <li class="layui-col-xs3">
                                     <a th:attr="lay-href='page/message/send'"><i class="layui-icon layui-icon-release"></i><cite>待发布</cite></a>
+                                    <span>345</span>
                                 </li>
                                 <li class="layui-col-xs3">
                                     <a th:attr="lay-href='home'"><i class="layui-icon layui-icon-fire"></i><cite>被驳回</cite></a>
+                                    <span>34</span>
                                 </li>
                             </ul>
                         </div>
@@ -117,30 +121,13 @@
 
         <!--预警消息动态、一键消息动态、一周天气情况-->
         <div class="layui-row layui-col-space5">
-            <div class="layui-col-md4">
-                <div class="layui-card">
+            <div class="layui-col-md8">
+                <div class="layui-card warn-list">
                     <div class="layui-card-header">
                         <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>预警消息动态</span>
                     </div>
                     <div class="layui-card-body">
-                        <div class="execute">被驳回</div>
-                        <div class="execute">待审核</div>
-                        <div class="execute">待签发</div>
-                        <div class="execute">待发布</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="layui-col-md4">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>一键消息动态</span>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="execute">被驳回</div>
-                        <div class="execute">待审核</div>
-                        <div class="execute">待签发</div>
-                        <div class="execute">待发布</div>
+                        <table class="layui-table" layui-size="sm" lay-filter="table" id="table"></table>
                     </div>
                 </div>
             </div>
@@ -159,31 +146,16 @@
 
         <!-- 地图信息展示、其他信息统计展示-->
         <div class="layui-row layui-col-space5">
-            <div class="layui-col-md8">
+            <div class="layui-col-md12">
                 <div class="layui-card map">
                     <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>一键消息动态</span>
+                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>预警发布展示</span>
                     </div>
                     <div class="layui-card-body">
                         <div id="container"></div>
                     </div>
                 </div>
             </div>
-
-            <div class="layui-col-md4">
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>一周天气情况</span>
-                    </div>
-                    <div class="layui-card-body">
-                        <div class="execute">被驳回</div>
-                        <div class="execute">待审核</div>
-                        <div class="execute">待签发</div>
-                        <div class="execute">待发布</div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
 
@@ -201,7 +173,7 @@
         let bdMap = null;
         let initMap = () => {
             bdMap = new T.Map('container');
-            bdMap.centerAndZoom(new T.LngLat(108.00385, 36.41907), 12);
+            bdMap.centerAndZoom(new T.LngLat(107.98, 36.47), 12);
         };
         initMap();
     </script>

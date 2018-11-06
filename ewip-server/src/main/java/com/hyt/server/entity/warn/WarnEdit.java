@@ -95,15 +95,21 @@ public class WarnEdit {
 
     private String icon;
 
+    private String areaName;
+
     private String organizationName;
 
     private String employeeId;
 
     private String employeeName;
 
+    private Double longitude;
+
+    private Double altitude;
+
     public WarnEdit() {}
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String organizationName, String employeeId, String employeeName) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double altitude) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -126,11 +132,13 @@ public class WarnEdit {
         this.sendTime = sendTime;
         this.disasterCode = disasterCode;
         this.icon = icon;
+        this.areaName = areaName;
         this.organizationName = organizationName;
         this.employeeId = employeeId;
         this.employeeName = employeeName;
+        this.longitude = longitude;
+        this.altitude = altitude;
     }
-
 
     public String getId() {
         return id;
@@ -316,6 +324,14 @@ public class WarnEdit {
         this.icon = icon;
     }
 
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
     public String getOrganizationName() {
         return organizationName;
     }
@@ -338,5 +354,21 @@ public class WarnEdit {
 
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(Double altitude) {
+        this.altitude = altitude;
     }
 }

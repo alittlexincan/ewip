@@ -135,5 +135,14 @@ public class WarnEditOptionController {
         return array;
     }
 
+    /**
+     * 给微信提供发布预警信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/home")
+    public JSONObject getHomeWarnInfo(@RequestParam Map<String,Object> map){
+        return this.warnEditOptionService.getHomeWarnInfo(map);
+    }
 
 }

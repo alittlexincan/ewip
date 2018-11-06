@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
 import com.hyt.server.service.publish.IPublishService;
@@ -134,5 +135,15 @@ public class WarnEditOptionController {
             return ResultResponse.make(200,"微信获取当天所有预警信息成功",list);
         }
         return ResultResponse.make(500,"微信获取当天所有预警信息失败",null);
+    }
+
+    @ApiOperation(value="系统主页获取预警发布信息",httpMethod="GET",notes="系统主页获取预警发布信息")
+    @GetMapping("/home")
+    public ResultObject<Object> getHomeWarnInfo(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        List<WarnEdit> list = this.warnEditOptionService.getHomeWarnInfo(map);
+        if (list.size() > 0){
+            return ResultResponse.make(200,"查询预警信息成功",list);
+        }
+        return ResultResponse.make(500,"查询预警信息失败",null);
     }
 }

@@ -3,6 +3,7 @@ package com.hyt.server.service.warn;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
+import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
 import java.util.List;
@@ -58,5 +59,11 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      * @return
      */
     List<Map<String, Object>> getWechatWarnInfo();
+
+    /**
+     * 系统主页获取预警信息
+     * @return
+     */
+    List<WarnEdit> getHomeWarnInfo(Map<String, Object> map);
 
 }
