@@ -23,7 +23,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/unitSchool/select'
+        ,url:'/client/unitReservoir/select'
         ,even: true
         ,page:true
         ,height: 'full-165'
@@ -32,13 +32,15 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '名称', sort: true}
-            ,{field: 'unit', title: '所属部门',sort: true}
-            ,{field: 'type', title: '学校类型',sort: true}
-            ,{field: 'area', title: '占地面积（㎡）', sort: true}
-            ,{field: 'people', title: '学校人数', sort: true}
+            ,{field: 'level', title: '级别',sort: true}
+            ,{field: 'storage', title: '总库容(万m3)', sort: true}
+            ,{field: 'limitStorage', title: '防限库容(万m3)', sort: true}
+            ,{field: 'waterLimit', title: '防限水位(m)', sort: true}
+            ,{field: 'waterNormal', title: '正常蓄水位(m)', sort: true}
+            ,{field: 'address', title: '地址', sort: true}
             ,{field: 'principal', title: '负责人', sort: true}
             ,{field: 'phone', title: '联系电话', sort: true}
-            ,{field: 'description', title: '学校描述', sort: true}
+            ,{field: 'waterLine', title: '有无水位', sort: true}
             ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });

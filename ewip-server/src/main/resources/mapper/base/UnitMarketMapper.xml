@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IUnitMarketMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.UnitMarket" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="floor" property="floor" jdbcType="INTEGER" />
+    <result column="merchant" property="merchant" jdbcType="INTEGER" />
+    <result column="capacity" property="capacity" jdbcType="INTEGER" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, district, area, floor, merchant, capacity, lon, lat, unit, principal, phone, 
+    description
+  </sql>
+  <!-- 查询商场信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    base_unit_market
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>
