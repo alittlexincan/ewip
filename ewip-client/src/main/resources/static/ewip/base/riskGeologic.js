@@ -43,7 +43,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'weatherCauses', title: '气象致灾因子'}
             ,{field: 'prec24', title: '过去24小时雨量'}
             ,{field: 'prec1', title: '过去1小时雨量'}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+           // ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -58,9 +58,25 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     /**
      * 监听头部搜索
      */
-    form.on('submit(search)', data =>{
-
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
     });
+    /**
+     * 修改后重新刷新列表，curr: 1重新从第 1 页开始
+     */
+    let reloadTable = function (param) {
+        table.reload('table', {
+            page: {
+                curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                name: param == undefined ? '' : param.name
+                ,type: param == undefined ? '' : param.type
+                ,scale: param == undefined ? '' : param.scale
+                ,stability: param == undefined ? '' : param.stability
+            }
+        });
+    };
 
     /**
      * 监听列表中按钮事件

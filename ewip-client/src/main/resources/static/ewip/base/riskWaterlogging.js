@@ -45,7 +45,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'monitorOrgan', title: '主管单位'}
             ,{field: 'monitorPeople', title: '联系人'}
             ,{field: 'contact', title: '联系方式'}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+            //,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -60,9 +60,22 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     /**
      * 监听头部搜索
      */
-    form.on('submit(search)', data =>{
-
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
     });
+    /**
+     * 修改后重新刷新列表，curr: 1重新从第 1 页开始
+     */
+    let reloadTable = function (param) {
+        table.reload('table', {
+            page: {
+                curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                name: param == undefined ? '' : param.name
+            }
+        });
+    };
 
     /**
      * 监听列表中按钮事件

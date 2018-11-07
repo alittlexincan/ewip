@@ -35,7 +35,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'color', title: '灾害等级',sort: true}
             ,{field: 'level', title: '规模等级', sort: true}
             ,{field: 'damage', title: '危害程度',sort: true}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+           // ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -50,10 +50,25 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     /**
      * 监听头部搜索
      */
-    form.on('submit(search)', data =>{
-
+    form.on('submit(search)', function(data){
+        reloadTable(data.field);
     });
-
+    /**
+     * 修改后重新刷新列表，curr: 1重新从第 1 页开始
+     */
+    let reloadTable = function (param) {
+        table.reload('table', {
+            page: {
+                curr: 1
+            },
+            where: { //设定异步数据接口的额外参数，任意设
+                type: param == undefined ? '' : param.type
+                ,color: param == undefined ? '' : param.color
+                ,level: param == undefined ? '' : param.level
+                ,damage: param == undefined ? '' : param.damage
+            }
+        });
+    };
     /**
      * 监听列表中按钮事件
      */

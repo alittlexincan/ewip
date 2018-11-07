@@ -23,18 +23,12 @@
                     </div>
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <select name="color" placeholder="请选择灾害等级">
-                                <option value="">请选择灾害等级</option>
-                                <option value="0">红色</option>
-                                <option value="1">橙色</option>
-                                <option value="2">黄色</option>
-                                <option value="3">蓝色</option>
-                            </select>
+                            <input type="text" name="color" placeholder="请输入灾害级别" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <input type="text" name="damage" placeholder="请输入危害程度" autocomplete="off" class="layui-input">
+                            <input type="text" name="level" placeholder="请输入灾害规模" autocomplete="off" class="layui-input">
                         </div>
                     </div>
 
@@ -53,16 +47,16 @@
 
             <div class="layui-card-body">
 
-                <div class="layui-btn-group tableBar">
-                    <button class="layui-btn" data-type="addBarBtn">添加</button>
-                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
-                </div>
+                <!--<div class="layui-btn-group tableBar">-->
+                    <!--<button class="layui-btn" data-type="addBarBtn">添加</button>-->
+                    <!--<button class="layui-btn" data-type="deleteBarBtn">删除</button>-->
+                <!--</div>-->
 
-                <!-- 列表：数据行操作 -->
-                <script type="text/html" id="btnGroupOption">
-                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
-                </script>
+                <!--&lt;!&ndash; 列表：数据行操作 &ndash;&gt;-->
+                <!--<script type="text/html" id="btnGroupOption">-->
+                    <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>-->
+                    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
+                <!--</script>-->
 
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>
