@@ -77,7 +77,7 @@ public class UnitSchoolController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
-    @ApiOperation(value="查询学校信息列表",httpMethod="Get",notes="查询所有学校信息用于地图展示")
+    @ApiOperation(value="查询学校信息列表",httpMethod="GET",notes="查询所有学校信息用于地图展示")
     @GetMapping("/selectList")
     public ResultObject<Object> selectList(){
         return ResultResponse.ok(this.unitSchoolService.selectAll());

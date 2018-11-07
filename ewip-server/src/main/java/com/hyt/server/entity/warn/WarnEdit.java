@@ -105,11 +105,11 @@ public class WarnEdit {
 
     private Double longitude;
 
-    private Double altitude;
+    private Double latitude;
 
     public WarnEdit() {}
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double altitude) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double latitude) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -137,7 +137,7 @@ public class WarnEdit {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.longitude = longitude;
-        this.altitude = altitude;
+        this.latitude = latitude;
     }
 
     public String getId() {
@@ -364,11 +364,11 @@ public class WarnEdit {
         this.longitude = longitude;
     }
 
-    public Double getAltitude() {
-        return altitude;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setAltitude(Double altitude) {
-        this.altitude = altitude;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 }

@@ -20,36 +20,6 @@
         <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
     </resultMap>
 
-
-    <resultMap id="WarnResultMap" type="com.hyt.server.entity.warn.WarnEdit">
-        <id column="id" jdbcType="VARCHAR" property="id"/>
-        <result column="title" jdbcType="VARCHAR" property="title"/>
-        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
-        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
-        <result column="disaster_id" jdbcType="VARCHAR" property="disasterId"/>
-        <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
-        <result column="disaster_color" jdbcType="SMALLINT" property="disasterColor"/>
-        <result column="disaster_level" jdbcType="SMALLINT" property="disasterLevel"/>
-        <result column="disaster_code" jdbcType="VARCHAR" property="disasterCode"/>
-        <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
-        <result column="msg_type" jdbcType="VARCHAR" property="msgType"/>
-        <result column="scope" jdbcType="VARCHAR" property="scope"/>
-        <result column="edit_time" jdbcType="TIMESTAMP" property="editTime"/>
-        <result column="forecast_time" jdbcType="TIMESTAMP" property="forecastTime"/>
-        <result column="invalid_time" jdbcType="TIMESTAMP" property="invalidTime"/>
-        <result column="record" jdbcType="SMALLINT" property="record"/>
-        <result column="measure" jdbcType="VARCHAR" property="measure"/>
-        <result column="instruction" jdbcType="VARCHAR" property="instruction"/>
-        <result column="flow" jdbcType="VARCHAR" property="flow"/>
-        <result column="status" jdbcType="SMALLINT" property="status"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
-        <result column="icon" jdbcType="VARCHAR" property="icon"/>
-        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
-        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
-        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
-        <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
-    </resultMap>
     <!--根据条件查询预警编辑流程信息-->
     <select id="selectFlowByParam" resultMap="FlowResultMap">
         SELECT
@@ -123,31 +93,6 @@
         WHERE DATE_FORMAT(we.send_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
         AND status > 0
 
-    </select>
-
-    <!--系统主页获取预警信息-->
-    <select id="getHomeWarnInfo" resultMap="WarnResultMap">
-        SELECT
-            DISTINCT we.id
-            ,we.title
-            ,d.icon
-            ,d.name disaster_name
-            ,d.disaster_color
-            ,d.disaster_level
-            ,o.organization_name
-            ,a.longitude
-            ,a.altitude
-			,a.area_name
-            ,we.msg_type
-            ,we.send_time
-            ,wec.content
-            ,we.instruction
-        FROM warn_edit we
-        LEFT JOIN disaster d ON d.id = we.disaster_id
-        LEFT JOIN area a ON a.id = we.area_id
-        LEFT JOIN organization o ON o.id = we.organization_id
-        LEFT JOIN warn_edit_content wec ON wec.warn_edit_id = we.id
-        WHERE we.status > 0
     </select>
 
 </mapper>

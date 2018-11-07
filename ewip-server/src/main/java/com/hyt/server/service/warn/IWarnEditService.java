@@ -43,4 +43,11 @@ public interface IWarnEditService extends IBaseService<WarnEdit> {
      */
     WarnEdit resend(Map<String, Object> map);
 
+
+    /**
+     * 获取预警信息
+     * @return
+     */
+    List<WarnEdit> selectWarnInfo(Map<String, Object> map);
+
 }

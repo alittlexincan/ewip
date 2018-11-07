@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IUnitDangerMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.UnitDanger" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="building" property="building" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="tanks" property="tanks" jdbcType="VARCHAR" />
+    <result column="machine" property="machine" jdbcType="INTEGER" />
+    <result column="lightning_people" property="lightningPeople" jdbcType="VARCHAR" />
+    <result column="lightning_phone" property="lightningPhone" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="lightning_leader" property="lightningLeader" jdbcType="VARCHAR" />
+    <result column="cadres" property="cadres" jdbcType="VARCHAR" />
+    <result column="test_leader" property="testLeader" jdbcType="VARCHAR" />
+    <result column="test_member" property="testMember" jdbcType="VARCHAR" />
+    <result column="test_date" property="testDate" jdbcType="TIMESTAMP" />
+    <result column="report" property="report" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, district, name, project, building, number, address, lon, lat, product, tanks, 
+    machine, lightning_people, lightning_phone, area, leader, lightning_leader, cadres, 
+    test_leader, test_member, test_date, report, status
+  </sql>
+  <!-- 查询危险品场所信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    base_unit_danger
+    where 1=1
+    <if test="id != null and id != ''">AND id = #{id}</if>
+    <if test="name != null and name != ''">AND name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY id
+      </otherwise>
+    </choose>
+  </select>
+
+
+</mapper>

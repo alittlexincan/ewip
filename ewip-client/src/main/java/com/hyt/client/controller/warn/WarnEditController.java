@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.controller.common.BaseController;
 import com.hyt.client.service.warn.IWarnEditService;
 import com.hyt.client.utils.UploadFileUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -87,16 +89,6 @@ public class WarnEditController extends BaseController {
         return this.warnEditService.resend(map);
     }
 
-//    /**
-//     * 根据参数列表添加预警编辑流程信息
-//     * @param map
-//     * @return
-//     */
-//    @PostMapping("/insert/flow")
-//    public JSONObject insertFlow(@RequestParam Map<String,Object> map){
-//        return this.warnEditService.insertFlow(map);
-//    }
-
     /**
      * 分页查询预警发布信息
      * @param map
@@ -128,4 +120,18 @@ public class WarnEditController extends BaseController {
         downloadFile(file, request, response);
     }
 
+
+    /**
+     * 根据预警条件获取预警信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/info")
+    public JSONObject getHomeWarnInfo(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("areaId", employee.getString("areaId"));
+        map.put("organizationId", employee.getString("organizationId"));
+        return this.warnEditService.selectWarnInfo(map);
+    }
 }
