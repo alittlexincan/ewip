@@ -31,6 +31,8 @@
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
         <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
         <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
     </resultMap>
 
     <!-- 查询预警配置信息 -->
@@ -135,6 +137,7 @@
             ,we.msg_type
             ,we.send_time
             ,wec.content
+            ,we.status
             ,we.instruction
         FROM warn_edit we
         LEFT JOIN disaster d ON d.id = we.disaster_id
@@ -152,9 +155,13 @@
         </if>
         <if test="sendTime != null and sendTime != ''">
             <![CDATA[
-                and we.send_time >= #{sendTime}
                 and we.send_time <= #{sendTime}
+                and we.send_time >= #{sendTime}
             ]]>
+        </if>
+        ORDER BY we.send_time DESC
+        <if test="limit != null and limit != '' ">
+            limit ${limit}
         </if>
     </select>
 

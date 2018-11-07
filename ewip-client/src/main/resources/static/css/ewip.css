@@ -181,13 +181,25 @@ website:    http://code.google.com/p/jquerytree/
     font-size: 40px;
 }
 
-.home .warn-list table tbody td>img{
+.home .warn .warn-panel table tbody td>img{
     width:40px;
 }
-.home .warn-list .layui-card-body{
+.home .warn .layui-card-body{
     padding:0 10px 10px 10px;
 }
 
+.home .warn .warn-panel {
+    height: 240px;
+}
+
+.home .warn .warn-panel > span{
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    line-height: 220px;
+    color: #cec9c9;
+    font-size: 30px;
+}
 
 
 /****** 主页样式 end*********/
