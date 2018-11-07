@@ -107,9 +107,11 @@ public class WarnEdit {
 
     private Double latitude;
 
+    private String content;
+
     public WarnEdit() {}
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double latitude) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double latitude, String content) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -138,6 +140,7 @@ public class WarnEdit {
         this.employeeName = employeeName;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.content = content;
     }
 
     public String getId() {
@@ -370,5 +373,13 @@ public class WarnEdit {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

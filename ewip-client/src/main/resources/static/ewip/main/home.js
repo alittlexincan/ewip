@@ -1,67 +1,16 @@
 
 layui.config({
-    base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
+    base: '/client/layuiadmin/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
-
+    index: "lib/index"
 });
 
-layui.use(["table","form","laytpl","layer","selectTree"], function(){
+layui.use(["index","table","form","laytpl","layer"], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
-        ,selectTree = layui.selectTree
         ,$ = layui.$;   			// 引用layui的jquery
-
-
-    let titleFmt = d => {
-        if(d.disasterColor == 0) return "<span style='color:red;'>" + d.title + "</span>";
-        if(d.disasterColor == 1) return "<span style='color:orange;'>" + d.title + "</span>";
-        if(d.disasterColor == 2) return "<span style='color:#d4d41e;'>" + d.title + "</span>";
-        if(d.disasterColor == 3) return "<span style='color:blue;'>" + d.title + "</span>";
-    };
-
-    table.render({
-        elem: '#table'
-        ,skin: "line"
-        , data: [{
-            "disasterName":"暴雨"
-            ,"disasterColor":0
-            ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-            ,"type": "驳回"
-            ,"time": "2017-11-10 11:34"
-        },{
-            "disasterName":"暴雨"
-            ,"disasterColor":1
-            ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-            ,"type": "驳回"
-            ,"time": "2017-11-10 11:34"
-        },{
-            "disasterName":"暴雨"
-            ,"disasterColor":2
-            ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-            ,"type": "驳回"
-            ,"time": "2017-11-10 11:34"
-        },{
-            "disasterName":"暴雨"
-            ,"disasterColor":3
-            ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-            ,"type": "驳回"
-            ,"time": "2017-11-10 11:34"
-        },{
-            "disasterName":"暴雨"
-            ,"disasterColor":0
-            ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-            ,"type": "驳回"
-            ,"time": "2017-11-10 11:34"
-        }]
-        ,cols: [[ //表头
-            {field: 'disasterName', title: '预警名称',width:120}
-            , {field: 'title', title: '预警标题', templet: titleFmt}
-            , {field: 'type', title: '预警流程', width: 120}
-            , {field: 'time', title: '操作时间',width:150}
-        ]]
-    });
 
 
     /**
@@ -85,11 +34,93 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 }
             });
         }
+
         /**
-         * 初始化7天天气
+         * 初始化预警表格
+         * @param param
+         * , data: [{
+                    "disasterName":"暴雨"
+                    ,"disasterColor":0
+                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
+                    ,"type": "驳回"
+                    ,"time": "2017-11-10 11:34"
+                },{
+                    "disasterName":"暴雨"
+                    ,"disasterColor":1
+                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
+                    ,"type": "驳回"
+                    ,"time": "2017-11-10 11:34"
+                },{
+                    "disasterName":"暴雨"
+                    ,"disasterColor":2
+                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
+                    ,"type": "驳回"
+                    ,"time": "2017-11-10 11:34"
+                },{
+                    "disasterName":"暴雨"
+                    ,"disasterColor":3
+                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
+                    ,"type": "驳回"
+                    ,"time": "2017-11-10 11:34"
+                },{
+                    "disasterName":"暴雨"
+                    ,"disasterColor":0
+                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
+                    ,"type": "驳回"
+                    ,"time": "2017-11-10 11:34"
+                }]
+         */
+        ,initTableWarnInfo: param => {
+
+            let titleFmt = d => {
+                if(d.disasterColor == 0) return "<span style='color:red;'>" + d.title + "</span>";
+                if(d.disasterColor == 1) return "<span style='color:orange;'>" + d.title + "</span>";
+                if(d.disasterColor == 2) return "<span style='color:#d4d41e;'>" + d.title + "</span>";
+                if(d.disasterColor == 3) return "<span style='color:blue;'>" + d.title + "</span>";
+            }
+            ,statusFmt = d => {
+                if(d.status == 0) return "未发布";
+                if(d.status == 1) return "发布";
+                if(d.status == 2) return "解除";
+            }
+            ,msgType = d => {
+
+                if(d.msgType == 'Alert') return "首次";
+                if(d.msgType == 'Update') return "更新";
+                if(d.msgType == 'Cancel') return "解除";
+                if(d.msgType == 'Ack') return "确认";
+                if(d.msgType == 'Error') return "错误";
+
+            };
+
+            // 查询发布,解除数据(1:发布，2:解除)
+            active.getData({type:"GET", url: "/client/warn/edit/info", data:{limit:5}}, data => {
+                $(".home .warn .warn-panel").empty();
+                if(data == null){
+                    $(".home .warn .warn-panel").append("<span>暂无数据</span>");
+                    return;
+                }else{
+                    $(".home .warn .warn-panel").append("<table class='layui-table' layui-size='sm' lay-filter='table' id='table'></table>");
+                }
+                table.render({
+                    elem: '#table'
+                    ,skin: "line"
+                    , data: data
+                    ,cols: [[ //表头
+                        {field: 'disasterName', title: '预警名称',width:120}
+                        , {field: 'title', title: '预警标题', templet: titleFmt}
+                        , {field: 'msgType', title: '信息类型', templet: msgType}
+                        , {field: 'status', title: '预警流程', statusFmt}
+                        , {field: 'sendTime', title: '操作时间',width:170}
+                    ]]
+                });
+            });
+        }
+        /**
+         * 初始化7天天气折线图
          * @param param
          */
-        ,weekWeatherInfo:(param)=>{
+        ,initWeekWeatherInfo:(param)=>{
             let option = {
                 title: {
                     text: ''
@@ -165,7 +196,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         /**
          * 预警信息绑定地图上
          */
-        ,initWarnInfo : param => {
+        ,initMapWarnInfo : param => {
 
             //创建图片对象
             let createIcon = (iconUrl)=>{
@@ -176,33 +207,32 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 });
             };
 
-            // // 点击图标显示弹出层信息
-            // let content = data => {
-            //     return "<div>"
-            //         + "<ul style='padding-bottom: 3px;'>预警名称："+data.title+"</ul>"
-            //         + "<ul style='padding-bottom: 3px;'>发布地区："+data.areaName+"</ul>"
-            //         + "<ul style='padding-bottom: 3px;'>发布机构："+data.organizationName+"</ul>"
-            //         + "<ul style='padding-bottom: 3px;'>发布时间："+data.sendTime+"</ul>"
-            //         + "<ul style='padding-bottom: 3px;'>预警内容："+data.content+"</ul>"
-            //         + "</div>";
-            // };
-            //
-            // // 信息窗口展开事件
-            // let openInfo = (content,e) =>{
-            //     let point = e.lnglat;	            // 创建标注
-            //     let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
-            //     bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
-            // };
-            //
-            // // 图标点击事件
-            // let addClickHandler = (content,marker)=>{
-            //     marker.addEventListener("click",function(e){
-            //         openInfo(content,e)
-            //     });
-            // };
+            // 点击图标显示弹出层信息
+            let content = data => {
+                return "<div>"
+                    + "<ul style='padding-bottom: 3px;display: inline-block;'>预警名称："+data.title+"</ul>"
+                    + "<ul style='padding-bottom: 3px;'>发布地区："+data.areaName+"</ul>"
+                    + "<ul style='padding-bottom: 3px;'>发布机构："+data.organizationName+"</ul>"
+                    + "<ul style='padding-bottom: 3px;'>发布时间："+data.sendTime+"</ul>"
+                    + "<ul style='padding-bottom: 3px;'>预警内容："+data.content+"</ul>"
+                    + "</div>";
+            };
+
+            // 信息窗口展开事件
+            let openInfo = (content,e) =>{
+                let point = e.lnglat;	            // 创建标注
+                let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
+                bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+            };
+
+            // 图标点击事件
+            let addClickHandler = (content,marker)=>{
+                marker.addEventListener("click",function(e){
+                    openInfo(content,e)
+                });
+            };
             // 查询发布,解除数据(1:发布，2:解除)
             active.getData({type:"GET", url: "/client/warn/edit/info", data:{status:"1,2"}}, data => {
-                console.log(data);
                 if(data == null) return;
                 data.forEach( res => {
                     let icon = createIcon(res.icon);						// 创建图标对象
@@ -216,12 +246,9 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     // 将标注添加到地图中
                     bdMap.addOverLay(marker);
                     // 追加图标点击事件
-                    // addClickHandler(content(data[i]),marker);
-
+                    addClickHandler(content(res),marker);
                 });
-
             });
-
         }
     };
 
@@ -255,6 +282,10 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         active[type] ? active[type].call(this) : '';
     });
 
-    active.weekWeatherInfo({id:document.getElementById("week-line")});
-    active.initWarnInfo(null);
+    // 初始化加载地图预警信息
+    active.initTableWarnInfo(null);
+    // 初始化加载7天预报
+    active.initWeekWeatherInfo({id:document.getElementById("week-line")});
+    // 初始化加载地图预警信息
+    active.initMapWarnInfo(null);
 });
