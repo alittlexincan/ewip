@@ -68,12 +68,4 @@ public interface IWarnEditOptionService {
     @GetMapping("/warn/option/wechat")
     JSONObject getWechatWarnInfo();
 
-    /**
-     * 系统主页获取预警信息
-     * @return
-     */
-    @GetMapping("/warn/option/home")
-    JSONObject getHomeWarnInfo(@RequestParam Map<String,Object> map);
-
-
 }

@@ -363,12 +363,5 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         return this.warnEditOptionMapper.getWechatWarnInfo();
     }
 
-    /**
-     * 系统主页获取预警信息
-     * @return
-     */
-    @Override
-    public List<WarnEdit> getHomeWarnInfo(Map<String, Object> map){
-        return this.warnEditOptionMapper.getHomeWarnInfo(map);
-    }
+
 }

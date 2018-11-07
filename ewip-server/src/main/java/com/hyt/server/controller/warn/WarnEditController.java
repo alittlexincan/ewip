@@ -9,6 +9,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -103,5 +104,15 @@ public class WarnEditController {
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         PageInfo<WarnEdit> pageInfo = this.warnEditService.findAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
+    }
+
+    @ApiOperation(value="查询预警信息",httpMethod="GET",notes="根据条件查询预警信息")
+    @GetMapping("/info")
+    public ResultObject<Object> getHomeWarnInfo(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        List<WarnEdit> list = this.warnEditService.selectWarnInfo(map);
+        if (list.size() > 0){
+            return ResultResponse.make(200,"查询预警信息成功",list);
+        }
+        return ResultResponse.make(500,"查询预警信息失败",null);
     }
 }

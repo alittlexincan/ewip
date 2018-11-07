@@ -349,4 +349,13 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         map.put("newEditId", warnEditId);
         return this.warnEditFileMapper.updateOldFileByNewEditId(map);
     }
+
+    /**
+     * 获取预警信息
+     * @return
+     */
+    @Override
+    public List<WarnEdit> selectWarnInfo(Map<String, Object> map){
+        return this.warnEditMapper.selectWarnInfo(map);
+    }
 }

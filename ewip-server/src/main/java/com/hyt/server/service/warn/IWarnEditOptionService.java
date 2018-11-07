@@ -60,10 +60,5 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      */
     List<Map<String, Object>> getWechatWarnInfo();
 
-    /**
-     * 系统主页获取预警信息
-     * @return
-     */
-    List<WarnEdit> getHomeWarnInfo(Map<String, Object> map);
 
 }

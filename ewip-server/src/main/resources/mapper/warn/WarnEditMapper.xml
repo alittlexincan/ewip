@@ -28,6 +28,9 @@
         <result column="send_time" jdbcType="TIMESTAMP" property="sendTime"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
     </resultMap>
 
     <!-- 查询预警配置信息 -->
@@ -115,5 +118,44 @@
     <delete id="deleteByWarnEditId">
         DELETE FROM warn_edit WHERE id = #{warnEditId}
     </delete>
+
+    <!--获取预警信息-->
+    <select id="selectWarnInfo" resultMap="BaseResultMap">
+        SELECT
+            DISTINCT we.id
+            ,we.title
+            ,d.icon
+            ,d.name disaster_name
+            ,d.disaster_color
+            ,d.disaster_level
+            ,o.organization_name
+            ,a.longitude
+            ,a.latitude
+			,a.area_name
+            ,we.msg_type
+            ,we.send_time
+            ,wec.content
+            ,we.instruction
+        FROM warn_edit we
+        LEFT JOIN disaster d ON d.id = we.disaster_id
+        LEFT JOIN area a ON a.id = we.area_id
+        LEFT JOIN organization o ON o.id = we.organization_id
+        LEFT JOIN warn_edit_content wec ON wec.warn_edit_id = we.id
+        WHERE 1=1
+        <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
+        <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
+        <if test="status != null and status != '' "> AND we.status IN (
+            <foreach collection="status.split(',')" item="item"  separator=","  >
+                ${item}
+            </foreach>
+            )
+        </if>
+        <if test="sendTime != null and sendTime != ''">
+            <![CDATA[
+                and we.send_time >= #{sendTime}
+                and we.send_time <= #{sendTime}
+            ]]>
+        </if>
+    </select>
 
 </mapper>

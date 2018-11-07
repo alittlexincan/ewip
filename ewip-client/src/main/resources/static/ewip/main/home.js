@@ -200,8 +200,9 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             //         openInfo(content,e)
             //     });
             // };
-
-            active.getData({type:"GET", url: "/client/warn/option/home", data:{}}, data => {
+            // 查询发布,解除数据(1:发布，2:解除)
+            active.getData({type:"GET", url: "/client/warn/edit/info", data:{status:"1,2"}}, data => {
+                console.log(data);
                 if(data == null) return;
                 data.forEach( res => {
                     let icon = createIcon(res.icon);						// 创建图标对象

@@ -34,14 +34,6 @@ public interface IWarnEditService {
     @PostMapping("/warn/edit/resend")
     JSONObject resend(@RequestParam Map<String, Object> map);
 
-//    /**
-//     * 根据参数列表添加预警编辑流程信息
-//     * @param map
-//     * @return
-//     */
-//    @PostMapping("/warn/edit/insert/flow")
-//    JSONObject insertFlow(@RequestParam Map<String, Object> map);
-
     /**
      * 分页查询预警发布信息
      * @param map
@@ -49,5 +41,13 @@ public interface IWarnEditService {
      */
     @GetMapping("/warn/edit/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map);
+
+
+    /**
+     * 根据预警条件获取预警信息
+     * @return
+     */
+    @GetMapping("/warn/edit/info")
+    JSONObject selectWarnInfo(@RequestParam Map<String,Object> map);
 
 }
