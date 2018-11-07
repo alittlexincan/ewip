@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.base.UnitReservoir;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface IUnitReservoirService extends IBaseService<UnitReservoir>{
 
         PageInfo<UnitReservoir> selectAll(Map<String, Object> map);
+
+        List<UnitReservoir> selectList(Map<String, Object> map);
 
 }

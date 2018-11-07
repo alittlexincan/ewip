@@ -44,5 +44,13 @@ public class RiskDepressionController {
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
             return this.riskDepressionService.selectAll(map);
         }
-
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.riskDepressionService.selectList(map);
+        }
 }

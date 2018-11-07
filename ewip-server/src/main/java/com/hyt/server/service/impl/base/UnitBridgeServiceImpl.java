@@ -32,4 +32,9 @@ public  class UnitBridgeServiceImpl extends AbstractService<UnitBridge> implemen
         List<UnitBridge> areaList = this.unitBridgeMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitBridge> selectList(Map<String, Object> map){
+        return this.unitBridgeMapper.findAll(map);
+    }
 }

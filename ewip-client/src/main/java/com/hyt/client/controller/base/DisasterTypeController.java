@@ -76,4 +76,13 @@ public class DisasterTypeController {
             return this.disasterTypeService.selectAll(map);
         }
 
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.disasterTypeService.selectList(map);
+        }
 }

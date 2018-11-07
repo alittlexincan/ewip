@@ -49,9 +49,9 @@ public class UnitBridgeController {
          * 查询桥梁列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitBridgeService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitBridgeService.selectList(map);
+        }
 
 }

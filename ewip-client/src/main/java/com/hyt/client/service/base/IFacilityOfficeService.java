@@ -41,4 +41,12 @@ public interface IFacilityOfficeService {
          */
         @GetMapping("/facilityOffice/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/facilityOffice/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

@@ -49,9 +49,8 @@ public class UnitAgriculturParkController {
          * 查询农业园区列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitAgriculturParkService.selectList();
-        };
-
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitAgriculturParkService.selectList(map);
+        }
 }

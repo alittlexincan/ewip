@@ -46,6 +46,6 @@ public interface IUnitAgriculturParkService {
          * 查询农业园区列表
          * @return
          */
-        @GetMapping("/unitAgriculturPark/selectList")
-        JSONObject selectList();
+        @GetMapping("/unitAgriculturPark/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

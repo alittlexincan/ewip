@@ -32,4 +32,9 @@ public  class UnitMarketServiceImpl extends AbstractService<UnitMarket> implemen
         List<UnitMarket> areaList = this.unitMarketMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitMarket> selectList(Map<String, Object> map){
+        return this.unitMarketMapper.findAll(map);
+    }
 }

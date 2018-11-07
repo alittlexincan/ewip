@@ -45,4 +45,13 @@ public class FacilityPublishController {
             return this.facilityPublishService.selectAll(map);
         }
 
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.facilityPublishService.selectList(map);
+        }
 }

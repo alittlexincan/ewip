@@ -49,9 +49,9 @@ public class UnitStationController {
          * 查询车站列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitStationService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitStationService.selectList(map);
+        }
 
 }

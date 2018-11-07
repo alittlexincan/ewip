@@ -41,4 +41,12 @@ public interface IFacilityPublishService {
          */
         @GetMapping("/facilityPublish/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询发布设施信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/facilityPublish/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

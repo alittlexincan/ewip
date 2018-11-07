@@ -45,4 +45,14 @@ public class RiskWaterloggingController {
             return this.riskWaterloggingService.selectAll(map);
         }
 
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.riskWaterloggingService.selectList(map);
+        }
+
 }

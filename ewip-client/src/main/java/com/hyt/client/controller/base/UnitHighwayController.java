@@ -49,9 +49,9 @@ public class UnitHighwayController {
          * 查询高速公路列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitHighwayService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitHighwayService.selectList(map);
+        }
 
 }

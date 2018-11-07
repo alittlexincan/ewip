@@ -49,9 +49,9 @@ public class UnitAttractionsController {
          * 查询旅游景区列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitAttractionsService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitAttractionsService.selectList(map);
+        }
 
 }

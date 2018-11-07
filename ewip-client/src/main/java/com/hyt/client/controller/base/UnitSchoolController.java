@@ -49,9 +49,9 @@ public class UnitSchoolController {
          * 查询学校列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitSchoolService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitSchoolService.selectList(map);
+        }
 
 }

@@ -41,4 +41,12 @@ public interface IRiskMountainService {
          */
         @GetMapping("/riskMountain/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/riskMountain/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }
