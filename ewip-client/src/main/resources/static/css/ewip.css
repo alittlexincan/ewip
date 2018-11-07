@@ -1009,8 +1009,6 @@ website:    http://code.google.com/p/jquerytree/
     height:100%;
 }
 .base .floatGoods{
-    width: 20px;
-    height: 50px;
     position: fixed;
     right: 10px;
     top: 1%;
@@ -1021,7 +1019,7 @@ website:    http://code.google.com/p/jquerytree/
     z-index: 99;
 }
 .base .triangle_border_left{
-    width:0;
+    width:200px;
     height:0;
     border-width:8px 8px 8px 0;
     /*border-style:solid;*/
@@ -1095,7 +1093,7 @@ website:    http://code.google.com/p/jquerytree/
 
 .base #radarptpopup{
     position: fixed;
-    left: 15%;
+    left: 7%;
 }
 
 .base #myCarousel{
