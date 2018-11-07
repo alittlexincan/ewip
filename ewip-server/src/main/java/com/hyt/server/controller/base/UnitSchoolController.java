@@ -9,6 +9,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,8 +79,11 @@ public class UnitSchoolController {
     }
 
     @ApiOperation(value="查询学校信息列表",httpMethod="GET",notes="查询所有学校信息用于地图展示")
-    @GetMapping("/selectList")
+    @GetMapping("/list")
     public ResultObject<Object> selectList(){
-        return ResultResponse.ok(this.unitSchoolService.selectAll());
-    }
-}
+        List<UnitSchool> list = this.unitSchoolService.selectAll();
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询成功",list);
+        }
+        return ResultResponse.make(500,"查询失败",null);
+    }}

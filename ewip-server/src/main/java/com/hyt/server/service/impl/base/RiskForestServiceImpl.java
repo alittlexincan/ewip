@@ -32,4 +32,9 @@ public  class RiskForestServiceImpl extends AbstractService<RiskForest> implemen
         List<RiskForest> areaList = this.riskForestMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskForest> selectList(Map<String, Object> map){
+        return this.riskForestMapper.findAll(map);
+    }
 }

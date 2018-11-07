@@ -32,4 +32,9 @@ public  class FacilityPublishServiceImpl extends AbstractService<FacilityPublish
         List<FacilityPublish> areaList = this.facilityPublishMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<FacilityPublish> selectList(Map<String, Object> map){
+        return this.facilityPublishMapper.findAll(map);
+    }
 }

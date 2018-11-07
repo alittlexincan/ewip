@@ -9,6 +9,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,8 +90,12 @@ public class UnitDangerController {
     }
 
     @ApiOperation(value="查询危险品场所信息列表",httpMethod="GET",notes="查询所有危险品场所信息用于地图展示")
-    @GetMapping("/selectList")
+    @GetMapping("/list")
     public ResultObject<Object> selectList(){
-        return ResultResponse.ok(this.unitDangerService.selectAll());
+        List<UnitDanger> list = this.unitDangerService.selectAll();
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询成功",list);
+        }
+        return ResultResponse.make(500,"查询失败",null);
     }
 }

@@ -13,6 +13,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,9 +52,9 @@ public class DisasterTypeController {
         return ResultResponse.make(500,"添加灾害种类失败",null);
     }
 
-    @ApiOperation(value="修改历史灾情信息",httpMethod="POST", notes="根据灾害种类ID，修改参数列表灾害种类信息")
+    @ApiOperation(value="修改灾情种类信息",httpMethod="POST", notes="根据灾害种类ID，修改参数列表灾害种类信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="id",value="历史灾情ID", dataType = "String", required = true, paramType = "query"),
+            @ApiImplicitParam(name="id",value="灾情种类ID", dataType = "String", required = true, paramType = "query"),
             @ApiImplicitParam(name="type",value="灾害类型",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="color",value="等级颜色",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="severity", value="灾害等级", required = true, dataType = "String",paramType = "query"),
@@ -118,6 +119,16 @@ public class DisasterTypeController {
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         PageInfo<DisasterType> pageInfo = this.disasterTypeService.selectAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
+    }
+
+    @ApiOperation(value = "查询灾情种类信息列表", httpMethod = "GET", notes = "查询所有灾情种类信息")
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<DisasterType> list = this.disasterTypeService.selectList(map);
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询灾情种类成功",list);
+        }
+        return ResultResponse.make(500,"查询灾情种类失败",null);
     }
 
 }

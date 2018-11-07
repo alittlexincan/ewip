@@ -32,4 +32,9 @@ public  class RiskWaterloggingAreaServiceImpl extends AbstractService<RiskWaterl
         List<RiskWaterloggingArea> areaList = this.riskWaterloggingAreaMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskWaterloggingArea> selectList(Map<String, Object> map){
+        return this.riskWaterloggingAreaMapper.findAll(map);
+    }
 }

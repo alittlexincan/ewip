@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.base.FacilityShelter;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,4 +17,5 @@ public interface IFacilityShelterService extends IBaseService<FacilityShelter>{
 
         PageInfo<FacilityShelter> selectAll(Map<String, Object> map);
 
+        List<FacilityShelter> selectList(Map<String, Object> map);
 }

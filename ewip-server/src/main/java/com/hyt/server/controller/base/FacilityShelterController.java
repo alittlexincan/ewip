@@ -10,6 +10,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -79,4 +80,13 @@ public class FacilityShelterController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value = "查询应急避难所信息列表", httpMethod = "GET", notes = "查询所有应急避难所信息")
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<FacilityShelter> list = this.facilityShelterService.selectList(map);
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询应急避难所成功",list);
+        }
+        return ResultResponse.make(500,"查询应急避难所失败",null);
+    }
 }

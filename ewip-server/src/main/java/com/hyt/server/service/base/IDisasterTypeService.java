@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.base.DisasterType;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface IDisasterTypeService extends IBaseService<DisasterType>{
 
         PageInfo<DisasterType> selectAll(Map<String, Object> map);
+
+        List<DisasterType> selectList(Map<String, Object> map);
 
 }

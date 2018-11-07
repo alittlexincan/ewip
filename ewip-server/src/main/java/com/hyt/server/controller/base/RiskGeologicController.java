@@ -10,6 +10,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,4 +86,15 @@ public class RiskGeologicController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value = "查询地质灾害隐患点信息列表", httpMethod = "GET", notes = "查询所有地质灾害隐患点信息")
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<RiskGeologic> list = this.riskGeologicService.selectList(map);
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询地质灾害隐患点成功",list);
+        }
+        return ResultResponse.make(500,"查询地质灾害隐患点失败",null);
+    }
+    
+    
 }

@@ -32,4 +32,9 @@ public  class RiskMountainServiceImpl extends AbstractService<RiskMountain> impl
         List<RiskMountain> areaList = this.riskMountainMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskMountain> selectList(Map<String, Object> map){
+        return this.riskMountainMapper.findAll(map);
+    }
 }

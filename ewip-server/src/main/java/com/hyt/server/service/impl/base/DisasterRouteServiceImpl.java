@@ -32,4 +32,8 @@ public  class DisasterRouteServiceImpl extends AbstractService<DisasterRoute> im
         List<DisasterRoute> areaList = this.disasterRouteMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+    @Override
+    public List<DisasterRoute> selectList(Map<String, Object> map){
+        return this.disasterRouteMapper.findAll(map);
+    }
 }

@@ -32,4 +32,9 @@ public  class FacilitySupplyServiceImpl extends AbstractService<FacilitySupply> 
         List<FacilitySupply> areaList = this.facilitySupplyMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<FacilitySupply> selectList(Map<String, Object> map){
+        return this.facilitySupplyMapper.findAll(map);
+    }
 }
