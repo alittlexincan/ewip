@@ -32,4 +32,9 @@ public  class RiskSlopeServiceImpl extends AbstractService<RiskSlope> implements
         List<RiskSlope> areaList = this.riskSlopeMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskSlope> selectList(Map<String, Object> map){
+        return this.riskSlopeMapper.findAll(map);
+    }
 }

@@ -41,4 +41,12 @@ public interface IRiskWaterloggingService {
          */
         @GetMapping("/riskWaterlogging/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询列表，用于地图展示
+         * @param map
+         * @return
+         */
+        @GetMapping("/riskWaterlogging/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

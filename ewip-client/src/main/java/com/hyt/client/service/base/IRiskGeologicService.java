@@ -41,4 +41,12 @@ public interface IRiskGeologicService {
          */
         @GetMapping("/riskGeologic/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/riskGeologic/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

@@ -49,9 +49,9 @@ public class UnitMarketController {
          * 查询商场列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitMarketService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitMarketService.selectList(map);
+        }
 
 }

@@ -49,9 +49,8 @@ public class UnitPlantAreaController {
          * 查询农作物种植区列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitPlantAreaService.selectList();
-        };
-
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitPlantAreaService.selectList(map);
+        }
 }

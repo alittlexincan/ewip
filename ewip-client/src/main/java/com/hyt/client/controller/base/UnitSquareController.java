@@ -49,9 +49,9 @@ public class UnitSquareController {
          * 查询广场列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitSquareService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitSquareService.selectList(map);
+        }
 
 }

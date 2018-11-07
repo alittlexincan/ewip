@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.base.RiskGeologic;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface IRiskGeologicService extends IBaseService<RiskGeologic>{
 
         PageInfo<RiskGeologic> selectAll(Map<String, Object> map);
+
+        List<RiskGeologic> selectList(Map<String, Object> map);
 
 }

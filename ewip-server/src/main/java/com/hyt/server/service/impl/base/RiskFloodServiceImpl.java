@@ -32,4 +32,9 @@ public  class RiskFloodServiceImpl extends AbstractService<RiskFlood> implements
         List<RiskFlood> areaList = this.riskFloodMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskFlood> selectList(Map<String, Object> map){
+        return this.riskFloodMapper.findAll(map);
+    }
 }

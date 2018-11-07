@@ -32,4 +32,9 @@ public  class UnitStationServiceImpl extends AbstractService<UnitStation> implem
         List<UnitStation> areaList = this.unitStationMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitStation> selectList(Map<String, Object> map){
+        return this.unitStationMapper.findAll(map);
+    }
 }

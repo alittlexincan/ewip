@@ -32,4 +32,9 @@ public  class UnitHospitalServiceImpl extends AbstractService<UnitHospital> impl
         List<UnitHospital> areaList = this.unitHospitalMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitHospital> selectList(Map<String, Object> map){
+        return this.unitHospitalMapper.findAll(map);
+    }
 }

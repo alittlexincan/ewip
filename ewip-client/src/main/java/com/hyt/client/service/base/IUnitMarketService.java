@@ -48,4 +48,12 @@ public interface IUnitMarketService {
          */
         @GetMapping("/unitMarket/selectList")
         JSONObject selectList();
+
+        /**
+         * 查询列表，用于地图展示
+         * @param map
+         * @return
+         */
+        @GetMapping("/unitMarket/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

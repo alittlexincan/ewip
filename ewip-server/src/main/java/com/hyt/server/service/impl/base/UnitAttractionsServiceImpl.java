@@ -32,4 +32,8 @@ public  class UnitAttractionsServiceImpl extends AbstractService<UnitAttractions
         List<UnitAttractions> areaList = this.unitAttractionsMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+    @Override
+    public List<UnitAttractions> selectList(Map<String, Object> map){
+        return this.unitAttractionsMapper.findAll(map);
+    }
 }

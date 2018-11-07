@@ -32,4 +32,9 @@ public  class FacilityOfficeServiceImpl extends AbstractService<FacilityOffice> 
         List<FacilityOffice> areaList = this.facilityOfficeMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<FacilityOffice> selectList(Map<String, Object> map){
+        return this.facilityOfficeMapper.findAll(map);
+    }
 }

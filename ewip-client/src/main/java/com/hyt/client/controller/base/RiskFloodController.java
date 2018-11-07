@@ -45,4 +45,14 @@ public class RiskFloodController {
             return this.riskFloodService.selectAll(map);
         }
 
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.riskFloodService.selectList(map);
+        }
+
 }

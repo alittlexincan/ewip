@@ -32,4 +32,9 @@ public  class UnitHighwayServiceImpl extends AbstractService<UnitHighway> implem
         List<UnitHighway> areaList = this.unitHighwayMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitHighway> selectList(Map<String, Object> map){
+        return this.unitHighwayMapper.findAll(map);
+    }
 }

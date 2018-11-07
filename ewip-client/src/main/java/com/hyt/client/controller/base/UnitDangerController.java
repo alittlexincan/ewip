@@ -49,9 +49,9 @@ public class UnitDangerController {
          * 查询危险品场所列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitDangerService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitDangerService.selectList(map);
+        }
 
 }

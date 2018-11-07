@@ -32,4 +32,9 @@ public  class UnitDikeServiceImpl extends AbstractService<UnitDike> implements I
         List<UnitDike> areaList = this.unitDikeMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitDike> selectList(Map<String, Object> map){
+        return this.unitDikeMapper.findAll(map);
+    }
 }

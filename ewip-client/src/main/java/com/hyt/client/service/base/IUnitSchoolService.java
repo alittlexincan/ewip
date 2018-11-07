@@ -48,4 +48,12 @@ public interface IUnitSchoolService {
          */
         @GetMapping("/unitSchool/selectList")
         JSONObject selectList();
+
+        /**
+         * 查询列表，用于地图展示
+         * @param map
+         * @return
+         */
+        @GetMapping("/unitSchool/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

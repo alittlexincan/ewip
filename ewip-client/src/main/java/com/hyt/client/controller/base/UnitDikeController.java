@@ -49,9 +49,9 @@ public class UnitDikeController {
          * 查询提防列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitDikeService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitDikeService.selectList(map);
+        }
 
 }

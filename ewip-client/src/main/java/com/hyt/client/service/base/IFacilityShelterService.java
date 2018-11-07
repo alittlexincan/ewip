@@ -41,4 +41,12 @@ public interface IFacilityShelterService {
          */
         @GetMapping("/facilityShelter/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询应急避难所信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/facilityShelter/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

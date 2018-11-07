@@ -13,6 +13,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,5 +79,15 @@ public class DisasterRouteController {
         PageInfo<DisasterRoute> pageInfo = this.disasterRouteService.selectAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
+
+    @ApiOperation(value = "查询灾害路径信息列表", httpMethod = "GET", notes = "查询所有灾害路径信息")
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<DisasterRoute> list = this.disasterRouteService.selectList(map);
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询灾害路径成功",list);
+        }
+        return ResultResponse.make(500,"查询灾害路径失败",null);
+    }        
 
 }

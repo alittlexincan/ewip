@@ -75,5 +75,11 @@ public interface IDisasterTypeService {
         @GetMapping("/disasterType/config")
         JSONObject selectConfig(@RequestParam Map<String, Object> map);
 
-
+        /**
+         * 查询灾害种类信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/disasterType/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

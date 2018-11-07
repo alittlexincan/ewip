@@ -41,4 +41,12 @@ public interface IRiskDepressionService {
          */
         @GetMapping("/riskDepression/select")
         JSONObject selectAll(@RequestParam Map<String, Object> map);
+
+        /**
+         * 查询洼地信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/riskDepression/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

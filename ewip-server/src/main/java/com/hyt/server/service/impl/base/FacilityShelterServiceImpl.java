@@ -32,4 +32,9 @@ public  class FacilityShelterServiceImpl extends AbstractService<FacilityShelter
         List<FacilityShelter> areaList = this.facilityShelterMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<FacilityShelter> selectList(Map<String, Object> map) {
+        return this.facilityShelterMapper.findAll(map);
+    }
 }

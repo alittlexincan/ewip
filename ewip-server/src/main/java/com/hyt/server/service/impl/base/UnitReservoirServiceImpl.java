@@ -32,4 +32,9 @@ public  class UnitReservoirServiceImpl extends AbstractService<UnitReservoir> im
         List<UnitReservoir> areaList = this.unitReservoirMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitReservoir> selectList(Map<String, Object> map){
+        return this.unitReservoirMapper.findAll(map);
+    }
 }

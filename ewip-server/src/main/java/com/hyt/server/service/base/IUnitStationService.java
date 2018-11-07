@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.base.UnitStation;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +16,7 @@ import java.util.Map;
 public interface IUnitStationService extends IBaseService<UnitStation>{
 
         PageInfo<UnitStation> selectAll(Map<String, Object> map);
+
+        List<UnitStation> selectList(Map<String, Object> map);
 
 }

@@ -32,4 +32,9 @@ public  class RiskDepressionServiceImpl extends AbstractService<RiskDepression> 
         List<RiskDepression> areaList = this.riskDepressionMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskDepression> selectList(Map<String, Object> map){
+        return this.riskDepressionMapper.findAll(map);
+    }
 }

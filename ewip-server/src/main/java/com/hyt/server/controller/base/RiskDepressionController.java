@@ -4,12 +4,14 @@ package com.hyt.server.controller.base;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.base.FacilityOffice;
 import com.hyt.server.entity.base.RiskDepression;
 import com.hyt.server.service.base.IRiskDepressionService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,4 +87,14 @@ public class RiskDepressionController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+
+    @ApiOperation(value = "查询洼地信息列表", httpMethod = "GET", notes = "查询所有洼地信息")
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<RiskDepression> list = this.riskDepressionService.selectList(map);
+        if(list.size()>0){
+            return ResultResponse.make(200,"查询洼地成功",list);
+        }
+        return ResultResponse.make(500,"查询洼地失败",null);
+    }
 }

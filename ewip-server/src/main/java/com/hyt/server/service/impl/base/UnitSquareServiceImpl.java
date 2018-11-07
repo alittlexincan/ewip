@@ -32,4 +32,9 @@ public  class UnitSquareServiceImpl extends AbstractService<UnitSquare> implemen
         List<UnitSquare> areaList = this.unitSquareMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitSquare> selectList(Map<String, Object> map){
+        return this.unitSquareMapper.findAll(map);
+    }
 }

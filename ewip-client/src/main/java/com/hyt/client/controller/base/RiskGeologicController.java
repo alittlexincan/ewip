@@ -45,4 +45,14 @@ public class RiskGeologicController {
             return this.riskGeologicService.selectAll(map);
         }
 
+        /**
+         * 查询列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.riskGeologicService.selectList(map);
+        }
+
 }

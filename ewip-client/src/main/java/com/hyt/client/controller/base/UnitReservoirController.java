@@ -49,9 +49,9 @@ public class UnitReservoirController {
          * 查询水库列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitReservoirService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitReservoirService.selectList(map);
+        }
 
 }

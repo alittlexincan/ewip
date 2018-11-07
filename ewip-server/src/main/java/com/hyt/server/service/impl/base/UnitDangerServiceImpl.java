@@ -32,4 +32,8 @@ public  class UnitDangerServiceImpl extends AbstractService<UnitDanger> implemen
         List<UnitDanger> areaList = this.unitDangerMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+    @Override
+    public List<UnitDanger> selectList(Map<String, Object> map){
+        return this.unitDangerMapper.findAll(map);
+    }
 }

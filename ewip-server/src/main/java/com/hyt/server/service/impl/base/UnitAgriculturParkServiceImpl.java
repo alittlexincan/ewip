@@ -32,4 +32,9 @@ public  class UnitAgriculturParkServiceImpl extends AbstractService<UnitAgricult
         List<UnitAgriculturPark> areaList = this.unitAgriculturParkMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<UnitAgriculturPark> selectList(Map<String, Object> map){
+        return this.unitAgriculturParkMapper.findAll(map);
+    }
 }

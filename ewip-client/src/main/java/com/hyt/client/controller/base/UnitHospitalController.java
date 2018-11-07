@@ -49,9 +49,9 @@ public class UnitHospitalController {
          * 查询医院列表
          * @return
          */
-        @GetMapping("/selectList")
-        public JSONObject selectList(){
-                return this.unitHospitalService.selectList();
-        };
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+                return this.unitHospitalService.selectList(map);
+        }
 
 }

@@ -32,4 +32,9 @@ public  class RiskGeologicServiceImpl extends AbstractService<RiskGeologic> impl
         List<RiskGeologic> areaList = this.riskGeologicMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<RiskGeologic> selectList(Map<String, Object> map){
+        return this.riskGeologicMapper.findAll(map);
+    }
 }
