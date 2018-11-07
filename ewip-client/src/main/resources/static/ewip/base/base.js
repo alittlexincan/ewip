@@ -1558,17 +1558,17 @@ layui.use(["table","form","laytpl","layer"], function(){
     /**
      * 打开服务产品材料
      */
-    $("#productId").bind("click", function(obj){
-        window.location.href="/client/base/downFile?path="+ encodeURI(encodeURI("/base-file/望奎县气象局决策服务第1期.doc"));
+    $("#productId").bind("click", function(){
+        window.location.href="/client/standard/download?url="+ "/base-file/望奎县气象局决策服务第1期.doc";
     });
-    $("#productId1").bind("click", function(obj){
-        window.location.href="/client/base/downFile?path="+ encodeURI(encodeURI("/base-file/决策服务信息第12期.doc"));
+    $("#productId1").bind("click", function(){
+        window.location.href="/client/standard/download?url="+ "/base-file/决策服务信息第12期.doc";
     });
-    $("#productId2").bind("click", function(obj){
-        window.location.href="/client/base/downFile?path="+ encodeURI(encodeURI("/base-file/重大气象服务信息第7期.doc"));
+    $("#productId2").bind("click", function(){
+        window.location.href="/client/standard/download?url="+ "/base-file/重大气象服务信息第7期.doc";
     });
-    $("#productId3").bind("click", function(obj){
-        window.location.href="/client/base/downFile?path="+ encodeURI(encodeURI("/base-file/望奎县气象灾害预警信号_2018110310_寒潮蓝色预警.doc"));
+    $("#productId3").bind("click", function(){
+        window.location.href="/client/standard/download?url="+ "/base-file/望奎县气象灾害预警信号_2018110310_寒潮蓝色预警.doc";
     });
 
     /**
