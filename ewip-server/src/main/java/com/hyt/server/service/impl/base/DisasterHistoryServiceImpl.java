@@ -31,4 +31,9 @@ public  class DisasterHistoryServiceImpl extends AbstractService<DisasterHistory
         List<DisasterHistory> areaList = this.disasterHistoryMapper.findAll(map);
         return new PageInfo<>(areaList);
     }
+
+    @Override
+    public List<DisasterHistory> selectList(Map<String, Object> map){
+        return this.disasterHistoryMapper.findAll(map);
+    }
 }

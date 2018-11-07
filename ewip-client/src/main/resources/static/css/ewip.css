@@ -1002,3 +1002,102 @@ website:    http://code.google.com/p/jquerytree/
 
 
 /* 时间线 end*/
+
+/***综合数据展示样式 start***/
+
+.base #bdMap{
+    height:100%;
+}
+.base .floatGoods{
+    position: fixed;
+    right: 10px;
+    top: 1%;
+    margin-top: 35px;
+    font-size: 18px;
+    color: aqua;
+    text-align: center;
+    z-index: 99;
+}
+.base .triangle_border_left{
+    width:200px;
+    height:0;
+    border-width:8px 8px 8px 0;
+    /*border-style:solid;*/
+    border-color:transparent rgb(11, 223, 238) transparent transparent;/*透明 灰 透明 透明 */
+    margin:0px auto;
+    position:relative;
+}
+.base #manager ul li{
+    width: 200px;
+    line-height: 30px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.base #manager ul li.pro{
+    border:1px solid #fff;
+}
+.base #manager ul li ul li{
+    padding:3px 0 3px 15px;
+    border: 0;
+    color:lightgray;
+    line-height: 20px;
+    border-top:1px solid #fff;
+    background-color: darkorchid;
+    font-size:14px;
+}
+.base #manager ul li ul li:hover{
+    color: #fff;
+}
+.base #manager ul li ul li:last-child{
+    border-bottom:1px solid #fff;
+}
+.base .closed{
+    display: block;
+    width: 200px;
+    background-color: coral;
+    padding-left:10px;
+    font-size:16px;
+}
+
+.base .hide{
+    display: none;
+}
+.base .show{
+    display: block;
+}
+.base .open{
+    display: block;
+    background-color: coral;
+    padding-left:10px;
+}
+.base .hide{
+    display: none;
+}
+.base .floatDiZhi{
+    width: 160px;
+    height: 200px;
+    position: fixed;
+    top: 65%;
+    left: 0;
+    margin-top: -25px;
+    font-size: 15px;
+    color: aqua;
+    text-align: left;
+    z-index: 29;
+}
+
+.base .anchorBL{
+    display: none;
+}
+
+.base #radarptpopup{
+    position: fixed;
+    left: 7%;
+}
+
+.base #myCarousel{
+    position: fixed;
+    left: 5%;
+}
+/***综合数据展示样式 end***/

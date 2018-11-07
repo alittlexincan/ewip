@@ -76,4 +76,11 @@ public interface IDisasterHistoryService {
         JSONObject selectConfig(@RequestParam Map<String, Object> map);
 
 
+        /**
+         * 查询灾害历史信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/disasterHistory/list")
+        JSONObject selectList(@RequestParam Map<String,Object> map);
 }

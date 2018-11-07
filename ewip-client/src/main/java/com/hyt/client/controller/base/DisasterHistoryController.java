@@ -76,4 +76,15 @@ public class DisasterHistoryController {
             return this.disasterHistoryService.selectAll(map);
         }
 
+
+        /**
+         * 查询灾害历史信息列表
+         * @param map
+         * @return
+         */
+        @GetMapping("/list")
+        public JSONObject selectList(@RequestParam Map<String,Object> map){
+               return this.disasterHistoryService.selectList(map);
+        }
+
 }
