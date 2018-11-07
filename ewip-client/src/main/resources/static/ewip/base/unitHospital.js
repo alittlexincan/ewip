@@ -23,7 +23,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/unitSchool/select'
+        ,url:'/client/unitHospital/select'
         ,even: true
         ,page:true
         ,height: 'full-165'
@@ -33,12 +33,14 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '名称', sort: true}
             ,{field: 'unit', title: '所属部门',sort: true}
-            ,{field: 'type', title: '学校类型',sort: true}
             ,{field: 'area', title: '占地面积（㎡）', sort: true}
-            ,{field: 'people', title: '学校人数', sort: true}
+            ,{field: 'doctor', title: '医生人数', sort: true}
+            ,{field: 'nurse', title: '护士人数', sort: true}
+            ,{field: 'ambulance', title: '救护车数量', sort: true}
+            ,{field: 'bed', title: '床位数量', sort: true}
             ,{field: 'principal', title: '负责人', sort: true}
             ,{field: 'phone', title: '联系电话', sort: true}
-            ,{field: 'description', title: '学校描述', sort: true}
+            ,{field: 'description', title: '医院描述', sort: true}
             ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });

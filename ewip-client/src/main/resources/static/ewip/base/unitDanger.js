@@ -23,7 +23,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/unitSchool/select'
+        ,url:'/client/unitDanger/select'
         ,even: true
         ,page:true
         ,height: 'full-165'
@@ -31,14 +31,16 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'name', title: '名称', sort: true}
-            ,{field: 'unit', title: '所属部门',sort: true}
-            ,{field: 'type', title: '学校类型',sort: true}
-            ,{field: 'area', title: '占地面积（㎡）', sort: true}
-            ,{field: 'people', title: '学校人数', sort: true}
-            ,{field: 'principal', title: '负责人', sort: true}
-            ,{field: 'phone', title: '联系电话', sort: true}
-            ,{field: 'description', title: '学校描述', sort: true}
+            ,{field: 'name', title: '危险品场所名称', sort: true}
+            ,{field: 'address', title: '地址', sort: true}
+            ,{field: 'product', title: '品名', sort: true}
+            ,{field: 'tanks', title: '储罐个数及容量', sort: true}
+            ,{field: 'machine', title: '加油机台数', sort: true}
+            ,{field: 'lightningPeople', title: '企业防雷安全责任人', sort: true}
+            ,{field: 'lightningPhone', title: '联系电话', sort: true}
+            ,{field: 'testDate', title: '最新检测日期', sort: true}
+            ,{field: 'report', title: '最新报告编号', sort: true}
+            ,{field: 'status', title: '防雷安全隐患情况', sort: true}
             ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });

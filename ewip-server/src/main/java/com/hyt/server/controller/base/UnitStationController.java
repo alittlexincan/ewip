@@ -59,7 +59,7 @@ public class UnitStationController {
             @ApiImplicitParam(name="sortName",value="排序字段名称", dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="sortOrder",value="排序规则(ASC,DESC)，默认DESC", defaultValue = "DESC",dataType = "String",paramType = "query"),
 
-            @ApiImplicitParam(name="name",value="景区名称", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name="name",value="车站名称", required = true, dataType = "String", paramType = "query"),
             @ApiImplicitParam(name="district",value="区县",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="unit",value="所属部门",required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="area",value="占地面积", required = true, dataType = "Double",paramType = "query"),
@@ -67,7 +67,7 @@ public class UnitStationController {
             @ApiImplicitParam(name="vehicle",value="车辆数", required = true, dataType = "Integer",paramType = "query"),
             @ApiImplicitParam(name="principal", value="负责人", required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="phone", value="联系电话", required = true, dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name="description",value="景区描述", required = true, dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="description",value="车站描述", required = true, dataType = "String",paramType = "query"),
             @ApiImplicitParam(name="lon", value="负责人", required = true, dataType = "Double",paramType = "query"),
             @ApiImplicitParam(name="lat", value="联系电话", required = true, dataType = "Double",paramType = "query")
     })
@@ -77,7 +77,7 @@ public class UnitStationController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
-    @ApiOperation(value="查询车站信息列表",httpMethod="Get",notes="查询所有车站信息用于地图展示")
+    @ApiOperation(value="查询车站信息列表",httpMethod="GET",notes="查询所有车站信息用于地图展示")
     @GetMapping("/selectList")
     public ResultObject<Object> selectList(){
         return ResultResponse.ok(this.unitStationService.selectAll());
