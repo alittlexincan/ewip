@@ -2,6 +2,8 @@ package com.hyt.client.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IUserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,6 +81,16 @@ public class UserController {
     @GetMapping("/select")
     public JSONObject selectAll(@RequestParam Map<String,Object> map){
         return this.userService.selectAll(map);
+    }
+
+    /**
+     * 查询受众列表信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/list")
+    public JSONObject selectList(@RequestParam Map<String,Object> map){
+        return this.userService.selectList(map);
     }
 
 }

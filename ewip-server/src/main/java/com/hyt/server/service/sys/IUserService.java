@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.User;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,4 +28,6 @@ public interface IUserService extends IBaseService<User> {
     int deleteUserJobById(String id);
 
     int deleteUserJobByIds(String id);
+
+    List<User> selectList(Map<String, Object> map);
 }

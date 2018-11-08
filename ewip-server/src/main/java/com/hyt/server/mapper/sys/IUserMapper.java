@@ -50,4 +50,6 @@ public interface IUserMapper extends IBaseMapper<User> {
     int deleteUserJobById(String id);
 
     int deleteUserJobByIds(Map<String, Object> map);
+
+    List<User> selectList(Map<String, Object> map);
 }

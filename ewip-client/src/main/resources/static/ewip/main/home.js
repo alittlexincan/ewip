@@ -221,9 +221,21 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 });
             });
         }
-        ,initPanel: function() {
-            let ix = 0;
-            setInterval(function(){
+
+        ,panIndex:0
+        ,initPanel: () => {
+            //当前时间
+            let time = new Date();
+            //小时
+            let min = time.getMinutes(), sec = time.getSeconds();
+
+            //下一次报时间隔
+            let next = ((60 - min) * 60 - sec) * 1000; // 每小时执行一次
+
+            //设置下次启动时间
+            setTimeout(active.initPanel, next);
+            //整点查询cimiss，因为第一次进来min可能不为0所以要判断
+            if (min == 0) {
                 $.ajax({
                     async:true,
                     type: "GET",
@@ -231,101 +243,101 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     data: {},
                     dataType: "json",
                     success: function(res){
-                        layer.close(ix);
-                        layer.open({
-                            type: 1
-                            ,title: "<i class='layui-icon layui-icon-edit'></i> 告警提醒"
-                            ,area: '300px'
-                            ,shade: 0
-                            ,anim: 2
-                            ,maxmin:false
-                            ,offset: 'rb'
-                            ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
-                            ,success: function(layero,index){
-                                ix = index;
-                            }
-                        });
+                        if(res.status==200){
+                            layer.close(active.panIndex);
+                            layer.open({
+                                type: 1
+                                ,title: "<i class='layui-icon layui-icon-edit'></i> 告警提醒"
+                                ,area: '300px'
+                                ,shade: 0
+                                ,anim: 2
+                                ,maxmin:false
+                                ,offset: 'rb'
+                                ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'>"+res.msg+"</div>"
+                                ,success: function(layero,index){
+                                    active.panIndex = index;
+                                }
+                            });
+                        }
                     }
                 });
-            }, 60 * 60 * 1000);
-
+            }
         }
-    };
-
-
-    /**
-     *初始化消息提醒
-     */
-    let initMesRemind =() =>{
-        debugger;
-        let level=employee.level;
-        let data={level:level,
-            areaId: employee.areaId,
-            organizationId: employee.organizationId}
-        $.ajax({
-            async:false,
-            type: "GET",
-            url: 'warn/option/selectWarn',
-            data: data,
-            dataType: "json",
-            success: function(data){
-                if(data.length>0){
-                    $(".mesRemind li span").remove();
-                    for(var i=0;i<data.length;i++){
-                        var flow=data[i].flow;
-                        var count=data[i].count;
-
-                        if(level==2){
-                            if(flow==1){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
-                                }
-                            }else if(flow==3){
-                                $(".mesRemind li:nth-child(2)").empty().append(" <a href='page/warn/emergency'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
-                                $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
-                                if(count!=0){
+        /**
+         *初始化消息提醒
+         */
+        ,initMesRemind: () =>{
+            let level = employee.level, data={
+                level:level,
+                areaId: employee.areaId,
+                organizationId: employee.organizationId
+            };
+            $.ajax({
+                async:true,
+                type: "GET",
+                url: 'warn/option/selectWarn',
+                data: data,
+                dataType: "json",
+                success: function(data){
+                    if(data.length>0){
+                        $(".mesRemind li span").remove();
+                        for(let i=0;i<data.length;i++){
+                            let flow=data[i].flow, count=data[i].count;
+                            if(level==2){
+                                if(flow==1){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==3){
+                                    $(".mesRemind li:nth-child(2)").empty().append(" <a href='page/warn/emergency'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
                                     $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==4){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==6){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                                    }
                                 }
-                            }else if(flow==4){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
-                                }
-                            }else if(flow==6){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
-                                }
-                            }
-                        }else{
-                            if(flow==1){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
-                                }
-                            }else if(flow==2){
-                                $(".mesRemind li:nth-child(2)").empty().append("<a href='page/warn/issue'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
-                                }
-                            }else if(flow==4){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
-                                }
-                            }else if(flow==6){
-                                if(count!=0){
-                                    $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                            }else{
+                                if(flow==1){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==2){
+                                    $(".mesRemind li:nth-child(2)").empty().append("<a href='page/warn/issue'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==4){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==6){
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
     };
+
+
+
     /**
      * 定时器扫描查询预警信息
      */
-    let interval =() =>{
-        setInterval(initMesRemind(), 10000);
-    }
+    // let interval =() =>{
+    //     setInterval(active.initMesRemind(), 10000);
+    // }
 
 
     /**
@@ -364,7 +376,8 @@ layui.use(["index","table","form","laytpl","layer"], function(){
     active.initMapWarnInfo(null);
     // 初始化加载告警信息
     active.initPanel();
-
-    initMesRemind();//初始化查询预警提醒个数
-    interval();//定时器
+    //初始化查询预警提醒个数
+    // active.initMesRemind();
+    active.initMesRemind();//定时器
+    setInterval(active.initMesRemind(), 10000);
 });

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -178,4 +179,19 @@ public class UserController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @ApiOperation(value = "查询受众信息", httpMethod = "GET", notes = "根据查询条件查询所有受众信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="areaId", value="地区ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="organizationId", value="机构ID", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="channelName", value="渠道名称", dataType = "String",paramType = "query"),
+            @ApiImplicitParam(name="type",value="受众类型（1：责任人员；2：基层防御人员）", dataType = "Integer",paramType = "query")
+    })
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<User> users = this.userService.selectList(map);
+        if(users.size() > 0){
+            return  ResultResponse.make(200,"查询受众成功", users);
+        }
+        return ResultResponse.make(500,"查询受众失败", null);
+    }
 }

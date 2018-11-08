@@ -70,4 +70,8 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         return this.userMapper.deleteUserJobByIds(map);
     }
 
+    @Override
+    public List<User> selectList(Map<String, Object> map) {
+        return this.userMapper.selectList(map);
+    }
 }

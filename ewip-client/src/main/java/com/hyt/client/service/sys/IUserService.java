@@ -67,4 +67,13 @@ public interface IUserService {
     @GetMapping("/user/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map);
 
+    /**
+     * 分页查询受众信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/user/list")
+    JSONObject selectList(@RequestParam Map<String,Object> map);
+
+
 }
