@@ -39,37 +39,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
         /**
          * 初始化预警表格
          * @param param
-         * , data: [{
-                    "disasterName":"暴雨"
-                    ,"disasterColor":0
-                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-                    ,"type": "驳回"
-                    ,"time": "2017-11-10 11:34"
-                },{
-                    "disasterName":"暴雨"
-                    ,"disasterColor":1
-                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-                    ,"type": "驳回"
-                    ,"time": "2017-11-10 11:34"
-                },{
-                    "disasterName":"暴雨"
-                    ,"disasterColor":2
-                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-                    ,"type": "驳回"
-                    ,"time": "2017-11-10 11:34"
-                },{
-                    "disasterName":"暴雨"
-                    ,"disasterColor":3
-                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-                    ,"type": "驳回"
-                    ,"time": "2017-11-10 11:34"
-                },{
-                    "disasterName":"暴雨"
-                    ,"disasterColor":0
-                    ,"title": "华池县气象局2018年10月30日17时38分发布暴雨红色预警信号:测试：发布暴雨红色预警"
-                    ,"type": "驳回"
-                    ,"time": "2017-11-10 11:34"
-                }]
+         *
          */
         ,initTableWarnInfo: param => {
 
@@ -79,12 +49,12 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 if(d.disasterColor == 2) return "<span style='color:#d4d41e;'>" + d.title + "</span>";
                 if(d.disasterColor == 3) return "<span style='color:blue;'>" + d.title + "</span>";
             }
-            ,statusFmt = d => {
+                ,statusFmt = d => {
                 if(d.status == 0) return "未发布";
                 if(d.status == 1) return "发布";
                 if(d.status == 2) return "解除";
             }
-            ,msgType = d => {
+                ,msgType = d => {
 
                 if(d.msgType == 'Alert') return "首次";
                 if(d.msgType == 'Update') return "更新";
@@ -111,7 +81,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                         {field: 'disasterName', title: '预警名称',width:120}
                         , {field: 'title', title: '预警标题', templet: titleFmt}
                         , {field: 'msgType', title: '信息类型', templet: msgType}
-                        , {field: 'status', title: '预警流程', statusFmt}
+                        , {field: 'status', title: '预警流程', templet: statusFmt}
                         , {field: 'sendTime', title: '操作时间',width:170}
                     ]]
                 });
@@ -251,6 +221,35 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 });
             });
         }
+        ,initPanel: function() {
+            let ix = 0;
+            setInterval(function(){
+                $.ajax({
+                    async:true,
+                    type: "GET",
+                    url: "/client/cimiss/shikuang",
+                    data: {},
+                    dataType: "json",
+                    success: function(res){
+                        layer.close(ix);
+                        layer.open({
+                            type: 1
+                            ,title: "<i class='layui-icon layui-icon-edit'></i> 告警提醒"
+                            ,area: '300px'
+                            ,shade: 0
+                            ,anim: 2
+                            ,maxmin:false
+                            ,offset: 'rb'
+                            ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
+                            ,success: function(layero,index){
+                                ix = index;
+                            }
+                        });
+                    }
+                });
+            }, 5000);
+
+        }
     };
 
 
@@ -329,7 +328,6 @@ layui.use(["index","table","form","laytpl","layer"], function(){
     }
 
 
-
     /**
      * 添加时，如果选择的是省级，则隐藏上级地区
      */
@@ -364,6 +362,8 @@ layui.use(["index","table","form","laytpl","layer"], function(){
     active.initWeekWeatherInfo({id:document.getElementById("week-line")});
     // 初始化加载地图预警信息
     active.initMapWarnInfo(null);
+    // 初始化加载告警信息
+    active.initPanel();
 
     initMesRemind();//初始化查询预警提醒个数
     interval();//定时器
