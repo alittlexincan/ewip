@@ -208,10 +208,10 @@
         </if>
 
         <if test="type == 1">
-            and u.leader is null
+            and uj.leader is null
         </if>
         <if test="type == 2">
-            and u.leader is not null
+            and uj.leader is not null
         </if>
 
     </select>
