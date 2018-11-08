@@ -10,6 +10,8 @@ import com.hyt.server.entity.sys.AlarmThreshold;
 import com.hyt.server.service.sys.IAlarmThresholdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -70,5 +72,13 @@ public class AlarmThresholdController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    @PostMapping("/select/all")
+    public ResultObject<Object> select(@RequestParam Map<String,Object> map) {
+        List<AlarmThreshold> list = this.alarmThresholdService.selectAll();
+        if(list.size()>0){
+            return  ResultResponse.make(200,"查询成功", list);
+        }
+        return ResultResponse.make(500,"查询失败",null);
+    }
 
 }

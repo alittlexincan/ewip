@@ -47,7 +47,7 @@
             a.day_rainnum,
             a.remarks,
             a.create_time
-        FROM area a where 1=1
+        FROM alarm_threshold a where 1=1
         <if test="id != null">AND a.id = #{id, jdbcType=VARCHAR}</if>
     </select>
 

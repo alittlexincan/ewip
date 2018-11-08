@@ -60,4 +60,13 @@ public interface IAlarmThresholdService {
     @GetMapping("/alarmThreshold/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
 
+
+    /**
+     * 查询信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/alarmThreshold/select/all")
+    JSONObject select(@RequestParam Map<String, Object> map);
+
 }

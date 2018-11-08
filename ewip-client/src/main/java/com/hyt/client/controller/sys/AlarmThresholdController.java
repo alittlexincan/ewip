@@ -78,4 +78,15 @@ public class AlarmThresholdController {
         return this.alarmThresholdService.selectAll(map);
     }
 
+    /**
+     * 查询信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/select/all")
+    JSONObject select(@RequestParam Map<String,Object> map){
+        return this.alarmThresholdService.select(map);
+    }
+
+
 }
