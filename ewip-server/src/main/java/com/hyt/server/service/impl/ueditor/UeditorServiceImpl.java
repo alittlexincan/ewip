@@ -25,6 +25,10 @@ public class UeditorServiceImpl implements IUeditorService {
     @Resource
     private IUeditorMapper mapper;
 
+    /**
+     * 保存产品
+     * @param map
+     */
     @Override
     public int insert(Map<String, Object> map) {
         return mapper.insert(map);
@@ -44,7 +48,7 @@ public class UeditorServiceImpl implements IUeditorService {
                     newlist.add(list.get(i).get("code").toString());
                 }
             }
-//            String[] user = { "2686909258@qq.com", "471046266@qq.com" };
+//          String[] user = { "2686909258@qq.com", "471046266@qq.com" };
             String[] user = newlist.toArray(new String[newlist.size()]);
             JavaMailSenderImpl sender = initJavaMailSender();
             String title=map.get("title").toString();

@@ -24,6 +24,11 @@ public class UeditorController {
     @Autowired
     private IUeditorService ueditorService;
 
+    /**
+     * 保存产品
+     * @param map
+     * @return
+     */
     @PostMapping("/insert")
     public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
         JSONObject json = new JSONObject(map);
@@ -31,11 +36,15 @@ public class UeditorController {
         Ueditor ueditor = JSON.parseObject(json.toJSONString(), new TypeReference<Ueditor>() {});
         int num = this.ueditorService.insert(map);
         if(num>0){
-            return ResultResponse.make(200,"添加地区成功",ueditor);
+            return ResultResponse.make(200,"添加成功",ueditor);
         }
-        return ResultResponse.make(500,"添加地区失败",null);
+        return ResultResponse.make(500,"添加失败",null);
     }
-
+    /**
+     * 发送邮件
+     * @param map
+     * @return
+     */
     @GetMapping("/sendMail")
     public void sendMail(@RequestParam Map<String,Object> map){
         ueditorService.sendMail(map);

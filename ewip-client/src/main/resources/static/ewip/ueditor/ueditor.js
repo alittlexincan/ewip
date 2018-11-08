@@ -112,7 +112,6 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
             var channelId = $(obj).data("id"), channelName = $(obj).data("title");
             // 判断渠道是否选中
             if ($(obj).hasClass("active")) {
-                console.log(employee);
                 // 获取选中渠道
                 var param = {
                     "organizationId": employee.organizationId
@@ -177,6 +176,25 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         });
     };
 
+    /**
+     * 获取当前时间
+     */
+    let dateTime = function(){
+        var now = new Date();
+        var date = new Date(now.getTime());
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        month = month < 10 ? "0"+month : month;
+        day = day < 10 ? "0" + day : day;
+        hour = hour < 10 ? "0" + hour : hour;
+        minute = minute < 10 ? "0" + minute : minute;
+        second = second < 10 ? "0" + second : second;
+        return year + '年' + month + '月' + day  + '日' + hour + '时' + minute + '分';
+    };
     /**
      * 渠道全选、反选
      */
@@ -260,19 +278,20 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
      * 选择模板类型
      */
     form.on('select(type)',  function(data,isAppendTo) {
+        var option={dateTime:dateTime()};
         var flag=data.value;
         if(flag==0) {
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
         }else if(flag==1){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
         }else if(flag==2){
-            active.editor.setContent(productTemplate.getWarnProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
         }else if(flag==3){
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
         }else if(flag==4){
-            active.editor.setContent(productTemplate.getWarnProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
         }else if(flag==5){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(null), isAppendTo);
+            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
         }
         // active.editor.setEnabled();//使其可以编辑
     });

@@ -22,13 +22,22 @@ public class ServerProductController {
     @Autowired
     private IServerProductService serverProductService;
 
+    /**
+     * 查询所有产品信息
+     * @param map
+     * @return
+     */
     @GetMapping("/select")
     public ResultObject<Object> selectAll(@RequestParam Map<String,Object> map) {
         PageInfo<Ueditor> pageInfo = this.serverProductService.selectAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
-
+    /**
+     * 删除产品
+     * @param id
+     * @return
+     */
     @DeleteMapping("/delete/{id}")
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
         Integer num = this.serverProductService.deleteById(id);

@@ -22,6 +22,11 @@ public class ServerProductServiceImpl extends AbstractService<Ueditor> implement
     @Autowired
     private IServerProductMapper serverProductMapper;
 
+    /**
+     * 查询所有产品
+     * @param map
+     * @return
+     */
     @Override
     public PageInfo<Ueditor> selectAll(Map<String, Object> map) {
         MybatisPage.getPageSize(map);

@@ -138,6 +138,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 disasterName: param == undefined ? '' : param.disasterName
                 ,disasterColor: param == undefined ? '' : param.disasterColor
                 ,disasterLevel: param == undefined ? '' : param.disasterLevel
+                ,flow: param == undefined ? '' : param.flow
             }
         });
     };
@@ -187,6 +188,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             });
             layer.full(index);
         }
+        ,initFlow: () => {
+            let flow=$("#flow").val();
+            $(".searchParam select[name='flow']").val(flow);
+            form.render();
+            reloadTable({flow:flow});
+        }
     };
 
     /**
@@ -211,4 +218,5 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         active[type] ? active[type].call(this) : '';
     });
 
+    active.initFlow();
 });
