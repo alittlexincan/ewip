@@ -51,7 +51,7 @@ public interface IWarnEditOptionService {
      * @return
      */
     @GetMapping("warn/option/detail")
-    JSONObject selectWarnEditDetail(@RequestParam Map<String,Object> map);
+    JSONObject selectWarnEditDetail(@RequestParam Map<String, Object> map);
 
     /**
      * 根据预警ID查询对应的流程信息
@@ -59,7 +59,7 @@ public interface IWarnEditOptionService {
      * @return
      */
     @GetMapping("warn/option/select/flow/id")
-    JSONObject selectFlowByWarnEditId(@RequestParam Map<String,Object> map);
+    JSONObject selectFlowByWarnEditId(@RequestParam Map<String, Object> map);
 
     /**
      * 给微信提供发布预警信息
@@ -68,4 +68,17 @@ public interface IWarnEditOptionService {
     @GetMapping("/warn/option/wechat")
     JSONObject getWechatWarnInfo();
 
+    /**
+     * 系统主页获取预警信息
+     * @return
+     */
+    @GetMapping("/warn/option/home")
+    JSONObject getHomeWarnInfo(@RequestParam Map<String, Object> map);
+
+    /**
+     * 系统主页获取预警信息
+     * @return
+     */
+    @GetMapping("/warn/option/selectWarn")
+    JSONArray selectWarn(@RequestParam Map<String, Object> map);
 }
