@@ -363,5 +363,42 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         return this.warnEditOptionMapper.getWechatWarnInfo();
     }
 
+    /**
+     * 查询首页预警个数
+     * @param map
+     * @return
+     * lxv
+     */
+    @Override
+    public JSONArray selectWarn(Map<String, Object> map) {
+        JSONArray arry=new JSONArray();
+        List<Map<String, Object>> list=this.warnEditOptionMapper.selectWarn(map);
+        for(int i=0;i< list.size();i++){
+            String flow=list.get(i).get("flow").toString();
+            String count=list.get(i).get("count").toString();
+            JSONObject json =new JSONObject();
+            if(flow.equals("1")){
+                json.put("flow",1);
+                json.put("count",count);
+            }else if(flow.equals("2")){
+                json.put("flow",2);
+                json.put("count",count);
+            }else if(flow.equals("3")){
+                json.put("flow",3);
+                json.put("count",count);
+            }else if(flow.equals("4")){
+                json.put("flow",4);
+                json.put("count",count);
+            }else if(flow.equals("6")){
+                json.put("flow",6);
+                json.put("count",count);
+            }
+            arry.add(json);
+        }
+
+        System.out.println(arry);
+        return arry;
+    }
+
 
 }

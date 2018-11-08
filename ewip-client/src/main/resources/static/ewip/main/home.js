@@ -10,6 +10,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
+        ,employee = layui.sessionData("ewip").employee // 当前登录用户信息
         ,$ = layui.$;   			// 引用layui的jquery
 
 
@@ -253,6 +254,81 @@ layui.use(["index","table","form","laytpl","layer"], function(){
     };
 
 
+    /**
+     *初始化消息提醒
+     */
+    let initMesRemind =() =>{
+        debugger;
+        let level=employee.level;
+        let data={level:level,
+            areaId: employee.areaId,
+            organizationId: employee.organizationId}
+        $.ajax({
+            async:false,
+            type: "GET",
+            url: 'warn/option/selectWarn',
+            data: data,
+            dataType: "json",
+            success: function(data){
+                if(data.length>0){
+                    $(".mesRemind li span").remove();
+                    for(var i=0;i<data.length;i++){
+                        var flow=data[i].flow;
+                        var count=data[i].count;
+
+                        if(level==2){
+                            if(flow==1){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==3){
+                                $(".mesRemind li:nth-child(2)").empty().append(" <a href='page/warn/emergency'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
+                                $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==4){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==6){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                                }
+                            }
+                        }else{
+                            if(flow==1){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==2){
+                                $(".mesRemind li:nth-child(2)").empty().append("<a href='page/warn/issue'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==4){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
+                                }
+                            }else if(flow==6){
+                                if(count!=0){
+                                    $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    };
+    /**
+     * 定时器扫描查询预警信息
+     */
+    let interval =() =>{
+        setInterval(initMesRemind(), 10000);
+    }
+
+
 
     /**
      * 添加时，如果选择的是省级，则隐藏上级地区
@@ -288,4 +364,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
     active.initWeekWeatherInfo({id:document.getElementById("week-line")});
     // 初始化加载地图预警信息
     active.initMapWarnInfo(null);
+
+    initMesRemind();//初始化查询预警提醒个数
+    interval();//定时器
 });

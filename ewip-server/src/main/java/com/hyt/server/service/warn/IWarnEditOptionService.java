@@ -1,5 +1,6 @@
 package com.hyt.server.service.warn;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
@@ -60,5 +61,10 @@ public interface IWarnEditOptionService extends IBaseService<WarnEditOption> {
      */
     List<Map<String, Object>> getWechatWarnInfo();
 
+    /**
+     * 查询首页预警个数
+     * @return
+     */
+    JSONArray selectWarn(Map<String,Object> map);
 
 }

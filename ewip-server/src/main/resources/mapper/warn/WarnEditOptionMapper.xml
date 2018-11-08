@@ -95,4 +95,58 @@
 
     </select>
 
+
+    <!--查找预警个数-->
+    <select id="selectWarn" resultType="map">
+    	SELECT 1 flow,count(*) count FROM(
+				SELECT wef.flow FROM warn_edit we
+				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
+				WHERE we.status = 0 and wef.is_option = 0
+				AND wef.flow = 1
+				AND we.area_id =  #{areaId}
+                AND we.organization_id = #{organizationId}
+				GROUP BY wef.warn_edit_id
+			) tab
+        union all
+        (SELECT 2 flow,count(*) count FROM(
+				SELECT wef.flow FROM warn_edit we
+				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
+				WHERE we.status = 0 and wef.is_option = 0
+				AND wef.flow = 2
+			    AND we.area_id =  #{areaId}
+                AND we.organization_id = #{organizationId}
+				GROUP BY wef.warn_edit_id
+			) tab)
+        union all
+        (SELECT 3 flow,count(*) count FROM(
+				SELECT wef.flow FROM warn_edit we
+				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
+				WHERE we.status = 0 and wef.is_option = 0
+				AND wef.flow = 3
+				AND we.area_id =  #{areaId}
+                AND we.organization_id = #{organizationId}
+				GROUP BY wef.warn_edit_id
+			) tab)
+        union all
+        (SELECT 4 flow,count(*) count FROM(
+				SELECT wef.flow FROM warn_edit we
+				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
+				WHERE we.status = 0 and wef.is_option = 0
+				AND wef.flow = 4
+				AND we.area_id =  #{areaId}
+                AND we.organization_id = #{organizationId}
+				GROUP BY wef.warn_edit_id
+			) tab)
+        union all
+        (SELECT 6 flow,count(*) count FROM(
+				SELECT wef.flow FROM warn_edit we
+				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
+				WHERE we.status = 0 and wef.is_option = 1
+				AND wef.flow = 6
+				AND we.area_id =  #{areaId}
+                AND we.organization_id = #{organizationId}
+				GROUP BY wef.warn_edit_id
+			) tab)
+    </select>
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.hyt.server.controller.warn;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
@@ -135,6 +136,17 @@ public class WarnEditOptionController {
             return ResultResponse.make(200,"微信获取当天所有预警信息成功",list);
         }
         return ResultResponse.make(500,"微信获取当天所有预警信息失败",null);
+    }
+
+    /**
+     * 首页信息提醒查询预警个数
+     * @param map
+     * @return
+     */
+    @GetMapping("/selectWarn")
+    public JSONArray selectWarn(@RequestParam Map<String,Object> map){
+
+        return this.warnEditOptionService.selectWarn(map);
     }
 
 
