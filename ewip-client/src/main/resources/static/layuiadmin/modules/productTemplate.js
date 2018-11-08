@@ -27,9 +27,9 @@ layui.define(function(exports){
                 '<span style="text-align: center; font-size: 24px; font-family: 宋体; color: red;">期</span>\n' +
                 '</p>\n' +
                 '<p style="display: inline-block;width: 100%;text-align:center;">\n' +
-                '    <span style="display: inline-block;font-size:21px;font-family:仿宋_GB2312; text-align: justify; float: left; ">西城区气象局</span>' +
+                '    <span style="display: inline-block;font-size:21px;font-family:仿宋_GB2312; text-align: justify; float: left; ">'+option.group+'</span>' +
                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-                '<span style="display: inline-block;font-size:21px;font-family:仿宋_GB2312; text-align: justify; float: right;">签发人:局长</span>\n' +
+                '<span style="display: inline-block;font-size:21px;font-family:仿宋_GB2312; text-align: justify; float: right;">签发人:XXX</span>\n' +
                 '</p>\n' +
                 '<p style="border-top: 2px solid red; border-bottom: none; border-right: none;border-left: none;align-content: center;">\n' +
                 '    <br/>\n' +
@@ -50,7 +50,7 @@ layui.define(function(exports){
                 '    <br/>\n' +
                 '</p>\n' +
                 '<p style="text-align: right;">' +
-                '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">西城区气象局</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
+                '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.group+'</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
                 '</p>\n' +
                 '<p style="text-align: right;">\n' +
                 '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.dateTime+'</span>\n' +
@@ -65,7 +65,7 @@ layui.define(function(exports){
                 '    <span style="font-size:21px;font-family:仿宋_GB23129;"></span>\n' +
                 '</p>\n' +
                 '<p style="text-indent:0">\n' +
-                '    <strong><span style="font-size:21px;font-family:仿宋_GB2312;">市气象局24小时值班电话：0756-2222035 审核人：詹棠</span></strong>\n' +
+                '    <strong><span style="font-size:21px;font-family:仿宋_GB2312;">24小时值班电话：XXXX-XXXXXXX 审核人：XX</span></strong>\n' +
                 '</p>\n' +
                 '<hr/>\n' +
                 '<p style="text-indent: 0px;">\n' +
@@ -87,7 +87,7 @@ layui.define(function(exports){
                 '<p style="text-align:center"> ' +
                 '<strong><span style="font-size:29px;font-family:宋体;color:red"></span></strong><br/> ' +
                 '</p>' +
-                '<p style="text-align:center">西城区气象局&nbsp;&nbsp;签发人:局长&nbsp;&nbsp;'+option.dateTime+'</p>\n' +
+                '<p style="text-align:center">'+option.group+'&nbsp;&nbsp;签发人:XXX&nbsp;&nbsp;'+option.dateTime+'</p>\n' +
                 '<p style="border-top: 2px solid red; border-bottom: none; border-right: none;border-left: none;align-content: center;">  </p>\n' +
                 '<p style="text-align:center">\n' +
                 '    <span style="font-size:23px">一周天气分析</span>\n' +
@@ -275,7 +275,7 @@ layui.define(function(exports){
                 '    <br/>\n' +
                 '</p>\n' +
                 '<p style="text-align: right;">' +
-                '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">西城区气象局</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
+                '<span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.group+'</span><span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;"></span>' +
                 '</p>\n' +
                 '<p style="text-align: right;">\n' +
                 '    <span style="font-family: 仿宋_GB2312; font-size: 21px; text-align: justify;">'+option.dateTime+'</span>\n' +

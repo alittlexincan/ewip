@@ -278,7 +278,7 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
      * 选择模板类型
      */
     form.on('select(type)',  function(data,isAppendTo) {
-        var option={dateTime:dateTime()};
+        var option={dateTime:dateTime(),group:employee.organizationName};
         var flag=data.value;
         if(flag==0) {
             active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
