@@ -14,6 +14,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -71,10 +72,10 @@ public class WarnEditOptionController {
         System.out.println(result.toJSONString());
         if(status > 0){
             // 发布后调用分发接口
-//            if(status == 4){
-//                Map<String, Object> param = new HashMap<>(result);
-//                this.publishService.publish(param);
-//            }
+            if(status == 4){
+                Map<String, Object> param = new HashMap<>(result);
+                this.publishService.publish(param);
+            }
             return ResultResponse.make(200,result.getString("msg"),map);
         }
         return ResultResponse.make(500,"操作失败",null);
