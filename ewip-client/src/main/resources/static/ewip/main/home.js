@@ -247,7 +247,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                         });
                     }
                 });
-            }, 5000);
+            }, 60 * 60 * 1000);
 
         }
     };
