@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.controller.common.BaseController;
 import com.hyt.client.service.message.IMessageService;
 import com.hyt.client.utils.UploadFileUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +64,8 @@ public class MessageController extends BaseController {
      */
     @PostMapping("/insert")
     public JSONObject insert(HttpSession session, @RequestParam Map<String,Object> map, @RequestParam("warnFile") MultipartFile[] files){
-        Map<String, Object> employee = (Map<String, Object>) session.getAttribute("employee");
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("employeeId",employee.get("id"));
         map.put("employeeName",employee.get("name"));
         map.put("areaId",employee.get("areaId"));
