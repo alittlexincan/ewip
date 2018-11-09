@@ -40,7 +40,7 @@ public class EmployeeController {
     @PostMapping("/insert")
     JSONObject insert(@RequestParam Map<String,Object> map){
         Object password = new SimpleHash("MD5", map.get("loginPassword").toString(),	map.get("loginName").toString(), 2);
-        map.put("loginPassword", password);
+        map.put("loginPassword", password.toString());
         return this.employeeService.insert(map);
     }
 
