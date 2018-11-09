@@ -51,8 +51,6 @@ public class EmployeeController {
      */
     @PostMapping("/update")
     JSONObject update(@RequestParam Map<String,Object> map){
-        Object password = new SimpleHash("MD5", map.get("loginPassword").toString(),	map.get("loginName").toString(), 2);
-        map.put("loginPassword", password);
         return this.employeeService.update(map);
     }
 
