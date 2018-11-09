@@ -51,14 +51,13 @@
         </ul>
 
         <div class="col col-sm-4 col-md-4" id="top-tool">
-            <div class="navbar-nav pr-0 flex-row-reverse">
-                <span id="quit" class="map-option" title="退出"><i class="fa fa-power-off" aria-hidden="true"></i></span>
-            </div>
+            <!--<div class="navbar-nav pr-0 flex-row-reverse">-->
+                <!--<span id="quit" class="map-option" title="退出"><i class="fa fa-power-off" aria-hidden="true"></i></span>-->
+            <!--</div>-->
             <div class="navbar-nav pr-0 flex-row-reverse">
                 <span id="serverManager" class="map-option" title="后台管理"><i class="fa fa-cog" aria-hidden="true"></i></span>
             </div>
-            <ul class="navbar-nav modular-show"  style="float:right">
-            </ul>
+            <ul class="navbar-nav modular-show"  style="float:right"></ul>
         </div>
     </nav>
     <!-- 导航栏结束 -->
@@ -90,7 +89,7 @@
     <script>
         let initMap = () => {
             Globel.map = new T.Map('map');
-            Globel.map.centerAndZoom(new T.LngLat(108.00385, 36.41907), Globel.zoom);
+            Globel.map.centerAndZoom(new T.LngLat(126.5,46.83), Globel.zoom);
         };
         initMap();
     </script>
