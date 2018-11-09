@@ -8,6 +8,7 @@ import com.hyt.server.service.ueditor.IServerProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,4 +48,17 @@ public class ServerProductController {
         return ResultResponse.make(500,"删除失败");
     }
 
+    /**
+     * 查询产品列表
+     * @param map
+     * @return
+     */
+    @GetMapping("/list")
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map) {
+        List<Ueditor> ueditors = this.serverProductService.selectAll();
+        if(ueditors.size()>0){
+            return  ResultResponse.make(200,"删除成功",ueditors);
+        }
+        return ResultResponse.make(500,"删除失败",null);
+    }
 }

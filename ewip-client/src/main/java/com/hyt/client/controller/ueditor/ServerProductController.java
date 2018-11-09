@@ -90,5 +90,19 @@ public class ServerProductController {
                 }
             }
         }
-    };
+    }
+
+    /**
+     * 查询列表
+     * @param map
+     * @return
+     */
+    @GetMapping("/selectList")
+    JSONObject selectList(@RequestParam Map<String,Object> map){
+        return this.serverProductService.selectList(map);
+    }
+
+
+
+
 }

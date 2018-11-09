@@ -23,16 +23,26 @@ public class Ueditor {
     private String title;
     @Column(name = "path")
     private String path;
+
+    @Column(name = "area_id",length = 64)
+    private String areaId;
+
+    @Column(name = "organization_id",length = 64)
+    private String organizationId;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     public Ueditor() {
 
     }
-    public Ueditor(Integer type, String title, String path, Date createTime) {
+
+    public Ueditor(Integer type, String title, String path, String areaId, String organizationId, Date createTime) {
         this.type = type;
         this.title = title;
         this.path = path;
+        this.areaId = areaId;
+        this.organizationId = organizationId;
         this.createTime = createTime;
     }
 
@@ -68,6 +78,22 @@ public class Ueditor {
         this.path = path;
     }
 
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(String organizationId) {
+        this.organizationId = organizationId;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -75,7 +101,4 @@ public class Ueditor {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
-
-
 }

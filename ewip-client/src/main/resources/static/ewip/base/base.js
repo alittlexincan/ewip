@@ -64,8 +64,8 @@ layui.use(["table","form","laytpl","layer"], function(){
             width : 200,     // 信息窗口宽度
             enableMessage:true//设置允许信息窗发送短息
         }
-
-        //设置灾害影响区域
+        // 望奎
+        // 设置灾害影响区域
         ,points:[
             {"lng":126.3711807458,"lat":46.6132795477,"count":50},
             {"lng":126.3731807458,"lat":46.6142795477,"count":51},
@@ -138,6 +138,310 @@ layui.use(["table","form","laytpl","layer"], function(){
             {"lng":126.6432407458,"lat":46.8232795499,"count":60},
             {"lng":126.4321890687,"lat":46.8196796167,"count":87}
         ]
+
+        // //绥棱
+        // //设置灾害影响区域
+        // ,points:[
+        //     {"lng":127.3711807458,"lat":47.6132795477,"count":50},
+        //     {"lng":127.3731807458,"lat":47.6142795477,"count":51},
+        //     {"lng":127.3321807458,"lat":47.6134395477,"count":15},
+        //     {"lng":127.3743507458,"lat":47.6234795477,"count":40},
+        //     {"lng":127.3234807458,"lat":47.6132543477,"count":100},
+        //     {"lng":127.3715457458,"lat":47.6133445477,"count":6},
+        //     {"lng":127.3711807234,"lat":47.6164695477,"count":18},
+        //     {"lng":127.3734337458,"lat":47.6132795477,"count":80},
+        //     {"lng":127.3988807458,"lat":47.6133495477,"count":11},
+        //     {"lng":127.3712337458,"lat":47.6132545477,"count":7},
+        //     {"lng":127.3711234458,"lat":47.6132345477,"count":42},
+        //     {"lng":127.3711236558,"lat":47.6132795477,"count":4},
+        //     {"lng":127.3231807458,"lat":47.6132712477,"count":27},
+        //     {"lng":127.3723407458,"lat":47.6432743232,"count":23},
+        //     {"lng":127.3432407458,"lat":47.3432795499,"count":60},
+        //     {"lng":127.2052346465,"lat":47.3773634473,"count":87}
+        // ]
+        // ,points1:[
+        //     {"lng":127.8753633682,"lat":47.1084975189,"count":50},
+        //     {"lng":127.8731807458,"lat":47.1042795477,"count":51},
+        //     {"lng":127.8721807458,"lat":47.1034395477,"count":15},
+        //     {"lng":127.8743507458,"lat":47.1034795477,"count":40},
+        //     {"lng":127.8234807458,"lat":47.1032543477,"count":100},
+        //     {"lng":127.8715457458,"lat":47.1033445477,"count":6},
+        //     {"lng":127.8711807234,"lat":47.0964695477,"count":18},
+        //     {"lng":127.8734337458,"lat":47.0832795477,"count":80},
+        //     {"lng":127.8388807458,"lat":47.1033495477,"count":11},
+        //     {"lng":127.8712337458,"lat":47.1032545477,"count":7},
+        //     {"lng":127.8711234458,"lat":47.1032345477,"count":42},
+        //     {"lng":127.8711236558,"lat":47.0632795477,"count":4},
+        //     {"lng":127.8531807458,"lat":47.0532712477,"count":27},
+        //     {"lng":127.8723407458,"lat":47.1032743232,"count":23},
+        //     {"lng":127.8432407458,"lat":47.1032795499,"count":60},
+        //     {"lng":127.8595701070,"lat":47.1055097453,"count":87}
+        // ]
+        // ,points2:[
+        //     {"lng":127.8595701070,"lat":47.7955097453,"count":50},
+        //     {"lng":127.8531807458,"lat":47.7942795477,"count":51},
+        //     {"lng":127.8521807458,"lat":47.7934395477,"count":15},
+        //     {"lng":127.8543507458,"lat":47.7934795477,"count":40},
+        //     {"lng":127.8234807458,"lat":47.7932543477,"count":100},
+        //     {"lng":127.8415457458,"lat":47.7933445477,"count":6},
+        //     {"lng":127.8511807234,"lat":47.7964695477,"count":18},
+        //     {"lng":127.8534337458,"lat":47.7832795477,"count":80},
+        //     {"lng":127.8388807458,"lat":47.7933495477,"count":11},
+        //     {"lng":127.8512337458,"lat":47.7932545477,"count":7},
+        //     {"lng":127.8511234458,"lat":47.7932345477,"count":42},
+        //     {"lng":127.8511236558,"lat":47.7632795477,"count":4},
+        //     {"lng":127.8531807458,"lat":47.7532712477,"count":27},
+        //     {"lng":127.8423407458,"lat":47.7932743232,"count":23},
+        //     {"lng":127.8432407458,"lat":47.7932795499,"count":60},
+        //     {"lng":127.3711807458,"lat":47.6132795477,"count":87}
+        // ]
+        // ,points3:[
+        //     {"lng":127.6565648576,"lat":47.8287256332,"count":50},
+        //     {"lng":127.6531807458,"lat":47.8242795477,"count":51},
+        //     {"lng":127.6521807458,"lat":47.8234395477,"count":15},
+        //     {"lng":127.6543507458,"lat":47.8234795477,"count":40},
+        //     {"lng":127.6234807458,"lat":47.8232543477,"count":100},
+        //     {"lng":127.6415457458,"lat":47.8233445477,"count":6},
+        //     {"lng":127.6511807234,"lat":47.8264695477,"count":18},
+        //     {"lng":127.6534337458,"lat":47.8232795477,"count":80},
+        //     {"lng":127.6388807458,"lat":47.8233495477,"count":11},
+        //     {"lng":127.6512337458,"lat":47.8232545477,"count":7},
+        //     {"lng":127.6511234458,"lat":47.8232345477,"count":42},
+        //     {"lng":127.6511236558,"lat":47.8232795477,"count":4},
+        //     {"lng":127.6531807458,"lat":47.8232712477,"count":27},
+        //     {"lng":127.6423407458,"lat":47.8232743232,"count":23},
+        //     {"lng":127.6432407458,"lat":47.8232795499,"count":60},
+        //     {"lng":127.4321890687,"lat":47.8196796167,"count":87}
+        // ]
+
+        //通河
+        //设置灾害影响区域
+        // ,points:[
+        //     {"lng":128.3711807458,"lat":46.6132795477,"count":50},
+        //     {"lng":128.3731807458,"lat":46.6142795477,"count":51},
+        //     {"lng":128.3321807458,"lat":46.6134395477,"count":15},
+        //     {"lng":128.3743507458,"lat":46.6234795477,"count":40},
+        //     {"lng":128.3234807458,"lat":46.6132543477,"count":100},
+        //     {"lng":128.3715457458,"lat":46.6133445477,"count":6},
+        //     {"lng":128.3711807234,"lat":46.6164695477,"count":18},
+        //     {"lng":128.3734337458,"lat":46.6132795477,"count":80},
+        //     {"lng":128.3988807458,"lat":46.6133495477,"count":11},
+        //     {"lng":128.3712337458,"lat":46.6132545477,"count":7},
+        //     {"lng":128.3711234458,"lat":46.6132345477,"count":42},
+        //     {"lng":128.3711236558,"lat":46.6132795477,"count":4},
+        //     {"lng":128.3231807458,"lat":46.6132712477,"count":27},
+        //     {"lng":128.3723407458,"lat":46.6432743232,"count":23},
+        //     {"lng":128.3432407458,"lat":46.3432795499,"count":60},
+        //     {"lng":128.2052346465,"lat":46.3773634473,"count":87}
+        // ]
+        // ,points1:[
+        //     {"lng":128.8753633682,"lat":46.1084975189,"count":50},
+        //     {"lng":128.8731807458,"lat":46.1042795477,"count":51},
+        //     {"lng":128.8721807458,"lat":46.1034395477,"count":15},
+        //     {"lng":128.8743507458,"lat":46.1034795477,"count":40},
+        //     {"lng":128.8234807458,"lat":46.1032543477,"count":100},
+        //     {"lng":128.8715457458,"lat":46.1033445477,"count":6},
+        //     {"lng":128.8711807234,"lat":46.0964695477,"count":18},
+        //     {"lng":128.8734337458,"lat":46.0832795477,"count":80},
+        //     {"lng":128.8388807458,"lat":46.1033495477,"count":11},
+        //     {"lng":128.8712337458,"lat":46.1032545477,"count":7},
+        //     {"lng":128.8711234458,"lat":46.1032345477,"count":42},
+        //     {"lng":128.8711236558,"lat":46.0632795477,"count":4},
+        //     {"lng":128.8531807458,"lat":46.0532712477,"count":27},
+        //     {"lng":128.8723407458,"lat":46.1032743232,"count":23},
+        //     {"lng":128.8432407458,"lat":46.1032795499,"count":60},
+        //     {"lng":128.8595701070,"lat":46.1055097453,"count":87}
+        // ]
+        // ,points2:[
+        //     {"lng":128.8595701070,"lat":46.7955097453,"count":50},
+        //     {"lng":128.8531807458,"lat":46.7942795477,"count":51},
+        //     {"lng":128.8521807458,"lat":46.7934395477,"count":15},
+        //     {"lng":128.8543507458,"lat":46.7934795477,"count":40},
+        //     {"lng":128.8234807458,"lat":46.7932543477,"count":100},
+        //     {"lng":128.8415457458,"lat":46.7933445477,"count":6},
+        //     {"lng":128.8511807234,"lat":46.7964695477,"count":18},
+        //     {"lng":128.8534337458,"lat":46.7832795477,"count":80},
+        //     {"lng":128.8388807458,"lat":46.7933495477,"count":11},
+        //     {"lng":128.8512337458,"lat":46.7932545477,"count":7},
+        //     {"lng":128.8511234458,"lat":46.7932345477,"count":42},
+        //     {"lng":128.8511236558,"lat":46.7632795477,"count":4},
+        //     {"lng":128.8531807458,"lat":46.7532712477,"count":27},
+        //     {"lng":128.8423407458,"lat":46.7932743232,"count":23},
+        //     {"lng":128.8432407458,"lat":46.7932795499,"count":60},
+        //     {"lng":128.3711807458,"lat":46.6132795477,"count":87}
+        // ]
+        // ,points3:[
+        //     {"lng":128.6565648576,"lat":46.8287256332,"count":50},
+        //     {"lng":128.6531807458,"lat":46.8242795477,"count":51},
+        //     {"lng":128.6521807458,"lat":46.8234395477,"count":15},
+        //     {"lng":128.6543507458,"lat":46.8234795477,"count":40},
+        //     {"lng":128.6234807458,"lat":46.8232543477,"count":100},
+        //     {"lng":128.6415457458,"lat":46.8233445477,"count":6},
+        //     {"lng":128.6511807234,"lat":46.8264695477,"count":18},
+        //     {"lng":128.6534337458,"lat":46.8232795477,"count":80},
+        //     {"lng":128.6388807458,"lat":46.8233495477,"count":11},
+        //     {"lng":128.6512337458,"lat":46.8232545477,"count":7},
+        //     {"lng":128.6511234458,"lat":46.8232345477,"count":42},
+        //     {"lng":128.6511236558,"lat":46.8232795477,"count":4},
+        //     {"lng":128.6531807458,"lat":46.8232712477,"count":27},
+        //     {"lng":128.6423407458,"lat":46.8232743232,"count":23},
+        //     {"lng":128.6432407458,"lat":46.8232795499,"count":60},
+        //     {"lng":128.4321890687,"lat":46.8196796167,"count":87}
+        // ]
+
+
+        //富锦
+        //设置灾害影响区域
+        // ,points:[
+        //     {"lng":131.3711807458,"lat":47.6132795477,"count":50},
+        //     {"lng":131.3731807458,"lat":47.6142795477,"count":51},
+        //     {"lng":131.3321807458,"lat":47.6134395477,"count":15},
+        //     {"lng":131.3743507458,"lat":47.6234795477,"count":40},
+        //     {"lng":131.3234807458,"lat":47.6132543477,"count":100},
+        //     {"lng":131.3715457458,"lat":47.6133445477,"count":6},
+        //     {"lng":131.3711807234,"lat":47.6164695477,"count":18},
+        //     {"lng":131.3734337458,"lat":47.6132795477,"count":80},
+        //     {"lng":131.3988807458,"lat":47.6133495477,"count":11},
+        //     {"lng":131.3712337458,"lat":47.6132545477,"count":7},
+        //     {"lng":131.3711234458,"lat":47.6132345477,"count":42},
+        //     {"lng":131.3711236558,"lat":47.6132795477,"count":4},
+        //     {"lng":131.3231807458,"lat":47.6132712477,"count":27},
+        //     {"lng":131.3723407458,"lat":47.6432743232,"count":23},
+        //     {"lng":131.3432407458,"lat":47.3432795499,"count":60},
+        //     {"lng":127.2052346465,"lat":47.3773634473,"count":87}
+        // ]
+        // ,points1:[
+        //     {"lng":131.8753633682,"lat":47.1084975189,"count":50},
+        //     {"lng":131.8731807458,"lat":47.1042795477,"count":51},
+        //     {"lng":131.8721807458,"lat":47.1034395477,"count":15},
+        //     {"lng":131.8743507458,"lat":47.1034795477,"count":40},
+        //     {"lng":131.8234807458,"lat":47.1032543477,"count":100},
+        //     {"lng":131.8715457458,"lat":47.1033445477,"count":6},
+        //     {"lng":131.8711807234,"lat":47.0964695477,"count":18},
+        //     {"lng":131.8734337458,"lat":47.0832795477,"count":80},
+        //     {"lng":131.8388807458,"lat":47.1033495477,"count":11},
+        //     {"lng":131.8712337458,"lat":47.1032545477,"count":7},
+        //     {"lng":131.8711234458,"lat":47.1032345477,"count":42},
+        //     {"lng":131.8711236558,"lat":47.0632795477,"count":4},
+        //     {"lng":131.8531807458,"lat":47.0532712477,"count":27},
+        //     {"lng":131.8723407458,"lat":47.1032743232,"count":23},
+        //     {"lng":131.8432407458,"lat":47.1032795499,"count":60},
+        //     {"lng":131.8595701070,"lat":47.1055097453,"count":87}
+        // ]
+        // ,points2:[
+        //     {"lng":131.8595701070,"lat":47.7955097453,"count":50},
+        //     {"lng":131.8531807458,"lat":47.7942795477,"count":51},
+        //     {"lng":131.8521807458,"lat":47.7934395477,"count":15},
+        //     {"lng":131.8543507458,"lat":47.7934795477,"count":40},
+        //     {"lng":131.8234807458,"lat":47.7932543477,"count":100},
+        //     {"lng":131.8415457458,"lat":47.7933445477,"count":6},
+        //     {"lng":131.8511807234,"lat":47.7964695477,"count":18},
+        //     {"lng":131.8534337458,"lat":47.7832795477,"count":80},
+        //     {"lng":131.8388807458,"lat":47.7933495477,"count":11},
+        //     {"lng":131.8512337458,"lat":47.7932545477,"count":7},
+        //     {"lng":131.8511234458,"lat":47.7932345477,"count":42},
+        //     {"lng":131.8511236558,"lat":47.7632795477,"count":4},
+        //     {"lng":131.8531807458,"lat":47.7532712477,"count":27},
+        //     {"lng":131.8423407458,"lat":47.7932743232,"count":23},
+        //     {"lng":131.8432407458,"lat":47.7932795499,"count":60},
+        //     {"lng":131.3711807458,"lat":47.6132795477,"count":87}
+        // ]
+        // ,points3:[
+        //     {"lng":131.6565648576,"lat":47.8287256332,"count":50},
+        //     {"lng":131.6531807458,"lat":47.8242795477,"count":51},
+        //     {"lng":131.6521807458,"lat":47.8234395477,"count":15},
+        //     {"lng":131.6543507458,"lat":47.8234795477,"count":40},
+        //     {"lng":131.6234807458,"lat":47.8232543477,"count":100},
+        //     {"lng":131.6415457458,"lat":47.8233445477,"count":6},
+        //     {"lng":131.6511807234,"lat":47.8264695477,"count":18},
+        //     {"lng":131.6534337458,"lat":47.8232795477,"count":80},
+        //     {"lng":131.6388807458,"lat":47.8233495477,"count":11},
+        //     {"lng":131.6512337458,"lat":47.8232545477,"count":7},
+        //     {"lng":131.6511234458,"lat":47.8232345477,"count":42},
+        //     {"lng":131.6511236558,"lat":47.8232795477,"count":4},
+        //     {"lng":131.6531807458,"lat":47.8232712477,"count":27},
+        //     {"lng":131.6423407458,"lat":47.8232743232,"count":23},
+        //     {"lng":131.6432407458,"lat":47.8232795499,"count":60},
+        //     {"lng":131.4321890687,"lat":47.8196796167,"count":87}
+        // ]
+
+
+        //延寿
+        //设置灾害影响区域
+        // ,points:[
+        //     {"lng":128.3711807458,"lat":45.6132795477,"count":50},
+        //     {"lng":128.3731807458,"lat":45.6142795477,"count":51},
+        //     {"lng":128.3321807458,"lat":45.6134395477,"count":15},
+        //     {"lng":128.3743507458,"lat":45.6234795477,"count":40},
+        //     {"lng":128.3234807458,"lat":45.6132543477,"count":100},
+        //     {"lng":128.3715457458,"lat":45.6133445477,"count":6},
+        //     {"lng":128.3711807234,"lat":45.6164695477,"count":18},
+        //     {"lng":128.3734337458,"lat":45.6132795477,"count":80},
+        //     {"lng":128.3988807458,"lat":45.6133495477,"count":11},
+        //     {"lng":128.3712337458,"lat":45.6132545477,"count":7},
+        //     {"lng":128.3711234458,"lat":45.6132345477,"count":42},
+        //     {"lng":128.3711236558,"lat":45.6132795477,"count":4},
+        //     {"lng":128.3231807458,"lat":45.6132712477,"count":27},
+        //     {"lng":128.3723407458,"lat":45.6432743232,"count":23},
+        //     {"lng":128.3432407458,"lat":45.3432795499,"count":60},
+        //     {"lng":128.2052346465,"lat":45.3773634473,"count":87}
+        // ]
+        // ,points1:[
+        //     {"lng":128.8753633682,"lat":45.1084975189,"count":50},
+        //     {"lng":128.8731807458,"lat":45.1042795477,"count":51},
+        //     {"lng":128.8721807458,"lat":45.1034395477,"count":15},
+        //     {"lng":128.8743507458,"lat":45.1034795477,"count":40},
+        //     {"lng":128.8234807458,"lat":45.1032543477,"count":100},
+        //     {"lng":128.8715457458,"lat":45.1033445477,"count":6},
+        //     {"lng":128.8711807234,"lat":45.0964695477,"count":18},
+        //     {"lng":128.8734337458,"lat":45.0832795477,"count":80},
+        //     {"lng":128.8388807458,"lat":45.1033495477,"count":11},
+        //     {"lng":128.8712337458,"lat":45.1032545477,"count":7},
+        //     {"lng":128.8711234458,"lat":45.1032345477,"count":42},
+        //     {"lng":128.8711236558,"lat":45.0632795477,"count":4},
+        //     {"lng":128.8531807458,"lat":45.0532712477,"count":27},
+        //     {"lng":128.8723407458,"lat":45.1032743232,"count":23},
+        //     {"lng":128.8432407458,"lat":45.1032795499,"count":60},
+        //     {"lng":128.8595701070,"lat":45.1055097453,"count":87}
+        // ]
+        // ,points2:[
+        //     {"lng":128.8595701070,"lat":45.7955097453,"count":50},
+        //     {"lng":128.8531807458,"lat":45.7942795477,"count":51},
+        //     {"lng":128.8521807458,"lat":45.7934395477,"count":15},
+        //     {"lng":128.8543507458,"lat":45.7934795477,"count":40},
+        //     {"lng":128.8234807458,"lat":45.7932543477,"count":100},
+        //     {"lng":128.8415457458,"lat":45.7933445477,"count":6},
+        //     {"lng":128.8511807234,"lat":45.7964695477,"count":18},
+        //     {"lng":128.8534337458,"lat":45.7832795477,"count":80},
+        //     {"lng":128.8388807458,"lat":45.7933495477,"count":11},
+        //     {"lng":128.8512337458,"lat":45.7932545477,"count":7},
+        //     {"lng":128.8511234458,"lat":45.7932345477,"count":42},
+        //     {"lng":128.8511236558,"lat":45.7632795477,"count":4},
+        //     {"lng":128.8531807458,"lat":45.7532712477,"count":27},
+        //     {"lng":128.8423407458,"lat":45.7932743232,"count":23},
+        //     {"lng":128.8432407458,"lat":45.7932795499,"count":60},
+        //     {"lng":128.3711807458,"lat":45.6132795477,"count":87}
+        // ]
+        // ,points3:[
+        //     {"lng":128.6565648576,"lat":45.8287256332,"count":50},
+        //     {"lng":128.6531807458,"lat":45.8242795477,"count":51},
+        //     {"lng":128.6521807458,"lat":45.8234395477,"count":15},
+        //     {"lng":128.6543507458,"lat":45.8234795477,"count":40},
+        //     {"lng":128.6234807458,"lat":45.8232543477,"count":100},
+        //     {"lng":128.6415457458,"lat":45.8233445477,"count":6},
+        //     {"lng":128.6511807234,"lat":45.8264695477,"count":18},
+        //     {"lng":128.6534337458,"lat":45.8232795477,"count":80},
+        //     {"lng":128.6388807458,"lat":45.8233495477,"count":11},
+        //     {"lng":128.6512337458,"lat":45.8232545477,"count":7},
+        //     {"lng":128.6511234458,"lat":45.8232345477,"count":42},
+        //     {"lng":128.6511236558,"lat":45.8232795477,"count":4},
+        //     {"lng":128.6531807458,"lat":45.8232712477,"count":27},
+        //     {"lng":128.6423407458,"lat":45.8232743232,"count":23},
+        //     {"lng":128.6432407458,"lat":45.8232795499,"count":60},
+        //     {"lng":128.4321890687,"lat":45.8196796167,"count":87}
+        // ]
+
+
         //定义地质灾害隐患点数组
         ,markerArrDizhiDisaster:[
             {title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
@@ -270,7 +574,7 @@ layui.use(["table","form","laytpl","layer"], function(){
         //定义旅游景区数组
         ,markerArrlvyouWu:[
             {title: "望奎县植物园", point: "126.48,46.85", mes: "<div>地址:黑龙江省绥化市望奎县县城北郊海望路西</div><hr /><div>所属地区:望奎县</div><hr /><div>所属管辖单位:望奎县人民政府</div><hr /><div>占地面积（㎡）:15万</div><hr /><div>可容纳人数:7000</div><hr /><div>工作人员人数:30</div><hr /><div>负责人:蔡玉军</div><hr /><div>联系电话:15845080999</div><hr /><div>景区描述:国家2A级旅游景区，配设大型音乐喷泉、舞台、景观花坛、罗马柱、张拉膜等特色建筑，并配备排水、照明系统和绿化工程。</div>",addss: "/client/base/lvyoujingqu.jpg"}
-            ]
+        ]
         //定义高速公路数组
         ,markerArrGaosu:[
             {title: "绥北高速", point: "126.905489,47.485111", mes: "<div>高速编号:S15</div><hr /><div>起点:绥化</div><hr /><div>终点:北安</div><hr /><div>全线长:223公里</div><hr /><div>所属管辖单位:黑龙江省高等级管理所</div><hr /><div>负责人:段钢文</div><hr /><div>联系电话:15045680777</div><hr /><div>高速描述:绥北高速公路起点位于绥化城区西部，绥安公路南侧，终点位于北安市建华村西南，与北安至黑河、北安至五大连池两条高速公路交汇点相衔接，全长223公里。</div>",addss: "/client/base/gaosu.png"}
@@ -454,6 +758,64 @@ layui.use(["table","form","laytpl","layer"], function(){
             {title: "恭六", point: "126.862777777778,47.1002777777778", mes: "<div>县区:望奎县</div><hr /><div>区站号:H4121</div><hr /><div>站址:恭六</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:226.1 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
             {title: "后头东村", point: "126.912222222222,46.9744444444444", mes: "<div>县区:望奎县</div><hr /><div>区站号:H4222</div><hr /><div>站址:后头东村</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:126.1 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"}
         ]
+        // ,markerArrStation:[
+        //     {title: "四海店", point: "127.2953,47.2827", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4179</div><hr /><div>站址:四海店</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "双岔河", point: "127.1541,47.2718", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4180</div><hr /><div>站址:双岔河</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:168.3  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "上集", point: "127.1917,47.0905", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4181</div><hr /><div>站址:上集</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:168.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "绥中", point: "127.1755,47.1938", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4182</div><hr /><div>站址:绥中</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "阁山", point: "127.1746,47.1831", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4183</div><hr /><div>站址:阁山</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:180.2  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "克音", point: "127.1010,47.1914", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4184</div><hr /><div>站址:克音</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:166.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "后头", point: "127.0815,47.1032", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4185</div><hr /><div>站址:后头</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:175.5 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "长山", point: "127.2302,47.1305", mes: "<div>县区:望奎县</div><hr /><div>区站号:H4186</div><hr /><div>站址:长山</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:185.0 n</div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "泥尔河", point: "127.1935,47.0542", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4187</div><hr /><div>站址:泥尔河</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:177.1  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "上集红旗水库", point: "127.1536,47.0602", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4191</div><hr /><div>站址:上集红旗水库</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "大兴村", point: "127.1853,47.1238", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4192</div><hr /><div>站址:大兴村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "诺敏河村", point: "127.1831,47.1108", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4193</div><hr /><div>站址:诺敏河村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "幸福村", point: "127.3156,47.2028", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4194</div><hr /><div>站址:幸福村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "跃进村", point: "127.1515,47.0627", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4195</div><hr /><div>站址:跃进村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "光芒村", point: "127.0629,47.1311", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4196</div><hr /><div>站址:光芒村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "红光村", point: "127.0329,47.1113", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4197</div><hr /><div>站址:红光村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "二井村", point: "127.0833,47.1143", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4198</div><hr /><div>站址:二井村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "向荣村", point: "127.1231,47.1912", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4199</div><hr /><div>站址:向荣村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "双泉村", point: "127.2118,47.3158", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4200</div><hr /><div>站址:双泉村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "立新村", point: "127.1855,47.2536", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4201</div><hr /><div>站址:立新村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "永清村", point: "127.2341,47.2008", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4202</div><hr /><div>站址:永清村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "北解村", point: "127.2037,47.2017", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4203</div><hr /><div>站址:北解村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "宋家村", point: "127.1618,47.2119", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4204</div><hr /><div>站址:宋家村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "四海店镇", point: "127.2944,47.2829", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4205</div><hr /><div>站址:四海店镇</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "林富村", point: "127.4531,47.3449", mes: "<div>县区:绥棱县</div><hr /><div>区站号:H4206</div><hr /><div>站址:林富村</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //
+        //     ]
+
+        // ,markerArrStation:[
+        //    {title: "玉河", point: "128.2300,45.2200", mes: "<div>县区:延寿县</div><hr /><div>区站号:H0940</div><hr /><div>站址:玉河</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //    {title: "安山", point: "128.3200,45.3000", mes: "<div>县区:延寿县</div><hr /><div>区站号:H0944</div><hr /><div>站址:安山</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:168.3  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //    {title: "开道林场", point: "128.3339,45.2541", mes: "<div>县区:延寿县</div><hr /><div>区站号:H0949</div><hr /><div>站址:开道林场</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:168.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //    {title: "城北", point: "128.1924,45.2841", mes: "<div>县区:延寿县</div><hr /><div>区站号:H0950</div><hr /><div>站址:城北</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //    {title: "万宝", point: "128.0491,45.2112", mes: "<div>县区:延寿县</div><hr /><div>区站号:H0951</div><hr /><div>站址:万宝</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:180.2  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //
+        //    ]
+
+        // ,markerArrStation:[
+        //     {title: "浓河", point: "128.2100,45.5900", mes: "<div>县区:通河县</div><hr /><div>区站号:H0410</div><hr /><div>站址:浓河</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "富林", point: "128.3300,46.0100", mes: "<div>县区:通河县</div><hr /><div>区站号:H0411</div><hr /><div>站址:富林</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:168.3  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "三站", point: "128.5100,46.0100", mes: "<div>县区:通河县</div><hr /><div>区站号:H0412</div><hr /><div>站址:三站</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:168.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "祥顺", point: "129.0700,46.0300", mes: "<div>县区:通河县</div><hr /><div>区站号:H0413</div><hr /><div>站址:祥顺</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "乌鸦泡", point: "12.5200,45.5800", mes: "<div>县区:通河县</div><hr /><div>区站号:H0415</div><hr /><div>站址:乌鸦泡</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        // ]
+
+        // ,markerArrStation:[
+        //     {title: "锦山", point: "131.4500,47.0300", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2250</div><hr /><div>站址:锦山</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "长安", point: "131.5800,47.0800", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2251</div><hr /><div>站址:长安</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:168.3  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "上街基", point: "131.5300,47.1200", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2252</div><hr /><div>站址:上街基</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:168.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "大榆树", point: "132.0800,47.1700", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2253</div><hr /><div>站址:大榆树</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "向阳川", point: "132.2000,47.1700", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2254</div><hr /><div>站址:向阳川</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "二龙山", point: "132.2900,47.1900", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2255</div><hr /><div>站址:二龙山</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:167.7 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "砚山", point: "132.1000,47.1000", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2256</div><hr /><div>站址:砚山</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:168.3  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "头林", point: "132.1500,47.0300", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2257</div><hr /><div>站址:头林</div><hr /><div>是否考核:是</div><hr /><div>测站海拔高度（m）:168.4 </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "兴隆岗", point: "132.3400,46.5800", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2258</div><hr /><div>站址:兴隆岗</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        //     {title: "宏胜", point: "132.4400,46.5500", mes: "<div>县区:富锦县</div><hr /><div>区站号: H2259</div><hr /><div>站址:宏胜</div><hr /><div>是否考核:否</div><hr /><div>测站海拔高度（m）:172.4  </div><hr /><div>自动站型号:CAWS-600-RT</div><hr /><div>要素数:4</div><hr /><div>安装时间:2011/5/1</div><hr /><div>启用时间:2011/8/1</div>",addss: "/client/base/station16.png"},
+        // ]
 
 
         //定义气象预警
@@ -470,13 +832,11 @@ layui.use(["table","form","laytpl","layer"], function(){
         }
         //图层弹框消息
         ,openInfo: (content,e) => {
-                var p = e.target;
-                var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
-                var infoWindow = new BMap.InfoWindow(content, active.opts);  // 创建信息窗口对象
-                active.map.openInfoWindow(infoWindow, point);
+            var p = e.target;
+            var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+            var infoWindow = new BMap.InfoWindow(content, active.opts);  // 创建信息窗口对象
+            active.map.openInfoWindow(infoWindow, point);
         }
-
-
 
         /**
          * 百度地图初始化
@@ -605,20 +965,44 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrDizhiDisaster.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/riskGeologic/list", data:{}}, data => {
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/dizhizaihai.png';
+                    let mes = '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>街道办:'+res.street+'</div><br />';
+                    mes += '<div>地区名称:'+res.name+'</div><br />';
+                    mes += '<div>灾害点规模:'+res.scale+'</div><br />';
+                    mes += '<div>等级:'+res.level+'</div><br />';
+                    mes += '<div>灾害点类型:'+res.type+'</div><br />';
+                    mes += '<div>威胁人口:'+res.threadPeople+'</div><br />';
+                    mes += '<div>威胁资产:'+res.threadProperty+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    dizhiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                dizhiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+
+            // active.markerArrDizhiDisaster.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     dizhiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<dizhiArrayMarker.length;i++){
                 active.map.removeOverlay(dizhiArrayMarker[i]);
@@ -636,20 +1020,46 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrHeliuHongShui.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/riskFlood/list", data:{}}, data => {
+                console.log(data);
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/zhongxiaoheliu.png';
+                    let mes = '<div>河流名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>防御措施:'+res.measures+'</div><br />';
+                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    heliuHongShuiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                heliuHongShuiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrHeliuHongShui.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     heliuHongShuiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<heliuHongShuiArrayMarker.length;i++){
                 active.map.removeOverlay(heliuHongShuiArrayMarker[i]);
@@ -667,20 +1077,47 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrShanHong.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/riskMountain/list", data:{}}, data => {
+                console.log(data);
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/shanhong.png';
+                    let mes = '<div>河流名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>防御措施:'+res.measures+'</div><br />';
+                    mes += '<div>危害等级:'+res.level+'</div><br />';
+                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    shanhongHongShuiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                shanhongHongShuiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrShanHong.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     shanhongHongShuiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<shanhongHongShuiArrayMarker.length;i++){
                 active.map.removeOverlay(shanhongHongShuiArrayMarker[i]);
@@ -698,20 +1135,46 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrNeiLao.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/riskWaterlogging/list", data:{}}, data => {
+                console.log(data);
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/neilao.png';
+                    let mes = '<div>内涝名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>开始时间:'+res.startTime+'</div><br />';
+                    mes += '<div>结束时间:'+res.endTime+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    neilaoArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                neilaoArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrNeiLao.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     neilaoArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<neilaoArrayMarker.length;i++){
                 active.map.removeOverlay(neilaoArrayMarker[i]);
@@ -729,20 +1192,45 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrYiLao.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/riskWaterloggingArea/list", data:{}}, data => {
+                console.log(data);
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/yilaoqu.png';
+                    let mes = '<div>内涝名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>防御措施:'+res.measures+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    yilaoArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                yilaoArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrYiLao.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     yilaoArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<yilaoArrayMarker.length;i++){
                 active.map.removeOverlay(yilaoArrayMarker[i]);
@@ -760,20 +1248,47 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrdoupo.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/riskSlope/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/huapo.png';
+                    let mes = '<div>内涝名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>灾害点规模:'+res.scale+'</div><br />';
+                    mes += '<div>稳定性:'+res.stability+'</div><br />';
+                    mes += '<div>灾害点类型:'+res.type+'</div><br />';
+                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    doupoArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                doupoArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrdoupo.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     doupoArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<doupoArrayMarker.length;i++){
                 active.map.removeOverlay(doupoArrayMarker[i]);
@@ -791,20 +1306,47 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrwadi.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/riskDepression/list", data:{}}, data => {
+                console.log(data);
+                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
+                data.forEach( res => {
+                    let iconUrl = '/client/base/wadi.png';
+                    let mes = '<div>内涝名称:'+res.name+'</div><br />';
+                    mes += '<div>省名称:'+res.province+'</div><br />';
+                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
+                    mes += '<div>市名称:'+res.city+'</div><br />';
+                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
+                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
+                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
+                    mes += '<div>灾害点规模:'+res.scale+'</div><br />';
+                    mes += '<div>稳定性:'+res.stability+'</div><br />';
+                    mes += '<div>灾害点类型:'+res.type+'</div><br />';
+                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    wadiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                wadiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrwadi.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     wadiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<wadiArrayMarker.length;i++){
                 active.map.removeOverlay(wadiArrayMarker[i]);
@@ -860,20 +1402,50 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrWeiHuaPin.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitDanger/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/weihuapin.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>建筑物:'+res.building+'</div><br />';
+                    mes += '<div>储罐个数及容量:'+res.tanks+'</div><br />';
+                    mes += '<div>加油机台数:'+res.machine+'</div><br />';
+                    mes += '<div>单体数:'+res.number+'</div><br />';
+                    mes += '<div>项目:'+res.project+'</div><br />';
+                    mes += '<div>产品:'+res.product+'</div><br />';
+                    mes += '<div>最新报告编号:'+res.report+'</div><br />';
+                    mes += '<div>防雷安全隐患情况:'+res.status+'</div><br />';
+                    mes += '<div>防雷所分管领导:'+res.lightningLeader+'</div><br />';
+                    mes += '<div>企业防雷安全责任人:'+res.lightningPeople+'</div><br />';
+                    mes += '<div>责任人联系电话:'+res.lightningPhone+'</div><br />';
+                    mes += '<div>检测片区组长:'+res.testLeader+'</div><br />';
+                    mes += '<div>检测片区组员:'+res.testMember+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    weihuapinArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                weihuapinArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrWeiHuaPin.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     weihuapinArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<weihuapinArrayMarker.length;i++){
                 active.map.removeOverlay(weihuapinArrayMarker[i]);
@@ -891,20 +1463,44 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrNongYe.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitAgriculturPark/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/nongyeyuanqu.png';
+                    let mes = '<div>园区名称:'+res.name+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>园区类型:'+res.type+'</div><br />';
+                    mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
+                    mes += '<div>园区描述:'+res.description+'</div><br />';
+                    mes += '<div>工作人员人数:'+res.worker+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    nongyeyuanquArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                nongyeyuanquArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrNongYe.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     nongyeyuanquArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<nongyeyuanquArrayMarker.length;i++){
                 active.map.removeOverlay(nongyeyuanquArrayMarker[i]);
@@ -922,20 +1518,45 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrNongZuoWu.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitPlantArea/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/zhongzhiqu.png';
+                    let mes = '<div>种植区名称:'+res.name+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>主要作物:'+res.crops+'</div><br />';
+                    mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
+                    mes += '<div>园区描述:'+res.description+'</div><br />';
+                    mes += '<div>工作人员人数:'+res.worker+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    nongzuowuArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                nongzuowuArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrNongZuoWu.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     nongzuowuArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<nongzuowuArrayMarker.length;i++){
                 active.map.removeOverlay(nongzuowuArrayMarker[i]);
@@ -953,20 +1574,46 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrlvyouWu.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitAttractions/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/lvyoujingqu.jpg';
+                    let mes = '<div>景区名称:'+res.name+'</div><br />';
+                    mes += '<div>区县名称:'+res.district+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>园区类型:'+res.type+'</div><br />';
+                    mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
+                    mes += '<div>园区描述:'+res.description+'</div><br />';
+                    mes += '<div>可容纳人数:'+res.capacity+'</div><br />';
+                    mes += '<div>工作人员人数:'+res.worker+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    lvyouArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                lvyouArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrlvyouWu.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     lvyouArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<lvyouArrayMarker.length;i++){
                 active.map.removeOverlay(lvyouArrayMarker[i]);
@@ -977,27 +1624,52 @@ layui.use(["table","form","laytpl","layer"], function(){
     });
 
     /**
-     * 点击旅游景区菜单
+     * 点击高速公路菜单
      */
     let gaosuArrayMarker=new Array();
     $("#gaosuId").bind("click", function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrGaosu.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitHighway/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/gaosu.png';
+                    let mes = '<div>高速公路名称:'+res.name+'</div><br />';
+                    mes += '<div>高速编号:'+res.code+'</div><br />';
+                    mes += '<div>起点:'+res.start+'</div><br />';
+                    mes += '<div>终点:'+res.end+'</div><br />';
+                    mes += '<div>高速描述:'+res.description+'</div><br />';
+                    mes += '<div>省份:'+res.province+'</div><br />';
+                    mes += '<div>全长:'+res.length+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    gaosuArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                gaosuArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrGaosu.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     gaosuArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<gaosuArrayMarker.length;i++){
                 active.map.removeOverlay(gaosuArrayMarker[i]);
@@ -1007,27 +1679,50 @@ layui.use(["table","form","laytpl","layer"], function(){
         }
     });
     /**
-     * 点击旅游景区菜单
+     * 点击桥梁菜单
      */
     let qiaoliangArrayMarker=new Array();
     $("#qiaoliangId").bind("click", function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrqiaoliang.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitBridge/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/qiaoliang.jpg';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>桥型:'+res.type+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>全长:'+res.length+'</div><br />';
+                    mes += '<div>成桥时间:'+res.buildTime+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>描述:'+res.description+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    qiaoliangArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                qiaoliangArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrqiaoliang.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     qiaoliangArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<qiaoliangArrayMarker.length;i++){
                 active.map.removeOverlay(qiaoliangArrayMarker[i]);
@@ -1045,20 +1740,48 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrdifang.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitDike/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/difang.jpg';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>河流:'+res.river+'</div><br />';
+                    mes += '<div>防洪标准:'+res.floodPrevention+'</div><br />';
+                    mes += '<div>全长:'+res.length+'</div><br />';
+                    mes += '<div>高程:'+res.altitude+'</div><br />';
+                    mes += '<div>平均堤距:'+res.distance+'</div><br />';
+                    mes += '<div>高度:'+res.height+'</div><br />';
+                    mes += '<div>宽度:'+res.width+'</div><br />';
+                    mes += '<div>堤身土质:'+res.soil+'</div><br />';
+                    mes += '<div>堤岸堤坡长度:'+res.slopeLength+'</div><br />';
+                    mes += '<div>省份:'+res.province+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    difangArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #ff4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                difangArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrdifang.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #ff4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     difangArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<difangArrayMarker.length;i++){
                 active.map.removeOverlay(difangArrayMarker[i]);
@@ -1075,20 +1798,42 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrchezhan.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitStation/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/chezhan.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>面积:'+res.area+'</div><br />';
+                    mes += '<div>车辆数:'+res.vehicle+'</div><br />';
+                    mes += '<div>可容纳人数:'+res.capacity+'</div><br />';
+                    mes += '<div>描述:'+res.description+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    chezhanArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                chezhanArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrchezhan.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     chezhanArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<chezhanArrayMarker.length;i++){
                 active.map.removeOverlay(chezhanArrayMarker[i]);
@@ -1106,20 +1851,44 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrxuexiao.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitSchool/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/xuexiao.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>类型:'+res.type+'</div><br />';
+                    mes += '<div>面积:'+res.area+'</div><br />';
+                    mes += '<div>人数:'+res.people+'</div><br />';
+                    mes += '<div>描述:'+res.description+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    xuexiaoArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                xuexiaoArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrxuexiao.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     xuexiaoArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<xuexiaoArrayMarker.length;i++){
                 active.map.removeOverlay(xuexiaoArrayMarker[i]);
@@ -1137,20 +1906,45 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArryiyuan.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitHospital/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/yiyuan.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>面积:'+res.area+'</div><br />';
+                    mes += '<div>人数:'+res.doctor+'</div><br />';
+                    mes += '<div>护士人数:'+res.nurse+'</div><br />';
+                    mes += '<div>救护车数量:'+res.ambulance+'</div><br />';
+                    mes += '<div>床位数量:'+res.bed+'</div><br />';
+                    mes += '<div>描述:'+res.description+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    yiyuanArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                yiyuanArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArryiyuan.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     yiyuanArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<yiyuanArrayMarker.length;i++){
                 active.map.removeOverlay(yiyuanArrayMarker[i]);
@@ -1169,20 +1963,42 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrguangchang.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/unitSquare/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/guangchang.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>面积:'+res.area+'</div><br />';
+                    mes += '<div>容纳人数:'+res.capacity+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    guangchangArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                guangchangArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrguangchang.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     guangchangArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<guangchangArrayMarker.length;i++){
                 active.map.removeOverlay(guangchangArrayMarker[i]);
@@ -1200,20 +2016,44 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrshangchang.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitMarket/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/shangchang.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>面积:'+res.area+'</div><br />';
+                    mes += '<div>楼层:'+res.floor+'</div><br />';
+                    mes += '<div>商户数量:'+res.merchant+'</div><br />';
+                    mes += '<div>容纳人数:'+res.capacity+'</div><br />';
+                    mes += '<div>商场描述:'+res.description+'</div><br />';
+                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    shangchangArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                shangchangArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrshangchang.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     shangchangArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<shangchangArrayMarker.length;i++){
                 active.map.removeOverlay(shangchangArrayMarker[i]);
@@ -1231,20 +2071,45 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrshuiku.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/unitReservoir/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/shuiku.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>地区:'+res.district+'</div><br />';
+                    mes += '<div>地区编码:'+res.districtCode+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>总库容(万m3):'+res.storage+'</div><br />';
+                    mes += '<div>防限库容(万m3):'+res.limitStorage+'</div><br />';
+                    mes += '<div>防限水位(m):'+res.waterLimit+'</div><br />';
+                    mes += '<div>正常蓄水位(m):'+res.waterNormal+'</div><br />';
+                    mes += '<div>有无水位:'+res.waterLine+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    shuikuArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                shuikuArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrshuiku.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     shuikuArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<shuikuArrayMarker.length;i++){
                 active.map.removeOverlay(shuikuArrayMarker[i]);
@@ -1259,23 +2124,52 @@ layui.use(["table","form","laytpl","layer"], function(){
      */
     let jicengArrayMarker=new Array();
     $("#jicengPeopleId").bind("click", function(){
+        debugger;
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrjiceng.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/user/list", data:{type:2,channelName:"短信"}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/jiceng.png';
+                    let sex="";
+                    if(res.sex==1){
+                        sex="男"
+                    }else{
+                        sex="女"
+                    }
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>性别:'+sex+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>年龄:'+res.age+'</div><br />';
+                    mes += '<div>职务:'+res.job+'</div><br />';
+                    mes += '<div>职责:'+res.duties+'</div><br />';
+                    mes += '<div>领导:'+res.leader+'</div><br />';
+                    mes += '<div>机构名称:'+res.organizationName+'</div><br />';
+                    mes += '<div>联系电话:'+res.code+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.longitude , res.latitude]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    jicengArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                jicengArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrjiceng.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     jicengArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<jicengArrayMarker.length;i++){
                 active.map.removeOverlay(jicengArrayMarker[i]);
@@ -1293,20 +2187,48 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrdanwei.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/user/list", data:{type:1,channelName:"短信"}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/danweiren.png';
+                    if(res.sex==1){
+                        sex="男"
+                    }else{
+                        sex="女"
+                    }
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>性别:'+sex+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>年龄:'+res.age+'</div><br />';
+                    mes += '<div>职务:'+res.job+'</div><br />';
+                    mes += '<div>职责:'+res.duties+'</div><br />';
+                    mes += '<div>机构名称:'+res.organizationName+'</div><br />';
+                    mes += '<div>联系电话:'+res.code+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.longitude , res.latitude]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    danweiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                danweiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+
+            // active.markerArrdanwei.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     danweiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<danweiArrayMarker.length;i++){
                 active.map.removeOverlay(danweiArrayMarker[i]);
@@ -1324,20 +2246,50 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrsheshi.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/facilityPublish/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/xianshipin.png';
+                    let status="";
+                    if(res.status==1){
+                        status="部署"
+                    }else{
+                        status="未部署"
+                    }
+                    let mes = '<div>设备名称:'+res.name+'</div><br />';
+                    mes += '<div>设备编号:'+res.code+'</div><br />';
+                    mes += '<div>设备厂家:'+res.factory+'</div><br />';
+                    mes += '<div>设备类型:'+res.type+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>设备用途:'+res.use+'</div><br />';
+                    mes += '<div>设备状态:'+status+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    sheshiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                sheshiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrsheshi.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     sheshiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<sheshiArrayMarker.length;i++){
                 active.map.removeOverlay(sheshiArrayMarker[i]);
@@ -1355,20 +2307,44 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArryingjibinan.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+
+            active.render({type:"GET", url: "/client/facilityShelter/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/yingjibinan.png';
+                    let mes = '<div>设备名称:'+res.name+'</div><br />';
+                    mes += '<div>区县:'+res.district+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>地区编码:'+res.code+'</div><br />';
+                    mes += '<div>容纳人口（人）:'+res.capacity+'</div><br />';
+                    mes += '<div>面积（㎡）:'+res.area+'</div><br />';
+                    mes += '<div>主管单位:'+res.unit+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.tel+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    binanArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                binanArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArryingjibinan.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     binanArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<binanArrayMarker.length;i++){
                 active.map.removeOverlay(binanArrayMarker[i]);
@@ -1386,20 +2362,46 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrchubeichagnsuo.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/facilitySupply/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/chubeichangsuo.png';
+                    let mes = '<div>名称:'+res.name+'</div><br />';
+                    mes += '<div>区县:'+res.district+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>地区编码:'+res.code+'</div><br />';
+                    mes += '<div>救援物资类型:'+res.type+'</div><br />';
+                    mes += '<div>已有物资:'+res.existing+'</div><br />';
+                    mes += '<div>已有物资规格型号:'+res.model+'</div><br />';
+                    mes += '<div>数量:'+res.amount+'</div><br />';
+                    mes += '<div>用途:'+res.use+'</div><br />';
+                    mes += '<div>主管单位:'+res.unit+'</div><br />';
+                    mes += '<div>单位联系电话:'+res.tel+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    chubeiArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                chubeiArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+            // active.markerArrchubeichagnsuo.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     chubeiArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<chubeiArrayMarker.length;i++){
                 active.map.removeOverlay(chubeiArrayMarker[i]);
@@ -1417,26 +2419,47 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
-            active.markerArrbangong.forEach( json => {
-                //设置经纬度
-                let jingwei = json.point.split(",");
-                let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
-                    imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            active.render({type:"GET", url: "/client/facilityOffice/list", data:{}}, data => {
+                console.log(data);
+                data.forEach( res => {
+                    let iconUrl = '/client/base/bangongchangsuo.png';
+                    let mes = '<div>办公场所名称:'+res.name+'</div><br />';
+                    mes += '<div>场所类型:'+res.type+'</div><br />';
+                    mes += '<div>地址:'+res.address+'</div><br />';
+                    mes += '<div>描述:'+res.description+'</div><br />';
+                    mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
+                    mes += '<div>工作人员人数:'+res.worker+'</div><br />';
+                    mes += '<div>负责人:'+res.principal+'</div><br />';
+                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    bangongArrayMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
                 });
-                let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
-                let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
-                // 将标注添加到地图中
-                active.map.addOverlay(marker);
-                bangongArrayMarker.push(marker);
-                //信息弹出框
-                active.addClickHandler(content,marker);
             });
+
+            // active.markerArrbangong.forEach( json => {
+            //     //设置经纬度
+            //     let jingwei = json.point.split(",");
+            //     let myIcon = new BMap.Icon(json.addss, new BMap.Size(38.4,31.2),{
+            //         imageSize: new BMap.Size(38.4,31.2) // 引用图片实际大小
+            //     });
+            //     let marker = new BMap.Marker(new BMap.Point(jingwei[0],jingwei[1]),{icon: myIcon});  // 创建标注
+            //     let content = '<span style="font-size: 20px;color: #FF4500;">' +  json.title + '</span>'  +'<br/>'+ json.mes;
+            //     // 将标注添加到地图中
+            //     active.map.addOverlay(marker);
+            //     bangongArrayMarker.push(marker);
+            //     //信息弹出框
+            //     active.addClickHandler(content,marker);
+            // });
         }else{
             for(var i=0;i<bangongArrayMarker.length;i++){
                 active.map.removeOverlay(bangongArrayMarker[i]);
                 $(this).data("flag","0");
             }
-
         }
     });
 
@@ -1449,6 +2472,7 @@ layui.use(["table","form","laytpl","layer"], function(){
         let flag = $(this).data("flag");
         if(flag=="0"){
             $(this).data("flag",1);
+            // $(this).children("input").prop("checked","checked");
             active.markerArrStation.forEach( json => {
                 //设置经纬度
                 let jingwei = json.point.split(",");
@@ -1480,27 +2504,27 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             active.markerArrWarn.forEach( json => {
-                active.render({type:"POST", url: "/client/base/listwarn", data:{}}, data => {
+                active.render({type:"GET", url: "/client/warn/edit/info", data:{}}, data => {
                     console.log(data);
                     data.forEach( json => {
                         let color="";
                         let colorname="";
-                        if(json.disaster_color==0){
+                        if(json.disasterColor==0){
                             color="hongse";
                             colorname="红色"
-                        }else if(json.disaster_color==1){
+                        }else if(json.disasterColor==1){
                             color="chengse";
                             colorname="橙色"
-                        }else if(json.disaster_color==2){
+                        }else if(json.disasterColor==2){
                             color="huangse";
                             colorname="黄色"
-                        }else if(json.disaster_color==3){
+                        }else if(json.disasterColor==3){
                             color="lanse";
                             colorname="蓝色"
                         }
-                        let mes = '<div><div>'+json.content+'</div><hr /><div>望奎县气象局'+json.send_time+'发布</div>';
-                        let marker = active.marker('/client/base/'+pinyin.getFullChars(json.disaster_name)+color+'.gif',[json.longitude , json.latitude]
-                            ,content = '<span style="font-size: 20px;color: #FF4500;">' +  json.disaster_name + colorname+'预警'+'</span>'  +'<br/>'+ mes);
+                        let mes = '<div><div>'+json.content+'</div><hr /><div>望奎县气象局'+json.sendTime+'发布</div>';
+                        let marker = active.marker('/client/base/'+chineseToPinYin(json.disasterName)+color+'.gif',[json.longitude , json.latitude]
+                            ,content = '<span style="font-size: 20px;color: #FF4500;">' +  json.disasterName + colorname+'预警'+'</span>'  +'<br/>'+ mes);
                         // 将标注添加到地图中
                         active.map.addOverlay(marker);
                         warnArrayMarker.push(marker);
@@ -1542,17 +2566,37 @@ layui.use(["table","form","laytpl","layer"], function(){
      */
     let serviceptflag = 0;
     $("#serviceProductId").bind("click", function(){
-        let a = document.getElementById('serviceProductId');
-        a.onclick = function(){
-            let b  = document.getElementById('dizhiId');
-            if( serviceptflag == 1 ){
-                b.style.display = "none";
-                serviceptflag = 0;
-            }else{
-                b.style.display = "block";
-                serviceptflag = 1;
-            }
+        let flag = $(this).data("flag");
+        if(flag=="0") {
+            $(this).data("flag", 1);
+            active.render({type: "GET", url: "/client/serverProduct/selectList", data: {}}, data => {
+                let html = "";
+                html += "<ul >";
+                data.forEach(json => {
+                    let path = "/client" + json.path;
+                    html += "<li style='border:1px solid #fff;text-align: left;color:white;font-size:12px;'><a href='" + path + "'>" + json.title + "</a></li>";
+                });
+                html += "</ul >";
+                $("#dizhiId").empty().append(html);
+                $("#dizhiId").show();
+            });
+        }else{
+            $(this).data("flag","0");
+            $("#dizhiId").hide();
         }
+
+
+        // let a = document.getElementById('serviceProductId');
+        // a.onclick = function(){
+        //     let b  = document.getElementById('dizhiId');
+        //     if( serviceptflag == 1 ){
+        //         b.style.display = "none";
+        //         serviceptflag = 0;
+        //     }else{
+        //         b.style.display = "block";
+        //         serviceptflag = 1;
+        //     }
+        // }
     });
 
     /**
@@ -1588,13 +2632,6 @@ layui.use(["table","form","laytpl","layer"], function(){
             }
         }
     });
-
-
-
-
-
-
-
 
     /**
      *

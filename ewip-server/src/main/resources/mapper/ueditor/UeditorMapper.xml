@@ -4,8 +4,8 @@
 
     <!-- 创建产品 -->
     <insert id="insert" >
-        insert server_product (id, type, title, path, create_time )
-        value ( REPLACE(UUID(),'-',''), #{type}, #{title}, #{path}, now())
+        insert server_product (id, type, title, path,area_id, organization_id,create_time )
+        value ( REPLACE(UUID(),'-',''), #{type}, #{title},  #{path},#{areaId}, #{organizationId}, now())
     </insert>
 
     <!-- 查询用户 -->

@@ -34,4 +34,11 @@ public interface IServerProductService {
      */
     @DeleteMapping("/serverProduct/delete/{id}")
     JSONObject deleteById(@PathVariable(value = "id") String id);
+    /**
+     * 分页查询信息
+     * @param map
+     * @return
+     */
+    @GetMapping("/serverProduct/list")
+    JSONObject selectList(@RequestParam Map<String,Object> map);
 }
