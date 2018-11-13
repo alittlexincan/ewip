@@ -4,7 +4,8 @@ layui.use(["table","form","laytpl","layer"], function(){
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
-        ,$ = layui.$;   			// 引用layui的jquery
+        ,$ = layui.$   			// 引用layui的jquery
+        ,employee = layui.sessionData("ewip").employee; // 当前登录用户信息
 
 
 
@@ -843,7 +844,7 @@ layui.use(["table","form","laytpl","layer"], function(){
             initMapHeight(container);
             // 百度地图API功能
             active.map = new BMap.Map(container);    // 创建Map实例
-            active.map.centerAndZoom(new BMap.Point(127.122496,47.229156), 11);  // 初始化地图,设置中心点坐标和地图级别
+            active.map.centerAndZoom(new BMap.Point(107.98,36.47), 11);  // 初始化地图,设置中心点坐标和地图级别
             //添加地图类型控件
             active.map.addControl(new BMap.MapTypeControl({
                 mapTypes:[
@@ -853,7 +854,7 @@ layui.use(["table","form","laytpl","layer"], function(){
             active.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
             //设置望奎县边界
             var bdary = new BMap.Boundary();
-            bdary.get("绥化市望奎县", function(rs){//获取行政区域
+            bdary.get(employee.areaName, function(rs){//获取行政区域
                 //BDmap.clearOverlays();        //清除地图覆盖物
                 var count = rs.boundaries.length; //行政区域的点有多少个
                 if (count === 0) {

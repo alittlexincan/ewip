@@ -75,7 +75,7 @@ public class PageController {
     @RequestMapping("/403")
     public String unauthorizedRole(){
         System.out.println("------没有权限-------");
-        return "/main/403";
+        return "main/403";
     }
 
     /**
@@ -104,7 +104,7 @@ public class PageController {
         }
         map.put("msg", msg);
         // 此方法不处理登录成功,由shiro进行处理
-        return "/main/login";
+        return "main/login";
     }
 
     @RequestMapping(value="/config")
