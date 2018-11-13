@@ -11,3 +11,9 @@ eureka:
     fetch-registry: false
     service-url:
       default-zone: http://127.0.0.1:8761/eureka
+
+
+
+# 日志配置
+logging:
+  file: D:/ewip/log/${spring.application.name}/${spring.application.name}.log
