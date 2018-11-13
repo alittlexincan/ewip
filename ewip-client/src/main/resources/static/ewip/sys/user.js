@@ -360,11 +360,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.areaId
-                            ,clickNode:function (event, treeId, treeNode) {
-                                console.log(treeNode);
-                                areaId = treeNode.id;
-                                return false;
-                            }
                         });
                         // 初始化下拉机构拉树
                         selectTree.render({
