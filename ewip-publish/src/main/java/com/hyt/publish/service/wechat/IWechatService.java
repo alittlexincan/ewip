@@ -10,6 +10,16 @@ import com.alibaba.fastjson.JSONObject;
  */
 public interface IWechatService {
 
+    /**
+     * 预警发布、一键式发布
+     * @param json
+     */
     void wechat(JSONObject json);
+
+    /**
+     * 推送三天预报信息
+     * @param json
+     */
+    JSONObject pushThreeWeatherInfo(JSONObject json);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
@@ -13,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableAsync
+@EnableScheduling
 public class EwipPublishApplication {
 
     @Bean("restTemplate")

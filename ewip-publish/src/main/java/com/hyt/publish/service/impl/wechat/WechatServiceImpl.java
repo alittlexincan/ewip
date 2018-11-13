@@ -124,6 +124,32 @@ public class WechatServiceImpl implements IWechatService {
     }
 
     /**
+     * 三天预报推送
+     * @param json
+     * @return
+     */
+    @Override
+    public JSONObject pushThreeWeatherInfo(JSONObject json){
+
+        JSONObject result = new JSONObject();
+
+        // 1：通过tokenUrl获取access_token
+        log.info("获取微信tokenUrl: 【{}】",tokenUrl);
+        JSONObject token = this.restTemplate.getForObject(tokenUrl,JSONObject.class);
+        String accessToken = token.getString("access_token");
+        if(accessToken == null){
+            log.info("微信推送获取TOKEN失败");
+            result.put("code", 500);
+            result.put("msg", "微信推送获取TOKEN失败");
+            return result;
+        }
+        log.info("成功获取微信token: 【{}】" ,accessToken);
+
+        return this.sendThreeWeather(json, accessToken);
+
+    }
+
+    /**
      * 发送一键式发布模板消息
      * @param json
      * @param accessToken
@@ -240,6 +266,53 @@ public class WechatServiceImpl implements IWechatService {
 
     }
 
+    /**
+     * 三天预报模板推送：模板类型：服务模板
+     */
+    private JSONObject sendThreeWeather(JSONObject json, String accessToken){
+
+        JSONObject result = new JSONObject();
+
+        // 2：获取所有关注用户信息，提取用户openId: 如果okUser有值，则说明是手动发送
+        List<String> userList = okUser.length() > 0 ? Arrays.asList(okUser.split(",")) : getUserList(accessToken, "");
+
+        // 获取用户总个数
+        int count = userList.size();
+        if(count <= 0){
+            log.info("微信暂无关注用户");
+            result.put("code",404);
+            result.put("code","微信暂无关注用户");
+            return result;
+        }
+        for (int i = 0; i < count; i += this.number) {
+            if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
+                this.number = count - i;
+            }
+            StringBuilder sb = new StringBuilder();
+            String rgb = "#3F48CC";
+            userList.subList(i, i + this.number).forEach(u -> {
+                sb.append("," + u);
+                WechatTemplate tem = new WechatTemplate();
+                tem.setTemplateId(this.serviceTemplate);
+                tem.setTopColor(rgb);
+                tem.setToUser(u);
+                tem.setUrl("");
+                List<WechatTemplateParam> paras = new ArrayList<>();
+                paras.add(new WechatTemplateParam("first",json.getString("title"), rgb));
+                paras.add(new WechatTemplateParam("keyword1",json.getString("type"), rgb));
+                paras.add(new WechatTemplateParam("keyword2",json.getString("time"), rgb));
+                paras.add(new WechatTemplateParam("remark",json.getString("content"), rgb));
+                tem.setTemplateParamList(paras);
+                log.info("模板信息：" + tem.toJSON());
+                ResponseEntity<JSONObject> rest = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);
+                log.info("微信推送回执结果：" + rest.getBody().toJSONString());
+            });
+            log.info("微信每批次发送用户：" + sb.toString().substring(1));
+        }
+        result.put("code",200);
+        result.put("msg","三天预报推送成功");
+        return result;
+    }
 
     /**
      * 递归获取所有用户openId
