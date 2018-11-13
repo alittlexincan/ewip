@@ -45,8 +45,8 @@ public class WechatThreeWeatherTask {
 
 
 
-//    @Scheduled(cron = "0 0 0/17 * * *")
-    @Scheduled(cron = "0 0/1 * * * *")
+    @Scheduled(cron = "0 0 0/17 * * *")
+//    @Scheduled(cron = "0 0/1 * * * *")
     private void scheduled(){
         // 时间格式化（日志）
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
