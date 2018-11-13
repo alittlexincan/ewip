@@ -989,6 +989,7 @@ $(function(){
 		});
 	}
 	,drawHourWarn= function(param){
+		console.log(param);
 		$.ajax({
 			async:true,
 			type: "POST",
@@ -1814,8 +1815,11 @@ $(function(){
     var param = function(){
     	var p = {
     		orgId: "",
-			startTime:"2018-09-19 11:28:21",
-			endTime:"2018-09-25 11:28:21",
+
+			// startTime:"2018-09-19 11:28:21",
+			// endTime:"2018-09-25 11:28:21",
+            startTime:dateTime(7),
+			endTime:dateTime(0),
 			disasterId:"",
 			disasterName:"",
 			warnColorNum: "",
