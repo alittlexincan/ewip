@@ -1,5 +1,6 @@
 package com.hyt.client.service.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -75,5 +76,11 @@ public interface IUserService {
     @GetMapping("/user/list")
     JSONObject selectList(@RequestParam Map<String,Object> map);
 
-
+    /**
+     * 查询受众的详细信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/user/userDetails")
+    JSONObject userDetails(@RequestParam Map<String,Object> map);
 }

@@ -216,4 +216,10 @@
 
     </select>
 
+    <!--查询受众的详细信息 -->
+    <select id="userDetails" resultMap="BaseResultMap">
+    SELECT job,duties,leader,age,address,DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') create_time FROM  user_job u where user_id= #{id}
+    order by create_time desc
+    </select>
+
 </mapper>
