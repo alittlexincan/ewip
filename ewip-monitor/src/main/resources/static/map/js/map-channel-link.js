@@ -115,23 +115,26 @@ $(function(){
 		          },
 		          data: data
 		      });
+				console.log(data);
 		      if(cavData.messageBox){
 		    	  cavData.messageBox.append("<p style='text-align: center;font-size: 1.6rem;margin-bottom: 0.5rem;'>突发平台实时推送预警信息</p>");
 		    	  cavData.messageBox.append("<hr style='border-top: 1px solid #37c4cc;margin-top: 0rem!important;margin-bottom: 0.5rem;'/>");
 		    	  cavData.messageBox.append("<div>" +
 		    			  "<dl>");
-		    	  if(data.img!=""){
+		    	  if(data.img!="" && data.img!=undefined){
 		    		  cavData.messageBox.append("<dt style='float: left;padding: .5em;background: #163e8d;display: inline-block;width: 20%;height: 8.5rem;'><img style='width: 100%;height: 100%;' src='"+data.img+"'></dt>");
+                      cavData.messageBox.append("<dd style='margin: 0.5em;display: inline-block;width: 75%;text-indent: 2em;color: #e8b82a;float: right;'>"+data.message+"</dd>");
 		    	  }else{
 		    		  cavData.messageBox.append("<dt style='float: left;padding: .5em;background: #4733da;display: inline-block;width: 20%;height: 8.5rem;'><img style='width: 100%;height: 100%;' src='/images/warnlogo.png'></dt>");
+                      cavData.messageBox.append("<dd style='margin-top: 1.5em;display: inline-block;width: 69%;color: #e8b82a; text-align: center;font-size: 18px;margin-bottom: 1.5em;'>暂无预警！</dd>");
 		    	  }
-		    	  cavData.messageBox.append("<dd style='margin: 0.5em;display: inline-block;width: 75%;text-indent: 2em;color: #e8b82a;float: right;'>"+data.message+"</dd>" +
-		        		  "</dl>"+
-		          "</div>");
+                  cavData.messageBox.append("</dl></div>");
 		      }
 		      var content=function(){
 		    	  cavData.setData();
-		    	  window.requestAnimationFrame(content);
+		    	  if(data.img!="" && data.img!=undefined){
+		    	  	window.requestAnimationFrame(content);
+				  }
 		      }
 		      window.requestAnimationFrame(content);
 			}
