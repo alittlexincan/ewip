@@ -45,8 +45,8 @@ public class WechatThreeWeatherTask {
 
 
 
-    @Scheduled(cron = "0 0 0/17 * * *")
-//    @Scheduled(cron = "0 0/1 * * * *")
+    @Scheduled(cron = "0 0 17 * * *")
+//    @Scheduled(cron = "0/1 * * * * *")
     private void scheduled(){
         // 时间格式化（日志）
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -63,7 +63,7 @@ public class WechatThreeWeatherTask {
         }
         // 拼接发送信息
         JSONObject param = new JSONObject();
-        param.put("title", "测试:" + this.wechatWeatherTitle);
+        param.put("title", this.wechatWeatherTitle);
         param.put("type", this.wechatWeatherType);
         param.put("time",fmt.format(date));
         param.put("content", content);
