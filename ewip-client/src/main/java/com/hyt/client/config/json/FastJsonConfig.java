@@ -1,4 +1,4 @@
-package com.hyt.client.controller.config;
+package com.hyt.client.config.json;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
