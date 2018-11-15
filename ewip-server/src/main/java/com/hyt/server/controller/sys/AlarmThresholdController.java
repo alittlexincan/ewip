@@ -72,7 +72,7 @@ public class AlarmThresholdController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
-    @PostMapping("/select/all")
+    @GetMapping("/select/all")
     public ResultObject<Object> select(@RequestParam Map<String,Object> map) {
         List<AlarmThreshold> list = this.alarmThresholdService.selectAll();
         if(list.size()>0){
