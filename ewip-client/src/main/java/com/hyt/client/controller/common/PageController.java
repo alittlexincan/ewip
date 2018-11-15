@@ -1,9 +1,12 @@
 package com.hyt.client.controller.common;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.ueditor.ActionEnter;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.AuthenticationException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,16 +29,21 @@ import java.util.Map;
  * 作者姓名         修改时间          版本号             描述
  */
 @Controller
+@Component
 public class PageController {
 
+
+    @Value("${cimiss.station.id.c}")
+    private String stationId;
 
     /**
      * 进入框架界面
      * @return
      */
     @RequestMapping({"/","/index"})
-    public String index(){
-        return "main/index";
+    public ModelAndView index(@RequestParam Map<String, Object> map){
+        map.put("stationId", stationId);
+        return new ModelAndView("main/index",map);
     }
 
     /**
@@ -43,8 +51,9 @@ public class PageController {
      * @return
      */
     @RequestMapping("/home")
-    public String home(){
-        return "main/home";
+    public ModelAndView home(@RequestParam Map<String, Object> map){
+        map.put("stationId", stationId);
+        return new ModelAndView("main/home",map);
     }
 
     /**

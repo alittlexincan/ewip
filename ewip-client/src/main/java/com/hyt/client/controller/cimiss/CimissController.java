@@ -44,7 +44,6 @@ public class CimissController {
 
             String url = this.cimissAreaShikuang.replace("{{time}}", getTime());
             log.info("cimiss请求URL:" + url);
-            System.out.println(url);
             ResponseEntity<JSONObject> rest = restTemplate.getForEntity(url, JSONObject.class);
             // rest接口抓取数据之后判断其状态码
             if(rest.getStatusCode().value() != 200){
@@ -121,7 +120,6 @@ public class CimissController {
             result.put("msg", "读取成功");
             log.info(result.toJSONString());
         }catch (Exception e){
-            e.printStackTrace();
             result.put("status", 500);
             result.put("msg", "接口报错"+e.getMessage());
             log.info(result.toJSONString());

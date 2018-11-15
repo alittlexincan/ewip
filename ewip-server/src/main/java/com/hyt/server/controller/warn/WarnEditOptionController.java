@@ -69,7 +69,6 @@ public class WarnEditOptionController {
         JSONObject result = this.warnEditOptionService.insert(map);
         // 获取流程状态值
         int status = result.getInteger("status");
-        System.out.println(result.toJSONString());
         if(status > 0){
             // 发布后调用分发接口
             if(status == 4){
@@ -146,7 +145,6 @@ public class WarnEditOptionController {
      */
     @GetMapping("/selectWarn")
     public JSONArray selectWarn(@RequestParam Map<String,Object> map){
-
         return this.warnEditOptionService.selectWarn(map);
     }
 

@@ -13,6 +13,9 @@
 </head>
 <body>
 
+    <!--CIMISS国家站点ID-->
+    <input id="stationId" type="hidden" th:value="${stationId}"  >
+
     <div class="layui-fluid home">
 
         <!--快捷方式、预警提醒、天气实况-->
@@ -84,32 +87,32 @@
                             <ul class="layui-row layui-col-space15 layui-this">
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-zuigaoqiwen"></i><cite>最高气温</cite><cite title="0.8℃">0.8℃</cite>
+                                        <i class="iconfont icon-zuigaoqiwen"></i><cite>最高气温</cite><cite id="maxTem" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-zuidiqiwen"></i><cite>最低气温</cite><cite title="0.5℃">0.5℃</cite>
+                                        <i class="iconfont icon-zuidiqiwen"></i><cite>最低气温</cite><cite id="minTem" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-jiangshui"></i><cite>降水</cite><cite title="0.6mm">0.6mm</cite>
+                                        <i class="iconfont icon-jiangshui"></i><cite>降水</cite><cite  id="pre" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-shidu"></i><cite>湿度</cite><cite title="97%">97%</cite>
+                                        <i class="iconfont icon-shidu"></i><cite>湿度</cite><cite id="rhu" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-fengsu"></i><cite>风速</cite><cite title="1.7米每秒">1.7米每秒</cite>
+                                        <i class="iconfont icon-fengsu"></i><cite>风速</cite><cite id="winS" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
-                                        <i class="iconfont icon-qiya"></i><cite>气压</cite><cite title="989.4hpa">989.4hpa</cite>
+                                        <i class="iconfont icon-qiya"></i><cite>气压</cite><cite id="prs" title="暂无">暂无</cite>
                                     </a>
                                 </li>
                             </ul>
@@ -168,7 +171,8 @@
     <script th:src="@{/plugins/echarts/walden.js}" ></script>
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
     <script th:src="@{/ewip/main/home.js}" ></script>
-    <script>
+    <script th:inline="javascript">
+
         let bdMap = null;
         let initMap = () => {
             bdMap = new T.Map('container');

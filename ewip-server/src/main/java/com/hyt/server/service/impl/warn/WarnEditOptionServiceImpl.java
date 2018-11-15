@@ -395,10 +395,6 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
             }
             arry.add(json);
         }
-
-        System.out.println(arry);
         return arry;
     }
-
-
 }
