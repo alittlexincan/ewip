@@ -21,6 +21,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -34,11 +35,11 @@ import lombok.extern.slf4j.Slf4j;
 public class RestTemplateConfig {
 
     @Bean("restTemplate")
-    public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setRequestFactory(clientHttpRequestFactory());
-        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
-        return restTemplate;
+    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
+//        RestTemplate restTemplate = new RestTemplate();
+//        restTemplate.setRequestFactory(clientHttpRequestFactory());
+//        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
+        return restTemplateBuilder.setConnectTimeout(60 * 1000).setReadTimeout(60 * 1000).build();
     }
 
     @Bean

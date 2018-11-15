@@ -24,7 +24,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
          * 统一访问后台数据
          */
         getData:(param, callback)=>{
-            $.ajax({
+            let resp = {
                 async:true,
                 type: param.type,
                 url: param.url,
@@ -33,7 +33,11 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 success: function(res){
                     callback(res.code == 200 && res.data.length > 0 ? res.data : null);
                 }
-            });
+            };
+            if(param.async != undefined) resp.async=param.async       //同步设置
+            if(param.timeout != undefined) resp.timeout=param.timeout //超时时间设置，单位毫秒
+
+            $.ajax(resp);
         }
 
         /**
@@ -222,7 +226,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             };
 
             // 查询发布,解除数据(1:发布，2:解除)
-            active.getData({type:"GET", url: "/client/cimiss/shikuang", data:{}}, data => {
+            active.getData({ async:false, type:"GET",timeout:60 * 1000, url: "/client/cimiss/shikuang", data:{}}, data => {
                 if(data.code == 500) return;
 
                 let shikuang = null, currentStation = $("stationId").val();
