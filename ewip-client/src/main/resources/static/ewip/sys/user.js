@@ -44,11 +44,11 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'age', title: '年龄'}
             ,{field: 'sex', title: '性别', sort: true,templet: sexFormat }
-            ,{field: 'job', title: '职务',sort: true}
-            ,{field: 'duties', title: '职责'}
-            ,{field: 'leader', title: '领导', sort: true}
-            ,{field: 'address', title: '地址'}
-            ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
+            // ,{field: 'job', title: '职务',sort: true}
+            // ,{field: 'duties', title: '职责'}
+            // ,{field: 'leader', title: '领导', sort: true}
+            // ,{field: 'address', title: '地址'}
+            ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -330,6 +330,62 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     ,param: {id: id.substring(1)}
                     ,dataType: 'json'
                 });
+            });
+        }
+        /**
+         * 职位调度详情
+         * @returns {boolean}
+         */
+        ,'userDetails': function(obj){
+            var param = obj.data;
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i>详细信息"
+                ,area: '700px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailPop.innerHTML).render(param, function(){
+                        $.ajax({
+                            async:false
+                            ,type: "POST"
+                            ,data: {id:obj.data.id}
+                            ,url: "/client/user/userDetails"
+                            ,dataType: 'json'
+                            ,success: function(json){
+                                console.log(json);
+                                var userData=json.list;
+                                var htm="<div class='layui-form layui-form-pane'>\n";
+                                    htm +="  <ul class'layui-timeline'>";
+                                    for(var i=0;i<userData.length;i++){
+                                        htm +="     <li class='layui-timeline-item'>";
+                                        htm +="         <i class='layui-icon layui-timeline-axis'>&#xe63f;</i>";
+                                        htm +="         <div class='layui-timeline-content layui-text'>";
+                                        htm +="             <h3 class='layui-timeline-title'>"+userData[i].createTime+"</h3>";
+                                        htm +="             <ul>";
+                                        htm +="                 <li>所属职务："+userData[i].job+"</li>";
+                                        htm +="                 <li>所属职责："+userData[i].duties+"</li>";
+                                        htm +="                 <li>分管领导："+userData[i].leader+"</li>";
+                                        htm +="                 <li>详细地址："+userData[i].address+"</li>";
+                                        htm +="            </ul>";
+                                        htm +="         </div>";
+                                        htm +="     </li>";
+                                    }
+                                    htm +="     <li class='layui-timeline-item'>";
+                                    htm +="         <i class='layui-icon layui-timeline-axis'>&#xe63f;</i>";
+                                    htm +="     </li>";
+                                    htm +="  </ul>";
+                                    htm +="</div>";
+                                    // 动态获取弹出层对象
+                                    $("#detailDiv").empty().append(htm);
+                                }
+                            });
+                        });
+                    form.render();
+                }
             });
         }
 

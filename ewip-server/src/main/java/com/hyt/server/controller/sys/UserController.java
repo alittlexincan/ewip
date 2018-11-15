@@ -1,6 +1,7 @@
 package com.hyt.server.controller.sys;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
@@ -12,10 +13,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @Author: JiangXincan
@@ -193,5 +191,12 @@ public class UserController {
             return  ResultResponse.make(200,"查询受众成功", users);
         }
         return ResultResponse.make(500,"查询受众失败", null);
+    }
+
+    @PostMapping("/userDetails")
+    public JSONObject userDetails( @RequestParam Map<String,Object> map) {
+        JSONObject json=this.userService.userDetails(map);
+        System.out.println(json);
+        return json;
     }
 }

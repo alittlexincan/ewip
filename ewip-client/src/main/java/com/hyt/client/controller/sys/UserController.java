@@ -1,5 +1,6 @@
 package com.hyt.client.controller.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IUserService;
 import org.apache.shiro.SecurityUtils;
@@ -91,6 +92,18 @@ public class UserController {
     @GetMapping("/list")
     public JSONObject selectList(@RequestParam Map<String,Object> map){
         return this.userService.selectList(map);
+    }
+
+
+    /**
+     * 查询受众的详细信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/userDetails")
+    public JSONObject userDetails(@RequestParam Map<String,Object> map){
+
+        return this.userService.userDetails(map);
     }
 
 }

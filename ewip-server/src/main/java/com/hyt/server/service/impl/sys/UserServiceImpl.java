@@ -1,5 +1,7 @@
 package com.hyt.server.service.impl.sys;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
@@ -73,5 +75,13 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
     @Override
     public List<User> selectList(Map<String, Object> map) {
         return this.userMapper.selectList(map);
+    }
+
+    @Override
+    public JSONObject userDetails(Map<String, Object> map) {
+        JSONObject json=new JSONObject();
+        List<User> list=this.userMapper.userDetails(map);
+        json.put("list",list);
+        return json;
     }
 }
