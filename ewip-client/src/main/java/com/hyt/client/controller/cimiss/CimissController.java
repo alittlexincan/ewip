@@ -45,6 +45,7 @@ public class CimissController {
             String url = this.cimissAreaShikuang.replace("{{time}}", getTime());
             log.info("cimiss请求URL:" + url);
             ResponseEntity<JSONObject> rest = restTemplate.getForEntity(url, JSONObject.class);
+            log.info("cimiss数据：" + rest);
             // rest接口抓取数据之后判断其状态码
             if(rest.getStatusCode().value() != 200){
                 result.put("status", 500);
@@ -56,6 +57,9 @@ public class CimissController {
 
             // 获取cimiss主体信息
             JSONObject body = rest.getBody();
+
+            log.info("主体信息：" + body);
+
 
             if(body.getInteger("returnCode") != 0){
                 result.put("status", 500);
