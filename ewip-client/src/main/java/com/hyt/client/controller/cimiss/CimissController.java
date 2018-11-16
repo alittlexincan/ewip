@@ -44,24 +44,11 @@ public class CimissController {
 
             String url = this.cimissAreaShikuang.replace("{{time}}", getTime());
             log.info("cimiss请求URL:" + url);
-            ResponseEntity<JSONObject> rest = restTemplate.getForEntity(url, JSONObject.class);
+            JSONObject rest = restTemplate.getForObject(url, JSONObject.class);
             log.info("cimiss数据：" + rest);
-            // rest接口抓取数据之后判断其状态码
-            if(rest.getStatusCode().value() != 200){
-                result.put("status", 500);
-                result.put("msg", "CIMISS接口调用错误");
-                result.put("ulr", url);
-                log.info(result.toJSONString());
-                return result;
-            }
-
-            // 获取cimiss主体信息
-            JSONObject body = rest.getBody();
-
-            log.info("主体信息：" + body);
 
 
-            if(body.getInteger("returnCode") != 0){
+            if(rest.getInteger("returnCode") != 0){
                 result.put("status", 500);
                 result.put("msg", "CIMISS没有数据或读取错误");
                 log.info(result.toJSONString());
@@ -69,7 +56,7 @@ public class CimissController {
             }
 
             // 存储cimiss数据
-            JSONArray cimissArray = body.getJSONArray("DS");
+            JSONArray cimissArray = rest.getJSONArray("DS");
 
             // 获取阈值信息
             JSONObject alarm = this.alarmThresholdService.select(map);

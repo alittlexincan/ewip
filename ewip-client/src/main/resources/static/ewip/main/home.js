@@ -95,7 +95,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
         ,shikuang: data => {
             $("#maxTem").attr("title", data.TEM_Max + "℃").val(data.TEM_Max + "℃"); // 最高气温
             $("#minTem").attr("title", data.TEM_Min + "℃").val(data.TEM_Min + "℃"); // 最低气温
-            $("#pre").attr("title", data.PRE_1h).val(data.PRE_1h + "mm"); // 降水
+            $("#pre").attr("title", data.PRE_1h + "mm").val(data.PRE_1h + "mm"); // 降水
             $("#rhu").attr("title", data.RHU + "%").val(data.RHU + "%"); // 湿度
             $("#winS").attr("title", data.WIN_S_Avg_2mi + "米/秒").val(data.WIN_S_Avg_2mi + "米/秒"); // 风速
             $("#prs").attr("title", data.PRS + "mm").val(data.PRS + "hpa"); // 气压
@@ -180,74 +180,150 @@ layui.use(["index","table","form","laytpl","layer"], function(){
          * 预警信息绑定地图上
          */
         ,initMapStationInfo : param => {
+            $.ajax({
+                async:true,
+                type: "GET",
+                timeout: 60000,
+                url: "/client/cimiss/shikuang",
+                data: {},
+                dataType: "json",
+                success: function(res) {
 
-            //创建图片对象
-            let createIcon = iconUrl =>{
-                return new T.Icon({
-                    iconUrl: iconUrl
-                    ,iconSize: new T.Point(40, 40)
-                    ,iconAnchor: new T.Point(20, 40)
-                });
-            };
+                    if(res.status == 500) return;
 
-            // 点击图标显示弹出层信息
-            let content = data => {
-                let html ="<div>";
-                    html +="    <ul style='padding-bottom: 3px;display: inline-block;'>站点名称："+data.Station_Name+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>温度："+data.TEM+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;'>湿度："+data.RHU+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;'>风向："+data.WIN_D_Avg_2mi+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;'>风速："+data.WIN_S_Avg_2mi+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;'>气压："+data.PRS+"</ul>";
-                    html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>降水量："+data.PRE_1h+"</ul>";
-                    if(data.hasOwnProperty('PreMsg')){
-                        html +="    <ul style='padding-bottom: 3px;'>温度告警信息：" + data.PreMsg + "</ul>";
-                    }
-                    if(data.hasOwnProperty('RainMsg')){
-                        html +="    <ul style='padding-bottom: 3px;'>降水告警信息：" + data.RainMsg + "</ul>";
-                    }
-                    html +="</div>";
+                    //创建图片对象
+                    let createIcon = iconUrl =>{
+                        return new T.Icon({
+                            iconUrl: iconUrl
+                            ,iconSize: new T.Point(40, 40)
+                            ,iconAnchor: new T.Point(20, 40)
+                        });
+                    };
 
-                return html;
-            };
+                    // 点击图标显示弹出层信息
+                    let content = data => {
+                        let html ="<div>";
+                        html +="    <ul style='padding-bottom: 3px;display: inline-block;'>站点名称："+data.Station_Name+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>温度："+data.TEM+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;'>湿度："+data.RHU+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;'>风向："+data.WIN_D_Avg_2mi+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;'>风速："+data.WIN_S_Avg_2mi+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;'>气压："+data.PRS+"</ul>";
+                        html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>降水量："+data.PRE_1h+"</ul>";
+                        if(data.hasOwnProperty('PreMsg')){
+                            html +="    <ul style='padding-bottom: 3px;'>温度告警信息：" + data.PreMsg + "</ul>";
+                        }
+                        if(data.hasOwnProperty('RainMsg')){
+                            html +="    <ul style='padding-bottom: 3px;'>降水告警信息：" + data.RainMsg + "</ul>";
+                        }
+                        html +="</div>";
 
-            // 信息窗口展开事件
-            let openInfo = (content,e) =>{
-                let point = e.lnglat;	            // 创建标注
-                let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
-                bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
-            };
+                        return html;
+                    };
 
-            // 图标点击事件
-            let addClickHandler = (content,marker)=>{
-                marker.addEventListener("click",function(e){
-                    openInfo(content,e)
-                });
-            };
+                    // 信息窗口展开事件
+                    let openInfo = (content,e) =>{
+                        let point = e.lnglat;	            // 创建标注
+                        let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
+                        bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+                    };
 
-            // 查询发布,解除数据(1:发布，2:解除)
-            active.getData({ async:false, type:"GET",timeout:60 * 1000, url: "/client/cimiss/shikuang", data:{}}, data => {
-                if(data.code == 500) return;
+                    // 图标点击事件
+                    let addClickHandler = (content,marker)=>{
+                        marker.addEventListener("click",function(e){
+                            openInfo(content,e)
+                        });
+                    };
 
-                let shikuang = null, currentStation = $("stationId").val();
 
-                data.forEach( station => {
+                    let shikuang = null, currentStation = $("#stationId").val();
 
-                    if(station.Station_Id_C == currentStation){
-                        shikuang = station;
-                    }
-                    let icon = createIcon("/client/images/map/station_"+station.Type+".png");			// 创建图标对象
-                    let marker = new T.Marker(new T.LngLat(station.Lon,station.Lat), {icon: icon});  	// 创建标注
-                    // 将标注添加到地图中
-                    bdMap.addOverLay(marker);
-                    // 追加图标点击事件
-                    addClickHandler(content(station),marker);
-                });
+                    res.data.forEach( station => {
 
-                // 实况信息渲染
-                active.shikuang(shikuang);
+                        if(station.Station_Id_C == currentStation){
+                            shikuang = station;
+                        }
+                        let icon = createIcon("/client/images/map/station_"+station.Type+".png");			// 创建图标对象
+                        let marker = new T.Marker(new T.LngLat(station.Lon,station.Lat), {icon: icon});  	// 创建标注
+                        // 将标注添加到地图中
+                        bdMap.addOverLay(marker);
+                        // 追加图标点击事件
+                        addClickHandler(content(station),marker);
+                    });
 
+                    // 实况信息渲染
+                    active.shikuang(shikuang);
+
+                }
             });
+
+            // //创建图片对象
+            // let createIcon = iconUrl =>{
+            //     return new T.Icon({
+            //         iconUrl: iconUrl
+            //         ,iconSize: new T.Point(40, 40)
+            //         ,iconAnchor: new T.Point(20, 40)
+            //     });
+            // };
+            //
+            // // 点击图标显示弹出层信息
+            // let content = data => {
+            //     let html ="<div>";
+            //         html +="    <ul style='padding-bottom: 3px;display: inline-block;'>站点名称："+data.Station_Name+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>温度："+data.TEM+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;'>湿度："+data.RHU+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;'>风向："+data.WIN_D_Avg_2mi+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;'>风速："+data.WIN_S_Avg_2mi+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;'>气压："+data.PRS+"</ul>";
+            //         html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>降水量："+data.PRE_1h+"</ul>";
+            //         if(data.hasOwnProperty('PreMsg')){
+            //             html +="    <ul style='padding-bottom: 3px;'>温度告警信息：" + data.PreMsg + "</ul>";
+            //         }
+            //         if(data.hasOwnProperty('RainMsg')){
+            //             html +="    <ul style='padding-bottom: 3px;'>降水告警信息：" + data.RainMsg + "</ul>";
+            //         }
+            //         html +="</div>";
+            //
+            //     return html;
+            // };
+            //
+            // // 信息窗口展开事件
+            // let openInfo = (content,e) =>{
+            //     let point = e.lnglat;	            // 创建标注
+            //     let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
+            //     bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+            // };
+            //
+            // // 图标点击事件
+            // let addClickHandler = (content,marker)=>{
+            //     marker.addEventListener("click",function(e){
+            //         openInfo(content,e)
+            //     });
+            // };
+            //
+            // // 查询发布,解除数据(1:发布，2:解除)
+            // active.getData({ async:false, type:"GET",timeout:60 * 1000, url: "/client/cimiss/shikuang", data:{}}, data => {
+            //     if(data.code == 500) return;
+            //
+            //     let shikuang = null, currentStation = $("stationId").val();
+            //
+            //     data.forEach( station => {
+            //
+            //         if(station.Station_Id_C == currentStation){
+            //             shikuang = station;
+            //         }
+            //         let icon = createIcon("/client/images/map/station_"+station.Type+".png");			// 创建图标对象
+            //         let marker = new T.Marker(new T.LngLat(station.Lon,station.Lat), {icon: icon});  	// 创建标注
+            //         // 将标注添加到地图中
+            //         bdMap.addOverLay(marker);
+            //         // 追加图标点击事件
+            //         addClickHandler(content(station),marker);
+            //     });
+            //
+            //     // 实况信息渲染
+            //     active.shikuang(shikuang);
+            //
+            // });
 
         }
 
