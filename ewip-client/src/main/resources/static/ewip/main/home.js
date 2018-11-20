@@ -93,12 +93,12 @@ layui.use(["index","table","form","laytpl","layer"], function(){
         }
 
         ,shikuang: data => {
-            $("#maxTem").attr("title", data.TEM_Max + "℃").val(data.TEM_Max + "℃"); // 最高气温
-            $("#minTem").attr("title", data.TEM_Min + "℃").val(data.TEM_Min + "℃"); // 最低气温
-            $("#pre").attr("title", data.PRE_1h + "mm").val(data.PRE_1h + "mm"); // 降水
-            $("#rhu").attr("title", data.RHU + "%").val(data.RHU + "%"); // 湿度
-            $("#winS").attr("title", data.WIN_S_Avg_2mi + "米/秒").val(data.WIN_S_Avg_2mi + "米/秒"); // 风速
-            $("#prs").attr("title", data.PRS + "mm").val(data.PRS + "hpa"); // 气压
+            $("#maxTem").attr("title", data.TEM_Max + "℃").empty().append(data.TEM_Max + "℃"); // 最高气温
+            $("#minTem").attr("title", data.TEM_Min + "℃").empty().append(data.TEM_Min + "℃"); // 最低气温
+            $("#pre").attr("title", data.PRE_1h + "mm").empty().append(data.PRE_1h + "mm"); // 降水
+            $("#rhu").attr("title", data.RHU + "%").empty().append(data.RHU + "%"); // 湿度
+            $("#winS").attr("title", data.WIN_S_Avg_2mi + "米/秒").empty().append(data.WIN_S_Avg_2mi + "米/秒"); // 风速
+            $("#prs").attr("title", data.PRS + "mm").empty().append(data.PRS + "hpa"); // 气压
         }
         // /**
         //  * 初始化7天天气折线图
