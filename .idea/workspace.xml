@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="修改系统主页cimiss6要素展示信息">
-      <change beforePath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" beforeDir="false" afterPath="$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css" afterDir="false" />
+    <list default="true" id="7d92f9ef-7457-41ba-a9d9-9c237dcce838" name="Default" comment="修改系统主页预警无数据占用空间问题">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/ewip-monitor/target/" />
@@ -26,7 +26,7 @@
     <session id="973614385">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="28" />
+          <entry key="project.closed" value="29" />
           <entry key="project.open.time.0" value="7" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.11" value="1" />
@@ -54,7 +54,7 @@
           <entry key="HTML" value="3195" />
           <entry key="JAVA" value="8210" />
           <entry key="JavaScript" value="9794" />
-          <entry key="PLAIN_TEXT" value="796" />
+          <entry key="PLAIN_TEXT" value="809" />
           <entry key="Properties" value="357" />
           <entry key="SQL" value="113" />
           <entry key="XML" value="1865" />
@@ -106,7 +106,7 @@
           <entry key="java" value="8210" />
           <entry key="js" value="9794" />
           <entry key="properties" value="357" />
-          <entry key="txt" value="772" />
+          <entry key="txt" value="785" />
           <entry key="xml" value="1978" />
           <entry key="yml" value="26" />
         </counts>
@@ -161,8 +161,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="148" column="15" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+            <state relative-caret-position="251">
+              <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
             </state>
           </provider>
         </entry>
@@ -486,7 +486,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/ewip.iml" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542701295526" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542701331294" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ewip-fujin/ewip" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -688,14 +688,7 @@
       <workItem from="1542160462804" duration="1126000" />
       <workItem from="1542165703792" duration="30819000" />
       <workItem from="1542331155956" duration="5660000" />
-      <workItem from="1542692815411" duration="3811000" />
-    </task>
-    <task id="LOCAL-00004" summary="角色模块开发完毕">
-      <created>1538200515355</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1538200515355</updated>
+      <workItem from="1542692815411" duration="3966000" />
     </task>
     <task id="LOCAL-00005" summary="权限管理模块开发完毕">
       <created>1538209584287</created>
@@ -1033,11 +1026,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542694298275</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="修改系统主页预警无数据占用空间问题">
+      <created>1542701355741</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1542701355741</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="566713000" />
+    <option name="totallyTimeSpent" value="566868000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1051,7 +1051,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978355" visible="true" weight="0.24626866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978355" visible="true" weight="0.24626866" />
       <window_info id="Structure" order="1" sideWeight="0.5021645" side_tool="true" weight="0.2153518" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1061,7 +1061,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867885" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4978678" visible="true" weight="0.49301827" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978678" weight="0.32975295" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1933405" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1093,7 +1093,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="预警发布驳回、预警状态列表开发完毕，测试完毕" />
     <MESSAGE value="渠道管理添加启用禁用功能" />
     <MESSAGE value="预警编辑、一键发布、策略配置添加渠道启用禁用过滤" />
     <MESSAGE value="渠道添加、修改功能，添加启用禁用" />
@@ -1118,7 +1117,8 @@
     <MESSAGE value="获取cimiss数据时添加log日志" />
     <MESSAGE value="修改告警信息" />
     <MESSAGE value="修改系统主页cimiss6要素展示信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改系统主页cimiss6要素展示信息" />
+    <MESSAGE value="修改系统主页预警无数据占用空间问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改系统主页预警无数据占用空间问题" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/java/com/hyt/client/controller/sys/MenuController.java">
@@ -1483,8 +1483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ewip-client/src/main/resources/static/css/ewip.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="148" column="15" selection-start-line="148" selection-start-column="15" selection-end-line="148" selection-end-column="15" />
+        <state relative-caret-position="251">
+          <caret line="150" lean-forward="true" selection-start-line="150" selection-end-line="150" />
         </state>
       </provider>
     </entry>
