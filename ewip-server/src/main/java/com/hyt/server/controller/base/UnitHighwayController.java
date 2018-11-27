@@ -1,9 +1,13 @@
 package com.hyt.server.controller.base;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.base.UnitHighway;
+import com.hyt.server.entity.base.UnitHospital;
 import com.hyt.server.service.base.IUnitHighwayService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,27 @@ public class UnitHighwayController {
     @Autowired
     private IUnitHighwayService unitHighwayService;
 
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitHighway unitHighway = JSON.parseObject(json.toJSONString(), new TypeReference<UnitHighway>() {});
+        int num = this.unitHighwayService.insert(unitHighway);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",unitHighway);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitHighway unitHighway = JSON.parseObject(json.toJSONString(), new TypeReference<UnitHighway>() {});
+        int num = this.unitHighwayService.update(unitHighway);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
     @ApiOperation(value="删除高速公路信息",httpMethod = "DELETE", notes="根据url的高速公路ID来删除高速公路信息")
     @ApiImplicitParams({

@@ -12,51 +12,116 @@ public class UnitDanger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
-
+    @Column(name = "district",length = 64)
     private String district;
-
+    @Column(name = "name",length = 64)
     private String name;
-
+    @Column(name = "project",length = 64)
     private String project;
-
+    @Column(name = "building",length = 64)
     private String building;
-
+    @Column(name = "number",length = 64)
     private Integer number;
-
+    @Column(name = "address",length = 100)
     private String address;
-
+    @Column(name = "lon" )
     private Double lon;
-
+    @Column(name = "lat" )
     private Double lat;
-
+    @Column(name = "product",length = 64)
     private String product;
-
+    @Column(name = "tanks",length = 64)
     private String tanks;
-
+    @Column(name = "machine",length = 1)
     private Integer machine;
-
+    @Column(name = "lightning_people",length = 64)
     private String lightningPeople;
-
+    @Column(name = "lightning_phone",length = 64)
     private String lightningPhone;
-
+    @Column(name = "area",length = 64)
     private String area;
-
+    @Column(name = "leader",length = 64)
     private String leader;
-
+    @Column(name = "lightning_leader",length = 64)
     private String lightningLeader;
-
+    @Column(name = "cadres",length = 64)
     private String cadres;
-
+    @Column(name = "test_leader",length = 64)
     private String testLeader;
-
+    @Column(name = "test_member",length = 64)
     private String testMember;
 
     @JSONField(format="yyyy-MM-dd")
     private Date testDate;
-
+    @Column(name = "report",length = 64)
     private String report;
-
+    @Column(name = "status",length = 64)
     private String status;
+
+    @Column(name = "createUser",length = 64)
+    private String createUser;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "updateUser",length = 64)
+    private String updateUser;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "update_time")
+    private Date updateTime;
+
+    private String createUserName;
+    private String updateUserName;
+
+    public String getCreateUserName() {
+        return createUserName;
+    }
+
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName;
+    }
+
+    public String getUpdateUserName() {
+        return updateUserName;
+    }
+
+    public void setUpdateUserName(String updateUserName) {
+        this.updateUserName = updateUserName;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public String getId() {
         return id;

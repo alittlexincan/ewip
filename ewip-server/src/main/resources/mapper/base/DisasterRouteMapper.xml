@@ -11,28 +11,33 @@
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="length" property="length" jdbcType="VARCHAR" />
     <result column="road_time" property="roadTime" jdbcType="DOUBLE" />
-    <result column="range" property="range" jdbcType="VARCHAR" />
+    <result column="ranges" property="ranges" jdbcType="VARCHAR" />
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, type, color, level, name, points, path, length, road_time, range
+    id, type, color, level, name, points, path, length, road_time, ranges
   </sql>
   <!-- 查询灾害路径信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    *
-    FROM
-    base_disaster_route
+    d.*,e.name createUserName,em.name updateUserName
+    FROM base_disaster_route d
+    left join employee e on d.createUser=e.id
+    left join employee em on d.updateUser=em.id
     where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="type != null and type != ''">AND type = #{type}</if>
-    <if test="color != null and color != ''">AND color = #{color} </if>
-    <if test="level != null and level != ''">AND level = #{level} </if>
+    <if test="id != null and id != ''">AND d.id = #{id}</if>
+    <if test="type != null and type != ''">AND d.type = #{type}</if>
+    <if test="color != null and color != ''">AND d.color = #{color} </if>
+    <if test="level != null and level != ''">AND d.level = #{level} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY d.create_time DESC
       </otherwise>
     </choose>
   </select>

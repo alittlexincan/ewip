@@ -10,6 +10,10 @@
     <result column="damage" property="damage" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
 
   <sql id="Base_Column_List" >
@@ -18,21 +22,22 @@
   <!-- 查询灾害种类信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List" />
-    FROM
-    base_disaster_type
+    d.*,e.name createUserName,em.name updateUserName
+    FROM base_disaster_type d
+    left join employee e on d.createUser=e.id
+    left join employee em on d.updateUser=em.id
     where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="type != null and type != ''">AND type = #{type}</if>
-    <if test="color != null and color != ''">AND color = #{color} </if>
-    <if test="level != null and level != ''">AND level = #{level} </if>
-    <if test="damage != null and damage != ''">AND damage = #{damage} </if>
+    <if test="id != null and id != ''">AND d.id = #{id}</if>
+    <if test="type != null and type != ''">AND d.type = #{type}</if>
+    <if test="color != null and color != ''">AND d.color = #{color} </if>
+    <if test="level != null and level != ''">AND d.level = #{level} </if>
+    <if test="damage != null and damage != ''">AND d.damage = #{damage} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY d.create_time DESC
       </otherwise>
     </choose>
   </select>

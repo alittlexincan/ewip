@@ -1,6 +1,9 @@
 package com.hyt.server.controller.base;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
@@ -26,6 +29,30 @@ public class FacilityPublishController {
 
     @Autowired
     private IFacilityPublishService facilityPublishService;
+
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        FacilityPublish facilityPublish = JSON.parseObject(json.toJSONString(), new TypeReference<FacilityPublish>() {});
+        int num = this.facilityPublishService.insert(facilityPublish);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",facilityPublish);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        FacilityPublish facilityPublish = JSON.parseObject(json.toJSONString(), new TypeReference<FacilityPublish>() {});
+        int num = this.facilityPublishService.update(facilityPublish);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
 
     @ApiOperation(value="删除发布设施信息",httpMethod = "DELETE", notes="根据url的发布设施ID来删除发布设施信息")

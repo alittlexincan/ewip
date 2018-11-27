@@ -1,8 +1,12 @@
 package com.hyt.server.controller.base;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.base.UnitHospital;
 import com.hyt.server.entity.base.UnitReservoir;
 import com.hyt.server.service.base.IUnitReservoirService;
 import io.swagger.annotations.*;
@@ -25,6 +29,29 @@ public class UnitReservoirController {
 
     @Autowired
     private IUnitReservoirService unitReservoirService;
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitReservoir unitReservoir = JSON.parseObject(json.toJSONString(), new TypeReference<UnitReservoir>() {});
+        int num = this.unitReservoirService.insert(unitReservoir);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",unitReservoir);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitReservoir unitReservoir = JSON.parseObject(json.toJSONString(), new TypeReference<UnitReservoir>() {});
+        int num = this.unitReservoirService.update(unitReservoir);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
 
     @ApiOperation(value = "删除水库信息", httpMethod = "DELETE", notes = "根据url的水库ID来删除水库信息")

@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.base.DisasterRoute;
+import com.hyt.server.entity.base.FacilityOffice;
 import com.hyt.server.service.base.IDisasterRouteService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,29 @@ public class DisasterRouteController {
     @Autowired
     private IDisasterRouteService disasterRouteService;
 
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        DisasterRoute disasterRoute = JSON.parseObject(json.toJSONString(), new TypeReference<DisasterRoute>() {});
+        int num = this.disasterRouteService.insert(disasterRoute);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",disasterRoute);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        DisasterRoute disasterRoute = JSON.parseObject(json.toJSONString(), new TypeReference<DisasterRoute>() {});
+        int num = this.disasterRouteService.update(disasterRoute);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
     @ApiOperation(value="删除灾害路径信息",httpMethod = "DELETE", notes="根据url的灾害路径ID来删除灾害路径信息")
     @ApiImplicitParams({

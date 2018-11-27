@@ -1,8 +1,12 @@
 package com.hyt.server.controller.base;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.base.FacilityPublish;
 import com.hyt.server.entity.base.UnitAttractions;
 import com.hyt.server.service.base.IUnitAttractionsService;
 import io.swagger.annotations.*;
@@ -25,6 +29,30 @@ public class UnitAttractionsController {
 
     @Autowired
     private IUnitAttractionsService unitAttractionsService;
+
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitAttractions unitAttractions = JSON.parseObject(json.toJSONString(), new TypeReference<UnitAttractions>() {});
+        int num = this.unitAttractionsService.insert(unitAttractions);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",unitAttractions);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitAttractions unitAttractions = JSON.parseObject(json.toJSONString(), new TypeReference<UnitAttractions>() {});
+        int num = this.unitAttractionsService.update(unitAttractions);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
 
     @ApiOperation(value="删除旅游景区信息",httpMethod = "DELETE", notes="根据url的旅游景区ID来删除旅游景区信息")

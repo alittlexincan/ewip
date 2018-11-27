@@ -1,8 +1,12 @@
 package com.hyt.server.controller.base;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.base.UnitAgriculturPark;
 import com.hyt.server.entity.base.UnitStation;
 import com.hyt.server.service.base.IUnitStationService;
 import io.swagger.annotations.*;
@@ -25,6 +29,29 @@ public class UnitStationController {
 
     @Autowired
     private IUnitStationService unitStationService;
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitStation unitStation = JSON.parseObject(json.toJSONString(), new TypeReference<UnitStation>() {});
+        int num = this.unitStationService.insert(unitStation);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",unitStation);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitStation unitStation = JSON.parseObject(json.toJSONString(), new TypeReference<UnitStation>() {});
+        int num = this.unitStationService.update(unitStation);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
 
     @ApiOperation(value="删除车站信息",httpMethod = "DELETE", notes="根据url的车站ID来删除车站信息")

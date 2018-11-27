@@ -1,9 +1,13 @@
 package com.hyt.server.controller.base;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.base.UnitBridge;
+import com.hyt.server.entity.base.UnitHighway;
 import com.hyt.server.service.base.IUnitBridgeService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,28 @@ public class UnitBridgeController {
 
     @Autowired
     private IUnitBridgeService unitBridgeService;
+
+    @PostMapping("/insert")
+    public ResultObject<Object> insert(@RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitBridge unitBridge = JSON.parseObject(json.toJSONString(), new TypeReference<UnitBridge>() {});
+        int num = this.unitBridgeService.insert(unitBridge);
+        if(num>0){
+            return ResultResponse.make(200,"添加成功",unitBridge);
+        }
+        return ResultResponse.make(500,"添加失败",null);
+    }
+
+    @PostMapping("/update")
+    public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
+        JSONObject json = new JSONObject(map);
+        UnitBridge unitBridge = JSON.parseObject(json.toJSONString(), new TypeReference<UnitBridge>() {});
+        int num = this.unitBridgeService.update(unitBridge);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
+    }
 
 
     @ApiOperation(value="删除桥梁信息",httpMethod = "DELETE", notes="根据url的桥梁ID来删除桥梁信息")
