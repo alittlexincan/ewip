@@ -56,4 +56,20 @@ public interface IUnitHighwayService {
          */
         @GetMapping("/unitHighway/list")
         JSONObject selectList(@RequestParam Map<String,Object> map);
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitHighway/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitHighway/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
 }

@@ -2,6 +2,8 @@ package com.hyt.client.controller.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.base.IUnitPlantAreaService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,32 @@ public class UnitPlantAreaController {
 
         @Autowired
         private IUnitPlantAreaService unitPlantAreaService;
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/insert")
+        JSONObject insert(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("createUser", employee.getString("id"));
+                return this.unitPlantAreaService.insert(map);
+        }
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/update")
+        JSONObject update(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("updateUser", employee.getString("id"));
+                return this.unitPlantAreaService.update(map);
+        }
 
         /**
          * 根据农作物种植区ID删除农作物种植区信息

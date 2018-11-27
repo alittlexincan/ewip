@@ -48,5 +48,23 @@ public interface IDisasterRouteService {
          * @return
          */
         @GetMapping("/disasterRoute/list")
-        JSONObject selectList(@RequestParam Map<String,Object> map);
+        JSONObject selectList(@RequestParam Map<String, Object> map);
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/disasterRoute/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/disasterRoute/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
+
+
 }

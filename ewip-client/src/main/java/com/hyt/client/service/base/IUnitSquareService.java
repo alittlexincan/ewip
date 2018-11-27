@@ -56,4 +56,21 @@ public interface IUnitSquareService {
          */
         @GetMapping("/unitSquare/list")
         JSONObject selectList(@RequestParam Map<String,Object> map);
+
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitSquare/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitSquare/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
 }
