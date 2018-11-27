@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.standard.IStandardMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.standard.Standard" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, district, area, people, lon, lat, unit, principal, phone, description
+  </sql>
+  <!-- 查询信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT s.*,e.name createUserName,em.name updateUserName FROM standard s
+    left join employee e on s.createUser=e.id
+    left join employee em on s.updateUser=em.id
+    where 1=1
+    <if test="id != null and id != ''">AND s.id = #{id}</if>
+    <if test="name != null and name != ''">AND s.name like '%${name}%' </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY s.create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>
