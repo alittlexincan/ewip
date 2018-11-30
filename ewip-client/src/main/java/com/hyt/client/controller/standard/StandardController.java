@@ -70,7 +70,7 @@ public class StandardController extends BaseController {
         String fileUrl = UploadFileUtil.uploadFile(file, uploadPath, standard);
         // 上传成功走后台添加数据
         if(fileUrl!=null) {
-            // 添加渠道数据
+            // 添加文件路径数据
             map.put("path", fileUrl);
         }
         return this.standardService.insert(map);

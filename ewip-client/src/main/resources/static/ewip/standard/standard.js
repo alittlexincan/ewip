@@ -262,6 +262,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'ajaxFileUplo
     form.verify({
         name: function (value) {
             if(value.length == 0)  return '请填写名称';
+        },file: function (value) {
+            if(value.length == 0)  return '请上传文件';
         }
     });
     /**
