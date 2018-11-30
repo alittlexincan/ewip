@@ -131,7 +131,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             var checkStatus = table.checkStatus('table')
                 ,data = checkStatus.data;
             if(data.length == 0){
-                layer.msg('请选中地区进行删除', {time: 2000});
+                layer.msg('请选中数据进行删除', {time: 2000});
                 return false;
             }
 
