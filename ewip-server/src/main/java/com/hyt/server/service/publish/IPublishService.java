@@ -20,4 +20,13 @@ public interface IPublishService {
     JSONObject publish(@RequestBody Map<String, Object> map);
 
 
+    /**
+     * 预警调用分发平台邮件发送接口
+     * @param json
+     */
+    @PostMapping("/email/send")
+    JSONObject sendEmail(@RequestBody JSONObject json);
+
+
+
 }

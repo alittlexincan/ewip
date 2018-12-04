@@ -176,4 +176,24 @@ public class EmployeeController {
         }
         return ResultResponse.make(500,"查询用户拥有配置的角色失败", null);
     }
+
+    @PostMapping("/verifyPwd")
+    public ResultObject<Object> verifyPwd( @RequestParam Map<String,Object> map) {
+        Employee employee = this.employeeService.selectById(map);
+        if(employee.getLoginPassword().toString().equals(map.get("loginPass").toString())){
+            return ResultResponse.make(200,"原密码输入正确",employee);
+        }else{
+            return ResultResponse.make(500,"原密码输入不正确",null);
+        }
+    }
+
+    @PostMapping("/updatePwd")
+    public ResultObject<Object> updatePwd( @RequestParam Map<String,Object> map) {
+        int num = this.employeeService.updatePwd(map);
+        if(num>0){
+            return ResultResponse.make(200,"修改密码成功");
+        }
+        return ResultResponse.make(500,"修改密码失败");
+    }
+
 }

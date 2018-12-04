@@ -153,4 +153,14 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
         this.employeeMapper.deleteByEmployeeId(map);
         return 1;
     }
+
+    /**
+     * 修改密码
+     * @param map
+     * @return
+     */
+    @Override
+    public int updatePwd(Map<String, Object> map) {
+        return this.employeeMapper.updatePwd(map);
+    }
 }

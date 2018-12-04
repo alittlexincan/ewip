@@ -144,4 +144,9 @@
         )
     </delete>
 
+    <update id="updatePwd">
+        UPDATE employee SET login_password=#{newPwd} WHERE id = #{id}
+    </update>
+
+
 </mapper>

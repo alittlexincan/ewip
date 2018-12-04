@@ -1,5 +1,6 @@
 package com.hyt.server.service.impl.sys;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
@@ -42,5 +43,18 @@ public class OrganizationServiceImpl extends AbstractService<Organization> imple
     @Override
     public Organization selectById(String id){
         return this.organizationMapper.selectById(id);
+    }
+
+    /**
+     * 查询机构信息
+     * @param map
+     * @return
+     */
+    @Override
+    public JSONObject selectOrg(Map<String, Object> map) {
+        JSONObject json=new JSONObject();
+        List<Organization> list=organizationMapper.selectOrg(map);
+        json.put("list",list);
+        return json;
     }
 }
