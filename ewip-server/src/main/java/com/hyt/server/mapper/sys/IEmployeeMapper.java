@@ -60,5 +60,10 @@ public interface IEmployeeMapper extends IBaseMapper<Employee> {
      */
     int deleteByEmployeeId(Map<String, Object> map);
 
-
+    /**
+     * 修改密码
+     * @param map
+     * @return
+     */
+    int updatePwd(Map<String,Object> map);
 }

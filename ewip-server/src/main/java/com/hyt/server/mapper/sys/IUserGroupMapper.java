@@ -31,5 +31,10 @@ public interface IUserGroupMapper extends IBaseMapper<UserGroup> {
      * @return
      */
     UserGroup selectById(@Param(value = "id") String id);
-
+    /**
+     * 查询群组信息
+     * @param map
+     * @return
+     */
+    List<UserGroup> selectGroup(Map<String,Object> map);
 }
