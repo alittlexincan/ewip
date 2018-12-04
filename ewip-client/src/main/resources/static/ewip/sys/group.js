@@ -12,7 +12,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
         ,selectTree = layui.selectTree
-        ,zTree = layui.zTree;
+        ,zTree = layui.zTree
+        ,employee = layui.sessionData("ewip").employee; // 当前登录用户信息
+
+    let typeFormat = function(d){
+        return d.type == 1? '责任人群组' : '基层防御群组';
+    };
 
     /**
      * 加载表格
@@ -32,6 +37,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             ,{field: 'channelName', title: '所属渠道'}
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'organizationName', title: '所属机构'}
+            ,{field: 'type', title: '类型' , templet: typeFormat}
             ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
@@ -52,6 +58,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             },
             where: { //设定异步数据接口的额外参数，任意设
                 name: param == undefined ? '' : param.name
+                ,areaId: param == undefined ? '' : param.areaId
                 ,organizationId: param == undefined ? '' : param.organizationId
             }
         });
@@ -77,12 +84,62 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
     /**
      * 初始化下拉树(机构)
      */
+    // selectTree.render({
+    //     'id': 'searchOrganizationId'
+    //     ,'url': '/client/tree/organization'
+    //     ,'isMultiple': false
+    //     ,'isVerify': false
+    // });
+
+    /**
+     * 初始化地区树
+     */
     selectTree.render({
-        'id': 'searchOrganizationId'
-        ,'url': '/client/tree/organization'
+        'id': 'searchAreaId'
+        ,'url': '/client/tree/area'
         ,'isMultiple': false
         ,'isVerify': false
+        ,clickNode:function (event, treeId, treeNode) {
+            let areaId = treeNode.id;
+            initOrg(0,areaId);
+            //绑定树操作
+            selectTree.setValue(treeId,treeNode);
+            selectTree.hideTree();
+        }
     });
+
+
+    /**
+     * 初始化下拉机构列表
+     * @param param
+     */
+    let initOrg=function(flag,param){
+        $.ajax({
+            async:false
+            ,type: "POST"
+            ,data: {areaId:param}
+            ,url: "/client/organization/selectOrg"
+            ,dataType: 'json'
+            ,success: function(json){
+                let list=json.list;
+                var html="";
+                    html +="<option value=''>直接选择或搜索选择</option>";
+                if(list.length>0){
+                    for(var i=0;i<list.length;i++){
+                        html +="<option value='"+list[i].id+"'>"+list[i].organizationName+"</option>";
+                    }
+                    if(flag==0){
+                        $("#searchOrganizationId").empty().append(html);
+                    }else if(flag==1){
+                        $("#addOrganizationId").empty().append(html);
+                    }else{
+                        $("#updateOrganizationId").empty().append(html);
+                    }
+                }
+                form.render();
+            }
+        });
+    }
 
 
     /**
@@ -104,22 +161,22 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         ,channelId: function (value) {
             if(value.length == 0) return '请选择所属渠道';
         }
-        ,type: function (value) {
-            if(value.length == 0) return '请选择灾种类型';
-        }
         ,name: function (value) {
-            if(value.length == 0)  return '请选输入灾种名称';
-            if(value.length > 50)  return '渠道手段长度不能大于50';
+            if(value.length == 0)  return '请选输入群组名称';
+            if(value.length > 50)  return '群组名称长度不能大于50';
         }
-        ,code: function (value) {
-            if(value.length == 0) return '请输入灾种编码';
-            if(value.length != 5) return "灾种编码长度是5位";
-            var reg = /^[0-9a-zA-Z]+$/;
-            if(!reg.test(value)) return '灾种编码必须包含数字和字母';
-        }
-        ,icon: function(value){
-            if(value.length == 0) return '请上传灾种logo';
-        }
+        // ,type: function (value) {
+        //     if(value.length == 0) return '请选择灾种类型';
+        // }
+        // ,code: function (value) {
+        //     if(value.length == 0) return '请输入灾种编码';
+        //     if(value.length != 5) return "灾种编码长度是5位";
+        //     var reg = /^[0-9a-zA-Z]+$/;
+        //     if(!reg.test(value)) return '灾种编码必须包含数字和字母';
+        // }
+        // ,icon: function(value){
+        //     if(value.length == 0) return '请上传灾种logo';
+        // }
     });
 
     /**
@@ -147,30 +204,176 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
     /**
      * 初始化加载群组树
      */
-    var userGroupZtree = zTree.async({
-        id: "#organizationGroupTree",
-        setting: {
-            async:{
-                enable:true,
-                url: "/client/tree/organization/group",
-                autoParam:["id"],
-                dataType:"json",
-            },
-            check: {
-                enable: false,
-                chkboxType: {"Y":"", "N": ""},
-                chkStyle:"checkbox"
-            },
-            data: {
-                simpleData: {
-                    enable: true
+    let userGroupZtree =function() {
+        zTree.async({
+            id: "#organizationGroupTree",
+            setting: {
+                async: {
+                    enable: true,
+                    url: "/client/tree/organization/group",
+                    autoParam: ["id"],
+                    dataType: "json",
+                },
+                view: {
+                    selectedMulti: false, //是否允许多选
+                    fontCss: getFontCss
+                },
+                check: {
+                    enable: false,
+                    chkboxType: {"Y": "", "N": ""},
+                    chkStyle: "checkbox"
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                },
+                callback: {
+                    onClick: userGroupClick
                 }
-            },
-            callback:{
-                onClick:userGroupClick
+            }
+        })
+    };
+
+
+    /**
+     * 给树节点标红
+     * @param treeId
+     * @param treeNode
+     * @returns {*}
+     */
+    let getFontCss= function(treeId, treeNode) {
+        return (!!treeNode.highlight) ? {color:"#A60000", "font-weight":"bold"} : {color:"#333", "font-weight":"normal"};
+    }
+
+    /**
+     * 高亮显示并展示【指定节点s】
+     * @param treeId
+     * @param highlightNodes 需要高亮显示的节点数组
+     * @param flag             需要高亮显示的节点标识
+     */
+    let highlightAndExpand_ztree= function (treeId, highlightNodes, flag){
+        debugger;
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
+        //<1>. 先把全部节点更新为普通样式
+        var treeNodes = treeObj.transformToArray(treeObj.getNodes());
+        for (var i = 0; i < treeNodes.length; i++) {
+            treeNodes[i].highlight = false;
+            treeObj.updateNode(treeNodes[i]);
+        }
+        //<2>.收起树, 只展开根节点下的一级节点
+        close_ztree(treeId);
+        //<3>.把指定节点的样式更新为高亮显示，并展开
+        if (highlightNodes != null) {
+            for (var i = 0; i < highlightNodes.length; i++) {
+                if (flag != null && flag != "") {
+                    if (highlightNodes[i].flag == flag) {
+                        //高亮显示节点，并展开
+                        highlightNodes[i].highlight = true;
+                        treeObj.updateNode(highlightNodes[i]);
+                        //高亮显示节点的父节点的父节点....直到根节点，并展示
+                        var parentNode = highlightNodes[i].getParentNode();
+                        var parentNodes = getParentNodes_ztree(treeId, parentNode);
+                        treeObj.expandNode(parentNodes, true, false, true);
+                        treeObj.expandNode(parentNode, true, false, true);
+                    }
+                } else {
+                    //高亮显示节点，并展开
+                    highlightNodes[i].highlight = true;
+                    treeObj.updateNode(highlightNodes[i]);
+                    //高亮显示节点的父节点的父节点....直到根节点，并展示
+                    var parentNode = highlightNodes[i].getParentNode();
+                    var parentNodes = getParentNodes_ztree(treeId, parentNode);
+                    treeObj.expandNode(parentNodes, true, false, true);
+                    treeObj.expandNode(parentNode, true, false, true);
+                }
             }
         }
-    });
+    }
+
+    /**
+     * 递归得到指定节点的父节点的父节点....直到根节点
+     */
+    let getParentNodes_ztree=function(treeId, node){
+        if (node != null) {
+            var treeObj = $.fn.zTree.getZTreeObj(treeId);
+            var parentNode = node.getParentNode();
+            return getParentNodes_ztree(treeId, parentNode);
+        } else {
+            return node;
+        }
+    }
+
+    /**
+     * 设置树节点字体样式
+     */
+    let setFontCss_ztree=function (treeId, treeNode) {
+        if (treeNode.id == 0) {
+            //根节点
+            return {color:"#333", "font-weight":"bold"};
+        } else if (treeNode.isParent == false){
+            //叶子节点
+            return (!!treeNode.highlight) ? {color:"#ff0000", "font-weight":"bold"} : {color:"#660099", "font-weight":"normal"};
+        } else {
+            //父节点
+            return (!!treeNode.highlight) ? {color:"#ff0000", "font-weight":"bold"} : {color:"#333", "font-weight":"normal"};
+        }
+    }
+
+    /**
+     * 收起树：只展开根节点下的一级节点
+     * @param treeId
+     */
+    let close_ztree=function (treeId){
+        var treeObj = $.fn.zTree.getZTreeObj(treeId);
+        var nodes = treeObj.transformToArray(treeObj.getNodes());
+        var nodeLength = nodes.length;
+        for (var i = 0; i < nodeLength; i++) {
+            if (nodes[i].id == '0') {
+                //根节点：展开
+                treeObj.expandNode(nodes[i], true, true, false);
+            } else {
+                //非根节点：收起
+                treeObj.expandNode(nodes[i], false, true, false);
+            }
+        }
+    }
+    /**
+     * 移除节点
+     * @param nodeList
+     * @returns {*}
+     */
+    let removeNodes=function (nodeList) {
+        for (var i=0;i<nodeList.length;i++){
+            var node=nodeList[i];
+            if(!node.isParent&& node.code==""){
+                nodeList.splice(i,1);
+                i--;
+            }
+        }
+        return nodeList;
+    }
+
+    /**
+     * 左侧树模糊查询
+     */
+    $("#search-bt").on("click",function () {
+        autoMatch($("#keyword").val());
+    })
+    /**
+     * 根据关键字匹配
+     * @param txtObj
+     */
+    let autoMatch=function(txtObj){
+        if (txtObj.length > 0) {
+            var zTree = $.fn.zTree.getZTreeObj("organizationGroupTree");
+            var nodeList = zTree.getNodesByParamFuzzy("name", txtObj, null);
+            //模糊查询并标红
+            highlightAndExpand_ztree("organizationGroupTree", nodeList, "");
+        } else {
+            userGroupZtree();
+        }
+    }
 
 
     /**
@@ -178,7 +381,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
      * @param option
      */
     let submit = function (option) {
-        console.log(option);
         $.ajax({
             async:option.async
             ,type: option.type
@@ -211,7 +413,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加群组信息"
-                ,area: ['600px','400px']
+                ,area: ['600px','600px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset:'50px'
@@ -222,18 +424,26 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
-                        // 初始化机构下拉树
+                        let areaId = "";
+                        // 初始化地区下拉树
                         selectTree.render({
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(1,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化机构下拉树
-                        selectTree.render({
-                            'id': 'addOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                        });
+                        // selectTree.render({
+                        //     'id': 'addOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        // });
                         // 渠道下拉绑定
                         selectChannel(function (result) {
                             if(result!=null){
@@ -324,8 +534,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 修改受众信息"
-                ,area: ['600px','400px']
+                ,title: "<i class='layui-icon'>&#xe642;</i> 修改群组信息"
+                ,area: ['600px','600px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
@@ -336,6 +546,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+                        $("select[name='type']").val(param.type);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
                         // 初始化机构下拉树
                         selectTree.render({
                             'id': 'updateAreaId'
@@ -344,16 +557,24 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                             // ,'range':'#updateDiv'
                             // ,'setData':['type','name','code']
                             ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
+
                         // 初始化机构下拉树
-                        selectTree.render({
-                            'id': 'updateOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                            // ,'range':'#updateDiv'
-                            // ,'setData':['type','name','code']
-                            ,'checkNodeId': param.organizationId
-                        });
+                        // selectTree.render({
+                        //     'id': 'updateOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     // ,'range':'#updateDiv'
+                        //     // ,'setData':['type','name','code']
+                        //     ,'checkNodeId': param.organizationId
+                        // });
                         // 渠道下拉绑定
                         selectChannel(function (result) {
                             if(result!=null){
@@ -411,4 +632,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
         active[type] ? active[type].call(this) : '';
     });
 
+    initOrg(0,null);//初始化机构列表
+
+    userGroupZtree();//初始化左侧群组树
 });

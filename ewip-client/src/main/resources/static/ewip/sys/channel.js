@@ -127,6 +127,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      * @param option
      */
     let submitFile = function(option){
+        debugger;
         ajaxFileUpload.render({
             async: option.async
             ,url : option.url

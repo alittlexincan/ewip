@@ -55,7 +55,8 @@
             <dl class="layui-nav-child">
               <!--<dd><a lay-href="set/user/info.html" >基本资料</a></dd>-->
               <!--<dd><a lay-href="set/user/password.html" >修改密码</a></dd>-->
-              <!--<hr>-->
+              <dd id="updatePassword" style="text-align: center;color: black; cursor: pointer;">修改密码</dd>
+              <hr>
               <dd style="text-align: center;"><a th:href="@{/logout}">退出</a></dd>
             </dl>
           </li>
@@ -155,6 +156,36 @@
           </ul>
         </div>
       </div>
+       <!-- 添加弹出层 -->
+      <!-- 添加弹出层 -->
+      <script id="addPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+          <div class="layui-form-item">
+            <label class="layui-form-label">原密码</label>
+            <div class="layui-input-block">
+              <input type="password" id="mopwd"  name="password" lay-verify="password" autocomplete="off" placeholder="请输入原密码" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">新密码</label>
+            <div class="layui-input-block">
+              <input type="password" id="newpwd1" name="newpwd1" lay-verify="newpwd1" autocomplete="off" placeholder="请输入新密码" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">再次输入</label>
+            <div class="layui-input-block">
+              <input type="password" id="newpwd2" name="newpwd2" lay-verify="newpwd2" autocomplete="off" placeholder="请再次输入新密码" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item layui-hide" >
+            <div class="layui-input-block layui-col-md-offset4">
+              <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">修改</button>
+            </div>
+          </div>
+        </div>
+      </script>
+
 
       <!-- 页面标签 -->
       <div class="layadmin-pagetabs" id="LAY_app_tabs" style="display: none;">
@@ -198,13 +229,92 @@
     base: [['layuiadmin/']] //静态资源所在路径
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use('index',function () {
-      var $ = layui.$;
+  }).use(['index','layer','laytpl','form'],function () {
+      var $ = layui.$
+      ,layer = layui.layer		// 引用layui弹出层
+      ,laytpl = layui.laytpl		// 引用layui模板引擎
+      ,form = layui.form;		// 引用layui表单
 
       var employee =[[${session.employee}]];
       layui.sessionData('ewip', {key:'employee',value:employee});
       $(".employeeName").text(employee.name);
 
+      //修改密码
+      $("#updatePassword").on("click",function () {
+          layer.open({
+              type: 1
+              ,title: "<i class='layui-icon'>&#xe642;</i>修改密码"
+              ,area: ['520px','300px']
+              ,shade: 0.3
+              ,maxmin:true
+              ,offset:'50px'
+              ,btn: ['修改', '取消']
+              ,content:"<div id='addDiv' style='padding:20px 20px 0 20px'></div>"
+              ,success: function(layero,index){
+                  // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                  laytpl(addPop.innerHTML).render([], function(html){
+                      // 动态获取弹出层对象并追加html
+                      $("#addDiv").empty().append(html);
+                  });
+              }
+              ,yes: function(index, layero){
+                  //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
+                  form.on("submit(submitAddBtn)", function(data){
+                      var password=data.field.password
+                      ,newpwdO=data.field.newpwd1
+                      ,newpwdT=data.field.newpwd2;
+                      $.ajax({
+                          async: true
+                          ,type: 'POST'
+                          ,data: {name:employee.loginName,pass:data.field.password,id:employee.id}
+                          ,url: '/client/employee/verifyPwd'
+                          ,dataType: 'json'
+                          ,success: function(json){
+                              if(json.code == 500){
+                                  layer.msg(json.msg, {time: 2000});
+                              }else {
+                                  if (newpwdO==password) {
+                                      layer.msg("新密码不能与原密码相同", {time: 2000});
+                                  }else if(newpwdO != newpwdT){
+                                      layer.msg("两次输入不一致", {time: 2000});
+                                  }else {
+                                      $.ajax({
+                                          async:true
+                                          ,type: 'POST'
+                                          ,data:  {name:employee.loginName,pass:newpwdO,id:employee.id}
+                                          ,url: '/client/employee/updatePwd'
+                                          ,dataType: 'json'
+                                          ,success: function(json){
+                                              layer.msg(json.msg, {time: 2000});
+                                              layer.close(index);
+                                          }
+                                      });
+                                  }
+                              }
+                          }
+                      });
+                  });
+                  // 触发表单按钮点击事件
+                  $("#submitAddBtn").click();
+              }
+          });
+      })
+
+      /**
+       * 自定义验证规则
+       */
+      form.verify({
+          password: function (value) {
+              if(value.length == 0) return '请填写原密码';
+          }
+          ,newpwd1: function (value) {
+              if (value.length == 0) return '请填写新密码';
+              if (value.length<6 ||value.length>12)return '密码必须是6到12位';
+          }
+          ,newpwd2: function (value) {
+              if (value.length == 0) return '请再次填写新密码';
+          }
+      });
   });
   </script>
 </body>

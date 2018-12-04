@@ -59,17 +59,17 @@ public class DisasterHistoryController {
                         String fileName = multipartFile.getOriginalFilename();
                         if(fileName.endsWith(".mp3") || fileName.endsWith(".wma") || fileName.endsWith(".wav")
                                 || fileName.endsWith(".ogg")){
-                                audioUrl = UploadFileUtil.uploadFile(multipartFile, uploadPath, disHisAudio);
+                                audioUrl = UploadFileUtil.upload(multipartFile, uploadPath, disHisAudio);
                         }
                         if(fileName.endsWith(".png") || fileName.endsWith(".gif") || fileName.endsWith(".jpeg")
                                 ||fileName.endsWith(".bmp") || fileName.endsWith(".tiff") || fileName.endsWith(".jpg")){
-                                pictureUrl = UploadFileUtil.uploadFile(multipartFile, uploadPath, disHisPicture);
+                                pictureUrl = UploadFileUtil.upload(multipartFile, uploadPath, disHisPicture);
                         }
                         if(fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".rm")
                                 || fileName.endsWith(".flv") || fileName.endsWith(".mov")|| fileName.endsWith(".rmvb")
                                 || fileName.endsWith(".mpg") || fileName.endsWith(".mkv")|| fileName.endsWith(".wmv")
                                 || fileName.endsWith(".3gp")){
-                                videoUrl = UploadFileUtil.uploadFile(multipartFile, uploadPath, disHisVideo);
+                                videoUrl = UploadFileUtil.upload(multipartFile, uploadPath, disHisVideo);
                         }
                 }
                 if(audioUrl!=null) {
@@ -97,17 +97,17 @@ public class DisasterHistoryController {
                         String fileName = multipartFiles.getOriginalFilename();
                         if(fileName.endsWith(".mp3") || fileName.endsWith(".wma") || fileName.endsWith(".wav")
                                 || fileName.endsWith(".ogg")){
-                                audioUrl = UploadFileUtil.uploadFile(multipartFiles, uploadPath, disHisAudio);
+                                audioUrl = UploadFileUtil.upload(multipartFiles, uploadPath, disHisAudio);
                         }
                         if(fileName.endsWith(".png") || fileName.endsWith(".gif") || fileName.endsWith(".jpeg")
                                 ||fileName.endsWith(".bmp") || fileName.endsWith(".tiff") || fileName.endsWith(".jpg")){
-                                pictureUrl = UploadFileUtil.uploadFile(multipartFiles, uploadPath, disHisPicture);
+                                pictureUrl = UploadFileUtil.upload(multipartFiles, uploadPath, disHisPicture);
                         }
                         if(fileName.endsWith(".mp4") || fileName.endsWith(".avi") || fileName.endsWith(".rm")
                                 || fileName.endsWith(".flv") || fileName.endsWith(".mov")|| fileName.endsWith(".rmvb")
                                 || fileName.endsWith(".mpg") || fileName.endsWith(".mkv")|| fileName.endsWith(".wmv")
                                 || fileName.endsWith(".3gp")){
-                                videoUrl = UploadFileUtil.uploadFile(multipartFiles, uploadPath, disHisVideo);
+                                videoUrl = UploadFileUtil.upload(multipartFiles, uploadPath, disHisVideo);
                         }
                 }
                 if(audioUrl!=null) {

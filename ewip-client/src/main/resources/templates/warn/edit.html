@@ -27,11 +27,15 @@
                                     <input type="text" id="organizationName" readonly="readonly" name="organizationName" lay-verify="required" placeholder="请输入发布单位" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
+                            <script id="addPop" type="text/html">
+                                <div id="disasterId" class="ztree"></div>
+                            </script>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">预警名称:</label>
                                 <div class="layui-input-block">
                                     <input type="hidden" id="disasterName" name="disasterName">
-                                    <div id="addDisasterId" name="disasterId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择预警名称"></div>
+                                    <input type="text" id="addDisasterId" name="disasterId"  readonly="readonly"  lay-verify="required" placeholder="请选择灾种名称" autocomplete="off" class="layui-input">
+                                    <!--<div id="disasterId" class="select-tree layui-form-select" autocomplete="off" ></div>-->
                                 </div>
                             </div>
                             <div class="layui-form-item">

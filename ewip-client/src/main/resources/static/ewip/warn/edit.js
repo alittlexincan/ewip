@@ -67,7 +67,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     },
                     check: {
                         enable: true,
-                        chkboxType: {"Y":"", "N": ""},
+                        chkboxType: {"Y":"s", "N": "s"},
                         chkStyle:"checkbox"
                     },
                     data: {
@@ -196,26 +196,36 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     ,html = "";
 
                 html += "<div class='layui-row layui-col-space5'>";
-                html += "	<div class='layui-col-xs9 layui-col-md9'>";
+                html += "	<div class='layui-col-xs8 layui-col-md8'>";
                 html += "		<div class='layui-card warn-card-content'>";
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list content_"+channelId+"'>";
                 // 循环地区
                 result.area.forEach(function (area) {
                     areas.add(area.areaId);
-                    html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
-                    html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                    html += "						<div>"+area.areaName+"</div>";
-                    html += "					</div>";
-                    html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
-                    html += "					</div>";
-                    html += "				</div>";
+                    // html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
+                    // html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    // html += "						<div>"+area.areaName+"</div>";
+                    // html += "					</div>";
+                    // html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    // html += "                       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
+                    // html += "					</div>";
+                    // html += "				</div>";
                 });
+
+                html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+employee.areaId+"'>";
+                html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                html += "						<div>"+employee.areaName+"</div>";
+                html += "					</div>";
+                html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                html += "                       <textarea type='text' name='content_"+channelId+"_"+employee.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
+                html += "					</div>";
+                html += "				</div>";
+
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";
-                html += "	<div class='layui-col-xs3 layui-col-md3'>";
+                html += "	<div class='layui-col-xs4 layui-col-md4'>";
                 html += "		<div class='layui-card warn-card-content'>";
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>受众群组</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list'>";
@@ -233,19 +243,66 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 默认展开第一个tab页
                 element.tabChange('warn-tab', result.channelId[0]);
                 // 动态添加渠道地区对应的受众（根据地区和渠道查询）
+                let id = "";
+                for (let item of areas) {
+                    id += "," + item;
+                }
+                id=id.substring(1);
                 active.channelToUserGroup({
-                    areaId: function () {
-                        let id = "";
-                        for (let item of areas) {
-                            id += "," + item;
-                        }
-                        return id.substring(1);
-                    },
-                    organizationId: result.organizationId,
+                    areaId: id,
                     channelId: channelId
                 });
             });
             element.render();
+        }
+
+
+        /**
+         * 勾选地区追加预警内容
+         * 如果result.checked == true,则添加，否则删除
+         * @param result
+         */
+        ,"setAreaWarnContentNew":function (result) {
+            result.channelId.forEach(function (channelId) {
+                // 获取每个渠道对应的受众树
+                let userGroupZtree = zTree.getZTree("group_"+channelId);
+                var node=userGroupZtree.getNodes();
+                for(var j=node.length-1; j>=0; j--){
+                    userGroupZtree.removeNode(node[j]);
+                }
+                let areas = new Set();
+                // 循环地区 预警内容追加
+                result.area.forEach(function (area) {
+                    areas.add(area.areaId);
+                });
+                $.ajax({
+                    async:true
+                    ,type: "POST"
+                    ,data: {
+                        "areaId":function () {
+                            let id = "";
+                            for (let item of areas) {
+                                id += "," + item;
+                            }
+                            return id.substring(1);
+                        },
+                        // "organizationId": employee.organizationId,
+                        "channelId":channelId
+                    }
+                    ,url: '/client/tree/user/group/count'
+                    ,dataType: 'json'
+                    ,success: function(json){
+                        // 对其每个渠道做受众追加
+                        if(json != null){
+                            for(var i = 0; i<json.length; i++){
+                                json[i].checked = true;
+                            }
+                            let userGroupZtree = zTree.getZTree("group_"+channelId);
+                            userGroupZtree.addNodes(null, json);
+                        }
+                    }
+                });
+            });
         }
         /**
          * 勾选地区追加预警内容
@@ -257,17 +314,24 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 let bool = true;
                 // 如果当前地区节点取消勾选，则删除指定该地区对应所有渠道的预警内容删除
                 // 如果最后一个地区取消掉，则将bool变量置为false
+                // let a=[];
                 result.channelId.forEach(function (channelId) {
                     // 获取每个渠道对应的受众树
                     let userGroupZtree = zTree.getZTree("group_"+channelId);
                     for(var i = 0; i<result.area.length; i++){
                         $(".warn-item_"+channelId+"_"+result.area[i].areaId).remove();
                         // 获取当前渠道下全部受众节点，如果取消勾选地区，则将当前地区、渠道对应的受众删除
-                        userGroupZtree.getNodes().forEach(function (item) {
-                            if(item.areaId == result.area[i].areaId && item.channelId == channelId){
-                                userGroupZtree.removeNode(item);
+                        // userGroupZtree.getNodes().forEach(function (item) {
+                        //     if(item.areaId == result.area[i].areaId && item.channelId == channelId){
+                        //         userGroupZtree.removeNode(item);
+                        //     }
+                        // });
+                        var node=userGroupZtree.getNodes();
+                        for(var j=node.length -1; j>=0; j--){
+                            if(node[j].areaId == result.area[i].areaId && node[j].channelId == channelId){
+                                userGroupZtree.removeNode(node[j]);
                             }
-                        });
+                        }
                     }
                     if($(".content_"+channelId+" > div").length == 0) bool = false;
                 });
@@ -307,16 +371,16 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         // 循环地区 预警内容追加
                         result.area.forEach(function (area) {
                             areas.add(area.areaId);
-                            html += "<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
-                            html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                            html += "		<div>"+area.areaName+"</div>";
-                            html += "	</div>";
-                            html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                            html += "       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+ title + active.warnContent+"</textarea>";
-                            html += "	</div>";
-                            html += "</div>";
+                            // html += "<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+area.areaId+"'>";
+                            // html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                            // html += "		<div>"+area.areaName+"</div>";
+                            // html += "	</div>";
+                            // html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                            // html += "       <textarea type='text' name='content_"+channelId+"_"+area.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>"+ title + active.warnContent+"</textarea>";
+                            // html += "	</div>";
+                            // html += "</div>";
                         });
-                        $(".content_"+channelId).append(html);
+                        // $(".content_"+channelId).append(html);
                         // 追加受众树
                         $.ajax({
                             async:true
@@ -398,10 +462,18 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             // 先清除tab页所有内容
             $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
             result.channelId =  result.channelId.split(",");
-            result.area = [{
-                areaId:result.areaId,
-                areaName: employee.areaName
-            }];
+
+            let area = [];
+            var treeObj=$.fn.zTree.getZTreeObj("areaTree"),
+                nodes=treeObj.getCheckedNodes(true);
+            for(var i=0;i<nodes.length;i++){
+                area.push({areaId:nodes[i].id,areaName: nodes[i].name});
+            }
+            result.area=area;
+            // result.area = [{
+            //     areaId:result.areaId,
+            //     areaName: employee.areaName
+            // }];
             active.setWarnContent(result);
         }
         /**
@@ -460,33 +532,104 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 layer.msg("请先选择渠道", {time: 2000});
                 return false;
             }
-            // 判断至少选中一个地区
-            let areaTree = zTree.getZTree(treeId);
-            let nodes = areaTree.getCheckedNodes(true);
-            if(nodes.length == 0){
-                initAreaTree.checkNode(treeNode, true, true);
-                layer.msg("请至少选中一个地区", {time: 2000});
-                return false;
-            }
             // 判断当前节点是否选中
             let checked = treeNode.getCheckStatus().checked;
-            // 拼接参数
-            let param = {
-                "treeId":treeId
-                ,"checked":checked
-                ,"channelId": function () {
-                    var cId = [];
-                    $(channel).each(function () {
-                        cId.push($(this).data("id"));
-                    }) ;
-                    return cId;
-                }()
-                ,"area": [{
-                    areaId: treeNode.id,
-                    areaName: treeNode.name
-                }]
-            };
-            active.setAreaWarnContent(param);
+            if(treeNode.isParent){
+                let areaTree = zTree.getZTree(treeId);
+                let node = areaTree.getCheckedNodes(true);
+                initAreaTree.checkNode(treeNode, true, true);
+                let area = [];
+                var treeObj=$.fn.zTree.getZTreeObj("areaTree"),
+                    nodes=treeObj.getCheckedNodes(true);
+                for(var i=0;i<nodes.length;i++){
+                    area.push({areaId:nodes[i].id,areaName: nodes[i].name});
+                }
+                // 拼接参数
+                let param = {
+                    "treeId":treeId
+                    ,"checked":checked
+                    ,"channelId": function () {
+                        var cId = [];
+                        $(channel).each(function () {
+                            cId.push($(this).data("id"));
+                        }) ;
+                        return cId;
+                    }()
+                    ,"area":area
+                };
+                active.setAreaWarnContentNew(param);
+                layer.msg("请至少选中一个地区", {time: 2000});
+                return false;
+            }else{
+                let areaTree = zTree.getZTree(treeId);
+                let node = areaTree.getCheckedNodes(true);
+                if(node.length == 0){
+                    initAreaTree.checkNode(treeNode, true, true);
+                    layer.msg("请至少选中一个地区", {time: 2000});
+                    return false;
+                }
+                // 拼接参数
+                let param = {
+                    "treeId":treeId
+                    ,"checked":checked
+                    ,"channelId": function () {
+                        var cId = [];
+                        $(channel).each(function () {
+                            cId.push($(this).data("id"));
+                        }) ;
+                        return cId;
+                    }()
+                    ,"area": [{
+                        areaId: treeNode.id,
+                        areaName: treeNode.name
+                    }]
+                };
+                active.setAreaWarnContent(param);
+            }
+        }
+
+
+        ,"disClickNode":function (event, treeId, treeNode) {
+            if(treeNode.isConfig==1){
+                let name = treeNode.name;
+                if(name.indexOf("[") > -1){
+                    name = name.substring(0, name.indexOf("["));
+                }
+                treeNode.name = name;
+                //绑定树操作
+                selectTree.setValue(treeId,treeNode);
+                selectTree.hideTree();
+                // 设置参数值
+                let param = {
+                    areaId: employee.areaId                     // 地区ID
+                    ,organizationId: employee.organizationId    // 机构ID
+                    ,organizationName: employee.organizationName// 机构名称
+                    ,organizationCode: employee.organizationCode// 机构编码
+                    ,disasterId: treeNode.id                    // 灾种ID
+                    ,disasterName: name                         // 灾种名称
+                    ,disasterColor: treeNode.disasterColor      // 灾种颜色
+                    ,disasterLevel: treeNode.disasterLevel      // 灾种级别
+                    ,disasterCode: treeNode.code                // 灾种编码
+                    ,icon: "/client/"+treeNode.img              // 灾种图标
+                };
+                $(".basis input[name='disasterId']").val(param.disasterName);
+                // 预警名称
+                $(".basis input[name='disasterName']").val(param.disasterName);
+                // 预警颜色
+                $(".basis select[name='disasterColor']").val(param.disasterColor);
+                // 预警颜色
+                $(".basis input[name='disasterCode']").val(param.disasterCode);
+                // 预警级别
+                $(".basis select[name='disasterLevel']").val(param.disasterLevel);
+
+                // 获取策略信息, 并设置流程、渠道
+                active.getStrategyMsg(param, active.setStrategyAndChannel);
+                // 获取预警信息，并匹配预警内容
+                active.getWarnMsg(param, active.setWarn);
+                // 基础信息配置
+                active.setBasis(param);
+            }
+            return false;
         }
     };
 
@@ -528,9 +671,54 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     });
 
     /**
+     * 灾种树选择 lxv
+     */
+    $("#addDisasterId").on("click",function(){
+        layer.open({
+            type: 1
+            ,title: "<i class='layui-icon'>&#xe642;</i>选择灾种"
+            ,area: ['520px','500px']
+            ,shade: 0.3
+            ,maxmin:true
+            ,offset:'50px'
+            ,content:"<div id='addDiv' style='padding:20px 20px 0 20px' ></div>"
+            ,success: function(layero,index){
+                laytpl(addPop.innerHTML).render([], function(html){
+                    // 动态获取弹出层对象并追加html
+                    $("#addDiv").empty().append(html);
+                    zTree.async({
+                        id: "#disasterId",
+                        setting: {
+                            async:{
+                                enable:true,
+                                url: "/client/tree/disaster/level",
+                                autoParam:["id"],
+                                dataType:"json",
+                            },
+                            check: {
+                                enable: true,
+                                chkStyle:"radio"
+                            },
+                            data: {
+                                simpleData: {
+                                    enable: true
+                                }
+                            },
+                            callback:{
+                                onClick:null,
+                                onCheck:active.disClickNode
+                            }
+                        }
+                    });
+                });
+            }
+        })
+    });
+
+    /**
      * 初始化加载灾种级别树
      */
-    let disasterLevelZtree = function () {
+  /*  let disasterLevelZtree = function () {
         selectTree.render({
             'id': 'addDisasterId'
             ,'url': '/client/tree/disaster/level'
@@ -578,7 +766,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 return false;
             }
         });
-    };
+    };*/
 
     /**
      * 初始化加载地区树
@@ -594,7 +782,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             },
             check: {
                 enable: true,
-                chkboxType: {"Y":"", "N": ""},
+                chkboxType: {"Y":"s", "N": "ps"},
                 chkStyle:"checkbox"
             },
             data: {
@@ -829,6 +1017,16 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 监听预警提交事件
      */
     form.on("submit(submit)", function(data){
+        // 判断至少选中一个地区
+        let areaTree = zTree.getZTree("areaTree");
+        let nodes = areaTree.getCheckedNodes(true);
+        if(nodes.length == 0){
+            // initAreaTree.checkNode(treeNode, true, true);
+            layer.msg("请至少选中一个地区", {time: 2000});
+            return false;
+        }
+
+
         // 数据提交到后台，通用方法
         let param = data.field;
 
@@ -928,6 +1126,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 初始化加载项
      */
     initPageMsg();          // 初始化页面加载信息
-    disasterLevelZtree();   // 初始化加载灾种级别树
+    // disasterLevelZtree();   // 初始化加载灾种级别树
     initChannelList();      // 初始化加载渠道
 });

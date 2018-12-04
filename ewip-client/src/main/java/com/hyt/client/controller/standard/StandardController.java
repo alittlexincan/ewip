@@ -67,7 +67,7 @@ public class StandardController extends BaseController {
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("createUser", employee.getString("id"));
         // 文件开始上传
-        String fileUrl = UploadFileUtil.uploadFile(file, uploadPath, standard);
+        String fileUrl = UploadFileUtil.upload(file, uploadPath, standard);
         // 上传成功走后台添加数据
         if(fileUrl!=null) {
             // 添加文件路径数据
@@ -88,7 +88,7 @@ public class StandardController extends BaseController {
         map.put("updateUser", employee.getString("id"));
         if(!file.getOriginalFilename().equals("")) {
             // 文件开始上传
-            String fileUrl = UploadFileUtil.uploadFile(file, uploadPath, standard);
+            String fileUrl = UploadFileUtil.upload(file, uploadPath, standard);
             // 上传成功走后台添加数据
             if (fileUrl != null) {
                 // 添加渠道数据

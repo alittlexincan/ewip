@@ -114,4 +114,30 @@ public class EmployeeController {
         return this.employeeService.selectEmployeeInRole(map);
     }
 
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @PostMapping("/verifyPwd")
+    JSONObject verifyPwd(@RequestParam Map<String,Object> map){
+        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+        map.put("loginPass", password.toString());
+        return this.employeeService.verifyPwd(map);
+    }
+
+
+    /**
+     * 用户分配角色
+     * @param map
+     * @return
+     */
+    @PostMapping("/updatePwd")
+    JSONObject updatePwd(@RequestParam Map<String,Object> map){
+        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+        map.put("newPwd", password.toString());
+        return this.employeeService.updatePwd(map);
+    }
+
+
 }
