@@ -5,16 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
-import com.hyt.server.entity.sys.Area;
 import com.hyt.server.entity.ueditor.Ueditor;
+import com.hyt.server.service.publish.IPublishService;
 import com.hyt.server.service.ueditor.IUeditorService;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -23,6 +20,12 @@ import java.util.Map;
 public class UeditorController {
     @Autowired
     private IUeditorService ueditorService;
+
+    /**
+     * 注入分发平台接口
+     */
+    @Autowired
+    private IPublishService publishService;
 
     /**
      * 保存产品
@@ -47,6 +50,16 @@ public class UeditorController {
      */
     @GetMapping("/sendMail")
     public void sendMail(@RequestParam Map<String,Object> map){
-        ueditorService.sendMail(map);
+
+        // 获取用户信息，并组装数据
+        JSONObject json = this.ueditorService.sendData(map);
+
+        if(json.getInteger("code") == 200){
+
+            Map<String, Object> param = new HashMap<>(json);
+
+            this.publishService.sendEmail(json);
+        }
+
     }
 }
