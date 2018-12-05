@@ -9,6 +9,7 @@
         <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all" />
         <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all" />
         <link rel="stylesheet" th:href="@{/css/login.css}"  media="all" />
+        <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="1105930833" charset="utf-8"></script>
     </head>
     <body layadmin-themealias="default" class="ewip">
 
@@ -38,6 +39,17 @@
                 <div class="layui-input-block">
                     <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="submit">登&nbsp;&nbsp;录</button>
                 </div>
+                <span style="display: none;" id="qqLoginBtn"></span>
+                <script type="text/javascript">
+                    QC.Login({
+                        btnId:"qqLoginBtn"	//插入按钮的节点id
+                    });
+                    QC.Login.getMe(function(openId, accessToken){
+
+                        console.log("用户openId：" +openId);
+                        console.log("token令牌：" + accessToken);
+                    });
+                </script>
             </div>
 
             <div class="layui-form-item" style="margin-top: 20px;">
@@ -52,6 +64,7 @@
 
         <script th:src="@{/layuiadmin/layui/layui.js}" charset="utf-8"></script>
         <script th:src="@{/ewip/login/login.js}" charset="utf-8"></script>
+
 
     </body>
 

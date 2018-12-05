@@ -230,12 +230,12 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
                 JSONObject area = areas.getJSONObject(j);
                 String areaId = area.getString("areaId");
                 // 组装预警内容
-                String content = json.getString("content_" + channelId + "_" + areaId);
+                //String content = json.getString("content_" + channelId + "_" + areaId);
                 WarnEditContent warnEditContent = new WarnEditContent();
                 warnEditContent.setWarnEditId(warnEditId);
                 warnEditContent.setChannelId(channelId);
                 warnEditContent.setAreaId(areaId);
-                warnEditContent.setContent(content);
+                warnEditContent.setContent(json.getString("content"));
                 list.add(warnEditContent);
             }
         }

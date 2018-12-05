@@ -619,7 +619,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     ,disasterCode: treeNode.code                // 灾种编码
                     ,icon: "/client/"+treeNode.img              // 灾种图标
                 };
-                debugger;
                 $(".basis input[name='disasterId']").val(param.disasterId);
                 // 预警名称
                 $(".basis input[name='disasterName']").val(param.disasterName);
@@ -1032,7 +1031,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             return false;
         }
 
-
         // 数据提交到后台，通用方法
         let param = data.field;
 
@@ -1108,6 +1106,34 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             });
             return file;
         };
+
+        // 预警内容处理
+        // (function () {
+        //     // 获取预警内容
+        //     let content = $(".warn-card-content textarea[name^='content_']").eq(0).val();
+        //     param.channel(1).forEach( channel => {
+        //         let channelId = channel.channelId;
+        //         param.area(1).forEach( area => {
+        //             let areaId = area.areaId;
+        //             param["content_"+channelId+"_"+areaId]=content;
+        //         });
+        //     });
+        // }());
+        //
+
+        // 预警内容处理
+        (function () {
+            // 获取预警内容
+            param.content = $(".warn-card-content textarea[name^='content_']").eq(0).val();
+            $(".channel-list .imgbox.active").each(function () {
+                initAreaTree.getCheckedNodes(true).forEach(function (item) {
+                    delete param["content_" + $(this).data("id") + "_" + item.id];
+                });
+            });
+        }());
+
+
+        console.log(param);
 
         // 数据提交
         ajaxFileUpload.render({
