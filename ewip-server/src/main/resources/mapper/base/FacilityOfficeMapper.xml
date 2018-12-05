@@ -14,6 +14,15 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, type, name, unit, area, worker, lon, lat, principal, phone, address, description
@@ -21,20 +30,21 @@
   <!-- 查询办公场所信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List" />
-    FROM
-    base_facility_office
+    o.*,e.name createUserName,em.name updateUserName
+    FROM base_facility_office o
+    left join employee e on o.createUser=e.id
+    left join employee em on o.updateUser=em.id
     where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="type != null and type != ''">AND type = #{type}</if>
-    <if test="unit != null and unit != ''">AND unit = #{unit} </if>
-    <if test="name != null and name != ''">AND name = #{name} </if>
+    <if test="id != null and id != ''">AND o.id = #{id}</if>
+    <if test="type != null and type != ''">AND o.type = #{type}</if>
+    <if test="unit != null and unit != ''">AND o.unit = #{unit} </if>
+    <if test="name != null and name != ''">AND o.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY o.create_time DESC
       </otherwise>
     </choose>
   </select>

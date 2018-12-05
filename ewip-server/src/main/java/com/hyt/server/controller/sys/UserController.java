@@ -1,7 +1,6 @@
 package com.hyt.server.controller.sys;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
@@ -13,7 +12,9 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @Author: JiangXincan
@@ -47,16 +48,6 @@ public class UserController {
             @ApiImplicitParam(name="latitude",value="地区纬度", dataType = "Double",paramType = "query"),
             @ApiImplicitParam(name="altitude",value="海拔高度", dataType = "Double",paramType = "query")
     })
-//    @PostMapping("/insert")
-//    public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
-//        JSONObject json = new JSONObject(map);
-//        User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
-//        int num = this.userService.insert(user);
-//        if(num>0){
-//            return ResultResponse.make(200,"添加受众成功",user);
-//        }
-//        return ResultResponse.make(500,"添加受众失败",null);
-//    }
 
     @PostMapping("/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
@@ -97,14 +88,24 @@ public class UserController {
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
         JSONObject json = new JSONObject(map);
         User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
-//        int num = this.userService.update(user);//修改主表
         String uuidJob = UUID.randomUUID().toString().replace("-", "");
         map.put("userJobId",uuidJob);
         map.put("userId",map.get("id").toString());
-        int numJob = this.userService.insertUserJob(map);//插入子表
+        int numJob=0;
+        if(!map.get("jobOld").toString().equals(map.get("job").toString()) ||
+                !map.get("dutiesOld").toString().equals(map.get("duties").toString()) ||
+                !map.get("leaderOld").toString().equals(map.get("leader").toString()) ||
+                !map.get("areaIdOld").toString().equals(map.get("areaId").toString()) ||
+                !map.get("organizationIdOld").toString().equals(map.get("organizationId").toString())||
+                !map.get("userGroupIdOld").toString().equals(map.get("userGroupId").toString())||
+                !map.get("channelIdOld").toString().equals(map.get("channelId").toString())){
+
+            numJob= this.userService.insertUserJob(map);//插入子表
+        }
+
         int num = this.userService.updateUser(map);//修改主表
 
-        if(num>0 && numJob>0){
+        if(num>0 ){
             return ResultResponse.make(200,"修改受众成功");
         }
         return ResultResponse.make(500,"修改受众失败");

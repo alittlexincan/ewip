@@ -71,4 +71,14 @@
         )
         AND type = #{type}
     </select>
+
+
+    <!-- 查询机构信息 -->
+    <select id="selectOrg" resultMap="BaseResultMap">
+        select * FROM organization o where 1=1
+        <if test="id != null and id != ''">and id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
+    </select>
+
+
 </mapper>

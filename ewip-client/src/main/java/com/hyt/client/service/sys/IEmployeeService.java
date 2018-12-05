@@ -90,4 +90,18 @@ public interface IEmployeeService {
     @GetMapping("/employee/select/role")
     JSONObject selectEmployeeInRole(@RequestParam Map<String,Object> map);
 
+    /**
+     * 验证原来密码
+     * @param map
+     * @return
+     */
+    @PostMapping("/employee/verifyPwd")
+    JSONObject verifyPwd(@RequestParam Map<String,Object> map);
+    /**
+     * 修改密码
+     * @param map
+     * @return
+     */
+    @PostMapping("/employee/updatePwd")
+    JSONObject updatePwd(@RequestParam Map<String,Object> map);
 }

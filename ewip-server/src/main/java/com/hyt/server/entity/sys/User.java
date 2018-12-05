@@ -58,6 +58,8 @@ public class User {
     private String sex;
 
     private String address;
+    @Column(name = "type" ,length = 1)
+    private Integer type;
 
     @Column(name = "longitude")
     private Double longitude;
@@ -83,7 +85,7 @@ public class User {
 
     public User() {}
 
-    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String jobId, String job, String duties, String leader, String age, String sex, String address, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
+    public User(String name, String code, String userGroupId, String channelId, String areaId, String organizationId, String jobId, String job, String duties, String leader, String age, String sex, String address, Integer type, Double longitude, Double latitude, Double altitude, Date createTime, String userGroupName, String channelName, String areaName, String organizationName) {
         this.name = name;
         this.code = code;
         this.userGroupId = userGroupId;
@@ -97,6 +99,7 @@ public class User {
         this.age = age;
         this.sex = sex;
         this.address = address;
+        this.type = type;
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
@@ -217,6 +220,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Double getLongitude() {

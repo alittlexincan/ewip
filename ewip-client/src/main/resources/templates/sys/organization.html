@@ -35,8 +35,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">上级机构</label>
                 <div class="layui-input-block">
-                    <div id="addPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>
+                    <select id="addOrganizationId" name="pId"  lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                    </select>
                 </div>
+                <!--<div class="layui-input-block">-->
+                    <!--<div id="addPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>-->
+                <!--</div>-->
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">机构类型</label>
@@ -79,10 +84,18 @@
                     <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
             </div>
+            <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">上级机构</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="layui-form-item">
-                <label class="layui-form-label">上级机构</label>
+                <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
-                    <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>
+                    <select id="updateOrganizationId" name="pId"  lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -130,11 +143,19 @@
                             <div id="searchAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                         </div>
                     </div>
+
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <div id="searchPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>
+                            <select id="searchOrganizationId" name="pId" lay-verify="required" lay-search="">
+                                <option value="">请选择上级机构</option>
+                            </select>
                         </div>
                     </div>
+                    <!--<div class="layui-inline">-->
+                        <!--<div class="layui-input-inline">-->
+                            <!--<div id="searchPId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <div class="layui-inline">
                         <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">

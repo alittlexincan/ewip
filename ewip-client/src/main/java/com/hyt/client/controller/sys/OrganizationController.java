@@ -81,4 +81,15 @@ public class OrganizationController {
     }
 
 
+    /**
+     * 查询机构详细信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/selectOrg")
+    JSONObject selectOrg(@RequestParam Map<String,Object> map){
+        return this.organizationService.selectOrg(map);
+    }
+
+
 }

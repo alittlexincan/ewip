@@ -12,31 +12,95 @@ public class UnitBridge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
-
+    @Column(name = "name",length = 64)
     private String name;
-
+    @Column(name = "type",length = 64)
     private String type;
-
+    @Column(name = "address",length = 100)
     private String address;
-
+    @Column(name = "length",length = 64)
     private String length;
-
-    @JSONField(format="yyyy-MM-dd")
+    @JSONField(format="yyyy-MM-dd ")
     private Date buildTime;
-
+    @Column(name = "district",length = 64)
     private String district;
-
+    @Column(name = "lon" )
     private Double lon;
-
+    @Column(name = "lat" )
     private Double lat;
-
+    @Column(name = "unit",length = 64)
     private String unit;
-
+    @Column(name = "principal",length = 64)
     private String principal;
-
+    @Column(name = "phone",length = 64)
     private String phone;
-
+    @Column(name = "description",length = 500)
     private String description;
+
+    @Column(name = "createUser",length = 64)
+    private String createUser;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "updateUser",length = 64)
+    private String updateUser;
+
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "update_time")
+    private Date updateTime;
+
+    private String createUserName;
+    private String updateUserName;
+
+    public String getCreateUserName() {
+        return createUserName;
+    }
+
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName;
+    }
+
+    public String getUpdateUserName() {
+        return updateUserName;
+    }
+
+    public void setUpdateUserName(String updateUserName) {
+        this.updateUserName = updateUserName;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     public String getId() {
         return id;

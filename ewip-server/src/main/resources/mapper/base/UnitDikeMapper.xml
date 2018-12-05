@@ -18,6 +18,11 @@
     <result column="principal" property="principal" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, river, flood_prevention, length, altitude, distance, height, width, soil, 
@@ -26,18 +31,19 @@
   <!-- 查询提防信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    *
-    FROM
-    base_unit_dike
+    a.*,e.name createUserName,em.name updateUserName
+    FROM base_unit_dike a
+    left join employee e on a.createUser=e.id
+    left join employee em on a.updateUser=em.id
     where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="name != null and name != ''">AND name = #{name} </if>
+    <if test="id != null and id != ''">AND a.id = #{id}</if>
+    <if test="name != null and name != ''">AND a.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY a.create_time DESC
       </otherwise>
     </choose>
   </select>

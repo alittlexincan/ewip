@@ -2,6 +2,8 @@ package com.hyt.client.controller.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.base.IUnitAttractionsService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,32 @@ public class UnitAttractionsController {
 
         @Autowired
         private IUnitAttractionsService unitAttractionsService;
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/insert")
+        JSONObject insert(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("createUser", employee.getString("id"));
+                return this.unitAttractionsService.insert(map);
+        }
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/update")
+        JSONObject update(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("updateUser", employee.getString("id"));
+                return this.unitAttractionsService.update(map);
+        }
 
         /**
          * 根据旅游景区ID删除旅游景区信息

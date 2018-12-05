@@ -12,6 +12,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -120,6 +121,13 @@ public class OrganizationController {
     public ResultObject<Object> selectAll(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         PageInfo<Organization> pageInfo = this.organizationService.selectAll(map);
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
+    }
+
+
+    @PostMapping("/selectOrg")
+    public JSONObject selectOrg( @RequestParam Map<String,Object> map) {
+        JSONObject jsonObject=this.organizationService.selectOrg(map);
+        return jsonObject;
     }
 
 

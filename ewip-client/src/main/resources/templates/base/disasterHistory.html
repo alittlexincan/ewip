@@ -13,243 +13,20 @@
 </head>
 <body>
 
-    <!-- 添加历史灾害表单弹出层 -->
-    <script id="addPop" type="text/html">
-        <div class="layui-form layui-form-pane">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="type" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="color" placeholder="请输入灾害级别" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="level" placeholder="请输入灾害规模" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <div class="layui-input-inline">
-                        <input type="text" name="damage" placeholder="请输入危害程度" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">规模等级</label>
-                <div class="layui-input-block">
-                    <div id="level" name="level" class="select-tree layui-form-select" autocomplete="off" placeholder="请输入规模等级"></div>
-                </div>
-            </div>
-
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">危害程度</label>
-                <div class="layui-input-block">
-                    <input type="text" name="damage" lay-verify="damage" autocomplete="off" placeholder="请输入危害程度" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害编码</label>
-                <div class="layui-input-block">
-                    <input type="text" name="code" lay-verify="code" placeholder="请输入灾害编码" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害名称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="name" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">开始时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="start_time" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">结束时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="end_time" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">影响范围</label>
-                <div class="layui-input-block">
-                    <input type="text" name="scale" placeholder="请输入影响范围" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">经度</label>
-                <div class="layui-input-block">
-                    <input type="text" name="lon" placeholder="请输入经度" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">纬度</label>
-                <div class="layui-input-block">
-                    <input type="text" name="lat" placeholder="请输入纬度" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监测人员</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_people" placeholder="请输入监测人员" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监测时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_time" placeholder="请输入监测时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监管单位</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_organ" placeholder="请输入监管单位" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">联系方式</label>
-                <div class="layui-input-block">
-                    <input type="text" name="contact" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item layui-hide" >
-                <div class="layui-input-block layui-col-md-offset4">
-                    <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
-                </div>
-            </div>
-        </div>
-    </script>
-
-    <!-- 修改弹出层 -->
-    <script id="updatePop" type="text/html">
-
-        <div class="layui-form layui-form-pane">
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害类型</label>
-                <div class="layui-input-block">
-                    <input type="text" name="type" lay-verify="areaName" value="{{d.type}}" autocomplete="off" placeholder="请输入灾害类型" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害等级</label>
-                <div class="layui-input-block">
-                    <input type="text" name="color" lay-verify="code" value="{{d.color}}" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">规模等级</label>
-                <div class="layui-input-block">
-                    <input type="text" name="level" value="{{d.level}}" placeholder="请输入规模等级" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害编号</label>
-                <div class="layui-input-block">
-                    <input type="text" name="code" value="{{d.code}}" placeholder="请输入灾害编号" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">灾害名称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="name" value="{{d.name}}" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">开始时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="start_time"  value="{{d.start_time}}" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">结束时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="end_time" value="{{d.start_time}}" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">影响范围</label>
-                <div class="layui-input-block">
-                    <input type="text" name="scale" value="{{d.scale}}" placeholder="请输入影响范围" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">经度</label>
-                <div class="layui-input-block">
-                    <input type="text" name="lon" value="{{d.lon}}" placeholder="请输入经度" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">纬度</label>
-                <div class="layui-input-block">
-                    <input type="text" name="lat"  value="{{d.lat}}" placeholder="请输入纬度" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监测人</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_people" value="{{d.monitor_people}}" placeholder="请输入监测人" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监测时间</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_time" value="{{d.monitor_time}}" placeholder="请输入监测时间" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">监管单位</label>
-                <div class="layui-input-block">
-                    <input type="text" name="monitor_organ" value="{{d.monitor_organ}}" placeholder="请输入监管单位" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">联系方式</label>
-                <div class="layui-input-block">
-                    <input type="text" name="contact" value="{{d.contact}}" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item layui-hide" >
-                <div class="layui-input-block layui-col-md-offset4">
-                    <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
-                </div>
-            </div>
-        </div>
-    </script>
-
     <div class="layui-fluid">
         <div class="layui-card">
             <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <input type="text" name="type" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
+                            <input type="text" name="disasterType" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <input type="text" name="color" placeholder="请输入灾害级别" autocomplete="off" class="layui-input">
+                            <input type="text" name="disasterName" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
                         </div>
                     </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" name="level" placeholder="请输入灾害规模" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" name="damage" placeholder="请输入危害程度" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-
                     <div class="layui-inline">
                         <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
                             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
@@ -261,19 +38,2452 @@
                 </div>
             </form>
 
-
             <div class="layui-card-body">
+                <div class="layui-btn-group tableBar">
+                    <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                </div>
 
-                <!--<div class="layui-btn-group tableBar">-->
-                    <!--<button class="layui-btn" data-type="addBarBtn">添加</button>-->
-                    <!--<button class="layui-btn" data-type="deleteBarBtn">删除</button>-->
-                <!--</div>-->
+                <!-- 列表：数据行操作 -->
+                <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailOption"><i class="layui-icon layui-icon-edit"></i>详情</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </script>
 
-                <!--&lt;!&ndash; 列表：数据行操作 &ndash;&gt;-->
-                <!--<script type="text/html" id="btnGroupOption">-->
-                    <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>-->
-                    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
-                <!--</script>-->
+
+                <!-- 添加历史灾害表单弹出层 -->
+                <script id="addPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="状态" >状态</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="status" placeholder="请输入状态" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属省">所属省</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="province" placeholder="请输入所属省" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属市">所属市</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="city" placeholder="请输入所属市" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区">上报地区</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reportArea" placeholder="请输入上报地区" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区编码">上报地区编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reportAreaCode" placeholder="请输入上报地区编码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害发生点">灾害发生点</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="happenDisasterArea" placeholder="请输入灾害发生点" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="事件编码">事件编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="eventCode" placeholder="请输入事件编码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型">灾害类型</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterType" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型（旧）">灾害类型（旧）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterTypeOld" placeholder="请输入灾害类型（旧）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害名称">灾害名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterName" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="伴随灾害">伴随灾害</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="accompanyDisaster" placeholder="请输入伴随灾害" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="开始时间">开始时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" id="startTime" name="startTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入开始时间" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="结束时间">结束时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" id="endTime" name="endTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入结束时间" >
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象要素">气象要素</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="meteorologicalElements" placeholder="请输入气象要素" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响">影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="influence" placeholder="请输入影响" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="disasterPeople" placeholder="请输入受灾人口（人）" lay-verify="disasterPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡人口（人）">死亡人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="deathPeople" placeholder="请输入死亡人口（人）" lay-verify="deathPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="失踪人口（人）">失踪人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="missingPeople" placeholder="请输入失踪人口（人）" lay-verify="missingPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受伤人口（人）">受伤人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="injuredPeople" placeholder="请输入受伤人口（人）" lay-verify="injuredPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="被困人口（人）">被困人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="trappedPeople" placeholder="请输入被困人口（人）" lay-verify="trappedPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难人口（人）">饮水困难人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="waterDifficultyPeople" placeholder="请输入饮水困难人口（人）" lay-verify="waterDifficultyPeople"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="转移人口（人）">转移人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="removePeople" placeholder="请输入转移人口（人）" lay-verify="removePeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="倒塌房屋（间）">倒塌房屋（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="collapseHouse" placeholder="请输入倒塌房屋（间）" lay-verify="collapseHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏房屋">损坏房屋</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="damageHouse" placeholder="请输入损坏房屋（间）" lay-verify="damageHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="听课学校（所）">听课学校（所）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="school" placeholder="请输入听课学校（所）" lay-verify="school" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="经济损失（万元）">经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="economicLoss" placeholder="请输入经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="供水管网损毁长度">供水管网损毁长度</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pipeDamageLength" placeholder="请输入供水管网损毁长度" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾农作物名称">受灾农作物名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterCrops" placeholder="请输入受灾农作物名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物受灾面积（公顷）">农作物受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterAcreage" placeholder="请输入农作物受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物成灾面积（公顷）">农作物成灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="causeDisasterAcreage" placeholder="请输入农作物成灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物绝收面积（公顷）">农作物绝收面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="cropFailureAcreage" placeholder="请输入农作物绝收面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失粮食（吨）">损失粮食（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="grainLoss" placeholder="请输入损失粮食（吨）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失大棚（座）">损失大棚（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="greenhouseLoss" placeholder="请输入损失大棚（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农业经济损失（万元）" >农业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="agriculturalEconomyLoss" placeholder="请输入农业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死水位一下水库数">死水位一下水库数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reservoirNum" placeholder="请输入死水位一下水库数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响牧草名称">影响牧草名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureInfluence" placeholder="请输入影响牧草名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="牧草受灾面积（公顷）">牧草受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureDisasterAcreage" placeholder="请输入牧草受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡大牲畜（头）">死亡大牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="deathBeast" placeholder="请输入死亡大牲畜（头）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡家禽（只）">死亡家禽（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="deathPoultry" placeholder="请输入死亡家禽（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难牲畜（头）">饮水困难牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterDifficultyBeast" placeholder="请输入饮水困难牲畜（头）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="畜牧业经济损失（万元)">畜牧业经济损失（万元)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureEconomyLoss" placeholder="请输入畜牧业经济损失（万元)" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水库塘堰干涸数">水库塘堰干涸数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dryReservoirNum" placeholder="请输入水库塘堰干涸数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁大型水库（座）">水毁大型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageBigReservoir" placeholder="请输入水毁大型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁中型水库（座）">水毁中型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageMediumReservoir" placeholder="请输入水毁中型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水小型水库（座）">水小型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageSmallReservoir" placeholder="请输入水小型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁塘坝（座）">水毁塘坝（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageDam" placeholder="请输入水毁塘坝（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁沟渠长度（米）">水毁沟渠长度（米）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageChannelLen" placeholder="请输入水毁沟渠长度（米）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="堤坝决口情况">堤坝决口情况</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dikeBreach" placeholder="请输入堤坝决口情况" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水情信息">水情信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterInformation" placeholder="请输入水情信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水利经济损失（万元）">水利经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterEconomyLoss" placeholder="请输入水利经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="中小河流洪水信息">中小河流洪水信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="riversInformation" placeholder="请输入中小河流洪水信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停产工厂（间）">停产工厂（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="stopFactory" placeholder="请输入停产工厂（间）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="山洪沟信息">山洪沟信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="mountainInformation" placeholder="请输入山洪沟信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="城市内涝信息">城市内涝信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterLogging" placeholder="请输入城市内涝信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="地质灾害信息">地质灾害信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterGeologic" placeholder="请输入地质灾害信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林木损失（棵）">林木损失（棵）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestLoss" placeholder="请输入林木损失（棵）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业受灾面积（公顷）">林业受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestAcreage" placeholder="请输入林业受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业经济损失（万元）">林业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestEconomyLoss" placeholder="请输入林业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停电用户数量">停电用户数量</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="stopElectricNum" placeholder="请输入停电用户数量" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）数量（只）">捕捞船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="shipSinkingNum" placeholder="请输入捕捞船只翻（沉）数量（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）吨位（吨）">捕捞船只翻（沉）吨位（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="shipSinkingWeight"  placeholder="请输入捕捞船只翻（沉）吨位（吨）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业影响面积（公顷）">渔业影响面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fisheryAcreage" placeholder="请输入渔业影响面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业经济损失（万元）">渔业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fisheryEconomyLoss" placeholder="请输入渔业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通信中断数">通信中断数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationInterruptNum" placeholder="请输入通信中断数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班延误（架次）">飞机航班延误（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="flightDelaysNum" placeholder="请输入飞机航班延误（架次）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具停运时间（小时）">交通工具停运时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="transportationOutageTime" placeholder="请输入交通工具停运时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具损毁（辆）">交通工具损毁（辆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="vehicleDamageNum" placeholder="请输入交通工具损毁（辆）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="铁路损毁长度（公里）">铁路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="railwayDamageLen" placeholder="请输入飞机航班延误（架次）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="公路损毁长度（公里）">公路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="highwayDamageLen" placeholder="请输入公路损毁长度（公里）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水上运输船只翻（沉）数量（只）">水上运输船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="transportShipSinking" placeholder="请输入水上运输船只翻（沉）数量（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="道路堵塞">道路堵塞</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="roadBlockage" placeholder="请输入道路堵塞" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="滞留旅客数（人）">滞留旅客数（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="strandedPassengers" placeholder="请输入滞留旅客数（人）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通经济损失（万元）">交通经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="trafficEconomyLoss" placeholder="请输入交通经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频">音频</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="audio" lay-verify="audio" placeholder="请上传音频" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="addAudio" name="hisFile" >
+                                    <button class="ewip-upload-btn" id="uploadAudioBtn">上传</button>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频信息说明">音频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="audioExplanation" placeholder="请输入音频信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒杆（杆）">电力倒杆（杆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricPole" placeholder="请输入电力倒杆（杆）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒塔（座）">电力倒塔（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="powerTower" placeholder="请输入电力倒塔（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力断线长度（千米)">电力断线长度（千米)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricBreakLen" placeholder="请输入电力断线长度（千米)" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力中断时间（小时）">电力中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricEconomyTime" placeholder="请输入电力中断时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力经济损失（万元）">电力经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricEconomyLoss" placeholder="请输入电力经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯中断时间（小时）">通讯中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationStopTime" placeholder="请输入通讯中断时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯经济损失（万元）">通讯经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationEconomyLoss" placeholder="请输入通讯经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏桥梁涵洞（座）">损坏桥梁涵洞（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="bridgeDamageNum" placeholder="请输入损坏桥梁涵洞（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="其他影响">其他影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="otherInfluences" placeholder="请输入其他影响" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片">图片</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="picture" lay-verify="picture" placeholder="请上传图片" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="addPicture" name="hisFile"  >
+                                    <button class="ewip-upload-btn" id="uploadPictureBtn">上传</button>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片信息说明">图片信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pictureExplanation" placeholder="请输入图片信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频">视频</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="video" lay-verify="video" placeholder="请上传视频" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="addVideo" name="hisFile"  >
+                                    <button class="ewip-upload-btn" id="uploadVideoBtn">上传</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频信息说明">视频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="videoExplanation" placeholder="请输入视频信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象致灾强度等级">气象致灾强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="meteorologicalLevel" placeholder="请输入气象致灾强度等级" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害强度等级">灾害强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterLevel" placeholder="请输入灾害强度等级" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年耕地面积（公顷）">当地今年耕地面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="cultivatedAcreage" placeholder="请输入当地今年耕地面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年总人口（人）">当地今年总人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="totalPopulation" placeholder="请输入当地今年总人口（人）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="GDP">GDP</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="gdp" placeholder="请输入GDP" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="发生区域">发生区域（地图选择）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="happenArea" placeholder="请输入发生区域（地图选择）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班取消数（架次）">飞机航班取消数（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="flightsCancel" placeholder="请输入飞机航班取消数（架次）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预警发布情况描述">预警发布情况描述</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="warnPublicDescribe" placeholder="请输入预警发布情况描述" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="数据来源">数据来源</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dataSources" placeholder="请输入数据来源" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="备注">备注</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="remarks" placeholder="请输入备注" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填表人">填表人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fillingPerson" placeholder="请输入填表人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预处理人">预处理人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="handlePerson" placeholder="请输入预处理人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="确认人">确认人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="confirmingPerson" placeholder="请输入确认人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="审批人">审批人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="approval" placeholder="请输入审批人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="联系电话">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="phone" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填写单位">填写单位</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fillingUnit" placeholder="请输入填写单位" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回次数">退回次数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="returnNum" placeholder="请输入退回次数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回原因">退回原因</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="returnReason" placeholder="请输入退回原因" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <!-- 修改弹出层 -->
+                <script id="updatePop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="状态" >状态</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="status" value="{{d.status}}"placeholder="请输入状态"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属省">所属省</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="province" value="{{d.province}}" placeholder="请输入所属省" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属市">所属市</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="city" value="{{d.city}}" placeholder="请输入所属市" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区">上报地区</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reportArea" value="{{d.reportArea}}" placeholder="请输入上报地区" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区编码">上报地区编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reportAreaCode" value="{{d.reportAreaCode}}" placeholder="请输入上报地区编码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害发生点">灾害发生点</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="happenDisasterArea" value="{{d.happenDisasterArea}}" placeholder="请输入灾害发生点" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="事件编码">事件编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="eventCode" value="{{d.eventCode}}" placeholder="请输入事件编码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型">灾害类型</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterType" value="{{d.disasterType}}" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型（旧）">灾害类型（旧）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterTypeOld" value="{{d.disasterTypeOld}}" placeholder="请输入灾害类型（旧）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害名称">灾害名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterName" value="{{d.disasterName}}" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="伴随灾害">伴随灾害</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="accompanyDisaster" value="{{d.accompanyDisaster}}" placeholder="请输入伴随灾害" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="开始时间">开始时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" value="{{d.startTime}}" id="updateStartTime" name="startTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入开始时间" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="结束时间">结束时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" value="{{d.endTime}}" id="updateEndTime" name="endTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入结束时间" >
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象要素">气象要素</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="meteorologicalElements" value="{{d.meteorologicalElements}}" placeholder="请输入气象要素" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响">影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="influence" value="{{d.influence}}" placeholder="请输入影响" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="disasterPeople" value="{{d.disasterPeople}}" placeholder="请输入受灾人口（人）" lay-verify="disasterPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡人口（人）">死亡人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="deathPeople" value="{{d.deathPeople}}" placeholder="请输入死亡人口（人）" lay-verify="deathPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="失踪人口（人）">失踪人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="missingPeople" value="{{d.missingPeople}}" placeholder="请输入失踪人口（人）" lay-verify="missingPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受伤人口（人）">受伤人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="injuredPeople" value="{{d.injuredPeople}}" placeholder="请输入受伤人口（人）" lay-verify="injuredPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="被困人口（人）">被困人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="trappedPeople" value="{{d.trappedPeople}}" placeholder="请输入被困人口（人）" lay-verify="trappedPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难人口（人）">饮水困难人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="waterDifficultyPeople" value="{{d.waterDifficultyPeople}}" placeholder="请输入饮水困难人口（人）" lay-verify="waterDifficultyPeople"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="转移人口（人）">转移人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="removePeople" value="{{d.removePeople}}" placeholder="请输入转移人口（人）" lay-verify="removePeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="倒塌房屋（间）">倒塌房屋（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="collapseHouse" value="{{d.collapseHouse}}" placeholder="请输入倒塌房屋（间）" lay-verify="collapseHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏房屋">损坏房屋</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="damageHouse" value="{{d.damageHouse}}" placeholder="请输入损坏房屋（间）" lay-verify="damageHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="听课学校（所）">听课学校（所）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="school" value="{{d.school}}" placeholder="请输入听课学校（所）" lay-verify="school" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="经济损失（万元）">经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="economicLoss" value="{{d.economicLoss}}" placeholder="请输入经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="供水管网损毁长度">供水管网损毁长度</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pipeDamageLength" value="{{d.pipeDamageLength}}" placeholder="请输入供水管网损毁长度" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾农作物名称">受灾农作物名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterCrops" value="{{d.disasterCrops}}" placeholder="请输入受灾农作物名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物受灾面积（公顷）">农作物受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterAcreage" value="{{d.disasterAcreage}}" placeholder="请输入农作物受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物成灾面积（公顷）">农作物成灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="causeDisasterAcreage" value="{{d.causeDisasterAcreage}}" placeholder="请输入农作物成灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物绝收面积（公顷）">农作物绝收面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="cropFailureAcreage" value="{{d.cropFailureAcreage}}" placeholder="请输入农作物绝收面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失粮食（吨）">损失粮食（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="grainLoss" value="{{d.grainLoss}}" placeholder="请输入损失粮食（吨）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失大棚（座）">损失大棚（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="greenhouseLoss" value="{{d.greenhouseLoss}}" placeholder="请输入损失大棚（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农业经济损失（万元）" >农业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="agriculturalEconomyLoss" value="{{d.agriculturalEconomyLoss}}" placeholder="请输入农业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死水位一下水库数">死水位一下水库数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="reservoirNum" value="{{d.reservoirNum}}" placeholder="请输入死水位一下水库数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响牧草名称">影响牧草名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureInfluence" value="{{d.pastureInfluence}}" placeholder="请输入影响牧草名称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="牧草受灾面积（公顷）">牧草受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureDisasterAcreage" value="{{d.pastureDisasterAcreage}}" placeholder="请输入牧草受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡大牲畜（头）">死亡大牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="deathBeast" value="{{d.deathBeast}}" placeholder="请输入死亡大牲畜（头）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡家禽（只）">死亡家禽（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="deathPoultry" value="{{d.deathPoultry}}" placeholder="请输入死亡家禽（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难牲畜（头）">饮水困难牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterDifficultyBeast" value="{{d.waterDifficultyBeast}}" placeholder="请输入饮水困难牲畜（头）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="畜牧业经济损失（万元)">畜牧业经济损失（万元)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pastureEconomyLoss" value="{{d.pastureEconomyLoss}}" placeholder="请输入畜牧业经济损失（万元)" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水库塘堰干涸数">水库塘堰干涸数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dryReservoirNum" value="{{d.dryReservoirNum}}" placeholder="请输入水库塘堰干涸数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁大型水库（座）">水毁大型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageBigReservoir" value="{{d.damageBigReservoir}}" placeholder="请输入水毁大型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁中型水库（座）">水毁中型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageMediumReservoir" value="{{d.damageMediumReservoir}}" placeholder="请输入水毁中型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水小型水库（座）">水小型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageSmallReservoir" value="{{d.damageSmallReservoir}}" placeholder="请输入水小型水库（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁塘坝（座）">水毁塘坝（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageDam" value="{{d.damageDam}}" placeholder="请输入水毁塘坝（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁沟渠长度（米）">水毁沟渠长度（米）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="damageChannelLen" value="{{d.damageChannelLen}}" placeholder="请输入水毁沟渠长度（米）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="堤坝决口情况">堤坝决口情况</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dikeBreach" value="{{d.dikeBreach}}" placeholder="请输入堤坝决口情况" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水情信息">水情信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterInformation" value="{{d.waterInformation}}" placeholder="请输入水情信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水利经济损失（万元）">水利经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterEconomyLoss" value="{{d.waterEconomyLoss}}" placeholder="请输入水利经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="中小河流洪水信息">中小河流洪水信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="riversInformation" value="{{d.riversInformation}}" placeholder="请输入中小河流洪水信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停产工厂（间）">停产工厂（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="stopFactory" value="{{d.stopFactory}}" placeholder="请输入停产工厂（间）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="山洪沟信息">山洪沟信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="mountainInformation" value="{{d.mountainInformation}}" placeholder="请输入山洪沟信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="城市内涝信息">城市内涝信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="waterLogging" value="{{d.waterLogging}}" placeholder="请输入城市内涝信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="地质灾害信息">地质灾害信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterGeologic" value="{{d.disasterGeologic}}" placeholder="请输入地质灾害信息" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林木损失（棵）">林木损失（棵）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestLoss" value="{{d.forestLoss}}" placeholder="请输入林木损失（棵）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业受灾面积（公顷）">林业受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestAcreage" value="{{d.forestAcreage}}" placeholder="请输入林业受灾面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业经济损失（万元）">林业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="forestEconomyLoss" value="{{d.forestEconomyLoss}}" placeholder="请输入林业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停电用户数量">停电用户数量</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="stopElectricNum" value="{{d.stopElectricNum}}" placeholder="请输入停电用户数量" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）数量（只）">捕捞船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="shipSinkingNum" value="{{d.shipSinkingNum}}" placeholder="请输入捕捞船只翻（沉）数量（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）吨位（吨）">捕捞船只翻（沉）吨位（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="shipSinkingWeight" value="{{d.shipSinkingWeight}}" placeholder="请输入捕捞船只翻（沉）吨位（吨）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业影响面积（公顷）">渔业影响面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fisheryAcreage" value="{{d.fisheryAcreage}}" placeholder="请输入渔业影响面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业经济损失（万元）">渔业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fisheryEconomyLoss" value="{{d.fisheryEconomyLoss}}" placeholder="请输入渔业经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通信中断数">通信中断数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationInterruptNum" value="{{d.communicationInterruptNum}}" placeholder="请输入通信中断数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班延误（架次）">飞机航班延误（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="flightDelaysNum" value="{{d.flightDelaysNum}}" placeholder="请输入飞机航班延误（架次）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具停运时间（小时）">交通工具停运时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="transportationOutageTime" value="{{d.transportationOutageTime}}" placeholder="请输入交通工具停运时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具损毁（辆）">交通工具损毁（辆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="vehicleDamageNum" value="{{d.vehicleDamageNum}}" placeholder="请输入交通工具损毁（辆）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="铁路损毁长度（公里）">铁路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="railwayDamageLen" value="{{d.railwayDamageLen}}" placeholder="请输入铁路损毁长度（公里）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="公路损毁长度（公里）">公路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="highwayDamageLen" value="{{d.highwayDamageLen}}" placeholder="请输入交通工具停运时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水上运输船只翻（沉）数量（只）">水上运输船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="transportShipSinking" value="{{d.transportShipSinking}}" placeholder="请输入水上运输船只翻（沉）数量（只）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="道路堵塞">道路堵塞</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="roadBlockage" value="{{d.roadBlockage}}" placeholder="请输入道路堵塞" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="滞留旅客数（人）">滞留旅客数（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="strandedPassengers" value="{{d.strandedPassengers}}" placeholder="请输入滞留旅客数（人）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通经济损失（万元）">交通经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="trafficEconomyLoss" value="{{d.trafficEconomyLoss}}" placeholder="请输入交通经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频">音频</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="audio" lay-verify="audio" value="{{d.audio}}"  placeholder="请上传音频" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="updateAudio" name="updateHisFile"  >
+                                    <button class="ewip-upload-btn" id="updateAudioBtn">上传</button>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频信息说明">音频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="audioExplanation" value="{{d.audioExplanation}}" placeholder="请输入音频信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒杆（杆）">电力倒杆（杆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricPole" value="{{d.electricPole}}" placeholder="请输入电力倒杆（杆）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒塔（座）">电力倒塔（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="powerTower" value="{{d.powerTower}}" placeholder="请输入电力倒塔（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力断线长度（千米)">电力断线长度（千米)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricBreakLen" value="{{d.electricBreakLen}}" placeholder="请输入电力断线长度（千米)" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力中断时间（小时）">电力中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricEconomyTime" value="{{d.electricEconomyTime}}" placeholder="请输入电力中断时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力经济损失（万元）">电力经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="electricEconomyLoss" value="{{d.electricEconomyLoss}}" placeholder="请输入电力经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯中断时间（小时）">通讯中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationStopTime" value="{{d.communicationStopTime}}" placeholder="请输入通讯中断时间（小时）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯经济损失（万元）">通讯经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="communicationEconomyLoss" value="{{d.communicationEconomyLoss}}" placeholder="请输入通讯经济损失（万元）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏桥梁涵洞（座）">损坏桥梁涵洞（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="bridgeDamageNum" value="{{d.bridgeDamageNum}}" placeholder="请输入损坏桥梁涵洞（座）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="其他影响">其他影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="otherInfluences" value="{{d.otherInfluences}}" placeholder="请输入其他影响" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片">图片</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="picture"  value="{{d.picture}}"lay-verify="picture" placeholder="请上传图片" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="updatePicture" name="updateHisFile"  >
+                                    <button class="ewip-upload-btn" id="updatePictureBtn">上传</button>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片信息说明">图片信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="pictureExplanation" value="{{d.pictureExplanation}}" placeholder="请输入图片信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频">视频</label>
+                                <div class="layui-input-block upload">
+                                    <input type="text" readonly="" name="video" value="{{d.video}}"  lay-verify="video" placeholder="请上传视频" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <input type="file" hidden="" id="updateVideo" name="updateHisFile"  >
+                                    <button class="ewip-upload-btn" id="updateVideoBtn">上传</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频信息说明">视频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="videoExplanation" value="{{d.videoExplanation}}" placeholder="请输入视频信息说明" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象致灾强度等级">气象致灾强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="meteorologicalLevel" value="{{d.meteorologicalLevel}}" placeholder="请输入气象致灾强度等级" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害强度等级">灾害强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="disasterLevel" value="{{d.disasterLevel}}" placeholder="请输入灾害强度等级" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年耕地面积（公顷）">当地今年耕地面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="cultivatedAcreage" value="{{d.cultivatedAcreage}}" placeholder="请输入当地今年耕地面积（公顷）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年总人口（人）">当地今年总人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="totalPopulation" value="{{d.totalPopulation}}" placeholder="请输入当地今年总人口（人）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="GDP">GDP</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="gdp" value="{{d.gdp}}" placeholder="请输入GDP" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="发生区域">发生区域</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="happenArea" value="{{d.happenArea}}" placeholder="请输入发生区域" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班取消数（架次）">飞机航班取消数（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="flightsCancel" value="{{d.flightsCancel}}" placeholder="请输入飞机航班取消数（架次）" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预警发布情况描述">预警发布情况描述</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="warnPublicDescribe" value="{{d.warnPublicDescribe}}" placeholder="请输入预警发布情况描述" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="数据来源">数据来源</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="dataSources" value="{{d.dataSources}}" placeholder="请输入数据来源" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="备注">备注</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="remarks" value="{{d.remarks}}" placeholder="请输入备注" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填表人">填表人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fillingPerson" value="{{d.fillingPerson}}" placeholder="请输入填表人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预处理人">预处理人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="handlePerson" value="{{d.handlePerson}}" placeholder="请输入预处理人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="确认人">确认人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="confirmingPerson" value="{{d.confirmingPerson}}" placeholder="请输入确认人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="审批人">审批人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="approval" value="{{d.approval}}" placeholder="请输入审批人" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="联系电话">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="phone" value="{{d.phone}}" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填写单位">填写单位</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="fillingUnit" value="{{d.fillingUnit}}" placeholder="请输入填写单位" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回次数">退回次数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="returnNum" value="{{d.returnNum}}" placeholder="请输入退回次数" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回原因">退回原因</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="returnReason" value="{{d.returnReason}}" placeholder="请输入退回原因" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+
+
+                <!-- 详细弹出层 -->
+                <script id="detailPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="状态" >状态</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly"name="status" value="{{d.status}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属省">所属省</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly"name="province" value="{{d.province}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="所属市">所属市</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="city" value="{{d.city}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区">上报地区</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="reportArea" value="{{d.reportArea}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="上报地区编码">上报地区编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="reportAreaCode" value="{{d.reportAreaCode}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害发生点">灾害发生点</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="happenDisasterArea" value="{{d.happenDisasterArea}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="事件编码">事件编码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="eventCode" value="{{d.eventCode}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型">灾害类型</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterType" value="{{d.disasterType}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害类型（旧）">灾害类型（旧）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterTypeOld" value="{{d.disasterTypeOld}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害名称">灾害名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterName" value="{{d.disasterName}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="伴随灾害">伴随灾害</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="accompanyDisaster" value="{{d.accompanyDisaster}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="开始时间">开始时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" value="{{d.startTime}}"  name="startTime" lay-verify="required" autocomplete="off" class="layui-input"  >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="结束时间">结束时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" value="{{d.endTime}}"  name="endTime" lay-verify="required" autocomplete="off" class="layui-input"  >
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象要素">气象要素</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="meteorologicalElements" value="{{d.meteorologicalElements}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响">影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="influence" value="{{d.influence}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="disasterPeople" value="{{d.disasterPeople}}"  lay-verify="disasterPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡人口（人）">死亡人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="deathPeople" value="{{d.deathPeople}}"  lay-verify="deathPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="失踪人口（人）">失踪人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="missingPeople" value="{{d.missingPeople}}"  lay-verify="missingPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受伤人口（人）">受伤人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="injuredPeople" value="{{d.injuredPeople}}"  lay-verify="injuredPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="被困人口（人）">被困人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="trappedPeople" value="{{d.trappedPeople}}"  lay-verify="trappedPeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难人口（人）">饮水困难人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="waterDifficultyPeople" value="{{d.waterDifficultyPeople}}"  lay-verify="waterDifficultyPeople"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="转移人口（人）">转移人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="removePeople" value="{{d.removePeople}}"  lay-verify="removePeople" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="倒塌房屋（间）">倒塌房屋（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="collapseHouse" value="{{d.collapseHouse}}"  lay-verify="collapseHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏房屋">损坏房屋</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="damageHouse" value="{{d.damageHouse}}"  lay-verify="damageHouse" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="听课学校（所）">听课学校（所）</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" readonly="readonly" name="school" value="{{d.school}}"  lay-verify="school" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="经济损失（万元）">经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="economicLoss" value="{{d.economicLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="供水管网损毁长度">供水管网损毁长度</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="pipeDamageLength" value="{{d.pipeDamageLength}}"   autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="受灾农作物名称">受灾农作物名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterCrops" value="{{d.disasterCrops}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物受灾面积（公顷）">农作物受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterAcreage" value="{{d.disasterAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物成灾面积（公顷）">农作物成灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="causeDisasterAcreage" value="{{d.causeDisasterAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农作物绝收面积（公顷）">农作物绝收面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="cropFailureAcreage" value="{{d.cropFailureAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失粮食（吨）">损失粮食（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="grainLoss" value="{{d.grainLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损失大棚（座）">损失大棚（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="greenhouseLoss" value="{{d.greenhouseLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="农业经济损失（万元）" >农业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="agriculturalEconomyLoss" value="{{d.agriculturalEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死水位一下水库数">死水位一下水库数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="reservoirNum" value="{{d.reservoirNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="影响牧草名称">影响牧草名称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="pastureInfluence" value="{{d.pastureInfluence}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="牧草受灾面积（公顷）">牧草受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="pastureDisasterAcreage" value="{{d.pastureDisasterAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡大牲畜（头）">死亡大牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="deathBeast" value="{{d.deathBeast}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="死亡家禽（只）">死亡家禽（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="deathPoultry" value="{{d.deathPoultry}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="饮水困难牲畜（头）">饮水困难牲畜（头）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="waterDifficultyBeast" value="{{d.waterDifficultyBeast}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="畜牧业经济损失（万元)">畜牧业经济损失（万元)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="pastureEconomyLoss" value="{{d.pastureEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水库塘堰干涸数">水库塘堰干涸数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="dryReservoirNum" value="{{d.dryReservoirNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁大型水库（座）">水毁大型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="damageBigReservoir" value="{{d.damageBigReservoir}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁中型水库（座）">水毁中型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="damageMediumReservoir" value="{{d.damageMediumReservoir}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水小型水库（座）">水小型水库（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="damageSmallReservoir" value="{{d.damageSmallReservoir}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁塘坝（座）">水毁塘坝（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="damageDam" value="{{d.damageDam}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水毁沟渠长度（米）">水毁沟渠长度（米）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="damageChannelLen" value="{{d.damageChannelLen}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="堤坝决口情况">堤坝决口情况</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="dikeBreach" value="{{d.dikeBreach}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水情信息">水情信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="waterInformation" value="{{d.waterInformation}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水利经济损失（万元）">水利经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="waterEconomyLoss" value="{{d.waterEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="中小河流洪水信息">中小河流洪水信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="riversInformation" value="{{d.riversInformation}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停产工厂（间）">停产工厂（间）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="stopFactory" value="{{d.stopFactory}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="山洪沟信息">山洪沟信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="mountainInformation" value="{{d.mountainInformation}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="城市内涝信息">城市内涝信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="waterLogging" value="{{d.waterLogging}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="地质灾害信息">地质灾害信息</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterGeologic" value="{{d.disasterGeologic}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林木损失（棵）">林木损失（棵）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="forestLoss" value="{{d.forestLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业受灾面积（公顷）">林业受灾面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="forestAcreage" value="{{d.forestAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="林业经济损失（万元）">林业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="forestEconomyLoss" value="{{d.forestEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="停电用户数量">停电用户数量</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="stopElectricNum" value="{{d.stopElectricNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）数量（只）">捕捞船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="shipSinkingNum" value="{{d.shipSinkingNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="捕捞船只翻（沉）吨位（吨）">捕捞船只翻（沉）吨位（吨）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="shipSinkingWeight" value="{{d.shipSinkingWeight}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业影响面积（公顷）">渔业影响面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="fisheryAcreage" value="{{d.fisheryAcreage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="渔业经济损失（万元）">渔业经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="fisheryEconomyLoss" value="{{d.fisheryEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通信中断数">通信中断数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="communicationInterruptNum" value="{{d.communicationInterruptNum}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班延误（架次）">飞机航班延误（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="flightDelaysNum" value="{{d.flightDelaysNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具停运时间（小时）">交通工具停运时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="transportationOutageTime" value="{{d.transportationOutageTime}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通工具损毁（辆）">交通工具损毁（辆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="vehicleDamageNum" value="{{d.vehicleDamageNum}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="铁路损毁长度（公里）">铁路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="railwayDamageLen" value="{{d.railwayDamageLen}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="公路损毁长度（公里）">公路损毁长度（公里）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="highwayDamageLen" value="{{d.highwayDamageLen}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="水上运输船只翻（沉）数量（只）">水上运输船只翻（沉）数量（只）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="transportShipSinking" value="{{d.transportShipSinking}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="道路堵塞">道路堵塞</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="roadBlockage" value="{{d.roadBlockage}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="滞留旅客数（人）">滞留旅客数（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="strandedPassengers" value="{{d.strandedPassengers}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="交通经济损失（万元）">交通经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="trafficEconomyLoss" value="{{d.trafficEconomyLoss}}"  autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频">音频</label>
+                                <div class="layui-input-inline upload" >
+                                    {{# if(d.audio != "") { }}
+                                        <audio controls="controls" style="height:35px; width:200px;">
+                                            <source src="/client{{d.audio}}" type="audio/ogg">
+                                            <source src="/client{{d.audio}}" type="audio/mpeg">
+                                            <embed src="/client{{d.audio}}" />
+                                        </audio>
+                                    {{# }else{ }}
+                                        <input type="text" readonly="" name="audio" lay-verify="audio" value="{{d.audio}}" autocomplete="off" class="layui-input ">
+                                    {{# } }}
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="音频信息说明">音频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="audioExplanation" value="{{d.audioExplanation}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒杆（杆）">电力倒杆（杆）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="electricPole" value="{{d.electricPole}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力倒塔（座）">电力倒塔（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="powerTower" value="{{d.powerTower}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力断线长度（千米)">电力断线长度（千米)</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="electricBreakLen" value="{{d.electricBreakLen}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力中断时间（小时）">电力中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="electricEconomyTime" value="{{d.electricEconomyTime}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="电力经济损失（万元）">电力经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="electricEconomyLoss" value="{{d.electricEconomyLoss}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯中断时间（小时）">通讯中断时间（小时）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="communicationStopTime" value="{{d.communicationStopTime}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="通讯经济损失（万元）">通讯经济损失（万元）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="communicationEconomyLoss" value="{{d.communicationEconomyLoss}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="损坏桥梁涵洞（座）">损坏桥梁涵洞（座）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="bridgeDamageNum" value="{{d.bridgeDamageNum}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="其他影响">其他影响</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="otherInfluences" value="{{d.otherInfluences}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片">图片</label>
+                                {{# if(d.picture != "") { }}
+                                    <div class="layui-input-block">
+                                        <input type="text" readonly="" name="picture"  value="{{d.picture}}"lay-verify="picture" autocomplete="off" class="layui-input ewip-upload-input">
+                                        <button class="ewip-upload-btn" id="openPicture">查看</button>
+                                    </div>
+                                {{# }else{ }}
+                                    <div class="layui-input-inline upload" >
+                                        <input type="text" readonly="" name="picture"  value="{{d.picture}}"lay-verify="picture" autocomplete="off" class="layui-input ">
+                                    </div>
+                                {{# } }}
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="图片信息说明">图片信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="pictureExplanation" value="{{d.pictureExplanation}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频">视频</label>
+                                {{# if(d.video != "") { }}
+                                <div class="layui-input-block">
+                                    <input type="text" readonly="readonly" name="video" value="{{d.video}}"  lay-verify="video" autocomplete="off" class="layui-input ewip-upload-input">
+                                    <button class="ewip-upload-btn" id="videoPlay">播放</button>
+                                </div>
+                                {{# }else{ }}
+                                <div class="layui-input-inline " >
+                                    <input type="text" readonly="readonly" name="video" value="{{d.video}}"  lay-verify="video" autocomplete="off" class="layui-input ">
+                                </div>
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="视频信息说明">视频信息说明</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="videoExplanation" value="{{d.videoExplanation}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="气象致灾强度等级">气象致灾强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="meteorologicalLevel" value="{{d.meteorologicalLevel}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="灾害强度等级">灾害强度等级</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="disasterLevel" value="{{d.disasterLevel}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年耕地面积（公顷）">当地今年耕地面积（公顷）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="cultivatedAcreage" value="{{d.cultivatedAcreage}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="当地今年总人口（人）">当地今年总人口（人）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="totalPopulation" value="{{d.totalPopulation}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="GDP">GDP</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="gdp" value="{{d.gdp}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="发生区域">发生区域</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="happenArea" value="{{d.happenArea}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="飞机航班取消数（架次）">飞机航班取消数（架次）</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="flightsCancel" value="{{d.flightsCancel}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预警发布情况描述">预警发布情况描述</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="warnPublicDescribe" value="{{d.warnPublicDescribe}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="数据来源">数据来源</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="dataSources" value="{{d.dataSources}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="备注">备注</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="remarks" value="{{d.remarks}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填表人">填表人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="fillingPerson" value="{{d.fillingPerson}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="预处理人">预处理人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="handlePerson" value="{{d.handlePerson}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="确认人">确认人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="confirmingPerson" value="{{d.confirmingPerson}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="审批人">审批人</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="approval" value="{{d.approval}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="联系电话">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="phone" value="{{d.phone}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="填写单位">填写单位</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="fillingUnit" value="{{d.fillingUnit}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回次数">退回次数</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="returnNum" value="{{d.returnNum}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" title="退回原因">退回原因</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly="readonly" name="returnReason" value="{{d.returnReason}}" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
 
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>

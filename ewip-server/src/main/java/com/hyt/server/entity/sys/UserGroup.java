@@ -41,6 +41,9 @@ public class UserGroup {
     @Column(name = "channel_id",length = 64)
     private String channelId;
 
+    @Column(name = "type",length = 1)
+    private Integer type;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -57,12 +60,13 @@ public class UserGroup {
     public UserGroup() {
     }
 
-    public UserGroup(String name, String pId, String areaId, String organizationId, String channelId, Date createTime, String parentName, String areaName, String organizationName, String channelName) {
+    public UserGroup(String name, String pId, String areaId, String organizationId, String channelId, Integer type, Date createTime, String parentName, String areaName, String organizationName, String channelName) {
         this.name = name;
         this.pId = pId;
         this.areaId = areaId;
         this.organizationId = organizationId;
         this.channelId = channelId;
+        this.type = type;
         this.createTime = createTime;
         this.parentName = parentName;
         this.areaName = areaName;
@@ -116,6 +120,14 @@ public class UserGroup {
 
     public void setChannelId(String channelId) {
         this.channelId = channelId;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Date getCreateTime() {

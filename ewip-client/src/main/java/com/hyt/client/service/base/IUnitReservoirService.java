@@ -56,4 +56,20 @@ public interface IUnitReservoirService {
          */
         @GetMapping("/unitReservoir/list")
         JSONObject selectList(@RequestParam Map<String,Object> map);
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitReservoir/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitReservoir/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
 }

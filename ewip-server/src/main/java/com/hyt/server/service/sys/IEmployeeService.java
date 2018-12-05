@@ -66,5 +66,10 @@ public interface IEmployeeService extends IBaseService<Employee> {
      * @return
      */
     int deleteByEmployeeIds(String id);
-
+    /**
+     * 修改密码
+     * @param map
+     * @return
+     */
+    int updatePwd(Map<String,Object> map);
 }

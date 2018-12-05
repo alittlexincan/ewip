@@ -65,5 +65,11 @@ public interface IOrganizationService {
      */
     @GetMapping("/organization/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
-
+    /**
+     * 查询机构详情信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/organization/selectOrg")
+    JSONObject selectOrg(@RequestParam Map<String,Object> map);
 }

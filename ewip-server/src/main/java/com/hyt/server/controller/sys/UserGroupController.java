@@ -121,4 +121,12 @@ public class UserGroupController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+
+    @PostMapping("/selectGroup")
+    public JSONObject selectOrg( @RequestParam Map<String,Object> map) {
+        JSONObject jsonObject=this.userGroupService.selectGroup(map);
+        return jsonObject;
+    }
+
+
 }

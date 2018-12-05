@@ -66,7 +66,49 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,'url': '/client/tree/area'
         ,'isMultiple': false
         ,'isVerify': false
+        ,clickNode:function (event, treeId, treeNode) {
+            let areaId = treeNode.id;
+            initOrg(0,areaId);
+            //绑定树操作
+            selectTree.setValue(treeId,treeNode);
+            selectTree.hideTree();
+        }
     });
+
+
+    /**
+     * 初始化下拉机构列表
+     * @param param
+     */
+    let initOrg=function(flag,param){
+        $.ajax({
+            async:false
+            ,type: "POST"
+            ,data: {areaId:param}
+            ,url: "/client/organization/selectOrg"
+            ,dataType: 'json'
+            ,success: function(json){
+                let list=json.list;
+                var html="";
+                html +="<option value=''>直接选择或搜索选择</option>";
+                if(list.length>0){
+                    for(var i=0;i<list.length;i++){
+                        html +="<option value='"+list[i].id+"'>"+list[i].organizationName+"</option>";
+                    }
+                    if(flag==0){
+                        $("#searchOrganizationId").empty().append(html);
+                    }else if(flag==1){
+                        $("#addOrganizationId").empty().append(html);
+                    }else{
+                        $("#updateOrganizationId").empty().append(html);
+                    }
+                }
+                form.render();
+            }
+        });
+    }
+
+
     /**
      * 初始化下拉树(机构)
      */
@@ -108,7 +150,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
         ,organizationName: function(value){
             if(value.length == 0) return '请输入机构名称';
-            if(value.length > 20) return '机构名称长度不能超过20位';
+            if(value.length > 50) return '机构名称长度不能超过50位';
 
         }
         ,code: function (value) {
@@ -168,13 +210,20 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(1,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'addPId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                        });
+                        // selectTree.render({
+                        //     'id': 'addPId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        // });
                     });
                     form.render();
 
@@ -268,21 +317,30 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         // 地区级别下拉框赋值
                         $("select[name='level']").val(param.level);
                         $("select[name='type']").val(param.type);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='pId']").val(param.organizationId);
                         // 初始化下拉树(地区)
                         selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'updatePId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.pId
-
-                        });
+                        // selectTree.render({
+                        //     'id': 'updatePId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     ,'checkNodeId': param.pId
+                        //
+                        // });
 
                     });
                     form.render();
@@ -327,5 +385,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    initOrg(0,null);//初始化机构列表
 
 });

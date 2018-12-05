@@ -88,7 +88,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         }
         ,areaName: function(value){
             if(value.length == 0) return '请输入地区名称';
-            if(value.length > 20) return '地区名称长度不能超过20位';
+            if(value.length > 50) return '地区名称长度不能超过50位';
 
         }
         ,code: function (value) {

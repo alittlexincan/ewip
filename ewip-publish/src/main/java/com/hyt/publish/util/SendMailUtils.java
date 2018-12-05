@@ -1,4 +1,4 @@
-package com.hyt.server.utils;
+package com.hyt.publish.util;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -42,7 +42,7 @@ public class SendMailUtils {
 
         //sendTextWithImg(sender, ss, "测试邮件中嵌套图片!！", "欢迎你!!", "image", "D:\\ewip-file\\channel\\01-短信.png");
 
-        sendWithAttament(sender,ss,"测试邮件中上传附件!","","测试_20181101103023.doc","D:\\ewip-file\\serverFile\\测试_20181101103023.doc");
+        sendWithAttament(sender,ss,"测试邮件中上传附件!","","气象_20181115173123.doc","D:\\ewip-file\\serverFile\\气象_20181115173123.doc");
 
         //sendWithAll(sender, ss, "测试邮件中嵌套图片!", "hello 欢迎你!", "image", "01-短信.png","D:\\ewip-file\\channel\\01-短信.png","测试_20181101103023.doc","D:\\ewip-file\\serverFile\\测试_20181101103023.doc");
     }

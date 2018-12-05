@@ -202,29 +202,64 @@
 
     <!--机构对应群组树-->
     <select id="getOrganizationUserGroupTree" resultMap="ZTreeUserGroupResultMap">
-        (SELECT
-                id,
-                p_id,
-                organization_name name,
-                area_id,
-                id organization_id,
-                1 type
-            FROM
-                organization
-            where 1=1
-            <if test=" organizationId != null and organizationId !='' "> and id = #{organizationId} </if>
-        ) UNION ALL (
-            SELECT
-                id,
-                organization_id p_id,
-                name,
-                area_id,
-                organization_id,
-                2 type
-            FROM
-                user_group
-            where 1=1
-          <if test=" organizationId != null and organizationId !='' "> and organization_id = #{organizationId} </if>
+        (
+        SELECT
+        a.id,
+        a.p_id,
+        a.area_name NAME,
+        null channel_id,
+        a.id area_id,
+        0 count,
+        0 type
+        FROM area a where 1=1
+        )union all(
+        SELECT
+        o.id,
+        o.area_id p_id,
+        o.organization_name NAME,
+        null channel_id,
+        o.area_id,
+        0 count,
+        1 type
+        FROM organization o  where 1=1
+        )union all(
+        SELECT
+        ug.id,
+        (case when ug.organization_id = ''    THEN ug.area_id
+        when ug.organization_id is null THEN ug.area_id
+        else ug.organization_id end)  p_id,
+        ug.NAME,
+        ug.channel_id,
+        ug.area_id,
+        (SELECT count(1) FROM USER u WHERE u.user_group_id = ug.id ) count,
+        2 type
+        FROM user_group ug where 1=1
         )
+
+
+        <!--(SELECT-->
+                <!--id,-->
+                <!--p_id,-->
+                <!--organization_name name,-->
+                <!--area_id,-->
+                <!--id organization_id,-->
+                <!--1 type-->
+            <!--FROM-->
+                <!--organization-->
+            <!--where 1=1-->
+            <!--<if test=" organizationId != null and organizationId !='' "> and id = #{organizationId} </if>-->
+        <!--) UNION ALL (-->
+            <!--SELECT-->
+                <!--id,-->
+                <!--organization_id p_id,-->
+                <!--name,-->
+                <!--area_id,-->
+                <!--organization_id,-->
+                <!--2 type-->
+            <!--FROM-->
+                <!--user_group-->
+            <!--where 1=1-->
+          <!--<if test=" organizationId != null and organizationId !='' "> and organization_id = #{organizationId} </if>-->
+        <!--)-->
     </select>
 </mapper>

@@ -41,17 +41,165 @@
 
             <div class="layui-card-body">
 
-                <!--<div class="layui-btn-group tableBar">-->
-                    <!--<button class="layui-btn" data-type="addBarBtn">添加</button>-->
-                    <!--<button class="layui-btn" data-type="deleteBarBtn">删除</button>-->
-                <!--</div>-->
+                <div class="layui-btn-group tableBar">
+                    <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                </div>
 
-                <!--&lt;!&ndash; 列表：数据行操作 &ndash;&gt;-->
-                <!--<script type="text/html" id="btnGroupOption">-->
-                    <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>-->
-                    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
-                <!--</script>-->
+                <!-- 列表：数据行操作 -->
+                <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </script>
 
+                <!-- 添加弹出层 -->
+                <script id="addPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="code" lay-verify="code"  autocomplete="off" placeholder="请输入编号" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">起点</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="start" lay-verify="start"  autocomplete="off" placeholder="请输入起点" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终点</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="end" lay-verify="end"  autocomplete="off" placeholder="请输入终点" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属省</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="province" lay-verify="province"  autocomplete="off" placeholder="请输入省份" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">长度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="length" lay-verify="length"  autocomplete="off" placeholder="请输入长度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">管辖单位</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="unit" lay-verify="unit"  autocomplete="off" placeholder="请输入管辖单位" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="principal"  autocomplete="off" placeholder="请输入负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="phone" autocomplete="off" placeholder="请输入电话" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <!-- 修改弹出层 -->
+                <script id="updatePop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="code" lay-verify="code" value="{{d.code}}" autocomplete="off" placeholder="请输入编号" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">起点</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="start" lay-verify="start" value="{{d.start}}" autocomplete="off" placeholder="请输入起点" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终点</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="end" lay-verify="end" value="{{d.end}}" autocomplete="off" placeholder="请输入终点" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属省</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="province" lay-verify="province" value="{{d.province}}"  autocomplete="off" placeholder="请输入省份" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">长度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="length" lay-verify="length" value="{{d.length}}" autocomplete="off" placeholder="请输入长度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">管辖单位</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="unit" lay-verify="unit" value="{{d.unit}}" autocomplete="off" placeholder="请输入管辖单位" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="principal" value="{{d.principal}}"  autocomplete="off" placeholder="请输入负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="phone" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea">{{d.description}}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>
             </div>

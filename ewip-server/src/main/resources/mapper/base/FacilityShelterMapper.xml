@@ -15,6 +15,10 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="lon" property="lon" jdbcType="DOUBLE" />
     <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, district, address, code, area, capacity, unit, principal, tel, phone, lon, 
@@ -23,19 +27,20 @@
   <!-- 查询应急避难所信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List" />
-    FROM
-    base_facility_shelter
+    s.*,e.name createUserName,em.name updateUserName
+    FROM base_facility_shelter s
+    left join employee e on s.createUser=e.id
+    left join employee em on s.updateUser=em.id
     where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="district != null and district != ''">AND district = #{district}</if>
-    <if test="name != null and name != ''">AND name = #{name} </if>
+    <if test="id != null and id != ''">AND s.id = #{id}</if>
+    <if test="district != null and district != ''">AND s.district = #{district}</if>
+    <if test="name != null and name != ''">AND s.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY s.create_time DESC
       </otherwise>
     </choose>
   </select>

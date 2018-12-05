@@ -48,4 +48,20 @@ public interface IUnitAgriculturParkService {
          */
         @GetMapping("/unitAgriculturPark/list")
         JSONObject selectList(@RequestParam Map<String,Object> map);
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitAgriculturPark/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitAgriculturPark/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
 }

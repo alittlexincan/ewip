@@ -56,4 +56,20 @@ public interface IUnitPlantAreaService {
          */
         @GetMapping("/unitPlantArea/list")
         JSONObject selectList(@RequestParam Map<String,Object> map);
+
+        /**
+         * 添加信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitPlantArea/insert")
+        JSONObject insert(@RequestParam Map<String, Object> map);
+
+        /**
+         * 修改信息
+         * @param map
+         * @return
+         */
+        @PostMapping("/unitPlantArea/update")
+        JSONObject update(@RequestParam Map<String, Object> map);
 }

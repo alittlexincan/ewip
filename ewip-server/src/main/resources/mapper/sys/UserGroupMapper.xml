@@ -13,6 +13,7 @@
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
         <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+        <result column="type" jdbcType="SMALLINT" property="type"/>
     </resultMap>
 
     <!-- 查询群组信息 -->
@@ -22,6 +23,7 @@
             ug.p_id,
             ug.name,
             ug.area_id,
+            ug.type,
             a.area_name,
             ug.organization_id,
             o.organization_name,
@@ -55,6 +57,7 @@
             ug.p_id,
             ug.name,
             ug.area_id,
+            ug.type,
             a.area_name,
             ug.organization_id,
             o.organization_name,
@@ -68,4 +71,12 @@
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
     </select>
 
+
+    <!-- 查询机构信息 -->
+    <select id="selectGroup" resultMap="BaseResultMap">
+        select * FROM user_group o where 1=1
+        <if test="id != null and id != ''">and o.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND o.organization_id = #{organizationId}</if>
+    </select>
 </mapper>

@@ -18,6 +18,7 @@
         <result column="leader" jdbcType="VARCHAR" property="leader"/>
         <result column="age" jdbcType="SMALLINT" property="age"/>
         <result column="sex" jdbcType="SMALLINT" property="sex"/>
+        <result column="type" jdbcType="SMALLINT" property="type"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
@@ -42,6 +43,7 @@
             o.organization_name,
             u.channel_id,
             c.name channel_name,
+            u.type,
             j.job,
             j.duties,
             j.leader,
@@ -90,6 +92,7 @@
             o.organization_name,
             u.channel_id,
             c.name channel_name,
+            u.type,
             j.job,
             j.duties,
             j.leader,
@@ -114,13 +117,13 @@
 
     <!-- 受众信息插入 -->
     <insert id="insertUser" >
-        insert into user (id, name, code, user_group_id, channel_id, area_id,organization_id,job_id,
+        insert into user (id, name, code, user_group_id, channel_id, area_id,organization_id,job_id,type,
         <if test="longitude != null and longitude != ''">longitude,</if>
         <if test="latitude != null and latitude != ''">latitude,</if>
         <if test="altitude != null and altitude != ''">altitude,</if>
         create_time )
         values
-        ( #{userId}, #{name}, #{code}, #{userGroupId}, #{channelId},#{areaId},#{organizationId},#{userJobId},
+        ( #{userId}, #{name}, #{code}, #{userGroupId}, #{channelId},#{areaId},#{organizationId},#{userJobId},#{type},
         <if test="longitude != null and longitude != ''">#{longitude},</if>
         <if test="latitude != null and latitude != ''"> #{latitude},</if>
         <if test="altitude != null and altitude != ''"> #{altitude},</if>
@@ -129,7 +132,7 @@
 
     <!-- 受众职务信息插入 -->
     <insert id="insertUserJob" >
-        insert into user_job (id, name,sex,
+        insert into user_job (id, name,sex,user_group_id, channel_id, area_id,organization_id,
         <if test="job != null and job != ''">job,</if>
         <if test="duties != null and duties != ''">duties,</if>
         <if test="leader != null and leader != ''">leader,</if>
@@ -137,7 +140,7 @@
         <if test="address != null and address != ''">address,</if>
         create_time,user_id)
         values
-        ( #{userJobId}, #{name},#{sex},
+        ( #{userJobId}, #{name},#{sex},#{userGroupId}, #{channelId},#{areaId},#{organizationId},
         <if test="job != null and job != ''">#{job},</if>
         <if test="duties != null and duties != ''">#{duties},</if>
         <if test="leader != null and leader != ''">#{leader},</if>
@@ -151,7 +154,7 @@
         UPDATE user SET job_id = #{userJobId}, name=#{name},
         code= #{code},user_group_id=#{userGroupId},
         channel_id =#{channelId}, area_id=#{areaId},
-        organization_id=#{organizationId}
+        organization_id=#{organizationId},type=#{type}
         <if test="longitude != null and longitude != ''">,longitude =#{longitude}</if>
         <if test="latitude != null and latitude != ''">,latitude= #{latitude}</if>
         <if test="altitude != null and altitude != ''">,altitude= #{altitude}</if>
@@ -215,11 +218,19 @@
         </if>
 
     </select>
-
     <!--查询受众的详细信息 -->
     <select id="userDetails" resultMap="BaseResultMap">
-    SELECT job,duties,leader,age,address,DATE_FORMAT(create_time, '%Y-%m-%d %H:%i:%s') create_time FROM  user_job u where user_id= #{id}
-    order by create_time desc
+    SELECT ug.name user_group_name,ug.type,
+        a.area_name,
+        o.organization_name,
+        c.name channel_name,
+        j.job,j.duties,j.leader,j.age,j.address,DATE_FORMAT(j.create_time, '%Y-%m-%d %H:%i:%s') create_time FROM
+        user_job j
+    LEFT JOIN user_group ug on ug.id = j.user_group_id
+    LEFT JOIN area a on a.id = j.area_id
+    LEFT JOIN organization o on o.id = j.organization_id
+    LEFT JOIN channel c on c.id = j.channel_id
+    WHERE j.user_id = #{id}
+    ORDER BY j.create_time desc
     </select>
-
 </mapper>

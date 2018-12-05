@@ -1,5 +1,6 @@
 package com.hyt.server.service.sys;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.UserGroup;
@@ -18,4 +19,5 @@ public interface IUserGroupService extends IBaseService<UserGroup> {
 
     UserGroup selectById(String id);
 
+    JSONObject selectGroup(Map<String,Object> map);
 }

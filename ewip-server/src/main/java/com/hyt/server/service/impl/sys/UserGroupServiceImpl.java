@@ -1,9 +1,11 @@
 package com.hyt.server.service.impl.sys;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
 import com.hyt.server.config.common.universal.AbstractService;
+import com.hyt.server.entity.sys.Organization;
 import com.hyt.server.entity.sys.UserGroup;
 import com.hyt.server.mapper.sys.IUserGroupMapper;
 import com.hyt.server.service.sys.IUserGroupService;
@@ -36,6 +38,21 @@ public class UserGroupServiceImpl extends AbstractService<UserGroup> implements 
     @Override
     public UserGroup selectById(String id){
         return this.userGroupMapper.selectById(id);
+    }
+
+
+    /**
+     * 查询群组信息
+     * @param map
+     * @return
+     */
+
+    @Override
+    public JSONObject selectGroup(Map<String, Object> map) {
+        JSONObject json=new JSONObject();
+        List<UserGroup> list=userGroupMapper.selectGroup(map);
+        json.put("list",list);
+        return json;
     }
 
 }

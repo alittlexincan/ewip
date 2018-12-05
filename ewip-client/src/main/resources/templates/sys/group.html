@@ -32,14 +32,16 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
-                    <div id="addOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                    <select id="addOrganizationId" name="organizationId" lay-verify="required" lay-search="">
+                        <option value="">请选择机构</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">所属渠道</label>
                 <div class="layui-input-block">
-                    <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道">
-                        <option value="">请选择所属渠道</option>
+                    <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
+                        <option value="">请选择或输入所属渠道</option>
                     </select>
                 </div>
             </div>
@@ -47,6 +49,17 @@
                 <label class="layui-form-label">群组名称</label>
                 <div class="layui-input-block">
                     <input type="text" name="name" lay-verify="name" placeholder="请输入群组名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">群组类型</label>
+                <div class="layui-input-block">
+                    <select name="type" lay-verify="required"  placeholder="请选择群组类型" lay-search="" >
+                        <option value="">请选择群组类型</option>
+                        <option value="1">责任人</option>
+                        <option value="2">基层防御人员</option>
+                    </select>
                 </div>
             </div>
 
@@ -70,13 +83,21 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
-                    <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                    <select id="updateOrganizationId" name="organizationId" lay-verify="required" lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                    </select>
                 </div>
             </div>
+            <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label">所属机构</label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="layui-form-item">
                 <label class="layui-form-label">所属渠道</label>
                 <div class="layui-input-block">
-                    <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道">
+                    <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
                         <option value="">请选择所属渠道</option>
                     </select>
                 </div>
@@ -85,6 +106,17 @@
                 <label class="layui-form-label">群组名称</label>
                 <div class="layui-input-block">
                     <input type="text" name="name" value="{{d.name}}" lay-verify="name" placeholder="请输入群组名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">群组类型</label>
+                <div class="layui-input-block">
+                    <select name="type" lay-verify="required"  placeholder="请选择群组类型" lay-search="" >
+                        <option value="">请选择群组类型</option>
+                        <option value="1">责任人群组</option>
+                        <option value="2">基层防御群组</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item layui-hide" >
@@ -101,6 +133,18 @@
                 <div class="layui-card">
                     <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>群组管理</span></div>
                     <div class="layui-card-body">
+                        <div class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <input type="text" id="keyword" name="keyword"  placeholder="请输入..." style="width: 160px;" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline">
+                                    <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search" id="search-bt">
+                                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <ul id="organizationGroupTree" class="ztree ewip-left-tree"></ul>
                     </div>
                 </div>
@@ -117,7 +161,14 @@
                             </div>
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <div id="searchOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                                    <div id="searchAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select id="searchOrganizationId" name="organizationId" lay-verify="required" lay-search="">
+                                        <option value="">请选择机构</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="layui-inline">

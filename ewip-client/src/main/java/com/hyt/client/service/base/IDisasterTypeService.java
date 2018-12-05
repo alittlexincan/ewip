@@ -17,7 +17,6 @@ import java.util.Map;
 @FeignClient("EWIP-SERVER")
 public interface IDisasterTypeService {
 
-
         /**
          * 添加灾害种类信息
          * @param map

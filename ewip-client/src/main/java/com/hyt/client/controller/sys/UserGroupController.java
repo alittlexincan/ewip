@@ -81,4 +81,15 @@ public class UserGroupController {
         return this.userGroupService.selectAll(map);
     }
 
+
+    /**
+     * 查询群组信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/selectGroup")
+    public JSONObject selectGroup(@RequestParam Map<String,Object> map){
+        return this.userGroupService.selectGroup(map);
+    }
+
 }

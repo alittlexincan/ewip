@@ -66,5 +66,11 @@ public interface IUserGroupService {
      */
     @GetMapping("/group/select")
     JSONObject selectAll(@RequestParam Map<String, Object> map);
-
+    /**
+     * 查询群组信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/group/selectGroup")
+    JSONObject selectGroup(@RequestParam Map<String,Object> map);
 }
