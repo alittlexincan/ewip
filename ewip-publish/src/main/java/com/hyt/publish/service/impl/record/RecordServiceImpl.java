@@ -87,7 +87,7 @@ public class RecordServiceImpl implements IRecordService {
                 log.info("CAP协议文件打包成功！文件路径为：【" + zipFile.getPath() + zipFile.getName() + "】");
                 // 3：FTP上传：配置基础信息；登录；文件开始上传；最后关闭
                 FTPConfig config = new FTPConfig(this.url, this.port, this.path, this.loginName, this.loginPassword);
-                boolean isLogin = FTPUtil.ftpLogin(config);
+                boolean isLogin = FTPUtil.login(config);
                 if (!isLogin) {
                     log.error("FTP登录失败！【登录地址：" + this.url + "、登录端口：" + this.port + "、登录名称：" + this.loginName + "、登录密码：" + this.loginPassword + "、文件夹：" + this.path + "】");
                     result = callBackMsg(json.getString("id"), "国突对接：FTP登录失败！【登录地址：" + this.url + "、登录端口：" + this.port + "、登录名称：" + this.loginName + "、登录密码：" + this.loginPassword + "、文件夹：" + this.path + "】");
@@ -108,6 +108,8 @@ public class RecordServiceImpl implements IRecordService {
                         result.put("work","国突对接：CAP协议文件FTP上传成功！文件路径为：【" + zipFile.getPath() + zipFile.getName() + "】");
                     }
                 }
+                // 4: 关闭FTP
+                FTPUtil.close();
             }
         }
 
