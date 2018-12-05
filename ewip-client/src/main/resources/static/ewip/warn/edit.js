@@ -587,9 +587,16 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 active.setAreaWarnContent(param);
             }
         }
-
-
+        /**
+         * 树形机构点击按钮
+         * @param event
+         * @param treeId
+         * @param treeNode
+         * @returns {boolean}
+         */
         ,"disClickNode":function (event, treeId, treeNode) {
+            //关闭当前弹出层
+            layer.close(layer.index);
             if(treeNode.isConfig==1){
                 let name = treeNode.name;
                 if(name.indexOf("[") > -1){
@@ -612,7 +619,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     ,disasterCode: treeNode.code                // 灾种编码
                     ,icon: "/client/"+treeNode.img              // 灾种图标
                 };
-                $(".basis input[name='disasterId']").val(param.disasterName);
+                debugger;
+                $(".basis input[name='disasterId']").val(param.disasterId);
                 // 预警名称
                 $(".basis input[name='disasterName']").val(param.disasterName);
                 // 预警颜色
@@ -673,7 +681,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     /**
      * 灾种树选择 lxv
      */
-    $("#addDisasterId").on("click",function(){
+    $("#disasterName").on("click",function(){
         layer.open({
             type: 1
             ,title: "<i class='layui-icon'>&#xe642;</i>选择灾种"
@@ -687,7 +695,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     // 动态获取弹出层对象并追加html
                     $("#addDiv").empty().append(html);
                     zTree.async({
-                        id: "#disasterId",
+                        id: "#addDisasterName",
                         setting: {
                             async:{
                                 enable:true,
@@ -696,8 +704,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                                 dataType:"json",
                             },
                             check: {
-                                enable: true,
-                                chkStyle:"radio"
+                                enable: false
                             },
                             data: {
                                 simpleData: {
@@ -705,8 +712,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                                 }
                             },
                             callback:{
-                                onClick:null,
-                                onCheck:active.disClickNode
+                                onClick:active.disClickNode
                             }
                         }
                     });
