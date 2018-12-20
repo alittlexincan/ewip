@@ -34,4 +34,8 @@ public interface IUserService extends IBaseService<User> {
     List<User> selectList(Map<String, Object> map);
 
     JSONObject userDetails(Map<String,Object> map);
+
+    JSONObject downModel(Map<String,Object> map);
+
+    JSONObject importData(Map<String,Object> map, List<Map<String,Object>> list);
 }

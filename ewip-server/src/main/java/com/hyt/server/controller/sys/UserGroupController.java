@@ -12,6 +12,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -127,6 +128,24 @@ public class UserGroupController {
         JSONObject jsonObject=this.userGroupService.selectGroup(map);
         return jsonObject;
     }
+
+
+    @PostMapping("/downModel")
+    public JSONObject downModel( @RequestParam Map<String,Object> map) {
+        return this.userGroupService.downModel(map);
+    }
+
+    /**
+     * 数据导入
+     * @return
+     */
+    @PostMapping("/importData")
+    public JSONObject importData(@RequestParam Map<String,Object> map,@RequestBody List<Map<String,Object>> list) {
+        JSONObject json=this.userGroupService.importData(map,list);
+        return json;
+    }
+
+
 
 
 }

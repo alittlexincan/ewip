@@ -47,5 +47,9 @@ public interface IOrganizationMapper extends IBaseMapper<Organization> {
      */
     List<Organization> selectOrg(Map<String, Object> map);
 
-    
+    /**
+     * 导入excel数据
+     * @return
+     */
+    int importData(List<Organization> list1);
 }

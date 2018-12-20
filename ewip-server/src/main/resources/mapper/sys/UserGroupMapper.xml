@@ -79,4 +79,17 @@
         <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND o.organization_id = #{organizationId}</if>
     </select>
+
+
+
+    <!-- 导入Excel到数据库 -->
+    <insert id="importData" >
+        insert into user_group (id, name, organization_id, area_id, channel_id, type, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            ( REPLACE(UUID(),'-',''), #{item.name}, #{item.organizationId}, #{item.areaId}, #{item.channelId}, #{item.type}, now())
+        </foreach>
+    </insert>
+
+
 </mapper>

@@ -2,6 +2,7 @@ package com.hyt.server.mapper.sys;
 
 import com.hyt.server.config.common.universal.IBaseMapper;
 import com.hyt.server.entity.sys.User;
+import com.hyt.server.entity.sys.UserGroup;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -53,5 +54,11 @@ public interface IUserMapper extends IBaseMapper<User> {
 
     List<User> selectList(Map<String, Object> map);
 
+    List<User> selectUser(Map<String, Object> map);
+
     List<User> userDetails(Map<String,Object> map);
+
+    int importUserData(List<User> list1);
+
+    int importJobData(List<User> list1);
 }

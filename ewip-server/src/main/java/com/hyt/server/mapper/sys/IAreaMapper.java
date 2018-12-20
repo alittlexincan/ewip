@@ -32,4 +32,5 @@ public interface IAreaMapper extends IBaseMapper<Area> {
      */
     Area selectById(@Param(value="id") String id);
 
+    List<Area> areaList(Map<String,Object> map);
 }

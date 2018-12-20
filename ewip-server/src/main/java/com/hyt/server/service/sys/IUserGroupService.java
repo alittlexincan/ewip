@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.UserGroup;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,4 +21,8 @@ public interface IUserGroupService extends IBaseService<UserGroup> {
     UserGroup selectById(String id);
 
     JSONObject selectGroup(Map<String,Object> map);
+
+    JSONObject downModel(Map<String,Object> map);
+
+    JSONObject importData(Map<String,Object> map, List<Map<String,Object>> list);
 }

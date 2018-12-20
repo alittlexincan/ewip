@@ -6,6 +6,7 @@ import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.sys.Organization;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +22,8 @@ public interface IOrganizationService extends IBaseService<Organization> {
     Organization selectById(@Param(value="id") String id);
 
     JSONObject selectOrg(Map<String,Object> map);
+
+    JSONObject downModel(Map<String,Object> map);
+
+    JSONObject importData(Map<String,Object> map, List<Map<String,Object>> list);
 }

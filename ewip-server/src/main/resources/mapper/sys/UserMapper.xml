@@ -27,8 +27,6 @@
         <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName"/>
     </resultMap>
 
-
-
     <!-- 查询信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         SELECT
@@ -113,8 +111,6 @@
         <if test="id != null and id != ''">AND u.id = #{id}</if>
     </select>
 
-
-
     <!-- 受众信息插入 -->
     <insert id="insertUser" >
         insert into user (id, name, code, user_group_id, channel_id, area_id,organization_id,job_id,type,
@@ -191,25 +187,19 @@
             u.latitude,
             u.longitude,
             o.organization_name
-        FROM
-         user u
+        FROM user u
         LEFT JOIN user_job uj on uj.id = u.job_id
         LEFT JOIN organization o on o.id = u.organization_id
-
         where 1=1
-
-         <if test="channelName != null and channelName != '' ">
-             and u.channel_id = (SELECT id FROM channel where name = #{channelName})
-         </if>
-
+        <if test="channelName != null and channelName != '' ">
+            and u.channel_id = (SELECT id FROM channel where name = #{channelName})
+        </if>
         <if test="areaId != null and areaId != '' ">
             and u.area_id = #{areaId}
         </if>
-
         <if test="organizationId != null and organizationId != '' ">
             and u.organization_id = #{organizationId}
         </if>
-
         <if test="type == 1">
             and uj.leader is null
         </if>
@@ -233,4 +223,62 @@
     WHERE j.user_id = #{id}
     ORDER BY j.create_time desc
     </select>
+
+    <!-- 查询所有用户信息 -->
+    <select id="selectUser"  resultMap="BaseResultMap">
+        SELECT
+        u.id,
+        u.name,
+        u.code,
+        u.user_group_id,
+        ug.name user_group_name,
+        u.area_id,
+        a.area_name,
+        u.organization_id,
+        o.organization_name,
+        u.channel_id,
+        c.name channel_name,
+        u.type,
+        j.job,
+        j.duties,
+        j.leader,
+        j.age,
+        j.sex,
+        j.address,
+        u.longitude,
+        u.latitude,
+        u.altitude,
+        u.create_time
+        FROM user u
+        LEFT JOIN user_group ug on ug.id = u.user_group_id
+        LEFT JOIN area a on a.id = u.area_id
+        LEFT JOIN organization o on o.id = u.organization_id
+        LEFT JOIN channel c on c.id = u.channel_id
+        LEFT JOIN user_job j on u.job_id = j.id
+        where 1=1
+        <if test="id != null and id != ''">AND u.id = #{id}</if>
+    </select>
+
+    <!-- 导入Excel到用户表 -->
+    <insert id="importUserData" >
+        insert into user (id, name, organization_id, area_id, user_group_id, channel_id, type,code,
+        longitude,latitude,altitude,job_id, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id}, #{item.name}, #{item.organizationId}, #{item.areaId}, #{item.userGroupId}, #{item.channelId}, #{item.type}, #{item.code},
+            #{item.longitude}, #{item.latitude}, #{item.altitude}, #{item.jobId}, now())
+        </foreach>
+    </insert>
+
+    <!-- 导入Excel到用户职位表 -->
+    <insert id="importJobData" >
+        insert into user_job (id, name,  area_id, organization_id, user_group_id, channel_id,
+        job,duties,leader, age, sex,address,user_id, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.jobId}, #{item.name}, #{item.areaId}, #{item.organizationId},#{item.userGroupId}, #{item.channelId},
+            #{item.job},#{item.duties},#{item.leader},#{item.age},#{item.sex},#{item.address},#{item.id}, now())
+        </foreach>
+    </insert>
+
 </mapper>

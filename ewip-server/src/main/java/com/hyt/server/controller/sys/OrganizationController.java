@@ -130,5 +130,21 @@ public class OrganizationController {
         return jsonObject;
     }
 
+    @PostMapping("/downModel")
+    public JSONObject downModel( @RequestParam Map<String,Object> map) {
+        return this.organizationService.downModel(map);
+    }
+
+
+    /**
+     * 数据导入
+     * @return
+     */
+    @PostMapping("/importData")
+    public JSONObject importData(@RequestParam Map<String,Object> map,@RequestBody List<Map<String,Object>> list) {
+        JSONObject json=this.organizationService.importData(map,list);
+        return json;
+    }
+
 
 }
