@@ -6,12 +6,13 @@ layui.config({
     ,mod1: 'modules' //相对于上述 base 目录的子目录
 });
 
-layui.use(["table","form","laytpl","layer","selectTree"], function(){
+layui.use(["table","form","laytpl","layer","selectTree","ajaxFileUpload"], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,selectTree = layui.selectTree
+        ,ajaxFileUpload = layui.ajaxFileUpload
         ,$ = layui.$;   			// 引用layui的jquery
 
     /**
@@ -36,6 +37,29 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     };
 
     /**
+     * 数据提交到后台（通用发方法）
+     * @param option
+     */
+    let submitFile = function(option){
+        ajaxFileUpload.render({
+            async: option.async
+            ,url : option.url
+            ,type: option.type
+            ,param : option.param//需要传递的数据 json格式
+            ,files : option.files
+            ,dataType: 'json'
+        },function (json) {
+            if(json.code == 200){
+                // 刷新列表
+                reloadTable();
+            }
+            // 弹出提示信息，2s后自动关闭
+            layer.msg(json.msg, {time: 2000});
+        });
+    };
+
+
+    /**
      * 加载表格
      */
     table.render({
@@ -51,7 +75,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{type: 'numbers', title: '编号'}
             ,{field: 'code', title: '机构编码', sort: true}
             ,{field: 'organizationName', title: '机构名称', sort: true}
-            ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
+            // ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
             ,{field: 'areaName', title: '所属地区', sort: true}
             ,{field: 'type', title: '机构类型',sort: true, templet: typeFormat}
             ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
@@ -193,7 +217,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         'addBarBtn': function(){
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 添加地区信息"
+                ,title: "<i class='layui-icon'>&#xe642;</i> 添加机构信息"
                 ,area: ['600px','400px']
                 ,shade: 0.3
                 ,maxmin:true
@@ -362,7 +386,45 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 }
             });
         }
+        /**
+         * 下载模板
+         */
+        ,'downModel': function () {
+             window.location.href="/client/organization/downModel";
+        }
+        /**
+         * 开始导入数据
+         */
+        ,'importData': function () {
+            $("#addFile").click();
+        }
     };
+
+    // 选择上传文件
+    $("#addFile").change(function (e) {
+        //上传文件路径
+        var fileName=$(this).val();
+        //返回String对象中子字符串最后出现的位置.
+        var seat=fileName.lastIndexOf(".");
+        //返回位于String对象中指定位置的子字符串并转换为小写.
+        var extension=fileName.substring(seat).toLowerCase();
+        //判断允许上传的文件格式
+        if(extension==".xls" || extension==".xlsx"){
+            $("#excelPath").val($(this).val());
+            submitFile({
+                async: 'true'
+                ,url: '/client/organization/importExcel'
+                ,type: 'POST'
+                ,param: null
+                ,files: ['addFile']
+                ,dataType: 'json'
+            });
+        }else{
+            layer.msg("上传格式不正确", {time: 1000});
+            return false;
+        }
+    });
+
 
     /**
      * 监听头部搜索

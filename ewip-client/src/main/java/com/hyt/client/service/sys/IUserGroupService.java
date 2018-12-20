@@ -5,6 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,4 +74,19 @@ public interface IUserGroupService {
      */
     @PostMapping("/group/selectGroup")
     JSONObject selectGroup(@RequestParam Map<String,Object> map);
+
+    /**
+     * 下载模板
+     * @param map
+     * @return
+     */
+    @PostMapping("/group/downModel")
+    JSONObject downModel(@RequestParam Map<String,Object> map);
+
+    /**
+     * 数据导入
+     * @return
+     */
+    @PostMapping("/group/importData")
+    JSONObject importData(@RequestParam Map<String,Object> map,@RequestBody List<Map<String, Object>> list);
 }

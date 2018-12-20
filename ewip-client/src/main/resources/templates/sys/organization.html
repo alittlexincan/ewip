@@ -32,7 +32,7 @@
                     <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="display: none">
                 <label class="layui-form-label">上级机构</label>
                 <div class="layui-input-block">
                     <select id="addOrganizationId" name="pId"  lay-search="">
@@ -90,8 +90,8 @@
                     <!--<div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级机构"></div>-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="layui-form-item">
-                <label class="layui-form-label">所属机构</label>
+            <div class="layui-form-item" style="display: none">
+                <label class="layui-form-label">上级机构</label>
                 <div class="layui-input-block">
                     <select id="updateOrganizationId" name="pId"  lay-search="">
                         <option value="">直接选择或搜索选择</option>
@@ -144,9 +144,9 @@
                         </div>
                     </div>
 
-                    <div class="layui-inline">
+                    <div class="layui-inline " style="display: none">
                         <div class="layui-input-inline">
-                            <select id="searchOrganizationId" name="pId" lay-verify="required" lay-search="">
+                            <select id="searchOrganizationId" name="pId"  lay-search="">
                                 <option value="">请选择上级机构</option>
                             </select>
                         </div>
@@ -173,8 +173,15 @@
                 <div class="layui-btn-group tableBar">
                     <button class="layui-btn" data-type="addBarBtn">添加</button>
                     <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                    <button class="layui-btn" data-type="downModel">下载导入模板</button>
+                    <div class="layui-inline" >
+                        <div class="layui-input-inline">
+                            <input type="file" hidden="" id="addFile" name="addFile"  lay-verify="file">
+                            <input type="hidden" id="excelPath" readonly="readonly" name="name" placeholder="Excel路径..."  class="layui-input">
+                        </div>
+                    </div>
+                    <button class="layui-btn" data-type="importData">导入机构信息</button>
                 </div>
-
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>
             </div>

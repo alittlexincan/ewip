@@ -5,13 +5,14 @@ layui.config({
     ,zTree: 'zTree'
 });
 
-layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
+layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUpload'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
         ,selectTree = layui.selectTree
+        ,ajaxFileUpload = layui.ajaxFileUpload
         ,zTree = layui.zTree;
     /**
      * 格式化性别
@@ -63,6 +64,29 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
             $(".ewip-left-tree").parent().css("overflow","auto");
         }
     });
+
+
+    /**
+     * 数据提交到后台（通用发方法）
+     * @param option
+     */
+    let submitFile = function(option){
+        ajaxFileUpload.render({
+            async: option.async
+            ,url : option.url
+            ,type: option.type
+            ,param : option.param//需要传递的数据 json格式
+            ,files : option.files
+            ,dataType: 'json'
+        },function (json) {
+            if(json.code == 200){
+                // 刷新列表
+                reloadTable();
+            }
+            // 弹出提示信息，2s后自动关闭
+            layer.msg(json.msg, {time: 2000});
+        });
+    };
 
     /**
      * 修改后重新刷新列表，curr: 1重新从第 1 页开始
@@ -752,7 +776,45 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree'], function(){
                 });
             });
         }
+        /**
+         * 下载模板
+         */
+        ,'downModel': function () {
+            window.location.href="/client/user/downModel";
+        }
+        /**
+         * 开始导入数据
+         */
+        ,'importData': function () {
+            $("#addFile").click();
+        }
     };
+
+
+    // 选择上传文件
+    $("#addFile").change(function (e) {
+        //上传文件路径
+        var fileName=$(this).val();
+        //返回String对象中子字符串最后出现的位置.
+        var seat=fileName.lastIndexOf(".");
+        //返回位于String对象中指定位置的子字符串并转换为小写.
+        var extension=fileName.substring(seat).toLowerCase();
+        //判断允许上传的文件格式
+        if(extension==".xls" || extension==".xlsx"){
+            $("#excelPath").val($(this).val());
+            submitFile({
+                async: 'true'
+                ,url: '/client/user/importExcel'
+                ,type: 'POST'
+                ,param: null
+                ,files: ['addFile']
+                ,dataType: 'json'
+            });
+        }else{
+            layer.msg("上传格式不正确", {time: 1000});
+            return false;
+        }
+    });
 
     /**
      * 监听头部搜索
