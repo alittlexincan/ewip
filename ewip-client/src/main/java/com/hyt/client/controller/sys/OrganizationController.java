@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IOrganizationService;
 import com.hyt.client.utils.OrgExceUtil;
-import com.hyt.client.utils.Tests;
+import com.hyt.client.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.*;
@@ -172,7 +172,7 @@ public class OrganizationController {
                 cityCell.setCellValue(cityJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, cityArry.size());
+            String range = ExcelUtil.getRange(1, rowId, cityArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(provinceName);
@@ -194,7 +194,7 @@ public class OrganizationController {
                 cityCell.setCellValue(countyJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, cityArry.size());
+            String range = ExcelUtil.getRange(1, rowId, cityArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(cityName);
@@ -216,7 +216,7 @@ public class OrganizationController {
                 countyCell.setCellValue(countryJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, countryArry.size());
+            String range = ExcelUtil.getRange(1, rowId, countryArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(countyName);
@@ -259,9 +259,9 @@ public class OrganizationController {
         sheetPro.addValidationData(provinceDataValidation1);
         //对前200行设置有效性
         for(int line = 2;line < 2000; line++){
-            Tests.setDataValidation("A" ,sheetPro, line,2);
-            Tests.setDataValidation("B" ,sheetPro, line,3);
-            Tests.setDataValidation("C" ,sheetPro, line,4);
+            ExcelUtil.setDataValidation("A" ,sheetPro, line,2);
+            ExcelUtil.setDataValidation("B" ,sheetPro, line,3);
+            ExcelUtil.setDataValidation("C" ,sheetPro, line,4);
         }
         try {
             OutputStream out = resp.getOutputStream();

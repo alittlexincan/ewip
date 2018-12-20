@@ -3,16 +3,13 @@ package com.hyt.client.controller.sys;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IUserService;
-import com.hyt.client.utils.GroupExceUtil;
-import com.hyt.client.utils.Tests;
+import com.hyt.client.utils.ExcelUtil;
 import com.hyt.client.utils.UserExceUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.XSSFDataValidationHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -220,7 +217,7 @@ public class UserController {
                 cityCell.setCellValue(cityJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, cityArry.size());
+            String range = ExcelUtil.getRange(1, rowId, cityArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(provinceName);
@@ -242,7 +239,7 @@ public class UserController {
                 cityCell.setCellValue(countyJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, cityArry.size());
+            String range = ExcelUtil.getRange(1, rowId, cityArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(cityName);
@@ -264,7 +261,7 @@ public class UserController {
                 countyCell.setCellValue(countryJson.get("name").toString());
             }
             // 添加名称管理器
-            String range = Tests.getRange(1, rowId, countryArry.size());
+            String range = ExcelUtil.getRange(1, rowId, countryArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(countyName);
@@ -335,9 +332,9 @@ public class UserController {
 
         //对前20行设置有效性
         for(int line = 2;line < 2000; line++){
-            Tests.setDataValidation("A" ,sheetPro, line,2);
-            Tests.setDataValidation("B" ,sheetPro, line,3);
-            Tests.setDataValidation("C" ,sheetPro, line,4);
+            ExcelUtil.setDataValidation("A" ,sheetPro, line,2);
+            ExcelUtil.setDataValidation("B" ,sheetPro, line,3);
+            ExcelUtil.setDataValidation("C" ,sheetPro, line,4);
         }
         try {
             OutputStream out = resp.getOutputStream();
