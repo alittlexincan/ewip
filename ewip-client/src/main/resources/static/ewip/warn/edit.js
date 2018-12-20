@@ -596,8 +596,10 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          */
         ,"disClickNode":function (event, treeId, treeNode) {
             //关闭当前弹出层
+            debugger;
             layer.close(layer.index);
             if(treeNode.isConfig==1){
+                debugger;
                 let name = treeNode.name;
                 if(name.indexOf("[") > -1){
                     name = name.substring(0, name.indexOf("["));

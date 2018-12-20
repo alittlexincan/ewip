@@ -1046,15 +1046,17 @@ website:    http://code.google.com/p/jquerytree/
 }
 
 .base #manager ul li.pro{
-    border:1px solid #fff;
+    /*border:1px solid #fff;*/
 }
 .base #manager ul li ul li{
     padding:3px 0 3px 15px;
     border: 0;
-    color:lightgray;
+    color:white;
     line-height: 20px;
-    border-top:1px solid #fff;
-    background-color: darkorchid;
+    border-top: 1px solid #1b6147;
+    background-color: #3d7b73;
+    /*border-top:1px solid #fff;*/
+    /*background-color: darkorchid;*/
     font-size:14px;
 }
 .base #manager ul li ul li:hover{
@@ -1079,8 +1081,9 @@ website:    http://code.google.com/p/jquerytree/
 }
 .base .open{
     display: block;
-    background-color: coral;
+    background-color: #2f9688;
     padding-left:10px;
+    color: white;
 }
 .base .hide{
     display: none;
