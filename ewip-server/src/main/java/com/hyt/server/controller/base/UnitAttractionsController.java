@@ -109,8 +109,8 @@ public class UnitAttractionsController {
 
     @ApiOperation(value="查询旅游景区信息列表",httpMethod="GET",notes="查询所有旅游景区信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitAttractions> list = this.unitAttractionsService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map){
+        List<UnitAttractions> list = this.unitAttractionsService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }

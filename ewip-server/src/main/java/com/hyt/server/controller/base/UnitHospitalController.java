@@ -111,8 +111,8 @@ public class UnitHospitalController {
 
     @ApiOperation(value="查询医院信息列表",httpMethod="GET",notes="查询所有医院信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitHospital> list = this.unitHospitalService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map){
+        List<UnitHospital> list = this.unitHospitalService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }

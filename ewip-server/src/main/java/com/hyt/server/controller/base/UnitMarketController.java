@@ -108,8 +108,8 @@ public class UnitMarketController {
 
     @ApiOperation(value="查询商场信息列表",httpMethod="GET",notes="查询所有商场信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitMarket> list = this.unitMarketService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map){
+        List<UnitMarket> list = this.unitMarketService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }

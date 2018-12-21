@@ -110,8 +110,8 @@ public class UnitReservoirController {
 
     @ApiOperation(value = "查询水库信息列表", httpMethod = "GET", notes = "查询所有水库信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList() {
-        List<UnitReservoir> list = this.unitReservoirService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map) {
+        List<UnitReservoir> list = this.unitReservoirService.selectList(map);
         if (list.size() > 0) {
             return ResultResponse.make(200, "查询成功", list);
         }

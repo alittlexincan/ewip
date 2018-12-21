@@ -110,8 +110,8 @@ public class UnitAgriculturParkController {
 
     @ApiOperation(value="查询农业园区信息列表",httpMethod="GET",notes="查询所有农业园区信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitAgriculturPark> list = this.unitAgriculturParkService.selectAll();
+    public ResultObject<Object> selectList( @RequestParam Map<String,Object> map){
+        List<UnitAgriculturPark> list = this.unitAgriculturParkService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }

@@ -107,8 +107,8 @@ public class UnitSchoolController {
 
     @ApiOperation(value="查询学校信息列表",httpMethod="GET",notes="查询所有学校信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitSchool> list = this.unitSchoolService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map){
+        List<UnitSchool> list = this.unitSchoolService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }

@@ -104,8 +104,8 @@ public class UnitHighwayController {
 
     @ApiOperation(value="查询高速公路信息列表",httpMethod="GET",notes="查询所有高速公路信息用于地图展示")
     @GetMapping("/list")
-    public ResultObject<Object> selectList(){
-        List<UnitHighway> list = this.unitHighwayService.selectAll();
+    public ResultObject<Object> selectList(@RequestParam Map<String,Object> map){
+        List<UnitHighway> list = this.unitHighwayService.selectList(map);
         if(list.size()>0){
             return ResultResponse.make(200,"查询成功",list);
         }
