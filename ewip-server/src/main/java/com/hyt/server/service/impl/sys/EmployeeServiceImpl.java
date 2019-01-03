@@ -99,8 +99,16 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
      * @return
      */
     @Override
-    @Transactional
+//    @Transactional
     public int insertEmployeeRole(Map<String, Object> map) {
+        List<Role> list=roleMapper.selectByRoleName(map);
+        String roleType="";
+        for(Role role:list){
+            roleType +=","+role.getRoleType();
+        }
+        roleType=roleType.substring(1);
+        map.put("roleType",roleType);
+        this.employeeMapper.updateRole(map);
         this.employeeMapper.deleteEmployeeInRole(map);
         return this.employeeMapper.insertEmployeeRole(map);
     }

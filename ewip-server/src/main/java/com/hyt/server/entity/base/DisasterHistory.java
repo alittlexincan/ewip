@@ -35,6 +35,32 @@ public class DisasterHistory {
 
     @Column(name = "disasterType_old",length = 64)
     private String disasterTypeOld;
+
+
+    @Column(name = "severity",length = 64)
+    private String severity;
+    @Column(name = "color",length = 64)
+    private String color;
+    @Column(name = "level",length = 64)
+    private String level;
+    @Column(name = "damage",length = 64)
+    private String damage;
+    @Column(name = "lon",length = 64)
+    private String lon;
+    @Column(name = "lat",length = 64)
+    private String lat;
+    @Column(name = "monitor_people",length = 64)
+    private String monitorPeople;
+    @JSONField(format="yyyy-MM-dd")
+    @Column(name = "monitor_time" )
+    private Date monitorTime;
+    @Column(name = "monitor_organ",length = 64)
+    private String monitorOrgan;
+    @Column(name = "contact",length = 64)
+    private String contact;
+
+
+
     @Column(name = "disasterName",length = 64)
     private String disasterName;
     @Column(name = "accompany_disaster",length = 64)
@@ -1152,5 +1178,85 @@ public class DisasterHistory {
 
     public void setUpdateUserName(String updateUserName) {
         this.updateUserName = updateUserName;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getDamage() {
+        return damage;
+    }
+
+    public void setDamage(String damage) {
+        this.damage = damage;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getMonitorPeople() {
+        return monitorPeople;
+    }
+
+    public void setMonitorPeople(String monitorPeople) {
+        this.monitorPeople = monitorPeople;
+    }
+
+    public Date getMonitorTime() {
+        return monitorTime;
+    }
+
+    public void setMonitorTime(Date monitorTime) {
+        this.monitorTime = monitorTime;
+    }
+
+    public String getMonitorOrgan() {
+        return monitorOrgan;
+    }
+
+    public void setMonitorOrgan(String monitorOrgan) {
+        this.monitorOrgan = monitorOrgan;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }

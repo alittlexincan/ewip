@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IAutomaticStationMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.AutomaticStation" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="isCheck" property="isCheck" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="pressureHeight" property="pressureHeight" jdbcType="VARCHAR" />
+    <result column="rainfallStartMonth" property="rainfallStartMonth" jdbcType="VARCHAR" />
+
+    <result column="rainfallEndMonth" property="rainfallEndMonth" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="factory" property="factory" jdbcType="VARCHAR" />
+    <result column="element" property="element" jdbcType="VARCHAR" />
+    <result column="airTemperature" property="airTemperature" jdbcType="VARCHAR" />
+    <result column="temperature" property="temperature" jdbcType="VARCHAR" />
+    <result column="pressure" property="pressure" jdbcType="VARCHAR" />
+    <result column="rain" property="rain" jdbcType="VARCHAR" />
+    <result column="windDirection" property="windDirection" jdbcType="VARCHAR" />
+    <result column="windSpeed" property="windSpeed" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+
+    <result column="landTemperature" property="landTemperature" jdbcType="VARCHAR" />
+    <result column="deepTemperature" property="deepTemperature" jdbcType="VARCHAR" />
+    <result column="solarRadiation" property="solarRadiation" jdbcType="VARCHAR" />
+    <result column="visibility" property="visibility" jdbcType="VARCHAR" />
+    <result column="supplyModel" property="supplyModel" jdbcType="VARCHAR" />
+    <result column="installTime" property="installTime" jdbcType="TIMESTAMP" />
+    <result column="enableTime" property="enableTime" jdbcType="TIMESTAMP" />
+    <result column="environment" property="environment" jdbcType="VARCHAR" />
+    <result column="createUser" property="createUser" jdbcType="VARCHAR" />
+    <result column="updateUser" property="updateUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+  </resultMap>
+
+
+
+  <!-- 查询信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT s.*,a.area_name areaName,e.name createUserName,em.name updateUserName FROM base_automatic_station s
+    left join area a on s.area_id=a.id
+    left join employee e on s.createUser=e.id
+    left join employee em on s.updateUser=em.id
+    where 1=1
+    <if test="id != null and id != ''">AND s.id = #{id}</if>
+    <if test="name != null and name != ''">AND s.name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY s.create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>

@@ -12,6 +12,20 @@
     <result column="event_code" property="eventCode" jdbcType="VARCHAR" />
     <result column="disasterType" property="disasterType" jdbcType="VARCHAR" />
     <result column="disasterType_old" property="disasterTypeOld" jdbcType="VARCHAR" />
+
+
+    <result column="severity" property="severity" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="damage" property="damage" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="monitor_people" property="monitorPeople" jdbcType="VARCHAR" />
+    <result column="monitor_time" property="monitorTime" jdbcType="TIMESTAMP" />
+    <result column="monitor_organ" property="monitorOrgan" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+
+
     <result column="disasterName" property="disasterName" jdbcType="VARCHAR" />
     <result column="accompany_disaster" property="accompanyDisaster" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />

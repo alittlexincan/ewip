@@ -16,6 +16,7 @@
         <result column="organization_type" jdbcType="VARCHAR" property="organizationType"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="roleType" jdbcType="VARCHAR" property="roleType"/>
         <result column="sex" jdbcType="SMALLINT" property="sex"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
@@ -45,6 +46,7 @@
             e.phone,
             e.email,
             e.sex,
+            e.roleType,
             e.create_time
         FROM employee e
         LEFT JOIN area a on a.id = e.area_id
@@ -84,6 +86,7 @@
             e.phone,
             e.email,
             e.sex,
+            e.roleType,
             e.create_time
         FROM employee e
         LEFT JOIN area a on a.id = e.area_id
@@ -144,6 +147,16 @@
         )
     </delete>
 
+    <!--修改员工对应的角色-->
+    <update id="updateRole">
+        UPDATE employee SET roleType=#{roleType} WHERE id IN (
+        <foreach collection="employeeId.split(',')" item="item"  separator=","  >
+            '${item}'
+        </foreach>
+        )
+    </update>
+
+    <!--修改员工密码-->
     <update id="updatePwd">
         UPDATE employee SET login_password=#{newPwd} WHERE id = #{id}
     </update>

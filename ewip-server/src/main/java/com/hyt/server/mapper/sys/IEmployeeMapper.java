@@ -66,4 +66,6 @@ public interface IEmployeeMapper extends IBaseMapper<Employee> {
      * @return
      */
     int updatePwd(Map<String,Object> map);
+
+    int updateRole(Map<String,Object> map);
 }

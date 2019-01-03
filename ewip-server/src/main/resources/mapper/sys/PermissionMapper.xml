@@ -59,7 +59,7 @@
 
     <!-- 根据角色查询拥有权限信息 -->
     <select id="findPermissionByRoleId" resultMap="BaseResultMap">
-        SELECT
+        SELECT distinct
             p.id,
             p.name,
             p.permission,

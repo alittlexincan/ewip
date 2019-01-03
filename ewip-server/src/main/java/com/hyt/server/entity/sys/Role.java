@@ -16,6 +16,9 @@ public class Role {
     @Column(name = "id",length = 64)
     private String id;
 
+    @Column(name = "roleType",length = 11)
+    private Integer roleType;                        // 角色类别
+
     @Column(name = "role",length = 50)
     private String role;                        // 角色名称
 
@@ -31,7 +34,9 @@ public class Role {
 
     public Role() {}
 
-    public Role(String role, String description, Integer status, Date createTime) {
+
+    public Role(Integer roleType, String role, String description, Integer status, Date createTime) {
+        this.roleType = roleType;
         this.role = role;
         this.description = description;
         this.status = status;
@@ -44,6 +49,14 @@ public class Role {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(Integer roleType) {
+        this.roleType = roleType;
     }
 
     public String getRole() {

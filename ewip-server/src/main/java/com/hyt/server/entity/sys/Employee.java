@@ -48,6 +48,9 @@ public class Employee {
     @Column(name = "email",length = 50)
     private String email;
 
+    @Column(name = "roleType",length = 50)
+    private String roleType;
+
     @Column(name = "sex",length = 1)
     private Integer sex;
 
@@ -214,5 +217,13 @@ public class Employee {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
     }
 }

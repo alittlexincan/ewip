@@ -4,6 +4,7 @@
 
     <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Role">
         <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="roleType" jdbcType="INTEGER" property="roleType"/>
         <result column="role" jdbcType="VARCHAR" property="role"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
         <result column="status" jdbcType="SMALLINT" property="status"/>
@@ -34,6 +35,7 @@
     <select id="findAll"  resultMap="BaseResultMap">
         SELECT
             id,
+            roleType,
             role,
             description,
             status,
@@ -57,6 +59,7 @@
     <select id="selectByRoleName"  resultMap="BaseResultMap">
         SELECT
             id,
+            roleType,
             role,
             description,
             status,
@@ -65,12 +68,19 @@
         WHERE 1=1
         <if test="status != null and status != ''">AND status = #{status}</if>
         <if test="id != null and id != ''">AND id = #{id}</if>
+        <if test="roleId != null and roleId != ''">AND id  IN (
+            <foreach collection="roleId.split(',')" item="item" separator=",">
+                '${item}'
+            </foreach>
+            )
+        </if>
     </select>
 
     <!-- 根据用户查询用户拥有的角色 -->
     <select id="findRoleByEmployeeId" resultMap="BaseResultMap">
         SELECT
             r.id,
+            r.roleType,
             r.role,
             r.description,
             r.status,
@@ -87,7 +97,7 @@
 
     <!--根据角色ID查询对应的菜单信息-->
     <select id="selectRoleInMenu" resultMap="BaseMenuMap">
-        SELECT
+        SELECT distinct
           m.id,
           m.name,
           m.code,

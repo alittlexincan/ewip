@@ -16,6 +16,7 @@ import java.util.Map;
 public interface IUnitAgriculturParkService extends IBaseService<UnitAgriculturPark>{
 
         PageInfo<UnitAgriculturPark> selectAll(Map<String, Object> map);
+
         List<UnitAgriculturPark> selectList(Map<String, Object> map);
 
 }
