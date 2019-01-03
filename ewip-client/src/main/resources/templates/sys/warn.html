@@ -32,7 +32,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
-                    <div id="addOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                    <select id="addOrganizationId" name="organizationId"  lay-search="">
+                        <option value="">请选择机构</option>
+                    </select>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -105,7 +107,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">所属机构</label>
                     <div class="layui-input-block">
-                        <div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>
+                        <select id="updateOrganizationId" name="organizationId"  lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item">

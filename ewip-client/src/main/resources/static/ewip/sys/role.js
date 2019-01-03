@@ -28,6 +28,12 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
         if(d.status == 1) return "<span class='layui-btn layui-btn-xs ewip-cursor-default'>启用</span>";
     };
 
+    let roleTypeFormat = function(d){
+        if(d.roleType == 1) return "超级管理员";
+        if(d.roleType == 2) return "系统管理员";
+        if(d.roleType == 3) return "普通用户";
+    };
+
     /**
      * 加载表格
      */
@@ -42,11 +48,12 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
+            ,{field: 'roleType', title: '角色类别', templet:roleTypeFormat}
             ,{field: 'role', title: '角色名称', sort: true}
             ,{field: 'description', title: '角色说明', sort: true}
             // ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
             ,{field: 'createTime', title: '创建时间',sort: true}
-            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption' }
         ]]
     });
 
@@ -72,7 +79,10 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
      * 自定义验证规则
      */
     form.verify({
-        role: function (value) {
+        roleType: function (value) {
+            if(value.length == 0) return '请选择角色类别';
+        }
+        ,role: function (value) {
             if(value.length == 0) return '请输入角色名称';
             if(value.length > 10) return '角色名称不能超过10个字';
         }
@@ -291,6 +301,7 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+                        $("#updateDiv select[name='roleType']").val(param.roleType);
                         // 角色级别下拉框赋值
                         $("#updateDiv input[type='radio'][name='status'][value='"+param.status+"']").attr("checked",true);
                     });

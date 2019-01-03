@@ -31,6 +31,40 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         return html;
     };
 
+
+    /**
+     * 初始化下拉机构列表
+     * @param param
+     */
+    let initOrg=function(flag,param){
+        $.ajax({
+            async:false
+            ,type: "POST"
+            ,data: {areaId:param}
+            ,url: "/client/organization/selectOrg"
+            ,dataType: 'json'
+            ,success: function(json){
+                let list=json.list;
+                var html="";
+                html +="<option value=''>直接选择或搜索选择</option>";
+                if(list.length>0){
+                    for(var i=0;i<list.length;i++){
+                        html +="<option value='"+list[i].id+"'>"+list[i].organizationName+"</option>";
+                    }
+                    if(flag==0){
+                        $("#searchOrganizationId").empty().append(html);
+                    }else if(flag==1){
+                        $("#addOrganizationId").empty().append(html);
+                    }else{
+                        $("#updateOrganizationId").empty().append(html);
+                    }
+                }
+                form.render();
+            }
+        });
+    }
+
+
     /**
      * 加载表格
      */
@@ -239,18 +273,26 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
-                        // 初始化下拉地区拉树
+                        let areaId = "";
+                        // 初始化地区下拉树
                         selectTree.render({
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(1,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化下拉机构拉树
-                        selectTree.render({
-                            'id': 'addOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                        });
+                        // selectTree.render({
+                        //     'id': 'addOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        // });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({
                             'id': 'addDisasterId'
@@ -303,12 +345,10 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         data.field.channelId = channelId.substring(1);
                         data.field.flow = flow.substring(1);
                         data.field.isStrategy = 1;
-
                         if(channelId == ""){
                             layer.msg("请配置发布渠道",{time: 2000});
                             return false;
                         }
-
                         submit({
                             async: 'false'
                             ,url: '/client/strategy/insert'
@@ -412,20 +452,31 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
-                        // 初始化下拉地区拉树
+
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
+                        // 初始化机构下拉树
+                        let areaId = "";
                         selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化下拉机构拉树
-                        selectTree.render({
-                            'id': 'updateOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.organizationId
-                        });
+                        // selectTree.render({
+                        //     'id': 'updateOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     ,'checkNodeId': param.organizationId
+                        // });
                         // 初始化下拉灾种级别拉树
                         selectTree.render({
                             'id': 'updateDisasterId'

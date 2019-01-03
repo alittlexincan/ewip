@@ -47,23 +47,53 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     });
 
     /**
-     * 初始化下拉树(地区)
+     * 初始化地区树
      */
     selectTree.render({
         'id': 'searchAreaId'
         ,'url': '/client/tree/area'
         ,'isMultiple': false
         ,'isVerify': false
+        ,clickNode:function (event, treeId, treeNode) {
+            let areaId = treeNode.id;
+            initOrg(0,areaId);
+            //绑定树操作
+            selectTree.setValue(treeId,treeNode);
+            selectTree.hideTree();
+        }
     });
+
     /**
-     * 初始化下拉树(机构)
+     * 初始化下拉机构列表
+     * @param param
      */
-    selectTree.render({
-        'id': 'searchOrganizationId'
-        ,'url': '/client/tree/organization'
-        ,'isMultiple': false
-        ,'isVerify': false
-    });
+    let initOrg=function(flag,param){
+        $.ajax({
+            async:false
+            ,type: "POST"
+            ,data: {areaId:param}
+            ,url: "/client/organization/selectOrg"
+            ,dataType: 'json'
+            ,success: function(json){
+                let list=json.list;
+                var html="";
+                html +="<option value=''>直接选择或搜索选择</option>";
+                if(list.length>0){
+                    for(var i=0;i<list.length;i++){
+                        html +="<option value='"+list[i].id+"'>"+list[i].organizationName+"</option>";
+                    }
+                    if(flag==0){
+                        $("#searchOrganizationId").empty().append(html);
+                    }else if(flag==1){
+                        $("#addOrganizationId").empty().append(html);
+                    }else{
+                        $("#updateOrganizationId").empty().append(html);
+                    }
+                }
+                form.render();
+            }
+        });
+    }
 
     /**
      * 自定义验证规则
@@ -193,17 +223,25 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         // 动态获取弹出层对象并追加html
                         $("#addEmployee").empty().append(html);
                         // 初始化下拉树(地区)
+                        let areaId = "";
                         selectTree.render({
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(1,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
                         // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'addOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                        });
+                        // selectTree.render({
+                        //     'id': 'addOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        // });
                     });
                     form.render();
                 }
@@ -284,21 +322,32 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateEmployee").empty().append(html);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
                         // 初始化下拉树(地区)
+                        let areaId = "";
                         selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
                             ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
                         });
-                        // 初始化下拉树(机构)
-                        selectTree.render({
-                            'id': 'updateOrganizationId'
-                            ,'url': '/client/tree/organization'
-                            ,'isMultiple': false
-                            ,'checkNodeId': param.organizationId
 
-                        });
+
+                        // 初始化下拉树(机构)
+                        // selectTree.render({
+                        //     'id': 'updateOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     ,'checkNodeId': param.organizationId
+                        // });
                     });
                     form.render();
                 }
@@ -401,5 +450,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    initOrg(0,null);//初始化机构列表
 
 });

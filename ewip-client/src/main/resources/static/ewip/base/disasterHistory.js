@@ -289,6 +289,11 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+
+                        $("#updateDiv select[name='severity']").val(param.severity);
+                        $("#updateDiv select[name='color']").val(param.color);
+                        $("#updateDiv select[name='level']").val(param.level);
+                        $("#updateDiv select[name='damage']").val(param.damage);
                     });
                     /**
                      * 初始化发布时间
@@ -368,25 +373,13 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                 // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
                 laytpl(detailPop.innerHTML).render(param, function(html){
                     // 动态获取弹出层对象
+                    console.log(param);
                     $("#detailDiv").empty().append(html);
+                    $("#detailDiv select[name='severity']").val(param.severity);
+                    $("#detailDiv select[name='color']").val(param.color);
+                    $("#detailDiv select[name='level']").val(param.level);
+                    $("#detailDiv select[name='damage']").val(param.damage);
                 });
-                /**
-                 * 初始化发布时间
-                 */
-     /*           laydate.render({
-                    elem: '#updateStartTime'
-                    ,value: param.startTime
-                    ,format: 'yyyy-MM-dd HH:mm:ss'
-                });
-                /!**
-                 * 初始化发布时间
-                 *!/
-                laydate.render({
-                    elem: '#updateEndTime'
-                    ,value: param.endTime
-                    ,format: 'yyyy-MM-dd HH:mm:ss'
-                });*/
-
                 /**
                  * 点击音频播放按钮
                  */

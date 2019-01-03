@@ -574,6 +574,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
                         initOrg(2,null);//初始化机构列表
                         $("select[name='organizationId']").val(param.organizationId);
                         // 初始化机构下拉树
+                        let areaId = "";
                         selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
