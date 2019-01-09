@@ -139,7 +139,7 @@ public class EventServiceImpl implements IEventService {
 		JSONArray arryGgwss = new JSONArray();
 		String[] colors = { "红色", "橙色", "黄色", "蓝色" };
 		String[] name = { "自然灾害", "事故灾难", "社会安全事件", "公共卫生事件" };
-		List<Map<String, Object>> disClorList=new ArrayList();
+		List<Map<String, Object>> disClorList=new ArrayList<>();
 		for (int i=0;i<name.length;i++){
 			String typeName=name[i];
 			for (int j=0;j<colors.length;j++){

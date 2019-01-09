@@ -4,7 +4,7 @@
 	
 	<!--获取渠道链路监控状态 -->
 	<select id="getChannelLinkState" resultType="map">
-				select id channelId,name channelName,name sendMethod,case status when 0 then 2 else 1 end deployType , 1 resultType from channel
+		select id channelId,name channelName,name sendMethod,case status when 0 then 2 else 1 end deployType , 1 resultType from channel
 	</select>
 	
 	<!--获取最新预警发布所推送的渠道 -->
@@ -18,6 +18,7 @@
 		select distinct w.id taskId,d.icon img,c.content sendContent from warn_edit as w
 		left join disaster as d on w.disaster_id=d.id
 		left join warn_edit_content c on w.id =c.warn_edit_id
+		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 		order by w.send_time desc LIMIT 1
 	</select>
 	

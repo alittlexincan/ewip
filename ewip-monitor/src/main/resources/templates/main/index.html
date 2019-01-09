@@ -2,8 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <!--<title>望奎县气象防灾减灾业务平台华池县突发事件预警信息发布系统</title>-->
-    <title>华池县突发事件预警信息发布系统</title>
+    <title th:text="${sysName}"></title>
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -13,31 +12,13 @@
     <link rel="stylesheet" th:href="@{/map/css/map.css}" media="all">
 </head>
 <body class="moduleContent" >
-    <!-- 地区ID -->
-    <!--<input type="hidden" id="areaId" value="${areaId}"/>-->
-    <!--&lt;!&ndash; 地区编码 &ndash;&gt;-->
-    <!--<input type="hidden" id="areaCode" value="${areaCode}"/>-->
-    <!--&lt;!&ndash; 地区名称 &ndash;&gt;-->
-    <!--<input type="hidden" id="areaName" value="${system.areaName }"/>-->
-    <!--&lt;!&ndash; 地图展示GIS服务地址 &ndash;&gt;-->
-    <!--<input type="hidden" id="gisMapUrl" value="${system.gisMapUrl }"/>-->
-    <!--&lt;!&ndash; 地图放大缩小倍率 &ndash;&gt;-->
-    <!--<input type="hidden" id="zoom" value="${system.zoom }"/>-->
-    <!--&lt;!&ndash; 地图中心点 &ndash;&gt;-->
-    <!--<input type="hidden" id="centerPoint" value="${system.centerPoint }"/>-->
-    <!--&lt;!&ndash; 地图边界数据 &ndash;&gt;-->
-    <!--<input type="hidden" id="areaBorderData" value="${system.areaBorderData }"/>-->
-    <!--&lt;!&ndash; 地图边界 &ndash;&gt;-->
-    <!--<input type="hidden" id="areaBorder" value="${system.areaBorder }"/>-->
-    <!--&lt;!&ndash; 机构id &ndash;&gt;-->
-    <!--<input type="hidden" id="orgId" value="${orgId }"/>-->
-    <!--&lt;!&ndash; 机构名称 &ndash;&gt;-->
-    <!--<input type="hidden" id="orgName" value="${orgName }"/>-->
-    <!--&lt;!&ndash; 员工id &ndash;&gt;-->
-    <!--<input type="hidden" id="employeeId" value="${employeeId }"/>-->
+    <input id="controllerUrl" type="hidden" th:value="${controllerUrl}" >
+    <!--<input id="size" type="text" th:value="${size}" >-->
+    <input id="longitude" type="hidden" th:value="${longitude}" >
+    <input id="latitude" type="hidden" th:value="${latitude}" >
+    <input id="empAreaId" type="hidden" th:value="${areaId}" >
     <!-- 导航栏开始 -->
     <nav class="navbar navbar-expand navbar-dark fixed-top p-0 bg-navy-blue">
-
         <div class="col col-sm-4 col-md-4 " style="position: relative;" >
             <ul class="navbar-nav  pr-0 flex-row-reverse" style="float:left">
                 <li title="渠道监控" class="nav-item mr-1 nav-menu-4"><i id="mapChannelLink"class="fa fa-dashboard" aria-hidden="true"></i></li>
@@ -48,8 +29,7 @@
             </ul>
         </div>
         <ul class="navbar-nav title col col-sm-4 col-md-4 text-center">
-            <!--<li class="nav-item col-sm-12 col-md-12">望奎县气象防灾减灾业务平台</li>-->
-            <li class="nav-item col-sm-12 col-md-12">华池县突发事件预警信息发布系统</li>
+            <li class="nav-item col-sm-12 col-md-12"><span th:text="${sysName}"></span></li>
         </ul>
 
         <div class="col col-sm-4 col-md-4" id="top-tool">
@@ -89,9 +69,12 @@
     <!-- 导航菜单控制层 -->
     <script th:src="@{/map/js/map-controller.js}"></script>
     <script>
+        var longitude=document.getElementById("longitude").value;
+        var latitude=document.getElementById("latitude").value;
+        // var size=document.getElementById("size").value;
         let initMap = () => {
             Globel.map = new T.Map('map');
-            Globel.map.centerAndZoom(new T.LngLat(107.98,36.47), Globel.zoom);
+            Globel.map.centerAndZoom(new T.LngLat(longitude,latitude), 12);
         };
         initMap();
     </script>

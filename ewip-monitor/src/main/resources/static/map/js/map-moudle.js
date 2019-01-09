@@ -9,6 +9,6 @@ var Globel = {
 	,mapMgLayerFlag:false		//地图白色蒙层标识
 	,radarIntervalid:null			//雷达定时器
 	,cloudIntervalid:null			//卫星云图定时器
-    ,map : null 
-	,zoom : 9
+    ,map : null
+	,empAreaId:$("#empAreaId").val()
 };

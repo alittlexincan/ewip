@@ -17,9 +17,15 @@
 	<select id="drawWarnLevelTotal" resultType="map">
 		select type id, case type when 0 then '短期预报' when 1 then '中期预报' when 2 then '长期预报'
 		when 3 then '气象专题专报'  else '重大气象专题专报' end colorLevelName,COUNT(type) count
-		from message group by type
-		<!--	AND TO_CHAR(w.send_time, 'YYYY-MM-DD HH24:mi:ss') >= #{startTime}
-            AND TO_CHAR(w.send_time, 'YYYY-MM-DD HH24:mi:ss') <= #{endTime}-->
+		from message
+		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+		<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		group by type
 	</select>
 
 	<!--发布地区统计-->
@@ -30,6 +36,13 @@
 		else '重大气象专题专报' end colorLevelName
 		from message m
 		LEFT JOIN area a on m.area_id=a.id
+		where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 		group by area_id,type
 	</select>
 
@@ -41,15 +54,26 @@
 			case type when 0 then '短期预报' when 1 then '中期预报'
 			when 2 then '长期预报' when 3 then '气象专题专报'
 			else '重大气象专题专报' end type from message m
+			where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+			<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 		) tt limit ${min},${max}
 
 	</select>
 
 	<!--24小时预警列表数量-->
 	<select id="warnListCount" resultType="java.lang.Integer">
-		select count(1) from  message w where 1=1
-<!--		and w.send_time >= #{startTime}
-		and w.send_time <= #{endTime}-->
+		select count(1) from  message m where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+		<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 	</select>
 
 	<select id="sendWarnStats" resultType="map">
@@ -57,7 +81,15 @@
 		case type when 0 then '短期预报' when 1 then '中期预报'
 		when 2 then '长期预报' when 3 then '气象专题专报'
 		else '重大气象专题专报' end type
-		from message m group by organization_id,type
+		from message m
+		where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		group by organization_id,type
 	</select>
 
 	<!--渠道基础信息-->
@@ -70,6 +102,13 @@
 			select channelName,channelId ,count(channelId) count  from(
 		select c.message_id,c.channel_id channelId,ch.name channelName
 		from message_content c left JOIN channel ch on ch.id =c.channel_id
+		where 1=1 and FIND_IN_SET(c.area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 		)s group by channelName,channelId
 	</select>
 
@@ -80,26 +119,58 @@
 		when 2 then '长期预报' when 3 then '气象专题专报'
 		else '重大气象专题专报' end type,
 		COUNT(type) count from message
+		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 		GROUP BY sendTime,type order by sendTime desc
 	</select>
 
 	<!--任务Id列表-->
 	<select id="taskIdList" resultType="map">
 		select id taskId from warn_edit
+		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 	</select>
 
 	<!--责任人以及受众列表-->
 	<select id="personNumList" resultType="map">
 		select city,COUNT(city) num from (
-		select u.id keyId, a.area_name city from warn_callback_child w
+		select u.id keyId, a.area_name city
+		from warn_callback_child w
 		INNER JOIN user u ON u.code=w.code
-		inner join area a ON a.id=u.area_id) a
+		inner join area a ON a.id=u.area_id
+		where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+		<![CDATA[
+				AND DATE_FORMAT(w.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(w.create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
+		) a
 		GROUP BY city
 	</select>
-	<!--责任人以及受众列表-->
+
+	<!--接收用户列表-->
 	<select id="channelUserList" resultType="map">
 		select c.id,c.name,sum(total) num from message_callback_main m
+		left join message ms on ms.id=m.message_id
 		left join channel c on m.channel_code=c.code
+		where 1=1 and FIND_IN_SET(ms.area_id, getAreaCList(#{empAreaId}))
+			<![CDATA[
+				AND DATE_FORMAT(m.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
+			<![CDATA[
+				AND DATE_FORMAT(m.create_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 		group BY c.id
 	</select>
 

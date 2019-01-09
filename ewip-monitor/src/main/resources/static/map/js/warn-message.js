@@ -1354,6 +1354,7 @@ $(function(){
             async:{
                 enable:true,
                 url: "event/areaTree",
+                otherParam: {"empAreaId": Globel.empAreaId},
                 autoParam: ["id=pid"]
             },
             check: {
@@ -1384,6 +1385,7 @@ $(function(){
             async:false,
             type:"POST",
             url:"event/channelList",
+			data:{"empAreaId": Globel.empAreaId},
             dataType: "json",
             success:function(data){
                 var html = "";
@@ -1849,6 +1851,7 @@ $(function(){
      */
     var param = function(){
         var p = {
+            empAreaId: Globel.empAreaId,
             // startTime:"2018-09-10 11:28:21",
             // endTime:"2018-10-10 11:28:21",
             startTime:$("#startTime").val(),

@@ -18,7 +18,7 @@ public class PublishStatisticsServiceImpl implements IPublishStatisticsService {
 	private PublishStatisticsMapper publishStsMapper;
 
 	/**
-	 * 预警级别统计
+	 * 预报类型统计
 	 */
 	@Override
 	public JSONObject drawWarnLevelTotal(Map<String, Object> map) {

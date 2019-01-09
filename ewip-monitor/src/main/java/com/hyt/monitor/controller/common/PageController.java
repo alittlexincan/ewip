@@ -1,5 +1,6 @@
 package com.hyt.monitor.controller.common;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +22,20 @@ import java.util.Map;
 @Controller
 public class PageController {
 
+    //后台系统跳转的url地址
+    @Value("${controller.url}")
+    private String controllerUrl;
+
     /**
      * 进入登录界面
      * @return
      */
     @RequestMapping("/")
-    public String signIn(){
-        return "main/index";
+    public ModelAndView signIn(@RequestParam Map<String, Object> map){
+        String sysName=map.get("areaName").toString()+"气象防灾减灾业务平台";
+        map.put("sysName", sysName);
+        map.put("controllerUrl", controllerUrl);
+        return new ModelAndView("main/index",map);
     }
 
     /**
@@ -38,6 +46,7 @@ public class PageController {
      */
     @RequestMapping("/monitor/{model}/{name}")
     public ModelAndView page(@PathVariable("model") String model, @PathVariable("name") String name, @RequestParam Map<String, Object> map){
+
         return new ModelAndView(model + "/" + name, map);
     }
 

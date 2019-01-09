@@ -529,7 +529,7 @@ $(function(){
 	}
 	
 	/**
-	 * 绘制：预警级别统计图
+	 * 绘制：预报类型统计图
 	 */
 	,drawWarnLevelTotal = function(param){
 		$.ajax({
@@ -1815,7 +1815,7 @@ $(function(){
     var param = function(){
     	var p = {
     		orgId: "",
-
+            empAreaId: Globel.empAreaId,
 			// startTime:"2018-09-19 11:28:21",
 			// endTime:"2018-09-25 11:28:21",
             startTime:dateTime(7),
@@ -1839,7 +1839,7 @@ $(function(){
 		modularShow();							// 右上角菜单（切换隐藏显示）
         organizationSts(param());			    // 绘制：机构统计图
         warnList(param(),0);					// 发布预报列表
-        drawWarnLevelTotal(param());			// 绘制：类型统计
+        drawWarnLevelTotal(param());			// 绘制：预报类型统计
         drawHourWarn(param());					// 绘制：七天预报统计
         drawPublishAreaTotal(param());			// 绘制：影响地区统计图
         drawPublishChannelTotal(param());		// 绘制：发布渠道统计图

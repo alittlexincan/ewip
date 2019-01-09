@@ -23,11 +23,11 @@ public class ChannelLinkMonitorServiceImpl implements IChannelLinkMonitorService
 	 * @throws Exception
 	 */
 	@Override
-	public JSONObject getChannelLinkMonitor() {
+	public JSONObject getChannelLinkMonitor(Map<String, Object> map) {
 
 		JSONObject json = new JSONObject();
 		// 获取最新预警信息
-		Map<String, Object> info = this.channelMonMapper.getNewSendWarnInfo();
+		Map<String, Object> info = this.channelMonMapper.getNewSendWarnInfo(map);
 		// 获取现有渠道状态
 		List<Map<String, Object>> channels = this.channelMonMapper.getChannelLinkState();
 		
@@ -51,12 +51,12 @@ public class ChannelLinkMonitorServiceImpl implements IChannelLinkMonitorService
 			 * @return		resultType	渠道状态是否畅通：1：畅通；2：不通
 			 */
 			for(int i = 0; i<channels.size(); i++){
-				Map<String, Object> map = channels.get(i);
-				int deployType = Integer.parseInt(map.get("deployType").toString());
-				int resultType = Integer.parseInt(map.get("resultType").toString());
-				String channelId = map.get("channelId").toString();
-				String channelName = map.get("channelName").toString();
-				String sendMethod = map.get("sendMethod").toString();
+				Map<String, Object> channelMap = channels.get(i);
+				int deployType = Integer.parseInt(channelMap.get("deployType").toString());
+				int resultType = Integer.parseInt(channelMap.get("resultType").toString());
+				String channelId = channelMap.get("channelId").toString();
+				String channelName = channelMap.get("channelName").toString();
+				String sendMethod = channelMap.get("sendMethod").toString();
 				JSONObject channel = status(deployType, resultType, channelName,sendMethod);
 				
 				for(Map<String, Object> st : status){
@@ -75,11 +75,11 @@ public class ChannelLinkMonitorServiceImpl implements IChannelLinkMonitorService
 		} else {
 			if (channels != null && !channels.isEmpty()) {
 				for(int i = 0; i<channels.size(); i++){
-					Map<String, Object> map = channels.get(i);
-					int deployType = Integer.parseInt(map.get("deployType").toString());
-					int resultType = Integer.parseInt(map.get("resultType").toString());
-					String channelName = map.get("channelName").toString();
-					String sendMethod = map.get("sendMethod").toString();
+					Map<String, Object> channelMap = channels.get(i);
+					int deployType = Integer.parseInt(channelMap.get("deployType").toString());
+					int resultType = Integer.parseInt(channelMap.get("resultType").toString());
+					String channelName = channelMap.get("channelName").toString();
+					String sendMethod = channelMap.get("sendMethod").toString();
 					JSONObject channel = status(deployType, resultType, channelName,sendMethod);					
 					channel.put("sending",0);
 					if(i < 5){

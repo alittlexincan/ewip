@@ -37,5 +37,5 @@ public interface IChannelMonMapper {
      * @return	map
      * @throws Exception
      */
-     Map<String, Object> getNewSendWarnInfo() ;
+     Map<String, Object> getNewSendWarnInfo(Map<String, Object> map) ;
 }

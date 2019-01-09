@@ -54,7 +54,6 @@ $(function(){
 //    	var type = $(this).data("mapType");
 //    	mapCheck(type);
 //    });
-    
 
 	
 	/**
@@ -189,8 +188,11 @@ $(function(){
      * 头部右侧侧导航：后台管理入口
      */
     $("#serverManager").bind("click", function(){
+
+		var controllerUrl=$("#controllerUrl").val();
+        window.location.href=controllerUrl;
         // window.location.href="http://111.40.45.119:9042/client";
-        window.location.href="http://localhost:8080/client";
+        // window.location.href="http://localhost:8080/client";
     	// window.location.href=baseUrl+"login/main";
 		// window.location.href=baseUrl+"login/load";
     });
