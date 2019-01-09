@@ -12,6 +12,8 @@ layui.use(["table","form","laytpl","layer"], function(){
         // 延寿县：192.168.1.132:8011/index.html?code=3
         // 富锦市：192.168.1.132:8011/index.html?code=4
         // 绥棱县：192.168.1.132:8011/index.html?code=5
-    window.location.href="http://192.168.1.132:8011/index.html?code=1";
+    var url=$('#home', parent.document).parent().parent().children("#gisMapUrl").val();
+
+    window.location.href=url;
 });
 

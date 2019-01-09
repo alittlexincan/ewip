@@ -11,6 +11,8 @@ import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.XSSFDataValidationHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -94,6 +96,9 @@ public class UserGroupController {
      */
     @GetMapping("/select")
     public JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.userGroupService.selectAll(map);
     }
 
@@ -105,6 +110,9 @@ public class UserGroupController {
      */
     @PostMapping("/selectGroup")
     public JSONObject selectGroup(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.userGroupService.selectGroup(map);
     }
 
@@ -115,6 +123,9 @@ public class UserGroupController {
      */
     @GetMapping("/downModel")
     public void downModel(HttpServletRequest req, HttpServletResponse resp, @RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject jsonAll=this.userGroupService.downModel(map);
 
         String channel=jsonAll.get("channelArry").toString();
@@ -323,6 +334,9 @@ public class UserGroupController {
         JSONObject json=new JSONObject();
         System.out.println(list);
         if(list!=null && list.size()>0){
+            Subject subject = SecurityUtils.getSubject();
+            JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+            map.put("empAreaId", employee.getString("areaId"));
             return this.userGroupService.importData(map,list);
         }else{
             json.put("code","500");

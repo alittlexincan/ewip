@@ -741,6 +741,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitUpdateBtn)", function(data){
                         data.field.id = param.id;
+                        data.field.userJobId = param.jobId;
                         console.log(data.field);
                         // 数据提交到后台，通用方法
                         submit({

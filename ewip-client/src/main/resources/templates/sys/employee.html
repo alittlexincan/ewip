@@ -99,7 +99,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">员工ID</label>
                 <div class="layui-input-block">
-                    <input type="text" name="loginName" lay-verify="loginName" value="{{d.loginName}}" autocomplete="off" placeholder="请输入员工ID" class="layui-input">
+                    <input type="text" name="loginName" disabled="disabled" lay-verify="loginName" value="{{d.loginName}}" autocomplete="off" placeholder="请输入员工ID" class="layui-input">
                 </div>
             </div>
 
@@ -202,11 +202,10 @@
 
             <!-- 列表：数据行操作 -->
             <script type="text/html" id="btnGroupOption">
-
+                {{# if(d.roleType.indexOf("1") == -1){ }}
                 <shiro:hasPermission name="role">
                     <a class="layui-btn layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-user"></i>分配角色</a>
                 </shiro:hasPermission>
-                {{# if(d.roleType.indexOf("1") == -1){ }}
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
                 {{# } }}

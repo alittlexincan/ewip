@@ -205,7 +205,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             },
             view: {
                 addDiyDom: function(treeId, treeNode){
-                    if(treeNode.isStrategy==1){
+                    if(treeNode.isStrategy>=1){
                         $("#" + treeNode.tId + "_a").prepend('<i class="layui-icon layui-icon-ok" style="font-weight: bold"></i>');
                     }
                 },

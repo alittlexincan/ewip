@@ -3,6 +3,8 @@ package com.hyt.client.controller.sys;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IZTreeService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,9 @@ public class ZTreeController {
      */
     @PostMapping("/menu")
     JSONArray getMenuTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getMenuTree(map);
         return json.getJSONArray("data");
     }
@@ -43,6 +48,9 @@ public class ZTreeController {
      */
     @PostMapping("/area")
     JSONArray getAreaTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getAreaTree(map);
         return json.getJSONArray("data");
     }
@@ -54,6 +62,9 @@ public class ZTreeController {
      */
     @PostMapping("/organization")
     JSONArray getOrganizationTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getOrganizationTree(map);
         return json.getJSONArray("data");
     }
@@ -65,6 +76,9 @@ public class ZTreeController {
      */
     @PostMapping("/disaster")
     JSONArray getDisasterTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getDisasterTree(map);
         return json.getJSONArray("data");
     }
@@ -76,6 +90,9 @@ public class ZTreeController {
      */
     @PostMapping("/disaster/level")
     JSONArray getDisasterLevelTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getDisasterLevelTree(map);
         return json.getJSONArray("data");
     }
@@ -87,6 +104,9 @@ public class ZTreeController {
      */
     @PostMapping("/user/group")
     JSONArray getUserGroupTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getUserGroupTree(map);
         return json.getJSONArray("data");
     }
@@ -98,6 +118,9 @@ public class ZTreeController {
      */
     @PostMapping("/user/group/count")
     JSONArray getUserGroupCountTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getUserGroupCountTree(map);
         return json.getJSONArray("data");
     }
@@ -109,6 +132,9 @@ public class ZTreeController {
      */
     @PostMapping("/organization/group")
     JSONArray getOrganizationUserGroupTree(@RequestParam Map<String, Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getOrganizationUserGroupTree(map);
         return json.getJSONArray("data");
     }

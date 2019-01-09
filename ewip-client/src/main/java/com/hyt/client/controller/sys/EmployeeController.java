@@ -2,9 +2,11 @@ package com.hyt.client.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IEmployeeService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,6 +93,9 @@ public class EmployeeController {
      */
     @GetMapping("/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.employeeService.selectAll(map);
     }
 
@@ -115,7 +120,7 @@ public class EmployeeController {
     }
 
     /**
-     * 用户分配角色
+     * 验证密码是否正确
      * @param map
      * @return
      */
@@ -128,7 +133,7 @@ public class EmployeeController {
 
 
     /**
-     * 用户分配角色
+     * 修改用户密码
      * @param map
      * @return
      */
@@ -137,6 +142,16 @@ public class EmployeeController {
         Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
         map.put("newPwd", password.toString());
         return this.employeeService.updatePwd(map);
+    }
+
+    /**
+     * 验证用户名是否唯一
+     * @param map
+     * @return
+     */
+    @PostMapping("/verifyLoginName")
+    JSONObject verifyLoginName(@RequestParam Map<String,Object> map){
+        return this.employeeService.verifyLoginName(map);
     }
 
 

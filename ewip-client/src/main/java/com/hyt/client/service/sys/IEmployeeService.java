@@ -104,4 +104,11 @@ public interface IEmployeeService {
      */
     @PostMapping("/employee/updatePwd")
     JSONObject updatePwd(@RequestParam Map<String,Object> map);
+    /**
+     * 验证用户名是否唯一
+     * @param map
+     * @return
+     */
+    @PostMapping("/employee/verifyLoginName")
+    JSONObject verifyLoginName(@RequestParam Map<String,Object> map);
 }

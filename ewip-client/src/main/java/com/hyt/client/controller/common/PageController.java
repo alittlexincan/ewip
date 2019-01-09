@@ -2,9 +2,11 @@ package com.hyt.client.controller.common;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baidu.ueditor.ActionEnter;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -32,9 +34,16 @@ import java.util.Map;
 @Component
 public class PageController {
 
-
     @Value("${cimiss.station.id.c}")
     private String stationId;
+
+    //防御作战图gismap的url地址
+    @Value("${gismap.url}")
+    private String gisMapUrl;
+
+    //统计功能的url地址
+    @Value("${monitor.url}")
+    private String monitorUrl;
 
     /**
      * 进入框架界面
@@ -42,7 +51,11 @@ public class PageController {
      */
     @RequestMapping({"/","/index"})
     public ModelAndView index(@RequestParam Map<String, Object> map){
-        map.put("stationId", stationId);
+        map.put("gisMapUrl", gisMapUrl);
+        map.put("monitorUrl", monitorUrl);
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("sysName", employee.getString("areaName"));
         return new ModelAndView("main/index",map);
     }
 
@@ -53,6 +66,10 @@ public class PageController {
     @RequestMapping("/home")
     public ModelAndView home(@RequestParam Map<String, Object> map){
         map.put("stationId", stationId);
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("longitude", employee.getString("longitude"));
+        map.put("latitude", employee.getString("latitude"));
         return new ModelAndView("main/home",map);
     }
 
@@ -96,6 +113,7 @@ public class PageController {
     String signIn(HttpServletRequest request, Map<String, Object> map){
         // 登录失败从request中获取shiro处理的异常信息。
         // shiroLoginFailure:就是shiro异常类的全类名.
+
         String exception = (String) request.getAttribute("shiroLoginFailure");
         String msg = "";
         if (exception != null) {

@@ -234,8 +234,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "		</div>";
                 html += "	</div>";
                 html += "</div>"
-                // 追加预警内容tab选项卡
-                ,element.tabAdd('warn-tab', {
+                    // 追加预警内容tab选项卡
+                    ,element.tabAdd('warn-tab', {
                     title: channelName
                     ,content: html //支持传入html
                     ,id: channelId
@@ -725,55 +725,55 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     /**
      * 初始化加载灾种级别树
      */
-  /*  let disasterLevelZtree = function () {
-        selectTree.render({
-            'id': 'addDisasterId'
-            ,'url': '/client/tree/disaster/level'
-            ,'isMultiple': false
-            ,clickNode:function (event, treeId, treeNode) {
-                if(treeNode.isConfig==1){
-                    let name = treeNode.name;
-                    if(name.indexOf("[") > -1){
-                        name = name.substring(0, name.indexOf("["));
-                    }
-                    treeNode.name = name;
-                    //绑定树操作
-                    selectTree.setValue(treeId,treeNode);
-                    selectTree.hideTree();
-                    // 设置参数值
-                    let param = {
-                        areaId: employee.areaId                     // 地区ID
-                        ,organizationId: employee.organizationId    // 机构ID
-                        ,organizationName: employee.organizationName// 机构名称
-                        ,organizationCode: employee.organizationCode// 机构编码
-                        ,disasterId: treeNode.id                    // 灾种ID
-                        ,disasterName: name                         // 灾种名称
-                        ,disasterColor: treeNode.disasterColor      // 灾种颜色
-                        ,disasterLevel: treeNode.disasterLevel      // 灾种级别
-                        ,disasterCode: treeNode.code                // 灾种编码
-                        ,icon: "/client/"+treeNode.img              // 灾种图标
-                    };
+    /*  let disasterLevelZtree = function () {
+          selectTree.render({
+              'id': 'addDisasterId'
+              ,'url': '/client/tree/disaster/level'
+              ,'isMultiple': false
+              ,clickNode:function (event, treeId, treeNode) {
+                  if(treeNode.isConfig==1){
+                      let name = treeNode.name;
+                      if(name.indexOf("[") > -1){
+                          name = name.substring(0, name.indexOf("["));
+                      }
+                      treeNode.name = name;
+                      //绑定树操作
+                      selectTree.setValue(treeId,treeNode);
+                      selectTree.hideTree();
+                      // 设置参数值
+                      let param = {
+                          areaId: employee.areaId                     // 地区ID
+                          ,organizationId: employee.organizationId    // 机构ID
+                          ,organizationName: employee.organizationName// 机构名称
+                          ,organizationCode: employee.organizationCode// 机构编码
+                          ,disasterId: treeNode.id                    // 灾种ID
+                          ,disasterName: name                         // 灾种名称
+                          ,disasterColor: treeNode.disasterColor      // 灾种颜色
+                          ,disasterLevel: treeNode.disasterLevel      // 灾种级别
+                          ,disasterCode: treeNode.code                // 灾种编码
+                          ,icon: "/client/"+treeNode.img              // 灾种图标
+                      };
 
-                    // 预警名称
-                    $(".basis input[name='disasterName']").val(param.disasterName);
-                    // 预警颜色
-                    $(".basis select[name='disasterColor']").val(param.disasterColor);
-                    // 预警颜色
-                    $(".basis input[name='disasterCode']").val(param.disasterCode);
-                    // 预警级别
-                    $(".basis select[name='disasterLevel']").val(param.disasterLevel);
+                      // 预警名称
+                      $(".basis input[name='disasterName']").val(param.disasterName);
+                      // 预警颜色
+                      $(".basis select[name='disasterColor']").val(param.disasterColor);
+                      // 预警颜色
+                      $(".basis input[name='disasterCode']").val(param.disasterCode);
+                      // 预警级别
+                      $(".basis select[name='disasterLevel']").val(param.disasterLevel);
 
-                    // 获取策略信息, 并设置流程、渠道
-                    active.getStrategyMsg(param, active.setStrategyAndChannel);
-                    // 获取预警信息，并匹配预警内容
-                    active.getWarnMsg(param, active.setWarn);
-                    // 基础信息配置
-                    active.setBasis(param);
-                }
-                return false;
-            }
-        });
-    };*/
+                      // 获取策略信息, 并设置流程、渠道
+                      active.getStrategyMsg(param, active.setStrategyAndChannel);
+                      // 获取预警信息，并匹配预警内容
+                      active.getWarnMsg(param, active.setWarn);
+                      // 基础信息配置
+                      active.setBasis(param);
+                  }
+                  return false;
+              }
+          });
+      };*/
 
     /**
      * 初始化加载地区树
@@ -1134,7 +1134,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             });
         }());
 
-
+        debugger;
         console.log(param);
 
         // 数据提交

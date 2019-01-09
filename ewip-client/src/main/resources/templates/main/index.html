@@ -14,7 +14,8 @@
 
 </head>
 <body class="layui-layout-body">
-  
+  <input id="monitorUrl" type="hidden" th:value="${monitorUrl}" >
+
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header  ewip-header">
@@ -32,7 +33,7 @@
           </li>
         </ul>
         <ul class="layui-nav" style="text-align: center;">
-          <li class="layui-nav-item" lay-unselect style="font-size: 26px;"><img style="width: 35px;" th:src="@{/images/login/logo.png}">&nbsp;华池县突发事件预警信息发布平台</li>
+          <li class="layui-nav-item" lay-unselect style="font-size: 26px;"><img style="width: 35px;" th:src="@{/images/login/logo.png}">&nbsp;<span style="font-size: 26px;" th:text="${sysName}"></span>气象防灾减灾业务平台</li>
           <!--<li class="layui-nav-item" lay-unselect style="font-size: 26px;"><img style="width: 35px;" th:src="@{/images/login/logo.png}">望奎县气象防灾减灾业务平台</li>-->
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
@@ -47,6 +48,9 @@
             <a href="javascript:;" layadmin-event="fullscreen">
               <i class="layui-icon layui-icon-screen-full"></i>
             </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <button id="monitor" class="layui-btn layui-btn-sm">统计</button>
           </li>
           <li class="layui-nav-item" lay-unselect style="margin-right: 10px;">
             <a href="javascript:;">
@@ -213,8 +217,9 @@
       
       <!-- 主体内容 -->
       <div class="layui-body" id="LAY_app_body">
-        <div class="layadmin-tabsbody-item layui-show">
-          <iframe th:src="@{/home}" frameborder="0" class="layadmin-iframe"></iframe>
+        <input id="gisMapUrl" type="hidden" th:value="${gisMapUrl}" >
+        <div class="layadmin-tabsbody-item layui-show" id="param" >
+          <iframe th:src="@{/home}" frameborder="0" id="home" class="layadmin-iframe"></iframe>
         </div>
       </div>
       
@@ -298,6 +303,12 @@
                   $("#submitAddBtn").click();
               }
           });
+      })
+
+      //跳转统计页面
+      $("#monitor").on("click",function () {
+          var monitorUrl=document.getElementById("monitorUrl").value;
+          window.location.href=monitorUrl+"/?areaId="+ employee.areaId + "&longitude=" + employee.longitude + "&latitude=" + employee.latitude+ "&areaName=" + employee.areaName;
       })
 
       /**

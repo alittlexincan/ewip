@@ -260,6 +260,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
     };
 
 
+
+
     /**
      * 给树节点标红
      * @param treeId
@@ -404,7 +406,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
      * @param option
      */
     let submit = function (option) {
-        debugger;
         $.ajax({
             async:option.async
             ,type: option.type

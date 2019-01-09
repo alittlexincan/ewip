@@ -176,6 +176,18 @@
                 <div class="layui-card">
                     <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>机构展示</span></div>
                     <div class="layui-card-body">
+                        <div class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <input type="text" id="keyword" name="keyword"  placeholder="请输入..." style="width: 160px;" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline">
+                                    <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search" id="search-bt">
+                                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <ul id="organizationTree" class="ztree ewip-left-tree"></ul>
                     </div>
                 </div>

@@ -2,6 +2,8 @@ package com.hyt.client.controller.sys;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IStrategyService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,6 +80,9 @@ public class StrategyController {
      */
     @GetMapping("/select")
     public JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.strategyService.selectAll(map);
     }
 

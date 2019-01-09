@@ -8,6 +8,8 @@ import com.hyt.client.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -89,6 +91,9 @@ public class OrganizationController {
      */
     @GetMapping("/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.organizationService.selectAll(map);
     }
 
@@ -100,6 +105,9 @@ public class OrganizationController {
      */
     @PostMapping("/selectOrg")
     JSONObject selectOrg(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.organizationService.selectOrg(map);
     }
 
@@ -109,6 +117,9 @@ public class OrganizationController {
      */
     @GetMapping("/downModel")
     public void downModel(HttpServletRequest req, HttpServletResponse resp, @RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject jsonAll=this.organizationService.downModel(map);
         Workbook book = new XSSFWorkbook();
         try {
@@ -281,8 +292,17 @@ public class OrganizationController {
     @PostMapping("/importExcel")
     public JSONObject importExcel(@RequestParam Map<String,Object> map, @RequestParam("addFile") MultipartFile file){
         List<Map<String, Object>> list =OrgExceUtil.getExcelInfo(file);
-        System.out.println(list);
-        return this.organizationService.importData(map,list);
+        JSONObject json=new JSONObject();
+        if(list!=null && list.size()>0){
+            Subject subject = SecurityUtils.getSubject();
+            JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+            map.put("empAreaId", employee.getString("areaId"));
+            return this.organizationService.importData(map,list);
+        }else{
+            json.put("code","500");
+            json.put("msg","导入失败");
+            return json;
+        }
     }
 
 }

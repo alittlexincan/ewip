@@ -14,8 +14,9 @@
 <body>
 
     <!--CIMISS国家站点ID-->
-    <input id="stationId" type="hidden" th:value="${stationId}"  >
-
+    <input id="stationId" type="hidden" th:value="${stationId}" >
+    <input id="longitude" type="hidden" th:value="${longitude}" >
+    <input id="latitude" type="hidden" th:value="${latitude}" >
     <div class="layui-fluid home">
 
         <!--快捷方式、预警提醒、天气实况-->
@@ -120,7 +121,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!--预警消息动态、一键消息动态、一周天气情况-->
@@ -131,7 +131,8 @@
                         <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>预警消息动态</span>
                     </div>
                     <div class="layui-card-body">
-                        <div class="warn-panel"><span>暂无数据</span>
+                        <div class="warn-panel">
+                            <span>暂无数据</span>
                             <!--<table class="layui-table" layui-size="sm" lay-filter="table" id="table"></table>-->
                         </div>
                     </div>
@@ -172,11 +173,12 @@
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
     <script th:src="@{/ewip/main/home.js}" ></script>
     <script th:inline="javascript">
-
+        var longitude=document.getElementById("longitude").value;
+        var latitude=document.getElementById("latitude").value;
         let bdMap = null;
         let initMap = () => {
             bdMap = new T.Map('container');
-            bdMap.centerAndZoom(new T.LngLat(107.98,36.47), 12);
+            bdMap.centerAndZoom(new T.LngLat(longitude,latitude), 12);
         };
         initMap();
     </script>

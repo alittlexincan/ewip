@@ -248,12 +248,32 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(subbmitAddBtn)", function(data){
-                        submitServer({
+                 /*       submitServer({
                             index: index
                             ,type: 'POST'
                             ,param: data.field
                             ,url: '/client/employee/insert'
+                        });*/
+                        $.ajax({
+                            async: true
+                            ,type: 'POST'
+                            ,data: data.field
+                            ,url: '/client/employee/verifyLoginName'
+                            ,dataType: 'json'
+                            ,success: function(json){
+                                if(json.code == 500){
+                                    layer.msg(json.msg, {time: 2000});
+                                }else {
+                                    submitServer({
+                                        index: index
+                                        ,type: 'POST'
+                                        ,param: data.field
+                                        ,url: '/client/employee/insert'
+                                    })
+                                }
+                            }
                         });
+
                     });
                     // 触发表单按钮点击事件
                     $("#subbmitAddBtn").click();
@@ -390,7 +410,9 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         // 查询系统中所有角色
                         active.selectRole((res)=>{
                             res.forEach((role)=>{
-                                $("#roleDiv .role").append("<input type='checkbox' name='roleId' value='" + role.id + "' title='" + role.role + "' lay-skin='primary' />");
+                                if(role.roleType!= 1){
+                                    $("#roleDiv .role").append("<input type='checkbox' name='roleId' value='" + role.id + "' title='" + role.role + "' lay-skin='primary' />");
+                                }
                             });
                         });
                         // 查询该角色拥有的权限

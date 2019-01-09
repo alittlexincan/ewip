@@ -10,6 +10,8 @@ import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.XSSFDataValidationHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -93,6 +95,9 @@ public class UserController {
      */
     @GetMapping("/select")
     public JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.userService.selectAll(map);
     }
 
@@ -103,6 +108,9 @@ public class UserController {
      */
     @GetMapping("/list")
     public JSONObject selectList(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.userService.selectList(map);
     }
 
@@ -125,8 +133,10 @@ public class UserController {
      */
     @GetMapping("/downModel")
     public void downModel(HttpServletRequest req, HttpServletResponse resp, @RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         JSONObject jsonAll=this.userService.downModel(map);
-
         String channel=jsonAll.get("channelArry").toString();
         JSONArray channelArry = JSONArray.parseArray(channel);
 
@@ -354,8 +364,10 @@ public class UserController {
     public JSONObject importExcel(@RequestParam Map<String,Object> map, @RequestParam("addFile") MultipartFile file){
         List<Map<String, Object>> list =UserExceUtil.getExcelInfo(file);
         JSONObject json=new JSONObject();
-        System.out.println(list);
         if(list!=null && list.size()>0){
+            Subject subject = SecurityUtils.getSubject();
+            JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+            map.put("empAreaId", employee.getString("areaId"));
             return this.userService.importData(map,list);
         }else{
             json.put("code","500");
