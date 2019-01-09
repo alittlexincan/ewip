@@ -70,6 +70,9 @@ public class UnitDangerController {
          */
         @GetMapping("/select")
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
             return this.unitDangerService.selectAll(map);
         }
 
@@ -79,6 +82,9 @@ public class UnitDangerController {
          */
         @GetMapping("/list")
         public JSONObject selectList(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
                 return this.unitDangerService.selectList(map);
         }
 

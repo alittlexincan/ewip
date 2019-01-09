@@ -103,7 +103,10 @@ public class DisasterTypeController {
          */
         @GetMapping("/select")
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
-            return this.disasterTypeService.selectAll(map);
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
+                return this.disasterTypeService.selectAll(map);
         }
 
         /**
@@ -113,6 +116,9 @@ public class DisasterTypeController {
          */
         @GetMapping("/list")
         public JSONObject selectList(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
                 return this.disasterTypeService.selectList(map);
         }
 }

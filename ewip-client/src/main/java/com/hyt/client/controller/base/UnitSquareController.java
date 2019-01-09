@@ -70,6 +70,9 @@ public class UnitSquareController {
          */
         @GetMapping("/select")
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
             return this.unitSquareService.selectAll(map);
         }
 
@@ -79,6 +82,9 @@ public class UnitSquareController {
          */
         @GetMapping("/list")
         public JSONObject selectList(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
                 return this.unitSquareService.selectList(map);
         }
 

@@ -71,7 +71,10 @@ public class AutomaticStationController {
          */
         @GetMapping("/select")
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
-            return this.automaticStationService.selectAll(map);
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
+                return this.automaticStationService.selectAll(map);
         }
 
         /**
@@ -80,6 +83,9 @@ public class AutomaticStationController {
          */
         @GetMapping("/list")
         public JSONObject selectList(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
                 return this.automaticStationService.selectList(map);
         }
 
