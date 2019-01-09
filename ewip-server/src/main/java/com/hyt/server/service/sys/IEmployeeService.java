@@ -72,4 +72,10 @@ public interface IEmployeeService extends IBaseService<Employee> {
      * @return
      */
     int updatePwd(Map<String,Object> map);
+    /**
+     * 根据员工用户名查询是否存在
+     * @param map
+     * @return
+     */
+    Integer selectCountByName(Map<String,Object> map);
 }

@@ -66,6 +66,17 @@ public interface IEmployeeMapper extends IBaseMapper<Employee> {
      * @return
      */
     int updatePwd(Map<String,Object> map);
-
+    /**
+     * 修改角色
+     * @param map
+     * @return
+     */
     int updateRole(Map<String,Object> map);
+
+    /**
+     * 验证用户名（个数）是否存在
+     * @param map
+     * @return
+     */
+    Integer selectCountByName(Map<String,Object> map);
 }

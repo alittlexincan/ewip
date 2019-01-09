@@ -171,4 +171,14 @@ public class EmployeeServiceImpl extends AbstractService<Employee> implements IE
     public int updatePwd(Map<String, Object> map) {
         return this.employeeMapper.updatePwd(map);
     }
+
+    /**
+     * 验证用户名是否存在
+     * @param map
+     * @return
+     */
+    @Override
+    public Integer selectCountByName(Map<String, Object> map) {
+        return this.employeeMapper.selectCountByName(map);
+    }
 }

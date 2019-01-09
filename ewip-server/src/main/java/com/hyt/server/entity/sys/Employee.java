@@ -68,6 +68,10 @@ public class Employee {
 
     private String level;
 
+    private String longitude;
+
+    private String latitude;
+
     public Employee() {}
 
     public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime) {
@@ -82,7 +86,7 @@ public class Employee {
         this.createTime = createTime;
     }
 
-    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level) {
+    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, String roleType, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level, String longitude, String latitude) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
         this.name = name;
@@ -90,6 +94,7 @@ public class Employee {
         this.organizationId = organizationId;
         this.phone = phone;
         this.email = email;
+        this.roleType = roleType;
         this.sex = sex;
         this.createTime = createTime;
         this.organizationName = organizationName;
@@ -97,6 +102,24 @@ public class Employee {
         this.organizationCode = organizationCode;
         this.areaName = areaName;
         this.level = level;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     public String getId() {

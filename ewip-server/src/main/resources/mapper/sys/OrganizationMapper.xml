@@ -18,17 +18,18 @@
     <!-- 查询机构信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-          o.id,
-          o.organization_name,
-          o.code,
-          o.p_id,
-          (select b.organization_name from organization b where b.id = o.p_id) parent_name,
-          o.area_id,
-          o.type,
-          (select a.area_name from area a where a.id = o.area_id) area_name,
-          (select count(*) from organization org where org.p_id = o.id) child,
-          o.create_time
-        FROM organization o where 1=1
+            o.id,
+            o.organization_name,
+            o.code,
+            o.p_id,
+            (select b.organization_name from organization b where b.id = o.p_id) parent_name,
+            o.area_id,
+            o.type,
+            a.area_name ,
+            (select count(*) from organization org where org.p_id = o.id) child,
+            o.create_time
+        FROM organization o left join area a on a.id = o.area_id
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">and id = #{id}</if>
         <if test="organizationName != null and organizationName != ''">AND o.organization_name LIKE '${organizationName}%'</if>
         <if test="code != null and code != ''">AND o.code = #{code}</if>
@@ -44,7 +45,7 @@
         </choose>
     </select>
 
-    <!-- 根据地区id查询地区信息 -->
+    <!-- 根据机构id查询机构信息 -->
     <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         o.id,
@@ -75,7 +76,9 @@
 
     <!-- 查询机构信息 -->
     <select id="selectOrg" resultMap="BaseResultMap">
-        select * FROM organization o where 1=1
+        select o.* FROM organization o
+        left join area a on a.id = o.area_id
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">and id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
         <if test="orgName != null and orgName != ''">AND o.organization_name = #{orgName}</if>

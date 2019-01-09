@@ -31,6 +31,7 @@
             a.altitude,
             a.create_time
         FROM area a where 1=1
+        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND a.id = #{id}</if>
         <if test="areaName != null and areaName != ''">AND a.area_name LIKE '${areaName}%'</if>
         <if test="code != null and code != ''">AND a.code = #{code}</if>
@@ -41,7 +42,7 @@
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY a.create_time DESC
+                ORDER BY a.create_time,a.level DESC
             </otherwise>
         </choose>
     </select>
@@ -66,7 +67,8 @@
 
     <!--查询所有的地区信息 -->
     <select id="areaList" resultMap="BaseResultMap">
-      select * from area
+      select * from area where 1=1 and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+      or FIND_IN_SET(id, getAreaPList(#{empAreaId}))
     </select>
 
 

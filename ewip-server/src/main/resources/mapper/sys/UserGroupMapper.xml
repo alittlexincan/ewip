@@ -33,7 +33,7 @@
         left JOIN area a on a.id = ug.area_id
         left JOIN organization o on o.id = ug.organization_id
         left JOIN channel c on c.id = ug.channel_id
-        where 1=1
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
@@ -74,7 +74,8 @@
 
     <!-- 查询机构信息 -->
     <select id="selectGroup" resultMap="BaseResultMap">
-        select * FROM user_group o where 1=1
+        select * FROM user_group o left join area a on a.id = o.area_id
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">and o.id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND o.organization_id = #{organizationId}</if>

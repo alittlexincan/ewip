@@ -9,6 +9,8 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
         <result column="level" jdbcType="SMALLINT" property="level"/>
         <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
         <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
@@ -51,7 +53,7 @@
         FROM employee e
         LEFT JOIN area a on a.id = e.area_id
         LEFT JOIN organization o on o.id = e.organization_id
-        where 1=1
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">and e.id = #{id}</if>
         <if test="loginName != null and loginName != ''">AND e.login_name LIKE '${loginName}%'</if>
         <if test="name != null and name != ''">AND e.name like '${name}%'</if>
@@ -78,6 +80,8 @@
             e.name,
             e.area_id,
             a.area_name,
+            a.longitude,
+            a.latitude,
             a.level,
             e.organization_id,
             o.organization_name,
@@ -161,5 +165,8 @@
         UPDATE employee SET login_password=#{newPwd} WHERE id = #{id}
     </update>
 
+    <select id="selectCountByName" resultType="java.lang.Integer">
+        select count(1) from  employee e where 1=1 and login_name=#{loginName}
+    </select>
 
 </mapper>

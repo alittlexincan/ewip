@@ -88,8 +88,6 @@ public class UserController {
     public ResultObject<Object> update(@ApiParam(hidden = true) @RequestParam Map<String,Object> map){
         JSONObject json = new JSONObject(map);
         User user = JSON.parseObject(json.toJSONString(), new TypeReference<User>() {});
-        String uuidJob = UUID.randomUUID().toString().replace("-", "");
-        map.put("userJobId",uuidJob);
         map.put("userId",map.get("id").toString());
         int numJob=0;
         if(!map.get("jobOld").toString().equals(map.get("job").toString()) ||
@@ -99,7 +97,8 @@ public class UserController {
                 !map.get("organizationIdOld").toString().equals(map.get("organizationId").toString())||
                 !map.get("userGroupIdOld").toString().equals(map.get("userGroupId").toString())||
                 !map.get("channelIdOld").toString().equals(map.get("channelId").toString())){
-
+            String uuidJob = UUID.randomUUID().toString().replace("-", "");
+            map.put("userJobId",uuidJob);
             numJob= this.userService.insertUserJob(map);//插入子表
         }
 

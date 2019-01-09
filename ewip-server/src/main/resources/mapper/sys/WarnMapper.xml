@@ -38,7 +38,7 @@
           warn w
         LEFT JOIN area a on a.id = w.area_id
         LEFT JOIN organization o on o.id = w.organization_id
-        where 1=1
+        where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND w.id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND w.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND w.organization_id = #{organizationId}</if>

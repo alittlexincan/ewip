@@ -82,6 +82,7 @@
         SELECT
             id, p_id, area_name name, code, level
         FROM area where 1=1
+        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND id = #{areaId}</if>
         <if test="areaName != null and areaName != ''">AND area_name LIKE '${areaName}%'</if>
@@ -93,16 +94,39 @@
 
     <!-- 查询机构信息树 -->
     <select id="getOrganizationTree" resultMap="ZTreeResultMap">
-
+        (SELECT
+        a.id,
+        a.p_id,
+        a.area_name NAME,
+        null channel_id,
+        a.id area_id,
+        0 count,
+        0 type
+        FROM area a where 1=1
+        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+        )union all(
         SELECT
-          id, p_id, organization_name name, code, area_id
-        FROM organization where 1=1
-        <if test="id != null and id != ''">AND id = #{id}</if>
-        <if test="organizationId != null and organizationId != ''">AND id = #{organizationId}</if>
-        <if test="organizationName != null and organizationName != ''">AND organizationName LIKE '${organizationName}%'</if>
-        <if test="code != null and code != ''">AND code = #{code}</if>
-        <if test="pId != null and pId != ''">AND p_id = #{pId}</if>
-        <if test="areaId != null and areaId != ''">AND area_id = #{areaId}</if>
+        o.id,
+        o.area_id p_id,
+        o.organization_name NAME,
+        null channel_id,
+        o.area_id,
+        0 count,
+        1 type
+        FROM organization o LEFT JOIN area a on o.area_id=a.id where 1=1
+        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        )
+
+
+        <!--SELECT-->
+          <!--id, p_id, organization_name name, code, area_id-->
+        <!--FROM organization where 1=1-->
+        <!--<if test="id != null and id != ''">AND id = #{id}</if>-->
+        <!--<if test="organizationId != null and organizationId != ''">AND id = #{organizationId}</if>-->
+        <!--<if test="organizationName != null and organizationName != ''">AND organizationName LIKE '${organizationName}%'</if>-->
+        <!--<if test="code != null and code != ''">AND code = #{code}</if>-->
+        <!--<if test="pId != null and pId != ''">AND p_id = #{pId}</if>-->
+        <!--<if test="areaId != null and areaId != ''">AND area_id = #{areaId}</if>-->
 
     </select>
 
@@ -131,20 +155,22 @@
 
     <!-- 查询灾种级别信息树 -->
     <select id="getDisasterLevelTree" resultMap="ZTreeDisasterResultMap">
+        SELECT
+        d.id,
+        d.name,
+        d.code,
+        d.icon img,
+        d.p_id,
+        d.type,
+        d.disaster_color,
+        d.disaster_level,
+        d.is_config,
+        (SELECT count(1) FROM strategy s WHERE s.disaster_id = d.id
+        and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))) is_strategy,
+        d.create_time
+        FROM disaster d
+        where 1=1
 
-         SELECT
-            d.id,
-            d.name,
-            d.code,
-            d.icon img,
-            d.p_id,
-            d.type,
-            d.disaster_color,
-            d.disaster_level,
-            d.is_config,
-            d.is_strategy,
-            d.create_time
-        FROM disaster d where 1=1
         <if test="id != null and id != ''">AND d.id = #{id}</if>
         <if test="name != null and name != ''">AND d.name LIKE '${name}%'</if>
         <if test="code != null and code != ''">AND d.code = #{code}</if>
@@ -165,7 +191,7 @@
         FROM user_group ug
         LEFT JOIN area a on a.id = ug.area_id
         LEFT JOIN organization o on o.id = ug.organization_id
-        where 1=1
+        where 1=1 and FIND_IN_SET(ug.area_id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
@@ -202,8 +228,7 @@
 
     <!--机构对应群组树-->
     <select id="getOrganizationUserGroupTree" resultMap="ZTreeUserGroupResultMap">
-        (
-        SELECT
+        (SELECT
         a.id,
         a.p_id,
         a.area_name NAME,
@@ -212,6 +237,7 @@
         0 count,
         0 type
         FROM area a where 1=1
+        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
         )union all(
         SELECT
         o.id,
@@ -221,22 +247,21 @@
         o.area_id,
         0 count,
         1 type
-        FROM organization o  where 1=1
+        FROM organization o LEFT JOIN area a on o.area_id=a.id where 1=1
+        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         )union all(
         SELECT
         ug.id,
-        (case when ug.organization_id = ''    THEN ug.area_id
+        (case when ug.organization_id = ''  THEN ug.area_id
         when ug.organization_id is null THEN ug.area_id
-        else ug.organization_id end)  p_id,
+        else ug.organization_id end )  p_id,
         ug.NAME,
         ug.channel_id,
         ug.area_id,
         (SELECT count(1) FROM USER u WHERE u.user_group_id = ug.id ) count,
-        2 type
-        FROM user_group ug where 1=1
+        2 type FROM user_group ug  LEFT JOIN area a on ug.area_id=a.id where 1=1
+        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         )
-
-
         <!--(SELECT-->
                 <!--id,-->
                 <!--p_id,-->

@@ -196,4 +196,16 @@ public class EmployeeController {
         return ResultResponse.make(500,"修改密码失败");
     }
 
+    @PostMapping("/verifyLoginName")
+    public ResultObject<Object> verifyLoginName( @RequestParam Map<String,Object> map) {
+        Integer count =this.employeeService.selectCountByName(map);
+        if(count>0){
+            return ResultResponse.make(500,"用户名已存在",count);
+        }else{
+            return ResultResponse.make(200,"用户名可用",count);
+        }
+    }
+
+
+
 }

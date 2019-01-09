@@ -14,6 +14,7 @@
         <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
         <result column="altitude" jdbcType="DOUBLE" property="altitude"/>
         <result column="job" jdbcType="VARCHAR" property="job"/>
+        <result column="job_id" jdbcType="VARCHAR" property="jobId"/>
         <result column="duties" jdbcType="VARCHAR" property="duties"/>
         <result column="leader" jdbcType="VARCHAR" property="leader"/>
         <result column="age" jdbcType="SMALLINT" property="age"/>
@@ -34,20 +35,21 @@
             u.name,
             u.code,
             u.user_group_id,
-            ug.name user_group_name,
             u.area_id,
+            u.job_id,
+            ug.name user_group_name,
             a.area_name,
-            u.organization_id,
             o.organization_name,
-            u.channel_id,
             c.name channel_name,
-            u.type,
             j.job,
             j.duties,
             j.leader,
             j.age,
             j.sex,
             j.address,
+            u.organization_id,
+            u.channel_id,
+            u.type,
             u.longitude,
             u.latitude,
             u.altitude,
@@ -58,7 +60,7 @@
         LEFT JOIN organization o on o.id = u.organization_id
         LEFT JOIN channel c on c.id = u.channel_id
         LEFT JOIN user_job j on u.job_id = j.id
-        where 1=1
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND u.id = #{id}</if>
         <if test="name != null and name != ''">AND u.name LIKE '${name}%'</if>
         <if test="code != null and code != ''">AND u.code LIKE '${code}%'</if>
@@ -83,6 +85,7 @@
             u.name,
             u.code,
             u.user_group_id,
+            u.job_id,
             ug.name user_group_name,
             u.area_id,
             a.area_name,
@@ -190,7 +193,7 @@
         FROM user u
         LEFT JOIN user_job uj on uj.id = u.job_id
         LEFT JOIN organization o on o.id = u.organization_id
-        where 1=1
+        where 1=1  and FIND_IN_SET(u.area_id, getAreaCList(#{empAreaId}))
         <if test="channelName != null and channelName != '' ">
             and u.channel_id = (SELECT id FROM channel where name = #{channelName})
         </if>
@@ -255,7 +258,7 @@
         LEFT JOIN organization o on o.id = u.organization_id
         LEFT JOIN channel c on c.id = u.channel_id
         LEFT JOIN user_job j on u.job_id = j.id
-        where 1=1
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
         <if test="id != null and id != ''">AND u.id = #{id}</if>
     </select>
 
