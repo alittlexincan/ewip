@@ -15,6 +15,10 @@ public class DisasterType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
+
+    @Column(name = "area_id",length = 64)
+    private String areaId;
+
     @Column(name = "type",length = 20)
     private String type;
     @Column(name = "severity",length = 20)
@@ -44,8 +48,17 @@ public class DisasterType {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String areaName;
     private String createUserName;
     private String updateUserName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUser() {
         return createUser;
@@ -157,5 +170,13 @@ public class DisasterType {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
     }
 }

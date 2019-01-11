@@ -14,7 +14,8 @@ public class FacilityOffice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
-
+    @Column(name = "area_id",length = 64)
+    private String areaId;
     @Column(name = "type",length = 64)
     private String type;
     @Column(name = "name",length = 64)
@@ -53,8 +54,17 @@ public class FacilityOffice {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String areaName;
     private String createUserName;
     private String updateUserName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUserName() {
         return createUserName;
@@ -198,5 +208,13 @@ public class FacilityOffice {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
     }
 }

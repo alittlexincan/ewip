@@ -40,15 +40,14 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
   </resultMap>
 
-
-
   <!-- 查询信息 -->
   <select id="findAll" resultMap="BaseResultMap">
-    SELECT s.*,a.area_name areaName,e.name createUserName,em.name updateUserName FROM base_automatic_station s
+    SELECT s.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM base_automatic_station s
     left join area a on s.area_id=a.id
     left join employee e on s.createUser=e.id
     left join employee em on s.updateUser=em.id
-    where 1=1
+    where 1=1 and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))
     <if test="id != null and id != ''">AND s.id = #{id}</if>
     <if test="name != null and name != ''">AND s.name = #{name} </if>
     <choose>

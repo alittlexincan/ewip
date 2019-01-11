@@ -48,6 +48,16 @@ public class RiskGeologic {
 
     private Double Prec1;
 
+    private String areaName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
     public String getId() {
         return id;
     }

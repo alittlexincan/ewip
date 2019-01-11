@@ -45,9 +45,17 @@ public class UnitSquare {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String areaName;
     private String createUserName;
-
     private String updateUserName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUserName() {
         return createUserName;

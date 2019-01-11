@@ -50,6 +50,16 @@ public class RiskWaterloggingArea {
 
     private String contact;
 
+    private String areaName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
     public String getId() {
         return id;
     }

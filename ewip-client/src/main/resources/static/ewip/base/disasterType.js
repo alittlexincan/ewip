@@ -31,6 +31,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
+            ,{field: 'areaName', title: '地区', sort: true}
             ,{field: 'type', title: '灾害类型', sort: true}
             ,{field: 'color', title: '灾害等级',sort: true}
             ,{field: 'level', title: '规模等级', sort: true}
@@ -82,6 +83,18 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
                         // 下拉改变事件
                         form.on('select(color)',  data => {
                             var flag=data.value;
@@ -110,7 +123,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 ,yes: function(index, layero){
                     //触发表单按钮点击事件后，立刻监听form表单提交，向后台传参
                     form.on("submit(submitAddBtn)", function(data){
-                        console.log(data.field);
                         submitServer({
                             index: index
                             ,type: 'POST'
@@ -198,6 +210,19 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
                         // 下拉框赋值
                         $("select[name='color']").val(param.color);
                         // 下拉改变事件

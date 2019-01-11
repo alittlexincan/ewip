@@ -32,7 +32,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '山洪沟名称'}
             ,{field: 'code', title: '代码'}
-            ,{field: 'district', title: '区县'}
+            ,{field: 'areaName', title: '区县'}
             ,{field: 'level', title: '危害等级'}
             ,{field: 'measures', title: '防御措施'}
             ,{field: 'weatherCauses', title: '气象致灾因子'}

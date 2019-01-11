@@ -3,6 +3,7 @@
 <mapper namespace="com.hyt.server.mapper.base.IDisasterRouteMapper" >
   <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.DisasterRoute" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="color" property="color" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="VARCHAR" />
@@ -23,11 +24,12 @@
   <!-- 查询灾害路径信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    d.*,e.name createUserName,em.name updateUserName
+    d.*,a.area_name areaName,e.name createUserName,em.name updateUserName
     FROM base_disaster_route d
     left join employee e on d.createUser=e.id
     left join employee em on d.updateUser=em.id
-    where 1=1
+    left join area a on d.area_id=a.id
+    where 1=1  and FIND_IN_SET(d.area_id, getAreaCList(#{empAreaId}))
     <if test="id != null and id != ''">AND d.id = #{id}</if>
     <if test="type != null and type != ''">AND d.type = #{type}</if>
     <if test="color != null and color != ''">AND d.color = #{color} </if>

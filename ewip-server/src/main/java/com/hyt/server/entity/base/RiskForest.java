@@ -45,6 +45,15 @@ public class RiskForest {
     private String weatherCauses;
 
     private Double tmax;
+    private String areaName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getId() {
         return id;

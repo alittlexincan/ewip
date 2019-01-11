@@ -60,11 +60,10 @@
                 <!-- 添加弹出层 -->
                 <script id="addPop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
-                                <input type="text" name="district" lay-verify="district"   autocomplete="off" placeholder="请输入区县" class="layui-input">
+                                <div id="addAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择区县"></div>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -169,7 +168,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
-                                <input type="text" name="district" value="{{d.district}}" lay-verify="district"   autocomplete="off" placeholder="请输入区县" class="layui-input">
+                                <div id="updateAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                             </div>
                         </div>
                         <div class="layui-form-item">

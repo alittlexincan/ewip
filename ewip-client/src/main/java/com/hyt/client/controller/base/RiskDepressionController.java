@@ -2,6 +2,8 @@ package com.hyt.client.controller.base;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.base.IRiskDepressionService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +44,9 @@ public class RiskDepressionController {
          */
         @GetMapping("/select")
         public JSONObject selectAll(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
             return this.riskDepressionService.selectAll(map);
         }
         /**
@@ -51,6 +56,9 @@ public class RiskDepressionController {
          */
         @GetMapping("/list")
         public JSONObject selectList(@RequestParam Map<String,Object> map){
+                Subject subject = SecurityUtils.getSubject();
+                JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+                map.put("empAreaId", employee.getString("areaId"));
                 return this.riskDepressionService.selectList(map);
         }
 }

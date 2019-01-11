@@ -28,19 +28,20 @@
   <!-- 查询商场信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    a.*,e.name createUserName,em.name updateUserName
-    FROM base_unit_market a
-    left join employee e on a.createUser=e.id
-    left join employee em on a.updateUser=em.id
-    where 1=1
-    <if test="id != null and id != ''">AND a.id = #{id}</if>
-    <if test="name != null and name != ''">AND a.name = #{name} </if>
+    u.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM base_unit_market u
+    left join employee e on u.createUser=e.id
+    left join employee em on u.updateUser=em.id
+    left join area a on u.district=a.id
+    where 1=1  and FIND_IN_SET(u.district, getAreaCList(#{empAreaId}))
+    <if test="id != null and id != ''">AND u.id = #{id}</if>
+    <if test="name != null and name != ''">AND u.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY a.create_time DESC
+        ORDER BY u.create_time DESC
       </otherwise>
     </choose>
   </select>

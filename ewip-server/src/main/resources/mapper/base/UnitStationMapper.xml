@@ -24,18 +24,20 @@
   </sql>
   <!-- 查询车站信息 -->
   <select id="findAll" resultMap="BaseResultMap">
-    SELECT s.*,e.name createUserName,em.name updateUserName FROM base_unit_station s
-    left join employee e on s.createUser=e.id
-    left join employee em on s.updateUser=em.id
-    where 1=1
-    <if test="id != null and id != ''">AND s.id = #{id}</if>
-    <if test="name != null and name != ''">AND s.name = #{name} </if>
+    SELECT u.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM base_unit_station u
+    left join employee e on u.createUser=e.id
+    left join employee em on u.updateUser=em.id
+    left join area a on u.district=a.id
+    where 1=1  and FIND_IN_SET(u.district, getAreaCList(#{empAreaId}))
+    <if test="id != null and id != ''">AND u.id = #{id}</if>
+    <if test="name != null and name != ''">AND u.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY s.create_time DESC
+        ORDER BY u.create_time DESC
       </otherwise>
     </choose>
   </select>

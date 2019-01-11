@@ -59,10 +59,9 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
-                                <input type="text" name="district" lay-verify="district"  autocomplete="off" placeholder="请输入区县" class="layui-input">
+                                <div id="addAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择区县"></div>
                             </div>
                         </div>
-
                         <div class="layui-form-item">
                             <label class="layui-form-label">面积</label>
                             <div class="layui-input-block">
@@ -133,10 +132,9 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
-                                <input type="text" name="district" lay-verify="district" value="{{d.district}}"  autocomplete="off" placeholder="请输入区县" class="layui-input">
+                                <div id="updateAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                             </div>
                         </div>
-
                         <div class="layui-form-item">
                             <label class="layui-form-label">面积</label>
                             <div class="layui-input-block">

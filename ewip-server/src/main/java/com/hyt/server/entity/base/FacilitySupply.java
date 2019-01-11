@@ -58,8 +58,17 @@ public class FacilitySupply {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String areaName;
     private String createUserName;
     private String updateUserName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUser() {
         return createUser;

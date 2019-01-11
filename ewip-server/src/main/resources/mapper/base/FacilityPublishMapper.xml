@@ -3,6 +3,7 @@
 <mapper namespace="com.hyt.server.mapper.base.IFacilityPublishMapper" >
   <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.FacilityPublish" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="factory" property="factory" jdbcType="VARCHAR" />
@@ -28,11 +29,12 @@
   <select id="findAll" resultMap="BaseResultMap">
 
     SELECT
-    p.*,e.name createUserName,em.name updateUserName
+    p.*,a.area_name areaName,e.name createUserName,em.name updateUserName
     FROM base_facility_publish p
     left join employee e on p.createUser=e.id
     left join employee em on p.updateUser=em.id
-    where 1=1
+    left join area a on p.area_id=a.id
+    where 1=1  and FIND_IN_SET(p.area_id, getAreaCList(#{empAreaId}))
     <if test="id != null and id != ''">AND p.id = #{id}</if>
     <if test="type != null and type != ''">AND p.type = #{type}</if>
     <if test="factory != null and factory != ''">AND p.factory = #{factory} </if>

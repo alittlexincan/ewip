@@ -31,7 +31,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '陡坡名称'}
-            ,{field: 'district', title: '区县'}
+            ,{field: 'areaName', title: '区县'}
             ,{field: 'type', title: '灾害点类型'}
             ,{field: 'scale', title: '灾害点规模'}
             ,{field: 'stability', title: '稳定性'}

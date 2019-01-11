@@ -166,6 +166,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         response.setStatus(200);
         try {
             response.getWriter().write(JSON.toJSONString(result,SerializerFeature.WriteMapNullValue));
+
         } catch (IOException ex) {
             log.error(ex.getMessage());
         }

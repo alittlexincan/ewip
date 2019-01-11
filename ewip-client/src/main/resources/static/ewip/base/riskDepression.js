@@ -30,6 +30,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
+            ,{field: 'areaName', title: '区县'}
             ,{field: 'name', title: '名称'}
             ,{field: 'type', title: '洼地类型'}
             ,{field: 'scale', title: '洼地规模'}

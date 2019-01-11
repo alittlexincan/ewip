@@ -126,9 +126,10 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                 ,url: "/client/permission/select/all"
                 ,dataType: 'json'
                 ,success: function(json){
+                    console.log(json);
                     if(json.code == 200 && json.data != null){
                         json.data.forEach((res)=>{
-                            $("form select[name='id']").append("<option value='" + res.id + "'>" + res.role + "</option>");
+                            $("form select[name='id']").append("<option value='" + res.id + "'>" + res.name + "</option>");
                         });
                         form.render();
                     }

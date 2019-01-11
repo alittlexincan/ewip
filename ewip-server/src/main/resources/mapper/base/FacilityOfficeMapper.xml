@@ -3,6 +3,7 @@
 <mapper namespace="com.hyt.server.mapper.base.IFacilityOfficeMapper" >
   <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.FacilityOffice" >
     <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="unit" property="unit" jdbcType="VARCHAR" />
@@ -30,11 +31,12 @@
   <!-- 查询办公场所信息 -->
   <select id="findAll" resultMap="BaseResultMap">
     SELECT
-    o.*,e.name createUserName,em.name updateUserName
+    o.*,a.area_name areaName,e.name createUserName,em.name updateUserName
     FROM base_facility_office o
     left join employee e on o.createUser=e.id
     left join employee em on o.updateUser=em.id
-    where 1=1
+    left join area a on o.area_id=a.id
+    where 1=1  and FIND_IN_SET(o.area_id, getAreaCList(#{empAreaId}))
     <if test="id != null and id != ''">AND o.id = #{id}</if>
     <if test="type != null and type != ''">AND o.type = #{type}</if>
     <if test="unit != null and unit != ''">AND o.unit = #{unit} </if>

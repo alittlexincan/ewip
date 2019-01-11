@@ -13,6 +13,9 @@ public class DisasterRoute {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
+
+    @Column(name = "area_id",length = 64)
+    private String areaId;
     @Column(name = "type",length = 64)
     private String type;
 
@@ -51,8 +54,17 @@ public class DisasterRoute {
     @Column(name = "update_time")
     private Date updateTime;
 
+    private String areaName;
     private String createUserName;
     private String updateUserName;
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUser() {
         return createUser;
@@ -180,5 +192,13 @@ public class DisasterRoute {
 
     public void setRanges(String ranges) {
         this.ranges = ranges;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
     }
 }
