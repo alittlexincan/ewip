@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8" />
+    <title>用户管理</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
+</head>
+<body>
+
+    <!-- 添加弹出层 -->
+    <script id="addPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">国家站编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="stationId" class="layui-input" autocomplete="off" placeholder="请输入国家站编码">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">地区编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="stationCode" autocomplete="off" placeholder="请输入地区编码" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">ip地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="url" autocomplete="off" placeholder="请输入IP地址" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="userId" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="userPwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">接口名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="interfaceId" placeholder="请输入接口名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">要素信息</label>
+                <div class="layui-input-block">
+                    <input type="text" name="elements" placeholder="请输入要素信息" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="subbmitAddBtn" id="subbmitAddBtn">添加</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 修改弹出层 -->
+    <script id="updatePop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">国家站编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="stationId" value="{{d.stationId}}" class="layui-input" autocomplete="off" placeholder="请输入国家站编码">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">地区编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="stationCode" value="{{d.stationCode}}" autocomplete="off" placeholder="请输入地区编码" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">ip地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="url" value="{{d.url}}" autocomplete="off" placeholder="请输入IP地址" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="userId" value="{{d.userId}}" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="userPwd" value="{{d.userPwd}}" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">接口名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="interfaceId" value="{{d.interfaceId}}" placeholder="请输入接口名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">要素信息</label>
+                <div class="layui-input-block">
+                    <input type="text" name="elements" value="{{d.elements}}" placeholder="请输入要素信息" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-hide" >
+                <div class="layui-input-block layui-col-md-offset4">
+                    <button class="layui-btn" lay-submit="" lay-filter="subbmitUpdateBtn" id="subbmitUpdateBtn">修改</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 列表：数据行操作 -->
+    <script type="text/html" id="btnGroupOption">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+    </script>
+
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <div id="searchAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                        <button class="layui-btn layui-btn-danger" type="reset">
+                            <i class="layui-icon layui-icon-delete layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="layui-card-body">
+                <div class="layui-btn-group tableBar">
+                    <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                </div>
+                <!-- 列表信息 -->
+                <table class="layui-table" lay-filter="table" id="table"></table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--<script th:src="@{/layuiadmin/ztree/js/jquery-1.4.4.min.js}" ></script>-->
+    <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
+    <!--<script th:src="@{/layuiadmin/ztree/js/jquery.ztree.all.js}" charset="utf-8"></script>-->
+    <script th:src="@{/ewip/config/cimissConfig.js}" charset="utf-8"></script>
+</body>
+</html>
