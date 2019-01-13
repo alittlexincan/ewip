@@ -13,6 +13,8 @@ public class UnitHighway {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id",length = 64)
     private String id;
+    @Column(name = "district",length = 64)
+    private String district;
     @Column(name = "name",length = 64)
     private String name;
     @Column(name = "code",length = 64)
@@ -48,10 +50,26 @@ public class UnitHighway {
     @Column(name = "update_time")
     private Date updateTime;
 
-
+    private String areaName;
     private String createUserName;
 
     private String updateUserName;
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public String getCreateUserName() {
         return createUserName;

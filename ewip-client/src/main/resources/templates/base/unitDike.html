@@ -48,6 +48,12 @@
                 <script id="addPop" type="text/html">
                     <div class="layui-form layui-form-pane">
                         <div class="layui-form-item">
+                            <label class="layui-form-label">所属县</label>
+                            <div class="layui-input-block">
+                                <div id="addAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择区县"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
                             <label class="layui-form-label">名称</label>
                             <div class="layui-input-block">
                                 <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入名称" class="layui-input">
@@ -147,7 +153,12 @@
                 <!-- 修改弹出层 -->
                 <script id="updatePop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属区县</label>
+                            <div class="layui-input-block">
+                                <div id="updateAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">名称</label>
                             <div class="layui-input-block">

@@ -25,19 +25,18 @@
   </resultMap>
   <!-- 查询中小河流洪水信息 -->
   <select id="findAll" resultMap="BaseResultMap">
-    SELECT
-    *
-    FROM
-    base_risk_flood
-    where 1=1
-    <if test="id != null and id != ''">AND id = #{id}</if>
-    <if test="name != null and name != ''">AND name = #{name} </if>
+
+    SELECT r.*,a.area_name areaName FROM base_risk_flood r
+    left join area a on r.district=a.id
+    where 1=1  and FIND_IN_SET(r.district, getAreaCList(#{empAreaId}))
+    <if test="id != null and id != ''">AND r.id = #{id}</if>
+    <if test="name != null and name != ''">AND r.name = #{name} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY id DESC
+        ORDER BY r.id DESC
       </otherwise>
     </choose>
   </select>

@@ -202,7 +202,7 @@
 
             <!-- 列表：数据行操作 -->
             <script type="text/html" id="btnGroupOption">
-                {{# if(d.roleType.indexOf("1") == -1){ }}
+                {{# if(d.roleType.indexOf("1") == -1) { }}
                 <shiro:hasPermission name="role">
                     <a class="layui-btn layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-user"></i>分配角色</a>
                 </shiro:hasPermission>

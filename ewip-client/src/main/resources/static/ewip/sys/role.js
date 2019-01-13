@@ -53,7 +53,7 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
             ,{field: 'description', title: '角色说明', sort: true}
             // ,{field: 'status', title: '是否启用', sort: true, templet:statusFormat}
             ,{field: 'createTime', title: '创建时间',sort: true}
-            ,{title: '操&nbsp;&nbsp;作', align:'center', toolbar: '#btnGroupOption' }
+            ,{title: '操&nbsp;&nbsp;作', width: 320, align:'center', toolbar: '#btnGroupOption' }
         ]]
     });
 

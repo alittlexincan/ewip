@@ -31,7 +31,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'district', title: '区县', sort: true}
+            ,{field: 'areaName', title: '区县', sort: true}
             ,{field: 'type', title: '救援物资类型', sort: true}
             ,{field: 'name', title: '物资名称', sort: true}
             ,{field: 'amount', title: '数量', sort: true}
@@ -86,6 +86,17 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                     });
                     // 渲染表单
                     form.render();
@@ -181,6 +192,18 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.district
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                     });
                     form.render();
                 }

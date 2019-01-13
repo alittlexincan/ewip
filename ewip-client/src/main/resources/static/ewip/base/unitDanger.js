@@ -6,14 +6,14 @@ layui.config({
     ,disaster: 'disaster'
 });
 
-layui.use(['table','form','laytpl','layer','laydate'], function(){
+layui.use(['table','form','laytpl','layer','laydate','selectTree'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
         ,laydate = layui.laydate
-
+        ,selectTree = layui.selectTree
 
     /**
      * 加载表格
@@ -29,6 +29,7 @@ layui.use(['table','form','laytpl','layer','laydate'], function(){
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
+            ,{field: 'areaName', title: '区县', sort: true}
             ,{field: 'name', title: '危险品场所名称', sort: true}
             ,{field: 'address', title: '地址', sort: true}
             ,{field: 'product', title: '品名', sort: true}
@@ -85,6 +86,17 @@ layui.use(['table','form','laytpl','layer','laydate'], function(){
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                         laydate.render({
                             elem: '#testDate'
                             ,value: new Date()
@@ -185,6 +197,18 @@ layui.use(['table','form','laytpl','layer','laydate'], function(){
                     laytpl(updatePop.innerHTML).render(param, function(html){
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.district
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                         laydate.render({
                             elem: '#testDateNew'
                             ,value: param.testDate

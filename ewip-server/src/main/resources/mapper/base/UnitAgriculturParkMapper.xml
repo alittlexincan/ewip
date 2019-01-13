@@ -29,20 +29,21 @@
   <select id="findAll" resultMap="BaseResultMap">
 
     SELECT
-    p.*,e.name createUserName,em.name updateUserName
-    FROM base_unit_agricultur_park p
-    left join employee e on p.createUser=e.id
-    left join employee em on p.updateUser=em.id
-    where 1=1
-    <if test="id != null and id != ''">AND p.id = #{id}</if>
-    <if test="name != null and name != ''">AND p.name = #{name} </if>
-    <if test="type != null and type != ''">AND p.type = #{type} </if>
+    u.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM base_unit_agricultur_park u
+    left join employee e on u.createUser=e.id
+    left join employee em on u.updateUser=em.id
+    left join area a on u.district=a.id
+    where 1=1  and FIND_IN_SET(u.district, getAreaCList(#{empAreaId}))
+    <if test="id != null and id != ''">AND u.id = #{id}</if>
+    <if test="name != null and name != ''">AND u.name = #{name} </if>
+    <if test="type != null and type != ''">AND u.type = #{type} </if>
     <choose>
       <when test="sortName !=null and sortName!='id'">
         ORDER BY ${sortName} ${sortOrder}
       </when >
       <otherwise>
-        ORDER BY p.create_time DESC
+        ORDER BY u.create_time DESC
       </otherwise>
     </choose>
   </select>

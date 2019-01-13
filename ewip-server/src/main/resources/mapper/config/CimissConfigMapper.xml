@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyt.server.mapper.config.ICimissConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.hyt.server.entity.config.CimissConfig">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="user_pwd" jdbcType="VARCHAR" property="userPwd"/>
+        <result column="station_id" jdbcType="VARCHAR" property="stationId"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="interface_id" jdbcType="VARCHAR" property="interfaceId"/>
+        <result column="station_code" jdbcType="VARCHAR" property="stationCode"/>
+        <result column="elements" jdbcType="VARCHAR" property="elements"/>
+    </resultMap>
+
+    <!-- 查询所有用户信息 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+            e.id,
+            e.user_id,
+            e.user_pwd,
+            e.station_id,
+            e.area_id,
+            a.area_name,
+            a.level,
+            e.url,
+            e.interface_id,
+            e.station_code,
+            e.elements
+        FROM cimiss_config e
+        LEFT JOIN area a on a.id = e.area_id
+        where 1=1
+        <if test="areaId != null and areaId != ''">and e.area_id = #{areaId}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+        </choose>
+    </select>
+
+</mapper>

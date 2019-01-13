@@ -31,7 +31,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '隐患点名称'}
-            ,{field: 'district', title: '区县'}
+            ,{field: 'areaName', title: '区县'}
             ,{field: 'street', title: '镇街道办'}
             ,{field: 'type', title: '灾害类型'}
             ,{field: 'rock', title: '岩土成因'}

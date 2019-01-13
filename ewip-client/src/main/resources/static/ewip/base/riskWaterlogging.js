@@ -31,7 +31,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '名称'}
-            ,{field: 'district', title: '区县'}
+            ,{field: 'areaName', title: '区县'}
             ,{field: 'startTime', title: '内涝灾害开始时间'}
             ,{field: 'endTime', title: '内涝灾害结束时间'}
             ,{field: 'depth', title: '最大积水深度'}
