@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka/
+
+zuul:
+  ignored-services: "*"
+  routes:
+    message-publisher: /message/**
