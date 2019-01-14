@@ -1,9 +1,9 @@
 package com.zhxu.message.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xincan.utils.md5.MD5Util;
 import com.zhxu.message.MsgSender;
 import com.zhxu.message.modal.SmsParam;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -32,7 +32,7 @@ public class SmsSender implements MsgSender{
             if (mobiles.hasNext()) {
                 String mobile = mobiles.next();
                 params.put("mobiles", mobile);
-                params.put("mac", MD5Util.md5toUpperCase32(param.getMasUserId() + mobile +
+                params.put("mac", DigestUtils.md5Hex(param.getMasUserId() + mobile +
                         param.getContent() + param.getSign() + param.getAccessToken()));
                 restTemplate.postForObject(param.getUrl(), "", JSONObject.class, params);
             } else {

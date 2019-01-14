@@ -11,6 +11,8 @@
 
     <groupId>com.zhxu</groupId>
     <artifactId>message-publisher</artifactId>
+    <packaging>pom</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

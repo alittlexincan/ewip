@@ -5,5 +5,10 @@ spring:
     add-mappings: false
 logging:
   file: D:/ewip/log/ewip-server/ewip-server.log
-  level:
-    com.hyt.server.mapper.config: debug
+  level: [
+    com.hyt.server.mapper.config: debug,
+    com.hyt.server.mapper.sys: debug
+  ]
+
+server:
+  connection-timeout: 5s
