@@ -38,6 +38,9 @@ public class Channel {
     @Column(name = "p_id",length = 64)
     private String pId;
 
+    @Column(name = "area_id",length = 50)
+    private String areaId;
+
     @Column(name = "type",length = 1)
     private Integer type;
 
@@ -48,6 +51,7 @@ public class Channel {
     @Column(name = "create_time")
     private Date createTime;
 
+    private String areaName;
     private Integer child;
 
     public Channel() {}
@@ -61,6 +65,22 @@ public class Channel {
         this.status = status;
         this.createTime = createTime;
         this.child = child;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public String getId() {

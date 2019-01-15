@@ -1,5 +1,4 @@
 logging:
   file: D:/ewip/log/ewip-client/ewip-client.log
-spring:
-  main:
-    allow-bean-definition-overriding: true
+
+

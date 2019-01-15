@@ -26,6 +26,10 @@ public class PageController {
     @Value("${controller.url}")
     private String controllerUrl;
 
+    //天地图url地址
+    @Value("${tiandimap.url}")
+    private String tianDiMapUrl;
+
     /**
      * 进入登录界面
      * @return
@@ -35,6 +39,7 @@ public class PageController {
         String sysName=map.get("areaName").toString()+"气象防灾减灾业务平台";
         map.put("sysName", sysName);
         map.put("controllerUrl", controllerUrl);
+        map.put("tianDiMapUrl", tianDiMapUrl);
         return new ModelAndView("main/index",map);
     }
 

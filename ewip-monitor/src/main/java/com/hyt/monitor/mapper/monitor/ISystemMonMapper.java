@@ -20,7 +20,7 @@ public interface ISystemMonMapper {
      * @return List<Map<String,Object>>    返回类型
      * @throws
      */
-    List<Map<String, Object>> systemMonitoring(Object object);
+    List<Map<String, Object>> systemMonitoring(Map<String,Object> map);
 
     /**
      * 终端监控对比基础数据
@@ -31,7 +31,7 @@ public interface ISystemMonMapper {
      * @return List<Map<String,Object>>    返回类型
      * @throws
      */
-    List<Map<String,Object>> terminalMonitorBasic(Object o);
+    List<Map<String,Object>> terminalMonitorBasic(Map<String,Object> map);
 
     /**
      * 终端监控

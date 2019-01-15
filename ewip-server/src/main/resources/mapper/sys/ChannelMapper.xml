@@ -5,6 +5,7 @@
     <resultMap id="BaseResultMap" type="com.hyt.server.entity.sys.Channel">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
@@ -26,8 +27,12 @@
         c.p_id,
         c.type,
         (select count(*) from channel ch where ch.p_id = c.id) child,
-        c.create_time
-        FROM channel c where 1=1
+        c.create_time,
+        c.area_id,
+        a.area_name areaName
+        FROM channel c
+        left join area a on a.id=c.area_id
+        where 1=1  and c.area_id=#{empAreaId}
         <if test="id != null and id != ''">AND c.id = #{id}</if>
         <if test="name != null and name != ''">AND c.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>
@@ -53,8 +58,12 @@
         c.icon,
         c.p_id,
         type,
-        c.create_time
-        FROM channel c where 1=1
+        c.create_time,
+        c.area_id,
+        a.area_name areaName
+        FROM channel c
+        left join area a on a.id=c.area_id
+        where 1=1 and c.area_id=#{empAreaId}
         <if test="id != null and id != ''">AND c.id = #{id}</if>
     </select>
 
@@ -69,8 +78,13 @@
         c.p_id,
         type,
         (select count(*) from channel ch where ch.p_id = c.id) child,
-        c.create_time
-        FROM channel c where 1=1
+        c.create_time,
+        c.area_id,
+        a.area_name areaName
+        FROM channel c
+        left join area a on a.id=c.area_id
+        where 1=1
+        and c.area_id=#{empAreaId}
         <if test="id != null and id != ''">AND c.id = #{id}</if>
         <if test="name != null and name != ''">AND c.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>

@@ -28,6 +28,12 @@
     <script id="addPop" type="text/html">
         <div class="layui-form layui-form-pane">
             <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">类型</label>
                 <div class="layui-input-block">
                     <select name="type" lay-verify="type" placeholder="请选择发布手段类型">
@@ -86,11 +92,17 @@
 
         <div class="layui-form layui-form-pane">
             <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">类型</label>
                 <div class="layui-input-block">
                     <select name="type" lay-verify="type" placeholder="请选择发布手段类型">
                         <option value="">请选择发布手段类型</option>
-                        <option value="0">发布</option>
+                        <option value="0">渠道</option>
                         <option value="1">手段</option>
                     </select>
                 </div>
@@ -152,7 +164,7 @@
                         <div class="layui-input-inline">
                             <select name="type" placeholder="请选择类型">
                                 <option value="">请选择类型</option>
-                                <option value="0">发布</option>
+                                <option value="0">渠道</option>
                                 <option value="1">手段</option>
                             </select>
                         </div>

@@ -1,5 +1,6 @@
 package com.hyt.server.service.impl.config;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.page.MybatisPage;
@@ -30,11 +31,18 @@ public class CimissConfigServiceImpl extends AbstractService<CimissConfig> imple
 
     private final String URL = "%s/cimiss-web/api?userId=%s&pwd=%s&interfaceId=%s&dataCode=SURF_CHN_MUL_HOR&adminCodes=%s%%20&elements=%s&times=%s&dataFormat=json";
 
-    public String getRequestUrl(String areaId) {
+    public JSONObject getRequestUrl(String areaId) {
+        JSONObject json=new JSONObject();
         CimissConfig cimissConfig = new CimissConfig();
         cimissConfig.setAreaId(areaId);
         cimissConfig = cimissConfigMapper.selectOne(cimissConfig);
-        return String.format(URL, cimissConfig.getUrl(), cimissConfig.getUserId(), cimissConfig.getUserPwd(), cimissConfig.getInterfaceId(), cimissConfig.getStationCode(), cimissConfig.getElements(), getTime());
+        if(cimissConfig!=null){
+            String url=String.format(URL, cimissConfig.getUrl(), cimissConfig.getUserId(), cimissConfig.getUserPwd(), cimissConfig.getInterfaceId(), cimissConfig.getStationCode(), cimissConfig.getElements(), getTime());
+            String stationId=cimissConfig.getStationId();
+            json.put("url",url);
+            json.put("stationId",stationId);
+        }
+        return json;
     }
 
     @Override

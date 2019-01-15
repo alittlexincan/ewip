@@ -5,6 +5,7 @@
 	<!-- 网络监控系统运行情况-->
 	<select id="systemMonitoring" resultType="map">
 		select id channelId,name channelName,name sendMethod,icon img,1 deployType, 1 resultType from channel
+		where area_id=#{empAreaId}
 	</select>
 
 	<!-- 网络监控 预警终端基础信息用于对比-->
@@ -16,7 +17,8 @@
 	<!-- 网络监控 预警终端监控 -->
 	<select id="warnTerminalMonitor" resultType="map">
 	 	select  CHANNELID, name, count(SERVICESTATE) count,SERVICESTATE from (
-		select t.channelid,c.name, u.listid, case when u.servicestate=0 then '正常' else '异常' end SERVICESTATE, u.METHODCONTENT from SSD_EMS_SU_USERS u
+		select t.channelid,c.name, u.listid,
+		case when u.servicestate=0 then '正常' else '异常' end SERVICESTATE, u.METHODCONTENT from SSD_EMS_SU_USERS u
 		left join ssd_ems_su_usertype t  on  u.listid=t.keyid
 		left join ssd_ems_sys_channel c on c.channeltype=t.channelid  where  t.grouptype='0' and t.orgid=#{orgId}
 		)

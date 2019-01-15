@@ -65,7 +65,7 @@
     <script th:src="@{/map/js/changepinyin.js}"></script>
 
     <!--<script th:src="@{/map/js/map-home-move.js}"></script>-->
-    <script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=4bb34f627d7b9b33c83ad8eeb1dcf255"></script>
+    <script type="text/javascript" th:src="${tianDiMapUrl}"></script>
     <!-- 导航菜单控制层 -->
     <script th:src="@{/map/js/map-controller.js}"></script>
     <script>

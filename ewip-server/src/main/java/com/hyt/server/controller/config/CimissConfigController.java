@@ -31,7 +31,7 @@ public class CimissConfigController {
     @ApiOperation(value="获取Cimiss请求Url",httpMethod="GET",notes="根据区域ID获取Cimiss请求Url")
     @ApiImplicitParam(name="areaId",value="区域ID",required = true, dataType = "String",paramType = "query")
     @GetMapping("/getRequestUrl")
-    public String getRequestUrl(@RequestParam("areaId") String areaId) {
+    public JSONObject getRequestUrl(@RequestParam("areaId") String areaId) {
         return cimissConfigService.getRequestUrl(areaId);
     }
 

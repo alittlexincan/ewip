@@ -19,7 +19,7 @@ public interface IChannelMonMapper {
      * @return	map
      * @throws Exception
      */
-     List<Map<String, Object>> getChannelLinkState() ;
+     List<Map<String, Object>> getChannelLinkState(Map<String, Object> map) ;
 
     /**
      * 获取最新预警发布所推送的渠道

@@ -23,9 +23,9 @@ public class SystemMonitorServiceImpl implements SystemMonitorService {
      * 网络监控系统运行情况
      */
     @Override
-    public JSONObject systemMonitoring(Object object) {
+    public JSONObject systemMonitoring(Map<String, Object> map) {
         JSONObject json = new JSONObject();
-        List<Map<String,Object>> list = sysMonMapper.systemMonitoring(null);
+        List<Map<String,Object>> list = sysMonMapper.systemMonitoring(map);
         int normal=0;
         int abnormal=0;
         for(Map ma :list){
@@ -50,7 +50,7 @@ public class SystemMonitorServiceImpl implements SystemMonitorService {
         JSONObject jsonall =new JSONObject();
         JSONArray allArry = new JSONArray();
         JSONArray arry =new JSONArray();
-        List<Map<String, Object>> basicList=sysMonMapper.terminalMonitorBasic(null);
+        List<Map<String, Object>> basicList=sysMonMapper.terminalMonitorBasic(map);
         List<Map<String, Object>> totalList=sysMonMapper.warnTerminalMonitor(map);
         Set<String> set = new HashSet<String>();
         for (int i=0;i<basicList.size();i++) {

@@ -728,7 +728,7 @@ $(function(){
 				 	html +="			<span><img src='/map/images/channel/"+item.CHANNELID+".png'></span>";
 				 	html +="		</i>";
 				 	html +="		<span class='rightbox' title='"+item.SENDMETHOD+"'>"+item.SENDMETHOD.substring(0,15)+"</span>";
-				 	html +="	</span>";
+				 	html +="	</span>";warnTerminalMonitor
 				 	html +="</li>";
 			 	});
 			$(".runsever-list ul").empty().append(html);
@@ -739,6 +739,7 @@ $(function(){
 			async:false,
         	type:"POST",
          	url:"/systemMonitor/systemMonitoring",
+			data:{"empAreaId": Globel.empAreaId},
          	success:function(data){
          		var list=data.list;
          		if(list.length>0){

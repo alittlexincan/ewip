@@ -31,7 +31,7 @@ public class SystemMonitorController {
 	@ResponseBody
 	public JSONObject systemMonitoring(@RequestParam Map<String, Object> map){
 		try {
-			return this.service.systemMonitoring(null);
+			return this.service.systemMonitoring(map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

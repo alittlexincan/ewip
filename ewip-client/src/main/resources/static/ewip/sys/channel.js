@@ -5,13 +5,14 @@ layui.config({
     ,mod1: 'modules' //相对于上述 base 目录的子目录
 });
 
-layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
+layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], function(){
     let table = layui.table			// 引用layui表格
         ,form = layui.form			// 引用layui表单
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,layer = layui.layer		// 引用layui弹出层
         ,$ = layui.$       			// 引用layui的jquery
-        ,ajaxFileUpload = layui.ajaxFileUpload;
+        ,ajaxFileUpload = layui.ajaxFileUpload
+        ,selectTree = layui.selectTree;
 
 
     /**
@@ -62,6 +63,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
+            ,{field: 'areaName', title: '地区', sort: true}
             ,{field: 'name', title: '发布手段名称', sort: true}
             ,{field: 'code', title: '发布手段编码', sort: true}
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', templet: iconFormat }
@@ -127,7 +129,6 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
      * @param option
      */
     let submitFile = function(option){
-        debugger;
         ajaxFileUpload.render({
             async: option.async
             ,url : option.url
@@ -193,6 +194,17 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                     });
 
                     // 发布下拉绑定
@@ -323,6 +335,20 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload'], function(){
                         });
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
+
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
                         // 地区级别下拉框赋值
                         $("#updateDiv select[name='type']").val(param.type);
                     });

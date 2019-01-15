@@ -2,6 +2,8 @@ package com.hyt.client.controller.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.config.ICimissConfigService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,6 +81,9 @@ public class CimissConfigController {
      */
     @GetMapping("/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.cimissConfigService.selectAll(map);
     }
 

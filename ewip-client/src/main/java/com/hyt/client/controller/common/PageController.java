@@ -34,9 +34,6 @@ import java.util.Map;
 @Component
 public class PageController {
 
-    @Value("${cimiss.station.id.c}")
-    private String stationId;
-
     //防御作战图gismap的url地址
     @Value("${gismap.url}")
     private String gisMapUrl;
@@ -44,6 +41,11 @@ public class PageController {
     //统计功能的url地址
     @Value("${monitor.url}")
     private String monitorUrl;
+
+    //天地图url地址
+    @Value("${tiandimap.url}")
+    private String tianDiMapUrl;
+
 
     /**
      * 进入框架界面
@@ -65,9 +67,9 @@ public class PageController {
      */
     @RequestMapping("/home")
     public ModelAndView home(@RequestParam Map<String, Object> map){
-        map.put("stationId", stationId);
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("tianDiMapUrl", tianDiMapUrl);
         map.put("longitude", employee.getString("longitude"));
         map.put("latitude", employee.getString("latitude"));
         return new ModelAndView("main/home",map);

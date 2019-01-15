@@ -18,7 +18,7 @@ import java.util.Map;
 public interface ICimissConfigService {
 
     @GetMapping("/cimissConfig/getRequestUrl")
-    String getRequestUrl(@RequestParam("areaId") String areaId);
+    JSONObject getRequestUrl(@RequestParam("areaId") String areaId);
 
     /**
      * 添加Cimiss信息

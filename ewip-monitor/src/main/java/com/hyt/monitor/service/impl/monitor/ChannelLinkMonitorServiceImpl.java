@@ -29,7 +29,7 @@ public class ChannelLinkMonitorServiceImpl implements IChannelLinkMonitorService
 		// 获取最新预警信息
 		Map<String, Object> info = this.channelMonMapper.getNewSendWarnInfo(map);
 		// 获取现有渠道状态
-		List<Map<String, Object>> channels = this.channelMonMapper.getChannelLinkState();
+		List<Map<String, Object>> channels = this.channelMonMapper.getChannelLinkState(map);
 		
 		JSONArray left = new JSONArray();
 		JSONArray right = new JSONArray();

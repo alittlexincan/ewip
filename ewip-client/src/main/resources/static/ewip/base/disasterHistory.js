@@ -33,11 +33,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'province', title: '省',sort: true}
-            ,{field: 'city', title: '市', sort: true}
-            ,{field: 'reportArea', title: '上报单位所在地',sort: true}
+            ,{field: 'areaName', title: '地区', sort: true}
             ,{field: 'disasterType', title: '灾害类别', sort: true}
             ,{field: 'disasterName', title: '灾害名称',sort: true}
+            ,{field: 'color', title: '颜色',sort: true}
+            ,{field: 'level', title: '级别', sort: true}
+            ,{field: 'damage', title: '危害程度', sort: true}
             ,{field: 'startTime', title: '开始时间', sort: true}
             ,{field: 'endTime', title: '结束时间',sort: true}
             ,{title: '操&nbsp;&nbsp;作',width: '20%', align:'center', toolbar: '#btnGroupOption'}
@@ -98,7 +99,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
      * @returns {boolean}
      */
     let checkFile =function (flag,fileName){
-        debugger;
         //返回String对象中子字符串最后出现的位置.
         var seat=fileName.lastIndexOf(".");
         //返回位于String对象中指定位置的子字符串并转换为小写.
@@ -150,7 +150,17 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
-
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'addAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
                         /**
                          * 初始化发布时间
                          */
@@ -290,6 +300,19 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                         // 动态获取弹出层对象
                         $("#updateDiv").empty().append(html);
 
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'updateAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.reportArea
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
                         $("#updateDiv select[name='severity']").val(param.severity);
                         $("#updateDiv select[name='color']").val(param.color);
                         $("#updateDiv select[name='level']").val(param.level);
@@ -373,8 +396,22 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                 // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
                 laytpl(detailPop.innerHTML).render(param, function(html){
                     // 动态获取弹出层对象
-                    console.log(param);
+
                     $("#detailDiv").empty().append(html);
+                    // 初始化下拉树(地区)
+
+                    selectTree.render({
+                        'id': 'detailAreaId'
+                        ,'url': '/client/tree/area'
+                        ,'isMultiple': false
+                        ,'checkNodeId': param.reportArea
+                        ,clickNode:function (event, treeId, treeNode) {
+                            //绑定树操作
+                            selectTree.setValue(treeId,treeNode);
+                            selectTree.hideTree();
+                        }
+                    });
+
                     $("#detailDiv select[name='severity']").val(param.severity);
                     $("#detailDiv select[name='color']").val(param.color);
                     $("#detailDiv select[name='level']").val(param.level);

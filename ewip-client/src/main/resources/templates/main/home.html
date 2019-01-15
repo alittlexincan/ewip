@@ -164,14 +164,14 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=4bb34f627d7b9b33c83ad8eeb1dcf255"></script>
+    <script type="text/javascript" id="external-script" th:src="${tianDiMapUrl}"></script>
     <script th:src="@{/plugins/echarts/echarts.min.js}" ></script>
     <script th:src="@{/plugins/echarts/walden.js}" ></script>
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
     <script th:src="@{/ewip/main/home.js}" ></script>
+
     <script th:inline="javascript">
         var longitude=document.getElementById("longitude").value;
         var latitude=document.getElementById("latitude").value;

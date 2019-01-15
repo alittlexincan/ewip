@@ -206,8 +206,12 @@
                 <shiro:hasPermission name="role">
                     <a class="layui-btn layui-btn-xs" lay-event="roleOption"><i class="layui-icon layui-icon-user"></i>分配角色</a>
                 </shiro:hasPermission>
+                <shiro:hasPermission name="update">
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                </shiro:hasPermission>
+                <shiro:hasPermission name="delete">
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </shiro:hasPermission>
                 {{# } }}
                     <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>-->
                     <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>-->
@@ -215,8 +219,12 @@
 
             <div class="layui-card-body">
                 <div class="layui-btn-group tableBar">
+                    <shiro:hasPermission name="insert">
                     <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    </shiro:hasPermission>
+                    <shiro:hasPermission name="batch">
                     <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                    </shiro:hasPermission>
                 </div>
                 <!-- 列表信息 -->
                 <table class="layui-table" lay-filter="table" id="table"></table>

@@ -15,6 +15,7 @@
 </head>
 <body class="layui-layout-body">
   <input id="monitorUrl" type="hidden" th:value="${monitorUrl}" >
+  <input id="tianDiMapUrl" type="hidden" th:value="${tianDiMapUrl}" >
 
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
@@ -308,6 +309,7 @@
       //跳转统计页面
       $("#monitor").on("click",function () {
           var monitorUrl=document.getElementById("monitorUrl").value;
+          var tianDiMapUrl=document.getElementById("tianDiMapUrl").value;
           window.location.href=monitorUrl+"/?areaId="+ employee.areaId + "&longitude=" + employee.longitude + "&latitude=" + employee.latitude+ "&areaName=" + employee.areaName;
       })
 

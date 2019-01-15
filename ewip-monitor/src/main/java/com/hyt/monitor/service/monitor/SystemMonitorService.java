@@ -16,7 +16,7 @@ public interface SystemMonitorService {
      * @return
      * @throws Exception
      */
-    JSONObject systemMonitoring(Object object);
+    JSONObject systemMonitoring(Map<String, Object> map);
 
 
     /**

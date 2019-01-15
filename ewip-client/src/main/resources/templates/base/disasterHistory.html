@@ -55,35 +55,36 @@
                 <!-- 添加历史灾害表单弹出层 -->
                 <script id="addPop" type="text/html">
                     <div class="layui-form layui-form-pane">
+                        <input type="hidden" name="status" placeholder="请输入状态" autocomplete="off" class="layui-input">
+                        <input type="hidden" name="province" placeholder="请输入所属省" autocomplete="off" class="layui-input">
+                        <input type="hidden" name="city" placeholder="请输入所属市" autocomplete="off" class="layui-input">
+                        <!--<div class="layui-form-item">-->
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="状态" >状态</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="status" placeholder="请输入状态" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属省">所属省</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="province" placeholder="请输入所属省" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属市">所属市</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="city" placeholder="请输入所属市" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label" title="状态" >状态</label>
+                                <label class="layui-form-label">所属地区</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="status" placeholder="请输入状态" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属省">所属省</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="province" placeholder="请输入所属省" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属市">所属市</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="city" placeholder="请输入所属市" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="上报地区">上报地区</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="reportArea" placeholder="请输入上报地区" autocomplete="off" class="layui-input">
+                                    <div id="addAreaId" name="reportArea" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                                 </div>
                             </div>
 
@@ -923,37 +924,40 @@
                 <!-- 修改弹出层 -->
                 <script id="updatePop" type="text/html">
                     <div class="layui-form layui-form-pane">
+                        <input type="hidden" readonly="readonly"name="status" value="{{d.status}}" autocomplete="off" class="layui-input">
+                        <input type="hidden" readonly="readonly"name="province" value="{{d.province}}" autocomplete="off" class="layui-input">
+                        <input type="hidden" readonly="readonly" name="city" value="{{d.city}}"  autocomplete="off" class="layui-input">
+                        <!--<div class="layui-form-item">-->
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="状态" >状态</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="status" value="{{d.status}}"placeholder="请输入状态"  autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属省">所属省</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="province" value="{{d.province}}" placeholder="请输入所属省" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属市">所属市</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" name="city" value="{{d.city}}" placeholder="请输入所属市" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label" title="状态" >状态</label>
+                                <label class="layui-form-label">所属地区</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="status" value="{{d.status}}"placeholder="请输入状态"  autocomplete="off" class="layui-input">
+                                    <div id="updateAreaId" name="reportArea" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                                 </div>
                             </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属省">所属省</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="province" value="{{d.province}}" placeholder="请输入所属省" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属市">所属市</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="city" value="{{d.city}}" placeholder="请输入所属市" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="上报地区">上报地区</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" name="reportArea" value="{{d.reportArea}}" placeholder="请输入上报地区" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="上报地区编码">上报地区编码</label>
                                 <div class="layui-input-inline">
@@ -1799,41 +1803,42 @@
                     </div>
                 </script>
 
-
                 <!-- 详细弹出层 -->
                 <script id="detailPop" type="text/html">
                     <div class="layui-form layui-form-pane">
+                        <input type="hidden" readonly="readonly"name="status" value="{{d.status}}" autocomplete="off" class="layui-input">
+                        <input type="hidden" readonly="readonly"name="province" value="{{d.province}}" autocomplete="off" class="layui-input">
+                        <input type="hidden" readonly="readonly" name="city" value="{{d.city}}"  autocomplete="off" class="layui-input">
+                        <!--<div class="layui-form-item">-->
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="状态" >状态</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" readonly="readonly"name="status" value="{{d.status}}" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属省">所属省</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" readonly="readonly"name="province" value="{{d.province}}" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="layui-inline">-->
+                                <!--<label class="layui-form-label" title="所属市">所属市</label>-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="text" readonly="readonly" name="city" value="{{d.city}}"  autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label" title="状态" >状态</label>
+                                <label class="layui-form-label">所属地区</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" readonly="readonly"name="status" value="{{d.status}}" autocomplete="off" class="layui-input">
+                                    <div id="detailAreaId" name="reportArea" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                                 </div>
                             </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属省">所属省</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" readonly="readonly"name="province" value="{{d.province}}" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="所属市">所属市</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" readonly="readonly" name="city" value="{{d.city}}"  autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <label class="layui-form-label" title="上报地区">上报地区</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" readonly="readonly" name="reportArea" value="{{d.reportArea}}"  autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="上报地区编码">上报地区编码</label>
                                 <div class="layui-input-inline">

@@ -4,7 +4,8 @@
 	
 	<!--获取渠道链路监控状态 -->
 	<select id="getChannelLinkState" resultType="map">
-		select id channelId,name channelName,name sendMethod,case status when 0 then 2 else 1 end deployType , 1 resultType from channel
+		select id channelId,name channelName,name sendMethod,
+		case status when 0 then 2 else 1 end deployType , 1 resultType from channel where area_id=#{empAreaId}
 	</select>
 	
 	<!--获取最新预警发布所推送的渠道 -->

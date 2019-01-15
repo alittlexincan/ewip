@@ -3,6 +3,8 @@ package com.hyt.client.controller.sys;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.sys.IChannelService;
 import com.hyt.client.utils.UploadFileUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -132,6 +134,9 @@ public class ChannelController {
      */
     @GetMapping("/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.channelService.selectAll(map);
     }
 
@@ -142,6 +147,9 @@ public class ChannelController {
      */
     @PostMapping("/list")
     JSONObject selectList(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.channelService.selectList(map);
     }
 

@@ -236,7 +236,9 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     };
 
 
-                    let shikuang = null, currentStation = $("#stationId").val();
+                    let shikuang = null,
+                        // currentStation = $("#stationId").val();
+                        currentStation = res.stationId;
 
                     res.data.forEach( station => {
 

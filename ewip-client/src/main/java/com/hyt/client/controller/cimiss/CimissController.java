@@ -3,12 +3,13 @@ package com.hyt.client.controller.cimiss;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hyt.client.service.config.ICimissConfigService;
 import com.hyt.client.service.sys.IAlarmThresholdService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,22 +32,38 @@ public class CimissController {
     @Autowired
     private IAlarmThresholdService alarmThresholdService;
 
+    @Autowired
+    private ICimissConfigService cimissConfigService;
+
+
     /**
      * 获取cimiss路径（根据地区查询实况信息）
      */
-    @Value("${cimiss.area.shikuang}")
-    private String cimissAreaShikuang;
+//    @Value("${cimiss.area.shikuang}")
+//    private String cimissAreaShikuang;
 
     @GetMapping("shikuang")
     public JSONObject getCimissAreaShikuang(@RequestParam Map<String, Object> map){
         JSONObject result = new JSONObject();
         try {
+            Subject subject = SecurityUtils.getSubject();
+            JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+            String areaId= employee.getString("areaId").toString();
+            JSONObject jsonObj=this.cimissConfigService.getRequestUrl(areaId);
 
-            String url = this.cimissAreaShikuang.replace("{{time}}", getTime());
+            if(jsonObj.size()==0){
+                result.put("status", 500);
+                result.put("msg", "数据库没有设置Cimiss地址");
+                log.info(result.toJSONString());
+                return result;
+            }
+            String url=jsonObj.get("url").toString();
+            String stationId=jsonObj.get("stationId").toString();
+            result.put("stationId",stationId);
+//            String url = this.cimissAreaShikuang.replace("{{time}}", getTime());
             log.info("cimiss请求URL:" + url);
             JSONObject rest = restTemplate.getForObject(url, JSONObject.class);
             log.info("cimiss数据：" + rest);
-
 
             if(rest.getInteger("returnCode") != 0){
                 result.put("status", 500);

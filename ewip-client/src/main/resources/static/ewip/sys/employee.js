@@ -11,7 +11,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         ,laytpl = layui.laytpl		// 引用layui模板引擎
         ,selectTree = layui.selectTree
         ,layer = layui.layer		// 引用layui弹出层
-        ,$ = layui.$;				// 引用layui的jquery
+        ,$ = layui.$				// 引用layui的jquery
+        ,employee = layui.sessionData("ewip").employee // 当前登录用户信息
 
     /**
      * 格式化性别
@@ -44,6 +45,47 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             ,{field: 'email', title: '员工邮箱', sort: true}
             ,{title: '操&nbsp;&nbsp;作', width: 280, align:'center', toolbar: '#btnGroupOption'}
         ]]
+        , done: function (res, curr, count) {
+            var employeeList=res.data;
+            console.log(employee);
+            if(employee.roleType.indexOf("1") != -1){
+                //是超级管理员
+                for(var i=0;i<employeeList.length;i++){
+                    if(employeeList[i].roleType.indexOf("1") != -1){
+                        $("table").find("tr").eq(i+1).children("td").eq(0).find("div").css("display","none");
+                    }
+                }
+            }
+            if(employee.roleType.indexOf("2") != -1){
+                //是系统管理员
+                for(var i=0;i<employeeList.length;i++){
+                    if(employeeList[i].roleType.indexOf("2") != -1){
+                        $("table").find("tr").eq(i+1).children("td").eq(0).find("div").css("display","none");
+                    }
+                }
+            }
+            // $(".laytable-cell-checkbox").css("display","none");
+
+            // 表格渲染完成之后的回调
+            // LayUIDataTable.SetJqueryObj($);// 第一步：设置jQuery对象
+            //
+            // var currentRowDataList = LayUIDataTable.ParseDataTable(function (index, currentData, rowData) {
+            //     console.log("当前页数据条数:" + currentRowDataList.length)
+            //     console.log("当前行索引：" + index);
+            //     console.log("触发的当前行单元格：" + currentData);
+            //     console.log("当前行数据：" + JSON.stringify(rowData));
+            //
+            //     var msg = '<div style="text-align: left"> 【当前页数据条数】' + currentRowDataList.length + '<br/>【当前行索引】' + index + '<br/>【触发的当前行单元格】' + currentData + '<br/>【当前行数据】' + JSON.stringify(rowData) + '</div>';
+            //     layer.msg(msg)
+            // })
+            //
+            // // 对相关数据进行判断处理--此处对【竞猜数量】大于30的进行高亮显示
+            // $.each(currentRowDataList, function (index, obj) {
+            //     if (obj['num'] && obj['num'].value > 30) {
+            //         obj['num'].row.css("background-color", "#FAB000");
+            //     }
+            // })
+        }// end done
     });
 
     /**
