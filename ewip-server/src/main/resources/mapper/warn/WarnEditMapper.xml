@@ -159,7 +159,7 @@
                 and we.send_time >= #{sendTime}
             ]]>
         </if>
-        ORDER BY we.send_time DESC
+        ORDER BY we.send_time
         <if test="limit != null and limit != '' ">
             limit ${limit}
         </if>

@@ -164,7 +164,8 @@
 		select c.id,c.name,sum(total) num from message_callback_main m
 		left join message ms on ms.id=m.message_id
 		left join channel c on m.channel_code=c.code
-		where 1=1 and FIND_IN_SET(ms.area_id, getAreaCList(#{empAreaId}))
+		where 1=1
+		and c.area_id=#{empAreaId}
 			<![CDATA[
 				AND DATE_FORMAT(m.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>

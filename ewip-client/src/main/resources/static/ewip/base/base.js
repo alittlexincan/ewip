@@ -527,35 +527,14 @@ layui.use(["table","form","laytpl","layer"], function(){
                 var colorName="";
                 var level="";
                 var damage="";
+                console.log(data);
                 data.forEach( res => {
-                        if(res.color=="1"){
-                            colorName="红色";
-                            level="Ⅰ";
-                        }else if(res.color=="2"){
-                            colorName="橙色";
-                            level="Ⅱ";
-                        }else if(res.color=="3"){
-                            colorName="黄色";
-                            level="Ⅲ";
-                        }else if(res.color=="4"){
-                            colorName="蓝色";
-                            level="Ⅳ";
-                        }
-                        if(res.damage=="1"){
-                            damage="一般";
-                        }else if(res.damage=="2"){
-                            damage="较严重";
-                        }else if(res.damage=="3"){
-                            damage="严重";
-                        }else if(res.damage=="4"){
-                            damage="非常严重";
-                        }
-                    let iconUrl = '/client/base/' + chineseToPinYin(res.disasterType+colorName) + '.gif';
+                    let iconUrl = '/client/base/' + chineseToPinYin(res.disasterType+res.color)+'.gif';
                         let mes = '<div>灾害名称:'+res.disasterName+'</div><hr />' +
                             '<div>灾种类别:'+res.disasterType+'</div><hr />' +
-                            '<div>灾种颜色:'+colorName+'</div><hr />' +
-                            '<div>灾种级别:'+level+'</div><hr />' +
-                            '<div>危害程度:'+damage+'</div><hr />' +
+                            '<div>灾种颜色:'+res.color+'</div><hr />' +
+                            '<div>灾种级别:'+res.level+'</div><hr />' +
+                            '<div>危害程度:'+res.damage+'</div><hr />' +
                             '<div>影响范围:'+res.influence+'</div><hr />' +
                             '<div>监测单位:'+res.monitorOrgan+'</div><hr />';
                         let marker = active.marker(iconUrl ,[res.lon , res.lat]
@@ -1819,20 +1798,16 @@ layui.use(["table","form","laytpl","layer"], function(){
                         let color="";
                         let colorname="";
                         if(json.disasterColor==0){
-                            color="hongse";
                             colorname="红色"
                         }else if(json.disasterColor==1){
-                            color="chengse";
                             colorname="橙色"
                         }else if(json.disasterColor==2){
-                            color="huangse";
                             colorname="黄色"
                         }else if(json.disasterColor==3){
-                            color="lanse";
                             colorname="蓝色"
                         }
-                        let mes = '<div><div>'+json.content+'</div><hr /><div>望奎县气象局'+json.sendTime+'发布</div>';
-                        let marker = active.marker('/client/base/'+chineseToPinYin(json.disasterName)+color+'.gif',[json.longitude , json.latitude]
+                        let mes = '<div><div>'+json.content+'</div><hr /><div>'+json.organizationName+json.sendTime+'发布</div>';
+                        let marker = active.marker('/client/'+json.icon,[json.longitude , json.latitude]
                             ,content = '<span style="font-size: 20px;color: #FF4500;">' +  json.disasterName + colorname+'预警'+'</span>'  +'<br/>'+ mes);
                         // 将标注添加到地图中
                         active.map.addOverlay(marker);
