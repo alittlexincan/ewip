@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.hyt</groupId>
-    <artifactId>ewip</artifactId>
+    <groupId>com.zhxu</groupId>
+    <artifactId>uni-platform</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -17,14 +17,10 @@
     </parent>
 
     <modules>
-        <module>ewip-eureka</module>
-        <!--前端平台-->
+        <module>commons-model</module>
         <module>ewip-client</module>
-        <!--业务平台-->
         <module>ewip-server</module>
-        <!--分发平台-->
         <module>ewip-publish</module>
-        <!--监控平台-->
         <module>ewip-monitor</module>
         <module>message-publisher</module>
         <module>eureka-registry</module>
@@ -33,8 +29,6 @@
         <module>ocpp-web-client</module>
         <module>ocpp-client</module>
         <module>ocpp-publish</module>
-        <module>commons-model</module>
-
     </modules>
 
     <properties>

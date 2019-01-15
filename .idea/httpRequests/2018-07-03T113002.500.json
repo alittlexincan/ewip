@@ -1,7 +1,0 @@
-{
-  "timestamp": "2018-07-03T03:30:02.630+0000",
-  "status": 500,
-  "error": "Internal Server Error",
-  "message": "Error resolving template \"main/login\", template might not exist or might not be accessible by any of the configured Template Resolvers",
-  "path": "/client/"
-}

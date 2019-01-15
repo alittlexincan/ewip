@@ -2,7 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,7 +9,6 @@
         <module name="commons-model" />
         <module name="eureka-registry" />
         <module name="ewip-client" />
-        <module name="ewip-eureka" />
         <module name="ewip-monitor" />
         <module name="ewip-publish" />
         <module name="ewip-server" />
@@ -22,30 +20,12 @@
         <module name="zuul-gateway" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="commons-model" target="1.8" />
-      <module name="eureka-registry" target="1.8" />
-      <module name="ewip" target="1.8" />
-      <module name="ewip-client" target="1.8" />
-      <module name="ewip-eureka" target="1.8" />
-      <module name="ewip-monitor" target="1.8" />
-      <module name="ewip-publish" target="1.8" />
-      <module name="ewip-server" target="1.8" />
-      <module name="ewip-web-client" target="1.8" />
-      <module name="message-publisher" target="1.8" />
-      <module name="ocpp-client" target="1.8" />
-      <module name="ocpp-publish" target="1.8" />
-      <module name="ocpp-web-client" target="1.8" />
-      <module name="zuul-gateway" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="commons-model" options="-Xlint:unchecked" />
       <module name="eureka-registry" options="-Xlint:unchecked" />
-      <module name="ewip" options="" />
       <module name="ewip-client" options="-Xlint:unchecked" />
-      <module name="ewip-eureka" options="-Xlint:unchecked" />
       <module name="ewip-monitor" options="-Xlint:unchecked" />
       <module name="ewip-publish" options="-Xlint:unchecked" />
       <module name="ewip-server" options="-Xlint:unchecked" />
