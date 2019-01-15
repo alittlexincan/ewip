@@ -195,7 +195,9 @@ public class SmsServiceImpl implements ISmsService {
         String sendUrl = this.sendUrl + "?mas_user_id=" + mas_user_id + "&mobiles=" + userList + "&content=" + content + "&sign=" + this.sign + "&serial=&mac=" + mac;
         log.info("短信发送URL：【" + sendUrl + "】");
         // 5：短信发送
-        return this.restTemplate.postForObject(sendUrl, "", JSONObject.class);
+        JSONObject result = this.restTemplate.postForObject(sendUrl, "", JSONObject.class);
+        log.info("result" + result);
+        return result;
 
     }
 

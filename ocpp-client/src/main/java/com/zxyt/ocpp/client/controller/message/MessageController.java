@@ -104,11 +104,9 @@ public class MessageController {
             result.put("files", file != null ? file.toJSONString() : "");
 
             // 调用分发接口
-            //this.publishService.publish(result);
-            System.out.println(messageTransformer.transform(result));
-            //messageTransformer.transform(result);
-            PubInfo pubInfo = messageTransformer.transform(result);
-            newPublishService.publish(pubInfo);
+            this.publishService.publish(result);
+//            PubInfo pubInfo = messageTransformer.transform(result);
+//            newPublishService.publish(pubInfo);
 
             return ResultResponse.make(200,result.getString("msg"), result);
         }

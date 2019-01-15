@@ -10,8 +10,9 @@ import java.util.List;
 public class SmsParam {
     private String url;
     private String sign;
-    private String masUserId;
-    private String accessToken;
+    private String organizationName;
+    private String authorizeName;
+    private String authorizePassword;
     private String content;
     private List<String> mobiles;
 }

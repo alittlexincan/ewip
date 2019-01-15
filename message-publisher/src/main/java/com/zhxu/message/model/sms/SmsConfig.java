@@ -4,6 +4,10 @@ import lombok.Data;
 
 @Data
 public class SmsConfig {
+    private String type;
+    private String areaId;
+    private String channelCode;
+    private String organizationId;
     private String organizationName;
     private String loginName;
     private String loginPassword;

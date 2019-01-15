@@ -1,9 +1,12 @@
 package com.zhxu.message.service.sms;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhxu.message.MsgHandler;
 import com.zhxu.message.entity.ChannelConfig;
 import com.zhxu.message.modal.ChannelType;
 import com.zhxu.message.modal.Message;
+import com.zhxu.message.model.sms.SmsConfig;
 import com.zhxu.message.model.sms.SmsParam;
 import com.zhxu.message.repository.ChannelConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +37,25 @@ public class SmsHandler implements MsgHandler {
             });
         });
 
+        ObjectMapper mapper = new ObjectMapper();
+        SmsConfig smsConfig = null;
+        try {
+            smsConfig = mapper.readValue(config.getContent(), SmsConfig.class);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        if (smsConfig == null) {
+            return;
+        }
+
         SmsParam param = SmsParam.builder()
-                .url("")
+                .url(smsConfig.getAuthorizeUrl())
+                .sign(smsConfig.getSign())
+                .organizationName(smsConfig.getOrganizationName())
+                .authorizeName(smsConfig.getAuthorizeUserName())
+                .authorizePassword(smsConfig.getAuthorizeUserPassword())
+                .content(msg.getContent())
                 .mobiles(mobiles)
                 .build();
 
