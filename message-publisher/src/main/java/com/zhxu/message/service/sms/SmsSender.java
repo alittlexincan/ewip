@@ -1,7 +1,7 @@
 package com.zhxu.message.service.sms;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zhxu.message.modal.SmsParam;
+import com.zhxu.message.model.sms.SmsParam;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

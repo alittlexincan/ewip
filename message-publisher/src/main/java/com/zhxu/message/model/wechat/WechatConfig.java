@@ -1,4 +1,4 @@
-package com.zhxu.message.modal;
+package com.zhxu.message.model.wechat;
 
 import lombok.Data;
 

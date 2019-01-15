@@ -1,4 +1,4 @@
-package com.zhxu.message.modal;
+package com.zhxu.message.model.sms;
 
 import lombok.Builder;
 import lombok.Data;

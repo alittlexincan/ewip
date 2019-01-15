@@ -4,7 +4,7 @@ import com.zhxu.message.MsgHandler;
 import com.zhxu.message.entity.ChannelConfig;
 import com.zhxu.message.modal.ChannelType;
 import com.zhxu.message.modal.Message;
-import com.zhxu.message.modal.SmsParam;
+import com.zhxu.message.model.sms.SmsParam;
 import com.zhxu.message.repository.ChannelConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
