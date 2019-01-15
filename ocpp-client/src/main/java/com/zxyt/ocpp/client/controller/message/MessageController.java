@@ -2,9 +2,11 @@ package com.zxyt.ocpp.client.controller.message;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zhxu.message.modal.PubInfo;
 import com.zxyt.ocpp.client.config.common.result.ResultObject;
 import com.zxyt.ocpp.client.config.common.result.ResultResponse;
 import com.zxyt.ocpp.client.service.message.IMessageService;
+import com.zxyt.ocpp.client.service.publish.INewPublishService;
 import com.zxyt.ocpp.client.service.publish.IPublishService;
 import com.zxyt.ocpp.client.utils.UploadFileUtil;
 import io.swagger.annotations.*;
@@ -30,6 +32,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/message")
 public class MessageController {
 
+    @Autowired
+    private MessageTransformer messageTransformer;
+
     /**
      * 注入消息处理接口
      */
@@ -41,6 +46,9 @@ public class MessageController {
      */
     @Autowired
     private IPublishService publishService;
+
+    @Autowired
+    private INewPublishService newPublishService;
 
     /**
      * 获取上传的文件夹，具体路径参考application.properties中的配置
@@ -96,7 +104,11 @@ public class MessageController {
             result.put("files", file != null ? file.toJSONString() : "");
 
             // 调用分发接口
-            this.publishService.publish(result);
+            //this.publishService.publish(result);
+            System.out.println(messageTransformer.transform(result));
+            //messageTransformer.transform(result);
+            PubInfo pubInfo = messageTransformer.transform(result);
+            newPublishService.publish(pubInfo);
 
             return ResultResponse.make(200,result.getString("msg"), result);
         }

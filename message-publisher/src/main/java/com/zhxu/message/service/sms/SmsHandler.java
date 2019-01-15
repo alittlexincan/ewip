@@ -1,4 +1,4 @@
-package com.zhxu.message.service;
+package com.zhxu.message.service.sms;
 
 import com.zhxu.message.MsgHandler;
 import com.zhxu.message.entity.ChannelConfig;
@@ -7,31 +7,29 @@ import com.zhxu.message.modal.Message;
 import com.zhxu.message.modal.SmsParam;
 import com.zhxu.message.repository.ChannelConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-@Service("smsHandler")
+@Service
 public class SmsHandler implements MsgHandler {
 
     @Autowired
     private ChannelConfigRepository channelConfigRepository;
 
-    @Qualifier("smsSender")
+    @Autowired
     private SmsSender smsSender;
 
     @Override
     public void handle(Message msg) {
 
-        ChannelConfig config = channelConfigRepository.findByAreaIdAndChannelType(msg.getArea().getId(), ChannelType.SMS.getType()).get();
+        ChannelConfig config = channelConfigRepository.findByAreaIdAndChannelType(msg.getArea().getId(), ChannelType.SMS.getType());
 
         List<String> mobiles = new ArrayList();
 
-        Arrays.stream(msg.getGroups()).forEach(group -> {
-            Arrays.stream(group.getUsers()).forEach(user -> {
+        msg.getGroups().forEach(group -> {
+            group.getUsers().forEach(user -> {
                 mobiles.add(user.getMobile());
             });
         });

@@ -2,13 +2,13 @@ package com.zhxu.message.modal;
 
 import lombok.Data;
 
-import java.io.File;
+import java.util.List;
 
 @Data
 public class Message {
     private Area area;
     private String content;
-    private File[] files;
+    private List<File> files;
     private Channel channel;
-    private Group[] groups;
+    private List<Group> groups;
 }

@@ -1,25 +1,16 @@
 package com.zhxu.message.entity;
 
 
-import com.alibaba.fastjson.annotation.JSONField;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * 渠道配置信息实体
- *
- */
-
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "channel_config")
 @Getter
 @Setter
-@Table(name = "channel_config")
+@Entity
 public class ChannelConfig {
 
     @Id
@@ -39,7 +30,6 @@ public class ChannelConfig {
     @Column(name = "content",length = 4000)
     private String content;
 
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
 

@@ -1,7 +1,6 @@
-package com.zhxu.message.service;
+package com.zhxu.message.service.sms;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zhxu.message.MsgSender;
 import com.zhxu.message.modal.SmsParam;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Service("smsSender")
-public class SmsSender implements MsgSender{
+public class SmsSender{
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @Override
     public void send(SmsParam param) {
         Map<String, String> params = new HashMap<>(8);
         params.put("mas_user_id", param.getMasUserId());

@@ -19,6 +19,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ewip-publish/pom.xml" />
         <option value="$PROJECT_DIR$/ewip-monitor/pom.xml" />
+        <option value="$PROJECT_DIR$/ewip-web-client/pom.xml" />
+        <option value="$PROJECT_DIR$/ocpp-publish/pom.xml" />
+        <option value="$PROJECT_DIR$/ocpp-client/pom.xml" />
       </list>
     </option>
   </component>

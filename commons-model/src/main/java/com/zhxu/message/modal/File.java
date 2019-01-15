@@ -3,9 +3,8 @@ package com.zhxu.message.modal;
 import lombok.Data;
 
 @Data
-public class Group {
-    private String id;
+public class File {
     private String name;
-
-    private User[] users;
+    private Integer size;
+    private String url;
 }

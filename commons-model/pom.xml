@@ -6,16 +6,18 @@
         <artifactId>ewip</artifactId>
         <groupId>com.hyt</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhxu</groupId>
-    <artifactId>ocpp-web-client</artifactId>
+    <artifactId>commons-model</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
-
 
 </project>
