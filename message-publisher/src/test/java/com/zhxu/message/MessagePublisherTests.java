@@ -1,9 +1,9 @@
-package com.zhxu.message.service.sms;
+package com.zhxu.message;
 
-import com.zhxu.message.MessagePublisher;
 import com.zhxu.message.modal.*;
 import com.zhxu.message.service.email.EmailHandler;
 import com.zhxu.message.service.sinaweibo.SinaWeiBoHandler;
+import com.zhxu.message.service.sms.SmsHandler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MessagePublisher.class)
-public class SmsHandlerTest {
+public class MessagePublisherTests {
 
     @Autowired
     private SmsHandler smsHandler;

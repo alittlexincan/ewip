@@ -59,14 +59,18 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
         <!-- RESTFUL API UI 自定义文档插件 -->
-        <dependency>
-            <groupId>com.xincan</groupId>
-            <artifactId>xincan-api-ui-layer</artifactId>
-            <version>${xincan.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.xincan</groupId>-->
+            <!--<artifactId>xincan-api-ui-layer</artifactId>-->
+            <!--<version>${xincan.version}</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
