@@ -11,8 +11,10 @@ public class SmsParam {
     private String url;
     private String sign;
     private String organizationName;
+    private String authorizeUrl;
     private String authorizeName;
     private String authorizePassword;
     private String content;
     private List<String> mobiles;
+
 }

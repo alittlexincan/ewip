@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class Message {
     private Area area;
+    private String title;
     private String content;
     private List<File> files;
     private String template;

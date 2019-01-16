@@ -4,12 +4,20 @@ import lombok.Data;
 
 @Data
 public class WechatConfig {
+
+    private String url;
+    private int port;
+    private String type;
     private String appId;
-    private String appSecret;
+    private String areaId;
+    private String number;
+    private String okUser;
     private String tokenUrl;
-    private String serviceTemplate;
+    private String appSecret;
+    private String channelCode;
     private String templateUrl;
     private String userListUrl;
-    private String okUser;
-    private Integer number;
+    private String organizationId;
+    private String serviceTemplate;
+
 }

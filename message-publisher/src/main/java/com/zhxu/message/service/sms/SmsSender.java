@@ -22,8 +22,8 @@ public class SmsSender{
     public void send(SmsParam param) {
 
         // 5：短信发送授权获取mas_user_id用户登录id
-        String authorizeUrl = param.getUrl() + "?ec_name=" + param.getOrganizationName() + "&user_name=" + param.getAuthorizeName() + "&user_passwd=" + param.getAuthorizePassword();
-        JSONObject authorize = this.restTemplate.getForObject(authorizeUrl,JSONObject.class);
+        String authorizeUrl = param.getAuthorizeUrl() + "?ec_name=" + param.getOrganizationName() + "&user_name=" + param.getAuthorizeName() + "&user_passwd=" + param.getAuthorizePassword();
+        JSONObject authorize = this.restTemplate.getForObject(authorizeUrl, JSONObject.class);
         // 6：获取用户登录ID
         String mas_user_id = authorize.getString("mas_user_id");
         // 7：获取access_token
@@ -34,9 +34,10 @@ public class SmsSender{
 //        params.put("content", param.getContent());
 //        params.put("sign", param.getSign());
 //        params.put("serial", "");
+
         Iterator<String> mobiles = param.getMobiles().iterator();
-        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-        scheduledExecutorService.schedule(() -> {
+//        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+//        scheduledExecutorService.schedule(() -> {
             if (mobiles.hasNext()) {
                 String mobile = mobiles.next();
 //                params.put("mobiles", mobile);
@@ -45,10 +46,10 @@ public class SmsSender{
                 String mac = MD5Util.md5toUpperCase32(mas_user_id + mobile + param.getContent() + param.getSign() + "" + access_token);
                 String sendUrl = param.getUrl() + "?mas_user_id=" + mas_user_id + "&mobiles=" + mobile + "&content=" + param.getContent() + "&sign=" + param.getSign() + "&serial=&mac=" + mac;
                 JSONObject jsonObject = restTemplate.postForObject(sendUrl, "", JSONObject.class);
-                System.out.println(jsonObject);
+
             } else {
-                scheduledExecutorService.shutdown();
+//                scheduledExecutorService.shutdown();
             }
-        }, 100, TimeUnit.MILLISECONDS);
+//        }, 100, TimeUnit.MILLISECONDS);
     }
 }

@@ -2,6 +2,7 @@ package com.zhxu.message.service.sms;
 
 import com.zhxu.message.MessagePublisher;
 import com.zhxu.message.modal.*;
+import com.zhxu.message.service.email.EmailHandler;
 import com.zhxu.message.service.sinaweibo.SinaWeiBoHandler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,9 @@ public class SmsHandlerTest {
     @Autowired
     private SinaWeiBoHandler sinaWeiBoHandler;
 
+    @Autowired
+    private EmailHandler emailHandler;
+
     @Test
     public void testSend() {
         Message message = new Message();
@@ -30,7 +34,8 @@ public class SmsHandlerTest {
         Group group = new Group();
         User user = new User();
 
-        user.setMobile("18301485575");
+        //user.setMobile("18301485575");
+        user.setEmail("1103526173@qq.com");
         List<User> users = new ArrayList<>();
         users.add(user);
 
@@ -41,13 +46,14 @@ public class SmsHandlerTest {
         message.setGroups(groups);
 
         area.setId("52db5b81970911e8a5ed8cec4b81c244");
-        channel.setType(ChannelType.SINA_WEIBO);
+        channel.setType(ChannelType.EMAIL);
 
         message.setArea(area);
         message.setChannel(channel);
-        message.setContent("test");
+        message.setTitle("测试信息");
+        message.setContent("這是測試信息。收到请忽略！");
 
-        smsHandler.handle(message);
+        emailHandler.handle(message);
 //        sinaWeiBoHandler.handle(message);
     }
 }

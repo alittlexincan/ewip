@@ -1,7 +1,6 @@
 package com.zhxu.message.service.sms;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.zhxu.message.MsgHandler;
 import com.zhxu.message.entity.ChannelConfig;
 import com.zhxu.message.modal.ChannelType;
@@ -37,22 +36,17 @@ public class SmsHandler implements MsgHandler {
             });
         });
 
-        ObjectMapper mapper = new ObjectMapper();
-        SmsConfig smsConfig = null;
-        try {
-            smsConfig = mapper.readValue(config.getContent(), SmsConfig.class);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        SmsConfig smsConfig = JSON.parseObject(config.getContent(), SmsConfig.class);
 
         if (smsConfig == null) {
             return;
         }
 
         SmsParam param = SmsParam.builder()
-                .url(smsConfig.getAuthorizeUrl())
+                .url(smsConfig.getSmsSendUrl())
                 .sign(smsConfig.getSign())
                 .organizationName(smsConfig.getOrganizationName())
+                .authorizeUrl(smsConfig.getAuthorizeUrl())
                 .authorizeName(smsConfig.getAuthorizeUserName())
                 .authorizePassword(smsConfig.getAuthorizeUserPassword())
                 .content(msg.getContent())
