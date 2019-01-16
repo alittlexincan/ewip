@@ -16,7 +16,9 @@ import com.hyt.server.mapper.message.IMessageFileMapper;
 import com.hyt.server.mapper.message.IMessageMapper;
 import com.hyt.server.mapper.message.IMessageUserMapper;
 import com.hyt.server.service.message.IMessageService;
+import com.hyt.server.service.publish.INewPublishService;
 import com.hyt.server.service.publish.IPublishService;
+import com.zhxu.message.modal.PubInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,12 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
     @Autowired
     private IPublishService publishService;
+
+    @Autowired
+    INewPublishService newPublishService;
+
+    @Autowired
+    MessageTransformer messageTransformer;
 
     @Override
     public PageInfo<Message> selectAll(Map<String, Object> map) {
@@ -130,10 +138,16 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         this.getMessaggeUserInfo(json, messageId);
 
         json.put("id",messageId);
-        Map<String, Object> param = json;
-        System.out.println(json);
-        // 调用分发平台
-        this.publishService.publish(param);
+
+        if (false) {
+            Map<String, Object> param = json;
+            System.out.println(json);
+            // 调用分发平台
+            this.publishService.publish(param);
+        } else {
+            PubInfo pubInfo = messageTransformer.transform(json);
+            newPublishService.publish(pubInfo);
+        }
 
         return message;
     }
