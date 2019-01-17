@@ -18,19 +18,23 @@
 
     <modules>
         <module>commons-model</module>
+        <module>basic-info</module>
+        <module>warning-info</module>
+
+        <module>message-publisher</module>
+        <module>eureka-registry</module>
+        <module>zuul-gateway</module>
+
         <module>ewip-client</module>
         <module>ewip-server</module>
         <module>ewip-publish</module>
         <module>ewip-monitor</module>
-        <module>message-publisher</module>
-        <module>eureka-registry</module>
-        <module>zuul-gateway</module>
         <module>ewip-web-client</module>
-        <module>ocpp-web-client</module>
+
         <module>ocpp-client</module>
         <module>ocpp-publish</module>
-        <module>basic-info</module>
-        <module>warning-info</module>
+        <module>ocpp-web-client</module>
+        <module>system-info</module>
     </modules>
 
     <properties>

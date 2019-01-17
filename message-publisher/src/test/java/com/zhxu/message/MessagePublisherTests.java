@@ -1,9 +1,9 @@
 package com.zhxu.message;
 
-import com.zhxu.message.modal.*;
 import com.zhxu.message.service.email.EmailHandler;
 import com.zhxu.message.service.sinaweibo.SinaWeiBoHandler;
 import com.zhxu.message.service.sms.SmsHandler;
+import com.zhxu.model.message.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

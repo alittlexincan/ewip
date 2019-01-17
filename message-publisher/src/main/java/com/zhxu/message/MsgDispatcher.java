@@ -1,6 +1,6 @@
 package com.zhxu.message;
 
-import com.zhxu.message.modal.Message;
+import com.zhxu.model.message.Message;
 
 import java.util.List;
 

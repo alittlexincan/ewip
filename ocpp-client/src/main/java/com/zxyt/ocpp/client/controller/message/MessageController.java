@@ -2,7 +2,6 @@ package com.zxyt.ocpp.client.controller.message;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.zhxu.message.modal.PubInfo;
 import com.zxyt.ocpp.client.config.common.result.ResultObject;
 import com.zxyt.ocpp.client.config.common.result.ResultResponse;
 import com.zxyt.ocpp.client.service.message.IMessageService;

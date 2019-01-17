@@ -2,7 +2,7 @@ package com.hyt.server.service.impl.message;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.zhxu.message.modal.*;
+import com.zhxu.model.message.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

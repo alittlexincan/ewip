@@ -43,6 +43,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.zhxu</groupId>
+            <artifactId>commons-model</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

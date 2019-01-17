@@ -147,7 +147,6 @@
         <dependency>
             <groupId>com.zhxu</groupId>
             <artifactId>commons-model</artifactId>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>

@@ -1,4 +1,4 @@
-package com.zhxu.message.modal;
+package com.zhxu.model.message;
 
 public enum ChannelType {
     SMS("SMS", "短信"),

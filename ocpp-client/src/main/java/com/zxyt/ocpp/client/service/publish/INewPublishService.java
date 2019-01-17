@@ -1,6 +1,6 @@
 package com.zxyt.ocpp.client.service.publish;
 
-import com.zhxu.message.modal.PubInfo;
+import com.zhxu.model.message.PubInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;

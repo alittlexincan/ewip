@@ -2,8 +2,8 @@ package com.zhxu.message.controller;
 
 
 import com.zhxu.message.MsgDispatcher;
-import com.zhxu.message.modal.Message;
-import com.zhxu.message.modal.PubInfo;
+import com.zhxu.model.message.Message;
+import com.zhxu.model.message.PubInfo;
 import com.zhxu.message.service.sms.SmsHandler;
 import com.zhxu.message.service.wechat.WechatHandler;
 import org.springframework.beans.factory.annotation.Autowired;

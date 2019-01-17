@@ -18,7 +18,7 @@ import com.hyt.server.mapper.message.IMessageUserMapper;
 import com.hyt.server.service.message.IMessageService;
 import com.hyt.server.service.publish.INewPublishService;
 import com.hyt.server.service.publish.IPublishService;
-import com.zhxu.message.modal.PubInfo;
+import com.zhxu.model.message.PubInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
