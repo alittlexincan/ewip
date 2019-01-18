@@ -1,5 +1,6 @@
 package com.zhxu.info.system.entity;
 
+import com.zhxu.model.system.OrganizationType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,46 +15,64 @@ import java.util.Set;
 public class Menu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",length = 64)
     private String id;
 
+    /**
+     * 菜单名称
+     */
     @Column(name = "name",length = 50)
     private String name;
 
-    @Column(name = "code",length = 50)
-    private String code;
-
+    /**
+     * 菜单路径
+     */
     @Column(name = "url",length = 50)
     private String url;
 
+    /**
+     * 菜单图标
+     */
     @Column(name = "icon",length = 50)
     private String icon;
 
+    /**
+     * 菜单管理：1：一级；2：二级；3：三级
+     */
     @Column(name = "level", length = 1)
     private Integer level;
 
-    @Column(name = "turn", length = 1)
-    private Integer turn;
+    /**
+     * 菜单排序
+     */
+    @Column(name = "`order`", length = 1)
+    private Integer order;
 
-    @Column(name = "area_id", length = 64)
-    private String areaId;
+    /**
+     * 所属机构类型
+     */
+    @Column(name = "organization_type", length = 64)
+    private OrganizationType organizationType;
 
-    @Column(name = "organization_id", length = 64)
-    private String organizationId;
-
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @ManyToMany(mappedBy = "menus", fetch = FetchType.LAZY)
-    private Set<Role> roles;
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 上级菜单
+     */
+    @ManyToOne
     @JoinColumn(name = "p_id", referencedColumnName = "id")
     private Menu parent;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 下级菜单
+     */
+    @OneToMany(mappedBy = "parent")
     private Set<Menu> children;
 
 }

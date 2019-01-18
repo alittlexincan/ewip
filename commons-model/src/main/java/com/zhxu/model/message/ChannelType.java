@@ -1,5 +1,10 @@
 package com.zhxu.model.message;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum ChannelType {
     SMS("SMS", "短信"),
     WECHAT("WECHAT", "微信"),
@@ -16,21 +21,6 @@ public enum ChannelType {
     VOICE("VOICE", "语音"),
     BEIDOU("BEIDOU", "北斗");
 
-
-
     private String type;
     private String name;
-
-    ChannelType(String type, String name) {
-        this.type = type;
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

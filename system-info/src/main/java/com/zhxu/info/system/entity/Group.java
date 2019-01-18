@@ -7,11 +7,11 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
-@Table(name = "permission")
+@Table(name = "`group`")
 @Getter
 @Setter
 @Entity
-public class Permission {
+public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,25 +19,20 @@ public class Permission {
     private String id;
 
     /**
-     * 权限名称
+     * 群组名称
      */
-    @Column(name = "name", length = 50)
+    @Column(name = "name",length = 50)
     private String name;
 
     /**
-     * 权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:detail
+     * 所属地区
      */
-    @Column(name = "permission",length = 100)
-    private String permission;
+    @ManyToOne
+    @JoinColumn(name = "area_id", referencedColumnName = "id")
+    private Area area;
 
     /**
-     * 资源类型，[menu、button]
-     */
-    @Column(name = "type", length = 20, columnDefinition="enum('menu','button')")
-    private String type;
-
-    /**
-     * 权限描述
+     * 组信息描述
      */
     @Column(name = "description", length = 200)
     private String description;
@@ -48,4 +43,12 @@ public class Permission {
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_user",
+            joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    )
+    private Set<User> users;
 }

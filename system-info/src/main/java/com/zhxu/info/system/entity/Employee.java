@@ -14,37 +14,64 @@ import java.util.Set;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",length = 64)
     private String id;
 
+    /**
+     * 登录名称
+     */
     @Column(name = "login_name",length = 25, unique = true)
     private String loginName;
 
+    /**
+     * 登录密码
+     */
     @Column(name = "login_password",length = 64)
     private String loginPassword;
 
+    /**
+     * 用户真实名称
+     */
     @Column(name = "name",length = 25)
     private String name;
 
+    /**
+     * 用户电话号码
+     */
     @Column(name = "phone",length = 11)
     private String phone;
 
+    /**
+     * 用户电话号码
+     */
     @Column(name = "email",length = 50)
     private String email;
 
+    /**
+     * 用户性别
+     */
     @Column(name = "sex",length = 1)
     private Integer sex;
 
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 所属机构
+     */
+    @ManyToOne
     @JoinColumn(name = "organization_id", referencedColumnName = "id")
     private Organization organization;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 用户角色
+     */
+    @ManyToMany
     @JoinTable(
             name = "employee_role",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),

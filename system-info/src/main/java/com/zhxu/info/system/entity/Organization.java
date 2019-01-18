@@ -1,5 +1,6 @@
 package com.zhxu.info.system.entity;
 
+import com.zhxu.model.system.OrganizationType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,35 +15,45 @@ import java.util.Set;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id",length = 64)
     private String id;
 
-    @Column(name = "organization_name",length = 50)
-    private String organizationName;
+    /**
+     * 机构名称
+     */
+    @Column(name = "name", length = 50)
+    private String name;
 
-    @Column(name = "code",length = 50)
+    /**
+     * 机构编码
+     */
+    @Column(name = "code", length = 50)
     private String code;
 
-    @Column(name = "type",length = 1)
-    private Integer type;
+    /**
+     * 机构类型: 0:发布中心; 1:预案单位; 2:应急办
+     */
+    @Column(name = "type", length = 1)
+    private OrganizationType type;
 
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 所属区域
+     */
+    @ManyToOne
     @JoinColumn(name = "area_id", referencedColumnName = "id")
     private Area area;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 机构下所有员工
+     */
+    @OneToMany(mappedBy = "organization")
     private Set<Employee> employees;
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "p_id", referencedColumnName = "id")
-    private Organization parent;
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Organization> children;
-
 }
