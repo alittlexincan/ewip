@@ -29,7 +29,7 @@ public class CimissConfigServiceImpl extends AbstractService<CimissConfig> imple
     @Autowired
     ICimissConfigMapper cimissConfigMapper;
 
-    private final String URL = "%s/cimiss-web/api?userId=%s&pwd=%s&interfaceId=%s&dataCode=SURF_CHN_MUL_HOR&adminCodes=%s%%20&elements=%s&times=%s&dataFormat=json";
+    private final String URL = "%s/cimiss-web/api?userId=%s&pwd=%s&interfaceId=%s&dataCode=SURF_CHN_MUL_HOR&adminCodes=%s&elements=%s&times=%s&dataFormat=json";
 
     public JSONObject getRequestUrl(String areaId) {
         JSONObject json=new JSONObject();

@@ -222,6 +222,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "					</div>";
                 html += "				</div>";
 
+
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";

@@ -59,6 +59,7 @@
 
                 <!-- 列表：数据行操作 -->
                 <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     {{# if(d.child != 0) { }}
                         <a class="layui-btn layui-btn-disabled layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -83,8 +84,6 @@
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="layui-form-item pId">
                             <label class="layui-form-label">上级地区</label>
                             <div class="layui-input-block">
@@ -133,7 +132,6 @@
 
                 <!-- 修改弹出层 -->
                 <script id="updatePop" type="text/html">
-
                     <div class="layui-form layui-form-pane">
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区级别</label>
@@ -148,13 +146,12 @@
                                 </select>
                             </div>
                         </div>
-
-                            <div class="layui-form-item pId">
-                                <label class="layui-form-label">上级地区</label>
-                                <div class="layui-input-block">
-                                    <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
-                                </div>
+                        <div class="layui-form-item pId">
+                            <label class="layui-form-label">上级地区</label>
+                            <div class="layui-input-block">
+                                <div id="updatePId" name="pId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
                             </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">地区名称</label>
                             <div class="layui-input-block">
@@ -188,6 +185,60 @@
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+
+                <!-- 详细弹出层 -->
+                <script id="detailsPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地区级别</label>
+                            <div class="layui-input-block"  >
+                                <select name="level" disabled="disabled" lay-verify="level" placeholder="请选择地区级别" lay-filter="level">
+                                    <option value="">请选择地区级别</option>
+                                    <option value="1">省级</option>
+                                    <option value="2">市级</option>
+                                    <option value="3">县级</option>
+                                    <option value="4">乡镇级</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item pId">
+                            <label class="layui-form-label">上级地区</label>
+                            <div class="layui-input-block" >
+                                <div id="detailsPId" style="pointer-events: none;" name="pId"  class="select-tree layui-form-select" autocomplete="off" placeholder="请选择上级地区"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地区名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="areaName" disabled="disabled" lay-verify="areaName" value="{{d.areaName}}" autocomplete="off" placeholder="请输入地区名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地区编码</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="code" disabled="disabled" lay-verify="code" value="{{d.code}}" placeholder="请输入地区编码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地区经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="longitude" disabled="disabled" value="{{d.longitude}}" placeholder="请输入地区经度" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地区纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="latitude" disabled="disabled" value="{{d.latitude}}" placeholder="请输入地区纬度" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">海拔高度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="altitude" disabled="disabled" value="{{d.altitude}}" placeholder="请输入海拔高度" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>

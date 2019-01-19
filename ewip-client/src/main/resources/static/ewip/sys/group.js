@@ -39,7 +39,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'organizationName', title: '所属机构'}
             ,{field: 'type', title: '类型' , templet: typeFormat}
-            ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -158,6 +158,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
                         $("#addOrganizationId").empty().append(html);
                     }else{
                         $("#updateOrganizationId").empty().append(html);
+                        $("#detailsOrganizationId").empty().append(html);
                     }
                 }
                 form.render();
@@ -213,7 +214,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
         var where = {};
         if(treeNode.type == 1){
             where.id = null;
-            where.organizationId = treeNode.organizationId;
+            where.organizationId = treeNode.id;
         }else {
             where.organizationId = null;
             where.id = treeNode.id;
@@ -631,6 +632,60 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        }  /**
+         * 列表中：修改群组信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            var param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 群组信息"
+                ,area: ['600px','600px']
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        $("select[name='type']").val(param.type);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
+                        // 初始化机构下拉树
+                        let areaId = "";
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
+                        // 渠道下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#detailsDiv select[name='channelId']").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            // 地区级别下拉框赋值
+                            $("#detailsDiv select[name='channelId']").val(param.channelId);
+                            form.render('select');
+                        });
+                    });
+                    form.render();
                 }
             });
         }

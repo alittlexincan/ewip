@@ -40,6 +40,7 @@
 
                 <!-- 列表：数据行操作 -->
                 <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
                 </script>
@@ -252,6 +253,108 @@
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+
+                <!-- 修改弹出层 -->
+                <script id="detailsPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属区县</label>
+                            <div class="layui-input-block">
+                                <div id="detailsAreaId" name="district" style="pointer-events: none;"  lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">河流</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="river" disabled="disabled" lay-verify="river" value="{{d.river}}" autocomplete="off" placeholder="请输入河流" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">防洪标准</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="floodPrevention" disabled="disabled" lay-verify="floodPrevention" value="{{d.floodPrevention}}" autocomplete="off" placeholder="请输入防洪标准" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">长度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="length" disabled="disabled" lay-verify="length" value="{{d.length}}" autocomplete="off" placeholder="请输入长度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">高程</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="altitude" disabled="disabled" lay-verify="altitude" value="{{d.altitude}}" autocomplete="off" placeholder="请输入高程" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">平均堤距</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="distance" disabled="disabled" lay-verify="distance" value="{{d.distance}}" autocomplete="off" placeholder="请输入平均堤距" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">高度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="height" disabled="disabled" lay-verify="height" value="{{d.height}}" autocomplete="off" placeholder="请输入高度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">堤顶宽度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="width" disabled="disabled" lay-verify="width" value="{{d.width}}" autocomplete="off" placeholder="请输入堤顶宽度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">堤身土质</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="soil" disabled="disabled" lay-verify="soil" value="{{d.soil}}" autocomplete="off" placeholder="请输入堤身土质" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">堤岸堤坡长度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="slopeLength" disabled="disabled" lay-verify="slopeLength" value="{{d.slopeLength}}" autocomplete="off" placeholder="请输入堤岸堤坡长度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属省</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="province" disabled="disabled" lay-verify="province" value="{{d.province}}"  autocomplete="off" placeholder="请输入省份" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">管辖单位</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="unit" disabled="disabled" lay-verify="unit" value="{{d.unit}}" autocomplete="off" placeholder="请输入管辖单位" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="principal" disabled="disabled" value="{{d.principal}}"  autocomplete="off" placeholder="请输入负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电话</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="phone" disabled="disabled" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="description" disabled="disabled" lay-verify="description" placeholder="请输入描述" class="layui-textarea">{{d.description}}</textarea>
                             </div>
                         </div>
                     </div>

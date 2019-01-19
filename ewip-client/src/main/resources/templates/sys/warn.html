@@ -15,6 +15,7 @@
 
     <!-- 列表：数据行操作 -->
     <script type="text/html" id="btnGroupOption">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
     </script>
@@ -170,30 +171,99 @@
             </div>
     </script>
 
-    <div class="layui-fluid">
-        <div class="layui-row layui-col-space8">
-            <div class="layui-col-sm3 ewip-panel-left">
-                <div class="layui-card">
-                    <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>机构展示</span></div>
-                    <div class="layui-card-body">
-                        <div class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
-                            <div class="layui-form-item">
-                                <div class="layui-inline">
-                                    <input type="text" id="keyword" name="keyword"  placeholder="请输入..." style="width: 160px;" autocomplete="off" class="layui-input">
-                                </div>
-                                <div class="layui-inline">
-                                    <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search" id="search-bt">
-                                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <ul id="organizationTree" class="ztree ewip-left-tree"></ul>
-                    </div>
+    <!-- 详情弹出层 -->
+    <script id="detailsPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="detailsAreaId" name="areaId" style="pointer-events: none;" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属机构</label>
+                <div class="layui-input-block">
+                    <select id="detailsOrganizationId" name="organizationId" disabled="disabled" lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种名称</label>
+                <div class="layui-input-block">
+                    <input type="hidden" name="disasterName">
+                    <div id="detailsDisasterId" name="disasterId" disabled="disabled" style="pointer-events: none;" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择灾种名称"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种颜色</label>
+                <div class="layui-input-block">
+                    <select name="disasterColor" placeholder="请选择预警颜色" disabled="disabled">
+                        <option value="">请选择预警颜色</option>
+                        <option value="0">红色</option>
+                        <option value="1">橙色</option>
+                        <option value="2">黄色</option>
+                        <option value="3">蓝色</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">灾种级别</label>
+                <div class="layui-input-block">
+                    <select name="disasterLevel" placeholder="请选择预警级别" disabled="disabled">
+                        <option value="">请选择预警级别</option>
+                        <option value="0">Ⅰ级/特别重大</option>
+                        <option value="1">Ⅱ级/重大</option>
+                        <option value="2">Ⅲ级/较大</option>
+                        <option value="3">Ⅳ级/一般</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">预警内容</label>
+                <div class="layui-input-block">
+                    <textarea type="text" name="content" disabled="disabled" placeholder="请输入预警内容" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">应对措施</label>
+                <div class="layui-input-block">
+                    <textarea type="text" name="measure" disabled="disabled" placeholder="请输入应对措施" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">防御指南</label>
+                <div class="layui-input-block">
+                    <textarea type="text" name="instruction" disabled="disabled" placeholder="请输入防御指南" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+        </div>
+    </script>
 
-            <div class="layui-col-sm9 ewip-panel-right">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space8">
+            <!--<div class="layui-col-sm3 ewip-panel-left">-->
+                <!--<div class="layui-card">-->
+                    <!--<div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>机构展示</span></div>-->
+                    <!--<div class="layui-card-body">-->
+                        <!--<div class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">-->
+                            <!--<div class="layui-form-item">-->
+                                <!--<div class="layui-inline">-->
+                                    <!--<input type="text" id="keyword" name="keyword"  placeholder="请输入..." style="width: 160px;" autocomplete="off" class="layui-input">-->
+                                <!--</div>-->
+                                <!--<div class="layui-inline">-->
+                                    <!--<button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search" id="search-bt">-->
+                                        <!--<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<ul id="organizationTree" class="ztree ewip-left-tree"></ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="layui-col-sm12 ewip-panel-right">
                 <div class="layui-card">
                     <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                         <div class="layui-form-item">

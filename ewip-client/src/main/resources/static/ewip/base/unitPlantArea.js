@@ -36,12 +36,12 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'unit', title: '所属部门',sort: true}
             ,{field: 'area', title: '占地面积（㎡）', sort: true}
             ,{field: 'crops', title: '主要作物', sort: true}
-            ,{field: 'worker', title: '工作人员人数', sort: true}
-            ,{field: 'address', title: '地址', sort: true}
-            ,{field: 'principal', title: '负责人', sort: true}
-            ,{field: 'phone', title: '联系电话', sort: true}
-            ,{field: 'description', title: '种植区描述', sort: true}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+            // ,{field: 'worker', title: '工作人员人数', sort: true}
+            // ,{field: 'address', title: '地址', sort: true}
+            // ,{field: 'principal', title: '负责人', sort: true}
+            // ,{field: 'phone', title: '联系电话', sort: true}
+            // ,{field: 'description', title: '种植区描述', sort: true}
+            ,{title: '操&nbsp;&nbsp;作',width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -227,6 +227,44 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        }
+        /**
+         * 列表中：详细信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            let param = obj.data;
+            console.log(param);
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i>详细信息"
+                ,area: '500px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.district
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                    });
+                    form.render();
                 }
             });
         }

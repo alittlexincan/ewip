@@ -16,6 +16,7 @@
 
     <!-- 列表：数据行操作 -->
     <script type="text/html" id="btnGroupOption">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
         {{# if(d.child != 0) { }}
         <a class="layui-btn layui-btn-disabled layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -89,7 +90,6 @@
 
     <!-- 修改弹出层 -->
     <script id="updatePop" type="text/html">
-
         <div class="layui-form layui-form-pane">
             <div class="layui-form-item">
                 <label class="layui-form-label">所属地区</label>
@@ -149,6 +149,62 @@
             </div>
         </div>
     </script>
+
+    <!-- 详细弹出层 -->
+    <script id="detailsPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="detailsAreaId" name="areaId" style="pointer-events: none;" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-block">
+                    <select name="type" disabled="disabled" lay-verify="type" placeholder="请选择发布手段类型">
+                        <option value="">请选择发布手段类型</option>
+                        <option value="0">渠道</option>
+                        <option value="1">手段</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属手段</label>
+                <div class="layui-input-block">
+                    <select class="channel" disabled="disabled" name="pId" lay-verify="pId" placeholder="请选择所属发布手段">
+                        <option value="">请选择发布手段</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手段名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" disabled="disabled" value="{{d.name}}" lay-verify="name" placeholder="请输入发布手段名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">手段编码</label>
+                <div class="layui-input-block">
+                    <input type="text" name="code" disabled="disabled" value="{{d.code}}" lay-verify="code" placeholder="请输入发布手段编码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否启用</label>
+                <div class="layui-input-block" >
+                    <input type="radio" name="status" value="0" title="禁用" disabled="disabled">
+                    <input type="radio" name="status" value="1" title="启用" checked disabled="disabled">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传图标</label>
+                <div class="layui-input-block upload">
+                    <img src="/client/{{d.icon}}" style="width:50px;height:50px;">
+                </div>
+            </div>
+        </div>
+    </script>
+
 
 
     <div class="layui-fluid">

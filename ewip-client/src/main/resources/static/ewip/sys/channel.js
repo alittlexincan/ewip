@@ -69,7 +69,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', templet: iconFormat }
             ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
             ,{field: 'status', title: '状&nbsp;&nbsp;态', sort: true, templet: statusFormat }
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -383,6 +383,58 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        }/**
+         * 列表中：修改发布手段信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            var param = obj.data;
+
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 发布渠道信息"
+                ,area: ['700px','500px']
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 发布下拉绑定
+                        selectChannel(function (result) {
+                            if(result!=null){
+                                for(var i = 0; i<result.length; i++){
+                                    $("#detailsDiv .channel").append("<option value='"+result[i].id+"'>"+result[i].name+"</option>");
+                                }
+                            }
+                            // 地区级别下拉框赋值
+                            $("#detailsDiv .channel").val(param.pId);
+                            form.render('select');
+                        });
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                        // 地区级别下拉框赋值
+                        $("#detailsDiv select[name='type']").val(param.type);
+                    });
+
+                    form.render();
                 }
             });
         }

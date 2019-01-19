@@ -27,7 +27,7 @@ public class UploadFileUtil {
         try {
             String fileName = file.getOriginalFilename();
             //判断是否有文件且是否为图片文件
-            if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isImageFile(fileName)) {
+            if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) ) {
                 //创建输出文件对象
                 File outFile = new File(uploadPath + "/" + level + "/" + fileName);
                 //拷贝文件到输出文件对象

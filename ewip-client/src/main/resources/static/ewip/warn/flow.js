@@ -150,6 +150,7 @@ layui.use(['table','form','element','zTree'], function(){
          * 数据回显内容
          */
         ,"calBackContentList": result => {
+            debugger;
             // 循环渠道
             result.channel.forEach(channel => {
                 let html = "";
@@ -159,16 +160,27 @@ layui.use(['table','form','element','zTree'], function(){
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list content_" + channel.channelId + "'>";
                 // 循环地区
-                result.area.forEach(area => {
-                    html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
-                    html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                    html += "						<div>" + area.areaName + "</div>";
-                    html += "					</div>";
-                    html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
-                    html += "					</div>";
-                    html += "				</div>";
-                });
+                // result.area.forEach(area => {
+                //     html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
+                //     html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                //     html += "						<div>" + area.areaName + "</div>";
+                //     html += "					</div>";
+                //     html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                //     html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                //     html += "					</div>";
+                //     html += "				</div>";
+                // });
+
+                html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + result.areaId + "'>";
+                html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                html += "						<div>" + result.areaName + "</div>";
+                html += "					</div>";
+                html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + result.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                html += "					</div>";
+                html += "				</div>";
+
+
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";

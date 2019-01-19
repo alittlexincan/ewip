@@ -15,6 +15,7 @@
 
     <!-- 列表：数据行操作 -->
     <script type="text/html" id="btnGroupOption">
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
 
@@ -122,6 +123,51 @@
             <div class="layui-form-item layui-hide" >
                 <div class="layui-input-block layui-col-md-offset4">
                     <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">修改</button>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 详情弹出层 -->
+    <script id="detailsPop" type="text/html">
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属地区</label>
+                <div class="layui-input-block">
+                    <div id="detailsAreaId" name="areaId" style="pointer-events: none;" disabled="disabled" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属机构</label>
+                <div class="layui-input-block">
+                    <select id="detailsOrganizationId" disabled="disabled" name="organizationId" lay-verify="required" lay-search="">
+                        <option value="">直接选择或搜索选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属渠道</label>
+                <div class="layui-input-block">
+                    <select name="channelId" disabled="disabled" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
+                        <option value="">请选择所属渠道</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">群组名称</label>
+                <div class="layui-input-block">
+                    <input type="text" disabled="disabled" name="name" value="{{d.name}}" lay-verify="name" placeholder="请输入群组名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">群组类型</label>
+                <div class="layui-input-block">
+                    <select name="type" lay-verify="required" disabled="disabled"  placeholder="请选择群组类型" lay-search="" >
+                        <option value="">请选择群组类型</option>
+                        <option value="1">责任人群组</option>
+                        <option value="2">基层防御群组</option>
+                    </select>
                 </div>
             </div>
         </div>
