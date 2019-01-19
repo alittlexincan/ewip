@@ -14,24 +14,41 @@ import java.util.Set;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", length = 64)
     private String id;
 
-    @Column(name = "role", length = 50)
-    private String role;
+    /**
+     * 角色名称
+     */
+    @Column(name = "name", length = 50)
+    private String name;
 
+    /**
+     * 角色描述
+     */
     @Column(name = "description", length = 200)
     private String description;
 
-    @Column(name = "status", length = 1)
-    private Integer status;
+    /**
+     * 创建者
+     * 根据创建人的机构信息查询这个机构下的所有角色
+     */
+    @ManyToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    private Employee creator;
 
+    /**
+     * 创建时间
+     */
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 角色下所有权限
+     */
+    @ManyToMany
     @JoinTable(
             name = "role_permission",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
@@ -39,7 +56,10 @@ public class Role {
     )
     private Set<Permission> permissions;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    /**
+     * 角色下所有菜单
+     */
+    @ManyToMany
     @JoinTable(
             name = "role_menu",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
@@ -47,7 +67,10 @@ public class Role {
     )
     private Set<Menu> menus;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    /**
+     * 角色下所有员工
+     */
+    @ManyToMany(mappedBy = "roles")
     private Set<Employee> employees;
 
 }
