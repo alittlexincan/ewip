@@ -72,8 +72,6 @@ public class WechatServiceImpl implements IWechatService {
     @Async
     public void wechat(JSONObject json) {
 
-        System.out.println(json);
-
         JSONObject result = new JSONObject();
 
         // 1：初始化加载微信配置信息
@@ -200,8 +198,6 @@ public class WechatServiceImpl implements IWechatService {
             map.put("channelCode", "WECHAT");
             // 读取短信配置信息
             ChannelConfig config = this.channelConfigMapper.selectChannelConfig(map);
-
-            System.out.println(config);
 
             // 全局赋值
             JSONObject cc = JSONObject.parseObject(config.getContent());

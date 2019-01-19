@@ -10,7 +10,7 @@ public class WechatConfig {
     private String type;
     private String appId;
     private String areaId;
-    private String number;
+    private int number;
     private String okUser;
     private String tokenUrl;
     private String appSecret;

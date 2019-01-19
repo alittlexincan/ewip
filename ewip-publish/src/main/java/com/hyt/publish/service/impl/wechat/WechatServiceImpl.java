@@ -94,7 +94,7 @@ public class WechatServiceImpl implements IWechatService {
         log.info("===============微信推送=====================");
         // 1：通过tokenUrl获取access_token
         log.info("获取微信tokenUrl: 【{}】",tokenUrl);
-        JSONObject token = this.restTemplate.getForObject(tokenUrl,JSONObject.class);
+        JSONObject token = this.restTemplate.getForObject(tokenUrl, JSONObject.class);
         String accessToken = token.getString("access_token");
         if(accessToken == null){
             log.info("微信推送获取TOKEN失败！{}", token);

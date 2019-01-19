@@ -1,8 +1,10 @@
 package com.zhxu.message;
 
 import com.zhxu.message.service.email.EmailHandler;
+import com.zhxu.message.service.record.RecordHandler;
 import com.zhxu.message.service.sinaweibo.SinaWeiBoHandler;
 import com.zhxu.message.service.sms.SmsHandler;
+import com.zhxu.message.service.wechat.WechatHandler;
 import com.zhxu.model.message.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,12 @@ public class MessagePublisherTests {
     @Autowired
     private EmailHandler emailHandler;
 
+    @Autowired
+    private WechatHandler wechatHandler;
+
+    @Autowired
+    private RecordHandler recordHandler;
+
     @Test
     public void testSend() {
         Message message = new Message();
@@ -46,14 +54,15 @@ public class MessagePublisherTests {
         message.setGroups(groups);
 
         area.setId("52db5b81970911e8a5ed8cec4b81c244");
-        channel.setType(ChannelType.EMAIL);
+        channel.setType(ChannelType.WECHAT);
 
         message.setArea(area);
         message.setChannel(channel);
-        message.setTitle("测试信息");
-        message.setContent("這是測試信息。收到请忽略！");
+        message.setTitle("测试信息:这是预警标题");
+        message.setContent("测试信息：这是预警内容。");
 
-        emailHandler.handle(message);
+        //wechatHandler.handle(message);
+        recordHandler.handle(message);
 //        sinaWeiBoHandler.handle(message);
     }
 }

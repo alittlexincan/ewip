@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * @Auther: lxv
+ * @Auther: msm
  * @Date: 2018/11/15 13:00
  * @Description:
  */
@@ -64,7 +64,7 @@ public class FaxServiceImpl implements IFaxService {
                     //上传文件到ftp
                     boolean flag = FTPUtil.uploadFile(uploadPath+url, "天气预报.txt");
                 }
-                //FTPUtil.close();//关闭资源
+                FTPUtil.close();//关闭资源
             }
 
         } catch (Exception e) {

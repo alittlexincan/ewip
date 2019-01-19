@@ -14,6 +14,7 @@ public enum ChannelType {
     LED("LED", "显示屏"),
     SPEAKER("SPEAKER", "大喇叭"),
     VOICE("VOICE", "语音"),
+    RECORD("RECORD", "国突"),
     BEIDOU("BEIDOU", "北斗");
 
 
