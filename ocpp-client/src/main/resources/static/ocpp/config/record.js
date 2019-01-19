@@ -20,19 +20,16 @@ layui.use(["table","element","form","laytpl","layer","selectTree"], function(){
      */
     form.verify({
         host: value => {
-            if(value.length == 0) return '请输入FAX连接地址如：192.168.1.123';
+            if(value.length == 0) return '请输入国突连接地址如：192.168.1.123';
         }
         ,port: value => {
-            if(value.length == 0) return '请输入FAX连接端口如：21';
+            if(value.length == 0) return '请输入国突连接端口如：21';
         }
         ,user: value => {
-            if(value.length == 0) return '请输入FAX所在电脑登录用户';
+            if(value.length == 0) return '请输入国突所在电脑登录用户';
         }
         ,password: value => {
-            if(value.length == 0) return '请输入FAX所在电脑登录密码';
-        }
-        ,path: value => {
-            if(value.length == 0) return '请输入FAX映射目录';
+            if(value.length == 0) return '请输入国突所在电脑登录密码';
         }
 
     });
@@ -67,7 +64,7 @@ layui.use(["table","element","form","laytpl","layer","selectTree"], function(){
         ,initChannelInfo: () => {
             active.getData({
                 type: "POST",
-                data: {channelCode:"FAX"},
+                data: {channelCode:"RECORD"},
                 url: "/channel/config/select/type"
             }, result => {
                 if(result.code == 200){
@@ -83,7 +80,7 @@ layui.use(["table","element","form","laytpl","layer","selectTree"], function(){
      */
     form.on("submit(submitBtn)", function(data){
         console.log(data);
-        data.field.channelCode = "FAX";
+        data.field.channelCode = "RECORD";
         active.getData({
             type: "POST",
             data: data.field ,
