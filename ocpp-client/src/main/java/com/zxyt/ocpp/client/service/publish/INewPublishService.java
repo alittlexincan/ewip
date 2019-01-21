@@ -6,13 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-/**
- * @ClassName IPublishService
- * @Author Xincan
- * @Version 1.0
- **/
 @Service("newPublishService")
-@FeignClient(name = "MESSAGE-PUBLISHER")
+@FeignClient(name = "MESSAGE-CENTER")
 public interface INewPublishService {
 
     /**
