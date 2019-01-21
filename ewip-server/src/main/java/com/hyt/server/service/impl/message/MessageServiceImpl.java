@@ -18,7 +18,6 @@ import com.hyt.server.mapper.message.IMessageUserMapper;
 import com.hyt.server.service.message.IMessageService;
 import com.hyt.server.service.publish.INewPublishService;
 import com.hyt.server.service.publish.IPublishService;
-import com.zhxu.model.message.PubInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,9 +54,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
     @Autowired
     INewPublishService newPublishService;
-
-    @Autowired
-    MessageTransformer messageTransformer;
 
     @Override
     public PageInfo<Message> selectAll(Map<String, Object> map) {
@@ -139,15 +135,14 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
         json.put("id",messageId);
 
-        if (false) {
+        /**
             Map<String, Object> param = json;
             System.out.println(json);
             // 调用分发平台
             this.publishService.publish(param);
-        } else {
-            PubInfo pubInfo = messageTransformer.transform(json);
-            newPublishService.publish(pubInfo);
-        }
+        */
+
+        newPublishService.publish(json);
 
         return message;
     }
@@ -238,7 +233,11 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
                 list.add(messageUser);
             }
         }
-        return this.messageUserMapper.insertList(list);
+        if (list.size() > 0) {
+            return this.messageUserMapper.insertList(list);
+        } else {
+            return 0;
+        }
     }
 
 
@@ -329,11 +328,17 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
             ).collect(Collectors.toList());
 
             // 预警内容
-            Map<String, List<MessageContent>> content = list.stream().collect(Collectors.groupingBy(MessageContent::getChannelId));
+            // Map<String, List<MessageContent>> content = list.stream().collect(Collectors.groupingBy(MessageContent::getChannelId));
 
-            result.put("channel",channelArray);
-            result.put("area",areaArray);
-            result.put("content",content);
+            Map<String, String> content = new HashMap<>();
+
+            list.forEach(message -> {
+                content.put(message.getAreaId(), message.getContent());
+            });
+
+            result.put("channels",channelArray);
+            result.put("areas",areaArray);
+            result.put("contents",content);
         }
     }
 
@@ -348,11 +353,11 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         Map<String, Object> map = new HashMap<>();
         map.put("messageId", messageId);
         List<MessageUser> list = this.messageUserMapper.selectByMessageId(map);
+        // 组装渠道下的群组，一个渠道可能对应多个群组
+        JSONObject group = new JSONObject();
+        // 组装渠道下的用户，一个群组可能对应多个用户
+        JSONObject user = new JSONObject();
         if(list.size() > 0){
-            // 组装渠道下的群组，一个渠道可能对应多个群组
-            JSONObject group = new JSONObject();
-            // 组装渠道下的用户，一个群组可能对应多个用户
-            JSONObject user = new JSONObject();
             // 渠道去重
             Map<String, List<MessageUser>> groupList = list.stream().collect(Collectors.groupingBy(MessageUser::getChannelId));
             list.forEach(ms -> {
@@ -389,9 +394,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
                 // 当前群组下追加受众用户
                 user.put(ms.getUserGroupId(), userGroupArray);
             });
-            result.put("user", user);
-            result.put("group", group);
         }
+        result.put("users", user);
+        result.put("groups", group);
     }
 
     /**
