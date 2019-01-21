@@ -150,7 +150,6 @@ layui.use(['table','form','element','zTree'], function(){
          * 数据回显内容
          */
         ,"calBackContentList": result => {
-            debugger;
             // 循环渠道
             result.channel.forEach(channel => {
                 let html = "";

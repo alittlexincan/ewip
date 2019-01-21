@@ -265,8 +265,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
      */
     var userGroupClick = function(event, treeId, treeNode){
         var where = {};
-        debugger;
-        console.log(treeNode);
         if(treeNode.type == 1){
             where.userGroupId = null;
             where.organizationId = treeNode.id;
@@ -340,7 +338,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
      * @param flag             需要高亮显示的节点标识
      */
     let highlightAndExpand_ztree= function (treeId, highlightNodes, flag){
-        debugger;
         var treeObj = $.fn.zTree.getZTreeObj(treeId);
         //<1>. 先把全部节点更新为普通样式
         var treeNodes = treeObj.transformToArray(treeObj.getNodes());
