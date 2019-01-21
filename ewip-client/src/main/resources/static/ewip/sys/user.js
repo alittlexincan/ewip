@@ -42,15 +42,15 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'name', title: '受众名称', sort: true}
+            ,{field: 'name', title: '人员名称', sort: true}
             ,{field: 'code', title: '终端号码',sort: true}
-            ,{field: 'channelName', title: '所属渠道'}
-            ,{field: 'userGroupName', title: '所属群组', sort: true}
-            ,{field: 'organizationName', title: '所属机构'}
             ,{field: 'areaName', title: '所属地区'}
-            ,{field: 'age', title: '年龄'}
-            ,{field: 'sex', title: '性别', sort: true, templet: sexFormat }
-            ,{field: 'type', title: '类型', sort: true, templet: typeFormat }
+            // ,{field: 'channelName', title: '所属渠道'}
+            // ,{field: 'userGroupName', title: '所属群组', sort: true}
+            // ,{field: 'organizationName', title: '所属机构'}
+            // ,{field: 'age', title: '年龄'}
+            // ,{field: 'sex', title: '性别', sort: true, templet: sexFormat }
+            // ,{field: 'type', title: '类型', sort: true, templet: typeFormat }
             // ,{field: 'job', title: '职务',sort: true}
             // ,{field: 'duties', title: '职责'}
             // ,{field: 'leader', title: '领导', sort: true}
@@ -267,7 +267,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
         var where = {};
         if(treeNode.type == 1){
             where.userGroupId = null;
-            where.organizationId = treeNode.organizationId;
+            where.organizationId = treeNode.id;
         }else {
             where.organizationId = null;
             where.userGroupId = treeNode.id;
@@ -338,7 +338,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
      * @param flag             需要高亮显示的节点标识
      */
     let highlightAndExpand_ztree= function (treeId, highlightNodes, flag){
-        debugger;
         var treeObj = $.fn.zTree.getZTreeObj(treeId);
         //<1>. 先把全部节点更新为普通样式
         var treeNodes = treeObj.transformToArray(treeObj.getNodes());

@@ -189,7 +189,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 dataType: "json",
                 success: function(res) {
 
-                    if(res.status == 500) return;
+                    // if(res.status == 500) return;
 
                     //创建图片对象
                     let createIcon = iconUrl =>{
@@ -204,17 +204,33 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     let content = data => {
                         let html ="<div>";
                         html +="    <ul style='padding-bottom: 3px;display: inline-block;'>站点名称："+data.Station_Name+"</ul>";
-                        html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>温度："+data.TEM+"</ul>";
+                        if(data.hasOwnProperty('MaxTmpMsg')){
+                            html +="    <ul style='padding-bottom: 3px; color:red;'>最高温度："+data.TEM_Max+"</ul>";
+                        }else{
+                            html +="    <ul style='padding-bottom: 3px;'>最高温度："+data.TEM_Max+"</ul>";
+                        }
+                        if(data.hasOwnProperty('MinTmpMsg')){
+                            html +="    <ul style='padding-bottom: 3px;color:red;'>最低温度：" + data.TEM_Min + "</ul>";
+                        }else{
+                            html +="    <ul style='padding-bottom: 3px;'>最低温度：" + data.TEM_Min + "</ul>";
+                        }
                         html +="    <ul style='padding-bottom: 3px;'>湿度："+data.RHU+"</ul>";
                         html +="    <ul style='padding-bottom: 3px;'>风向："+data.WIN_D_Avg_2mi+"</ul>";
                         html +="    <ul style='padding-bottom: 3px;'>风速："+data.WIN_S_Avg_2mi+"</ul>";
                         html +="    <ul style='padding-bottom: 3px;'>气压："+data.PRS+"</ul>";
-                        html +="    <ul style='padding-bottom: 3px;" + (data.Type=="red" ? "color:red;":"") + "'>降水量："+data.PRE_1h+"</ul>";
-                        if(data.hasOwnProperty('PreMsg')){
-                            html +="    <ul style='padding-bottom: 3px;'>温度告警信息：" + data.PreMsg + "</ul>";
+                        if(data.hasOwnProperty('RainMsg')){
+                            html +="    <ul style='padding-bottom: 3px;color:red;'>降水量："+data.PRE_1h+"</ul>";
+                        }else{
+                            html +="    <ul style='padding-bottom: 3px;'>降水量："+data.PRE_1h+"</ul>";
+                        }
+                        if(data.hasOwnProperty('MaxTmpMsg')){
+                            html +="    <ul style='padding-bottom: 3px;color:red;'>高温告警信息：" + data.MaxTmpMsg + "</ul>";
+                        }
+                        if(data.hasOwnProperty('MinTmpMsg')){
+                            html +="    <ul style='padding-bottom: 3px;color:red;'>低温告警信息：" + data.MinTmpMsg + "</ul>";
                         }
                         if(data.hasOwnProperty('RainMsg')){
-                            html +="    <ul style='padding-bottom: 3px;'>降水告警信息：" + data.RainMsg + "</ul>";
+                            html +="    <ul style='padding-bottom: 3px;color:red;'>降水告警信息：" + data.RainMsg + "</ul>";
                         }
                         html +="</div>";
 
@@ -235,13 +251,9 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                         });
                     };
 
-
                     let shikuang = null,
-                        // currentStation = $("#stationId").val();
                         currentStation = res.stationId;
-
                     res.data.forEach( station => {
-
                         if(station.Station_Id_C == currentStation){
                             shikuang = station;
                         }

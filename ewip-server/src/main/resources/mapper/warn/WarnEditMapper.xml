@@ -104,9 +104,11 @@
           d.code disaster_code,
           d.disaster_color,
           d.disaster_level,
-          d.icon
+          d.icon,
+          a.area_name
         FROM warn_edit we
 		LEFT JOIN disaster d ON d.id = we.disaster_id
+		LEFT JOIN area a ON a.id = we.area_id
 		LEFT JOIN organization o ON o.id = we.organization_id
         WHERE we.id = #{warnEditId}
     </select>

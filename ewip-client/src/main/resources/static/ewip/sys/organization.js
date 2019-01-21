@@ -73,12 +73,12 @@ layui.use(["table","form","laytpl","layer","selectTree","ajaxFileUpload"], funct
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'code', title: '机构编码', sort: true}
             ,{field: 'organizationName', title: '机构名称', sort: true}
-            // ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
             ,{field: 'areaName', title: '所属地区', sort: true}
             ,{field: 'type', title: '机构类型',sort: true, templet: typeFormat}
-            ,{title: '操&nbsp;&nbsp;作', width: 170, align:'center', toolbar: '#btnGroupOption'}
+            // ,{field: 'code', title: '机构编码', sort: true}
+            // ,{field: 'parentName', title: '上级机构', sort: true, templet:nameFormat}
+            ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -178,8 +178,8 @@ layui.use(["table","form","laytpl","layer","selectTree","ajaxFileUpload"], funct
 
         }
         ,code: function (value) {
-            // if(value.length == 0) return '请输入机构编码';
-            if(!(value >= 100000000000 && value <= 999999999999)) return '机构编码范围值为[100000000000, 999999999999]';
+            if(value.length == 0) return '请输入机构编码';
+            if(!(value >= 10000000000000 && value <= 99999999999999)) return '机构编码范围值为[10000000000000, 99999999999999]14位';
         }
     });
 
@@ -383,6 +383,49 @@ layui.use(["table","form","laytpl","layer","selectTree","ajaxFileUpload"], funct
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        } /**
+         * 列表中：机构信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 详细信息"
+                ,area: ['600px','400px']
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        // 地区级别下拉框赋值
+                        $("select[name='level']").val(param.level);
+                        $("select[name='type']").val(param.type);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='pId']").val(param.organizationId);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                    });
+                    form.render();
                 }
             });
         }

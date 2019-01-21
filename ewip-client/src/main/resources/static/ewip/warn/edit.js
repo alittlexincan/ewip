@@ -222,6 +222,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "					</div>";
                 html += "				</div>";
 
+
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";
@@ -596,10 +597,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          */
         ,"disClickNode":function (event, treeId, treeNode) {
             //关闭当前弹出层
-            debugger;
             layer.close(layer.index);
             if(treeNode.isConfig==1){
-                debugger;
                 let name = treeNode.name;
                 if(name.indexOf("[") > -1){
                     name = name.substring(0, name.indexOf("["));
@@ -987,6 +986,24 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         }
     });
 
+    //时间计算
+    var dateTime = function(day){
+        var now = new Date();
+        var date = new Date(now.getTime() - day * 24 * 3600 * 1000);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        month = month < 10 ? "0"+month : month;
+        day = day < 10 ? "0" + day : day;
+        hour = hour < 10 ? "0" + hour : hour;
+        minute = minute < 10 ? "0" + minute : minute;
+        second = second < 10 ? "0" + second : second;
+        return year + '-' + month + '-' + day  + ' ' + hour + ':' + minute + ':' + second;
+    };
+
 
     /**
      * tab选项卡前按钮移动操作
@@ -1133,10 +1150,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 });
             });
         }());
-
-        debugger;
         console.log(param);
-
         // 数据提交
         ajaxFileUpload.render({
             async: true

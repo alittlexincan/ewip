@@ -130,6 +130,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         $("#addOrganizationId").empty().append(html);
                     }else{
                         $("#updateOrganizationId").empty().append(html);
+                        $("#detailsOrganizationId").empty().append(html);
                     }
                 }
                 form.render();
@@ -401,8 +402,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                                 selectTree.hideTree();
                             }
                         });
-
-
                         // 初始化下拉树(机构)
                         // selectTree.render({
                         //     'id': 'updateOrganizationId'
@@ -429,7 +428,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     $("#subbmitUpdateBtn").click();
                 }
             });
-        }/**
+        }
+        /**
          * 分配角色
          */
         ,"roleOption": obj => {
@@ -492,6 +492,48 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     });
                     // 触发表单按钮点击事件
                     $("#submitRoleBtn").click();
+                }
+            });
+        }
+        /**
+         * 列表中：员工详细信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 员工详细信息"
+                ,area: '500px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsEmployee' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsEmployee").empty().append(html);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
+                        // 初始化下拉树(地区)
+                        let areaId = "";
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                    });
+                    form.render();
                 }
             });
         }

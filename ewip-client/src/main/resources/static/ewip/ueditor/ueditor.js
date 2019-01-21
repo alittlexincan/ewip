@@ -281,17 +281,15 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         var option={dateTime:dateTime(),group:employee.organizationName};
         var flag=data.value;
         if(flag==0) {
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getFestivalProductTemplate(option), isAppendTo);
         }else if(flag==1){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getQixiangProductTemplate(option), isAppendTo);
         }else if(flag==2){
             active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
         }else if(flag==3){
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getWorkProductTemplate(option), isAppendTo);
         }else if(flag==4){
-            active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
-        }else if(flag==5){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getDisasterProductTemplate(option), isAppendTo);
         }
         // active.editor.setEnabled();//使其可以编辑
     });

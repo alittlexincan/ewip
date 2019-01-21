@@ -64,6 +64,9 @@ public class WarnEditController extends BaseController {
         // 文件开始上传
         JSONArray file = UploadFileUtil.upload(files, uploadPath, warnFile);
         map.put("files", file != null ? file.toJSONString() : "");
+        JSONObject json = new JSONObject(map);
+        System.out.println(map);
+        System.out.println(json);
         return this.warnEditService.insert(map);
     }
 

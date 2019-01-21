@@ -35,9 +35,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'color', title: '灾害等级',sort: true}
             ,{field: 'level', title: '危害程度',sort: true}
             ,{field: 'points', title: '灾害点', sort: true}
-            ,{field: 'path', title: '影响路线', sort: true}
+            // ,{field: 'path', title: '影响路线', sort: true}
             ,{field: 'length', title: '路线长度', sort: true}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作',width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -271,6 +271,59 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        }
+        /**
+         * 列表中：详细信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            let param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i>详细信息"
+                ,area: '500px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        // 初始化下拉树(地区)
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+
+                        // 下拉框赋值
+                        $("select[name='color']").val(param.color);
+                        // 下拉改变事件
+                        form.on('select(color)',  data => {
+                            var flag=data.value;
+                            if(flag=="红色") {
+                                $("#levelNew").val("很严重");
+                            }else if(flag=="橙色"){
+                                $("#levelNew").val("严重");
+                            }else if(flag=="黄色"){
+                                $("#levelNew").val("较重");
+                            }else if(flag=="蓝色"){
+                                $("#levelNew").val("一般");
+                            }
+                        });
+                    });
+                    form.render();
                 }
             });
         }

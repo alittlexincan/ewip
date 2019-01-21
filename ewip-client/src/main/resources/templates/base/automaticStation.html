@@ -41,6 +41,7 @@
 
                 <!-- 列表：数据行操作 -->
                 <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
                 </script>
@@ -728,6 +729,285 @@
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn"  id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+
+
+                <!-- 详情弹出层 -->
+                <script id="detailsPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所属地区</label>
+                            <div class="layui-input-block">
+                                <div id="detailsAreaId" style="pointer-events: none;"  name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}" autocomplete="off" placeholder="请输入名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">区域号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="code" disabled="disabled" lay-verify="code" value="{{d.code}}" autocomplete="off" placeholder="请输入区域号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">站地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" disabled="disabled" lay-verify="address" value="{{d.address}}" autocomplete="off" placeholder="请输入站地址" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否考核</label>
+                            <div class="layui-input-block">
+                                {{# if(d.isCheck==0){ }}
+                                <input type="radio" name="isCheck" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="isCheck" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="isCheck" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="isCheck" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" disabled="disabled" lay-verify="lon" value="{{d.lon}}" autocomplete="off" placeholder="请输入经度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" disabled="disabled" lay-verify="lat" value="{{d.lat}}" autocomplete="off" placeholder="请输入纬度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">测站海拔高度（m）</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="height"  disabled="disabled" lay-verify="height" value="{{d.height}}" autocomplete="off" placeholder="请输入海拔高度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">气压传感器海拔高度（m）</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="pressureHeight" disabled="disabled" value="{{d.pressureHeight}}" autocomplete="off" placeholder="请输入传感器海拔高度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">降水停用时段开始月</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="rainfallStartMonth" disabled="disabled" value="{{d.rainfallStartMonth}}" autocomplete="rainfallStartMonth" placeholder="请输入降水停用时段开始月" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">降水停用时段结束月</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="rainfallEndMonth" disabled="disabled" value="{{d.rainfallEndMonth}}" autocomplete="rainfallEndMonth" placeholder="请输入降水停用时段结束月" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自动站型号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="type" disabled="disabled" lay-verify="type" value="{{d.type}}" autocomplete="off" placeholder="请输入自动站型号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自动站生产厂</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="factory" disabled="disabled" value="{{d.factory}}" autocomplete="off" placeholder="请输入自动站生产厂" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">要素数</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="element" disabled="disabled" autocomplete="element" value="{{d.element}}" placeholder="请输入要素数" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">气温</label>
+                            <div class="layui-input-block">
+                                {{# if(d.airTemperature==0){ }}
+                                <input type="radio" name="airTemperature" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="airTemperature" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="airTemperature" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="airTemperature" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">露点温度</label>
+                            <div class="layui-input-block">
+                                {{# if(d.temperature==0){ }}
+                                <input type="radio" name="temperature" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="temperature" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="temperature" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="temperature" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">气压</label>
+                            <div class="layui-input-block">
+                                {{# if(d.pressure==0){ }}
+                                <input type="radio" name="pressure" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="pressure" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="pressure" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="pressure" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">雨量</label>
+                            <div class="layui-input-block">
+                                {{# if(d.rain==0){ }}
+                                <input type="radio" name="rain" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="rain" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="rain" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="rain" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">风向</label>
+                            <div class="layui-input-block">
+                                {{# if(d.windDirection==0){ }}
+                                <input type="radio" name="windDirection" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="windDirection" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="windDirection" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="windDirection" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">风速</label>
+                            <div class="layui-input-block">
+                                {{# if(d.windSpeed==0){ }}
+                                <input type="radio" name="windSpeed" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="windSpeed" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="windSpeed" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="windSpeed" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">相对湿度</label>
+                            <div class="layui-input-block">
+                                {{# if(d.humidity==0){ }}
+                                <input type="radio" name="humidity" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="humidity" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="humidity" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="humidity" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">浅层地温（含地表温）</label>
+                            <div class="layui-input-block">
+                                {{# if(d.landTemperature==0){ }}
+                                <input type="radio" name="landTemperature" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="landTemperature" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="landTemperature" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="landTemperature" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">深层地温</label>
+                            <div class="layui-input-block">
+                                {{# if(d.deepTemperature==0){ }}
+                                <input type="radio" name="deepTemperature" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="deepTemperature" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="deepTemperature" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="deepTemperature" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">太阳辐射</label>
+                            <div class="layui-input-block">
+                                {{# if(d.solarRadiation==0){ }}
+                                <input type="radio" name="solarRadiation" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="solarRadiation" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="solarRadiation" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="solarRadiation" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">能见度</label>
+                            <div class="layui-input-block">
+                                {{# if(d.visibility==0){ }}
+                                <input type="radio" name="visibility" value="1" title="是" disabled="disabled">
+                                <input type="radio" name="visibility" value="0" title="否" checked="checked" disabled="disabled">
+                                {{# }else{ }}
+                                <input type="radio" name="visibility" value="1" title="是" checked="checked" disabled="disabled">
+                                <input type="radio" name="visibility" value="0" title="否" disabled="disabled">
+                                {{# } }}
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">供电方式</label>
+                            <div class="layui-input-block">
+                                <select name="supplyModel" lay-verify="supplyModel" placeholder="请选择方式" disabled="disabled">
+                                    <option value="">请选择方式</option>
+                                    <option value="0">太阳能</option>
+                                    <option value="1">长电</option>
+                                    <option value="2">太阳和长电</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">安装时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="installTime" disabled="disabled" value="{{d.installTime}}" autocomplete="installTime" lay-verify="required" placeholder="请输入安装时间" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">启用时间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="enableTime" disabled="disabled" value="{{d.enableTime}}" autocomplete="enableTime" lay-verify="required" placeholder="请输入启用时间" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">站址环境</label>
+                            <div class="layui-input-block">
+                                <select name="environment" lay-verify="environment" placeholder="请选择方式" disabled="disabled">
+                                    <option value="">请选择方式</option>
+                                    <option value="0">郊外</option>
+                                    <option value="1">乡村</option>
+                                    <option value="2">市区</option>
+                                    <option value="3">海岛</option>
+                                    <option value="4">滨海</option>
+                                    <option value="5">集镇</option>
+                                    <option value="6">山顶</option>
+                                    <option value="7">山腰</option>
+                                    <option value="8">河谷</option>
+                                    <option value="9">沙漠</option>
+                                    <option value="10">草原</option>
+                                </select>
                             </div>
                         </div>
                     </div>

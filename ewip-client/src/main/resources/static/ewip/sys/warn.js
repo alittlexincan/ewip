@@ -54,7 +54,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'disasterLevel', title: '预警级别', templet: levelFormat }
             ,{field: 'content', title: '预警内容', sort: true}
             ,{field: 'instruction', title: '防御指南'}
-            ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -161,6 +161,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         $("#addOrganizationId").empty().append(html);
                     }else{
                         $("#updateOrganizationId").empty().append(html);
+                        $("#detailsOrganizationId").empty().append(html);
                     }
                 }
                 form.render();
@@ -548,6 +549,82 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 }
             });
         }
+        /**
+         * 列表中：预警配置信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            var param = obj.data;
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i>预警配置信息"
+                ,area: '600px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
+                        // 初始化下拉地区拉树
+                        let areaId = "";
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                        // 初始化下拉机构拉树
+                        // selectTree.render({
+                        //     'id': 'updateOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     ,'checkNodeId': param.organizationId
+                        // });
+                        // 初始化下拉灾种级别拉树
+                        selectTree.render({
+                            'id': 'detailsDisasterId'
+                            ,'url': '/client/tree/disaster/level'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.disasterId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                if(treeNode.isConfig==1){
+                                    var name = treeNode.name;
+                                    name = name.substring(0, name.indexOf("["));
+                                    treeNode.name = name;
+                                    $("#detailsDiv input[name='disasterName']").val(name);
+                                    $("#detailsDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                    $("#detailsDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                    selectTree.setValue(treeId,treeNode);
+                                    selectTree.hideTree();
+                                    form.render("select");
+                                }
+                                return false;
+                            }
+                        });
+                        $("#detailsDiv input[name='disasterName']").val(param.disasterName);
+                        $("#detailsDiv select[name='disasterColor']").val(param.disasterColor);
+                        $("#detailsDiv select[name='disasterLevel']").val(param.disasterLevel);
+                        $("#detailsDiv textarea[name='content']").val(param.content);
+                        $("#detailsDiv textarea[name='measure']").val(param.measure);
+                        $("#detailsDiv textarea[name='instruction']").val(param.instruction);
+                        form.render('select');
+                    });
+                    form.render();
+                }
+            });
+        }
 
         /**
          * 列表中：删除选中的预警配置信息
@@ -593,6 +670,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
 
     initOrg(0,null);//初始化机构列表
 
-    orgZtree();
+    // orgZtree();
 
 });

@@ -81,7 +81,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
             ,{field: 'disasterColor', title: '灾种颜色', sort: true, templet:colorFormat}
             ,{field: 'disasterLevel', title: '灾种级别', templet: levelFormat }
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', width:80, templet: iconFormat }
-            ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: 210, align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -320,11 +320,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                             ,'url': '/client/tree/disaster'
                             ,'isMultiple': false
                             ,'checkNodeId': param.pId
-
                         });
-
-
-
                     });
                     form.render();
                 }
@@ -592,6 +588,60 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload', 'selectTree', 'zTr
                     });
                     // 触发表单按钮点击事件
                     $("#submitConfigUpdateBtn").click();
+                }
+            });
+        }
+        /**
+         * 列表中：详细灾种级别信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            var param = obj.data;
+            //示范一个公告层
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 灾种级别信息"
+                ,area: ['600px','500px']
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(configDetailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        // 初始化下拉树
+                        selectTree.render({
+                            'id': 'configDetailsPId'
+                            ,'url': '/client/tree/disaster'
+                            ,'isMultiple': false
+                            ,'range':'#updateDiv'
+                            ,'checkNodeId': param.pId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                $("#detailsDiv select[name='type']").val(treeNode.type);
+                                $("#detailsDiv input[name='name']").val(treeNode.name);
+                                $("#detailsDiv input[name='code']").val(treeNode.code);
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                                form.render("select");
+                            }
+                        });
+                        $('#detailsDiv select[name="type"]').val(param.type);
+                        // 灾种颜色赋值
+                        $("#detailsDiv input[name='disasterColor'][value='"+param.disasterColor+"']").attr("checked",true);
+                        // 灾种级别名称赋值
+                        $('#detailsDiv input[name="levelName"]').val(disaster.chooseColorToLevel(param.disasterLevel).name);
+                        // 灾种级别赋值
+                        $('#detailsDiv input[name="disasterLevel"]').val(param.disasterLevel);
+
+                        // 监听color颜色单选
+                        form.on('radio(color)', function (data) {
+                            $('#detailsDiv input[name="levelName"]').val(disaster.chooseColorToLevel(data.value).name);
+                            $('#detailsDiv input[name="disasterLevel"]').val(data.value);
+                        });
+                    });
+                    form.render();
                 }
             });
         }

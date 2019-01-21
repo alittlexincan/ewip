@@ -57,6 +57,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         $("#addOrganizationId").empty().append(html);
                     }else{
                         $("#updateOrganizationId").empty().append(html);
+                        $("#detailsOrganizationId").empty().append(html);
                     }
                 }
                 form.render();
@@ -81,7 +82,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '策略名称', sort: true}
             ,{field: 'flow', title: '预警流程',width:'40%', sort: true, templet: flowFormat}
-            ,{title: '操&nbsp;&nbsp;作',width: '15%', align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作',width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -587,6 +588,110 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     });
                     // 触发表单按钮点击事件
                     $("#submitUpdateBtn").click();
+                }
+            });
+        }
+
+        /**
+         * 列表中：修改策略配置信息
+         * @param obj
+         */
+        ,'detailsOption': function (obj) {
+            var param = obj.data;
+            layer.open({
+                type: 1
+                ,title: "<i class='layui-icon'>&#xe642;</i> 策略配置信息"
+                ,area: '750px'
+                ,shade: 0.3
+                ,maxmin:true
+                ,offset: '50px'
+                ,btn: ['修改', '取消']
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
+                ,success: function(layero,index){
+                    // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
+                    laytpl(detailsPop.innerHTML).render(param, function(html){
+                        // 动态获取弹出层对象
+                        $("#detailsDiv").empty().append(html);
+                        initOrg(2,null);//初始化机构列表
+                        $("select[name='organizationId']").val(param.organizationId);
+                        // 初始化机构下拉树
+                        let areaId = "";
+                        selectTree.render({
+                            'id': 'detailsAreaId'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.areaId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                areaId = treeNode.id;
+                                initOrg(2,areaId);
+                                //绑定树操作
+                                selectTree.setValue(treeId,treeNode);
+                                selectTree.hideTree();
+                            }
+                        });
+                        // 初始化下拉机构拉树
+                        // selectTree.render({
+                        //     'id': 'updateOrganizationId'
+                        //     ,'url': '/client/tree/organization'
+                        //     ,'isMultiple': false
+                        //     ,'checkNodeId': param.organizationId
+                        // });
+                        // 初始化下拉灾种级别拉树
+                        selectTree.render({
+                            'id': 'detailsDisasterId'
+                            ,'url': '/client/tree/disaster/level'
+                            ,'isMultiple': false
+                            ,'checkNodeId': param.disasterId
+                            ,clickNode:function (event, treeId, treeNode) {
+                                if(treeNode.isConfig==1){
+                                    var name = treeNode.name;
+                                    name = name.substring(0, name.indexOf("["));
+                                    $("#detailsDiv input[name='name']").val(treeNode.name);
+                                    $("#detailsDiv input[name='disasterName']").val(name);
+                                    $("#detailsDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                    $("#detailsDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                    selectTree.setValue(treeId,treeNode);
+                                    selectTree.hideTree();
+                                    form.render("select");
+                                }else{
+                                    layer.msg("请选择灾种级别", {time: 2000});
+                                }
+                                return false;
+                            }
+                        });
+
+                        //流程配置数据回显
+                        if(param.flow.length > 0){
+                            var flow = param.flow.split(",");
+                            for(var i = 0; i<flow.length; i++){
+                                $("#detailsDiv input[type='checkbox'][name='flow'][value='"+flow[i]+"']").attr("checked","checked");
+                            }
+                        }
+
+                        // 渠道查询并做数据回显
+                        selectChannel(function (data) {
+                            for(var i = 0; i<data.length; i++){
+                                if(data[i].status==1){
+                                    $("#detailsChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'" lay-skin="primary" >');
+                                }else{
+                                    $("#detailsChannelId").append('<input type="checkbox" name="channelId" lay-verify="channelId" value="'+data[i].id+'" title="'+data[i].name+'(未部署)" lay-skin="primary" disabled>');
+                                }
+                            }
+                            // 渠道数据回显
+                            if(param.channelId.length > 0 ){
+                                var channleId = param.channelId.split(",");
+                                for(var i = 0; i<channleId.length; i++){
+                                    $("#detailsChannelId input[type='checkbox'][name='channelId'][value='"+channleId[i]+"']").attr("checked","checked");
+                                }
+                            }
+                            form.render('checkbox');
+                        });
+                        $("#detailsDiv input[name='disasterName']").val(param.disasterName);
+                        $("#detailsDiv select[name='disasterColor']").val(param.disasterColor);
+                        $("#detailsDiv select[name='disasterLevel']").val(param.disasterLevel);
+                        form.render('select');
+                    });
+                    form.render();
                 }
             });
         }
