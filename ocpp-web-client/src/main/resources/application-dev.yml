@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ocpp-web-client
+
+server:
+  port: 9999
+
+security:
+  oauth2:
+    client:
+      client-id: ocpp-web-client
+      client-secret: password
+      user-authorization-uri: http://127.0.0.1:8762/oauth/authorize
+      access-token-uri: http://127.0.0.1:8762/oauth/token
+      auto-approve-scopes:
+        - true
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:8762/oauth/token_key

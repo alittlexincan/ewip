@@ -18,7 +18,7 @@ spring:
         enable_lazy_load_no_trans: true
 
 server:
-  port: 6666
+  port: 8762
 
 eureka:
   client:

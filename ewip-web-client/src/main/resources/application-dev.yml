@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ewip-web-client
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8888
+
+security:
+  oauth2:
+    client:
+      client-id: ewip-web-client
+      client-secret: ewipsec
+      user-authorization-uri: http://127.0.0.1:8762/oauth/authorize
+      access-token-uri: http://127.0.0.1:8762/oauth/token
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:8762/oauth/token_key
