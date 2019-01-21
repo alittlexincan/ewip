@@ -1025,6 +1025,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 监听预警提交事件
      */
     form.on("submit(submit)", function(data){
+        debugger;
         // 判断至少选中一个地区
         let areaTree = zTree.getZTree("areaTree");
         let nodes = areaTree.getCheckedNodes(true);

@@ -404,14 +404,14 @@ website:    http://code.google.com/p/jquerytree/
 }
 
 .edit .layui-card-body .imgbox{
-    width: 58px;
+    width: 50px;
     border: 3px solid rgb(230, 232, 232);
     position: relative;
     margin-right: 5px;
     float: left;
 }
 .edit .layui-card-body .imgbox-gray{
-    width: 58px;
+    width: 50px;
     border: 3px solid rgb(230, 232, 232);
     position: relative;
     margin-right: 5px;
