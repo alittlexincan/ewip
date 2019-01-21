@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -47,7 +49,7 @@ public class PublishController {
         object.put("files", JSON.parseArray(object.getString("files"), PublishInfo.Attachment.class));
         PublishInfo info = JSON.parseObject(JSON.toJSONString(object), PublishInfo.class);
 
-        if (info == null) {
+        if (info == null || info.getGroups() == null || info.getUsers() == null) {
             return;
         }
 

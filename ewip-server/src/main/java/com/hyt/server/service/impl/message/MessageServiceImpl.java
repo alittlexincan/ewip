@@ -353,11 +353,12 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         Map<String, Object> map = new HashMap<>();
         map.put("messageId", messageId);
         List<MessageUser> list = this.messageUserMapper.selectByMessageId(map);
-        // 组装渠道下的群组，一个渠道可能对应多个群组
-        JSONObject group = new JSONObject();
-        // 组装渠道下的用户，一个群组可能对应多个用户
-        JSONObject user = new JSONObject();
+
         if(list.size() > 0){
+            // 组装渠道下的群组，一个渠道可能对应多个群组
+            JSONObject group = new JSONObject();
+            // 组装渠道下的用户，一个群组可能对应多个用户
+            JSONObject user = new JSONObject();
             // 渠道去重
             Map<String, List<MessageUser>> groupList = list.stream().collect(Collectors.groupingBy(MessageUser::getChannelId));
             list.forEach(ms -> {
@@ -394,9 +395,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
                 // 当前群组下追加受众用户
                 user.put(ms.getUserGroupId(), userGroupArray);
             });
+            result.put("users", user);
+            result.put("groups", group);
         }
-        result.put("users", user);
-        result.put("groups", group);
     }
 
     /**
