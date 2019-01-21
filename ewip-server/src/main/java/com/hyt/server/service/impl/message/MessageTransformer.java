@@ -39,7 +39,7 @@ public class MessageTransformer {
         area.setId(msg.getString("areaId"));
         area.setName(msg.getString("areaName"));
 
-        List<Message> mss = new ArrayList<>();
+        List<PublishInfo> mss = new ArrayList<>();
 
         // 遍历 Areas
         for (int i = 0; i < areas.size(); i++) {
@@ -88,7 +88,7 @@ public class MessageTransformer {
                     gss.add(gg);
                 }
 
-                Message mms = new Message();
+                PublishInfo mms = new PublishInfo();
 
                 mms.setArea(ar);
                 mms.setChannel(c);

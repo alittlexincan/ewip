@@ -1,7 +1,9 @@
 package com.zhxu.info.system;
 
+import com.zhxu.info.system.entity.Group;
 import com.zhxu.info.system.entity.Organization;
 import com.zhxu.info.system.entity.User;
+import com.zhxu.info.system.repository.GroupRepository;
 import com.zhxu.info.system.repository.JobRepository;
 import com.zhxu.info.system.repository.OrganizationRepository;
 import com.zhxu.info.system.repository.UserRepository;
@@ -26,6 +28,9 @@ public class SystemInformationTests {
     @Autowired
     private JobRepository jobRepository;
 
+    @Autowired
+    private GroupRepository groupRepository;
+
     @Test
     public void contextLoads() {
         List<Organization> all = organizationRepository.findAll();
@@ -35,7 +40,7 @@ public class SystemInformationTests {
     }
 
     @Test
-    public void usetTest() {
+    public void userTest() {
         List<User> all = userRepository.findAll();
         all.forEach(user -> {
             jobRepository.findAllByUserId(user.getId()).forEach(
@@ -44,5 +49,14 @@ public class SystemInformationTests {
                     }
             );
         });
+    }
+
+    @Test
+    public void groupInsertTest() {
+        Group group = new Group();
+        group.setName("test");
+        group.setDescription("test");
+        Group g = groupRepository.save(group);
+        System.out.println(g.getId());
     }
 }

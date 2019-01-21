@@ -17,7 +17,7 @@ import java.util.Date;
  * 作者姓名           修改时间           版本号              描述
  */
 
-@ApiModel(value = "Message",description = "一键发布基础信息实体类")
+@ApiModel(value = "PublishInfo",description = "一键发布基础信息实体类")
 @Table(name = "message")
 public class Message {
 

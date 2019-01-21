@@ -3,6 +3,7 @@ package com.zhxu.info.system.entity;
 import com.zhxu.model.system.OrganizationType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,10 +14,10 @@ import java.util.Set;
 @Setter
 @Entity
 public class Organization {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id",length = 64)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid")
+    @Column(name = "id", length = 32)
     private String id;
 
     /**

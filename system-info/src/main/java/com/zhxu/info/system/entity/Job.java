@@ -2,6 +2,7 @@ package com.zhxu.info.system.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -11,8 +12,9 @@ import javax.persistence.*;
 @Entity
 public class Job {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", length = 64)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid")
+    @Column(name = "id", length = 32)
     private String id;
 
     /**

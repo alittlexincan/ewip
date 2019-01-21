@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @ClassName Message
+ * @ClassName PublishInfo
  * @Description 一键发布信息关联地区和渠道实体类
  * @Author Xincan
  * @Version 1.0

@@ -1,6 +1,6 @@
 package com.zxyt.ocpp.client.service.publish;
 
-import com.zhxu.model.message.PubInfo;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +17,7 @@ public interface INewPublishService {
 
     /**
      * 预警调用分发平台接口
-     * @param json
      */
     @PostMapping("/publish/")
-    void publish(@RequestBody PubInfo json);
+    void publish(@RequestBody JSONObject object);
 }

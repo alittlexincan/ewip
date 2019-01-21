@@ -2,6 +2,7 @@ package com.zhxu.info.system.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,28 +13,28 @@ import java.util.Set;
 @Setter
 @Entity
 public class Area {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", length = 64)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid")
+    @Column(name = "id", length = 32)
     private String id;
 
     /**
      * 地区名称
      */
-    @Column(name = "area_name",length = 50)
+    @Column(name = "area_name", length = 50)
     private String areaName;
 
     /**
      * 地区编码
      */
-    @Column(name = "code",length = 12)
+    @Column(name = "code", length = 12)
     private String code;
 
     /**
      * 地区级别(0：国家；1：省；2：市；3：县；4：乡镇，5：村)
      */
-    @Column(name = "level",length = 1)
+    @Column(name = "level", length = 1)
     private Integer level;
 
     /**

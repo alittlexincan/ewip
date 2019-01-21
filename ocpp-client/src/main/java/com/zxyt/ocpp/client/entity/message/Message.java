@@ -11,12 +11,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @ClassName Message
+ * @ClassName PublishInfo
  * @Description 一键发布消息实体类
  * @Author Xincan
  * @Version 1.0
  **/
-@ApiModel(value = "Message",description = "一键发布信息")
+@ApiModel(value = "PublishInfo",description = "一键发布信息")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

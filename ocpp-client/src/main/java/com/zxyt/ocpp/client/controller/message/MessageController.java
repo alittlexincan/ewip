@@ -31,9 +31,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/message")
 public class MessageController {
 
-    @Autowired
-    private MessageTransformer messageTransformer;
-
     /**
      * 注入消息处理接口
      */
@@ -103,9 +100,9 @@ public class MessageController {
             result.put("files", file != null ? file.toJSONString() : "");
 
             // 调用分发接口
-            this.publishService.publish(result);
+            //this.publishService.publish(result);
 //            PubInfo pubInfo = messageTransformer.transform(result);
-//            newPublishService.publish(pubInfo);
+            newPublishService.publish(result);
 
             return ResultResponse.make(200,result.getString("msg"), result);
         }
