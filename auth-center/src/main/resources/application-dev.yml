@@ -1,21 +1,6 @@
 spring:
   application:
     name: auth-center
-  datasource:
-    url: jdbc:mysql://192.168.1.123:3306/ewip?serverTimezone=GMT%2B8
-    username: root
-    password: root
-  main:
-    allow-bean-definition-overriding: true
-  jpa:
-    show-sql: true
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        format_sql: true
-        enable_lazy_load_no_trans: true
 
 server:
   port: 8762
@@ -24,3 +9,7 @@ eureka:
   client:
     service-url:
       default-zone: http://127.0.0.1:8761/eureka/
+
+logging:
+  level:
+    org.springframework.security: DEBUG

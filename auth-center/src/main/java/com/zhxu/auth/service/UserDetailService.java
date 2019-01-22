@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @FeignClient("SYSTEM-INFO")
-public class UserInfoService implements UserDetailsService {
+public class UserDetailService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,9 +31,9 @@ public class UserInfoService implements UserDetailsService {
         // 获取用户权限列表
         List<GrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorityList.add(new SimpleGrantedAuthority("ROLE_HERO"));
         // 返回带有用户权限信息的User
 
-//        return new User(username, passwordEncoder.encode("123456"), authorityList);
-        return new User(username, "123456", authorityList);
+        return new User(username, passwordEncoder.encode("123456"), authorityList);
     }
 }

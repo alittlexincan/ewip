@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="auth-center" />
+        <module name="basic-info" />
+        <module name="commons-model" />
+        <module name="eureka-registry" />
+        <module name="ewip-client" />
+        <module name="ewip-monitor" />
+        <module name="ewip-publish" />
+        <module name="ewip-server" />
+        <module name="ewip-web-client" />
+        <module name="message-center" />
+        <module name="ocpp-client" />
+        <module name="ocpp-publish" />
+        <module name="ocpp-web-client" />
+        <module name="system-info" />
+        <module name="warning-info" />
+        <module name="zuul-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-center" target="1.8" />
+      <module name="basic-info" target="1.8" />
+      <module name="commons-model" target="1.8" />
+      <module name="eureka-registry" target="1.8" />
+      <module name="ewip-client" target="1.8" />
+      <module name="ewip-monitor" target="1.8" />
+      <module name="ewip-publish" target="1.8" />
+      <module name="ewip-server" target="1.8" />
+      <module name="ewip-web-client" target="1.8" />
+      <module name="message-center" target="1.8" />
+      <module name="message-publisher" target="1.8" />
+      <module name="ocpp-client" target="1.8" />
+      <module name="ocpp-publish" target="1.8" />
+      <module name="ocpp-web-client" target="1.8" />
+      <module name="system-info" target="1.8" />
+      <module name="uni-platform" target="1.8" />
+      <module name="warning-info" target="1.8" />
+      <module name="zuul-gateway" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

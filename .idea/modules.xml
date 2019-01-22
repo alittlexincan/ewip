@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/auth-center/auth-center.iml" filepath="$PROJECT_DIR$/auth-center/auth-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/basic-info/basic-info.iml" filepath="$PROJECT_DIR$/basic-info/basic-info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-model/commons-model.iml" filepath="$PROJECT_DIR$/commons-model/commons-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-registry/eureka-registry.iml" filepath="$PROJECT_DIR$/eureka-registry/eureka-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-client/ewip-client.iml" filepath="$PROJECT_DIR$/ewip-client/ewip-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-monitor/ewip-monitor.iml" filepath="$PROJECT_DIR$/ewip-monitor/ewip-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-publish/ewip-publish.iml" filepath="$PROJECT_DIR$/ewip-publish/ewip-publish.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-server/ewip-server.iml" filepath="$PROJECT_DIR$/ewip-server/ewip-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ewip-web-client/ewip-web-client.iml" filepath="$PROJECT_DIR$/ewip-web-client/ewip-web-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/message-center/message-center.iml" filepath="$PROJECT_DIR$/message-center/message-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ocpp-client/ocpp-client.iml" filepath="$PROJECT_DIR$/ocpp-client/ocpp-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ocpp-publish/ocpp-publish.iml" filepath="$PROJECT_DIR$/ocpp-publish/ocpp-publish.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ocpp-web-client/ocpp-web-client.iml" filepath="$PROJECT_DIR$/ocpp-web-client/ocpp-web-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/system-info/system-info.iml" filepath="$PROJECT_DIR$/system-info/system-info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uni-platform.iml" filepath="$PROJECT_DIR$/uni-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/warning-info/warning-info.iml" filepath="$PROJECT_DIR$/warning-info/warning-info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul-gateway/zuul-gateway.iml" filepath="$PROJECT_DIR$/zuul-gateway/zuul-gateway.iml" />
+    </modules>
+  </component>
+</project>
