@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.universal.IBaseService;
 import com.hyt.server.entity.ueditor.Ueditor;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +16,5 @@ public interface IServerProductService extends IBaseService<Ueditor> {
 
     PageInfo<Ueditor> selectAll(Map<String, Object> map);
 
+    List<Ueditor> selectList(Map<String,Object> map);
 }

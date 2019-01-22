@@ -70,7 +70,7 @@ public class UeditorController {
             poifs.writeFilesystem(ostream);
             bais.close();
             ostream.close();
-            newMap.put("group",map.get("group").toString());
+//            newMap.put("group",map.get("group").toString());
             newMap.put("type",map.get("type").toString());
             newMap.put("title",map.get("title").toString());
             newMap.put("path","/"+serverFile+"/"+ title+".doc");
@@ -80,9 +80,8 @@ public class UeditorController {
             JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
             newMap.put("areaId", employee.getString("areaId"));
             newMap.put("organizationId", employee.getString("organizationId"));
-
             ueditorService.insert(newMap);      //插入数据库表
-            ueditorService.sendMail(newMap);    //发送邮件
+//            ueditorService.sendMail(newMap);    //发送邮件
             json.put("code","success");
             return json;
         }catch(Exception e){

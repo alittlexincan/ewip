@@ -34,4 +34,14 @@ public class ServerProductServiceImpl extends AbstractService<Ueditor> implement
         List<Ueditor> list = this.serverProductMapper.findAll(map);
         return new PageInfo<>(list);
     }
+    /**
+     * 查询所有产品
+     * @param map
+     * @return
+     */
+    @Override
+    public List<Ueditor> selectList(Map<String, Object> map) {
+        List<Ueditor> list = this.serverProductMapper.findAll(map);
+        return list;
+    }
 }

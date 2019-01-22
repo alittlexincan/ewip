@@ -310,12 +310,12 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
             layer.msg('请填写产品名称', {time: 2000});
             return false;
         }
-        if($(".channel-list .imgbox.active").length == 0){
-            layer.msg("请选择渠道", {time: 2000});
-            return false;
-        }
+        // if($(".channel-list .imgbox.active").length == 0){
+        //     layer.msg("请选择渠道", {time: 2000});
+        //     return false;
+        // }
 
-        layer.confirm('确定发布？', function(){
+        layer.confirm('确定制作？', function(){
             $(".channel-list .imgbox.active").each(function () {
                 var channelId = $(this).data("id");
                 var channelName = $(this).data("channel");
@@ -331,7 +331,7 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
                 }
             });
             let param = {
-                group:group.userGroupId,
+                // group:group.userGroupId,
                 type:type,
                 title:title,
                 html: "<html><body>" + text + "</body></html>"
@@ -344,9 +344,9 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
                 dataType: "json",
                 success: function (data) {
                     if(data.code=="success"){
-                        layer.msg('发布成功', {time: 2000});
+                        layer.msg('制作成功', {time: 2000});
                     }else{
-                        layer.msg('发布失败', {time: 2000});
+                        layer.msg('制作失败', {time: 2000});
                     }
                 }
             })
@@ -361,6 +361,6 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         this.initialFrameHeight='400px';//设置编辑器高度
     });
 
-     initChannelList();      // 初始化加载渠道
+     // initChannelList();      // 初始化加载渠道
 
 });

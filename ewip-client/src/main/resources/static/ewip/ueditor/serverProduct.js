@@ -20,12 +20,12 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
      * @returns {string}
      */
     let typeFormat = function(d){
-        if(d.type == 0) return "短期预报";
-        if(d.type == 1) return "中期预报";
-        if(d.type == 2) return "长期预报";
-        if(d.type == 3) return "气象专题专报";
-        if(d.type == 4) return "重大气象专题专报";
-        if(d.type == 5) return "气象预警专题专报";
+
+        if(d.type == 0) return "重大节日天气专报";
+        if(d.type == 1) return "重大气象信息快报";
+        if(d.type == 2) return "气象预警专题专报";
+        if(d.type == 3) return "上下班天气预报";
+        if(d.type == 4) return "地质灾害风险预报";
     };
 
 

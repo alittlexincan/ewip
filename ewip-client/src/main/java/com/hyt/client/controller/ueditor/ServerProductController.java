@@ -4,6 +4,8 @@ package com.hyt.client.controller.ueditor;
 import com.alibaba.fastjson.JSONObject;
 import com.hyt.client.service.ueditor.IServerProductService;
 import com.sun.net.httpserver.Authenticator;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,9 @@ public class ServerProductController {
      */
     @GetMapping("/select")
     JSONObject selectAll(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.serverProductService.selectAll(map);
     }
 
@@ -99,6 +104,9 @@ public class ServerProductController {
      */
     @GetMapping("/selectList")
     JSONObject selectList(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
         return this.serverProductService.selectList(map);
     }
 

@@ -13,20 +13,22 @@
     <!-- 查询信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-            a.id,
-            a.type,
-            a.title,
-            a.path,
-            a.create_time
-        FROM server_product a where 1=1
-        <if test="type != null and type != ''">AND a.type = #{type}</if>
-        <if test="title != null and title != ''">AND a.title LIKE '${title}%'</if>
+        p.id,
+        p.type,
+        p.title,
+        p.path,
+        p.create_time
+        FROM server_product p
+        left join area a on p.area_id=a.id
+        where 1=1 and FIND_IN_SET(p.area_id, getAreaCList(#{empAreaId}))
+        <if test="type != null and type != ''">AND p.type = #{type}</if>
+        <if test="title != null and title != ''">AND p.title LIKE '${title}%'</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY a.create_time DESC
+                ORDER BY p.create_time DESC
             </otherwise>
         </choose>
     </select>

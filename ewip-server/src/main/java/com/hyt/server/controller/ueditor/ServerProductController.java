@@ -55,7 +55,7 @@ public class ServerProductController {
      */
     @GetMapping("/list")
     public ResultObject<Object> selectList(@RequestParam Map<String,Object> map) {
-        List<Ueditor> ueditors = this.serverProductService.selectAll();
+        List<Ueditor> ueditors = this.serverProductService.selectList(map);
         if(ueditors.size()>0){
             return  ResultResponse.make(200,"删除成功",ueditors);
         }
