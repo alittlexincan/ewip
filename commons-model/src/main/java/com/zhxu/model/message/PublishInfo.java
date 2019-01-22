@@ -45,9 +45,77 @@ public class PublishInfo {
      */
     private String title;
     private String type;
-    private String record;
     private String content;
     private String template;
+
+    /**
+     * EWIP 相关信息
+     */
+    private Area area;
+
+    /**
+     * 是否对接国突标识
+     */
+    private String record;
+
+    /**
+     * 对接国突需要的参数
+     */
+
+    /**
+     * 预警信息发布单位ID
+     */
+    private Date organizationCode;
+
+    /**
+     * 预警信息的录入时间
+     */
+    private Date editTime;
+
+    /**
+     * 预警信息发布单位名称
+     */
+    private String organizationName;
+
+    /**
+     * 预警信息的发布时间
+     */
+    private Date sendTime;
+
+    /**
+     * 预警信息类型
+     */
+    private String warnType;
+
+    /**
+     * 预警信息状态
+     */
+    private String msgType;
+
+    /**
+     * 预警信息的发布范围
+     */
+    private String scope;
+
+    /**
+     * 预警事件类型编码
+     */
+    private String disasterCode;
+
+    /**
+     * 预警事件的严重程度
+     */
+    private String disasterLevel;
+
+    /**
+     * 预警信息的签发时间
+     */
+    private Date effective;
+
+    /**
+     * 发布单位签发员
+     */
+    private String employeeName;
 
     /**
      * 地区信息

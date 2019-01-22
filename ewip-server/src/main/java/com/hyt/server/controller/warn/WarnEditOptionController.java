@@ -8,6 +8,7 @@ import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
+import com.hyt.server.service.publish.INewPublishService;
 import com.hyt.server.service.publish.IPublishService;
 import com.hyt.server.service.warn.IWarnEditOptionService;
 import io.swagger.annotations.*;
@@ -41,6 +42,9 @@ public class WarnEditOptionController {
     @Autowired
     private IPublishService publishService;
 
+    @Autowired
+    private INewPublishService newPublishService;
+
     @ApiOperation(value="分页查询预警编辑流程信息",httpMethod="POST",notes="根据参数列表分页查询预警编辑流程信息")
     @ApiImplicitParams({
                 @ApiImplicitParam(name="areaId", value="地区ID",required = true, dataType = "String", paramType = "query"),
@@ -72,8 +76,9 @@ public class WarnEditOptionController {
         if(status > 0){
             // 发布后调用分发接口
             if(status == 4){
-                Map<String, Object> param = new HashMap<>(result);
-                this.publishService.publish(param);
+//                Map<String, Object> param = new HashMap<>(result);
+//                this.publishService.publish(param);
+                newPublishService.publish(result);
             }
             return ResultResponse.make(200,result.getString("msg"),map);
         }

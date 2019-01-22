@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -53,7 +51,7 @@ public class PublishController {
             return;
         }
 
-        doPublish(info);
+        //doPublish(info);
     }
 
     private void doPublish(PublishInfo info) {
@@ -75,6 +73,7 @@ public class PublishController {
                         smsMessage.setContent(content);
                         smsMessage.setMobiles(mobiles);
                         smsHandler.handle(smsMessage);
+                        break;
                     }
                     case EMAIL: {
                         Set<String> emails = new HashSet<>();
@@ -89,6 +88,7 @@ public class PublishController {
                         emailMessage.setEmails(emails);
                         emailMessage.setTitle(info.getTitle());
                         emailHandler.handle(emailMessage);
+                        break;
                     }
                     case WECHAT: {
                         WechatMessage wechatMessage = new WechatMessage();
@@ -97,12 +97,14 @@ public class PublishController {
                         wechatMessage.setTitle(info.getTitle());
                         wechatMessage.setTemplate(info.getTemplate());
                         wechatHandler.handle(wechatMessage);
+                        break;
                     }
                     case WEIBO: {
                         SinaWeiboMessage sinaWeiboMessage = new SinaWeiboMessage();
                         sinaWeiboMessage.setAreaId(areaId);
                         sinaWeiboMessage.setContent(content);
                         sinaWeiboHandler.handle(sinaWeiboMessage);
+                        break;
                     }
                     case RECORD: {
                         RecordMessage recordMessage = new RecordMessage();
@@ -110,6 +112,10 @@ public class PublishController {
                         recordMessage.setContent(content);
                         recordMessage.setTitle(info.getTitle());
                         recordHandler.handle(recordMessage);
+                        break;
+                    }
+                    default: {
+
                     }
                 }
             });

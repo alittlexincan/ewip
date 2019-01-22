@@ -260,9 +260,16 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                     }
             ).collect(Collectors.toList());
             // 预警内容处理
-            Map<String, List<WarnEditContent>> content = list.stream().collect(Collectors.groupingBy(WarnEditContent::getChannelId));
-            result.put("channel",channelArray);
-            result.put("area",areaArray);
+            // Map<String, List<WarnEditContent>> content = list.stream().collect(Collectors.groupingBy(WarnEditContent::getChannelId));
+            Map<String, String> contents = new HashMap<>();
+
+            String content = list.get(0).getContent();
+            list.forEach(message -> {
+                contents.put(message.getAreaId(), message.getContent());
+            });
+            result.put("channels",channelArray);
+            result.put("areas",areaArray);
+            result.put("contents",contents);
             result.put("content",content);
         }
     }
@@ -316,8 +323,8 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 // 当前群组下追加受众用户
                 user.put(weu.getUserGroupId(), userGroupArray);
             });
-            result.put("user", user);
-            result.put("group", group);
+            result.put("users", user);
+            result.put("groups", group);
         }
     }
 
@@ -338,9 +345,9 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 json.put("url", file.getUrl());
                 fileArray.add(json);
             });
-            result.put("files",fileArray);
+            result.put("files",fileArray.toJSONString());
         }else {
-            result.put("files", new JSONArray());
+            result.put("files", "");
         }
     }
 
