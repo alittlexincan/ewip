@@ -263,12 +263,21 @@
                 <!--</div>-->
             <!--</div>-->
 
-            <div class="layui-col-sm12 ewip-panel-right">
+            <div class="layui-col-sm3 ewip-panel-left">
+                <div class="layui-card">
+                    <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>灾种配置</span></div>
+                    <div class="layui-card-body">
+                        <ul id="disasterLevelTree" class="ztree ewip-left-tree"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-sm9 ewip-panel-right">
                 <div class="layui-card">
                     <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input type="text" name="disaster_name" placeholder="请输入预警名称" autocomplete="off" class="layui-input">
+                                <input type="text" name="disasterName" placeholder="请输入预警名称" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
                                 <select id="searchDisasterColor" name="disasterColor" placeholder="请选择预警颜色">

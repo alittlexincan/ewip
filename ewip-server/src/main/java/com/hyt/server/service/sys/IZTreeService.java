@@ -49,6 +49,14 @@ public interface IZTreeService extends IBaseService<ZTree> {
      */
     List<ZTree> getDisasterLevelTree(Map<String, Object> map);
 
+
+    /**
+     * 查询灾种级别树
+     * @param map
+     * @return
+     */
+    List<ZTree> getDisasterByContentTree(Map<String, Object> map);
+
     /**
      * 查询用户组树
      * @param map

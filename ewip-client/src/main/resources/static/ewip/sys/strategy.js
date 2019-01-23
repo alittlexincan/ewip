@@ -14,7 +14,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         ,$ = layui.$       			// 引用layui的jquery
         ,selectTree = layui.selectTree
         ,zTree = layui.zTree
-        ,disaster = layui.disaster;
+        ,disaster = layui.disaster
+        ,employee = layui.sessionData("ewip").employee // 当前登录用户信息
 
     var flowFormat = function(d){
         var flow = d.flow.split(','), html = '<div class="tableFlow">', name = ['录入','审核','签发','应急办签发','发布'];
@@ -180,7 +181,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         reloadTable(where, 2);
     };
     /**
-     * 初始化加载机构树
+     * 初始化加载灾种树
      */
     var disasterLevelTree = zTree.async({
         id: "#disasterLevelTree",
@@ -280,14 +281,16 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             'id': 'addAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                            ,'checkNodeId': employee.areaId
                             ,clickNode:function (event, treeId, treeNode) {
                                 areaId = treeNode.id;
-                                initOrg(1,areaId);
+                                initOrg(1,employee.areaId);
                                 //绑定树操作
                                 selectTree.setValue(treeId,treeNode);
                                 selectTree.hideTree();
                             }
                         });
+                        $("select[name='organizationId']").val(employee.organizationId);
                         // 初始化下拉机构拉树
                         // selectTree.render({
                         //     'id': 'addOrganizationId'
@@ -605,7 +608,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
-                ,btn: ['修改', '取消']
                 ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染

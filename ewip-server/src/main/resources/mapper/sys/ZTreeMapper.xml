@@ -177,6 +177,34 @@
         <if test="pId != null and pId != ''">AND d.p_id = #{pId}</if>
     </select>
 
+
+
+
+    <!-- 查询灾种级别信息树 -->
+    <select id="getDisasterByContentTree" resultMap="ZTreeDisasterResultMap">
+        SELECT
+        d.id,
+        d.name,
+        d.code,
+        d.icon img,
+        d.p_id,
+        d.type,
+        d.disaster_color,
+        d.disaster_level,
+        d.is_config,
+        (SELECT count(1) FROM warn s WHERE s.disaster_id = d.id
+        and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))) is_strategy,
+        d.create_time
+        FROM disaster d
+        where 1=1
+
+        <if test="id != null and id != ''">AND d.id = #{id}</if>
+        <if test="name != null and name != ''">AND d.name LIKE '${name}%'</if>
+        <if test="code != null and code != ''">AND d.code = #{code}</if>
+        <if test="pId != null and pId != ''">AND d.p_id = #{pId}</if>
+    </select>
+
+
     <!-- 查询群组树 -->
     <select id="getUserGroupTree" resultMap="ZTreeUserGroupResultMap">
         SELECT

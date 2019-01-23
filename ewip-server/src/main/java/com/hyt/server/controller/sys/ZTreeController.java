@@ -98,6 +98,12 @@ public class ZTreeController {
         return ResultResponse.ok(disasterTree);
     }
 
+    @PostMapping("/disaster/haveContent")
+    public ResultObject<Object> getDisasterByContentTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
+        List<ZTree> disasterTree = this.zTreeService.getDisasterByContentTree(map);
+        return ResultResponse.ok(disasterTree);
+    }
+
     @ApiOperation(value = "查询群组树", httpMethod = "POST", notes = "根据查询条件查询群组树信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="群组ID", dataType = "String",paramType = "query"),

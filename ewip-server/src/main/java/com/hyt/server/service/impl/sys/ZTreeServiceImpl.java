@@ -96,6 +96,21 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         return list;
     }
 
+
+    @Override
+    public List<ZTree> getDisasterByContentTree(Map<String, Object> map) {
+        List<ZTree> list = this.zTreeMapper.getDisasterByContentTree(map);
+        if (list.size() == 0) return null;
+        for (ZTree tree : list) {
+            if(tree.getIsConfig() == 1){
+                tree.setName(tree.getName() + "[" + DisasterUtil.parseColorString(tree.getDisasterColor()) + "][" + DisasterUtil.parseLevelString(tree.getDisasterLevel()) + "]");
+            }
+            tree.setOpen(true);
+        }
+        return list;
+    }
+
+
     @Override
     public List<ZTree> getUserGroupTree(Map<String, Object> map) {
         List<ZTree> list = this.zTreeMapper.getUserGroupTree(map);

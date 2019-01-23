@@ -38,8 +38,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             ,{field: 'channelName', title: '所属渠道'}
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'organizationName', title: '所属机构'}
-            ,{field: 'type', title: '类型' , templet: typeFormat}
-            ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
+            // ,{field: 'type', title: '类型' , templet: typeFormat}
+            ,{title: '操&nbsp;&nbsp;作', width: "25%", align:'center', toolbar: '#btnGroupOption'}
         ]]
         ,done:function (res, curr, count) {
             var panelHeight = $(".ewip-panel-right").height();
@@ -235,7 +235,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             setting: {
                 async: {
                     enable: true,
-                    url: "/client/tree/organization/group",
+                    url: "/client/tree/organization",
                     autoParam: ["id"],
                     dataType: "json",
                 },
@@ -439,7 +439,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加群组信息"
-                ,area: ['600px','600px']
+                ,area: ['600px','450px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset:'50px'
@@ -532,7 +532,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             });
         }
 
-
         /**
          * 列表中：删除选中的群组信息
          * @param obj
@@ -561,7 +560,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 修改群组信息"
-                ,area: ['600px','600px']
+                ,area: ['600px','450px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
@@ -644,7 +643,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 群组信息"
-                ,area: ['600px','600px']
+                ,area: ['600px','450px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
