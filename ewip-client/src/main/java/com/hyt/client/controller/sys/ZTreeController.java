@@ -84,7 +84,7 @@ public class ZTreeController {
     }
 
     /**
-     * 获取灾种级别树
+     * 获取灾种级别对应流程树
      * @param map
      * @return
      */
@@ -94,6 +94,20 @@ public class ZTreeController {
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
         JSONObject json =  this.zTreeService.getDisasterLevelTree(map);
+        return json.getJSONArray("data");
+    }
+
+    /**
+     * 获取灾种级别对应内容树
+     * @param map
+     * @return
+     */
+    @PostMapping("/disaster/haveContent")
+    JSONArray getDisasterByContentTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
+        JSONObject json =  this.zTreeService.getDisasterByContentTree(map);
         return json.getJSONArray("data");
     }
 

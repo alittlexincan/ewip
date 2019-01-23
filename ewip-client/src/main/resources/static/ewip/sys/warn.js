@@ -74,7 +74,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                 curr: 1
             },
             where: { //设定异步数据接口的额外参数，任意设
-                disasterName: param == undefined ? '' : param.disasterName
+                disasterId: param == undefined ? '' : param.disasterId
+                ,disasterName: param == undefined ? '' : param.disasterName
                 ,disasterColor: param == undefined ? '' : param.disasterColor
                 ,disasterLevel: param == undefined ? '' : param.disasterLevel
             }
@@ -168,6 +169,84 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             }
         });
     }
+
+    /**
+     * 灾种级别树点击事件
+     * @param event
+     * @param treeId
+     * @param treeNode
+     */
+    var disasterLevelClick = function(event, treeId, treeNode){
+        console.log(treeNode);
+        if(treeNode.type < 2){
+            layer.msg('请点击灾种或灾种级别查询', {time: 1000});
+            return false;
+        }
+        var where = {disasterId: treeNode.id};
+        if(treeNode.isConfig == 0){
+            where.disasterColor = null;
+            where.disasterLevel = null;
+        }else{
+            where.disasterColor = treeNode.disasterColor;
+            where.disasterLevel = treeNode.disasterLevel;
+        }
+        reloadTable(where, 2);
+    };
+
+    /**
+     * 初始化加载灾种树
+     */
+    var disasterLevelTree =function(){
+        zTree.async({
+            id: "#disasterLevelTree",
+            setting: {
+                async:{
+                    enable:true,
+                    url: "/client/tree/disaster/haveContent",
+                    autoParam:["id"],
+                    dataType:"json",
+                },
+                check: {
+                    enable: false,
+                    chkboxType: {"Y":"", "N": ""},
+                    chkStyle:"checkbox"
+                },
+                data: {
+                    simpleData: {
+                        enable: true
+                    }
+                },
+                callback:{
+                    onClick:disasterLevelClick
+                },
+                view: {
+                    addDiyDom: function(treeId, treeNode){
+                        console.log(treeNode);
+                        if(treeNode.isStrategy>=1){
+                            console.log(treeNode.isStrategy);
+                            $("#" + treeNode.tId + "_a").prepend('<i class="layui-icon layui-icon-ok" style="font-weight: bold"></i>');
+                        }
+                    },
+                    fontCss: function(treeId, treeNode) {
+                        if(treeNode.level == 4){
+                            if(treeNode.disasterColor == 0){
+                                return {color:"red"}
+                            }else  if(treeNode.disasterColor == 1){
+                                return {color:"orange"}
+                            }else if(treeNode.disasterColor == 2){
+                                return {color:"#d0d057"}
+                            }else if(treeNode.disasterColor == 3){
+                                return {color:"blue"}
+                            }
+                        }
+                        return {};
+                    }
+
+                }
+            }
+        })
+    };
+
 
 
     /**
@@ -670,6 +749,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
 
     initOrg(0,null);//初始化机构列表
 
+    disasterLevelTree();
     // orgZtree();
 
 });
