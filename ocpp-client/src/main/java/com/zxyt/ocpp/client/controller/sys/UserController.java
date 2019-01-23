@@ -190,4 +190,13 @@ public class UserController {
         System.out.println(json);
         return json;
     }
+
+    public static void main(String[] args) {
+        String s = "'fhdogh','fdhgkj','dghfh'";
+        String[] a = s.replace("'","").split(",");
+        for(String s1:a){
+            System.out.println(s1);
+        }
+
+    }
 }

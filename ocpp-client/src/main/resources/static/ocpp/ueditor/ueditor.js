@@ -1,6 +1,6 @@
 
 layui.config({
-    base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
+    base: '/static/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
     productTemplate: 'productTemplate' //如果 mymod.js 是在根目录，也可以不用设定别名
     ,mod1: 'modules' //相对于上述 base 目录的子目录
@@ -31,149 +31,7 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
          * ueditor工具类
          */
         ,editorUtils: UE.dom.domUtils
-        /**
-         * 渠道对应受众树加载
-         * @param option
-         */
-        ,"channelToUserGroup": function (option) {
-            zTree.async({
-                id: '#group_'+option.channelId,
-                setting: {
-                    async:{
-                        enable:true,
-                        url: '/client/tree/user/group/count',
-                        autoParam:["id"],
-                        otherParam: { "areaId":option.areaId, "channelId":option.channelId},
-                        dataType:"json",
-                        dataFilter:function (treeId, parentNode, responseData) {
-                            if(responseData!=null){
-                                for(var i = 0; i<responseData.length; i++){
-                                    responseData[i].checked = true;
-                                }
-                            }
-                            return responseData;
-                        }
-                    },
-                    check: {
-                        enable: true,
-                        chkboxType: {"Y":"", "N": ""},
-                        chkStyle:"checkbox"
-                    },
-                    data: {
-                        simpleData: {
-                            enable: true
-                        }
-                    },
-                    callback:{
-                        onClick:null,
-                        onCheck:null
-                    }
-                }
-            });
-        }
-        /**
-         * 动态加载渠道、地区对应的受众
-         * @param result
-         */
-        ,"setGroupUsers":function (result) {
-            result.channels.forEach(function (channel) {
-                // 追加预警内容tab选项卡
-                element.tabAdd('warn-tab', {
-                    title: channel.channelName
-                    ,content: "<div class='ztree' id='group_" + channel.channelId + "'></div>" //支持传入html
-                    ,id: channel.channelId
-                });
-                // 删除tab页提示信息
-                element.tabDelete("warn-tab","choose-tab");
-                // 默认展开第一个tab页
-                element.tabChange('warn-tab',result.channels[0].channelId);
-                // 动态添加渠道地区对应的受众（根据地区和渠道查询）
-                active.channelToUserGroup({
-                    areaId: function () {
-                        var id = "";
-                        for (let item of result.areas) {
-                            id += "," + item.areaId;
-                        }
-                        return id.substring(1);
-                    }(),
-                    organizationId: result.organizationId,
-                    channelId: channel.channelId
-                });
-            });
-        }
-        /**
-         * 渠道单击事件
-         * 判断active选中样式是否存在
-         * 如果存在：已经选中，否则没有选中
-         * @param obj
-         */
-        ,"channelOneClick": function (obj) {
-            // 获取渠道id和渠道名称
-            var channelId = $(obj).data("id"), channelName = $(obj).data("title");
-            // 判断渠道是否选中
-            if ($(obj).hasClass("active")) {
-                // 获取选中渠道
-                var param = {
-                    "organizationId": employee.organizationId
-                    /**
-                     * 获取选中渠道
-                     */
-                    ,"channels": [{channelId:channelId, channelName:channelName}]
-                    /**
-                     * 获取选中地区
-                     */
-                    ,"areas":  [{areaId:employee.areaId, areaName:employee.areaName}]
-                };
-                 active.setGroupUsers(param);
-            }else {
-                // 取消渠道勾选时，同时删除对应的tab页渠道
-                element.tabDelete("warn-tab", channelId);
-            }
-        }
-        /**
-         * 预警内容没有时提示，通常是点击取消渠道全选和，地区没有勾选时回填提示信息
-         * @param param
-         * @returns {string}
-         */
-        ,"defaultWarnMsg": function (param) {
-            var html = "<div class='warn-content-skip'>"+param.msg+"</div>";
-            // 追加预警内容tab选项卡
-            element.tabAdd('warn-tab', {
-                title: param.title
-                ,content: html //支持传入html
-                ,id: param.id
-            });
-            // 默认展开第一个tab页
-            element.tabChange('warn-tab', param.id);
-            element.render();
-        }
 
-    };
-    /**
-     * 初始化加载渠道
-     */
-    let initChannelList = function(){
-        $.ajax({
-            async:true
-            ,type: "POST"
-            ,data: {type: 0}
-            ,url: "/client/channel/list"
-            ,dataType: 'json'
-            ,success: function(json){
-                if(json.code == 200 && json.data != null){
-                    let html ="";
-                    json.data.forEach(function (currentValue, index, arr) {
-                        if(currentValue.name=="邮件" || currentValue.name=="传真" || currentValue.name=="网站"){
-                            html += "<div class='imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
-                            html += "   <img src='/client/"+currentValue.icon+"' alt='"+currentValue.name+"' />";
-                            html += "<span>"+currentValue.name+"</span>";
-                            html += "</div>";
-                        }
-                    });
-                    $(".channel-list").empty().append(html);
-                }
-            }
-        });
     };
 
     /**
@@ -195,68 +53,6 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         second = second < 10 ? "0" + second : second;
         return year + '年' + month + '月' + day  + '日' + hour + '时' + minute + '分';
     };
-    /**
-     * 渠道全选、反选
-     */
-    $(".channel-option").on("click", "div > span", function(element) {
-        let text = $(this).text(),
-            event = $(this).data("event");
-        if(text == '全选'){
-            // 给所有渠道添加选中样式
-            $("." + event + " .imgbox").addClass("active");
-            // 获取选中渠道
-            let param = {
-                /**
-                 * 获取选中渠道
-                 */
-                "channels": function () {
-                    var cId = [];
-                    $("." + event + " .imgbox").each(function () {
-                        cId.push({
-                            channelId:$(this).data("id"),
-                            channelName: $(this).data("title")
-                        });
-                    });
-                    return cId;
-                }()
-                /**
-                 * 获取选中地区
-                 */
-                ,"areas": [{areaId:employee.areaId, areaName:employee.areaName}]
-            };
-            //清除tab页所有内容
-             $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
-            // 拼接预警内容和受众
-            active.setGroupUsers(param);
-        }else{
-            // 1：取消渠道勾选
-            $("." + event + " .imgbox").removeClass("active");
-            // 2：清空内容回填提示信息
-            $(".warn-card-content-list").empty().append("<div class='layui-col-xs12 layui-col-md12 warn-content-skip'>请选择业务类型</div>");
-            // 3：清除tab页所有内容
-            $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
-            // 拼回默认提示
-            active.defaultWarnMsg({id:'choose-tab',title:'温馨提示',msg:'请选择渠道'});
-        }
-    });
-
-    /**
-     * 渠道点击单选、取消选择
-     */
-    $(".channel-list").on("click", ".imgbox", function(element) {
-        // 追加或删除样式
-        if($(this).hasClass("active")){
-            if($(".channel-list .imgbox.active").length == 1){
-                layer.msg("请至少选择一个渠道", {time: 2000});
-                return false;
-            }
-            $(this).removeClass("active");
-        }else{
-            $(this).addClass("active");
-        }
-        // 调用渠道点击事件业务
-        active.channelOneClick($(this));
-    });
 
     /**
      * 初始化Ueditor模板
@@ -281,17 +77,17 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         var option={dateTime:dateTime(),group:employee.organizationName};
         var flag=data.value;
         if(flag==0) {
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getFestivalProductTemplate(option), isAppendTo);
         }else if(flag==1){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getQixiangProductTemplate(option), isAppendTo);
         }else if(flag==2){
             active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
         }else if(flag==3){
-            active.editor.setContent(productTemplate.getDecisionServiceProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getWorkProductTemplate(option), isAppendTo);
         }else if(flag==4){
-            active.editor.setContent(productTemplate.getWarnProductTemplate(option), isAppendTo);
+            active.editor.setContent(productTemplate.getDisasterProductTemplate(option), isAppendTo);
         }else if(flag==5){
-            active.editor.setContent(productTemplate.getForecastProductTemplate(option), isAppendTo);
+            active.editor.setContent("",isAppendTo);
         }
         // active.editor.setEnabled();//使其可以编辑
     });
@@ -303,6 +99,7 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         var type = $("#type option:selected").val();
         var title=$("#title").val();
         var text = active.editor.getContent();
+
         var group = {};
         if(type=="" || type==null){
             layer.msg('请选择模板', {time: 2000});
@@ -312,12 +109,7 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
             layer.msg('请填写产品名称', {time: 2000});
             return false;
         }
-        if($(".channel-list .imgbox.active").length == 0){
-            layer.msg("请选择渠道", {time: 2000});
-            return false;
-        }
-
-        layer.confirm('确定发布？', function(){
+        layer.confirm('确定生成word文档？', function(){
             $(".channel-list .imgbox.active").each(function () {
                 var channelId = $(this).data("id");
                 var channelName = $(this).data("channel");
@@ -333,22 +125,24 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
                 }
             });
             let param = {
-                group:group.userGroupId,
                 type:type,
                 title:title,
-                html: "<html><body>" + text + "</body></html>"
+                html: "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\"\n" +
+                    "xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\"\n" +
+                    "xmlns=\"http://www.w3.org/TR/REC-html40\">" +
+                    "<head><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:TrackMoves>false</w:TrackMoves><w:TrackFormatting/><w:ValidateAgainstSchemas/><w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid><w:IgnoreMixedContent>false</w:IgnoreMixedContent><w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText><w:DoNotPromoteQF/><w:LidThemeOther>EN-US</w:LidThemeOther><w:LidThemeAsian>ZH-CN</w:LidThemeAsian><w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript><w:Compatibility><w:BreakWrappedTables/><w:SnapToGridInCell/><w:WrapTextWithPunct/><w:UseAsianBreakRules/><w:DontGrowAutofit/><w:SplitPgBreakAndParaMark/><w:DontVertAlignCellWithSp/><w:DontBreakConstrainedForcedTables/><w:DontVertAlignInTxbx/><w:Word11KerningPairs/><w:CachedColBalance/><w:UseFELayout/></w:Compatibility><w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel><m:mathPr><m:mathFont m:val=\"Cambria Math\"/><m:brkBin m:val=\"before\"/><m:brkBinSub m:val=\"--\"/><m:smallFrac m:val=\"off\"/><m:dispDef/><m:lMargin m:val=\"0\"/> <m:rMargin m:val=\"0\"/><m:defJc m:val=\"centerGroup\"/><m:wrapIndent m:val=\"1440\"/><m:intLim m:val=\"subSup\"/><m:naryLim m:val=\"undOvr\"/></m:mathPr></w:WordDocument></xml><![endif]--> \n</head><body>" + text + "</body></html>"
             };
             $.ajax({
                 async: true,
-                url: "/client/ueditor/getWord",
+                url: "/ueditor/getWord",
                 data: param,
                 type: "POST",
                 dataType: "json",
                 success: function (data) {
                     if(data.code=="success"){
-                        layer.msg('发布成功', {time: 2000});
+                        layer.msg('生成word成功', {time: 2000});
                     }else{
-                        layer.msg('发布失败', {time: 2000});
+                        layer.msg('生成word失败', {time: 2000});
                     }
                 }
             })
@@ -363,6 +157,5 @@ layui.use(["table","form","laytpl","layer","zTree","productTemplate","element"],
         this.initialFrameHeight='400px';//设置编辑器高度
     });
 
-     initChannelList();      // 初始化加载渠道
 
 });

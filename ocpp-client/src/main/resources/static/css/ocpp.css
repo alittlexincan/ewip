@@ -16,6 +16,9 @@ website:    http://code.google.com/p/jquerytree/
 /**下拉zTree弹出层*/
 .tree-content {display: none;position: absolute;max-height: 200px;left: 0 !important;top: 37px !important;background: #ffffff;z-index: 9999999;border: 1px solid #C9C9C9 !important;overflow-y: auto;}
 
+.one .warn-center{
+    text-align: center;
+}
 
 /**更改layui start*/
 .layui-fluid{

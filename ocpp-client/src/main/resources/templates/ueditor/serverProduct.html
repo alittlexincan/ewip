@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>产品管理</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/static/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/ocpp.css}" media="all">
+
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input" >
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select name="type" id="type" lay-verify="type" placeholder="请选择模板" lay-filter="type" >
+                                <option value="">请选择文件类型</option>
+                                <option value="0">短期预报</option>
+                                <option value="1">中期预报</option>
+                                <option value="2">长期预报</option>
+                                <option value="3">气象专题专报</option>
+                                <option value="4">重大气象专题专报</option>
+                                <option value="5">其他</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                        <button class="layui-btn layui-btn-danger" type="reset">
+                            <i class="layui-icon layui-icon-delete layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="layui-card-body">
+
+                <!-- 列表：数据行操作 -->
+                <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="downOption"><i class="layui-icon layui-icon-edit"></i>下载</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </script>
+                <!-- 列表信息 -->
+                <table class="layui-table" lay-filter="table" id="table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/static/layuiadmin/layui/layui.js}" ></script>
+    <script th:src="@{/static/ocpp/ueditor/serverProduct.js}" charset="utf-8"></script>
+
+</body>
+</html>

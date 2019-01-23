@@ -1,6 +1,6 @@
 
 layui.config({
-    base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
+    base: '/static/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
     selectTree: 'selectTree' //如果 mymod.js 是在根目录，也可以不用设定别名
     ,mod1: 'modules' //相对于上述 base 目录的子目录
@@ -25,7 +25,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
         if(d.type == 2) return "长期预报";
         if(d.type == 3) return "气象专题专报";
         if(d.type == 4) return "重大气象专题专报";
-        if(d.type == 5) return "气象预警专题专报";
+        if(d.type == 5) return "其他";
     };
 
 
@@ -58,13 +58,12 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
     table.render({
         id: 'table'
         ,elem: '#table'
-        ,url:'/client/serverProduct/select'
+        ,url:'/ueditor/select'
         ,page:true
         ,even: true
         ,height: 'full-165'
         ,limits:[10,20,50,100]
         ,cols: [[
-             // {type: 'checkbox'}
             {type: 'numbers', title: '编号'}
             ,{field: 'type', title: '模板类型', sort: true, templet:typeFormat}
             ,{field: 'title', title: '标题',sort: true,edit: true}
@@ -100,7 +99,8 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
          */
         'downOption': function (obj) {
         let param = obj.data;
-            window.location.href="/client/serverProduct/downFile?path="+ encodeURI(encodeURI(obj.data.path));
+        console.log(obj.data.path);
+            window.location.href="/ueditor/downFile?path="+ encodeURI(encodeURI(obj.data.path));
         }
         /**
          * 列表中：删除选中信息
@@ -114,7 +114,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                     index: index
                     ,param: null
                     ,type: 'DELETE'
-                    ,url: '/client/serverProduct/delete/' + obj.data.id,
+                    ,url: '/ueditor/delete/' + obj.data.id,
                 });
             });
         }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxyt.ocpp.client.mapper.ueditor.IUeditorMapper">
+
+    <resultMap id="ueditorResultMap" type="com.zxyt.ocpp.client.entity.ueditor.Ueditor">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <!-- 查询信息 -->
+    <select id="findAll" resultMap="ueditorResultMap">
+        select
+            p.id,
+            p.type,
+            p.title,
+            p.path,
+            p.create_time
+        FROM
+            server_product p
+        where 1=1
+        <if test="type != null and type != ''">AND p.type = #{type}</if>
+        <if test="title != null and title != ''">AND p.title LIKE '${title}%'</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY p.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+
+</mapper>

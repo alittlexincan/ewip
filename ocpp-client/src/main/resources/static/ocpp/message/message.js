@@ -639,7 +639,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         });
     });
 
-
     /**
      * 初始化监听
      */

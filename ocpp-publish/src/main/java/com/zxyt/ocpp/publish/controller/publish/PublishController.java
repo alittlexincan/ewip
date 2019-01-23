@@ -2,12 +2,14 @@ package com.zxyt.ocpp.publish.controller.publish;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zxyt.ocpp.publish.service.app.IAppService;
 import com.zxyt.ocpp.publish.service.email.IEmailService;
 import com.zxyt.ocpp.publish.service.fax.IFaxService;
 import com.zxyt.ocpp.publish.service.led.ILedService;
 import com.zxyt.ocpp.publish.service.record.IRecordService;
 import com.zxyt.ocpp.publish.service.sina.ISinaWeiBoService;
 import com.zxyt.ocpp.publish.service.sms.ISmsService;
+import com.zxyt.ocpp.publish.service.web.IWebService;
 import com.zxyt.ocpp.publish.service.wechat.IWechatService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +71,18 @@ public class PublishController {
     private ISinaWeiBoService sinaWeiBoService;
 
     /**
+     * 发布渠道：对接新浪微博接口
+     */
+    @Autowired
+    private IAppService appService;
+
+    /**
+     * 发布渠道：对接新浪微博接口
+     */
+    @Autowired
+    private IWebService webService;
+
+    /**
      * 渠道发布
      * @param json
      */
@@ -91,7 +105,10 @@ public class PublishController {
             if(code.equals("LED")) this.ledService.led(json);
             // 新浪微博
             if(code.equals("WEIBO")) this.sinaWeiBoService.sinaWeiBo(json);
-
+            // APP
+            if(code.equals("APP")) this.appService.app(json);
+            // WEB
+            if(code.equals("WEB")) this.webService.web(json);
 
         }
 

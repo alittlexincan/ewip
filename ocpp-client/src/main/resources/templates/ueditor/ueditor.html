@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <title>服务产品制作</title>
+        <meta name="renderer" content="webkit" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="stylesheet" th:href="@{/static/layuiadmin/layui/css/layui.css}" media="all">
+        <link rel="stylesheet" th:href="@{/static/layuiadmin/style/admin.css}" media="all">
+        <link rel="stylesheet" th:href="@{/static/css/ocpp.css}" media="all">
+    </head>
+    <body>
+        <div class="layui-fluid one">
+
+            <div class="layui-row layui-col-space5 ">
+                <div class="layui-col-md12 ">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-form warn-card-hader-icon"></i>基础信息</span></div>
+                        <div class="layui-form ">
+                            <div class="layui-card-body"  style="z-index: 1000;">
+                                <input type="text" id="title" name="title" lay-verify="title" lay-filter="title"  placeholder="请输入标题" class="layui-input" style="margin-bottom: 13px" />
+                                <select name="type" id="type" lay-verify="type" placeholder="请选择模板" class="layui-input" lay-filter="type" >
+                                    <option value="">请选择文件类型</option>
+                                    <option value="0">短期预报</option>
+                                    <option value="1">中期预报</option>
+                                    <option value="2">长期预报</option>
+                                    <option value="3">气象专题专报</option>
+                                    <option value="4">重大气象专题专报</option>
+                                    <option value="5">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-row layui-col-space5">
+                <!-- ueditor编辑器加载 -->
+                <div class="layui-col-md12 layui-col-sm12 ">
+                    <div class="layui-card">
+                        <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-form warn-card-hader-icon"></i>编辑</span></div>
+                        <div class="layui-card-body ">
+                            <div id="editor" style="width:100%;height: 400px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 产品制作 -->
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body warn-center">
+                            <div class="submit" style="margin: 10px;" >
+                                <button  class="layui-btn" id="createProduct" >制作</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/static/layuiadmin/ueditor/ueditor.config.js}" ></script>
+        <script th:src="@{/static/layuiadmin/ueditor/ueditor.all.min.js}" > </script>
+        <script th:src="@{/static/layuiadmin/ueditor/lang/zh-cn/zh-cn.js}" ></script>
+        <script th:src="@{/static/layuiadmin/layui/layui.js}" charset="utf-8"></script>
+        <script th:src="@{/static/ocpp/ueditor/ueditor.js}" charset="utf-8"></script>
+    </body>
+</html>
