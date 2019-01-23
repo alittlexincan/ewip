@@ -24,14 +24,20 @@ public class LoginConfigurer extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login").permitAll().and()
-                .authorizeRequests().antMatchers("/error").permitAll().and().
-                authorizeRequests().anyRequest()
-				.authenticated().and().csrf().disable();
+//		http.authorizeRequests().antMatchers("/login").permitAll().and()
+//                .authorizeRequests().antMatchers("/error").permitAll().and().
+//                authorizeRequests().anyRequest()
+//				.authenticated().and().csrf().disable();
 //				.csrfTokenRepository(csrfTokenRepository()).and()
 //				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class)
 //				.logout().logoutUrl("/logout").permitAll()
 //				.logoutSuccessUrl("/");
+		http.antMatcher("/**")
+				.authorizeRequests()
+				.antMatchers("/")
+				.permitAll()
+				.anyRequest()
+				.authenticated();
 	}
 
 	private Filter csrfHeaderFilter() {

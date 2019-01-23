@@ -23,12 +23,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/oauth/token").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .and()
-                .httpBasic()
+//                .and()
+//                .httpBasic()
                 .and().csrf().disable();
     }
 

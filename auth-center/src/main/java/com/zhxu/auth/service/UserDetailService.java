@@ -31,7 +31,7 @@ public class UserDetailService implements UserDetailsService {
         // 获取用户权限列表
         List<GrantedAuthority> authorityList = new ArrayList<>();
         authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        authorityList.add(new SimpleGrantedAuthority("ROLE_HERO"));
+        authorityList.add(new SimpleGrantedAuthority("USER"));
         // 返回带有用户权限信息的User
 
         return new User(username, passwordEncoder.encode("123456"), authorityList);

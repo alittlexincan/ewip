@@ -34,10 +34,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("acme")
-                .secret(passwordEncoder().encode("acmesecret"))
-//                .autoApprove(true)
+                .secret("$2a$10$qJstZalewDJFtheFAJjcVuF01xDCmBzu.8FYJAZXe.L73E7Lo1MNS")
+                .autoApprove(true)
                 .authorizedGrantTypes("authorization_code", "refresh_token")
-                .scopes("read");
+                .scopes("all");
     }
 
     @Override
@@ -60,13 +60,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     /**
      * 采用非对称加密算法中私钥对Token进行签名
      */
+//    @Bean
+//    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        KeyPair keyPair = new KeyStoreKeyFactory(
+//                new ClassPathResource("keystore.jks"), "foobar".toCharArray())
+//                .getKeyPair("test");
+//        converter.setKeyPair(keyPair);
+//        return converter;
+//    }
+
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyPair keyPair = new KeyStoreKeyFactory(
-                new ClassPathResource("keystore.jks"), "foobar".toCharArray())
-                .getKeyPair("test");
-        converter.setKeyPair(keyPair);
+        converter.setSigningKey("123");
         return converter;
     }
 }

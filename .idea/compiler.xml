@@ -45,4 +45,24 @@
       <module name="zuul-gateway" target="1.8" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-center" options="-Xlint:unchecked" />
+      <module name="basic-info" options="-Xlint:unchecked" />
+      <module name="commons-model" options="-Xlint:unchecked" />
+      <module name="eureka-registry" options="-Xlint:unchecked" />
+      <module name="ewip-client" options="-Xlint:unchecked" />
+      <module name="ewip-monitor" options="-Xlint:unchecked" />
+      <module name="ewip-publish" options="-Xlint:unchecked" />
+      <module name="ewip-server" options="-Xlint:unchecked" />
+      <module name="ewip-web-client" options="-Xlint:unchecked" />
+      <module name="message-center" options="-Xlint:unchecked" />
+      <module name="ocpp-client" options="-Xlint:unchecked" />
+      <module name="ocpp-publish" options="-Xlint:unchecked" />
+      <module name="ocpp-web-client" options="-Xlint:unchecked" />
+      <module name="system-info" options="-Xlint:unchecked" />
+      <module name="warning-info" options="-Xlint:unchecked" />
+      <module name="zuul-gateway" options="-Xlint:unchecked" />
+    </option>
+  </component>
 </project>
