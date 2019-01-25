@@ -1,6 +1,11 @@
 spring:
   application:
     name: zuul-gateway
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 9200
 
 eureka:
   client:
@@ -9,5 +14,10 @@ eureka:
 
 zuul:
   ignored-services: "*"
+  add-host-header: false
   routes:
-    message-publisher: /message/**
+    message-publisher:
+      path: /message/**
+    basic-info:
+      path: /basic/**
+

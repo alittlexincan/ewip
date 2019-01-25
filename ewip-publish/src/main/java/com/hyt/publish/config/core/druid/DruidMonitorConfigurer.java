@@ -42,15 +42,16 @@ public class DruidMonitorConfigurer {
 
     /**
      * 注册FilterRegistrationBean
-     * @return
      */
     @Bean
     public FilterRegistrationBean druidStatFilter() {
-        FilterRegistrationBean bean = new FilterRegistrationBean(new WebStatFilter());
+        FilterRegistrationBean bean = new FilterRegistrationBean(
+                new WebStatFilter());
         //添加过滤规则.
         bean.addUrlPatterns("/*");
         //添加不需要忽略的格式信息.
-        bean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+        bean.addInitParameter("exclusions",
+                "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return bean;
     }
 }
