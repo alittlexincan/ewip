@@ -147,10 +147,10 @@
 			case w.disaster_color when 0 then '红色' when 1 then '橙色' when 2 then '黄色' else '蓝色' end colorLevelName,
 			case w.disaster_level when 0 then 'Ⅰ级/特别重大' when 1 then 'Ⅱ级/重大' when 2 then 'Ⅲ级/较大' else 'Ⅳ级/一般' end numberLevelName,
 			DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') sendTime,
-			DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') entryTime, d.icon img,c.content content,w.title
+			DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') entryTime, d.icon img,
+			w.title
 			from warn_edit w
 			left join disaster d on w.disaster_id=d.id
-			left join warn_edit_content c on w.id=c.warn_edit_id
 			where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 				<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
@@ -190,7 +190,6 @@
 	<select id="warnListCount" resultType="java.lang.Integer">
 		select count(id) from (
 			select distinct w.id  from warn_edit w
-			left join warn_edit_content c on w.id=c.warn_edit_id
 			where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}

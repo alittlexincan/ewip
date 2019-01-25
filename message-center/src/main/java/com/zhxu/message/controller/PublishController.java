@@ -59,7 +59,7 @@ public class PublishController {
             info.getChannels().forEach(channel -> {
                 String areaId = area.getId();
                 String content = info.getContent() != null ? info.getContent() :
-                        info.getContents().get(area.getId());
+                        info.getContents().get(channel.getId());
                 switch (channel.getType()) {
                     case SMS: {
                         Set<String> mobiles = new HashSet<>();

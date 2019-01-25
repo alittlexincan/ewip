@@ -15,7 +15,7 @@ public class PublishInfo {
     private List<Area> areas;
 
     /**
-     * 地区对应的内容
+     * 渠道对应的内容
      */
     private Map<String, String> contents;
 

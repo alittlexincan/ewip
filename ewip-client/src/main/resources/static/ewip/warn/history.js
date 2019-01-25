@@ -37,6 +37,11 @@ layui.use(['table','form','element','zTree'], function(){
                 simpleData: {
                     enable: true
                 }
+            },
+            callback: {
+                onAsyncSuccess: function (event, treeId, treeNode, msg) {
+                    active.initPageMsg();
+                }
             }
         }
     });
@@ -98,6 +103,7 @@ layui.use(['table','form','element','zTree'], function(){
          * 数据回显渠道
          */
         ,"calBackChannelList": result => {
+            debugger;
             $.ajax({
                 async:true
                 ,type: "POST"
@@ -147,7 +153,7 @@ layui.use(['table','form','element','zTree'], function(){
          */
         ,"calBackContentList": result => {
             // 循环渠道
-            result.channel.forEach(channel => {
+            result.channels.forEach(channel => {
                 let html = "";
                 html += "<div class='layui-row layui-col-space5'>";
                 html += "	<div class='layui-col-xs9 layui-col-md9'>";
@@ -165,12 +171,12 @@ layui.use(['table','form','element','zTree'], function(){
                 //     html += "					</div>";
                 //     html += "				</div>";
                 // });
-                html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + result.areaId + "'>";
+                html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId +"'>";
                 html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
                 html += "						<div>" + result.areaName + "</div>";
                 html += "					</div>";
                 html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + result.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                html += "                       <textarea type='text' name='content_" + channel.channelId +"' autocomplete='off' readonly class='layui-textarea'></textarea>";
                 html += "					</div>";
                 html += "				</div>";
 
@@ -193,16 +199,17 @@ layui.use(['table','form','element','zTree'], function(){
                     ,id: channel.channelId
                 });
                 // 赋值预警内容
-                let contents = result.content;
+                let contents = result.contents;
+                debugger;
                 for(let key in contents){
-                    contents[key].forEach((obj)=> {
-                        $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
-                    });
+                    // contents[key].forEach((obj)=> {
+                        $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);
+                    // });
                 }
                 // 删除tab id 为choose-tab的table页
                 element.tabDelete("warn-tab", "choose-tab");
                 // 默认展开第一个tab页
-                element.tabChange('warn-tab', result.channel[0].channelId);
+                element.tabChange('warn-tab', result.channels[0].channelId);
             });
             element.render();
         }
@@ -244,26 +251,27 @@ layui.use(['table','form','element','zTree'], function(){
          */
         ,"calBackFileList": (files) => {
             if(files == null || files.length == 0) return;
+            var files=JSON.parse(files);
             // 如果是最先添加则显示文件表格
             if($(".warn-file-table").hasClass("layui-hide")){
                 $(".warn-file-table").removeClass("layui-hide");
                 // 3:隐藏初始化提示信息
                 $(".warn-upload-msg").addClass("layui-hide");
             }
-            files.forEach((file,index)=>{
+            for(var i=0;i<files.length;i++){
                 // 计算文件大小
-                let s = (file.size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
+                let s = (files[i].size/1024) > 1024 ? (files[i].size/1024/1024).toFixed(2) + "MB": (files[i].size/1024).toFixed(2) + "KB";
                 // 拼接文件内容
                 let html = "<tr>";
-                html += "   <td>" + (index+1) + "</td>";
-                html += "   <td>" + file.name + "</td>";
+                html += "   <td>" + (i+1) + "</td>";
+                html += "   <td>" + files[i].name + "</td>";
                 html += "   <td>" + s + "</td>";
-                html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
-                html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' src='/client"+file.url+"' data-url='"+file.url+"' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>下载</a></td>";
+                html += "   <td>" + files[i].name.substring(files[i].name.lastIndexOf(".")+1,files[i].name.length) + "</td>";
+                html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' src='/client"+files[i].url+"' data-url='"+files[i].url+"' data-file-class='warn-" +i + "'><i class='layui-icon layui-icon-delete'></i>下载</a></td>";
                 html += "</tr>";
                 //追加到文件列表
                 $(".warn-file-table > tbody").append(html);
-            });
+            };
         }
 
         /**
@@ -282,13 +290,13 @@ layui.use(['table','form','element','zTree'], function(){
                         // 回显预警基础信息
                         active.calBackWarnEditInfo(result);
                         // 回显渠道
-                        active.calBackChannelList(result.channel);
+                        active.calBackChannelList(result.channels);
                         // 回显地区
-                        active.calBackAreaList(result.area);
+                        active.calBackAreaList(result.areas);
                         // 回显内容
                         active.calBackContentList(result);
                         // 回显受众
-                        active.calBackUserList(result.channel, result.group);
+                        active.calBackUserList(result.channels, result.groups);
                         // 回显文件
                         active.calBackFileList(result.files);
                         form.render();
@@ -404,7 +412,7 @@ layui.use(['table','form','element','zTree'], function(){
     /**
      * 初始化加载项
      */
-    active.initPageMsg();                       // 初始化页面加载信息
+    // active.initPageMsg();                       // 初始化页面加载信息
     active.initFlowMsg();                       // 初始化加载流程信息
     element.tabChange('warn-tab', "choose-tab");// 默认展开第一个tab页
 });

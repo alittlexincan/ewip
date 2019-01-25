@@ -207,7 +207,7 @@
             <div class="layui-col-md9 layui-col-sm9">
                 <div class="layui-row layui-col-space5">
                     <!--地区树-->
-                    <div th:class="${session.employee.level eq '2' ? 'layui-col-xs3 layui-col-md3 layui-hide' : 'layui-col-xs3 layui-col-md3'}">
+                    <div th:class="${session.employee.level eq '3' ? 'layui-col-xs3 layui-col-md3 layui-hide' : 'layui-col-xs3 layui-col-md3'}">
                         <div class="layui-card">
                             <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>影响地区</span></div>
                             <div  class="layui-card-body warn-card-body-height">
@@ -217,7 +217,7 @@
                     </div>
 
                     <!--预警内容-->
-                    <div th:class="${session.employee.level eq '2' ? 'layui-col-xs12 layui-col-md12' : 'layui-col-xs9 layui-col-md9'}">
+                    <div th:class="${session.employee.level eq '3' ? 'layui-col-xs12 layui-col-md12' : 'layui-col-xs9 layui-col-md9'}">
                         <div class="layui-card">
                             <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon warn-card-hader-icon">&#xe618;</i>渠道切换</span></div>
 

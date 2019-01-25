@@ -104,7 +104,6 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
      * 修改后重新刷新列表，curr: 1重新从第 1 页开始
      */
     let reloadTable = function (param) {
-        console.log(param);
         table.reload('table', {
             page: { curr: 1 },
             where: { //设定异步数据接口的额外参数，任意设

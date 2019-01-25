@@ -265,7 +265,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
 
             String content = list.get(0).getContent();
             list.forEach(message -> {
-                contents.put(message.getAreaId(), message.getContent());
+                contents.put(message.getChannelId(), message.getContent());
             });
             result.put("channels",channelArray);
             result.put("areas",areaArray);

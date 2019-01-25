@@ -137,7 +137,7 @@
         (SELECT 6 flow,count(*) count FROM(
 				SELECT wef.flow FROM warn_edit we
 				LEFT JOIN warn_edit_flow wef on we.id = wef.warn_edit_id
-				WHERE we.status = 0 and wef.is_option = 1
+				WHERE we.status = 0 and wef.is_option = 0
 				AND wef.flow = 6
 				AND we.area_id =  #{areaId}
 				GROUP BY wef.warn_edit_id

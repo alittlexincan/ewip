@@ -1233,7 +1233,7 @@ $(function(){
 						html += "<dl></dl>";
 					 });
 					 html += "<ul>";
-					 html += "	<span id='nextPage' data-next-page='"+page+"' data-count='"+count+"'>下页</span>";
+					 html += "	<span id='nextPage' data-next-page='"+page+"' data-count='"+count+"'>页下</span>";
 					 html += "	<span id='topPage' data-top-page='"+page+"' data-count='"+count+"'>上页</span>";
 					 html += "	<span>第"+(Number(page)+1)+"页</span>";
 					 html += "	<span>总数"+count+"条</span>";
@@ -1277,7 +1277,7 @@ $(function(){
             // 获取当前预警详细信息
             var json = $(this).data("warn");
 			// 点击预警列表数据时，展示顶部当前点击的预警信息
-			topWarnInfo(json);
+			// topWarnInfo(json);
 		});
 	};
 

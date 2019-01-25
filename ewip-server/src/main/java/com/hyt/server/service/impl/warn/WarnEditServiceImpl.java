@@ -225,6 +225,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         for(int i = 0; i<channels.size(); i++){
             JSONObject channel = channels.getJSONObject(i);
             String channelId = channel.getString("channelId");
+            String content=json.getString("content_"+channelId);
             // 循环获取地区
             for(int j = 0; j<areas.size(); j++){
                 JSONObject area = areas.getJSONObject(j);
@@ -235,7 +236,8 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
                 warnEditContent.setWarnEditId(warnEditId);
                 warnEditContent.setChannelId(channelId);
                 warnEditContent.setAreaId(areaId);
-                warnEditContent.setContent(json.getString("content"));
+//                warnEditContent.setContent(json.getString("content"));
+                warnEditContent.setContent(content);
                 list.add(warnEditContent);
             }
         }

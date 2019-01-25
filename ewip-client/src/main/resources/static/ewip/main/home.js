@@ -82,8 +82,8 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     ,skin: "line"
                     , data: data
                     ,cols: [[ //表头
-                        {field: 'disasterName', title: '预警名称',width:120}
-                        , {field: 'title', title: '预警标题', templet: titleFmt}
+                        {field: 'disasterName', title: '预警名称',width:100}
+                        , {field: 'title', title: '预警标题', width: '30%', templet: titleFmt}
                         , {field: 'msgType', title: '信息类型', templet: msgType}
                         , {field: 'status', title: '预警流程', templet: statusFmt}
                         , {field: 'sendTime', title: '操作时间',width:170}
@@ -189,7 +189,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                 dataType: "json",
                 success: function(res) {
 
-                    // if(res.status == 500) return;
+                     if(res.status == 500) return;
 
                     //创建图片对象
                     let createIcon = iconUrl =>{

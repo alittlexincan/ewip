@@ -213,12 +213,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     // html += "				</div>";
                 });
 
-                html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"_"+employee.areaId+"'>";
+                html += "				<div class='layui-row layui-col-space5 warn-item_"+channelId+"'>";
                 html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
                 html += "						<div>"+employee.areaName+"</div>";
                 html += "					</div>";
                 html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                html += "                       <textarea type='text' name='content_"+channelId+"_"+employee.areaId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
+                html += "                       <textarea type='text' name='content_"+channelId+"' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'>" + title + active.warnContent+"</textarea>";
                 html += "					</div>";
                 html += "				</div>";
 
@@ -633,6 +633,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 获取策略信息, 并设置流程、渠道
                 active.getStrategyMsg(param, active.setStrategyAndChannel);
                 // 获取预警信息，并匹配预警内容
+                debugger;
                 active.getWarnMsg(param, active.setWarn);
                 // 基础信息配置
                 active.setBasis(param);
@@ -1041,6 +1042,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 监听预警提交事件
      */
     form.on("submit(submit)", function(data){
+        debugger;
         // 判断至少选中一个地区
         let areaTree = zTree.getZTree("areaTree");
         let nodes = areaTree.getCheckedNodes(true);

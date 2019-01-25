@@ -63,7 +63,7 @@
             LEFT JOIN disaster d 		  ON we.disaster_id = d.id
             LEFT JOIN organization o 	  ON we.organization_id = o.id
 
-            WHERE 1=1
+            WHERE 1=1 and wef.is_option=0
                 <if test="id != null and id != ''"> AND we.id = #{id} </if>
                 <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
                 <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
@@ -138,14 +138,12 @@
 			,a.area_name
             ,we.msg_type
             ,we.send_time
-            ,wec.content
             ,we.status
             ,we.instruction
         FROM warn_edit we
         LEFT JOIN disaster d ON d.id = we.disaster_id
         LEFT JOIN area a ON a.id = we.area_id
         LEFT JOIN organization o ON o.id = we.organization_id
-        LEFT JOIN warn_edit_content wec ON wec.warn_edit_id = we.id
         WHERE 1=1
         <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
         <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>

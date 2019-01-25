@@ -56,6 +56,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                         $("#searchOrganizationId").empty().append(html);
                     }else if(flag==1){
                         $("#addOrganizationId").empty().append(html);
+
                     }else{
                         $("#updateOrganizationId").empty().append(html);
                         $("#detailsOrganizationId").empty().append(html);
@@ -261,6 +262,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
          * 工具条：添加策略配置信息
          */
         'addBarBtn': function(){
+            var zTreeObj = $.fn.zTree.getZTreeObj("disasterLevelTree");
+            // 获取光标选中的(selected)
+            var selectedNodes = zTreeObj.getSelectedNodes();
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加策略配置信息"
@@ -275,6 +279,9 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                     laytpl(addPop.innerHTML).render([], function(html){
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
+
+                        initOrg(1,employee.areaId);
+                        $("select[name='organizationId']").val(employee.organizationId);
                         let areaId = "";
                         // 初始化地区下拉树
                         selectTree.render({
@@ -284,42 +291,76 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                             ,'checkNodeId': employee.areaId
                             ,clickNode:function (event, treeId, treeNode) {
                                 areaId = treeNode.id;
-                                initOrg(1,employee.areaId);
+                                initOrg(1,areaId);
                                 //绑定树操作
                                 selectTree.setValue(treeId,treeNode);
                                 selectTree.hideTree();
                             }
                         });
-                        $("select[name='organizationId']").val(employee.organizationId);
-                        // 初始化下拉机构拉树
-                        // selectTree.render({
-                        //     'id': 'addOrganizationId'
-                        //     ,'url': '/client/tree/organization'
-                        //     ,'isMultiple': false
-                        // });
-                        // 初始化下拉灾种级别拉树
-                        selectTree.render({
-                            'id': 'addDisasterId'
-                            ,'url': '/client/tree/disaster/level'
-                            ,'isMultiple': false
-                            ,clickNode:function (event, treeId, treeNode) {
-                                if(treeNode.isConfig==1){
-                                    var name = treeNode.name;
-                                    name = name.substring(0, name.indexOf("["));
-                                    $("#addDiv input[name='name']").val(treeNode.name);
-                                    $("#addDiv input[name='disasterName']").val(name);
-                                    $("#addDiv select[name='disasterColor']").val(treeNode.disasterColor);
-                                    $("#addDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
-                                    selectTree.setValue(treeId,treeNode);
-                                    selectTree.hideTree();
-                                    form.render("select");
-                                }else{
-                                    layer.msg("请选择灾种级别", {time: 2000});
+                        if((selectedNodes.length>0 && selectedNodes[0].img!="")){
+                            $("#addDiv input[name='name']").val(selectedNodes[0].name);
+                            var selectedNodesName=selectedNodes[0].name;
+                            var name = selectedNodesName.substring(0, selectedNodesName.indexOf("["));
+                            $("#addDiv input[name='disasterName']").val(name);
+                            $("#addDiv select[name='disasterColor']").val(selectedNodes[0].disasterColor);
+                            $("#addDiv select[name='disasterLevel']").val(selectedNodes[0].disasterLevel);
+                            selectTree.render({
+                                'id': 'addDisasterId'
+                                ,'url': '/client/tree/disaster/level'
+                                ,'isMultiple': false
+                                , 'checkNodeId': selectedNodes[0].id
+                                ,clickNode:function (event, treeId, treeNode) {
+                                    debugger;
+                                    if(treeNode.isConfig==1){
+                                        var name = treeNode.name;
+                                        name = name.substring(0, name.indexOf("["));
+                                        $("#addDiv input[name='name']").val(treeNode.name);
+                                        $("#addDiv input[name='disasterName']").val(name);
+                                        $("#addDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                        $("#addDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                        selectTree.setValue(treeId,treeNode);
+                                        selectTree.hideTree();
+                                        form.render("select");
+                                    }else{
+                                        layer.msg("请选择灾种级别", {time: 2000});
+                                    }
+                                    layer.msg("请选择灾种级别", {time: 1000});
+                                    return false;
                                 }
-                                layer.msg("请选择灾种级别", {time: 1000});
-                                return false;
-                            }
-                        });
+                            });
+
+                        }else{
+                            selectTree.render({
+                                'id': 'addDisasterId'
+                                ,'url': '/client/tree/disaster/level'
+                                ,'isMultiple': false
+                                ,clickNode:function (event, treeId, treeNode) {
+                                    debugger;
+                                    if(treeNode.isConfig==1){
+                                        var name = treeNode.name;
+                                        name = name.substring(0, name.indexOf("["));
+                                        $("#addDiv input[name='name']").val(treeNode.name);
+                                        $("#addDiv input[name='disasterName']").val(name);
+                                        $("#addDiv select[name='disasterColor']").val(treeNode.disasterColor);
+                                        $("#addDiv select[name='disasterLevel']").val(treeNode.disasterLevel);
+                                        selectTree.setValue(treeId,treeNode);
+                                        selectTree.hideTree();
+                                        form.render("select");
+                                    }else{
+                                        layer.msg("请选择灾种级别", {time: 2000});
+                                    }
+                                    layer.msg("请选择灾种级别", {time: 1000});
+                                    return false;
+                                }
+                            });
+                        }
+
+
+
+                        // var zTreeObj1 = $.fn.zTree.getZTreeObj("addDisasterId");
+                        // console.log(zTreeObj1);
+                        // zTreeObj1.selectNode(selectedNodes);
+
                         // 初始化渠道
                         selectChannel(function (data) {
                             for(let i = 0; i<data.length; i++){
@@ -757,5 +798,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
+
+    initOrg(1,employee.areaId);
 
 });

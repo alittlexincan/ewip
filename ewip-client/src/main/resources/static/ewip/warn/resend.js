@@ -706,6 +706,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * 数据回显内容
          */
         ,calBackContentList: result => {
+            debugger;
 
             // 拼接预警内容前缀
             let editTime = $(".basis #editTime").val()
@@ -718,7 +719,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             }
 
             // 循环渠道
-            result.channel.forEach(channel => {
+            result.channels.forEach(channel => {
                 let html = "";
                 html += "<div class='layui-row layui-col-space5'>";
                 html += "	<div class='layui-col-xs9 layui-col-md9'>";
@@ -726,16 +727,27 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list content_" + channel.channelId + "'>";
                 // 循环地区
-                result.area.forEach(area => {
-                    html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
-                    html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                    html += "						<div>" + area.areaName + "</div>";
-                    html += "					</div>";
-                    html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
-                    html += "					</div>";
-                    html += "				</div>";
+                result.areas.forEach(area => {
+                    // html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
+                    // html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    // html += "						<div>" + area.areaName + "</div>";
+                    // html += "					</div>";
+                    // html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    // html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                    // html += "					</div>";
+                    // html += "				</div>";
                 });
+
+                html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "'>";
+                html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                html += "						<div>" + result.areaName + "</div>";
+                html += "					</div>";
+                html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                html += "                       <textarea type='text' name='content_" + channel.channelId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                html += "					</div>";
+                html += "				</div>";
+
+
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";
@@ -755,17 +767,20 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     ,id: channel.channelId
                 });
                 // 赋值预警内容
-                let contents = result.content;
+                let contents = result.contents;
                 for(let key in contents){
-                    contents[key].forEach( obj => {
-                        if(active.warnContent == null) active.warnContent = obj.content.substring(title.length);
-                        $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
-                    });
+                    // contents[key].forEach( obj => {
+                    // if(active.warnContent == null) active.warnContent = obj.content.substring(title.length);
+                        if(active.warnContent == null)
+                            active.warnContent = contents[key].substring(title.length);
+                        // $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
+                        $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);
+                    // });
                 }
                 // 删除tab id 为choose-tab的table页
                 element.tabDelete("warn-tab", "choose-tab");
                 // 默认展开第一个tab页
-                element.tabChange('warn-tab', result.channel[0].channelId);
+                element.tabChange('warn-tab', result.channels[0].channelId);
             });
             element.render();
         }
@@ -870,13 +885,13 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     // 预警流程数据回显
                     callback.calBackWarnEditFlowInfo(result.flow);
                     // 回显渠道
-                    callback.calBackChannelList(result.channel);
+                    callback.calBackChannelList(result.channels);
                     // 回显地区
-                    callback.calBackAreaList(result.area);
+                    callback.calBackAreaList(result.areas);
                     // 回显内容
                     callback.calBackContentList(result);
                     // 回显受众
-                    callback.calBackUserList(result.channel, result.group, result.user);
+                    callback.calBackUserList(result.channels, result.groups, result.users);
                     // // 回显文件
                     callback.calBackFileList(result.files);
                     form.render();
@@ -1144,12 +1159,16 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             let group = {};
             $(".channel-list .imgbox.active").each(function () {
                 let channelId = $(this).data("id") ,channelGroup = [];
-                zTree.getZTree("group_"+channelId).getCheckedNodes(true).forEach(function (item) {
-                    channelGroup.push({
-                        userGroupId: item.id,
-                        userGroupName: item.name
+                // zTree.getZTree("group_"+channelId).getCheckedNodes(true).forEach(function (item) {
+                console.log($.fn.zTree.getZTreeObj("group_"+channelId));
+                if($.fn.zTree.getZTreeObj("group_"+channelId)!=null){
+                    $.fn.zTree.getZTreeObj("group_"+channelId).getCheckedNodes(true).forEach(function (item) {
+                        channelGroup.push({
+                            userGroupId: item.id,
+                            userGroupName: item.name
+                        });
                     });
-                });
+                }
                 group[channelId] = channelGroup;
             });
             return JSON.stringify(group).replace(/\"/g,"'");

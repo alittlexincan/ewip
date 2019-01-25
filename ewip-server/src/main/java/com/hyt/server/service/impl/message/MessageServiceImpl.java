@@ -333,7 +333,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
             Map<String, String> content = new HashMap<>();
 
             list.forEach(message -> {
-                content.put(message.getAreaId(), message.getContent());
+                content.put(message.getChannelId(), message.getContent());
             });
 
             result.put("channels",channelArray);

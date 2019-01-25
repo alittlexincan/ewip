@@ -122,6 +122,7 @@ layui.use(["table","form","laytpl","layer","disaster"], () => {
          * 列表中：修改审核意见
          * @param obj
          */
+
         'updateOption': obj => {
             let param = obj.data
                 ,index = layer.open({
