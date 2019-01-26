@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -63,31 +65,39 @@ public class PublishController {
                 switch (channel.getType()) {
                     case SMS: {
                         Set<String> mobiles = new HashSet<>();
-                        info.getGroups().get(channel.getId()).forEach(group -> {
-                            info.getUsers().get(group.getId()).forEach(user -> {
-                                mobiles.add(user.getUserCode());
+                        Map<String, List<PublishInfo.Group>> groups = info.getGroups();
+                        Map<String, List<PublishInfo.User>> users = info.getUsers();
+                        if (groups != null && users != null) {
+                            groups.get(channel.getId()).forEach(group -> {
+                                users.get(group.getId()).forEach(user -> {
+                                    mobiles.add(user.getUserCode());
+                                });
                             });
-                        });
-                        SmsMessage smsMessage = new SmsMessage();
-                        smsMessage.setAreaId(areaId);
-                        smsMessage.setContent(content);
-                        smsMessage.setMobiles(mobiles);
-                        smsHandler.handle(smsMessage);
+                            SmsMessage smsMessage = new SmsMessage();
+                            smsMessage.setAreaId(areaId);
+                            smsMessage.setContent(content);
+                            smsMessage.setMobiles(mobiles);
+                            smsHandler.handle(smsMessage);
+                        }
                         break;
                     }
                     case EMAIL: {
                         Set<String> emails = new HashSet<>();
-                        info.getGroups().get(channel.getId()).forEach(group -> {
-                            info.getUsers().get(group.getId()).forEach(user -> {
-                                emails.add(user.getUserCode());
+                        Map<String, List<PublishInfo.Group>> groups = info.getGroups();
+                        Map<String, List<PublishInfo.User>> users = info.getUsers();
+                        if (groups != null && users != null) {
+                            groups.get(channel.getId()).forEach(group -> {
+                                users.get(group.getId()).forEach(user -> {
+                                    emails.add(user.getUserCode());
+                                });
                             });
-                        });
-                        EmailMessage emailMessage = new EmailMessage();
-                        emailMessage.setAreaId(areaId);
-                        emailMessage.setContent(content);
-                        emailMessage.setEmails(emails);
-                        emailMessage.setTitle(info.getTitle());
-                        emailHandler.handle(emailMessage);
+                            EmailMessage emailMessage = new EmailMessage();
+                            emailMessage.setAreaId(areaId);
+                            emailMessage.setContent(content);
+                            emailMessage.setEmails(emails);
+                            emailMessage.setTitle(info.getTitle());
+                            emailHandler.handle(emailMessage);
+                        }
                         break;
                     }
                     case WECHAT: {

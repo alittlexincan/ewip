@@ -36,8 +36,8 @@ public class SmsSender{
 //        params.put("serial", "");
 
         Iterator<String> mobiles = param.getMobiles().iterator();
-//        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-//        scheduledExecutorService.schedule(() -> {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        scheduledExecutorService.schedule(() -> {
             if (mobiles.hasNext()) {
                 String mobile = mobiles.next();
 //                params.put("mobiles", mobile);
@@ -48,8 +48,8 @@ public class SmsSender{
                 JSONObject jsonObject = restTemplate.postForObject(sendUrl, "", JSONObject.class);
 
             } else {
-//                scheduledExecutorService.shutdown();
+                scheduledExecutorService.shutdown();
             }
-//        }, 100, TimeUnit.MILLISECONDS);
+        }, 100, TimeUnit.MILLISECONDS);
     }
 }
