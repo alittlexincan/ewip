@@ -33,10 +33,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("acme")
-                .secret("$2a$10$qJstZalewDJFtheFAJjcVuF01xDCmBzu.8FYJAZXe.L73E7Lo1MNS")
+                .withClient("open-api")
+                .secret(passwordEncoder().encode("open-secret"))
+                .redirectUris("http://127.0.0.1:9200/login")
                 .autoApprove(true)
-                .authorizedGrantTypes("authorization_code", "refresh_token")
+                .authorizedGrantTypes("authorization_code", "refresh_token", "password")
                 .scopes("all");
     }
 

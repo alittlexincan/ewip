@@ -1,7 +1,7 @@
-package com.zhxu.auth.service;
+package com.zhxu.gateway.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.FeignClient;
+//import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@FeignClient("SYSTEM-INFO")
+//@FeignClient("SYSTEM-INFO")
 public class UserDetailService implements UserDetailsService {
 
     @Autowired

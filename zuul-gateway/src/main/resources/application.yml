@@ -12,6 +12,21 @@ eureka:
     service-url:
       default-zone: http://127.0.0.1:8761/eureka/
 
+security:
+  oauth2:
+    client:
+      client-id: open-api
+      client-secret: open-secret
+      user-authorization-uri: http://127.0.0.1:9100/uaa/oauth/authorize
+      access-token-uri: http://127.0.0.1:9100/uaa/oauth/token
+      registered-redirect-uri: http://127.0.0.1:9200/login
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:9100/uaa/oauth/token_key
+        key-value: 123
+    sso:
+      login-path: /login
+
 zuul:
   ignored-services: "*"
   add-host-header: false
@@ -20,4 +35,12 @@ zuul:
       path: /message/**
     basic-info:
       path: /basic/**
+  include-debug-header: true
 
+ribbon:
+  ReadTimeout: 10000
+
+logging:
+  level:
+    com.netflix.zuul: DEBUG
+    org.springframework.cloud.netflix.zuul: DEBUG
