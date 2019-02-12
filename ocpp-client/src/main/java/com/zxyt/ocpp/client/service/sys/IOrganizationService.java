@@ -5,6 +5,7 @@ import com.zxyt.ocpp.client.config.common.universal.IBaseService;
 import com.zxyt.ocpp.client.entity.sys.Organization;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +20,5 @@ public interface IOrganizationService extends IBaseService<Organization> {
 
     Organization selectById(@Param(value="id") String id);
 
+    List<Organization> selectOrg(Map<String, Object> map);
 }

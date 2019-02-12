@@ -1,5 +1,6 @@
 package com.zxyt.ocpp.client.controller.sys;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zxyt.ocpp.client.entity.sys.ZTree;
 import com.zxyt.ocpp.client.service.sys.IZTreeService;
@@ -96,6 +97,20 @@ public class ZTreeController {
     @PostMapping("/disaster/level")
     public List<ZTree> getDisasterLevelTree(@ApiParam(hidden = true) @RequestParam Map<String,Object> map) {
         return this.zTreeService.getDisasterLevelTree(map);
+    }
+
+    /**
+     * 获取灾种级别对应内容树
+     * @param map
+     * @return
+     */
+    @PostMapping("/disaster/haveContent")
+    public List<ZTree> getDisasterByContentTree(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
+
+        return this.zTreeService.getDisasterByContentTree(map);
     }
 
     @ApiOperation(value = "查询群组树", httpMethod = "POST", notes = "根据查询条件查询群组树信息")

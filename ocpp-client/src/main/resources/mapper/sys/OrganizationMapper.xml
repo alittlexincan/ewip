@@ -71,4 +71,14 @@
         )
         AND type = #{type}
     </select>
+
+    <!-- 查询机构信息 -->
+    <select id="selectOrg" resultMap="BaseResultMap">
+        select o.* FROM organization o
+        left join area a on a.id = o.area_id
+        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        <if test="id != null and id != ''">and id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
+        <if test="orgName != null and orgName != ''">AND o.organization_name = #{orgName}</if>
+    </select>
 </mapper>

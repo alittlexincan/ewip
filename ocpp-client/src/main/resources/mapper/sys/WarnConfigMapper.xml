@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxyt.ocpp.client.mapper.sys.IWarnConfigMapper">
+
+    <resultMap id="warnConfigResultMap" type="com.zxyt.ocpp.client.entity.sys.WarnConfig">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
+        <result column="organization_id" jdbcType="VARCHAR" property="organizationId"/>
+        <result column="disaster_id" jdbcType="VARCHAR" property="disasterId"/>
+        <result column="disaster_name" jdbcType="VARCHAR" property="disasterName"/>
+        <result column="disaster_color" jdbcType="INTEGER" property="disasterColor"/>
+        <result column="disaster_level" jdbcType="INTEGER" property="disasterLevel"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="measure" jdbcType="VARCHAR" property="measure"/>
+        <result column="instruction" jdbcType="VARCHAR" property="instruction"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="area_name" jdbcType="VARCHAR" property="areaName"/>
+        <result column="organization_name" jdbcType="VARCHAR" property="organizationName"/>
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+    </resultMap>
+
+    <!-- 查询预警配置信息 -->
+    <select id="findAll" resultMap="warnConfigResultMap">
+        SELECT
+        w.id,
+        w.area_id,
+        w.organization_id,
+        w.disaster_id,
+        w.disaster_name,
+        w.disaster_color,
+        w.disaster_level,
+        w.content,
+        w.measure,
+        w.instruction
+        FROM
+        warn_config w
+        where 1=1
+        <if test="id != null and id != ''">AND w.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND w.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND w.organization_id = #{organizationId}</if>
+        <if test="disasterId != null and disasterId != ''">AND w.disaster_id = #{disasterId}</if>
+        <if test="disasterName != null and disasterName != ''">AND w.disaster_name = #{disasterName}</if>
+        <if test="disasterColor != null and disasterColor != ''">AND w.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">AND w.disaster_level = #{disasterLevel}</if>
+        <choose>
+            <when test="sortName !=null and sortName!='id'">
+                ORDER BY ${sortName} ${sortOrder}
+            </when >
+            <otherwise>
+                ORDER BY w.create_time DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- 多条件查询预警配置信息 -->
+    <select id="selectConfig" resultMap="warnConfigResultMap">
+        SELECT
+        w.id,
+        w.area_id,
+        w.organization_id,
+        w.disaster_id,
+        w.disaster_name,
+        w.disaster_color,
+        w.disaster_level,
+        w.content,
+        w.measure,
+        w.instruction
+        FROM
+        warn_config w
+        where 1=1
+        <if test="id != null and id != ''">AND w.id = #{id}</if>
+        <if test="areaId != null and areaId != ''">AND w.area_id = #{areaId}</if>
+        <if test="organizationId != null and organizationId != ''">AND w.organization_id = #{organizationId}</if>
+        <if test="disasterId != null and disasterId != ''">AND w.disaster_id = #{disasterId}</if>
+        <if test="disasterName != null and disasterName != ''">AND w.disaster_name = #{disasterName}</if>
+        <if test="disasterColor != null and disasterColor != ''">AND w.disaster_color = #{disasterColor}</if>
+        <if test="disasterLevel != null and disasterLevel != ''">AND w.disaster_level = #{disasterLevel}</if>
+    </select>
+
+
+
+</mapper>

@@ -43,4 +43,10 @@ public class OrganizationServiceImpl extends AbstractService<Organization> imple
     public Organization selectById(String id){
         return this.organizationMapper.selectById(id);
     }
+
+    @Override
+    public List<Organization> selectOrg(Map<String, Object> map) {
+
+        return this.organizationMapper.selectOrg(map);
+    }
 }

@@ -75,4 +75,5 @@ public interface IZTreeMapper extends IBaseMapper<ZTree> {
      */
     List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map);
 
+    List<ZTree> getDisasterByContentTree(Map<String, Object> map);
 }

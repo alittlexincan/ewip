@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.zxyt.ocpp.client.config.common.result.ResultObject;
 import com.zxyt.ocpp.client.config.common.result.ResultResponse;
 import com.zxyt.ocpp.client.service.message.IMessageService;
-import com.zxyt.ocpp.client.service.publish.INewPublishService;
 import com.zxyt.ocpp.client.service.publish.IPublishService;
 import com.zxyt.ocpp.client.utils.UploadFileUtil;
 import io.swagger.annotations.*;
@@ -42,9 +41,6 @@ public class MessageController {
      */
     @Autowired
     private IPublishService publishService;
-
-    @Autowired
-    private INewPublishService newPublishService;
 
     /**
      * 获取上传的文件夹，具体路径参考application.properties中的配置
@@ -100,9 +96,7 @@ public class MessageController {
             result.put("files", file != null ? file.toJSONString() : "");
 
             // 调用分发接口
-            //this.publishService.publish(result);
-//            PubInfo pubInfo = messageTransformer.transform(result);
-            newPublishService.publish(result);
+            this.publishService.publish(result);
 
             return ResultResponse.make(200,result.getString("msg"), result);
         }

@@ -9,9 +9,12 @@ import com.zxyt.ocpp.client.config.common.result.ResultResponse;
 import com.zxyt.ocpp.client.entity.sys.Organization;
 import com.zxyt.ocpp.client.service.sys.IOrganizationService;
 import io.swagger.annotations.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -122,5 +125,18 @@ public class OrganizationController {
         return ResultResponse.page(pageInfo.getTotal(), pageInfo.getList());
     }
 
+    /**
+     * 查询机构详细信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/selectOrg")
+    public ResultObject<Object> selectOrg(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("empAreaId", employee.getString("areaId"));
+        List<Organization> list = this.organizationService.selectOrg(map);
+        return ResultResponse.make(200, null, list);
+    }
 
 }

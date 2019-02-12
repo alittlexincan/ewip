@@ -38,5 +38,6 @@ public interface IOrganizationMapper extends IBaseMapper<Organization> {
      * @return
      */
     Organization selectSameGradeByParam(Map<String, Object> map);
-    
+
+    List<Organization> selectOrg(Map<String, Object> map);
 }

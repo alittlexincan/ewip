@@ -1,5 +1,6 @@
 package com.zxyt.ocpp.client.service.sys;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zxyt.ocpp.client.config.common.universal.IBaseService;
 import com.zxyt.ocpp.client.entity.sys.ZTree;
 
@@ -71,4 +72,5 @@ public interface IZTreeService extends IBaseService<ZTree> {
      */
     List<ZTree> getOrganizationUserGroupTree(Map<String, Object> map);
 
+    List<ZTree> getDisasterByContentTree(Map<String, Object> map);
 }
