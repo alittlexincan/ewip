@@ -101,6 +101,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             ,{field: 'disasterLevel',   title: '预警级别',      width:140,templet: levelFormat}
             ,{field: 'currentFlow',     title: '当前流程',       width:110, templet: flowFormat}
             ,{field: 'employeeName',    title: '提交人员',      width:120, sort: true}
+            ,{field: 'msgType',        title: '预警类型',      sort: true}
             ,{field: 'warnType',        title: '预警类型',      sort: true, templet: warnTypeFormat}
             ,{field: 'editTime',        title: '编辑时间',      width:160, sort: true}
             ,{title: '操&nbsp;&nbsp;作', align:'center',        width:160,toolbar: '#btnGroupOption'}
@@ -144,6 +145,7 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
                     body.find("#warnEditId").val(param.id);             // 预警编辑基础信息主键ID
                     body.find("#flow").val(param.flow);                 // 审核流程标识 流程：0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回
                     body.find("#currentFlow").val(param.currentFlow);   // 当前选中数据得流程值
+                    body.find("#msgType").val(param.msgType);   // 当前选中数据得流程值
                     form.render();
 
                     setTimeout(() => {

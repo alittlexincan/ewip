@@ -461,12 +461,14 @@ layui.use(['table','form','element','zTree'], function(){
         let flow = $("#flow").val()
             // 当前选中数据得流程值
             ,currentFlow = $("#currentFlow").val()
+            ,msgType = $("#msgType").val()
             ,param = {
                 url: "/client/warn/option/insert/flow"
                 ,data:{
                     id: $("#id").val()
                     ,warnEditId: $("#warnEditId").val()
                     ,flow: flow
+                    ,msgType: msgType
                     ,currentFlow: currentFlow
                     ,advice: data.field.advice.length == 0 ? active.parseFlowMsg(currentFlow) : data.field.advice
                 }

@@ -14,7 +14,6 @@
 
 <!--预警ID-->
 <input id="warnEditId" hidden th:value="${id}" />
-<input id="warnMsgType" type="hidden" th:value="${type}" />
 <div class="layui-fluid edit">
     <div class="layui-form layui-form-pane">
         <div class="layui-row layui-col-space5">
@@ -39,8 +38,7 @@
                             <label class="layui-form-label">预警名称:</label>
                             <div class="layui-input-block">
                                 <input type="hidden" id="disasterId" name="disasterId">
-                                <input type="text" id="disasterName" name="disasterName"  readonly="readonly"  lay-verify="required" placeholder="请选择灾种名称" autocomplete="off" class="layui-input" style="cursor: pointer;">
-                                <!--<div id="disasterId" class="select-tree layui-form-select" autocomplete="off" ></div>-->
+                                <input type="text" id="disasterName" name="disasterName" lay-verify="required" placeholder="请选择灾种名称" autocomplete="off" class="layui-input" >
                             </div>
                         </div>
 
@@ -55,7 +53,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警颜色:</label>
                             <div class="layui-input-block">
-                                <select  name="disasterColor" disabled lay-verify="required" placeholder="请选择预警颜色">
+                                <select  name="disasterColor" readonly="readonly" lay-verify="required" placeholder="请选择预警颜色">
                                     <option value="">请选择预警颜色</option>
                                     <option value="0">红色</option>
                                     <option value="1">橙色</option>
@@ -67,7 +65,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警级别:</label>
                             <div class="layui-input-block">
-                                <select  name="disasterLevel" disabled lay-verify="required" placeholder="请选择预警级别">
+                                <select  name="disasterLevel"  lay-verify="required" placeholder="请选择预警级别">
                                     <option value="">请选择预警级别</option>
                                     <option value="0">Ⅰ级/特别重大</option>
                                     <option value="1">Ⅱ级/重大</option>
@@ -79,13 +77,13 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警标题:</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" lay-verify="required" placeholder="请输入预警标题" autocomplete="off" class="layui-input">
+                                <input type="text" name="title"  lay-verify="required" placeholder="请输入预警标题" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警信息类型:</label>
                             <div class="layui-input-block">
-                                <select class="form-control" name="warnType" lay-verify="required" placeholder="请选择预警信息类型">
+                                <select class="form-control" name="warnType" lay-verify="required" placeholder="请选择预警信息类型" readonly>
                                     <option value="Actual">实际</option>
                                     <option value="Exercise">演练</option>
                                     <option value="Test" selected>测试</option>
@@ -405,6 +403,6 @@
 </div>
 
 <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-<script th:src="@{/ewip/warn/resend.js}" charset="utf-8"></script>
+<script th:src="@{/ewip/warn/warnCancel.js}" charset="utf-8"></script>
 </body>
 </html>

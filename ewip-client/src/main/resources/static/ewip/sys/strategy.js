@@ -310,7 +310,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 ,'isMultiple': false
                                 , 'checkNodeId': selectedNodes[0].id
                                 ,clickNode:function (event, treeId, treeNode) {
-                                    debugger;
                                     if(treeNode.isConfig==1){
                                         var name = treeNode.name;
                                         name = name.substring(0, name.indexOf("["));
@@ -335,7 +334,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
                                 ,'url': '/client/tree/disaster/level'
                                 ,'isMultiple': false
                                 ,clickNode:function (event, treeId, treeNode) {
-                                    debugger;
                                     if(treeNode.isConfig==1){
                                         var name = treeNode.name;
                                         name = name.substring(0, name.indexOf("["));

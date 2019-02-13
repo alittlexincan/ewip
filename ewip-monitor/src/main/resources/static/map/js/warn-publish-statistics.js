@@ -1389,7 +1389,6 @@ $(function(){
      * 查询预警所有信息
      */
     var warnAllDetail = function(json){
-    	debugger;
     	var areaWarnList = [];
     	//首先删除之前存在的图层
     	var player=map.graphicsLayerIds;

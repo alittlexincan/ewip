@@ -38,7 +38,6 @@
         }
     };
     dialog.onok = function () {
-        debugger;
         if ( !$G( "issave" ).checked ){
             me.execCommand( "cleardoc" );
         }

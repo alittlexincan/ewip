@@ -96,7 +96,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 return false;
             }
             // 预警标题
-            $(".basis input[name='title']").val(param.organizationName + "发布" + param.disasterName + disaster.color(param.disasterColor) + "["+disaster.level(param.disasterLevel)+"]预警");
+            $(".basis input[name='title']").val(param.organizationName + "解除" + param.disasterName + disaster.color(param.disasterColor) + "["+disaster.level(param.disasterLevel)+"]预警");
             // 预警名称
             $(".basis input[name='disasterName']").val(param.disasterName);
             // 预警颜色
@@ -192,7 +192,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 ,warnType = $(".basis select[name='warnType']").val()
                 ,disasterName = result.disasterName || $(".basis input[name='disasterName']").val()
                 ,disasterColor = result.disasterColor || $(".basis select[name='disasterColor']").val()
-                ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "解除" + disasterName + disaster.color(disasterColor) + "预警信号:";
             if(warnType == "Test"){
                 title = "测试："+title;
             }
@@ -323,7 +323,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         ,warnType = $(".basis select[name='warnType']").val()
                         ,disasterName = $(".basis #disasterName").val()
                         ,disasterColor = $(".basis select[name='disasterColor']").val()
-                        ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                        ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "解除" + disasterName + disaster.color(disasterColor) + "预警信号:";
                     if(warnType == "Test"){
                         title = "测试："+title;
                     }
@@ -765,9 +765,11 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 回显标题
                 $(".basis input[name='title']").val(result.title).attr("title", result.title);
 
-                // 回显预警名称
-                $(".basis .addDisasterIdShow[name='disasterId']").attr("value", result.disasterName);
-                $(".basis .addDisasterIdHide[name='disasterId']").attr("value", result.disasterId);
+                // 回显灾种ID
+                $(".basis #disasterId").val(result.disasterId);
+                // 回显灾种编码
+                $(".basis #disasterCode").val(result.disasterCode);
+                // 回显灾种名称
                 $(".basis #disasterName").val(result.disasterName);
 
                 // 回显预警颜色
@@ -828,7 +830,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     ,warnType = $(".basis select[name='warnType']").val()
                     ,disasterName = $(".basis #disasterName").val()
                     ,disasterColor = $(".basis select[name='disasterColor']").val()
-                    ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "发布" + disasterName + disaster.color(disasterColor) + "预警信号:";
+                    ,title = employee.organizationName + time.formatStringTime(editTime,"yyyy年MM月dd日HH时mm分") + "解除" + disasterName + disaster.color(disasterColor) + "预警信号:";
                 if(warnType == "Test"){
                     title = "测试："+title;
                 }
@@ -842,7 +844,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
                     html += "			<div  class='layui-card-body warn-card-content-list content_" + channel.channelId + "'>";
                     // 循环地区
-                    result.areas.forEach(area => {
+                    // result.areas.forEach(area => {
                         // html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "_" + area.areaId + "'>";
                         // html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
                         // html += "						<div>" + area.areaName + "</div>";
@@ -851,14 +853,14 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         // html += "                       <textarea type='text' name='content_" + channel.channelId + "_" + area.areaId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
                         // html += "					</div>";
                         // html += "				</div>";
-                    });
+                    // });
 
                     html += "				<div class='layui-row layui-col-space5 warn-item_"+ channel.channelId + "'>";
                     html += "					<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
                     html += "						<div>" + result.areaName + "</div>";
                     html += "					</div>";
                     html += "					<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                    html += "                       <textarea type='text' name='content_" + channel.channelId + "' autocomplete='off' readonly class='layui-textarea'></textarea>";
+                    html += "                       <textarea type='text' name='content_" + channel.channelId + "'   class='layui-textarea'></textarea>";
                     html += "					</div>";
                     html += "				</div>";
 
@@ -1217,18 +1219,13 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     form.on("submit(submit)", function(data){
         // 数据提交到后台，通用方法
         let param = data.field;
-        let warnMsgType= $("#warnMsgType").val();
         // 将要修改的预警信息ID
         param.warnEditId = $("#warnEditId").val();
 
         param.advice = "您好：" + param.title + "请您处理";     // 流程意见
         param.status = 0;                                      // 预警状态：0：未发布；1：以发布；2：解除
         // 预警信息状态：[Alert（首次）,Update（更新）,Cancel（解除）,Ack（确认）,Error（错误）]，目前只采用“Alert”“Update”“Cancel”三个枚举值，其余枚举值保留，暂不使用。
-        if(warnMsgType==1){
-            param.msgType = "Alert";
-        }else{
-            param.msgType = "Update";
-        }
+        param.msgType = "Cancel";
         // 发布范围：[Public（公开）,Restricted（限制权限）,Private（特定地址）],固定使用“Public”值，其余两个枚举值保留，暂不使用。
         param.scope = "Public";
         // 流程处理

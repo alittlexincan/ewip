@@ -360,7 +360,7 @@
 
 	<!--查询所有渠道-->
 	<select id="findChannelAll" resultType="com.hyt.monitor.entity.monitor.Channel">
-		select * from channel where type=0
+		select * from channel where type=0 and area_id =#{empAreaId}
 	</select>
 
 	<!--查询地区树-->

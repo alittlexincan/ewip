@@ -103,7 +103,6 @@ layui.use(['table','form','element','zTree'], function(){
          * 数据回显渠道
          */
         ,"calBackChannelList": result => {
-            debugger;
             $.ajax({
                 async:true
                 ,type: "POST"
@@ -200,7 +199,6 @@ layui.use(['table','form','element','zTree'], function(){
                 });
                 // 赋值预警内容
                 let contents = result.contents;
-                debugger;
                 for(let key in contents){
                     // contents[key].forEach((obj)=> {
                         $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);

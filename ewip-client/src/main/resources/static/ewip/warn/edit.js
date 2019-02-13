@@ -633,7 +633,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 获取策略信息, 并设置流程、渠道
                 active.getStrategyMsg(param, active.setStrategyAndChannel);
                 // 获取预警信息，并匹配预警内容
-                debugger;
                 active.getWarnMsg(param, active.setWarn);
                 // 基础信息配置
                 active.setBasis(param);
@@ -1042,7 +1041,6 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 监听预警提交事件
      */
     form.on("submit(submit)", function(data){
-        debugger;
         // 判断至少选中一个地区
         let areaTree = zTree.getZTree("areaTree");
         let nodes = areaTree.getCheckedNodes(true);

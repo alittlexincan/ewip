@@ -100,6 +100,14 @@ public class PageController {
         return new ModelAndView(model + "/" + name, map);
     }
 
+    @RequestMapping("/page/{model}/{name}/{id}/{type}")
+    public ModelAndView page(@PathVariable("model") String model,@PathVariable("name") String name, @PathVariable("id") String id, @PathVariable("type") String type){
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("type", type);
+        return new ModelAndView(model + "/" + name, map);
+    }
+
     @RequestMapping("/403")
     public String unauthorizedRole(){
         System.out.println("------没有权限-------");

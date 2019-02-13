@@ -104,6 +104,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
                 ,employeeId = map.get("employeeId").toString()
                 ,employeeName = map.get("employeeName").toString()
                 ,organizationId = map.get("organizationId").toString()
+                ,msgType = map.get("msgType").toString()
                 ,organizationName = map.get("organizationName").toString();
 
         // 获取总流程
@@ -153,7 +154,11 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
             // 更改预警编辑信息主表状态
             Map<String, Object> updateWarnEditStatus = new HashMap<>();
             updateWarnEditStatus.put("id", warnEditId);
-            updateWarnEditStatus.put("status", 1);
+            if(msgType!=null && msgType.equals("Cancel")){
+                updateWarnEditStatus.put("status", 2);
+            }else{
+                updateWarnEditStatus.put("status", 1);
+            }
             this.warnEditMapper.updateStatus(updateWarnEditStatus);
             // 读取预警信息，即将推送到分发服务
             // 1：获取预警基本信息

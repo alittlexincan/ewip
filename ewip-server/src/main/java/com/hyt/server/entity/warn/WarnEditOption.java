@@ -43,6 +43,10 @@ public class WarnEditOption {
 
     private String warnType;
 
+
+    private String msgType;
+
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date editTime;
 
@@ -54,7 +58,7 @@ public class WarnEditOption {
 
     public WarnEditOption() {}
 
-    public WarnEditOption(String id, String warnEditFlowId, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType, Date editTime, String flow, Integer currentFlow, String employeeName) {
+    public WarnEditOption(String id, String warnEditFlowId, String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String disasterIcon, String warnType,String msgType, Date editTime, String flow, Integer currentFlow, String employeeName) {
         this.id = id;
         this.warnEditFlowId = warnEditFlowId;
         this.title = title;
@@ -66,6 +70,7 @@ public class WarnEditOption {
         this.disasterLevel = disasterLevel;
         this.disasterIcon = disasterIcon;
         this.warnType = warnType;
+        this.msgType = msgType;
         this.editTime = editTime;
         this.flow = flow;
         this.currentFlow = currentFlow;
@@ -190,5 +195,13 @@ public class WarnEditOption {
 
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
+    }
+
+    public String getMsgType() {
+        return msgType;
+    }
+
+    public void setMsgType(String msgType) {
+        this.msgType = msgType;
     }
 }

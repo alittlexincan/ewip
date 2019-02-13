@@ -14,6 +14,7 @@
         <result column="disaster_level" jdbcType="VARCHAR" property="disasterLevel"/>
         <result column="disaster_icon" jdbcType="VARCHAR" property="disasterIcon"/>
         <result column="warn_type" jdbcType="VARCHAR" property="warnType"/>
+        <result column="msg_type" jdbcType="VARCHAR" property="msgType"/>
         <result column="flow" jdbcType="VARCHAR" property="flow"/>
         <result column="current_flow" jdbcType="INTEGER" property="currentFlow"/>
         <result column="employee_name" jdbcType="VARCHAR" property="employeeName"/>
@@ -32,6 +33,7 @@
             d.disaster_color,
             d.disaster_level,
             d.icon disaster_icon,
+            we.msg_type,
             we.warn_type,
             we.edit_time,
             we.flow,

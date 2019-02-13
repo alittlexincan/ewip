@@ -56,6 +56,7 @@
                 we.msg_type,
                 we.scope,
                 we.status,
+                wef.is_option,
                 wef.create_time
             FROM
               warn_edit we
@@ -63,10 +64,10 @@
             LEFT JOIN disaster d 		  ON we.disaster_id = d.id
             LEFT JOIN organization o 	  ON we.organization_id = o.id
 
-            WHERE 1=1 and wef.is_option=0
+            WHERE 1=1 and wef.is_option=1
                 <if test="id != null and id != ''"> AND we.id = #{id} </if>
                 <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
-                <if test="organizationId != null and organizationId != ''"> AND we.organization_id = #{organizationId} </if>
+                <if test="organizationId != null and organizationId != ''"> AND wef.organization_id = #{organizationId} </if>
                 <if test="disasterName != null and disasterName != ''"> AND d.name = #{disasterName} </if>
                 <if test="disasterColor != null and disasterColor != ''"> AND we.disaster_color = #{disasterColor} </if>
                 <if test="disasterLevel != null and disasterLevel != ''"> AND we.disaster_level = #{disasterLevel} </if>

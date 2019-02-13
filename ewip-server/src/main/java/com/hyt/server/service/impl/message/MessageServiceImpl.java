@@ -16,7 +16,6 @@ import com.hyt.server.mapper.message.IMessageFileMapper;
 import com.hyt.server.mapper.message.IMessageMapper;
 import com.hyt.server.mapper.message.IMessageUserMapper;
 import com.hyt.server.service.message.IMessageService;
-import com.hyt.server.service.publish.INewPublishService;
 import com.hyt.server.service.publish.IPublishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,8 +51,6 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Autowired
     private IPublishService publishService;
 
-    @Autowired
-    INewPublishService newPublishService;
 
     @Override
     public PageInfo<Message> selectAll(Map<String, Object> map) {
@@ -135,14 +132,14 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
         json.put("id",messageId);
 
-        /**
-            Map<String, Object> param = json;
-            System.out.println(json);
-            // 调用分发平台
-            this.publishService.publish(param);
-        */
 
-        newPublishService.publish(json);
+        Map<String, Object> param = json;
+        System.out.println(json);
+        // 调用分发平台
+        this.publishService.publish(param);
+
+
+//        newPublishService.publish(json);
 
         return message;
     }
@@ -429,9 +426,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
      * @param json
      */
     private void executeData(JSONObject json){
-        JSONArray channels = json.getJSONArray("channel");
-        JSONObject group = json.getJSONObject("group");
-        JSONObject user = json.getJSONObject("user");
+        JSONArray channels = json.getJSONArray("channels");
+        JSONObject group = json.getJSONObject("groups");
+        JSONObject user = json.getJSONObject("users");
         channels.forEach( channel -> {
             JSONObject chn = (JSONObject) channel;
             String channelId = chn.getString("channelId");

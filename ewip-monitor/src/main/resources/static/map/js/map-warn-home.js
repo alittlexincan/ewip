@@ -926,6 +926,7 @@ $(function(){
 	        dataType: "json",
 	        success: function(datas) {
 	        	var html = "";
+
 	        	if(datas != "" && datas != null && datas.length > 0){
 		            $.each(datas,function(i, data) {
 		                    arrayBh.push(data.vintbh);
@@ -3201,7 +3202,6 @@ $(function(){
      * 初始化加载左侧预警信息
      */
     var initWarning =function(page){
-    	debugger;
     	var da = param();
     	da.page=page;
     	$.ajax({

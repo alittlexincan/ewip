@@ -194,20 +194,14 @@
         LEFT JOIN user_job uj on uj.id = u.job_id
         LEFT JOIN organization o on o.id = u.organization_id
         where 1=1  and FIND_IN_SET(u.area_id, getAreaCList(#{empAreaId}))
-        <if test="channelName != null and channelName != '' ">
-            and u.channel_id = (SELECT id FROM channel where name = #{channelName})
-        </if>
         <if test="areaId != null and areaId != '' ">
             and u.area_id = #{areaId}
         </if>
         <if test="organizationId != null and organizationId != '' ">
             and u.organization_id = #{organizationId}
         </if>
-        <if test="type == 1">
-            and uj.leader is null
-        </if>
-        <if test="type == 2">
-            and uj.leader is not null
+        <if test="type != null and type != '' ">
+            and u.type = #{type}
         </if>
 
     </select>

@@ -120,10 +120,10 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'disasterColor',width:160, title: '预警颜色/级别', align:'center', sort: true, templet:colorFormat}
             ,{field: 'warnType',  title: '预警类型', align:'center', sort: true, templet: warnTypeFormat}
             ,{field: 'msgType',  title: '信息类型', align:'center', sort: true, templet: msgTypeFormat}
-            ,{field: 'status',   title: '流程状态', align:'center', templet: flowFormat}
-            ,{field: 'status',   title: '发布状态', align:'center', templet: statusFormat}
+            ,{field: 'flow',   title: '流程状态', align:'center', sort: true, templet: flowFormat}
+            ,{field: 'status',   title: '发布状态', align:'center', sort: true, templet: statusFormat}
             ,{field: 'createTime', width:160, align:'center', title: '操作时间'}
-            ,{title: '操&nbsp;&nbsp;作', width: 150, align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作', width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -175,7 +175,71 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             let index = layer.open({
                 title: "<i class='layui-icon layui-icon-form'></i>预警编辑"
                 ,type: 2
-                ,content: "/client/page/warn/resend/" + obj.data.id
+                ,content: "/client/page/warn/resend/" + obj.data.id +"/1"
+                ,success: (layero, index) => {
+                    setTimeout(() => {
+                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
+                        });
+                    }, 500);
+                },end: () => {
+                    reloadTable(); // 刷新列表
+                }
+            });
+            layer.full(index);
+        }
+
+        /**
+         * 重新发送：跳转到预警编辑界面
+         * @param obj
+         */
+        ,stopOption: obj => {
+            let index = layer.open({
+                title: "<i class='layui-icon layui-icon-form'></i>预警编辑"
+                ,type: 2
+                ,content: "/client/page/warn/resend/" + obj.data.id +"/1"
+                ,success: (layero, index) => {
+                    setTimeout(() => {
+                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
+                        });
+                    }, 500);
+                },end: () => {
+                    reloadTable(); // 刷新列表
+                }
+            });
+            layer.full(index);
+        }
+        /**
+         * 更新预警：跳转到预警编辑界面
+         * @param obj
+         */
+        ,updateOption: obj => {
+            let index = layer.open({
+                title: "<i class='layui-icon layui-icon-form'></i>预警更新"
+                ,type: 2
+                ,content: "/client/page/warn/resend/" + obj.data.id +"/2"
+                ,success: (layero, index) => {
+                    setTimeout(() => {
+                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
+                            tips: 3
+                        });
+                    }, 500);
+                },end: () => {
+                    reloadTable(); // 刷新列表
+                }
+            });
+            layer.full(index);
+        }
+        /**
+         * 解除预警：跳转到预警编辑界面
+         * @param obj
+         */
+        ,cancelOption: obj => {
+            let index = layer.open({
+                title: "<i class='layui-icon layui-icon-form'></i>预警解除"
+                ,type: 2
+                ,content: "/client/page/warn/warnCancel/" + obj.data.id
                 ,success: (layero, index) => {
                     setTimeout(() => {
                         layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {

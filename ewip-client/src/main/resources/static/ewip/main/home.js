@@ -346,10 +346,11 @@ layui.use(["index","table","form","laytpl","layer"], function(){
          */
         ,initMapWarnInfo : param => {
 
+
             //创建图片对象
             let createIcon = iconUrl =>{
                 return new T.Icon({
-                    iconUrl: iconUrl,
+                    iconUrl: "/client"+iconUrl,
                     iconSize: new T.Point(40, 40),
                     iconAnchor: new T.Point(10, 25)
                 });
@@ -362,7 +363,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     + "<ul style='padding-bottom: 3px;'>发布地区："+data.areaName+"</ul>"
                     + "<ul style='padding-bottom: 3px;'>发布机构："+data.organizationName+"</ul>"
                     + "<ul style='padding-bottom: 3px;'>发布时间："+data.sendTime+"</ul>"
-                    + "<ul style='padding-bottom: 3px;'>预警内容："+data.content+"</ul>"
+                    // + "<ul style='padding-bottom: 3px;'>预警内容："+data.content+"</ul>"
                     + "</div>";
             };
 
@@ -383,6 +384,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             active.getData({type:"GET", url: "/client/warn/edit/info", data:{status:"1,2"}}, data => {
                 if(data == null) return;
                 data.forEach( res => {
+                    console.log(res)
                     let icon = createIcon(res.icon);						// 创建图标对象
                     let a = Math.floor(Math.random()*10+1);
                     let b = Math.floor(Math.random()*10+1);
