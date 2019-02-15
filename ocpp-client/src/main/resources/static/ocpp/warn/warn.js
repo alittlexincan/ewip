@@ -107,6 +107,27 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             form.render("select");
         }
 
+        /**
+         * 获取策略配置
+         * @param param
+         */
+        ,"getStrategyMsg": function (param, callback) {
+            $.ajax({
+                async:false
+                ,type: "GET"
+                ,data: param
+                ,url: "/strategy/config"
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200 && json.data != null){
+                        param.channelId = json.data.channelId;  // 获取配置的渠道
+                        callback(param);
+                    }else {
+                        param.step = 1;
+                    }
+                }
+            });
+        }
 
         /**
          * 获取预警配置
@@ -136,16 +157,11 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * 获取策略和配置信息后，对其灾种、流程渠道等信息进行匹配
          */
         ,"setStrategyAndChannel":function (result) {
-            let channelIds = result.channelId
-                ,flow = result.flow;
-            // 清空流程样式
-            $(".process-list .process input[type='checkbox']").prop("checked",false);
+            let channelIds = result.channelId;
+
             // 清空渠道样式
             $(".channel-list .imgbox").removeClass("active");
-            // 流程赋值
-            flow.split(",").forEach(function (item) {
-                $(".process-list .process input[type='checkbox'][value='"+item+"']").prop("checked",true);
-            });
+
             // 更新layui checkbox样式
             form.render("checkbox");
             // 渠道赋值
@@ -597,6 +613,8 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 预警级别
                 $(".basis select[name='disasterLevel']").val(param.disasterLevel);
 
+                // 获取策略信息, 并设置流程、渠道
+                active.getStrategyMsg(param, active.setStrategyAndChannel);
                 // 获取预警信息，并匹配预警内容
                 active.getWarnMsg(param, active.setWarn);
                 // 基础信息配置
@@ -1020,24 +1038,11 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
         let param = data.field;
 
         param.advice = "您好：" + param.title + "请您处理";     // 流程意见
-        param.status = 0;                                      // 预警状态：0：未发布；1：以发布；2：解除
+        param.status = 1;                                      // 预警状态：0：未发布；1：以发布；2：解除
         // 预警信息状态：[Alert（首次）,Update（更新）,Cancel（解除）,Ack（确认）,Error（错误）]，目前只采用“Alert”“Update”“Cancel”三个枚举值，其余枚举值保留，暂不使用。
         param.msgType = "Alert";
         // 发布范围：[Public（公开）,Restricted（限制权限）,Private（特定地址）],固定使用“Public”值，其余两个枚举值保留，暂不使用。
         param.scope = "Public";
-        // 流程处理
-        param.flow = function(){
-            let flow = "", process = [];
-            $(".process-list .process input[type='checkbox'][name='flow']:checked").each(function () {
-                flow += "," + $(this).val();
-                process.push(parseInt($(this).val()));
-            });
-            // 当前预警流程预警录入
-            param.currentFlow = 0;
-            // 根据当前预警流程，获取下一个预警流程
-            param.nextFlow = process[process.indexOf(param.currentFlow) + 1];
-            return flow.substring(1);
-        }();
 
         // 渠道处理
         param.channel = function(){

@@ -11,4 +11,5 @@ public interface IStrategyService extends IBaseService<Strategy> {
     PageInfo<Strategy> selectAll(Map<String, Object> map);
 
 
+    Strategy selectConfig(Map<String, Object> map);
 }
