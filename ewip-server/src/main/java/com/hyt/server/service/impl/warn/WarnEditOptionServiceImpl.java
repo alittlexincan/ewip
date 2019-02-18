@@ -203,7 +203,7 @@ public class WarnEditOptionServiceImpl extends AbstractService<WarnEditOption> i
         warnEditFlow.setOrganizationId(json.getString("organizationId"));
         warnEditFlow.setOrganizationName(json.getString("organizationName"));
         // 如果当前流程为发布流程，则直接插入1，否则插入0
-        warnEditFlow.setIsOption(1);
+        warnEditFlow.setIsOption(0);
         warnEditFlow.setAdvice(json.getString("advice"));
         this.warnEditFlowMapper.insert(warnEditFlow);
         return 1;

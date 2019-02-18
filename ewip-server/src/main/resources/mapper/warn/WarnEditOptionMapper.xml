@@ -57,7 +57,6 @@
         <if test="disasterLevel != null and disasterLevel != ''">AND we.disaster_level = #{disasterLevel}</if>
         <if test="warnType != null and warnType != ''">AND we.warn_type = #{warnType}</if>
         <if test="areaId != null and areaId != ''">AND we.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">AND wef.organization_id = #{organizationId}</if>
         <if test="currentFlow != null and currentFlow != ''">AND wef.flow = #{currentFlow}</if>
         <if test="isOption != null and isOption != ''">AND wef.is_option = #{isOption}</if>
 

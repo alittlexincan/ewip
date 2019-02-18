@@ -125,6 +125,15 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             ,{field: 'createTime', width:160, align:'center', title: '操作时间'}
             ,{title: '操&nbsp;&nbsp;作', width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
+        ,done:function () {
+            if(employee.organizationType==1){
+                $("#handle").show();
+                $("#handleWarn").show();
+            }else{
+                $("#handle").hide();
+                $("#handleWarn").hide();
+            }
+        }
     });
 
     /**
@@ -190,25 +199,27 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
         }
 
         /**
-         * 重新发送：跳转到预警编辑界面
+         * 终止预警
          * @param obj
          */
         ,stopOption: obj => {
-            let index = layer.open({
-                title: "<i class='layui-icon layui-icon-form'></i>预警编辑"
-                ,type: 2
-                ,content: "/client/page/warn/resend/" + obj.data.id +"/1"
-                ,success: (layero, index) => {
-                    setTimeout(() => {
-                        layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    }, 500);
-                },end: () => {
-                    reloadTable(); // 刷新列表
+            debugger;
+            console.log(obj)
+            $.ajax({
+                async: true
+                ,type: 'POST'
+                ,data: {warnEditId : obj.data.id}
+                ,url: '/client/warn/edit/stopWarn'
+                ,dataType: 'json'
+                ,success: function(json){
+                    if(json.code == 200){
+                        // 刷新列表
+                        reloadTable();
+                    }
+                    // 弹出提示信息，2s后自动关闭
+                    layer.msg(json.msg, {time: 2000});
                 }
             });
-            layer.full(index);
         }
         /**
          * 更新预警：跳转到预警编辑界面

@@ -101,7 +101,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             $(".basis input[name='disasterName']").val(param.disasterName);
             // 预警颜色
             $(".basis select[name='disasterColor']").val(param.disasterColor);
-            // 预警颜色
+            // 预警编码
             $(".basis input[name='disasterCode']").val(param.disasterCode);
             // 预警级别
             $(".basis select[name='disasterLevel']").val(param.disasterLevel);
@@ -825,6 +825,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
              * 数据回显内容
              */
             ,calBackContentList: result => {
+                debugger;
                 // 拼接预警内容前缀
                 let editTime = $(".basis #editTime").val()
                     ,warnType = $(".basis select[name='warnType']").val()
@@ -892,6 +893,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                             active.warnContent = contents[key].substring(title.length);
                         // $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
                         $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);
+                        $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(title+":"+active.warnContent);
                         // });
                     }
                     // 删除tab id 为choose-tab的table页

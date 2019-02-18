@@ -69,7 +69,7 @@
 
     <!--将老的预警流程变更到新预警流程里面来（针对预警重发）-->
     <update id="updateOldFlowByNewEditId">
-        UPDATE warn_edit_flow SET warn_edit_id = #{newEditId} WHERE warn_edit_id = #{oldEditId}
+        UPDATE warn_edit_flow SET is_option=1, warn_edit_id = #{newEditId}  WHERE warn_edit_id = #{oldEditId}
     </update>
 
 </mapper>

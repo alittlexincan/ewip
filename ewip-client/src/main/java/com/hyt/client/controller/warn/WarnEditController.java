@@ -137,4 +137,22 @@ public class WarnEditController extends BaseController {
         map.put("organizationId", employee.getString("organizationId"));
         return this.warnEditService.selectWarnInfo(map);
     }
+
+
+    /**
+     * 终止预警
+     * @param map
+     * @return
+     */
+    @PostMapping("/stopWarn")
+    public JSONObject stopWarn(@RequestParam Map<String,Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("employeeId",employee.get("id"));
+        map.put("employeeName",employee.get("name"));
+        map.put("organizationId",employee.get("organizationId"));
+        map.put("organizationName",employee.get("organizationName"));
+        map.put("advice","预警终止");
+        return this.warnEditService.stopWarn(map);
+    }
 }

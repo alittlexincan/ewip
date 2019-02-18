@@ -53,4 +53,16 @@ public interface IWarnEditMapper extends IBaseMapper<WarnEdit> {
      */
     List<WarnEdit> selectWarnInfo(Map<String, Object> map);
 
+    /**
+     * 终止预警
+     * @param map
+     * @return
+     */
+    int stopWarn(Map<String,Object> map);
+    /**
+     * 修改驳回状态
+     * @param map
+     * @return
+     */
+    int updateFlowIsOption(Map<String,Object> map);
 }

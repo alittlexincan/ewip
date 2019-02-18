@@ -446,7 +446,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
          *初始化消息提醒
          */
         ,initMesRemind: () =>{
-            let level = employee.level, data={
+            let level = employee.organizationType, data={
                 level:level,
                 areaId: employee.areaId,
                 organizationId: employee.organizationId
@@ -462,28 +462,9 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                         $(".mesRemind li span").remove();
                         for(let i=0;i<data.length;i++){
                             let flow=data[i].flow, count=data[i].count;
-                            if(level==2){
+                            if(level==1){
                                 if(flow==1){
-                                    if(count!=0){
-                                        $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
-                                    }
-                                }else if(flow==3){
-                                    $(".mesRemind li:nth-child(2)").empty().append(" <a href='page/warn/emergency'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
-                                    $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
-                                    if(count!=0){
-                                        $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
-                                    }
-                                }else if(flow==4){
-                                    if(count!=0){
-                                        $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
-                                    }
-                                }else if(flow==6){
-                                    if(count!=0){
-                                        $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
-                                    }
-                                }
-                            }else{
-                                if(flow==1){
+                                    // $(".mesRemind li:nth-child(1)").empty().append("<a href='page/warn/verify'><i class='layui-icon layui-icon-survey'></i><cite>待审核</cite></a>")
                                     if(count!=0){
                                         $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
                                     }
@@ -493,10 +474,34 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                                         $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
                                     }
                                 }else if(flow==4){
+                                    // $(".mesRemind li:nth-child(3)").empty().append("<a href='page/warn/publish'><i class='layui-icon layui-icon-release'></i><cite>待发布</cite></a>")
                                     if(count!=0){
                                         $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
                                     }
                                 }else if(flow==6){
+                                    // $(".mesRemind li:nth-child(4)").empty().append("<a href='page/warn/list?flow=6'><i class='layui-icon layui-icon-fire'></i><cite>被驳回</cite></a>")
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
+                                    }
+                                }
+                            }else{
+                                if(flow==1){
+                                    // $(".mesRemind li:nth-child(1)").empty().append("<a href='page/warn/verify/'><i class='layui-icon layui-icon-survey'></i><cite>待审核</cite></a>")
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(1) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==3){
+                                    $(".mesRemind li:nth-child(2)").empty().append(" <a href='page/warn/emergency'><i class='layui-icon layui-icon-edit'></i><cite>待签发</cite></a>")
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(2) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==4){
+                                    // $(".mesRemind li:nth-child(3)").empty().append("<a href='page/warn/publish'><i class='layui-icon layui-icon-release'></i><cite>待发布</cite></a>")
+                                    if(count!=0){
+                                        $(".mesRemind li:nth-child(3) a").after("<span>"+count+"</span>");
+                                    }
+                                }else if(flow==6){
+                                    // $(".mesRemind li:nth-child(4)").empty().append("<a href='page/warn/list?flow=6'><i class='layui-icon layui-icon-fire'></i><cite>被驳回</cite></a>")
                                     if(count!=0){
                                         $(".mesRemind li:nth-child(4) a").after("<span>"+count+"</span>");
                                     }

@@ -50,4 +50,11 @@ public interface IWarnEditService {
     @GetMapping("/warn/edit/info")
     JSONObject selectWarnInfo(@RequestParam Map<String,Object> map);
 
+    /**
+     * 终止发布的预警
+     * @param map
+     * @return
+     */
+    @PostMapping("/warn/edit/stopWarn")
+    JSONObject stopWarn(@RequestParam Map<String,Object> map);
 }

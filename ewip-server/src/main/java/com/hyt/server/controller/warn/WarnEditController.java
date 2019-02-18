@@ -1,8 +1,12 @@
 package com.hyt.server.controller.warn;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.github.pagehelper.PageInfo;
 import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
+import com.hyt.server.entity.base.UnitSchool;
 import com.hyt.server.entity.warn.WarnEdit;
 import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
@@ -114,5 +118,15 @@ public class WarnEditController {
             return ResultResponse.make(200,"查询预警信息成功",list);
         }
         return ResultResponse.make(500,"查询预警信息失败",null);
+    }
+
+
+    @PostMapping("/stopWarn")
+    public ResultObject<Object> stopWarn(@RequestParam Map<String,Object> map){
+        int num = this.warnEditService.stopWarn(map);
+        if(num>0){
+            return ResultResponse.make(200,"修改成功");
+        }
+        return ResultResponse.make(500,"修改失败");
     }
 }

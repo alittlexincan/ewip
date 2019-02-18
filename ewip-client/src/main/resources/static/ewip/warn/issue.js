@@ -98,6 +98,13 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             ,{field: 'editTime',        title: '编辑时间',      width:160, sort: true}
             ,{title: '操&nbsp;&nbsp;作', align:'center',        width:160,toolbar: '#btnGroupOption'}
         ]]
+        ,done:function () {
+            if(employee.organizationType==1){
+                $("#handle").show();
+            }else{
+                $("#handle").hide();
+            }
+        }
     });
 
     /**

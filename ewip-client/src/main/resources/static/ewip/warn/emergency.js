@@ -83,14 +83,16 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
         ,where:{
             currentFlow: 3
             ,isOption: 0
-            ,areaId: employee.organizationType == 2 ? employee.areaId : "当前用户所在机构不是应急办"
+            ,areaId: employee.areaId
+            // ,areaId: employee.organizationType == 2 ? employee.areaId : "当前用户所在机构不是应急办"
         } // 查询流程中预警编辑提交信息
         ,page:true
         ,even: true
         ,height: 'full-125'
         ,limits:[10,20,50,100]
         ,text: {
-            none : employee.organizationType == 2 ? "暂无数据" : "<span class='ewip-warn-table-msg'>当前用户所在机构不是应急办，不具备审核共功能</span>"
+            none : "暂无数据"
+            // none : employee.organizationType == 2 ? "暂无数据" : "<span class='ewip-warn-table-msg'>当前用户所在机构不是应急办，不具备审核共功能</span>"
         }
         ,cols: [[
             {type: 'checkbox'}
@@ -106,6 +108,13 @@ layui.use(["table","form","laytpl","layer","disaster"], function(){
             ,{field: 'editTime',        title: '编辑时间',      width:160, sort: true}
             ,{title: '操&nbsp;&nbsp;作', align:'center',        width:160,toolbar: '#btnGroupOption'}
         ]]
+        ,done:function () {
+            if(employee.organizationType==2){
+                $("#handle").show();
+            }else{
+                $("#handle").hide();
+            }
+        }
     });
 
     /**

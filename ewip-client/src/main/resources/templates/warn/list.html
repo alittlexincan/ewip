@@ -82,7 +82,7 @@
                                     <option value="3">应急办签发</option>
                                     <option value="4">发布</option>
                                     <option value="5">保存代发</option>
-                                    <option value="6">驳回</option>
+                                    <!--<option value="6">驳回</option>-->
                                     <option value="7">终止</option>
                                 </select>
                             </div>
@@ -114,21 +114,23 @@
 
                     <!-- 列表：数据行操作 -->
                     <script type="text/html" id="btnGroupOption" th:inline="javascript" charset="UTF-8">
-
                         <!--机构判断 机构类型:0:发布中心；1：预案单位；2：应急办 -->
                         {{# if(d.organizationType == 2){ }}
                             <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="historyOption"><i class="layui-icon layui-icon-form"></i>追溯</a>
                         {{# }else{ }}
-
                             <!--预警流程表flow状态判断0：录入；1：审核；2：签发；3：应急办签发；4：发布；5：保存代发；6：驳回; 7：终止-->
                             {{# if(d.flow == 5 || d.flow == 6){ }}
+                                <div id="handleWarn">
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="resendOption"><i class="layui-icon layui-icon-form"></i>重发</a>
-                                <!--<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stopOption"><i class="layui-icon layui-icon-edit"></i>终止</a>-->
+                                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stopOption"><i class="layui-icon layui-icon-edit"></i>终止</a>
+                                </div>
                             <!--{{# }else if(d.flow == 4 && d.isOption == 1){ }}-->
                             {{# }else if(d.flow == 4 && d.status!=2){ }}
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="historyOption"><i class="layui-icon layui-icon-form"></i>追溯</a>
+                                <div id="handle">
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>更新</a>
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="cancelOption"><i class="layui-icon layui-icon-edit"></i>解除</a>
+                                </div>
                             {{# }else{  }}
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="historyOption"><i class="layui-icon layui-icon-form"></i>追溯</a>
                             {{# } }}

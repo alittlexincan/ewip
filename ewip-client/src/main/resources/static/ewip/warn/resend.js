@@ -765,10 +765,18 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 // 回显标题
                 $(".basis input[name='title']").val(result.title).attr("title", result.title);
 
-                // 回显预警名称
-                $(".basis .addDisasterIdShow[name='disasterId']").attr("value", result.disasterName);
-                $(".basis .addDisasterIdHide[name='disasterId']").attr("value", result.disasterId);
+                // 回显灾种ID
+                $(".basis #disasterId").val(result.disasterId);
+                // 回显灾种编码
+                $(".basis #disasterCode").val(result.disasterCode);
+
+                // 回显灾种名称
                 $(".basis #disasterName").val(result.disasterName);
+
+                // 回显预警名称
+                // $(".basis .addDisasterIdShow[name='disasterId']").attr("value", result.disasterName);
+                // $(".basis .addDisasterIdHide[name='disasterId']").attr("value", result.disasterId);
+                // $(".basis #disasterName").val(result.disasterName);
 
                 // 回显预警颜色
                 $(".basis select[name='disasterColor']").val(result.disasterColor);
@@ -1215,6 +1223,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 监听预警提交事件
      */
     form.on("submit(submit)", function(data){
+        debugger;
         // 数据提交到后台，通用方法
         let param = data.field;
         let warnMsgType= $("#warnMsgType").val();

@@ -360,4 +360,15 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
     public List<WarnEdit> selectWarnInfo(Map<String, Object> map){
         return this.warnEditMapper.selectWarnInfo(map);
     }
+
+    /**
+     * 终止预警
+     * @param map
+     * @return
+     */
+    @Override
+    public int stopWarn(Map<String, Object> map) {
+        this.warnEditMapper.updateFlowIsOption(map);
+        return this.warnEditMapper.stopWarn(map);
+    }
 }

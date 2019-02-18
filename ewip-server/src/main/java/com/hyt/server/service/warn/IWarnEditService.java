@@ -50,4 +50,5 @@ public interface IWarnEditService extends IBaseService<WarnEdit> {
      */
     List<WarnEdit> selectWarnInfo(Map<String, Object> map);
 
+    int stopWarn(Map<String,Object> map);
 }

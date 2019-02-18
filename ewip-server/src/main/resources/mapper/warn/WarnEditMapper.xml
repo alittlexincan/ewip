@@ -64,14 +64,19 @@
             LEFT JOIN disaster d 		  ON we.disaster_id = d.id
             LEFT JOIN organization o 	  ON we.organization_id = o.id
 
-            WHERE 1=1 and wef.is_option=1
+            WHERE 1=1
                 <if test="id != null and id != ''"> AND we.id = #{id} </if>
                 <if test="areaId != null and areaId != ''"> AND we.area_id = #{areaId} </if>
-                <if test="organizationId != null and organizationId != ''"> AND wef.organization_id = #{organizationId} </if>
                 <if test="disasterName != null and disasterName != ''"> AND d.name = #{disasterName} </if>
                 <if test="disasterColor != null and disasterColor != ''"> AND we.disaster_color = #{disasterColor} </if>
                 <if test="disasterLevel != null and disasterLevel != ''"> AND we.disaster_level = #{disasterLevel} </if>
-                <if test="flow != null and flow != ''"> AND wef.flow = #{flow} </if>
+                <choose>
+                    <when test="flow != null and flow != '' and flow != '6' "> AND wef.flow = #{flow} </when >
+                    <when test="flow != null and flow != '' and flow == '6' "> AND wef.flow = 6  and wef.is_option=0 </when >
+                    <otherwise></otherwise>
+                </choose>
+                <!--<if test="flow != null and flow != '' and flow != '6' "> AND wef.flow = #{flow} </if>
+                <if test="flow != null and flow != '' and flow == '6'"> AND wef.flow = 6  and wef.is_option=0 </if>-->
             ORDER BY wef.create_time desc LIMIT 1000000000000000
         ) tab
         GROUP BY tab.warn_edit_id
@@ -165,5 +170,21 @@
             limit ${limit}
         </if>
     </select>
+
+    <!--修改预警驳回的操作状态-->
+    <update id="updateFlowIsOption">
+        UPDATE warn_edit_flow SET is_option=1 WHERE warn_edit_id = #{warnEditId}
+    </update>
+
+    <!-- 终止预警状态 -->
+    <insert id="stopWarn" >
+        INSERT INTO warn_edit_flow (id, warn_edit_id, flow,
+        organization_id, organization_name, employee_id, employee_name, advice, is_option, create_time )
+        VALUES
+        ( REPLACE(UUID(),'-',''), #{warnEditId}, 7,
+        #{organizationId}, #{organizationName}, #{employeeId}, #{employeeName}, #{advice}, 1,  now())
+    </insert>
+
+
 
 </mapper>
