@@ -11,4 +11,6 @@ import java.util.Map;
 public interface IStrategyMapper extends IBaseMapper<Strategy>{
 
     List<Strategy> findAll(Map<String, Object> map);
+
+    Strategy selectConfig(Map<String, Object> map);
 }

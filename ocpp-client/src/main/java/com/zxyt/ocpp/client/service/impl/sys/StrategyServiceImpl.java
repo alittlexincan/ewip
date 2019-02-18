@@ -27,4 +27,9 @@ public class StrategyServiceImpl extends AbstractService<Strategy> implements IS
         List<Strategy> list = this.strategyMapper.findAll(map);
         return new PageInfo<>(list);
     }
+
+    @Override
+    public Strategy selectConfig(Map<String, Object> map) {
+        return this.strategyMapper.selectConfig(map);
+    }
 }

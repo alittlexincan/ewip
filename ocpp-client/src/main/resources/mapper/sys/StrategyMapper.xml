@@ -83,19 +83,18 @@
         s.disaster_name,
         s.disaster_color,
         s.disaster_level,
-        s.flow,
         s.channel_id
         FROM
         strategy s
         where 1=1
         <if test="id != null and id != ''">AND s.id = #{id}</if>
-        <if test="areaId != null and areaId != ''">AND s.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">AND s.organization_id = #{organizationId}</if>
         <if test="disasterId != null and disasterId != ''">AND s.disaster_id = #{disasterId}</if>
         <if test="disasterName != null and disasterName != ''">AND s.disaster_name = #{disasterName}</if>
         <if test="disasterColor != null and disasterColor != ''">AND s.disaster_color = #{disasterColor}</if>
         <if test="disasterLevel != null and disasterLevel != ''">AND s.disaster_level = #{disasterLevel}</if>
     </select>
+
+
 
 
 

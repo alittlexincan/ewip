@@ -66,4 +66,14 @@ public class StrategyController {
         }
         return ResultResponse.make(500,"修改失败");
     }
+
+    @GetMapping("/config")
+    public ResultObject<Object> selectConfig(@RequestParam Map<String,Object> map) {
+        try {
+            return  ResultResponse.make(200,"查询策略配置成功", this.strategyService.selectConfig(map));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  ResultResponse.make(500,"查询策略配置失败", null);
+    }
 }
