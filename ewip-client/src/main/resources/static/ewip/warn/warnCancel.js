@@ -892,7 +892,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                         if(active.warnContent == null)
                             active.warnContent = contents[key].substring(title.length);
                         // $(".warn-card-content .warn-content-body textarea[name='content_" + obj.channelId + "_" + obj.areaId + "']").val(obj.content);
-                        $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);
+                        // $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(contents[key]);
                         $(".warn-card-content .warn-content-body textarea[name='content_"+ key + "']").val(title+":"+active.warnContent);
                         // });
                     }
@@ -936,7 +936,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                                 }
                             },
                             check: {
-                                enable: true,
+                                enable: false,
                                 chkboxType: {"Y":"", "N": ""},
                                 chkStyle:"checkbox"
                             }
@@ -974,7 +974,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                     html += "   <td>" + file.name + "</td>";
                     html += "   <td>" + s + "</td>";
                     html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
-                    html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
+                    html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'></a></td>";
                     html += "</tr>";
                     //追加到文件列表
                     $(".warn-file-table > tbody").append(html);
@@ -1075,112 +1075,112 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
     /**
      * 渠道点击单选、取消选择
      */
-    $(".channel-list").on("click", ".imgbox", function(element) {
-        let disasterName = $("#disasterName").val();
-        // 如果没有选中灾种，则提示
-        if(disasterName == null || disasterName.length == 0){
-            // 弹出提示信息，2s后自动关闭
-            layer.msg("请先选择预警", {time: 2000});
-            return false;
-        }
-        // 追加或删除样式
-        if($(this).hasClass("active")){
-            if($(".channel-list .imgbox.active").length == 1){
-                layer.msg("请至少选择一个渠道", {time: 2000});
-                return false;
-            }
-            $(this).removeClass("active");
-        }else{
-            $(this).addClass("active");
-        }
-        // 调用渠道点击事件业务
-        active.channelOneClick($(this));
-    });
+    // $(".channel-list").on("click", ".imgbox", function(element) {
+    //     let disasterName = $("#disasterName").val();
+    //     // 如果没有选中灾种，则提示
+    //     if(disasterName == null || disasterName.length == 0){
+    //         // 弹出提示信息，2s后自动关闭
+    //         layer.msg("请先选择预警", {time: 2000});
+    //         return false;
+    //     }
+    //     // 追加或删除样式
+    //     if($(this).hasClass("active")){
+    //         if($(".channel-list .imgbox.active").length == 1){
+    //             layer.msg("请至少选择一个渠道", {time: 2000});
+    //             return false;
+    //         }
+    //         $(this).removeClass("active");
+    //     }else{
+    //         $(this).addClass("active");
+    //     }
+    //     // 调用渠道点击事件业务
+    //     active.channelOneClick($(this));
+    // });
 
     /**
      * 文件上传
      */
-    $(".fileUpload, .warn-upload-msg").on("click", function () {
-        // 文件唯一标志
-        let index = new Date().getTime();
-        // 1:拼接文件文本框
-        $(".warn-file-list").append("<input type='file' id='warn-"+index+"' name='warnFile' class='warn-"+index+"' data-file-index='"+index+"'>");
-        // 2: 触发文件文本框
-        $(".warn-file-list > .warn-"+index).click().change(function () {
-            // 如果是最先添加则显示文件表格
-            if($(".warn-file-table").hasClass("layui-hide")){
-                $(".warn-file-table").removeClass("layui-hide");
-                // 3:隐藏初始化提示信息
-                $(".warn-upload-msg").addClass("layui-hide");
-            }
-            // 获取选中文件信息
-            let file = $(this)[0].files[0], size = file.size;
-            // 计算文件大小
-            let s = (size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
-            // 拼接文件内容
-            let html = "<tr>";
-            html += "   <td></td>";
-            html += "   <td style='display: none;'>" + index + "</td>";
-            html += "   <td>" + file.name + "</td>";
-            html += "   <td>" + s + "</td>";
-            html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
-            html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
-            html += "</tr>";
-            //追加到文件列表
-            $(".warn-file-table > tbody").append(html);
-        });
-    });
+    // $(".fileUpload, .warn-upload-msg").on("click", function () {
+    //     // 文件唯一标志
+    //     let index = new Date().getTime();
+    //     // 1:拼接文件文本框
+    //     $(".warn-file-list").append("<input type='file' id='warn-"+index+"' name='warnFile' class='warn-"+index+"' data-file-index='"+index+"'>");
+    //     // 2: 触发文件文本框
+    //     $(".warn-file-list > .warn-"+index).click().change(function () {
+    //         // 如果是最先添加则显示文件表格
+    //         if($(".warn-file-table").hasClass("layui-hide")){
+    //             $(".warn-file-table").removeClass("layui-hide");
+    //             // 3:隐藏初始化提示信息
+    //             $(".warn-upload-msg").addClass("layui-hide");
+    //         }
+    //         // 获取选中文件信息
+    //         let file = $(this)[0].files[0], size = file.size;
+    //         // 计算文件大小
+    //         let s = (size/1024) > 1024 ? (file.size/1024/1024).toFixed(2) + "MB": (file.size/1024).toFixed(2) + "KB";
+    //         // 拼接文件内容
+    //         let html = "<tr>";
+    //         html += "   <td></td>";
+    //         html += "   <td style='display: none;'>" + index + "</td>";
+    //         html += "   <td>" + file.name + "</td>";
+    //         html += "   <td>" + s + "</td>";
+    //         html += "   <td>" + file.name.substring(file.name.lastIndexOf(".")+1,file.name.length) + "</td>";
+    //         html += "   <td><a class='layui-btn layui-btn-danger layui-btn-xs' data-file-class='warn-" + index + "'><i class='layui-icon layui-icon-delete'></i>删除</a></td>";
+    //         html += "</tr>";
+    //         //追加到文件列表
+    //         $(".warn-file-table > tbody").append(html);
+    //     });
+    // });
 
     /**
      * 文件上传删除按钮
      */
-    $(".warn-file-table").on("click", "a", function () {
-        let fileClass = $(this).data("fileClass");
-        // 删除文件文本框
-        $(".warn-file-list > #" + fileClass).remove();
-        // 删除当前行
-        $(this).parent().parent().remove();
-        // 保存删除的id
-        if($(this).parent().parent().eq(0).children("td").eq(0).text().length > 0){
-            callback.deleteFiles.add($(this).parent().parent().eq(0).children("td").eq(0).text());
-        }
-        // 如果最后一个删除，则还原样式
-        if($(".warn-file-table > tbody > tr").length == 0){
-            $(".warn-file-table").addClass("layui-hide");
-            // 3:隐藏初始化提示信息
-            $(".warn-upload-msg").removeClass("layui-hide");
-        }
-        return false;
-    });
+    // $(".warn-file-table").on("click", "a", function () {
+    //     let fileClass = $(this).data("fileClass");
+    //     // 删除文件文本框
+    //     $(".warn-file-list > #" + fileClass).remove();
+    //     // 删除当前行
+    //     $(this).parent().parent().remove();
+    //     // 保存删除的id
+    //     if($(this).parent().parent().eq(0).children("td").eq(0).text().length > 0){
+    //         callback.deleteFiles.add($(this).parent().parent().eq(0).children("td").eq(0).text());
+    //     }
+    //     // 如果最后一个删除，则还原样式
+    //     if($(".warn-file-table > tbody > tr").length == 0){
+    //         $(".warn-file-table").addClass("layui-hide");
+    //         // 3:隐藏初始化提示信息
+    //         $(".warn-upload-msg").removeClass("layui-hide");
+    //     }
+    //     return false;
+    // });
 
     /**
      * tab选项卡删除监听事件
      */
-    element.on('tabDelete(warn-tab)', function(data){
-        // 获取当前删除的tab title中的渠道id
-        let channelId = $(this).parent().attr("lay-id");
-        if(channelId != undefined) {
-            // 判断当前是否是最后一个渠道，如果是则提示至少选中一个渠道
-            if ($(".channel-list .imgbox.active").length == 1) {
-                let result = {
-                    channelId: [channelId],
-                    area: []
-                };
-                // 循环获取当前地区树选中的地区
-                initAreaTree.getCheckedNodes(true).forEach(function (item) {
-                    result.area.push({
-                        areaId: item.id,
-                        areaName: item.name
-                    });
-                });
-                active.setWarnContent(result);
-                layer.msg("请至少选中一个渠道", {time: 2000});
-                return false;
-            }
-            // 删除渠道对应的样式
-            $(".channel-list .imgbox.active[data-id='" + channelId + "']").removeClass("active");
-        }
-    });
+    // element.on('tabDelete(warn-tab)', function(data){
+    //     // 获取当前删除的tab title中的渠道id
+    //     let channelId = $(this).parent().attr("lay-id");
+    //     if(channelId != undefined) {
+    //         // 判断当前是否是最后一个渠道，如果是则提示至少选中一个渠道
+    //         if ($(".channel-list .imgbox.active").length == 1) {
+    //             let result = {
+    //                 channelId: [channelId],
+    //                 area: []
+    //             };
+    //             // 循环获取当前地区树选中的地区
+    //             initAreaTree.getCheckedNodes(true).forEach(function (item) {
+    //                 result.area.push({
+    //                     areaId: item.id,
+    //                     areaName: item.name
+    //                 });
+    //             });
+    //             active.setWarnContent(result);
+    //             layer.msg("请至少选中一个渠道", {time: 2000});
+    //             return false;
+    //         }
+    //         // 删除渠道对应的样式
+    //         $(".channel-list .imgbox.active[data-id='" + channelId + "']").removeClass("active");
+    //     }
+    // });
 
 
     /**

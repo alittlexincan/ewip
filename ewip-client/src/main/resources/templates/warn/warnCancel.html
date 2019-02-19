@@ -38,7 +38,7 @@
                             <label class="layui-form-label">预警名称:</label>
                             <div class="layui-input-block">
                                 <input type="hidden" id="disasterId" name="disasterId">
-                                <input type="text" id="disasterName" name="disasterName" lay-verify="required" placeholder="请选择灾种名称" autocomplete="off" class="layui-input" >
+                                <input type="text" id="disasterName" style=" pointer-events: none;" name="disasterName" lay-verify="required" placeholder="请选择灾种名称" autocomplete="off" class="layui-input" >
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警颜色:</label>
                             <div class="layui-input-block">
-                                <select  name="disasterColor" readonly="readonly" lay-verify="required" placeholder="请选择预警颜色">
+                                <select  name="disasterColor" disabled lay-verify="required" placeholder="请选择预警颜色">
                                     <option value="">请选择预警颜色</option>
                                     <option value="0">红色</option>
                                     <option value="1">橙色</option>
@@ -65,7 +65,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警级别:</label>
                             <div class="layui-input-block">
-                                <select  name="disasterLevel"  lay-verify="required" placeholder="请选择预警级别">
+                                <select  name="disasterLevel" disabled lay-verify="required" placeholder="请选择预警级别">
                                     <option value="">请选择预警级别</option>
                                     <option value="0">Ⅰ级/特别重大</option>
                                     <option value="1">Ⅱ级/重大</option>
@@ -77,13 +77,13 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警标题:</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title"  lay-verify="required" placeholder="请输入预警标题" autocomplete="off" class="layui-input">
+                                <input type="text" name="title" style=" pointer-events: none;" lay-verify="required" placeholder="请输入预警标题" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">预警信息类型:</label>
                             <div class="layui-input-block">
-                                <select class="form-control" name="warnType" lay-verify="required" placeholder="请选择预警信息类型" readonly>
+                                <select class="form-control" name="warnType" disabled lay-verify="required" placeholder="请选择预警信息类型" readonly>
                                     <option value="Actual">实际</option>
                                     <option value="Exercise">演练</option>
                                     <option value="Test" selected>测试</option>
@@ -95,39 +95,39 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">发布时间:</label>
                             <div class="layui-input-block">
-                                <input type="text" readonly id="editTime" name="editTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择发布时间">
+                                <input type="text" style=" pointer-events: none;" id="editTime" name="editTime" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请选择发布时间">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">预期发生时间:</label>
                             <div class="layui-input-block">
-                                <input type="text" readonly id="forecastTime" name="forecastTime" autocomplete="off" class="layui-input" placeholder="请选择预期发布时间">
+                                <input type="text" style=" pointer-events: none;" id="forecastTime" name="forecastTime" autocomplete="off" class="layui-input" placeholder="请选择预期发布时间">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">失效时间:</label>
                             <div class="layui-input-block">
-                                <input type="text" readonly id="invalidTime" name="invalidTime" autocomplete="off" class="layui-input" placeholder="请选择失效时间">
+                                <input type="text" style=" pointer-events: none;" id="invalidTime" name="invalidTime" autocomplete="off" class="layui-input" placeholder="请选择失效时间">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">国突备案:</label>
-                            <div class="layui-input-block">
-                                <input type="radio" name="record" value="0" title="否" checked>
-                                <input type="radio" name="record" value="1" title="是">
+                            <div class="layui-input-block" readonly >
+                                <input type="radio" name="record" value="0" title="否" checked disabled>
+                                <input type="radio" name="record" value="1" title="是" disabled>
                             </div>
                         </div>
                         <hr class="ewip-hr">
                         <div class="layui-form-item">
                             <label class="layui-form-label">政府应对措施:</label>
                             <div class="layui-input-block">
-                                <textarea name="measure" lay-verify="required" placeholder="请输入政府应对措施" class="layui-textarea"></textarea>
+                                <textarea name="measure" style="pointer-events: none;" lay-verify="required" placeholder="请输入政府应对措施" class="layui-textarea"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">防御指南:</label>
                             <div class="layui-input-block">
-                                <textarea name="instruction" lay-verify="required" placeholder="请输入防御指南" class="layui-textarea"></textarea>
+                                <textarea name="instruction" style="pointer-events: none;" lay-verify="required" placeholder="请输入防御指南" class="layui-textarea"></textarea>
                             </div>
                         </div>
 
@@ -161,17 +161,17 @@
                                     <div class="process-line"></div>
                                     <div class="process">
                                         <div class="entryTitle">审核</div>
-                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary"></div>
+                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="1"  lay-skin="primary" disabled></div>
                                     </div>
                                     <div class="process-line"></div>
                                     <div class="process">
                                         <div class="entryTitle">签发</div>
-                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary"></div>
+                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="2"  lay-skin="primary" disabled></div>
                                     </div>
                                     <div class="process-line "></div>
                                     <div class="process">
                                         <div class="entryTitle">应急办签发</div>
-                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary"></div>
+                                        <div class="entryYuan"><input type="checkbox" name="flow" lay-verify="flow" value="3"  lay-skin="primary" disabled></div>
                                     </div>
                                     <div class="process-line"></div>
                                     <div class="process">
@@ -193,10 +193,10 @@
                             <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-release warn-card-hader-icon"></i>发布渠道</span></div>
                             <div class="layui-card-body">
 
-                                <div class="channel-option">
-                                    <div><span class="layui-btn layui-btn-sm" data-event="channel-list">全选</span></div>
-                                    <div><span class="layui-btn layui-btn-sm layui-btn-danger" data-event="channel-list">取消</span></div>
-                                </div>
+                                <!--<div class="channel-option">-->
+                                    <!--<div><span class="layui-btn layui-btn-sm" data-event="channel-list">全选</span></div>-->
+                                    <!--<div><span class="layui-btn layui-btn-sm layui-btn-danger" data-event="channel-list">取消</span></div>-->
+                                <!--</div>-->
                                 <div class="channel-list">
                                     <!--<div class="imgbox" data-id="1" data-title="短信" data-channel="01-短信" data-code="SMS">-->
                                     <!--<img th:src="@{/channel/07-微博.png}" alt="短信">-->
@@ -231,7 +231,7 @@
                         <div class="layui-card">
                             <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon warn-card-hader-icon">&#xe618;</i>渠道切换</span></div>
 
-                            <div class="layui-tab layui-tab-card warn-tab" lay-filter="warn-tab" lay-allowclose="true">
+                            <div class="layui-tab layui-tab-card warn-tab" lay-filter="warn-tab" >
 
                                 <div class="layui-icon layadmin-tabs-control layui-icon-prev warn-tab-prev"></div>
                                 <ul class="layui-tab-title warn-tab-title">
@@ -266,7 +266,7 @@
                                             <div class="layui-col-xs3 layui-col-md3">
                                                 <div class="layui-card warn-card-content">
                                                     <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>受众群组</span></div>
-                                                    <div  class="layui-card-body warn-card-content-list"><div class="warn-content-skip">请选择预警</div></div>
+                                                    <div class="layui-card-body warn-card-content-list"><div class="warn-content-skip">请选择预警</div></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,8 +342,9 @@
 
                                 <!--文件上传初始化信息-->
                                 <div class="warn-upload-msg">
-                                    <i class="layui-icon layui-icon-upload-drag"></i>
-                                    <span>点击上传</span>
+                                    <!--<i class="layui-icon layui-icon-upload-drag"></i>-->
+                                    <!--<span>点击上传</span>-->
+                                    <span>暂无上传文件</span>
                                 </div>
 
                                 <!--存放文本框列表-->
@@ -360,20 +361,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!--<tr>-->
-                                    <!--<td>1</td>-->
-                                    <!--<td>abc.jpg</td>-->
-                                    <!--<td>128k</td>-->
-                                    <!--<td>jpg</td>-->
-                                    <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
-                                    <!--</tr>-->
-                                    <!--<tr>-->
-                                    <!--<td>1</td>-->
-                                    <!--<td>abc.jpg</td>-->
-                                    <!--<td>128k</td>-->
-                                    <!--<td>jpg</td>-->
-                                    <!--<td><a class="layui-btn layui-btn-danger layui-btn-xs"><i class="layui-icon layui-icon-delete"></i>删除</a></td>-->
-                                    <!--</tr>-->
                                     </tbody>
                                 </table>
 
@@ -391,7 +378,7 @@
                             <div class="layui-card-body warn-center">
                                 <div class="layui-inline">
                                     <button class="layui-btn layuiadmin-button-btn" lay-submit="submit" lay-filter="submit">提交</button>
-                                    <button class="layui-btn layuiadmin-button-btn layui-btn-danger fileUpload">文件上传</button>
+                                    <!--<button class="layui-btn layuiadmin-button-btn layui-btn-danger fileUpload">文件上传</button>-->
                                 </div>
                             </div>
                         </div>

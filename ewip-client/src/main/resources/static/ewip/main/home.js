@@ -350,7 +350,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             //创建图片对象
             let createIcon = iconUrl =>{
                 return new T.Icon({
-                    iconUrl: "/client"+iconUrl,
+                    iconUrl: "/client/"+iconUrl,
                     iconSize: new T.Point(40, 40),
                     iconAnchor: new T.Point(10, 25)
                 });
