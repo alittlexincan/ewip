@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface IMessageService  extends IBaseService<Message> {
 
-    JSONObject insert(Map<String, Object> map,MultipartFile[] files);
+    JSONObject insert(Map<String, Object> map);
 
     /**
      * 获取文件信息

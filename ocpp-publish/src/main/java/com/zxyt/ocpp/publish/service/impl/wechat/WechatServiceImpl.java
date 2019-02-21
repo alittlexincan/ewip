@@ -137,7 +137,7 @@ public class WechatServiceImpl implements IWechatService {
                 paras.add(new WechatTemplateParam("first",json.getString("title"), rgb));
                 paras.add(new WechatTemplateParam("keyword1",MsgTypeUtil.parseOneType(json.getInteger("type")), rgb));
                 paras.add(new WechatTemplateParam("keyword2",json.getString("sendTime"), rgb));
-                paras.add(new WechatTemplateParam("remark",json.getJSONObject("content").getString("content"), rgb));
+                paras.add(new WechatTemplateParam("remark",json.getString("content"), rgb));
                 tem.setTemplateParamList(paras);
                 log.info("模板信息：" + tem.toJSON());
                 ResponseEntity<JSONObject> rest = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);

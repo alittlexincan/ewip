@@ -13,7 +13,9 @@ import com.zxyt.ocpp.client.entity.message.MessageAreaChannel;
 import com.zxyt.ocpp.client.entity.message.MessageFile;
 import com.zxyt.ocpp.client.entity.message.MessageUser;
 import com.zxyt.ocpp.client.entity.sys.ChannelConfig;
+import com.zxyt.ocpp.client.entity.warn.WarnEditFile;
 import com.zxyt.ocpp.client.mapper.message.IMessageAreaChannelMapper;
+import com.zxyt.ocpp.client.mapper.message.IMessageFileMapper;
 import com.zxyt.ocpp.client.mapper.message.IMessageMapper;
 import com.zxyt.ocpp.client.mapper.message.IMessageUserMapper;
 import com.zxyt.ocpp.client.mapper.sys.IChannelConfigMapper;
@@ -66,6 +68,9 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
     @Autowired
     private IMessageUserMapper messageUserMapper;
 
+    @Autowired
+    private IMessageFileMapper messageFileMapper;
+
 
     /**
      * 添加预警相关信息
@@ -79,7 +84,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
      */
     @Override
     @Transactional
-    public JSONObject insert(Map<String, Object> map,MultipartFile[] files) {
+    public JSONObject insert(Map<String, Object> map) {
 
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
@@ -115,7 +120,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
 
         json.put("id", messageId);
         //添加文件列表
-        addMessageFile(message,files);
+        addMessageFile(message,json);
         if(!StringUtils.isEmpty(messageId)){
             json.put("code", 200);
             json.put("msg","一键发布成功");
@@ -387,22 +392,30 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
      * @param
      * @return
      */
-    public void addMessageFile(Message message,MultipartFile[] files){
-        MessageFile messageFile = new MessageFile();
-        messageFile.setMessageId(message.getId());
-        messageFile.setName(message.getTitle());
-        String url = "";
-        String fileSize = "";
-        for (MultipartFile file : files) {
-            // 获取文件名
-            String fileName = file.getOriginalFilename();
-            url = url + fileName + ",";
-            fileSize = fileSize + file.getSize()+",";
+    public int addMessageFile(Message message, JSONObject json){
+
+        // 存储对象
+        List<MessageFile> list = new ArrayList<>();
+        JSONArray files = json.getJSONArray("files");
+        if(files != null && files.size() > 0 ){
+            for(int i = 0; i<files.size(); i++){
+                JSONObject file = files.getJSONObject(i);
+                MessageFile messageFile = new MessageFile();
+                messageFile.setMessageId(message.getId());
+                messageFile.setName(file.getString("name"));
+                messageFile.setSize(file.getString("size"));
+                messageFile.setUrl(file.getString("url"));
+                messageFile.setCreateTime(message.getCreateTime());
+                list.add(messageFile);
+            }
+            return this.messageFileMapper.insertBatch(list);
         }
-        messageFile.setUrl(url);
-        messageFile.setCreateTime(message.getCreateTime());
-        messageFile.setSize(fileSize);
-        messageMapper.insertMessageFile(messageFile);
+        return 0;
+
+
+
+
+
     }
 
 }

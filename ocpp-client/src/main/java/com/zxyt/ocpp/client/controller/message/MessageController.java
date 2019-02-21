@@ -87,14 +87,13 @@ public class MessageController {
     })
     @PostMapping(value = "/insert")
     public ResultObject<Object> insert(@ApiParam(hidden = true) @RequestParam Map<String, Object> map,@RequestParam("warnFile") MultipartFile[] files) throws IOException {
+        // 文件开始上传
+        JSONArray file = UploadFileUtil.upload(files, uploadPath, messageFile);
+        map.put("files", file != null ? file.toJSONString() : "");
 
-        JSONObject result = this.messageService.insert(map,files);
+        JSONObject result = this.messageService.insert(map);
 
         if(result.getInteger("code") == 200){
-            // 文件开始上传
-            JSONArray file = UploadFileUtil.upload(files, uploadPath, messageFile);
-            result.put("files", file != null ? file.toJSONString() : "");
-
             // 调用分发接口
             this.publishService.publish(result);
 

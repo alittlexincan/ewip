@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxyt.ocpp.client.mapper.message.IMessageFileMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxyt.ocpp.client.entity.message.MessageFile">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="message_id" jdbcType="VARCHAR" property="messageId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="size" jdbcType="VARCHAR" property="size"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+
+    <!--批量插入信息-->
+    <insert id="insertBatch">
+        <if test="list != null and list.size()>0">
+            insert into message_file (id, message_id, name, size, url, create_time )
+            values
+            <foreach collection="list" item="item" separator=",">
+                ( REPLACE(UUID(),'-',''), #{item.messageId}, #{item.name}, #{item.size}, #{item.url}, now())
+            </foreach>
+        </if>
+    </insert>
+
+
+
+</mapper>

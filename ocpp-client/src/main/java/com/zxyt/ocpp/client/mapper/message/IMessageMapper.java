@@ -26,9 +26,5 @@ public interface IMessageMapper extends IBaseMapper<Message> {
      */
     List<Message> findAll(Map<String, Object> map);
 
-    /**
-     * 插入预警信息文件列表
-     * @param messageFile
-     */
-    void insertMessageFile(MessageFile messageFile);
+
 }

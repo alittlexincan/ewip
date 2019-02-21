@@ -62,8 +62,8 @@ public class WarnEditController {
         if(jsonObject.getInteger("code") == 200){
             // 调用分发接口
             this.publishService.publish(jsonObject);
-            return ResultResponse.make(200,"添加预警信息成功",json);
+            return ResultResponse.make(200,"发布预警信息成功",json);
         }
-        return ResultResponse.make(500,"添加预警信息失败",null);
+        return ResultResponse.make(500,"发布预警信息失败",null);
     }
 }
