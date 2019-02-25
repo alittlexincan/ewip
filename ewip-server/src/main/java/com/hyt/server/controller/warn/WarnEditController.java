@@ -12,9 +12,12 @@ import com.hyt.server.service.warn.IWarnEditService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import sun.applet.Main;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author: JiangXincan
@@ -129,4 +132,27 @@ public class WarnEditController {
         }
         return ResultResponse.make(500,"修改失败");
     }
+
+
+    public static void main(String[] args) {
+
+        // 定义一个数组
+        String[] array = {
+                "尼尔机械纪元",
+                "尼尔机械纪元",
+                "关于我转生成为史莱姆这件事",
+                "关于我转生成为史莱姆这件事",
+                "实力至上主义教师",
+                "实力至上主义教师",
+                "地狱少女",
+                "地狱少女"
+        };
+        // 转换成集合
+        List<String> acgs = Arrays.asList(array);
+        // Stream 去重复
+        acgs = acgs.stream().distinct().collect(Collectors.toList());
+
+        System.out.println(acgs);
+    }
+
 }

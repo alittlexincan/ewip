@@ -125,7 +125,7 @@
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="stopOption"><i class="layui-icon layui-icon-edit"></i>终止</a>
                                 </div>
                             <!--{{# }else if(d.flow == 4 && d.isOption == 1){ }}-->
-                            {{# }else if(d.flow == 4 && d.status!=2){ }}
+                            {{# }else if(d.flow == 4 && d.status!=2 && d.status!=0){ }}
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="historyOption"><i class="layui-icon layui-icon-form"></i>追溯</a>
                                 <div id="handle">
                                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>更新</a>

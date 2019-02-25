@@ -43,7 +43,7 @@ public class ServerProductController {
     public ResultObject<Object> deleteById(@PathVariable(value = "id") String id) {
         Integer num = this.serverProductService.deleteById(id);
         if(num>0){
-            return  ResultResponse.make(200,"删除成功");
+            return ResultResponse.make(200,"删除成功");
         }
         return ResultResponse.make(500,"删除失败");
     }

@@ -21,7 +21,7 @@
 		from warn_edit w
 		left join disaster d on w.disaster_id= d.id
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -62,7 +62,7 @@
 		case w.disaster_color WHEN 0 then '红色' WHEN 1 then '橙色' WHEN 2 then '黄色' else '蓝色' end
 		colorLevelName from warn_edit w
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 		<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -103,7 +103,7 @@
 		case w.disaster_color WHEN 0 then '红色' WHEN 1 then '橙色' WHEN 2 then '黄色' else '蓝色' end colorLevelName
 		FROM warn_edit w left join warn_edit_content c on c.warn_edit_id=w.id
 		left join area a on c.area_id=a.id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 		<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -151,7 +151,7 @@
 			w.title
 			from warn_edit w
 			left join disaster d on w.disaster_id=d.id
-			where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+			where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 				<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 					]]>
@@ -190,7 +190,7 @@
 	<select id="warnListCount" resultType="java.lang.Integer">
 		select count(id) from (
 			select distinct w.id  from warn_edit w
-			where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+			where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 				]]>
@@ -234,7 +234,7 @@
 				from warn_edit w
 				LEFT JOIN disaster d on w.disaster_id =d.id
 				left join warn_edit_content c on w.id=c.warn_edit_id
-				where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+				where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 					<![CDATA[
 							AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 						]]>
@@ -283,7 +283,7 @@
 		select distinct w.id taskId,c.channel_id channelId,
 		ch.name channelName  from warn_edit w left join warn_edit_content c on w.id=c.warn_edit_id
 		left JOIN channel ch on ch.id =c.channel_id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -324,7 +324,7 @@
 		case w.disaster_color when 0 then '红色' when 1 then '橙色' when 2 then '黄色' else '蓝色' end colorLevelName,
 		DATE_FORMAT(w.send_time, '%Y-%m-%d') sendTime from warn_edit w
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
 			<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 				]]>
@@ -391,7 +391,7 @@
 			LEFT JOIN area a on c.area_id=a.id
 			LEFT JOIN disaster d on w.disaster_id=d.id
 			LEFT JOIN channel ch on ch.id=c.channel_id
-			where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+			where 1=1 and w.status=1 and a.level=3
 			<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 				]]>

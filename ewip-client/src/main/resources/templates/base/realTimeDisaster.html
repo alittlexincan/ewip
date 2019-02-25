@@ -17,11 +17,11 @@
         <div class="layui-card">
             <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                 <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" name="disasterType" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
+                    <!--<div class="layui-inline">-->
+                        <!--<div class="layui-input-inline">-->
+                            <!--<input type="text" name="disasterType" placeholder="请输入灾害类型" autocomplete="off" class="layui-input">-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="layui-inline">
                         <div class="layui-input-inline">
                             <input type="text" name="disasterName" placeholder="请输入灾害名称" autocomplete="off" class="layui-input">
@@ -46,6 +46,7 @@
 
                 <!-- 列表：数据行操作 -->
                 <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="disDetailOption"><i class="layui-icon layui-icon-edit"></i>详情详细</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailOption"><i class="layui-icon layui-icon-edit"></i>详情</a>
                     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
@@ -104,7 +105,7 @@
 
                         </div>
 
-                        <div class="layui-form-item">
+                       <!-- <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="事件编码">事件编码</label>
                                 <div class="layui-input-inline">
@@ -138,7 +139,7 @@
                                         <option value="Ⅲ">Ⅲ</option>
                                         <option value="Ⅳ">Ⅳ</option>
                                     </select>
-                                    <!--<input type="text" name="severity" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">-->
+                                    &lt;!&ndash;<input type="text" name="severity" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">&ndash;&gt;
                                 </div>
                             </div>
 
@@ -167,7 +168,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
@@ -242,7 +243,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
+    <!--                    <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
                                 <div class="layui-input-inline">
@@ -913,10 +914,34 @@
                                     <input type="text" name="returnReason" placeholder="请输入退回原因" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="layui-btn layuiadmin-button-btn layui-btn-danger fileUpload">文件上传</button>
+                    <!--文件列表-->
+                    <div class="layui-col-xs12 layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-body warn-file-list-height warn-center">
+                                <!--存放文本框列表-->
+                                <div class="warn-file-list layui-hide"></div>
+                                <!--文件信息展示列表-->
+                                <table cellspacing="0" cellpadding="0" border="0"  class="layui-table layui-hide warn-file-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">编号</th>
+                                            <th style="text-align: center">文件名称</th>
+                                            <th style="text-align: center">文件大小</th>
+                                            <th style="text-align: center">文件类型</th>
+                                            <th style="text-align: center">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -973,7 +998,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
+                      <!--  <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="事件编码">事件编码</label>
                                 <div class="layui-input-inline">
@@ -1007,7 +1032,7 @@
                                         <option value="Ⅲ">Ⅲ</option>
                                         <option value="Ⅳ">Ⅳ</option>
                                     </select>
-                                    <!--<input type="text" name="severity" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">-->
+                                    &lt;!&ndash;<input type="text" name="severity" placeholder="请输入灾害等级" autocomplete="off" class="layui-input">&ndash;&gt;
                                 </div>
                             </div>
 
@@ -1036,7 +1061,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
@@ -1111,7 +1136,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
+                       <!-- <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
                                 <div class="layui-input-inline">
@@ -1794,7 +1819,7 @@
                                     <input type="text" name="returnReason" value="{{d.returnReason}}" placeholder="请输入退回原因" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
@@ -1854,7 +1879,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
+                       <!-- <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="事件编码">事件编码</label>
                                 <div class="layui-input-inline">
@@ -1916,7 +1941,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
@@ -1992,7 +2017,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
+                       <!-- <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label" title="受灾人口（人）">受灾人口（人）</label>
                                 <div class="layui-input-inline">
@@ -2693,7 +2718,7 @@
                                     <input type="text" readonly="readonly" name="returnReason" value="{{d.returnReason}}" autocomplete="off" class="layui-input">
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </script>
 
@@ -2704,7 +2729,7 @@
     </div>
 
     <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
-    <script th:src="@{/ewip/base/disasterHistory.js}" charset="utf-8"></script>
+    <script th:src="@{/ewip/base/realTimeDisaster.js}" charset="utf-8"></script>
 
 </body>
 </html>

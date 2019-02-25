@@ -99,9 +99,9 @@ layui.use(["table","form","laytpl","layer","disaster"], () => {
         ]]
         ,done:function () {
             if(employee.organizationType==1){
-                $("#handle").show();
+                $(".handle").show();
             }else{
-                $("#handle").hide();
+                $(".handle").hide();
             }
         }
     });

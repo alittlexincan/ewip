@@ -1,4 +1,4 @@
-layui.config({
+ layui.config({
     base: '/client/layuiadmin/modules/' //假设这是你存放拓展模块的根目录
 }).extend({ //设定模块别名
     selectTree: 'selectTree'

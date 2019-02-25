@@ -1830,11 +1830,13 @@ layui.use(["table","form","laytpl","layer"], function(){
      * 点击气象服务产品菜单
      */
     $("#serviceProductId").bind("click", function(){
+        debugger;
         let flag = $(this).data("flag");
         if(flag=="0") {
             $(this).data("flag", 1);
             $(this).children("input").prop("checked","checked");
             active.render({type: "GET", url: "/client/serverProduct/selectList", data: {}}, data => {
+                debugger;
                 let html = "";
                 html += "<ul >";
                 data.forEach(json => {

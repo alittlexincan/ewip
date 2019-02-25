@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IRealTimeDisasterMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.RealTimeDisaster" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="report_area" property="reportArea" jdbcType="VARCHAR" />
+    <result column="report_areaCode" property="reportAreaCode" jdbcType="VARCHAR" />
+    <result column="happenDisaster_area" property="happenDisasterArea" jdbcType="VARCHAR" />
+    <result column="event_code" property="eventCode" jdbcType="VARCHAR" />
+    <result column="disasterType" property="disasterType" jdbcType="VARCHAR" />
+    <result column="disasterType_old" property="disasterTypeOld" jdbcType="VARCHAR" />
+
+
+    <result column="severity" property="severity" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="damage" property="damage" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="monitor_people" property="monitorPeople" jdbcType="VARCHAR" />
+    <result column="monitor_time" property="monitorTime" jdbcType="TIMESTAMP" />
+    <result column="monitor_organ" property="monitorOrgan" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+
+
+    <result column="disasterName" property="disasterName" jdbcType="VARCHAR" />
+    <result column="accompany_disaster" property="accompanyDisaster" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="meteorological_elements" property="meteorologicalElements" jdbcType="VARCHAR" />
+    <result column="influence" property="influence" jdbcType="VARCHAR" />
+    <result column="disaster_people" property="disasterPeople" jdbcType="INTEGER" />
+    <result column="death_people" property="deathPeople" jdbcType="INTEGER" />
+    <result column="missing_people" property="missingPeople" jdbcType="INTEGER" />
+    <result column="injured_people" property="injuredPeople" jdbcType="INTEGER" />
+    <result column="trapped_people" property="trappedPeople" jdbcType="INTEGER" />
+    <result column="waterDifficulty_people" property="waterDifficultyPeople" jdbcType="INTEGER" />
+    <result column="remove_people" property="removePeople" jdbcType="INTEGER" />
+    <result column="collapse_house" property="collapseHouse" jdbcType="INTEGER" />
+    <result column="damage_house" property="damageHouse" jdbcType="INTEGER" />
+    <result column="school" property="school" jdbcType="INTEGER" />
+    <result column="economic_loss" property="economicLoss" jdbcType="INTEGER" />
+
+    <result column="pipeDamage_length" property="pipeDamageLength" jdbcType="VARCHAR" />
+    <result column="disaster_crops" property="disasterCrops" jdbcType="VARCHAR" />
+    <result column="disaster_acreage" property="disasterAcreage" jdbcType="VARCHAR" />
+    <result column="causeDisaster_acreage" property="causeDisasterAcreage" jdbcType="VARCHAR" />
+    <result column="cropFailure_acreage" property="cropFailureAcreage" jdbcType="VARCHAR" />
+    <result column="grain_loss" property="grainLoss" jdbcType="VARCHAR" />
+    <result column="greenhouse_loss" property="greenhouseLoss" jdbcType="VARCHAR" />
+    <result column="agriculturalEconomy_loss" property="agriculturalEconomyLoss" jdbcType="VARCHAR" />
+    <result column="reservoir_num" property="reservoirNum" jdbcType="VARCHAR" />
+    <result column="pasture_influence" property="pastureInfluence" jdbcType="VARCHAR" />
+    <result column="pastureDisaster_acreage" property="pastureDisasterAcreage" jdbcType="VARCHAR" />
+
+    <result column="death_beast" property="deathBeast" jdbcType="VARCHAR" />
+    <result column="death_poultry" property="deathPoultry" jdbcType="VARCHAR" />
+    <result column="waterDifficulty_beast" property="waterDifficultyBeast" jdbcType="VARCHAR" />
+    <result column="pastureEconomy_loss" property="pastureEconomyLoss" jdbcType="VARCHAR" />
+    <result column="dryReservoir_num" property="dryReservoirNum" jdbcType="VARCHAR" />
+    <result column="damageBigReservoir" property="damageBigReservoir" jdbcType="VARCHAR" />
+    <result column="damageMediumReservoir" property="damageMediumReservoir" jdbcType="VARCHAR" />
+    <result column="damageSmallReservoir" property="damageSmallReservoir" jdbcType="VARCHAR" />
+    <result column="damageDam" property="damageDam" jdbcType="VARCHAR" />
+    <result column="damageChannel_len" property="damageChannelLen" jdbcType="VARCHAR" />
+    <result column="dike_breach" property="dikeBreach" jdbcType="VARCHAR" />
+
+    <result column="water_information" property="waterInformation" jdbcType="VARCHAR" />
+    <result column="waterEconomy_loss" property="waterEconomyLoss" jdbcType="VARCHAR" />
+    <result column="rivers_information" property="riversInformation" jdbcType="VARCHAR" />
+    <result column="stop_factory" property="stopFactory" jdbcType="VARCHAR" />
+    <result column="mountain_information" property="mountainInformation" jdbcType="VARCHAR" />
+    <result column="waterLogging" property="waterLogging" jdbcType="VARCHAR" />
+    <result column="disaster_geologic" property="disasterGeologic" jdbcType="VARCHAR" />
+    <result column="forest_loss" property="forestLoss" jdbcType="VARCHAR" />
+    <result column="forest_acreage" property="forestAcreage" jdbcType="VARCHAR" />
+    <result column="forestEconomy_loss" property="forestEconomyLoss" jdbcType="VARCHAR" />
+    <result column="stopElectric_num" property="stopElectricNum" jdbcType="VARCHAR" />
+    <result column="shipSinking_num" property="shipSinkingNum" jdbcType="VARCHAR" />
+    <result column="shipSinking_weight" property="shipSinkingWeight" jdbcType="VARCHAR" />
+    <result column="fishery_acreage" property="fisheryAcreage" jdbcType="VARCHAR" />
+    <result column="fisheryEconomy_loss" property="fisheryEconomyLoss" jdbcType="VARCHAR" />
+    <result column="communicationInterrupt_num" property="communicationInterruptNum" jdbcType="VARCHAR" />
+    <result column="flightDelays_num" property="flightDelaysNum" jdbcType="VARCHAR" />
+    <result column="transportationOutage_time" property="transportationOutageTime" jdbcType="VARCHAR" />
+    <result column="vehicleDamage_num" property="vehicleDamageNum" jdbcType="VARCHAR" />
+    <result column="railwayDamage_len" property="railwayDamageLen" jdbcType="VARCHAR" />
+    <result column="highwayDamage_len" property="highwayDamageLen" jdbcType="VARCHAR" />
+    <result column="transportShipSinking" property="transportShipSinking" jdbcType="VARCHAR" />
+    <result column="road_blockage" property="roadBlockage" jdbcType="VARCHAR" />
+    <result column="stranded_passengers" property="strandedPassengers" jdbcType="VARCHAR" />
+    <result column="trafficEconomy_loss" property="trafficEconomyLoss" jdbcType="VARCHAR" />
+    <result column="audio" property="audio" jdbcType="VARCHAR" />
+    <result column="electric_pole" property="electricPole" jdbcType="VARCHAR" />
+    <result column="power_tower" property="powerTower" jdbcType="VARCHAR" />
+    <result column="electricBreak_len" property="electricBreakLen" jdbcType="VARCHAR" />
+    <result column="electricEconomy_time" property="electricEconomyTime" jdbcType="VARCHAR" />
+    <result column="electricEconomy_loss" property="electricEconomyLoss" jdbcType="VARCHAR" />
+    <result column="audio_explanation" property="audioExplanation" jdbcType="VARCHAR" />
+
+    <result column="communicationStop_time" property="communicationStopTime" jdbcType="VARCHAR" />
+    <result column="communicationEconomy_loss" property="communicationEconomyLoss" jdbcType="VARCHAR" />
+    <result column="bridgeDamage_num" property="bridgeDamageNum" jdbcType="VARCHAR" />
+    <result column="other_influences" property="otherInfluences" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="picture_explanation" property="pictureExplanation" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="video_explanation" property="videoExplanation" jdbcType="VARCHAR" />
+    <result column="meteorological_level" property="meteorologicalLevel" jdbcType="VARCHAR" />
+    <result column="disaster_level" property="disasterLevel" jdbcType="VARCHAR" />
+    <result column="cultivated_acreage" property="cultivatedAcreage" jdbcType="VARCHAR" />
+    <result column="total_population" property="totalPopulation" jdbcType="VARCHAR" />
+    <result column="gdp" property="gdp" jdbcType="VARCHAR" />
+    <result column="happen_area" property="happenArea" jdbcType="VARCHAR" />
+    <result column="flightsCancel" property="flightsCancel" jdbcType="VARCHAR" />
+    <result column="warnPublic_describe" property="warnPublicDescribe" jdbcType="VARCHAR" />
+    <result column="data_sources" property="dataSources" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="filling_person" property="fillingPerson" jdbcType="VARCHAR" />
+    <result column="handle_person" property="handlePerson" jdbcType="VARCHAR" />
+    <result column="confirming_person" property="confirmingPerson" jdbcType="VARCHAR" />
+    <result column="approval" property="approval" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="filling_unit" property="fillingUnit" jdbcType="VARCHAR" />
+    <result column="return_num" property="returnNum" jdbcType="VARCHAR" />
+    <result column="return_reason" property="returnReason" jdbcType="VARCHAR" />
+
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+  </resultMap>
+
+
+  <!-- 查询历史灾情信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    d.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM real_time_disaster d
+    left join employee e on d.createUser=e.id
+    left join employee em on d.updateUser=em.id
+    left join area a on d.report_area=a.id
+    where 1=1  and FIND_IN_SET(d.report_area, getAreaCList(#{empAreaId}))
+    <if test="id != null and id != ''">AND d.id = #{id}</if>
+    <if test="disasterType != null and disasterType != ''">AND d.disasterType = #{disasterType}</if>
+    <if test="disasterName != null and disasterName != ''">AND d.disasterName = #{disasterName}</if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY d.create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>
