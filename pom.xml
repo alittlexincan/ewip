@@ -21,7 +21,7 @@
         <module>basic-info</module>
         <module>warning-info</module>
 
-        <module>message-center</module>
+        <!--<module>message-center</module>-->
         <module>eureka-registry</module>
         <module>zuul-gateway</module>
 
@@ -31,9 +31,9 @@
         <module>ewip-monitor</module>
         <module>ewip-web-client</module>
 
-        <module>ocpp-client</module>
-        <module>ocpp-publish</module>
-        <module>ocpp-web-client</module>
+        <!--<module>ocpp-client</module>-->
+        <!--<module>ocpp-publish</module>-->
+        <!--<module>ocpp-web-client</module>-->
         <module>system-info</module>
         <module>auth-center</module>
     </modules>

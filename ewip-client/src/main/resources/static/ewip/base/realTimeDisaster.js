@@ -447,7 +447,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 详细信息"
-                ,area: ['800px','330px']
+                ,area: ['600px','330px']
                 ,shade: 0.3
                 ,maxMin: true
                 ,offset: '50px'
@@ -461,6 +461,8 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                         ,dataType: 'json'
                         ,success: function(json){
                             if(json!=null){
+
+
                                 let list=json.list;
                                 let html="";
                                 list.forEach(function (file){

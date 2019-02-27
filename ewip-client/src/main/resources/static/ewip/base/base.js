@@ -56,7 +56,7 @@ layui.use(["table","form","laytpl","layer"], function(){
 
         //定义弹出窗口参数
         ,opts : {
-            width : 200,     // 信息窗口宽度
+            width : 230,     // 信息窗口宽度
             enableMessage:true//设置允许信息窗发送短息
         }
         // 望奎
@@ -454,6 +454,7 @@ layui.use(["table","form","laytpl","layer"], function(){
             var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
             var infoWindow = new BMap.InfoWindow(content, active.opts);  // 创建信息窗口对象
             active.map.openInfoWindow(infoWindow, point);
+
         }
 
         /**
@@ -855,21 +856,78 @@ layui.use(["table","form","laytpl","layer"], function(){
             $(this).data("flag","0");
         }
     });
+    $(".image img").on("click",function(){
+        console.log("img clicked")
+        let url=$(this).data("url");
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 1,
+            shadeClose: true,
+            area: ['500px', '500px'], //宽高
+            content: "<img alt='图片' title='图片' src='"+url+"' style='width:500px;height: 500px;' />"
+        });
+    });
 
     /**
      * 点击实时灾情菜单
      */
+    let realTimeDisMarker=new Array();
     $("#zaiqingId").bind("click", function(){
         let flag = $(this).data("flag");
-        let b  = document.getElementById('myCarousel');
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            b.style.display = "block";
+            active.render({type:"GET", url: "/client/realTimeDisaster/list", data:{}}, data => {
+                data.forEach( res => {
+                    console.log(res);
+                    let iconUrl = '/client/base/wadi.png';
+                    let mes = '<div>灾害:'+res.disasterName+'</div><br />';
+                        mes += '<div>地区:'+res.areaName+'</div><br />';
+                        mes += '<div>严重性:'+res.damage+'</div><br />';
+                    $.ajax({
+                        async: false
+                        ,type: 'POST'
+                        ,data: {warnEditId:res.id}
+                        ,url: '/client/realTimeDisaster/selectFile'
+                        ,dataType: 'json'
+                        ,success: function(json){
+                            if(json!=null){
+                                let list=json.list;
+                                list.forEach(function (file){
+                                    var index1=file.name.lastIndexOf(".");
+                                    var index2=file.name.length;
+                                    var type=file.name.substring(index1,index2);
+                                    if(type==".jpg"|| type==".jpeg"|| type==".gif"|| type==".png"|| type==".bmp"){
+                                        mes +="<div class='image' style='border: 3px solid rgb(230, 232, 232);position: relative;margin-right: 5px;float: left;'>" +
+                                            "<img alt='图片' title='图片' data-url='/client"+file.url+"'  src='/client"+file.url+"' style='width:100px;height: 100px;' /></div>";
+                                    }else{
+                                        mes +="<div style='border: 3px solid rgb(230, 232, 232);position: relative;margin-right: 5px;float: left;'>" +
+                                            "<video style='width:100px;height: 100px;' controls='controls' >" +
+                                            "<source src='/client"+file.url+"' type='video/ogg' />" +
+                                            "<source src='/client"+file.url+"' type='video/mp4' />" +
+                                            "<source src='/client"+file.url+"' type='video/webm' />" +
+                                            "</video></div>";
+                                    }
+                                })
+                            }
+                        }
+                    });
+                let marker = active.marker(iconUrl ,[res.lon , res.lat]
+                    ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.disasterName + '</span>'  +'<br/>'+ mes);
+                    // 将标注添加到地图中
+                    active.map.addOverlay(marker);
+                    realTimeDisMarker.push(marker);
+                    //信息弹出框
+                    active.addClickHandler(content,marker);
+                });
+            });
         }else{
-            $(this).data("flag",0);
             $(this).children("input").removeAttr("checked");
-            b.style.display = "none";
+            for(var i=0;i<realTimeDisMarker.length;i++){
+                active.map.removeOverlay(realTimeDisMarker[i]);
+            }
+            $(this).data("flag","0");
         }
     });
 
