@@ -5,4 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 public interface IWebService {
 
     void web(JSONObject json);
+
+    void sendWeb(JSONObject json);
 }

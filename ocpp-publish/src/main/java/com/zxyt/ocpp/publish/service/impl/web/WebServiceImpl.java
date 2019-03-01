@@ -15,4 +15,10 @@ public class WebServiceImpl implements IWebService {
     public void web(JSONObject json) {
 
     }
+
+    @Override
+    @Async
+    public void sendWeb(JSONObject json) {
+
+    }
 }

@@ -325,7 +325,7 @@ layui.use(["table","form","laytpl","layer","selectTree","zTree"], function(){
                 ,area: ['500px','550px']
                 ,shade: 0.3
                 ,maxmin:true
-                ,offset: '200px'
+                ,offset: '100px'
                 ,btn: ['分配', '取消']
                 ,content:"<div id='menuDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){

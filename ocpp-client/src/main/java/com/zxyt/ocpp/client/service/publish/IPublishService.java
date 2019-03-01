@@ -23,4 +23,8 @@ public interface IPublishService {
      */
     @PostMapping("/publish/")
     JSONObject publish(@RequestBody JSONObject json);
+
+    @PostMapping("/publish/warnPublish")
+    JSONObject warnPublish(@RequestBody JSONObject json);
+
 }

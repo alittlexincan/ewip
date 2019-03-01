@@ -30,7 +30,13 @@ layui.use(["table","element","form","laytpl","layer","selectTree"], function(){
             if(value.length == 0) return '请输入微信获取token路径';
         }
         ,serviceTemplate: value => {
-            if(value.length == 0) return '请输入微信【服务提醒模板】通知模板';
+            if(value.length == 0) return '请输入微信【预报服务提醒模板】通知模板';
+        }
+        ,warnTemplate: value => {
+            if(value.length == 0) return '请输入微信【预警服务提醒模板】通知模板';
+        }
+        ,relieveWarnTemplate: value => {
+            if(value.length == 0) return '请输入微信【解除预警服务提醒模板】通知模板';
         }
         ,templateUrl: value => {
             if(value.length == 0) return '请输入微信模板发送路径';

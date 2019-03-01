@@ -44,11 +44,36 @@ public class SinaWeiBoServiceImpl implements ISinaWeiBoService {
         try {
             JSONObject result = XinLangWeiBoUtil.sendPost(jsonObject);
             String error = result.getString("error");
-            if(error!=null)log.info("failure...");
+            if(error==null)log.info("failure...");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    @Async
+    public void sendSinaWeiBo(JSONObject json) {
+
+        JSONObject jsonObject = new JSONObject();
+
+        //获取传真配置信息
+        ChannelConfig channelConfig = channelConfigMapper.getSinaConfig();
+        // 全局赋值
+        JSONObject cc = JSONObject.parseObject(channelConfig.getContent());
+
+        jsonObject.put("sinaSendUrl", cc.getString("sinaSendUrl"));
+        jsonObject.put("safeUrl", cc.getString("safeUrl"));
+        jsonObject.put("access_token", cc.getString("access_token"));
+        jsonObject.put("content", json.getString("content"));
+
+        try {
+            JSONObject result = XinLangWeiBoUtil.sendPost(jsonObject);
+            String error = result.getString("error");
+            if(error==null)log.info("failure...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

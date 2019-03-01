@@ -88,28 +88,95 @@ public class PublishController {
      */
     @PostMapping("/")
     public void publish(@RequestBody JSONObject json){
+
         log.info("接收推送数据：" + json.toJSONString());
         JSONArray channelArray = json.getJSONArray("channels");
         for(int i = 0; i<channelArray.size(); i++){
             // 获取渠道编码
             String code = channelArray.getJSONObject(i).getString("channelCode");
             // 短信
-            if(code.equals("SMS")) this.smsService.sms(json);
+            if(code.equals("SMS")){
+                this.smsService.sms(json);
+            }
             // 微信
-            if(code.equals("WECHAT")) this.wechatService.wechat(json);
+            if(code.equals("WECHAT")){
+                this.wechatService.wechat(json);
+            }
             // 邮件
-            if(code.equals("EMAIL")) this.emailService.email(json);
+            if(code.equals("EMAIL")){
+                this.emailService.email(json);
+            }
             // 传真
-            if(code.equals("FAX")) this.faxService.fax(json);
+            if(code.equals("FAX")){
+                this.faxService.fax(json);
+            }
             // 显示屏
-            if(code.equals("LED")) this.ledService.led(json);
+            if(code.equals("LED")){
+                this.ledService.led(json);
+            }
             // 新浪微博
-            if(code.equals("WEIBO")) this.sinaWeiBoService.sinaWeiBo(json);
+            if(code.equals("WEIBO")){
+                this.sinaWeiBoService.sinaWeiBo(json);
+            }
             // APP
-            if(code.equals("APP")) this.appService.app(json);
+            if(code.equals("APP")){
+                this.appService.app(json);
+            }
             // WEB
-            if(code.equals("WEB")) this.webService.web(json);
+            if(code.equals("WEB")){
+                this.webService.web(json);
+            }
 
+        }
+
+
+
+
+    }
+
+    /**
+     * 发布预警信息
+     * @param json
+     */
+    @PostMapping("/warnPublish")
+    public void warnPublish(@RequestBody JSONObject json){
+
+        JSONArray channelArray = json.getJSONArray("channels");
+        for(int i = 0; i<channelArray.size(); i++){
+            // 获取渠道编码
+            String code = channelArray.getJSONObject(i).getString("channelCode");
+            // 短信
+            if(code.equals("SMS")){
+                this.smsService.sendSms(json);
+            }
+            // 微信
+            if(code.equals("WECHAT")){
+                this.wechatService.sendWechat(json);
+            }
+            // 邮件
+            if(code.equals("EMAIL")){
+                this.emailService.sendEmail(json);
+            }
+            // 传真
+            if(code.equals("FAX")){
+                this.faxService.sendFax(json);
+            }
+            // 显示屏
+            if(code.equals("LED")){
+                this.ledService.sendLed(json);
+            }
+            // 新浪微博
+            if(code.equals("WEIBO")){
+                this.sinaWeiBoService.sendSinaWeiBo(json);
+            }
+            // APP
+            if(code.equals("APP")){
+                this.appService.sendApp(json);
+            }
+            // WEB
+            if(code.equals("WEB")){
+                this.webService.sendWeb(json);
+            }
         }
 
         // 如果record国突标识为1，则需要对接国突
@@ -120,6 +187,7 @@ public class PublishController {
                 recordService.record(json);
             }
         }
+
     }
 
 }

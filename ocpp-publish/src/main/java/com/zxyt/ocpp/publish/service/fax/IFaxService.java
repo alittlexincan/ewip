@@ -12,4 +12,6 @@ import com.alibaba.fastjson.JSONObject;
 public interface IFaxService {
 
     void fax(JSONObject json);
+
+    void sendFax(JSONObject json);
 }

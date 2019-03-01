@@ -13,4 +13,6 @@ public interface IEmailService {
      * @param json
      */
     void email(JSONObject json);
+
+    void sendEmail(JSONObject json);
 }

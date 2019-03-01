@@ -11,4 +11,6 @@ import com.alibaba.fastjson.JSONObject;
 public interface ILedService {
 
     void led(JSONObject json);
+
+    void sendLed(JSONObject json);
 }

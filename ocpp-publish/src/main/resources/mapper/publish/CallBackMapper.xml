@@ -19,4 +19,21 @@
         </foreach>
     </insert>
 
+    <!-- 回执状态插入主表信息 -->
+    <insert id="insertMainWarn" >
+        insert into warn_callback_main (id, warn_edit_id, channel_code, total, success, fail, work, create_time )
+        value
+        ( REPLACE(UUID(),'-',''), #{warnEditId}, #{channelCode}, #{total}, #{success}, #{fail}, #{work}, now())
+
+    </insert>
+
+    <!-- 回执状态插入子表信息 -->
+    <insert id="insertChildWarn" >
+        insert into warn_callback_child (id, warn_edit_id, channel_code, code, status, create_time )
+        values
+        <foreach collection="list" item="item" separator=",">
+            ( REPLACE(UUID(),'-',''), #{item.warnEditId}, #{item.channelCode}, #{item.code}, #{item.status}, now())
+        </foreach>
+    </insert>
+
 </mapper>

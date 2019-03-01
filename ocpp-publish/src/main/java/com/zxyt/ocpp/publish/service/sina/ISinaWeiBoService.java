@@ -6,4 +6,6 @@ public interface ISinaWeiBoService {
 
     void sinaWeiBo(JSONObject json);
 
+    void sendSinaWeiBo(JSONObject json);
+
 }

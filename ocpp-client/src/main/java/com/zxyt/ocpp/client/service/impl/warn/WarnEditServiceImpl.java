@@ -3,6 +3,7 @@ package com.zxyt.ocpp.client.service.impl.warn;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zxyt.ocpp.client.config.common.universal.AbstractService;
+import com.zxyt.ocpp.client.entity.message.MessageUser;
 import com.zxyt.ocpp.client.entity.warn.WarnEdit;
 import com.zxyt.ocpp.client.entity.warn.WarnEditContent;
 import com.zxyt.ocpp.client.entity.warn.WarnEditFile;
@@ -16,8 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service("warnEditService")
 public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IWarnEditService {
@@ -57,6 +58,8 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
             addWarnEditContent(json);   // 3：添加预警编辑内容信息
             addWarnEditUser(json);      // 4：添加预警编辑群组信息
             addWarnEditFile(json);      // 6：添加预警编辑上传文件信息
+
+            getWarnUserInfo(json, warnEditId);
 
             json.put("code", 200);
             json.put("msg","一键发布成功");
@@ -181,7 +184,55 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         return 0;
     }
 
-
+    private void getWarnUserInfo(JSONObject result, String warnEditId){
+        Map<String, Object> map = new HashMap<>();
+        map.put("warnEditId", warnEditId);
+        List<WarnEditUser> list = this.warnEditUserMapper.selectByWarnEditId(map);
+        if(list.size() > 0){
+            // 组装渠道下的群组，一个渠道可能对应多个群组
+            JSONObject group = new JSONObject();
+            // 组装渠道下的用户，一个群组可能对应多个用户
+            JSONObject user = new JSONObject();
+            // 渠道去重
+            Map<String, List<WarnEditUser>> groupList = list.stream().collect(Collectors.groupingBy(WarnEditUser::getChannelId));
+            list.forEach(weu -> {
+                // 群组过滤不必要字段
+                JSONArray groupArray = new JSONArray();
+                // 渠道对应的群组去重
+                groupList.get(weu.getChannelId()).stream().collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getChannelId() + ";" + o.getUserGroupId()))),
+                        ArrayList::new
+                )).forEach( gr -> {
+                    JSONObject g = new JSONObject();
+                    g.put("userGroupId", gr.getUserGroupId());
+                    g.put("userGroupName", gr.getUserGroupName());
+                    groupArray.add(g);
+                });
+                // 用户过滤不必要字段
+                JSONArray userGroupArray = new JSONArray();
+                // 组装群组下的受众
+                list.stream()
+                        .filter(p -> p.getUserCode() != null && p.getUserGroupId().equals(weu.getUserGroupId()))
+                        .collect(Collectors.toList())
+                        .forEach(ug -> {
+                            JSONObject g = new JSONObject();
+                            g.put("userName", ug.getUserName());
+                            g.put("userCode", ug.getUserCode());
+                            g.put("channelCode", ug.getChannelCode());
+                            g.put("longitude", ug.getLongitude());
+                            g.put("latitude", ug.getLatitude());
+                            g.put("altitude", ug.getAltitude());
+                            userGroupArray.add(g);
+                        });
+                // 在当前渠道下追加群组
+                group.put(weu.getChannelId(), groupArray);
+                // 当前群组下追加受众用户
+                user.put(weu.getUserGroupId(), userGroupArray);
+            });
+            result.put("users", user);
+            result.put("groups", group);
+        }
+    }
 
 
 }

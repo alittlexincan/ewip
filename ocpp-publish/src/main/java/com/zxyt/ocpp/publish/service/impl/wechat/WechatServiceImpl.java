@@ -19,6 +19,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -38,8 +39,14 @@ public class WechatServiceImpl implements IWechatService {
     // 微信应用APPSECRET
     private String appSecret;
 
-    // 服务提醒通知
+    // 预报服务提醒通知
     private String serviceTemplate;
+
+    // 预警服务提醒通知
+    private String warnTemplate;
+
+    // 解除预警服务提醒通知
+    private String relieveWarnTemplate;
 
     // 获取access_token url地址
     private String tokenUrl;
@@ -70,6 +77,41 @@ public class WechatServiceImpl implements IWechatService {
 
     @Override
     @Async
+    public void sendWechat(JSONObject json) {
+
+        JSONObject result = new JSONObject();
+
+        // 1：初始化加载微信配置信息
+        readSMSConfigInfo(json);
+
+        log.info("===============微信推送=====================");
+        // 2：通过tokenUrl获取access_token
+        log.info("获取微信tokenUrl: 【{}】",tokenUrl);
+        JSONObject token = this.restTemplate.getForObject(tokenUrl,JSONObject.class);
+        String accessToken = token.getString("access_token");
+        if(accessToken == null){
+            log.info("微信推送获取TOKEN失败！{}", token);
+            result.put("warnEditId", json.getString("id"));
+            result.put("channelCode", "WECHAT");
+            result.put("total", 1);
+            result.put("success", 0);
+            result.put("fail", 1);
+            result.put("work","微信推送获取TOKEN失败");
+        }
+        log.info("成功获取微信token: 【{}】" ,accessToken);
+
+        if(json.getInteger("type")==null){
+            result = this.sendWarnTemplate(json, accessToken);
+        }else{
+            result = this.sendMessageTemplate(json, accessToken);
+        }
+        // 插入回执状态主表信息
+        this.callBackMapper.insertMainWarn(result);
+
+    }
+
+    @Override
+    @Async
     public void wechat(JSONObject json) {
 
         JSONObject result = new JSONObject();
@@ -93,11 +135,70 @@ public class WechatServiceImpl implements IWechatService {
         }
         log.info("成功获取微信token: 【{}】" ,accessToken);
 
-        result = this.sendMessageTemplate(json, accessToken);
-
+        if(json.getInteger("type")==null){
+            result = this.sendWarnTemplate(json, accessToken);
+        }else{
+            result = this.sendMessageTemplate(json, accessToken);
+        }
         // 插入回执状态主表信息
         this.callBackMapper.insertMainMsg(result);
 
+    }
+
+    private JSONObject sendWarnTemplate(JSONObject json, String accessToken){
+        // 存储发送结果主表信息
+        JSONObject main = new JSONObject();
+        // 2：获取所有关注用户信息，提取用户openId: 如果okUser有值，则说明是手动发送
+        List<String> userList = this.okUser.length() > 0 ? Arrays.asList(this.okUser.split(",")) : getUserList(accessToken, "");
+        log.info("微信用户openId列表：{}",JSON.toJSON(userList));
+        // 设置模板字体颜色
+        String rgb = "#000000";
+
+        //设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        json.put("sendTime", df.format(new Date()));
+
+        // 获取用户总个数
+        int count = userList.size();
+        if(count <= 0){
+            log.info("微信暂无关注用户");
+            return this.callBackMsg(json.getString("id"), "微信暂无关注用户");
+        }
+        for (int i = 0; i < count; i += this.number) {
+            //作用为number最后没有200条数据则剩余几条newList中就装几条
+            if (i + this.number > count) {
+                this.number = count - i;
+            }
+            StringBuilder sb = new StringBuilder();
+            userList.subList(i, i + this.number).forEach(u -> {
+                sb.append("," + u);
+                WechatTemplate tem = new WechatTemplate();
+                tem.setTemplateId(warnTemplate);
+                tem.setTopColor(rgb);
+                tem.setToUser(u);
+                tem.setUrl("");
+                List<WechatTemplateParam> paras = new ArrayList<>();
+                paras.add(new WechatTemplateParam("first",json.getString("title"), rgb));
+                paras.add(new WechatTemplateParam("keyword1", json.getString("organizationName"), rgb));
+                paras.add(new WechatTemplateParam("keyword2", json.getString("disasterName"), rgb));
+                paras.add(new WechatTemplateParam("keyword3", DisasterUtil.parseColorString(json.getInteger("disasterColor")), rgb));
+                paras.add(new WechatTemplateParam("keyword4",json.getString("sendTime"), rgb));
+                paras.add(new WechatTemplateParam("remark",json.getString("content"), rgb));
+                tem.setTemplateParamList(paras);
+                log.info("模板信息：" + tem.toJSON());
+                ResponseEntity<JSONObject> rest = this.restTemplate.postForEntity(templateUrl.replace("{accessToken}", accessToken), tem.toJSON(), JSONObject.class);
+                log.info("微信推送回执结果：" + rest.getBody().toJSONString());
+            });
+            log.info("微信每批次发送用户：" + sb.toString().substring(1));
+        }
+        log.info("微信推送成功");
+        main.put("warnEditId", json.getString("id"));
+        main.put("channelCode", "WECHAT");
+        main.put("total", 1);
+        main.put("success", 1);
+        main.put("fail", 0);
+        main.put("work","微信推送成功");
+        return main;
     }
 
 
@@ -115,6 +216,11 @@ public class WechatServiceImpl implements IWechatService {
         log.info("微信用户openId列表：{}",JSON.toJSON(userList));
         // 设置模板字体颜色
         String rgb = "#000000";
+
+        //设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        json.put("sendTime", df.format(new Date()));
+
         // 获取用户总个数
         int count = userList.size();
         if(count <= 0){
@@ -122,7 +228,8 @@ public class WechatServiceImpl implements IWechatService {
             return this.callBackMsg(json.getString("id"), "微信暂无关注用户");
         }
         for (int i = 0; i < count; i += this.number) {
-            if (i + this.number > count) {        //作用为number最后没有200条数据则剩余几条newList中就装几条
+            //作用为number最后没有200条数据则剩余几条newList中就装几条
+            if (i + this.number > count) {
                 this.number = count - i;
             }
             StringBuilder sb = new StringBuilder();
@@ -202,14 +309,26 @@ public class WechatServiceImpl implements IWechatService {
             // 全局赋值
             JSONObject cc = JSONObject.parseObject(config.getContent());
 
-            this.appId = cc.getString("appId");                                                         // 微信应用ID
-            this.appSecret = cc.getString("appSecret");                                                 // 微信应用密钥
-            this.tokenUrl = cc.getString("tokenUrl") + "?grant_type=client_credential&appid=" + this.appId + "&secret=" + this.appSecret;      // 微信应用密钥
-            this.serviceTemplate = cc.getString("serviceTemplate");             // 服务提醒模板
-            this.templateUrl = cc.getString("templateUrl") + "?access_token={accessToken}";                     // 模板推送服务提醒消息路径
-            this.userListUrl = cc.getString("userListUrl") + "?access_token={accessToken}&next_openid={userOpenId}"; // 用户列表地址
-            this.okUser = cc.getString("okUser");                               // 指定发送用户
-            this.number = cc.getInteger("number");                              // 获取发送条数
+            // 微信应用ID
+            this.appId = cc.getString("appId");
+            // 微信应用密钥
+            this.appSecret = cc.getString("appSecret");
+            // 微信应用密钥
+            this.tokenUrl = cc.getString("tokenUrl") + "?grant_type=client_credential&appid=" + this.appId + "&secret=" + this.appSecret;
+            // 预报服务提醒模板
+            this.serviceTemplate = cc.getString("serviceTemplate");
+            // 预警服务提醒模板
+            this.warnTemplate = cc.getString("warnTemplate");
+            // 解除预警服务提醒模板
+            this.relieveWarnTemplate = cc.getString("relieveWarnTemplate");
+            // 模板推送服务提醒消息路径
+            this.templateUrl = cc.getString("templateUrl") + "?access_token={accessToken}";
+            // 用户列表地址
+            this.userListUrl = cc.getString("userListUrl") + "?access_token={accessToken}&next_openid={userOpenId}";
+            // 指定发送用户
+            this.okUser = cc.getString("okUser");
+            // 获取发送条数
+            this.number = cc.getInteger("number");
 
             log.info("获取微信配置信息成功");
             return 200;

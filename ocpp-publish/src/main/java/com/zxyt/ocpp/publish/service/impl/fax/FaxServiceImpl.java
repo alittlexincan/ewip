@@ -74,6 +74,41 @@ public class FaxServiceImpl implements IFaxService {
 
     }
 
+    @Override
+    @Async
+    public void sendFax(JSONObject json) {
+
+        //获取传真配置信息
+        ChannelConfig channelConfig = channelConfigMapper.getFaxFTPConfig();
+        FTPConfig ftpConfig = new FTPConfig();
+        // 全局赋值
+        JSONObject cc = JSONObject.parseObject(channelConfig.getContent());
+        ftpConfig.setHost(cc.getString("host"));
+        ftpConfig.setPort(Integer.parseInt(cc.getString("port")));
+        ftpConfig.setUser(cc.getString("user"));
+        ftpConfig.setPassword(cc.getString("password"));
+        String url = "null";
+        try {
+            if(FTPUtil.login(ftpConfig)) {
+                JSONArray files = json.getJSONArray("files");
+                if(files != null){
+                    for(int i = 0; i<files.size(); i++){
+                        JSONObject file = files.getJSONObject(i);
+                        url = file.getString("url");
+                    }
+                    //上传文件到ftp
+                    boolean flag = FTPUtil.uploadFile(uploadPath+url, "天气预报.txt");
+                }
+                FTPUtil.close();//关闭资源
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 }

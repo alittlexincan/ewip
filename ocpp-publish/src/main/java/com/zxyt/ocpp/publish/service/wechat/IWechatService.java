@@ -16,4 +16,6 @@ public interface IWechatService {
      */
     void wechat(JSONObject json);
 
+    void sendWechat(JSONObject json);
+
 }

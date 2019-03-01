@@ -24,4 +24,18 @@ public class AppServiceImpl implements IAppService {
         }
 
     }
+
+    @Override
+    @Async
+    public void sendApp(JSONObject json) {
+
+        String url = "http://192.168.1.111:8080/tour/share";
+        String param = "title="+"预警标题"+"&content="+"预警内容";
+        try {
+            XinLangWeiBoUtil.sendPost(url, param);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

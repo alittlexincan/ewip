@@ -50,38 +50,37 @@ public class EmailServiceImpl implements IEmailService {
     }
 
     /**
-     * 配置邮件
-     * @param
-     * @return
+     * 发送邮件
+     * @param json
      */
-    private Config setEmail(){
-        try {
-            Config config = new Config();
-            Map<String, Object> map = new HashMap<>();
-            map.put("channelCode", "EMAIL");
-            // 读取短信配置信息
-            ChannelConfig channelConfig = this.channelConfigMapper.selectChannelConfig(map);
-            // 解析邮件配置信息
-            JSONObject mail = JSONObject.parseObject(channelConfig.getContent());
-            // 邮件配置
-            JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-            mailSender.setJavaMailProperties(properties());
-            mailSender.setDefaultEncoding("UTF-8");
-            mailSender.setHost(mail.getString("host"));
-            mailSender.setUsername(mail.getString("userName"));
-            mailSender.setPassword(mail.getString("password"));
-            mailSender.setPort(mail.getInteger("port"));
-            config.setObject(mailSender);
-            config.setJsonObject(mail);
-            log.info("邮件配置成功");
-            return config;
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error("邮件配置查询配置失败，请检查配置项");
-        }
-        return null;
-    }
+    @Override
+    @Async
+    public void sendEmail(JSONObject json) {
 
+        // 获取信息
+        JSONObject info = getMessageUserInfo(json);
+
+        log.info("邮件发送信息" + info);
+
+        String[] users = info.getString("users").split(",");
+        String title = json.getString("title");
+        String content = json.getString("content");
+
+        // 邮件配置
+        Config config = setEmail();
+        // 获取邮件配置信息
+        JavaMailSender mailSender = (JavaMailSender) config.getObject();
+        JSONObject obj = config.getJsonObject();
+        // 消息组装
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(obj.getString("userName"));
+        mailMessage.setTo(users);
+        mailMessage.setSubject(title);
+        mailMessage.setText(content);
+
+        mailSender.send(mailMessage);
+
+    }
 
     /**
      * 发送邮件
@@ -113,8 +112,41 @@ public class EmailServiceImpl implements IEmailService {
         mailMessage.setText(content);
 
         mailSender.send(mailMessage);
+
     }
 
+    /**
+     * 配置邮件
+     * @param
+     * @return
+     */
+    private Config setEmail(){
+        try {
+            Config config = new Config();
+            Map<String, Object> map = new HashMap<>();
+            map.put("channelCode", "EMAIL");
+            // 读取短信配置信息
+            ChannelConfig channelConfig = this.channelConfigMapper.selectChannelConfig(map);
+            // 解析邮件配置信息
+            JSONObject mail = JSONObject.parseObject(channelConfig.getContent());
+            // 邮件配置
+            JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+            mailSender.setJavaMailProperties(properties());
+            mailSender.setDefaultEncoding("UTF-8");
+            mailSender.setHost(mail.getString("host"));
+            mailSender.setUsername(mail.getString("userName"));
+            mailSender.setPassword(mail.getString("password"));
+            mailSender.setPort(mail.getInteger("port"));
+            config.setObject(mailSender);
+            config.setJsonObject(mail);
+            log.info("邮件配置成功");
+            return config;
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("邮件配置查询配置失败，请检查配置项");
+        }
+        return null;
+    }
 
     /**
      * 获取信息和用户

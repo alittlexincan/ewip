@@ -36,6 +36,26 @@
         </foreach>
     </insert>
 
+    <select id="selectByWarnEditId" resultMap="BaseUserResultMap">
+        SELECT
+            u.id,
+            u. NAME user_name,
+            u. CODE user_code,
+            u.longitude,
+            u.latitude,
+            u.altitude,
+            e.channel_id,
+            c. NAME channel_name,
+            c. CODE channel_code,
+            e.user_group_id,
+            e.user_group_name
+        FROM
+            warn_edit_user e
+        LEFT JOIN user u on e.user_group_id = u.user_group_id
+        LEFT JOIN channel c on c.id = e.channel_id
+        where e.warn_edit_id = #{warnEditId}
+    </select>
+
 
 
 </mapper>
