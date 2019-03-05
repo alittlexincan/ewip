@@ -400,9 +400,9 @@ html, body {
 }
 
 .moduleContent > nav.bg-navy-blue {
-/* 	background: #15318ae6; */
 	background: #15318ae6;
 	z-index: 1;
+	height: 5%;
 }
 
 .moduleContent > nav .dropdown > .dropdown-menu {

@@ -39,8 +39,8 @@ public class CimissController {
     /**
      * 获取cimissj假数据
      */
-//    @Value("${cimiss.shikuang}")
-//    private String cimissAreaShikuang;
+    @Value("${cimiss.shikuang}")
+    private String cimissAreaShikuang;
 
     @GetMapping("shikuang")
     public JSONObject getCimissAreaShikuang(@RequestParam Map<String, Object> map){
@@ -61,8 +61,8 @@ public class CimissController {
             String stationId=jsonObj.get("stationId").toString();
             result.put("stationId",stationId);
             log.info("cimiss请求URL:" + url);
-            JSONObject rest = restTemplate.getForObject(url, JSONObject.class);
-//            JSONObject rest=JSONObject.parseObject(cimissAreaShikuang) //读取配置文件假数据;
+//            JSONObject rest = restTemplate.getForObject(url, JSONObject.class);
+            JSONObject rest=JSONObject.parseObject(cimissAreaShikuang); //读取配置文件假数据;
             log.info("cimiss数据：" + rest);
 
             if(rest.getInteger("returnCode") != 0){

@@ -165,8 +165,7 @@
         d.disaster_color,
         d.disaster_level,
         d.is_config,
-        (SELECT count(1) FROM strategy s WHERE s.disaster_id = d.id
-        and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))) is_strategy,
+        (SELECT count(1) FROM strategy s WHERE s.disaster_id = d.id ) is_strategy,
         d.create_time
         FROM disaster d
         where 1=1
@@ -192,8 +191,7 @@
         d.disaster_color,
         d.disaster_level,
         d.is_config,
-        (SELECT count(1) FROM warn s WHERE s.disaster_id = d.id
-        and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))) is_strategy,
+        (SELECT count(1) FROM warn s WHERE s.disaster_id = d.id ) is_strategy,
         d.create_time
         FROM disaster d
         where 1=1

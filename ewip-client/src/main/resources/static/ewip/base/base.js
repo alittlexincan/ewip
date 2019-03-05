@@ -1899,7 +1899,7 @@ layui.use(["table","form","laytpl","layer"], function(){
                 html += "<ul >";
                 data.forEach(json => {
                     let path = "/client" + json.path;
-                    html += "<li style='border:1px solid #1b6147;text-align: left;color:white;font-size:12px;'><a style='color: white' href='" + path + "'>" + json.title + "</a></li>";
+                    html += "<li style='border:1px solid #237fab;text-align: left;color:white;font-size:12px;'><a style='color: white' href='" + path + "'>" + json.title + "</a></li>";
                 });
                 html += "</ul >";
                 $("#dizhiId").empty().append(html);

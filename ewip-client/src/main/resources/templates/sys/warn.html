@@ -24,13 +24,13 @@
     <!-- 添加弹出层 -->
     <script id="addPop" type="text/html">
         <div class="layui-form layui-form-pane">
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属地区</label>
                 <div class="layui-input-block">
                     <div id="addAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
                     <select id="addOrganizationId" name="organizationId"  lay-search="">
@@ -97,15 +97,15 @@
     </script>
 
     <!-- 修改弹出层 -->
-    <script id="updatePop" type="text/html">
+    <script id="updatePop" type="text/html" >
             <div class="layui-form layui-form-pane">
-                <div class="layui-form-item">
+                <div class="layui-form-item" hidden>
                     <label class="layui-form-label">所属地区</label>
                     <div class="layui-input-block">
                         <div id="updateAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item" hidden>
                     <label class="layui-form-label">所属机构</label>
                     <div class="layui-input-block">
                         <select id="updateOrganizationId" name="organizationId"  lay-search="">
@@ -174,13 +174,13 @@
     <!-- 详情弹出层 -->
     <script id="detailsPop" type="text/html">
         <div class="layui-form layui-form-pane">
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属地区</label>
                 <div class="layui-input-block">
                     <div id="detailsAreaId" name="areaId" style="pointer-events: none;" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属机构</label>
                 <div class="layui-input-block">
                     <select id="detailsOrganizationId" name="organizationId" disabled="disabled" lay-search="">

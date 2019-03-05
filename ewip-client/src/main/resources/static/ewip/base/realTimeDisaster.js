@@ -41,7 +41,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
             ,{field: 'damage', title: '危害程度', sort: true}
             ,{field: 'startTime', title: '开始时间', sort: true}
             ,{field: 'endTime', title: '结束时间',sort: true}
-            ,{title: '操&nbsp;&nbsp;作',width: '20%', align:'center', toolbar: '#btnGroupOption'}
+            ,{title: '操&nbsp;&nbsp;作',width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
 
@@ -461,8 +461,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster', '
                         ,dataType: 'json'
                         ,success: function(json){
                             if(json!=null){
-
-
                                 let list=json.list;
                                 let html="";
                                 list.forEach(function (file){

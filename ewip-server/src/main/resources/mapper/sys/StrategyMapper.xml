@@ -37,7 +37,7 @@
           strategy s
         LEFT JOIN area a on a.id = s.area_id
         LEFT JOIN organization o on o.id = s.organization_id
-        where 1=1 and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))
+        where 1=1
         <if test="id != null and id != ''">AND s.id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND s.area_id = #{areaId}</if>
         <if test="organizationId != null and organizationId != ''">AND s.organization_id = #{organizationId}</if>
@@ -97,8 +97,6 @@
           strategy s
         where 1=1
         <if test="id != null and id != ''">AND s.id = #{id}</if>
-        <if test="areaId != null and areaId != ''">AND s.area_id = #{areaId}</if>
-        <if test="organizationId != null and organizationId != ''">AND s.organization_id = #{organizationId}</if>
         <if test="disasterId != null and disasterId != ''">AND s.disaster_id = #{disasterId}</if>
         <if test="disasterName != null and disasterName != ''">AND s.disaster_name = #{disasterName}</if>
         <if test="disasterColor != null and disasterColor != ''">AND s.disaster_color = #{disasterColor}</if>

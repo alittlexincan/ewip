@@ -10,3 +10,10 @@
     url('layui-icon.ttf?t=1533103691191') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
     url('layui-icon.svg?t=1533103691191#layui-icon') format('svg'); /* iOS 4.1- */
 }
+
+.layui-btn:not(.layui-btn-primary):not(.layui-btn-normal):not(.layui-btn-warm):not(.layui-btn-danger):not(.layui-btn-disabled) {
+    background-color: #345e92;
+}
+.layui-btn.layui-btn-primary:hover {
+    border-color: #345e92;
+}

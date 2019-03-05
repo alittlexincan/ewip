@@ -274,7 +274,7 @@
 
 	<!--渠道基础信息-->
 	<select id="basicChannel" resultType="map">
-	     select id, name ,0 count  from channel where area_id=#{empAreaId}
+	     select id, name ,0 count  from channel
 	</select>
 
 	<!--发布渠道统计-->

@@ -15,7 +15,6 @@
         <module name="ewip-publish" />
         <module name="ewip-server" />
         <module name="ewip-web-client" />
-        <module name="message-center" />
         <module name="ocpp-client" />
         <module name="ocpp-publish" />
         <module name="ocpp-web-client" />

@@ -11,7 +11,6 @@
       <module fileurl="file://$PROJECT_DIR$/ewip-publish/ewip-publish.iml" filepath="$PROJECT_DIR$/ewip-publish/ewip-publish.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-server/ewip-server.iml" filepath="$PROJECT_DIR$/ewip-server/ewip-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/ewip-web-client/ewip-web-client.iml" filepath="$PROJECT_DIR$/ewip-web-client/ewip-web-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/message-center/message-center.iml" filepath="$PROJECT_DIR$/message-center/message-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/ocpp-client/ocpp-client.iml" filepath="$PROJECT_DIR$/ocpp-client/ocpp-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/ocpp-publish/ocpp-publish.iml" filepath="$PROJECT_DIR$/ocpp-publish/ocpp-publish.iml" />
       <module fileurl="file://$PROJECT_DIR$/ocpp-web-client/ocpp-web-client.iml" filepath="$PROJECT_DIR$/ocpp-web-client/ocpp-web-client.iml" />

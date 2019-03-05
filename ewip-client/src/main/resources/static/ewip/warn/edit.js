@@ -596,6 +596,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @returns {boolean}
          */
         ,"disClickNode":function (event, treeId, treeNode) {
+            debugger;
             //关闭当前弹出层
             layer.close(layer.index);
             if(treeNode.isConfig==1){

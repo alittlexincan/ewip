@@ -22,11 +22,23 @@
         <div class="layui-row layui-col-space5">
             <div class="layui-col-md4">
                 <div class="layui-card quick">
-                    <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-release warn-card-hader-icon"></i>快捷方式</span>
+
+                    <div  style="position: relative;background-repeat: no-repeat;background: url(/client/images/event/itemtop.png);
+                        background-size: 100% 100%;margin-left: -1px;">
+                        <span class="titlelft "
+                              style="display:inline-block;
+                              width: 30%;
+                              line-height:33px;
+                              text-align:center;
+                              color: #f8f8f8;">快捷方式</span>
                     </div>
-                    <div class="layui-card-body">
-                        <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none">
+
+                    <div class="layui-card-body" style="
+                    background-image: url(/client/images/event/itemmiddle.png);
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    margin-right: -1px;">
+                        <div class="layui-carousel layadmin-carousel layadmin-shortcut" lay-anim="" lay-indicator="inside" lay-arrow="none" style="background-color: #102e69;">
                             <ul class="layui-row layui-col-space5 layui-this">
                                 <li class="layui-col-xs3">
                                     <a th:href="@{'home'}" ><i class="layui-icon layui-icon-home"></i><cite>主页</cite></a>
@@ -43,16 +55,31 @@
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="layui-col-md4">
                 <div class="layui-card message">
-                    <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>消息提醒</span>
+
+                    <div  style="position: relative;background-repeat: no-repeat;background: url(/client/images/event/tb_top.png);
+                        background-size: 100% 100%;margin-left: -1px;">
+                        <span class="titlelft "
+                              style="display:inline-block;
+                              width: 100%;
+                              line-height:33px;
+                              text-align:center;
+                              color: #f8f8f8;">消息提醒</span>
                     </div>
-                    <div class="layui-card-body">
-                        <div class="layui-carousel layadmin-carousel layadmin-shortcut">
+                    <!--<div class="layui-card-header">-->
+                        <!--<span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>消息提醒</span>-->
+                    <!--</div>-->
+                    <div class="layui-card-body" style="
+                    background-image: url(/client/images/event/itemmiddle.png);
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    margin-right: -1px;margin-left: -3px;">
+                        <div class="layui-carousel layadmin-carousel layadmin-shortcut" style="background-color: #102e69;">
                             <ul class="layui-row layui-col-space5 layui-this mesRemind">
                                 <li class="layui-col-xs3">
                                     <a th:href="@{'page/warn/verify'}"><i class="layui-icon layui-icon-survey"></i><cite>待审核</cite></a>
@@ -83,11 +110,26 @@
 
             <div class="layui-col-md4">
                 <div class="layui-card shikuang">
-                    <div class="layui-card-header">
-                        <span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>天气实况</span>
+                    <div  style="position: relative;background-repeat: no-repeat;background: url(/client/images/event/itemtop2.png);
+                        background-size: 100% 100%;margin-left: -1px;">
+                        <span class="titlelft "
+                              style="display:inline-block;
+                              width: 167%;
+                              line-height:33px;
+                              text-align:center;
+                              color: #f8f8f8;">天气实况</span>
                     </div>
-                    <div class="layui-card-body">
-                        <div class="layui-carousel layadmin-carousel layadmin-shortcut sk-item-list">
+
+                    <!--<div class="layui-card-header">-->
+                        <!--<span>&nbsp;&nbsp;<i class="layui-icon layui-icon-notice warn-card-hader-icon"></i>天气实况</span>-->
+                    <!--</div>-->
+                    <div class="layui-card-body"  style="
+                    background-image: url(/client/images/event/itemmiddle.png);
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                    margin-right: -2px;
+                    margin-left: 1px;">
+                        <div class="layui-carousel layadmin-carousel layadmin-shortcut sk-item-list"  style="background-color: #102e69;">
                             <ul class="layui-row layui-col-space15 layui-this">
                                 <li class="layui-col-xs2">
                                     <a href="javascript:;">
@@ -122,7 +164,13 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                    <!--<div class="con-foot"-->
+                         <!--style="position: relative;-->
+                    <!--height: 13%;-->
+                    <!--background-repeat: no-repeat;-->
+                    <!--background: url(/client/images/event/itembottom.png);-->
+                    <!--background-size: 100% 100%;"></div>-->
+                <!--</div>-->
             </div>
         </div>
 

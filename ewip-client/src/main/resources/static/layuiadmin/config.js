@@ -52,9 +52,10 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
         ,selected: '#009688' //选中色
         ,alias: 'default' //默认别名
       },{
-        main: '#03152A'
-        ,selected: '#3B91FF'
-        ,alias: 'dark-blue' //藏蓝
+        header: '#1b306f'
+        ,main: '#03152A'
+        ,selected: '#345e92'
+        ,alias: '#495e9e' //藏蓝
       },{
         main: '#2E241B'
         ,selected: '#A48566'
@@ -105,7 +106,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
       
       //初始的颜色索引，对应上面的配色方案数组索引
       //如果本地已经有主题色记录，则以本地记录为优先，除非请求本地数据（localStorage）
-      ,initColorIndex: 9
+      ,initColorIndex: 1
     }
   });
 });

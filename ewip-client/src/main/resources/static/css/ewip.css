@@ -98,21 +98,25 @@ website:    http://code.google.com/p/jquerytree/
 
 
 .home .quick .layadmin-shortcut li .layui-icon{
-    background-color: #3da9a7;
+    /*background-color: #3da9a7;*/
+    background-color: #4b83bb;
 }
 .home .quick .layadmin-shortcut li .layui-icon:hover {
-    background-color: #47c3c3;
+    /*background-color: #47c3c3;*/
+    background-color: #96b4e8;
 }
 
 .home .message .layadmin-shortcut li .layui-icon{
-    background-color: #46a8d4;
+    /*background-color: #46a8d4;*/
+    background-color: #4b83bb;
 }
 .home .message .layadmin-shortcut li .layui-icon:hover{
-    background-color: #62b6ef;
+    /*background-color: #62b6ef;*/
+    background-color: #96b4e8;
 }
 
 .home .layadmin-shortcut li cite {
-    color: #3a807d;
+    color: #f8f8f8;
 }
 
 .home .message .layadmin-shortcut > ul > li{
@@ -155,22 +159,28 @@ website:    http://code.google.com/p/jquerytree/
     color: white;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(1){
-    background-color: #ec4842;
+    /*background-color: #ec4842;*/
+    background-color: #39a1b7;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(2){
-    background-color: #f5873d;
+    /*background-color: #f5873d;*/
+    background-color: #3aa299;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(3){
+    /*background-color: #34b7b6;*/
     background-color: #34b7b6;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(4){
-    background-color: #2ce6dc;
+    /*background-color: #2ce6dc;*/
+    background-color: #8bc3c0;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(5){
-    background-color: #1d72c5;
+    /*background-color: #1d72c5;*/
+    background-color: #639dd6;
 }
 .home .shikuang .sk-item-list > ul > li:nth-child(6){
-    background-color: #d762e0;
+    /*background-color: #d762e0;*/
+    background-color: #4cada3;
 }
 .home .shikuang .sk-item-list > ul > li > a cite{
     color: white;
@@ -1053,8 +1063,8 @@ website:    http://code.google.com/p/jquerytree/
     border: 0;
     color:white;
     line-height: 20px;
-    border-top: 1px solid #1b6147;
-    background-color: #3d7b73;
+    border-top: 1px solid #345e92;
+    background-color: #1b306fe3;
     /*border-top:1px solid #fff;*/
     /*background-color: darkorchid;*/
     font-size:14px;
@@ -1081,7 +1091,8 @@ website:    http://code.google.com/p/jquerytree/
 }
 .base .open{
     display: block;
-    background-color: #2f9688;
+    /*background-color: #2f9688;*/
+    background-color: #1b306f;
     padding-left:10px;
     color: white;
 }

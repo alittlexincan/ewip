@@ -261,21 +261,28 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
         for(int i = 0; i<channels.size(); i++){
             JSONObject channel = channels.getJSONObject(i);
             JSONArray groupArray = group.getJSONArray(channel.getString("channelId"));
-            for(int j = 0; j<groupArray.size(); j++){
-                JSONObject userGroup = groupArray.getJSONObject(j);
-                String userGroupName = userGroup.getString("userGroupName");
-                if(userGroupName.indexOf("(") > -1){
-                    userGroupName = userGroupName.substring(0,userGroupName.indexOf("("));
+            if(groupArray.size()>0){
+                for(int j = 0; j<groupArray.size(); j++){
+                    JSONObject userGroup = groupArray.getJSONObject(j);
+                    String userGroupName = userGroup.getString("userGroupName");
+                    if(userGroupName.indexOf("(") > -1){
+                        userGroupName = userGroupName.substring(0,userGroupName.indexOf("("));
+                    }
+                    WarnEditUser warnEditUser = new WarnEditUser();
+                    warnEditUser.setWarnEditId(warnEditId);
+                    warnEditUser.setChannelId(channel.getString("channelId"));
+                    warnEditUser.setUserGroupId(userGroup.getString("userGroupId"));
+                    warnEditUser.setUserGroupName(userGroupName);
+                    list.add(warnEditUser);
                 }
-                WarnEditUser warnEditUser = new WarnEditUser();
-                warnEditUser.setWarnEditId(warnEditId);
-                warnEditUser.setChannelId(channel.getString("channelId"));
-                warnEditUser.setUserGroupId(userGroup.getString("userGroupId"));
-                warnEditUser.setUserGroupName(userGroupName);
-                list.add(warnEditUser);
             }
         }
-        return this.warnEditUserMapper.insertList(list);
+        if(list.size()>0){
+            return this.warnEditUserMapper.insertList(list);
+        }else{
+            return 0;
+        }
+
     }
 
     /**
