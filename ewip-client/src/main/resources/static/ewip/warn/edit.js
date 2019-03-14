@@ -226,7 +226,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";
-                html += "	<div class='layui-col-xs4 layui-col-md4'>";
+                html += "	<div class='layui-col-xs4 layui-col-md4' >";
                 html += "		<div class='layui-card warn-card-content'>";
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>受众群组</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list'>";
@@ -816,11 +816,23 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
             ,success: function(json){
                 if(json.code == 200 && json.data != null){
                     let html ="";
+
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='"+(currentValue.status == 1 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
-                        html += "   <img class='"+(currentValue.status == 0 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
-                        html += "<span>"+currentValue.name+"</span>";
-                        html += "</div>";
+                        // html += "<div class='"+(currentValue.status == 1 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                        // html += "   <img class='"+(currentValue.status == 0 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
+                        // html += "<span>"+currentValue.name+"</span>";
+                        // html += "</div>";
+                        if(currentValue.status == 1){
+                            html += "<div class='yitihua imgbox' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                            html += "   <img class='' src='/client/"+currentValue.icon+"' title='"+currentValue.name+"' />";
+                            html += "<span>"+currentValue.name+"</span>";
+                            html += "</div>";
+                        }else{
+                            html += "<div class='zidingyi imgbox' hidden data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                            html += "   <img class='' src='/client/"+currentValue.icon+"' title='"+currentValue.name+"' />";
+                            html += "<span>"+currentValue.name+"</span>";
+                            html += "</div>";
+                        }
                     });
                     $(".channel-list").empty().append(html);
                 }
@@ -832,56 +844,64 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
      * 渠道全选、反选
      */
     $(".channel-option").on("click", "div > span", function(element) {
-        let text = $(this).text(),
-            event = $(this).data("event"),
-            disasterName = $("#disasterName").val();
-        // 如果没有选中灾种，则提示
-        if(disasterName == null || disasterName.length == 0){
-            // 弹出提示信息，2s后自动关闭
-            layer.msg("请先选择预警", {time: 2000});
-            return false;
+         let text = $(this).text();
+        //     event = $(this).data("event"),
+        //     disasterName = $("#disasterName").val();
+        // // 如果没有选中灾种，则提示
+        // if(disasterName == null || disasterName.length == 0){
+        //     // 弹出提示信息，2s后自动关闭
+        //     layer.msg("请先选择预警", {time: 2000});
+        //     return false;
+        // }
+
+        if(text == '省局一体化'){
+            $(".zidingyi").hide();
+            $(".yitihua").show();
+        }else{
+            $(".yitihua").hide();
+            $(".zidingyi").show();
         }
 
-        if(text == '全选'){
-            // 给所有渠道添加选中样式
-            $("." + event + " .imgbox").addClass("active");
-            // 获取选中渠道
-            let param = {
-                /**
-                 * 获取选中渠道
-                 */
-                "channelId": function () {
-                    var cId = [];
-                    $("." + event + " .imgbox").each(function () {
-                        cId.push($(this).data("id"));
-                    });
-                    return cId;
-                }()
-                /**
-                 * 获取选中地区
-                 */
-                ,"area": function () {
-                    var area = [];
-                    initAreaTree.getCheckedNodes().forEach(function (item) {
-                        area.push({
-                            areaId: item.id,
-                            areaName: item.name
-                        });
-                    });
-                    return area;
-                }()
-            };
-            // 清除tab页所有内容
-            $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
-            // 拼接预警内容和受众
-            active.setWarnContent(param);
-        }else{
-            $("." + event + " .imgbox").removeClass("active");
-            // 清除tab页所有内容
-            $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
-            // 拼回默认提示
-            active.defaultWarnMsg({id:'choose-tab',title:'温馨提示',msg:'请选择渠道'});
-        }
+        // if(text == '全选'){
+        //     // 给所有渠道添加选中样式
+        //     $("." + event + " .imgbox").addClass("active");
+        //     // 获取选中渠道
+        //     let param = {
+        //         /**
+        //          * 获取选中渠道
+        //          */
+        //         "channelId": function () {
+        //             var cId = [];
+        //             $("." + event + " .imgbox").each(function () {
+        //                 cId.push($(this).data("id"));
+        //             });
+        //             return cId;
+        //         }()
+        //         /**
+        //          * 获取选中地区
+        //          */
+        //         ,"area": function () {
+        //             var area = [];
+        //             initAreaTree.getCheckedNodes().forEach(function (item) {
+        //                 area.push({
+        //                     areaId: item.id,
+        //                     areaName: item.name
+        //                 });
+        //             });
+        //             return area;
+        //         }()
+        //     };
+        //     // 清除tab页所有内容
+        //     $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
+        //     // 拼接预警内容和受众
+        //     active.setWarnContent(param);
+        // }else{
+        //     $("." + event + " .imgbox").removeClass("active");
+        //     // 清除tab页所有内容
+        //     $(".warn-tab .warn-tab-title, .warn-tab .warn-tab-content").empty();
+        //     // 拼回默认提示
+        //     active.defaultWarnMsg({id:'choose-tab',title:'温馨提示',msg:'请选择渠道'});
+        // }
     });
     /**
      * 渠道点击单选、取消选择

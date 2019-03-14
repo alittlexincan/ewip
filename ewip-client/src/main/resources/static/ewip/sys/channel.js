@@ -63,11 +63,10 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
         ,cols: [[
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
-            ,{field: 'areaName', title: '地区', sort: true}
             ,{field: 'name', title: '发布手段名称', sort: true}
             ,{field: 'code', title: '发布手段编码', sort: true}
             ,{field: 'icon', title: '图&nbsp;&nbsp;标', templet: iconFormat }
-            ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
+            // ,{field: 'type', title: '类&nbsp;&nbsp;型', sort: true, templet: typeFormat }
             ,{field: 'status', title: '状&nbsp;&nbsp;态', sort: true, templet: statusFormat }
             ,{title: '操&nbsp;&nbsp;作', width: 200, align:'center', toolbar: '#btnGroupOption'}
         ]]
@@ -195,16 +194,16 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                         // 动态获取弹出层对象并追加html
                         $("#addDiv").empty().append(html);
                         // 初始化下拉树(地区)
-                        selectTree.render({
-                            'id': 'addAreaId'
-                            ,'url': '/client/tree/area'
-                            ,'isMultiple': false
-                            ,clickNode:function (event, treeId, treeNode) {
-                                //绑定树操作
-                                selectTree.setValue(treeId,treeNode);
-                                selectTree.hideTree();
-                            }
-                        });
+                        // selectTree.render({
+                        //     'id': 'addAreaId'
+                        //     ,'url': '/client/tree/area'
+                        //     ,'isMultiple': false
+                        //     ,clickNode:function (event, treeId, treeNode) {
+                        //         //绑定树操作
+                        //         selectTree.setValue(treeId,treeNode);
+                        //         selectTree.hideTree();
+                        //     }
+                        // });
                     });
 
                     // 发布下拉绑定
@@ -337,7 +336,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                         $("#updateDiv").empty().append(html);
 
                         // 初始化下拉树(地区)
-                        selectTree.render({
+           /*             selectTree.render({
                             'id': 'updateAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
@@ -347,7 +346,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                                 selectTree.setValue(treeId,treeNode);
                                 selectTree.hideTree();
                             }
-                        });
+                        });*/
 
                         // 地区级别下拉框赋值
                         $("#updateDiv select[name='type']").val(param.type);
@@ -419,7 +418,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                         $("#detailsDiv").empty().append(html);
 
                         // 初始化下拉树(地区)
-                        selectTree.render({
+       /*                 selectTree.render({
                             'id': 'detailsAreaId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
@@ -429,7 +428,7 @@ layui.use(['table','form','laytpl','layer', 'ajaxFileUpload','selectTree'], func
                                 selectTree.setValue(treeId,treeNode);
                                 selectTree.hideTree();
                             }
-                        });
+                        });*/
                         // 地区级别下拉框赋值
                         $("#detailsDiv select[name='type']").val(param.type);
                     });

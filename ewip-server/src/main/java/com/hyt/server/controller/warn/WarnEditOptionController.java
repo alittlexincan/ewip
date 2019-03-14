@@ -7,6 +7,8 @@ import com.hyt.server.config.common.result.ResultObject;
 import com.hyt.server.config.common.result.ResultResponse;
 import com.hyt.server.entity.warn.WarnEditFlow;
 import com.hyt.server.entity.warn.WarnEditOption;
+import com.hyt.server.service.publish.FormatUtil;
+import com.hyt.server.service.publish.HttpUtils;
 import com.hyt.server.service.publish.IPublishService;
 import com.hyt.server.service.warn.IWarnEditOptionService;
 import io.swagger.annotations.*;
@@ -72,8 +74,34 @@ public class WarnEditOptionController {
             // 发布后调用分发接口
             if(status == 4){
                 Map<String, Object> param = new HashMap<>(result);
-                this.publishService.publish(param);
+//                this.publishService.publish(param);
 //                newPublishService.publish(result);
+
+                System.out.println(param);
+                Map newMap = new HashMap();
+                String filesArray=result.get("files").toString();
+                JSONArray myJsonArray = JSONArray.parseArray(filesArray);
+                String files="";
+                for(int i=0;i<myJsonArray.size();i++){
+                    JSONObject json=myJsonArray.getJSONObject(i);
+                    files +=","+json.get("name").toString();
+                }
+                newMap.put("tacticsName", "刘松2019测试");
+                newMap.put("extEmailAddress", "");
+                newMap.put("extSmsAddress", "");
+                newMap.put("extFtpAddress", "");
+                newMap.put("extFaxAddress", "");
+                newMap.put("extNotesAddress", "");
+                newMap.put("title", param.get("title"));
+                newMap.put("text", param.get("content"));
+                newMap.put("fileName", files.substring(1));
+                newMap.put("areaCode", param.get("areaCode"));
+                newMap.put("userName", param.get("employeeName"));
+
+                HttpUtils httpUtils = new HttpUtils();
+                String rstData = httpUtils.sendPost("http://172.19.112.36:8080/PublishService/services/PostService/sendByTactics",newMap);
+                FormatUtil formatUtil = new FormatUtil() ;
+                formatUtil.outputRstHtml( rstData ) ;
             }
             return ResultResponse.make(200,result.getString("msg"),map);
         }

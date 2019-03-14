@@ -274,16 +274,17 @@
 
 	<!--渠道基础信息-->
 	<select id="basicChannel" resultType="map">
-	     select id, name ,0 count  from channel where area_id=#{empAreaId}
+	     select id, name ,0 count  from channel
 	</select>
 
 	<!--发布渠道统计-->
 	<select id="channelStatistics" resultType="map">
 		select channelName,channelId ,count(channelId) count  from(
 		select distinct w.id taskId,c.channel_id channelId,
-		ch.name channelName  from warn_edit w left join warn_edit_content c on w.id=c.warn_edit_id
+		ch.name channelName  from warn_edit w
+		left join warn_edit_content c on w.id=c.warn_edit_id
 		left JOIN channel ch on ch.id =c.channel_id
-		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -360,7 +361,7 @@
 
 	<!--查询所有渠道-->
 	<select id="findChannelAll" resultType="com.hyt.monitor.entity.monitor.Channel">
-		select * from channel where type=0 and area_id =#{empAreaId}
+		select * from channel where type=0
 	</select>
 
 	<!--查询地区树-->

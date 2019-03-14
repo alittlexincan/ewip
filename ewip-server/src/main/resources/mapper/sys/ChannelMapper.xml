@@ -32,7 +32,7 @@
         a.area_name areaName
         FROM channel c
         left join area a on a.id=c.area_id
-        where 1=1  and c.area_id=#{empAreaId}
+        where 1=1
         <if test="id != null and id != ''">AND c.id = #{id}</if>
         <if test="name != null and name != ''">AND c.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>
@@ -63,7 +63,7 @@
         a.area_name areaName
         FROM channel c
         left join area a on a.id=c.area_id
-        where 1=1 and c.area_id=#{empAreaId}
+        where 1=1
         <if test="id != null and id != ''">AND c.id = #{id}</if>
     </select>
 
@@ -84,7 +84,6 @@
         FROM channel c
         left join area a on a.id=c.area_id
         where 1=1
-        and c.area_id=#{empAreaId}
         <if test="id != null and id != ''">AND c.id = #{id}</if>
         <if test="name != null and name != ''">AND c.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND c.p_id = #{pId}</if>

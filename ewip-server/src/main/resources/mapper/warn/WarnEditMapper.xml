@@ -111,6 +111,7 @@
           d.disaster_color,
           d.disaster_level,
           d.icon,
+          a.code areaCode,
           a.area_name
         FROM warn_edit we
 		LEFT JOIN disaster d ON d.id = we.disaster_id

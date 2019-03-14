@@ -5,7 +5,6 @@
 	<!-- 网络监控系统运行情况-->
 	<select id="systemMonitoring" resultType="map">
 		select id channelId,name channelName,name sendMethod,icon img,1 deployType, 1 resultType from channel
-		where area_id=#{empAreaId}
 	</select>
 
 	<!-- 网络监控 预警终端基础信息用于对比-->

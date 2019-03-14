@@ -95,6 +95,8 @@ public class WarnEdit {
 
     private String icon;
 
+    private String areaCode;
+
     private String areaName;
 
     private String organizationName;
@@ -111,7 +113,7 @@ public class WarnEdit {
 
     public WarnEdit() {}
 
-    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double latitude, String content) {
+    public WarnEdit(String title, String areaId, String organizationId, String disasterId, String disasterName, Integer disasterColor, Integer disasterLevel, String warnType, String scope, String msgType, Date editTime, Date forecastTime, Date invalidTime, Integer record, String measure, String instruction, String flow, Integer status, Date createTime, Date sendTime, String disasterCode, String icon,String areaCode, String areaName, String organizationName, String employeeId, String employeeName, Double longitude, Double latitude, String content) {
         this.title = title;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -134,6 +136,7 @@ public class WarnEdit {
         this.sendTime = sendTime;
         this.disasterCode = disasterCode;
         this.icon = icon;
+        this.areaCode = areaCode;
         this.areaName = areaName;
         this.organizationName = organizationName;
         this.employeeId = employeeId;
@@ -325,6 +328,14 @@ public class WarnEdit {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
 
     public String getAreaName() {

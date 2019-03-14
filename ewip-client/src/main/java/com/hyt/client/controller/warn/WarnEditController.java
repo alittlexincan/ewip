@@ -35,6 +35,10 @@ public class WarnEditController extends BaseController {
     @Value("${web.upload-path}")
     private String uploadPath;
 
+
+    @Value("${yitihua-uploadPath}")
+    private String yiTiHuaPath;
+
     /**
      * 灾种图标上传文件夹
      */
@@ -63,6 +67,9 @@ public class WarnEditController extends BaseController {
         map.put("organizationName",employee.get("organizationName"));
         // 文件开始上传
         JSONArray file = UploadFileUtil.upload(files, uploadPath, warnFile);
+
+        JSONArray yiTiHua = UploadFileUtil.upload(files, yiTiHuaPath, "");
+
         map.put("files", file != null ? file.toJSONString() : "");
         JSONObject json = new JSONObject(map);
         System.out.println(map);

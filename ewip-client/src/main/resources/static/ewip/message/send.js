@@ -94,15 +94,23 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             var html = "";
             // 循环地区
             result.areas.forEach(function (area) {
-                html += "<div class='layui-row layui-col-space5 warn-item_" + area.areaId+ "'>";
-                html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                html += "		<div>" + area.areaName + "</div>";
-                html += "	</div>";
-                html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                html += "       <textarea type='text' name='content_" + area.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
-                html += "	</div>";
-                html += "</div>";
+                // html += "<div class='layui-row layui-col-space5 warn-item_" + area.areaId+ "'>";
+                // html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                // html += "		<div>" + area.areaName + "</div>";
+                // html += "	</div>";
+                // html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                // html += "       <textarea type='text' name='content_" + area.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
+                // html += "	</div>";
+                // html += "</div>";
             });
+            html += "<div class='layui-row layui-col-space5 warn-item_" + employee.areaId+ "'>";
+            html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+            html += "		<div>" + employee.areaName + "</div>";
+            html += "	</div>";
+            html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+            html += "       <textarea type='text' name='content_" + employee.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
+            html += "	</div>";
+            html += "</div>";
             $(".warn-card-content-list").append(html);
         }
 
@@ -169,17 +177,26 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
                 }else{
                     var html = "";
                     // 循环地区 预警内容追加
-                    result.areas.forEach(function (area) {
-                        html += "<div class='layui-row layui-col-space5 warn-item_" + area.areaId+ "'>";
-                        html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
-                        html += "		<div>" + area.areaName + "</div>";
-                        html += "	</div>";
-                        html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
-                        html += "       <textarea type='text' name='content_" + area.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
-                        html += "	</div>";
-                        html += "</div>";
-                        $(".warn-card-content-list").append(html);
-                    });
+                    // result.areas.forEach(function (area) {
+                    //     html += "<div class='layui-row layui-col-space5 warn-item_" + area.areaId+ "'>";
+                    //     html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    //     html += "		<div>" + area.areaName + "</div>";
+                    //     html += "	</div>";
+                    //     html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    //     html += "       <textarea type='text' name='content_" + area.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
+                    //     html += "	</div>";
+                    //     html += "</div>";
+                    //     $(".warn-card-content-list").append(html);
+                    // });
+                    // html += "<div class='layui-row layui-col-space5 warn-item_" + employee.areaId+ "'>";
+                    // html += "	<div class='layui-col-xs1 layui-col-md1 warn-content-title'>";
+                    // html += "		<div>" + employee.areaName + "</div>";
+                    // html += "	</div>";
+                    // html += "	<div class='layui-col-xs11 layui-col-md11 warn-content-body'>";
+                    // html += "       <textarea type='text' name='content_" + employee.areaId + "' lay-verify='content' placeholder='请输入预警内容' autocomplete='off' class='layui-textarea'></textarea>";
+                    // html += "	</div>";
+                    // html += "</div>";
+                    // $(".warn-card-content-list").append(html);
 
                     // 循环渠道
                     result.channels.forEach(function (channel) {
@@ -395,10 +412,12 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
 
                     let html ="";
                     json.data.forEach(function (currentValue, index, arr) {
-                        html += "<div class='"+(currentValue.status == 1 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
-                        html += "   <img class='"+(currentValue.status == 0 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
-                        html += "<span>"+currentValue.name+"</span>";
-                        html += "</div>";
+                        if(currentValue.status == 0){
+                            html += "<div class='"+(currentValue.status == 0 ? "imgbox" : "imgbox-gray")+"' data-id='"+currentValue.id+"' data-title='"+currentValue.name+"' data-channel='"+currentValue.name+"' data-code='"+currentValue.code+"' >";
+                            html += "   <img class='"+(currentValue.status == 1 ? "gray" : "")+"' src='/client/"+currentValue.icon+"' title='"+(currentValue.status == 0 ? currentValue.name+"渠道未部署" : currentValue.name)+"' />";
+                            html += "<span>"+currentValue.name+"</span>";
+                            html += "</div>";
+                        }
                     });
                     $(".channel-list").empty().append(html);
 
@@ -668,6 +687,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
     form.on("submit(submit)", function(data){
         // 数据提交到后台，通用方法
         var param = data.field;
+        console.log(param)
         param.template = 2;  // 微信模板类型：1：气象灾害预警提醒；2：服务提醒通知；3：突发事件预警提醒；
 
         // 渠道处理
@@ -718,11 +738,11 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree', 'ajaxFil
             var name = $(this).attr("name"),
                 typeName = "";
             // 0：短期预报；1：中期预报；2：长期预报；3：气象专题专报；4：重大气象专题专报
-            if(param.type==0) typeName = "【短期预报】";
-            if(param.type==1) typeName = "【中期预报】";
-            if(param.type==2) typeName = "【长期预报】";
-            if(param.type==3) typeName = "【气象专题专报】";
-            if(param.type==4) typeName = "【重大气象专题专报】";
+            if(param.type==0) typeName = "【重大节日天气专报】";
+            if(param.type==1) typeName = "【重大气象信息快报】";
+            if(param.type==2) typeName = "【气象预警专题专报】";
+            if(param.type==3) typeName = "【上下班天气预报】";
+            if(param.type==4) typeName = "【地质灾害风险预报】";
             param[name] = typeName + ":" + $(this).val();
         });
 

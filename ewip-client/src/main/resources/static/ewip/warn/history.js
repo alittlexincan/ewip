@@ -155,7 +155,7 @@ layui.use(['table','form','element','zTree'], function(){
             result.channels.forEach(channel => {
                 let html = "";
                 html += "<div class='layui-row layui-col-space5'>";
-                html += "	<div class='layui-col-xs9 layui-col-md9'>";
+                html += "	<div class='layui-col-xs12 layui-col-md12'>";
                 html += "		<div class='layui-card warn-card-content'>";
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon warn-card-hader-icon'>&#xe618;</i>预警编辑</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list content_" + channel.channelId + "'>";
@@ -182,7 +182,7 @@ layui.use(['table','form','element','zTree'], function(){
                 html += "			</div>";
                 html += "		</div>";
                 html += "	</div>";
-                html += "	<div class='layui-col-xs3 layui-col-md3'>";
+                html += "	<div class='layui-col-xs3 layui-col-md3' style='display: none'>";
                 html += "		<div class='layui-card warn-card-content'>";
                 html += "			<div class='layui-card-header'><span>&nbsp;&nbsp;<i class='layui-icon layui-icon-tree warn-card-hader-icon'></i>" + channel.channelName+ "群组</span></div>";
                 html += "			<div  class='layui-card-body warn-card-content-list'>";

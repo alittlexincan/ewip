@@ -136,7 +136,7 @@ public class MessageServiceImpl extends AbstractService<Message> implements IMes
         Map<String, Object> param = json;
         System.out.println(json);
         // 调用分发平台
-        this.publishService.publish(param);
+//        this.publishService.publish(param);
 
 
 //        newPublishService.publish(json);

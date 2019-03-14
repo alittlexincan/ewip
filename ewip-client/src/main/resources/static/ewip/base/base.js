@@ -1114,7 +1114,6 @@ layui.use(["table","form","laytpl","layer"], function(){
                     let mes = '<div>景区名称:'+res.name+'</div><br />';
                     mes += '<div>区县名称:'+res.areaName+'</div><br />';
                     mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
-                    mes += '<div>园区类型:'+res.type+'</div><br />';
                     mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
                     mes += '<div>园区描述:'+res.description+'</div><br />';
                     mes += '<div>可容纳人数:'+res.capacity+'</div><br />';
