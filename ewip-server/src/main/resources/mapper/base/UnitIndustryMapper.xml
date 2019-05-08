@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.base.IUnitIndustryMapper" >
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.UnitIndustry" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="principal" property="principal" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+
+    <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
+    <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+  </resultMap>
+
+  <!-- 查询农业园区信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    SELECT
+    u.*,a.area_name areaName,e.name createUserName,em.name updateUserName
+    FROM base_unit_industry u
+    left join employee e on u.createUser=e.id
+    left join employee em on u.updateUser=em.id
+    left join area a on u.district=a.id
+    where 1=1 and a.code like '${areaCode}%'
+    <if test="id != null and id != ''">AND u.id = #{id}</if>
+    <if test="name != null and name != ''">AND u.name = #{name} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY u.create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+</mapper>

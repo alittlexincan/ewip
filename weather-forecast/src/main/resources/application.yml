@@ -1,0 +1,22 @@
+server:
+  port: 8989
+
+spring:
+  application:
+    name: weather-forecast
+  datasource:
+    url: jdbc:mysql://localhost:3306/ewip-yitihua?serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+eureka:
+  instance:
+    ip-address: true
+  client:
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka/
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"
