@@ -18,6 +18,7 @@
       <module fileurl="file://$PROJECT_DIR$/system-info/system-info.iml" filepath="$PROJECT_DIR$/system-info/system-info.iml" />
       <module fileurl="file://$PROJECT_DIR$/uni-platform.iml" filepath="$PROJECT_DIR$/uni-platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/warning-info/warning-info.iml" filepath="$PROJECT_DIR$/warning-info/warning-info.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weather-forecast/weather-forecast.iml" filepath="$PROJECT_DIR$/weather-forecast/weather-forecast.iml" />
       <module fileurl="file://$PROJECT_DIR$/zuul-gateway/zuul-gateway.iml" filepath="$PROJECT_DIR$/zuul-gateway/zuul-gateway.iml" />
     </modules>
   </component>

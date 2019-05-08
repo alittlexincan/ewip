@@ -3,6 +3,8 @@ package com.hyt.monitor.service.impl.monitor;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.annotation.Resource;
+
+import com.hyt.monitor.entity.monitor.Area;
 import com.hyt.monitor.entity.monitor.Channel;
 import com.hyt.monitor.entity.monitor.Tree;
 import com.hyt.monitor.mapper.monitor.EventMapper;
@@ -467,6 +469,9 @@ public class EventServiceImpl implements IEventService {
 	 * @return
 	 */
 	public JSONArray getWarnData(Map<String, Object> map) {
+		List<Area> vicinityList=eventMapper.getVicinityByAreaCode(map);
+		String vicinity=vicinityList.get(0).getVicinity();
+		map.put("vicinity",vicinity);
 		List<Map<String,Object>> list=eventMapper.getWarnData(map);
 		JSONArray array=new JSONArray();
 		if(list.size()>0){

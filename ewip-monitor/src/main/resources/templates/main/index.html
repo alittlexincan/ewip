@@ -11,12 +11,15 @@
     <link rel="stylesheet" th:href="@{/map/plugin/zTree_v3/css/awesomeStyle/awesome.css}" media="all">
     <link rel="stylesheet" th:href="@{/map/css/map.css}" media="all">
 </head>
-<body class="moduleContent" >
+<body class="moduleContent" onload="initMap()">
     <input id="controllerUrl" type="hidden" th:value="${controllerUrl}" >
     <!--<input id="size" type="text" th:value="${size}" >-->
     <input id="longitude" type="hidden" th:value="${longitude}" >
     <input id="latitude" type="hidden" th:value="${latitude}" >
     <input id="empAreaId" type="hidden" th:value="${areaId}" >
+    <input id="areaName" type="hidden" th:value="${areaName}" >
+    <input id="areaCode" type="hidden" th:value="${areaCode}" >
+    <input id="level" type="hidden" th:value="${level}" >
     <!-- 导航栏开始 -->
     <nav class="navbar navbar-expand navbar-dark fixed-top p-0 bg-navy-blue">
         <div class="col col-sm-4 col-md-4 " style="position: relative;" >
@@ -24,7 +27,7 @@
                 <!--<li title="渠道监控" class="nav-item mr-1 nav-menu-4"><i id="mapChannelLink"class="fa fa-dashboard" aria-hidden="true"></i></li>-->
                 <li title="网络监控" class="nav-item mr-1 nav-menu-4"><i id="mapNetworkMonitoring" class="fa fa-ravelry" aria-hidden="true"></i></li>
                 <!--<li title="辅助决策" class="nav-item mr-1 nav-menu-4"><i id="mapWarnHome" class="fa fa-map-o" aria-hidden="true"></i>-->
-                <li title="统计" class="nav-item mr-1 nav-menu-4"><i id="warnPublishSts" class="fa fa-bell" aria-hidden="true"></i></li>
+                <li title="服务产品统计" class="nav-item mr-1 nav-menu-4"><i id="warnPublishSts" class="fa fa-bell" aria-hidden="true"></i></li>
                 <li title="预警信息" class="nav-item mr-1 nav-menu-4"><i id="warnMessage" class="fa fa-laptop" aria-hidden="true"></i></li>
             </ul>
         </div>
@@ -71,12 +74,96 @@
     <script>
         var longitude=document.getElementById("longitude").value;
         var latitude=document.getElementById("latitude").value;
-        // var size=document.getElementById("size").value;
-        let initMap = () => {
+        var areaName=document.getElementById("areaName").value;
+
+        function searchResult(result)
+        {
+            if(result.getStatus() == 100){
+                var data = result.getData();
+                showMsg(data);
+            }else{
+                result.getMsg();
+            }
+        }
+        function showMsg(data){
+            for(var i = 0; i < data.length; i++){
+                //解释上级行政区划
+                if(data[i].parents){
+                    var upLevel = "";
+                    if(data[i].parents.country){
+                        upLevel += data[i].parents.country.name;
+                    }
+                    if(data[i].parents.province){
+                        upLevel += data[i].parents.province.name;
+                    }
+                }
+                if(data[i].points){
+                    //绘制行政区划
+                    polygon(data[i].points);
+                }
+                //解释下级行政区划
+                if(data[i].child){
+                    showMsg(data[i].child);
+                    console.log(data[i].child.points);
+                    if(data[i].child.points){
+                        //绘制行政区划
+                        polygon(data[i].child.points);
+                    }
+                }
+            }
+        }
+
+        function polygon(points){
+            var pointsArr = [];
+            for (var i = 0; i < points.length; i++) {
+                var regionLngLats = [];
+                var regionArr = points[i].region.split(",");
+                for (var m = 0; m < regionArr.length; m++) {
+                    var lnglatArr = regionArr[m].split(" ");
+                    var lnglat = new T.LngLat(lnglatArr[0], lnglatArr[1]);
+                    regionLngLats.push(lnglat);
+                    pointsArr.push(lnglat);
+                }
+                //创建面对象
+                var polygon = new T.Polygon(regionLngLats,{color: "red", weight: 3, opacity: 1, fillColor: "#FFFFFF", fillOpacity: 0.1});
+                //向地图上添加行政区划面
+                Globel.map.addOverLay(polygon);
+            }
+            //显示最佳比例尺
+            Globel.map.setViewport(pointsArr);
+        }
+
+        function initMap(){
+            var administrative;
             Globel.map = new T.Map('map');
             Globel.map.centerAndZoom(new T.LngLat(longitude,latitude), 12);
+
+            //创建对象
+            administrative = new T.AdministrativeDivision();
+            var config = {
+                needSubInfo: false,
+                needAll: false,
+                needPolygon: true,
+                needPre: true,
+                searchType: 1,
+                searchWord: areaName
+            };
+            administrative.search(config, searchResult);
+            var ctrl = new T.Control.MapType([
+                {
+                    title: '卫星', //地图控件上所要显示的图层名称
+                    icon:' http://api.tianditu.gov.cn/v4.0/image/map/maptype/satellitepoi.png',
+                    layer: TMAP_HYBRID_MAP
+                }
+                ,{
+                    title: '地图', //地图控件上所要显示的图层名称
+                    icon:'http://api.tianditu.gov.cn/v4.0/image/map/maptype/vector.png', //地图控件上所要显示的图层图标（默认图标大小80x80）
+                    layer: TMAP_NORMAL_MAP //地图类型对象，即MapType。
+                }
+            ]);
+            Globel.map.addControl(ctrl);
+            Globel.map.setMapType(TMAP_HYBRID_MAP);
         };
-        initMap();
     </script>
 </body>
 

@@ -1815,6 +1815,8 @@ $(function(){
     	var p = {
     		orgId: "",
             empAreaId: Globel.empAreaId,
+            areaCode: Globel.areaCode,
+            level: Globel.level,
 			startTime:"2019-01-07 08:28:21",
 			endTime:"2019-01-11 11:28:21",
             // startTime:dateTime(7),

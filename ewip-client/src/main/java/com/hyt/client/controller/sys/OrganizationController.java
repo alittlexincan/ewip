@@ -94,6 +94,15 @@ public class OrganizationController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode");
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.organizationService.selectAll(map);
     }
 
@@ -108,6 +117,15 @@ public class OrganizationController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode");
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.organizationService.selectOrg(map);
     }
 
@@ -120,6 +138,15 @@ public class OrganizationController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode");
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject jsonAll=this.organizationService.downModel(map);
         Workbook book = new XSSFWorkbook();
         try {
@@ -134,21 +161,14 @@ public class OrganizationController {
         }
         // 创建需要用户填写的sheet
         XSSFSheet sheetPro = (XSSFSheet) book.createSheet("机构信息");
-        Row row0 = sheetPro.createRow(0);
-        row0.createCell(0).setCellValue("省<必填>");
-        sheetPro.setColumnWidth(0, 4000);
-        row0.createCell(1).setCellValue("市<必填>");
-        sheetPro.setColumnWidth(1, 4000);
-        row0.createCell(2).setCellValue("区县<必填>");
-        sheetPro.setColumnWidth(2, 4000);
-        row0.createCell(3).setCellValue("乡镇");
-        sheetPro.setColumnWidth(3, 4000);
-        row0.createCell(4).setCellValue("机构类型<必填>");
-        sheetPro.setColumnWidth(4, 4000);
-        row0.createCell(5).setCellValue("机构名称<必填>");
-        sheetPro.setColumnWidth(5, 4000);
-        row0.createCell(6).setCellValue("机构编码");
-        sheetPro.setColumnWidth(6, 4000);
+        XSSFRow row0 = sheetPro.createRow(0);
+        //第四步创建单元格
+        String[] keyWord = {"省<必填>","市<必填>","区县<必填>", "乡镇", "机构类型<必填>","机构名称<必填>", "机构编码"};
+        for (int i = 0; i < keyWord.length; i++) {
+            XSSFCell cell = row0.createCell(i);//第一个单元格
+            cell.setCellValue(keyWord[i]);
+            sheetPro.setColumnWidth(i, 256 * 21);
+        }
         String data=jsonAll.get("data").toString();
         JSONArray result = JSONArray.parseArray(data);
         //创建一个专门用来存放地区信息的隐藏sheet页
@@ -297,6 +317,15 @@ public class OrganizationController {
             Subject subject = SecurityUtils.getSubject();
             JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
             map.put("empAreaId", employee.getString("areaId"));
+            String areaCode=employee.getString("areaCode");
+            if(employee.getString("level").equals("1")){
+                areaCode=areaCode.substring(0,2);
+            }else if(employee.getString("level").equals("2")){
+                areaCode=areaCode.substring(0,4);
+            }else if(employee.getString("level").equals("3")){
+                areaCode=areaCode.substring(0,6);
+            }
+            map.put("areaCode", areaCode);
             return this.organizationService.importData(map,list);
         }else{
             json.put("code","500");

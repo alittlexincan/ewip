@@ -3,28 +3,27 @@
 <mapper namespace="com.hyt.server.mapper.base.IUnitAgriculturParkMapper" >
   <resultMap id="BaseResultMap" type="com.hyt.server.entity.base.UnitAgriculturPark" >
     <result column="id" property="id" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="district" property="district" jdbcType="VARCHAR" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="area" property="area" jdbcType="DOUBLE" />
-    <result column="worker" property="worker" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="lon" property="lon" jdbcType="DOUBLE" />
     <result column="lat" property="lat" jdbcType="DOUBLE" />
+
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="crops" property="crops" jdbcType="INTEGER" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
     <result column="principal" property="principal" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
 
     <result column="createUser" jdbcType="VARCHAR" property="createUser"/>
     <result column="updateUser" jdbcType="VARCHAR" property="updateUser"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, district, unit, type, area, worker, address, lon, lat, principal, phone, 
-    description
-  </sql>
+
   <!-- 查询农业园区信息 -->
   <select id="findAll" resultMap="BaseResultMap">
 
@@ -34,7 +33,7 @@
     left join employee e on u.createUser=e.id
     left join employee em on u.updateUser=em.id
     left join area a on u.district=a.id
-    where 1=1  and FIND_IN_SET(u.district, getAreaCList(#{empAreaId}))
+    where 1=1 and a.code like '${areaCode}%'
     <if test="id != null and id != ''">AND u.id = #{id}</if>
     <if test="name != null and name != ''">AND u.name = #{name} </if>
     <if test="type != null and type != ''">AND u.type = #{type} </if>

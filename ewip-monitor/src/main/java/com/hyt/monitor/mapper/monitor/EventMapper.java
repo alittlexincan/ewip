@@ -1,5 +1,6 @@
 package com.hyt.monitor.mapper.monitor;
 
+import com.hyt.monitor.entity.monitor.Area;
 import com.hyt.monitor.entity.monitor.Channel;
 import java.util.List;
 import java.util.Map;
@@ -118,4 +119,5 @@ public interface EventMapper {
 	 */
     List<Map<String,Object>> channelsByIdArea(Map<String,Object> map);
 
+	List<Area> getVicinityByAreaCode(Map<String,Object> map);
 }

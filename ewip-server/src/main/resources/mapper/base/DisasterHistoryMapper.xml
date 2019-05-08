@@ -143,7 +143,7 @@
     left join employee e on d.createUser=e.id
     left join employee em on d.updateUser=em.id
     left join area a on d.report_area=a.id
-    where 1=1  and FIND_IN_SET(d.report_area, getAreaCList(#{empAreaId}))
+    where 1=1  and a.code like '${areaCode}%'
     <if test="id != null and id != ''">AND d.id = #{id}</if>
     <if test="disasterType != null and disasterType != ''">AND d.disasterType = #{disasterType}</if>
     <if test="disasterName != null and disasterName != ''">AND d.disasterName = #{disasterName}</if>

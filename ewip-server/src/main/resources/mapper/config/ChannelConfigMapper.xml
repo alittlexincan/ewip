@@ -37,7 +37,7 @@
 
     <!--根据渠道类型删除配置信息-->
     <delete id="deleteByType">
-        DELETE FROM channel_config WHERE content->'$.type' = #{type} and channel_code = #{channelCode}
+        DELETE FROM channel_config WHERE  channel_code = #{channelCode} and area_id=#{areaId} and organization_id=#{organizationId}
     </delete>
 
     <!-- 查询FAX配置信息 -->

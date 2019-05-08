@@ -28,8 +28,9 @@
             a.area_name ,
             (select count(*) from organization org where org.p_id = o.id) child,
             o.create_time
-        FROM organization o left join area a on a.id = o.area_id
-        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        FROM organization o
+        left join area a on a.id = o.area_id
+        where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">and id = #{id}</if>
         <if test="organizationName != null and organizationName != ''">AND o.organization_name LIKE '${organizationName}%'</if>
         <if test="code != null and code != ''">AND o.code = #{code}</if>
@@ -78,7 +79,7 @@
     <select id="selectOrg" resultMap="BaseResultMap">
         select o.* FROM organization o
         left join area a on a.id = o.area_id
-        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">and id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND o.area_id = #{areaId}</if>
         <if test="orgName != null and orgName != ''">AND o.organization_name = #{orgName}</if>

@@ -38,7 +38,7 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属渠道</label>
                 <div class="layui-input-block">
                     <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
@@ -95,7 +95,7 @@
                     <!--<div id="updateOrganizationId" name="organizationId" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属机构"></div>-->
                 <!--</div>-->
             <!--</div>-->
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属渠道</label>
                 <div class="layui-input-block">
                     <select name="channelId" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
@@ -145,7 +145,7 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-form-item" hidden>
                 <label class="layui-form-label">所属渠道</label>
                 <div class="layui-input-block">
                     <select name="channelId" disabled="disabled" lay-verify="channelId" placeholder="请选择所属渠道" lay-search="">
@@ -177,7 +177,7 @@
         <div class="layui-row layui-col-space8">
             <div class="layui-col-sm3 ewip-panel-left">
                 <div class="layui-card">
-                    <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>群组管理</span></div>
+                    <div class="layui-card-header"><span>&nbsp;&nbsp;<i class="layui-icon layui-icon-tree warn-card-hader-icon"></i>机构展示</span></div>
                     <div class="layui-card-body">
                         <div class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
                             <div class="layui-form-item">
@@ -232,14 +232,14 @@
                         <div class="layui-btn-group tableBar">
                             <button class="layui-btn" data-type="addBarBtn">添加</button>
                             <button class="layui-btn" data-type="deleteBarBtn">删除</button>
-                            <button class="layui-btn" data-type="downModel">下载导入模板</button>
-                            <div class="layui-inline" >
-                                <div class="layui-input-inline">
-                                    <input type="file" hidden="" id="addFile" name="addFile"  lay-verify="file">
-                                    <input type="hidden" id="excelPath" readonly="readonly" name="name" placeholder="Excel路径..."  class="layui-input">
-                                </div>
-                            </div>
-                            <button class="layui-btn" data-type="importData">导入群组信息</button>
+                            <!--<button class="layui-btn" data-type="downModel">下载导入模板</button>-->
+                            <!--<div class="layui-inline" >-->
+                                <!--<div class="layui-input-inline">-->
+                                    <!--<input type="file" hidden="" id="addFile" name="addFile"  lay-verify="file">-->
+                                    <!--<input type="hidden" id="excelPath" readonly="readonly" name="name" placeholder="Excel路径..."  class="layui-input">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<button class="layui-btn" data-type="importData">导入群组信息</button>-->
                         </div>
                         <!-- 列表信息 -->
                         <table class="layui-table ewip-table" lay-filter="table" id="table"></table>

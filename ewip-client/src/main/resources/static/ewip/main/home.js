@@ -241,7 +241,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     let openInfo = (content,e) =>{
                         let point = e.lnglat;	            // 创建标注
                         let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
-                        bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+                        tdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
                     };
 
                     // 图标点击事件
@@ -260,7 +260,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                         let icon = createIcon("/client/images/map/station_"+station.Type+".png");			// 创建图标对象
                         let marker = new T.Marker(new T.LngLat(station.Lon,station.Lat), {icon: icon});  	// 创建标注
                         // 将标注添加到地图中
-                        bdMap.addOverLay(marker);
+                        tdMap.addOverLay(marker);
                         // 追加图标点击事件
                         addClickHandler(content(station),marker);
                     });
@@ -305,7 +305,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             // let openInfo = (content,e) =>{
             //     let point = e.lnglat;	            // 创建标注
             //     let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
-            //     bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+            //     tdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
             // };
             //
             // // 图标点击事件
@@ -329,7 +329,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             //         let icon = createIcon("/client/images/map/station_"+station.Type+".png");			// 创建图标对象
             //         let marker = new T.Marker(new T.LngLat(station.Lon,station.Lat), {icon: icon});  	// 创建标注
             //         // 将标注添加到地图中
-            //         bdMap.addOverLay(marker);
+            //         tdMap.addOverLay(marker);
             //         // 追加图标点击事件
             //         addClickHandler(content(station),marker);
             //     });
@@ -371,7 +371,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
             let openInfo = (content,e) =>{
                 let point = e.lnglat;	            // 创建标注
                 let markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); 	// 创建信息窗口对象
-                bdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
+                tdMap.openInfoWindow(markerInfoWin,point); //开启信息窗口
             };
 
             // 图标点击事件
@@ -394,7 +394,7 @@ layui.use(["index","table","form","laytpl","layer"], function(){
                     let latitude = (res.latitude * 1 + random * 1).toFixed(5);    //维度添加随机数
                     let marker = new T.Marker(new T.LngLat(longitude,latitude), {icon: icon});  	// 创建标注
                     // 将标注添加到地图中
-                    bdMap.addOverLay(marker);
+                    tdMap.addOverLay(marker);
                     // 追加图标点击事件
                     addClickHandler(content(res),marker);
                 });

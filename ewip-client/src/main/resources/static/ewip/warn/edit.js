@@ -484,6 +484,7 @@ layui.use(['table','form','laydate','element','laytpl','layer','zTree','selectTr
          * @param obj
          */
         ,"channelOneClick": function (obj) {
+            debugger;
             let channelId = $(obj).data("id");
             if($(obj).hasClass("active")){
                 // 获取选中渠道

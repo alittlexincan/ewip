@@ -58,6 +58,7 @@ public class PageController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("sysName", employee.getString("areaName"));
+        map.put("areaId", employee.getString("areaId"));
         return new ModelAndView("main/index",map);
     }
 
@@ -72,6 +73,7 @@ public class PageController {
         map.put("tianDiMapUrl", tianDiMapUrl);
         map.put("longitude", employee.getString("longitude"));
         map.put("latitude", employee.getString("latitude"));
+        map.put("areaName", employee.getString("areaName"));
         return new ModelAndView("main/home",map);
     }
 
@@ -83,6 +85,9 @@ public class PageController {
      */
     @RequestMapping("/page/{model}/{name}")
     public ModelAndView page(@PathVariable("model") String model, @PathVariable("name") String name, @RequestParam Map<String, Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        map.put("areaName", employee.getString("areaName"));
         return new ModelAndView(model + "/" + name, map);
     }
 
@@ -142,6 +147,18 @@ public class PageController {
         map.put("msg", msg);
         // 此方法不处理登录成功,由shiro进行处理
         return "main/login";
+    }
+
+    @RequestMapping(value = "/changeArea")
+    @ResponseBody
+    public JSONObject changeArea(@RequestParam Map<String, Object> map){
+        Subject subject = SecurityUtils.getSubject();
+        JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
+        employee.put("areaId", map.get("areaId"));
+        employee.put("areaCode",map.get("areaCode"));
+        employee.put("areaName", map.get("areaName"));
+        employee.put("level", map.get("level"));
+        return employee;
     }
 
     @RequestMapping(value="/config")

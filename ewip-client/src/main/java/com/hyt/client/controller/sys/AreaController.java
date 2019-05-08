@@ -82,6 +82,15 @@ public class AreaController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.areaService.selectAll(map);
     }
 

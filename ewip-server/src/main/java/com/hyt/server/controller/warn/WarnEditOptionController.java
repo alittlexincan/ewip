@@ -80,11 +80,19 @@ public class WarnEditOptionController {
                 System.out.println(param);
                 Map newMap = new HashMap();
                 String filesArray=result.get("files").toString();
-                JSONArray myJsonArray = JSONArray.parseArray(filesArray);
                 String files="";
-                for(int i=0;i<myJsonArray.size();i++){
-                    JSONObject json=myJsonArray.getJSONObject(i);
-                    files +=","+json.get("name").toString();
+                if(!filesArray.equals("")){
+                    JSONArray myJsonArray = JSONArray.parseArray(filesArray);
+                    if(myJsonArray.size()>0){
+                        for(int i=0;i<myJsonArray.size();i++){
+                            JSONObject json=myJsonArray.getJSONObject(i);
+                            files +=","+json.get("name").toString();
+                        }
+                    }else{
+                        files=",";
+                    }
+                }else{
+                    files=",";
                 }
                 newMap.put("tacticsName", "刘松2019测试");
                 newMap.put("extEmailAddress", "");
@@ -95,8 +103,8 @@ public class WarnEditOptionController {
                 newMap.put("title", param.get("title"));
                 newMap.put("text", param.get("content"));
                 newMap.put("fileName", files.substring(1));
-                newMap.put("areaCode", param.get("areaCode"));
-                newMap.put("userName", param.get("employeeName"));
+                newMap.put("areaCode", "230000");
+                newMap.put("userName", "test");
 
                 HttpUtils httpUtils = new HttpUtils();
                 String rstData = httpUtils.sendPost("http://172.19.112.36:8080/PublishService/services/PostService/sendByTactics",newMap);

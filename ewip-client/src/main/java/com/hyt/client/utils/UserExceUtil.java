@@ -79,44 +79,67 @@ public class UserExceUtil {
                 continue;
             }
             //如果当前行没有数据，跳出循环
-            if(!getValue(row.getCell(1)).toString().equals("")
+            if(!getValue(row.getCell(0)).toString().equals("")
+                &&!getValue(row.getCell(1)).toString().equals("")
                 &&!getValue(row.getCell(2)).toString().equals("")
+                &&!getValue(row.getCell(3)).toString().equals("")
                 &&!getValue(row.getCell(4)).toString().equals("")
                 &&!getValue(row.getCell(5)).toString().equals("")
                 &&!getValue(row.getCell(6)).toString().equals("")
-                &&!getValue(row.getCell(7)).toString().equals("")
-                &&!getValue(row.getCell(8)).toString().equals("")
-                &&!getValue(row.getCell(9)).toString().equals("")
-                &&!getValue(row.getCell(16)).toString().equals("")
-                &&!getValue(row.getCell(17)).toString().equals("")){
+                &&!getValue(row.getCell(13)).toString().equals("")
+                &&!getValue(row.getCell(14)).toString().equals("")){
 
                 Map<String,Object> map=new HashMap<>();
                 map.put("province",getValue(row.getCell(0)));
                 map.put("city",getValue(row.getCell(1)));
                 map.put("county",getValue(row.getCell(2)));
-                map.put("country",getValue(row.getCell(3)));
 
-                map.put("orgName",getValue(row.getCell(4)));
-                map.put("groupName",getValue(row.getCell(5)));
-                map.put("channel",getValue(row.getCell(6)));
-                map.put("type",getValue(row.getCell(7)));
-                map.put("name",getValue(row.getCell(8)));
-                map.put("code",getValue(row.getCell(9)));
-
-                map.put("job",getValue(row.getCell(10)));
-                map.put("duties",getValue(row.getCell(11)));
-                map.put("leader",getValue(row.getCell(12)));
-                map.put("age",getValue(row.getCell(13)));
-                map.put("sex",getValue(row.getCell(14)));
-                map.put("address",getValue(row.getCell(15)));
-                map.put("longitude",getValue(row.getCell(16)));
-                map.put("latitude",getValue(row.getCell(17)));
-                map.put("altitude",getValue(row.getCell(18)));
+//                map.put("orgName",getValue(row.getCell(3)));
+//                map.put("groupName",getValue(row.getCell(4)));
+                map.put("channel",getValue(row.getCell(3)));
+                map.put("type",getValue(row.getCell(4)));
+                map.put("name",getValue(row.getCell(5)));
+                map.put("code",getValue(row.getCell(6)));
+                map.put("job",getValue(row.getCell(7)));
+                map.put("duties",getValue(row.getCell(8)));
+                map.put("leader",getValue(row.getCell(9)));
+                map.put("age",getValue(row.getCell(10)));
+                map.put("sex",getValue(row.getCell(11)));
+                map.put("address",getValue(row.getCell(12)));
+                map.put("longitude",getValue2(row.getCell(13)));
+                map.put("latitude",getValue2(row.getCell(14)));
                 list.add(map);
             }
         }
         System.out.println("有效行："+list.size());
         return list;
+    }
+
+    public static Object getValue2(Cell cell) {
+        Object obj = null;
+        if(cell!=null && cell.getCellType() !=CellType.BLANK){
+            switch (cell.getCellTypeEnum()) {
+                case BOOLEAN:
+                    obj = cell.getBooleanCellValue();
+                    break;
+                case ERROR:
+                    obj = cell.getErrorCellValue();
+                    break;
+                case NUMERIC:
+                    DecimalFormat df = new DecimalFormat("0.000000");
+                    obj = df.format(cell.getNumericCellValue());
+                    break;
+                case STRING:
+                    obj = cell.getStringCellValue();
+                    break;
+                default:
+                    break;
+            }
+            obj.toString().replaceAll(" +","");
+        }else{
+            obj="";
+        }
+        return obj;
     }
 
     public static Object getValue(Cell cell) {
@@ -145,6 +168,8 @@ public class UserExceUtil {
         }
         return obj;
     }
+
+
 
     /**
      * 验证EXCEL文件

@@ -20,7 +20,7 @@
         p.create_time
         FROM server_product p
         left join area a on p.area_id=a.id
-        where 1=1 and FIND_IN_SET(p.area_id, getAreaCList(#{empAreaId}))
+        where 1=1 and a.code like '${areaCode}%'
         <if test="type != null and type != ''">AND p.type = #{type}</if>
         <if test="title != null and title != ''">AND p.title LIKE '${title}%'</if>
         <choose>

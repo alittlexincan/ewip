@@ -32,7 +32,7 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'areaName', title: '区县', sort: true}
-            ,{field: 'type', title: '救援物资类型', sort: true}
+            ,{field: 'placeName', title: '应急储备场所名称', sort: true}
             ,{field: 'name', title: '物资名称', sort: true}
             ,{field: 'amount', title: '数量', sort: true}
             ,{field: 'materialUse', title: '用途',sort: true}
@@ -296,7 +296,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             },
             where: { //设定异步数据接口的额外参数，任意设
                 name: param == undefined ? '' : param.name
-                ,type: param == undefined ? '' : param.type
                 ,district: param == undefined ? '' : param.district
             }
         });

@@ -374,6 +374,7 @@ public class WarnEditServiceImpl extends AbstractService<WarnEdit> implements IW
      * @return
      */
     @Override
+    @Transactional
     public int stopWarn(Map<String, Object> map) {
         this.warnEditMapper.updateFlowIsOption(map);
         return this.warnEditMapper.stopWarn(map);

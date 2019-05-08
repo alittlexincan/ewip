@@ -26,6 +26,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject drawWarnLevelTotal(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.drawWarnLevelTotal(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,6 +52,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject drawPublishAreaTotal(@RequestParam Map<String, Object> map) {
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.drawPublishAreaTotal(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,6 +76,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject warnList(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.warnList(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,6 +102,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject alreadyPub(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.alreadyPub(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,6 +128,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject drawPublishChannelTotal(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.drawPublishChannelTotal(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,6 +153,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject hourWarn(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.hourWarn(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,6 +179,15 @@ public class PublishStatisticsController {
 	@ResponseBody
 	public JSONObject personStas(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.personStas(map);
 		} catch (Exception e) {
 			e.printStackTrace();

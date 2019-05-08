@@ -74,7 +74,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
+        <!-- 汉字转拼音 -->
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>

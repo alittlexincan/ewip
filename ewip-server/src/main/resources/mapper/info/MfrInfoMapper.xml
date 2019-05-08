@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.info.IMfrInfoMapper" >
+
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.info.MfrInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="mfrCode" property="mfrCode" jdbcType="VARCHAR" />
+    <result column="mfrName" property="mfrName" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="mfrHeight" property="mfrHeight" jdbcType="DOUBLE" />
+    <result column="mfrAddrName" property="mfrAddrName" jdbcType="VARCHAR" />
+    <result column="townCode" property="townCode" jdbcType="VARCHAR" />
+    <result column="rainfallFactor" property="rainfallFactor" jdbcType="VARCHAR" />
+    <result column="waterLineFactor" property="waterLineFactor" jdbcType="VARCHAR" />
+    <result column="soilFactor" property="soilFactor" jdbcType="VARCHAR" />
+    <result column="rainfallThreshold" property="rainfallThreshold" jdbcType="VARCHAR" />
+    <result column="waterLineThreshold" property="waterLineThreshold" jdbcType="VARCHAR" />
+    <result column="soilThreshold" property="soilThreshold" jdbcType="VARCHAR" />
+
+    <result column="floodGrade" property="floodGrade" jdbcType="DOUBLE" />
+    <result column="rainfallHour" property="rainfallHour" jdbcType="VARCHAR" />
+    <result column="rainfall" property="rainfall" jdbcType="DOUBLE" />
+    <result column="ensureWater" property="ensureWater" jdbcType="DOUBLE" />
+    <result column="alertWater" property="alertWater" jdbcType="DOUBLE" />
+    <result column="dikeHeight" property="dikeHeight" jdbcType="DOUBLE" />
+
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="mobilePhone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="stationID" property="stationID" jdbcType="VARCHAR" />
+    <result column="reportUnitCode" property="reportUnitCode" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <!-- 查询信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    select i.* from info_mfr i where i.reportUnitCode like '${reportUnitCode}%'
+    <if test="id != null and id != ''">AND i.id = #{id}</if>
+    <if test="mfrCode != null and mfrCode != ''">AND i.mfrCode like '%${mfrCode}%' </if>
+    <if test="mfrName != null and mfrName != ''">AND i.mfrName like '%${mfrName}%' </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY i.createTime DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <!-- 导入Excel到数据库 -->
+  <insert id="importData" >
+    insert into info_mfr (id, mfrCode, mfrName, lon, lat,
+    mfrHeight,mfrAddrName,townCode,
+    rainfallFactor,waterLineFactor,soilFactor,
+    rainfallThreshold,waterLineThreshold,soilThreshold,
+    floodGrade,rainfallHour,rainfall,
+    ensureWater,alertWater,dikeHeight,
+    contact,mobilePhone,stationID,reportUnitCode,createTime)
+    values
+    <foreach collection="list" item="item" separator=",">
+      ( REPLACE(UUID(),'-',''), #{item.mfrCode}, #{item.mfrName}, #{item.lon}, #{item.lat},
+        #{item.mfrHeight},#{item.mfrAddrName},#{item.townCode},
+        #{item.rainfallFactor},#{item.waterLineFactor},#{item.soilFactor},
+        #{item.rainfallThreshold},#{item.waterLineThreshold},#{item.soilThreshold},
+        #{item.floodGrade},#{item.rainfallHour},#{item.rainfall},
+        #{item.ensureWater},#{item.alertWater},#{item.dikeHeight},
+        #{item.contact},#{item.mobilePhone},#{item.stationID},#{item.reportUnitCode},now()
+      )
+    </foreach>
+  </insert>
+
+</mapper>

@@ -52,17 +52,26 @@
                 <script id="addPop" type="text/html">
                     <div class="layui-form layui-form-pane">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
                                 <div id="addAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择区县"></div>
                             </div>
                         </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广场名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入广场名称" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" lay-verify="address"  autocomplete="off" placeholder="请输入地址" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">面积</label>
                             <div class="layui-input-block">
@@ -107,12 +116,6 @@
                                 <input type="text" name="phone" autocomplete="off" placeholder="请输入电话" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea"></textarea>
-                            </div>
-                        </div>
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
@@ -123,19 +126,26 @@
                 <!-- 修改弹出层 -->
                 <script id="updatePop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
                                 <div id="updateAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广场名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入广场名称" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" lay-verify="address" value="{{d.address}}"  autocomplete="off" placeholder="请输入地址" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">面积</label>
                             <div class="layui-input-block">
@@ -179,12 +189,6 @@
                                 <input type="text" name="phone" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea">{{d.description}}</textarea>
-                            </div>
-                        </div>
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
@@ -196,19 +200,27 @@
                 <!-- 详细弹出层 -->
                 <script id="detailsPop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
                                 <div id="detailsAreaId" name="district" style="pointer-events: none;" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择所属地区"></div>
                             </div>
                         </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广场名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入广场名称" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" disabled="disabled" lay-verify="address" value="{{d.address}}"  autocomplete="off" placeholder="请输入地址" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">面积</label>
                             <div class="layui-input-block">
@@ -250,12 +262,6 @@
                             <label class="layui-form-label">电话</label>
                             <div class="layui-input-block">
                                 <input type="text" name="phone" disabled="disabled" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <textarea name="description" disabled="disabled" lay-verify="description" placeholder="请输入描述" class="layui-textarea">{{d.description}}</textarea>
                             </div>
                         </div>
                     </div>

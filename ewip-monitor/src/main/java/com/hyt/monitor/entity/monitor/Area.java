@@ -33,6 +33,8 @@ public class Area {
 
     private Double altitude;
 
+    private String vicinity;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
@@ -143,5 +145,13 @@ public class Area {
 
     public void setChild(Integer child) {
         this.child = child;
+    }
+
+    public String getVicinity() {
+        return vicinity;
+    }
+
+    public void setVicinity(String vicinity) {
+        this.vicinity = vicinity;
     }
 }

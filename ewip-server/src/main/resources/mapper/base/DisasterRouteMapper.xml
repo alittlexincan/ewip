@@ -29,7 +29,7 @@
     left join employee e on d.createUser=e.id
     left join employee em on d.updateUser=em.id
     left join area a on d.area_id=a.id
-    where 1=1  and FIND_IN_SET(d.area_id, getAreaCList(#{empAreaId}))
+    where 1=1 and a.code like '${areaCode}%'
     <if test="id != null and id != ''">AND d.id = #{id}</if>
     <if test="type != null and type != ''">AND d.type = #{type}</if>
     <if test="color != null and color != ''">AND d.color = #{color} </if>

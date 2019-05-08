@@ -35,7 +35,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree','ajaxFileUploa
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'name', title: '群组名称', sort: true}
-            ,{field: 'channelName', title: '所属渠道'}
             ,{field: 'areaName', title: '所属地区'}
             ,{field: 'organizationName', title: '所属机构'}
             // ,{field: 'type', title: '类型' , templet: typeFormat}

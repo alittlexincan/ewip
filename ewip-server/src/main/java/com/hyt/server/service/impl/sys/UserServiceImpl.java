@@ -11,7 +11,6 @@ import com.hyt.server.mapper.sys.*;
 import com.hyt.server.service.sys.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 /**
@@ -114,10 +113,8 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
         JSONArray provinceArry=new JSONArray();
         JSONArray cityArrys=new JSONArray();
         JSONArray countyArrys=new JSONArray();
-        JSONArray countryArrys=new JSONArray();
-        JSONArray cityArry=new JSONArray();
-        JSONArray countyArry=new JSONArray();
-        JSONArray countryArry=new JSONArray();
+
+
         for(int i=0;i<area.size();i++){
             String id=area.get(i).getId();
             String name=area.get(i).getAreaName();
@@ -144,37 +141,13 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                 json.put("pid",pId);
                 json.put("level",level);
                 countyArrys.add(json);
-            }else if(level==4){
-                JSONObject json =new JSONObject();
-                json.put("id",id);
-                json.put("name",name);
-                json.put("pid",pId);
-                json.put("level",level);
-                countryArrys.add(json);
-            }
-        }
-
-        if(countyArrys.size()>0){
-            for(int i=0;i<countyArrys.size();i++){
-                JSONObject countyJson = countyArrys.getJSONObject(i);
-                for(int j=0;j<countryArrys.size();j++){
-                    JSONObject countryJson = countryArrys.getJSONObject(j);
-                    if(countyJson.get("id").equals(countryJson.get("pid"))){
-                        JSONObject json =new JSONObject();
-                        json.put("id",countryJson.get("id"));
-                        json.put("name",countryJson.get("name"));
-                        json.put("pid",countryJson.get("pid"));
-                        json.put("level",countryJson.get("level"));
-                        countryArry.add(json);
-                    }
-                    countyJson.put("children",countryArry);
-                }
             }
         }
 
         if(cityArrys.size()>0){
             for(int i=0;i<cityArrys.size();i++){
                 JSONObject cityJson = cityArrys.getJSONObject(i);
+                JSONArray countyArry=new JSONArray();
                 for(int j=0;j<countyArrys.size();j++){
                     JSONObject countyJson = countyArrys.getJSONObject(j);
                     if(cityJson.get("id").equals(countyJson.get("pid"))){
@@ -186,13 +159,16 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                         json.put("children",countyJson.get("children"));
                         countyArry.add(json);
                     }
-                    cityJson.put("children",countyArry);
                 }
+                cityJson.put("children",countyArry);
+                System.out.println(cityJson);
             }
         }
+
         if(provinceArry.size()>0) {
             for (int i = 0; i < provinceArry.size(); i++) {
                 JSONObject provinceJson = provinceArry.getJSONObject(i);
+                JSONArray cityArry=new JSONArray();
                 for (int j = 0; j < cityArrys.size(); j++) {
                     JSONObject cityJson = cityArrys.getJSONObject(j);
                     if (provinceJson.get("id").equals(cityJson.get("pid"))) {
@@ -204,14 +180,14 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                         json.put("children",cityJson.get("children"));
                         cityArry.add(json);
                     }
-                    provinceJson.put("children", cityArry);
                 }
+                provinceJson.put("children", cityArry);
+                System.out.println(provinceJson);
             }
         }
         jsonAll.put("data",provinceArry);
         jsonAll.put("cityArrys",cityArrys);
         jsonAll.put("countyArrys",countyArrys);
-        jsonAll.put("countryArrys",countryArrys);
         jsonAll.put("channelArry",channelArry);
         return jsonAll;
     }
@@ -233,13 +209,9 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                 String uuidUser = UUID.randomUUID().toString().replace("-", "");
                 String uuidJob = UUID.randomUUID().toString().replace("-", "");
                 User user = new User();
-                String country= m.get("country").toString();
                 String county= m.get("county").toString();
                 String city= m.get("city").toString();
                 String province= m.get("province").toString();
-
-                String orgName= m.get("orgName").toString();
-                String groupName= m.get("groupName").toString();
                 String channel= m.get("channel").toString();
                 String type= m.get("type").toString();
                 String name= m.get("name").toString();
@@ -252,7 +224,6 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                 String address= m.get("address").toString();
                 String longitude= m.get("longitude").toString();
                 String latitude= m.get("latitude").toString();
-                String altitude= m.get("altitude").toString();
                 if(sex=="女"){
                     sex="0";
                 }else{
@@ -261,33 +232,28 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                 if(age=="" ){
                     age="50";
                 }
-                if(altitude=="" ){
-                    altitude="0";
-                }
                 Integer typeId=2;
+                String groupName="";
                 //类型转换
                 if(type.equals("责任人")){
                     typeId=1;
-                    groupName=groupName+"责任人群组";
-                }else if(type.equals("基层防御人员")){
+                    groupName="责任人群组";
+                }else if(type.equals("信息员")){
                     typeId=2;
-                    groupName=groupName+"基层防御群组";
+                    groupName="信息员群组";
                 }
-
                 //判断地区
-                if(country!=null && !"".equals(country)){
-                    areName=country;
+                if(county!=null && !"".equals(county)){
+                    areName=county;
                 }else{
-                    if(county!=null && !"".equals(county)){
-                        areName=county;
+                    if(city!=null && !"".equals(city)){
+                        areName=city;
                     }else{
-                        if(city!=null && !"".equals(city)){
-                            areName=city;
-                        }else{
-                            areName=province;
-                        }
+                        areName=province;
                     }
                 }
+                String orgName="";
+                orgName=areName+"用户单位";
                 user.setId(uuidUser);
                 user.setAreaId(areName);
                 user.setChannelId(channel);
@@ -298,8 +264,7 @@ public class UserServiceImpl extends AbstractService<User> implements IUserServi
                 user.setCode(code);
                 user.setLongitude((Double.parseDouble(longitude)));
                 user.setLatitude((Double.parseDouble(latitude)));
-                user.setAltitude((Double.parseDouble(altitude)));
-                user.setAltitude((Double.parseDouble(altitude)));
+                user.setAltitude(0.0);
                 user.setJob(job);
                 user.setDuties(duties);
                 user.setLeader(leader);

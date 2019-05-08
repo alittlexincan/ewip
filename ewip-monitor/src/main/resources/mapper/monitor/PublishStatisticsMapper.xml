@@ -17,8 +17,9 @@
 	<select id="drawWarnLevelTotal" resultType="map">
 		select type id, case type when 0 then '短期预报' when 1 then '中期预报' when 2 then '长期预报'
 		when 3 then '气象专题专报'  else '重大气象专题专报' end colorLevelName,COUNT(type) count
-		from message
-		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		from message m
+		left join area a on a.id=m.area_id
+		where 1=1 and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -36,7 +37,7 @@
 		else '重大气象专题专报' end colorLevelName
 		from message m
 		LEFT JOIN area a on m.area_id=a.id
-		where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+		where 1=1  and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -54,7 +55,8 @@
 			case type when 0 then '短期预报' when 1 then '中期预报'
 			when 2 then '长期预报' when 3 then '气象专题专报'
 			else '重大气象专题专报' end type from message m
-			where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+			left join area a on a.id=m.area_id
+			where 1=1  and a.code like '${areaCode}%'
 			<![CDATA[
 				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -67,7 +69,9 @@
 
 	<!--24小时预警列表数量-->
 	<select id="warnListCount" resultType="java.lang.Integer">
-		select count(1) from  message m where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+		select count(1) from  message m
+		left join area a on a.id=m.area_id
+		where 1=1  and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -82,7 +86,8 @@
 		when 2 then '长期预报' when 3 then '气象专题专报'
 		else '重大气象专题专报' end type
 		from message m
-		where 1=1 and FIND_IN_SET(m.area_id, getAreaCList(#{empAreaId}))
+		left join area a on a.id=m.area_id
+		where 1=1 and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(m.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -101,8 +106,10 @@
 	<select id="channelStatistics" resultType="map">
 			select channelName,channelId ,count(channelId) count  from(
 		select c.message_id,c.channel_id channelId,ch.name channelName
-		from message_content c left JOIN channel ch on ch.id =c.channel_id
-		where 1=1 and FIND_IN_SET(c.area_id, getAreaCList(#{empAreaId}))
+		from message_content c
+		left JOIN channel ch on ch.id =c.channel_id
+		left join area a on a.id=c.area_id
+		where 1=1  and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(c.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -118,8 +125,9 @@
 		case type when 0 then '短期预报' when 1 then '中期预报'
 		when 2 then '长期预报' when 3 then '气象专题专报'
 		else '重大气象专题专报' end type,
-		COUNT(type) count from message
-		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		COUNT(type) count from message m
+		left join area a on a.id=m.area_id
+		where 1=1  and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -131,8 +139,9 @@
 
 	<!--任务Id列表-->
 	<select id="taskIdList" resultType="map">
-		select id taskId from warn_edit
-		where 1=1 and FIND_IN_SET(area_id, getAreaCList(#{empAreaId}))
+		select id taskId from warn_edit e
+		left join area a on a.id=e.area_id
+		where 1=1  and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -148,7 +157,7 @@
 		from warn_callback_child w
 		INNER JOIN user u ON u.code=w.code
 		inner join area a ON a.id=u.area_id
-		where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+		where 1=1 and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(w.create_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>

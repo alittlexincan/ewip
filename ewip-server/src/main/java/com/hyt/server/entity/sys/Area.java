@@ -47,6 +47,9 @@ public class Area {
     @Column(name = "altitude")
     private Double altitude;
 
+    @Column(name = "vicinity",length = 2000)
+    private String vicinity;
+
     @JSONField(format="yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_time")
     private Date createTime;
@@ -158,5 +161,13 @@ public class Area {
 
     public void setChild(Integer child) {
         this.child = child;
+    }
+
+    public String getVicinity() {
+        return vicinity;
+    }
+
+    public void setVicinity(String vicinity) {
+        this.vicinity = vicinity;
     }
 }

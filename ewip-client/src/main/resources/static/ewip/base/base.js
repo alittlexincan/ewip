@@ -463,7 +463,7 @@ layui.use(["table","form","laytpl","layer"], function(){
         ,initBMap: (container, initMapHeight) => {
             initMapHeight(container);
             // 百度地图API功能
-            active.map = new BMap.Map(container);    // 创建Map实例
+            active.map = new BMap.Map(container,{mapType:BMAP_HYBRID_MAP});    // 创建Map实例
             active.map.centerAndZoom(new BMap.Point(107.98,36.47), 11);  // 初始化地图,设置中心点坐标和地图级别
             //添加地图类型控件
             active.map.addControl(new BMap.MapTypeControl({
@@ -473,8 +473,10 @@ layui.use(["table","form","laytpl","layer"], function(){
                 ]}));
             active.map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
             //设置望奎县边界
-            var name=employee.areaName;
+            // var name=employee.areaName;
+            var name=document.getElementById("areaName").value;
             var bdary = new BMap.Boundary();
+            console.log(name);
             bdary.get(name, function(rs){//获取行政区域
                 //BDmap.clearOverlays();        //清除地图覆盖物
                 var count = rs.boundaries.length; //行政区域的点有多少个
@@ -566,20 +568,22 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/riskGeologic/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/geoInfo/list", data:{}}, data => {
                 data.forEach( res => {
                     let iconUrl = '/client/base/dizhizaihai.png';
-                    let mes = '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>街道办:'+res.street+'</div><br />';
-                    mes += '<div>地区名称:'+res.name+'</div><br />';
-                    mes += '<div>灾害点规模:'+res.scale+'</div><br />';
-                    mes += '<div>等级:'+res.level+'</div><br />';
-                    mes += '<div>灾害点类型:'+res.type+'</div><br />';
-                    mes += '<div>威胁人口:'+res.threadPeople+'</div><br />';
-                    mes += '<div>威胁资产:'+res.threadProperty+'</div><br />';
+                    let mes = '<div>地灾点编号'+res.geoCode+'</div><br />';
+                    mes += '<div>地灾点名称:'+res.geoName+'</div><br />';
+                    mes += '<div>影响村镇:'+res.townCode+'</div><br />';
+                    mes += '<div>诱发因素:'+res.dmFactor+'</div><br />';
+                    mes += '<div>威胁人数:'+res.threatPerNum+'</div><br />';
+                    mes += '<div>潜在经济损失:'+res.economicLoss+'</div><br />';
+                    mes += '<div>防灾责任单位:'+res.respUnit+'</div><br />';
+                    mes += '<div>防灾责任人:'+res.respPerson+'</div><br />';
+                    mes += '<div>防灾责任人电话:'+res.respMobilePhone+'</div><br />';
+                    mes += '<div>监测人:'+res.monitorPerson+'</div><br />';
+                    mes += '<div>监测人电话:'+res.monMobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.geoName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     dizhiArrayMarker.push(marker);
@@ -605,24 +609,22 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/riskFlood/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/biInfo/list", data:{}}, data => {
                 console.log(data);
-                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
                 data.forEach( res => {
                     let iconUrl = '/client/base/zhongxiaoheliu.png';
-                    let mes = '<div>河流名称:'+res.name+'</div><br />';
-                    mes += '<div>省名称:'+res.province+'</div><br />';
-                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
-                    mes += '<div>市名称:'+res.city+'</div><br />';
-                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
-                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
-                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
-                    mes += '<div>防御措施:'+res.measures+'</div><br />';
-                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let mes = '<div>中小河流代码:'+res.basinCode+'</div><br />';
+                    mes += '<div>中小河流名称:'+res.basinName+'</div><br />';
+                    mes += '<div>流域面积:'+res.basinArea+'</div><br />';
+                    mes += '<div>流域内人口'+res.population+'</div><br />';
+                    mes += '<div>影响村镇:'+res.townCode+'</div><br />';
+                    mes += '<div>河流长度:'+res.basinLength+'</div><br />';
+                    mes += '<div>河口位置名称:'+res.estsiteAddrName+'</div><br />';
+                    mes += '<div>河口位置海拔高度:'+res.estsiteAddrHeight+'</div><br />';
+                    mes += '<div>联系人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.basinName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     heliuHongShuiArrayMarker.push(marker);
@@ -648,25 +650,19 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/riskMountain/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/mfrInfo/list", data:{}}, data => {
                 console.log(data);
-                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
                 data.forEach( res => {
                     let iconUrl = '/client/base/shanhong.png';
-                    let mes = '<div>河流名称:'+res.name+'</div><br />';
-                    mes += '<div>省名称:'+res.province+'</div><br />';
-                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
-                    mes += '<div>市名称:'+res.city+'</div><br />';
-                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
-                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
-                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
-                    mes += '<div>防御措施:'+res.measures+'</div><br />';
-                    mes += '<div>危害等级:'+res.level+'</div><br />';
-                    mes += '<div>气象致灾因子:'+res.weatherCauses+'</div><br />';
+                    let mes = '<div>山洪沟代码:'+res.mfrCode+'</div><br />';
+                    mes += '<div>山洪沟名称:'+res.mfrName+'</div><br />';
+                    mes += '<div>沟口位置海拔高度:'+res.mfrHeight+'</div><br />';
+                    mes += '<div>沟口位置名称:'+res.mfrAddrName+'</div><br />';
+                    mes += '<div>影响村镇:'+res.townCode+'</div><br />';
+                    mes += '<div>联系人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.mfrName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     shanhongHongShuiArrayMarker.push(marker);
@@ -735,23 +731,16 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/riskWaterloggingArea/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/vfInfo/list", data:{}}, data => {
                 console.log(data);
-                //{title: "海丰镇恭头一村闫家大窝棚屯", point: "126.8897242556,46.8162732895", mes: "<div>灾害点类型:崩塌</div><hr /><div>区县:绥化市望奎县</div><hr /><div>灾害点规模:小型</div><hr /><div>稳定性:不稳定</div><hr /><div>威胁人口:370</div><hr /><div>威胁资产:20000000</div><hr /><div>气象致灾因子:暴雨</div>",addss: "/client/base/dizhizaihai.png"},
                 data.forEach( res => {
                     let iconUrl = '/client/base/yilaoqu.png';
-                    let mes = '<div>内涝名称:'+res.name+'</div><br />';
-                    mes += '<div>省名称:'+res.province+'</div><br />';
-                    mes += '<div>省代码:'+res.provinceCode+'</div><br />';
-                    mes += '<div>市名称:'+res.city+'</div><br />';
-                    mes += '<div>市代码:'+res.cityCode+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>区县代码:'+res.districtCode+'</div><br />';
-                    mes += '<div>管理单位:'+res.monitorOrgan+'</div><br />';
-                    mes += '<div>联系人:'+res.monitorPeople+'</div><br />';
-                    mes += '<div>防御措施:'+res.measures+'</div><br />';
+                    let mes = '<div>行政区编码:'+res.areaCode  +'</div><br/>';
+                    mes += '<div>易涝点名称:'+res.vulnerFloodName+'</div><br/>';
+                    mes += '<div>联系人:'+res.contact+'</div><br/>';
+                    mes += '<div>手机:'+res.mobilePhone+'</div><br/>';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.vulnerFloodName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     yilaoArrayMarker.push(marker);
@@ -978,28 +967,15 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/unitDanger/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/feInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
                     let iconUrl = '/client/base/weihuapin.png';
-                    let mes = '<div>名称:'+res.name+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>地址:'+res.address+'</div><br />';
-                    mes += '<div>建筑物:'+res.building+'</div><br />';
-                    mes += '<div>储罐个数及容量:'+res.tanks+'</div><br />';
-                    mes += '<div>加油机台数:'+res.machine+'</div><br />';
-                    mes += '<div>单体数:'+res.number+'</div><br />';
-                    mes += '<div>项目:'+res.project+'</div><br />';
-                    mes += '<div>产品:'+res.product+'</div><br />';
-                    mes += '<div>最新报告编号:'+res.report+'</div><br />';
-                    mes += '<div>防雷安全隐患情况:'+res.status+'</div><br />';
-                    mes += '<div>防雷所分管领导:'+res.lightningLeader+'</div><br />';
-                    mes += '<div>企业防雷安全责任人:'+res.lightningPeople+'</div><br />';
-                    mes += '<div>责任人联系电话:'+res.lightningPhone+'</div><br />';
-                    mes += '<div>检测片区组长:'+res.testLeader+'</div><br />';
-                    mes += '<div>检测片区组员:'+res.testMember+'</div><br />';
+                    let mes = '<div>名称:'+res.flaExpPlaceName+'</div><br />';
+                    mes += '<div>安全责任人:'+res.contact+'</div><br />';
+                    mes += '<div>责任人联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.flaExpPlaceName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     weihuapinArrayMarker.push(marker);
@@ -1107,22 +1083,15 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/unitAttractions/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/touInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
                     let iconUrl = '/client/base/lvyoujingqu.jpg';
-                    let mes = '<div>景区名称:'+res.name+'</div><br />';
-                    mes += '<div>区县名称:'+res.areaName+'</div><br />';
-                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
-                    mes += '<div>占地面积（㎡）:'+res.area+'</div><br />';
-                    mes += '<div>园区描述:'+res.description+'</div><br />';
-                    mes += '<div>可容纳人数:'+res.capacity+'</div><br />';
-                    mes += '<div>工作人员人数:'+res.worker+'</div><br />';
-                    mes += '<div>地址:'+res.address+'</div><br />';
-                    mes += '<div>负责人:'+res.principal+'</div><br />';
-                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let mes = '<div>景区名称:'+res.tourName+'</div><br />';
+                    mes += '<div>负责人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.tourName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     lvyouArrayMarker.push(marker);
@@ -1313,21 +1282,35 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/unitSchool/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/pmsInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
+                    let schoolType ="";
+                    if(res.schoolType == 1) {
+                        schoolType="小学";
+                    }else if(res.schoolType == 2) {
+                        schoolType="初级中学";
+                    }else if(res.schoolType == 3) {
+                        schoolType="高级中学";
+                    }else if(res.schoolType == 4) {
+                        schoolType="职业高中";
+                    }else if(res.schoolType == 5) {
+                        schoolType="中等专业学校";
+                    }else if(res.schoolType == 6) {
+                        schoolType="技工学校";
+                    }else if(res.schoolType == 7) {
+                        schoolType="特殊教育学校";
+                    }else if(res.schoolType == 8) {
+                        schoolType="其他类型";
+                    }
+
                     let iconUrl = '/client/base/xuexiao.png';
-                    let mes = '<div>名称:'+res.name+'</div><br />';
-                    mes += '<div>地区:'+res.areaName+'</div><br />';
-                    mes += '<div>类型:'+res.type+'</div><br />';
-                    mes += '<div>面积:'+res.area+'</div><br />';
-                    mes += '<div>人数:'+res.people+'</div><br />';
-                    mes += '<div>描述:'+res.description+'</div><br />';
-                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
-                    mes += '<div>负责人:'+res.principal+'</div><br />';
-                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let mes = '<div>名称:'+res.schoolName+'</div><br />';
+                    mes += '<div>类型:'+schoolType+'</div><br />';
+                    mes += '<div>负责人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.schoolName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     xuexiaoArrayMarker.push(marker);
@@ -1353,23 +1336,16 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/unitHospital/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/hosInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
                     let iconUrl = '/client/base/yiyuan.png';
-                    let mes = '<div>名称:'+res.name+'</div><br />';
-                    mes += '<div>地区:'+res.areaName+'</div><br />';
-                    mes += '<div>面积:'+res.area+'</div><br />';
-                    mes += '<div>人数:'+res.doctor+'</div><br />';
-                    mes += '<div>护士人数:'+res.nurse+'</div><br />';
-                    mes += '<div>救护车数量:'+res.ambulance+'</div><br />';
-                    mes += '<div>床位数量:'+res.bed+'</div><br />';
-                    mes += '<div>描述:'+res.description+'</div><br />';
-                    mes += '<div>所属管辖单位:'+res.unit+'</div><br />';
-                    mes += '<div>负责人:'+res.principal+'</div><br />';
-                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let mes = '<div>名称:'+res.hospitalName+'</div><br />';
+                    mes += '<div>级别:'+res.hospitalLevel+'</div><br />';
+                    mes += '<div>负责人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.hospitalName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     yiyuanArrayMarker.push(marker);
@@ -1475,23 +1451,15 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/unitReservoir/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/rsvInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
                     let iconUrl = '/client/base/shuiku.png';
-                    let mes = '<div>名称:'+res.name+'</div><br />';
-                    mes += '<div>地区:'+res.areaName+'</div><br />';
-                    mes += '<div>地区编码:'+res.districtCode+'</div><br />';
-                    mes += '<div>地址:'+res.address+'</div><br />';
-                    mes += '<div>总库容(万m3):'+res.storage+'</div><br />';
-                    mes += '<div>防限库容(万m3):'+res.limitStorage+'</div><br />';
-                    mes += '<div>防限水位(m):'+res.waterLimit+'</div><br />';
-                    mes += '<div>正常蓄水位(m):'+res.waterNormal+'</div><br />';
-                    mes += '<div>有无水位:'+res.waterLine+'</div><br />';
-                    mes += '<div>负责人:'+res.principal+'</div><br />';
-                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    let mes = '<div>名称:'+res.reservoirName+'</div><br />';
+                    mes += '<div>负责人:'+res.contact+'</div><br />';
+                    mes += '<div>联系电话:'+res.mobilePhone+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.reservoirName + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     shuikuArrayMarker.push(marker);
@@ -1607,27 +1575,61 @@ layui.use(["table","form","laytpl","layer"], function(){
         if(flag=="0"){
             $(this).data("flag",1);
             $(this).children("input").prop("checked","checked");
-            active.render({type:"GET", url: "/client/facilityPublish/list", data:{}}, data => {
+            active.render({type:"GET", url: "/client/dsInfo/list", data:{}}, data => {
                 console.log(data);
                 data.forEach( res => {
                     let iconUrl = '/client/base/xianshipin.png';
-                    let status="";
-                    if(res.status==1){
-                        status="部署"
-                    }else{
-                        status="未部署"
-                    }
-                    let mes = '<div>设备名称:'+res.name+'</div><br />';
-                    mes += '<div>设备编号:'+res.code+'</div><br />';
-                    mes += '<div>设备厂家:'+res.factory+'</div><br />';
-                    mes += '<div>设备类型:'+res.type+'</div><br />';
+                    let clientStyle="";
+                    let factoryID="";
+
+                    if(res.factoryID == "0001" ) { factoryID= "双顺达"; }
+                    else if(res.factoryID == "0002" ) { factoryID= "伍豪科技"; }
+                    else if(res.factoryID == "0003" ) { factoryID= "沈阳恒远"; }
+                    else if(res.factoryID == "0004" ) { factoryID= "强讯公司"; }
+                    else if(res.factoryID == "0005" ) { factoryID= "华泰德丰"; }
+                    else if(res.factoryID == "0006" ) { factoryID= "联合远航"; }
+                    else if(res.factoryID == "0007" ) { factoryID= "赛乐科技"; }
+                    else if(res.factoryID == "0008" ) { factoryID= "瑞彩"; }
+                    else if(res.factoryID == "0015" ) { factoryID= "天齐信息"; }
+                    else if(res.factoryID == "0016" ) { factoryID= "安徽中科金诚"; }
+                    else if(res.factoryID == "0017" ) { factoryID= "深圳昆特"; }
+                    else if(res.factoryID == "0018" ) { factoryID= "成都奥天"; }
+                    else if(res.factoryID == "0019" ) { factoryID= "河南物理所"; }
+                    else if(res.factoryID == "0020" ) { factoryID= "平治东方"; }
+                    else if(res.factoryID == "0021" ) { factoryID= "花冠"; }
+                    else if(res.factoryID == "0022" ) { factoryID= "畅运"; }
+                    else if(res.factoryID == "0023" ) { factoryID= "锦州创安"; }
+                    else if(res.factoryID == "0024" ) { factoryID= "电视台"; }
+                    else if(res.factoryID == "0025" ) { factoryID= "广播电台"; }
+                    else if(res.factoryID == "0099" ) { factoryID= "其他厂家"; }
+
+
+                    if(res.clientStyle == 0) {clientStyle="大喇叭"}
+                    else if(res.clientStyle == 1) { clientStyle= "电子屏"; }
+                    else if(res.clientStyle == 2) { clientStyle= "北斗"; }
+                    else if(res.clientStyle == 3) { clientStyle= "呼叫中心"; }
+                    else if(res.clientStyle == 4) { clientStyle= "短信"; }
+                    else if(res.clientStyle == 5) { clientStyle= "传真"; }
+                    else if(res.clientStyle == 6) { clientStyle= "邮件"; }
+                    else if(res.clientStyle == 7) { clientStyle= "电视"; }
+                    else if(res.clientStyle == 8) { clientStyle= "广播"; }
+                    else if(res.clientStyle == 9) { clientStyle= "微博"; }
+                    else if(res.clientStyle == 10) { clientStyle= "微信"; }
+                    else if(res.clientStyle == 11) { clientStyle= "网站"; }
+                    else if(res.clientStyle == 12) { clientStyle= "手机客户端"; }
+                    else if(res.clientStyle == 13) { clientStyle= "海洋广播"; }
+                    else if(res.clientStyle == 14) { clientStyle= "气象频道"; }
+                    else if(res.clientStyle == 15) { clientStyle= "预警智能盒子"; }
+                    else if(res.clientStyle == 99) { clientStyle= "其他设备"; }
+
+                    let mes = '<div>设备名称:'+clientStyle+'</div><br />';
+                    mes += '<div>设备编号:'+res.clientID+'</div><br />';
+                    mes += '<div>设备厂家:'+factoryID+'</div><br />';
                     mes += '<div>地址:'+res.address+'</div><br />';
-                    mes += '<div>设备用途:'+res.use+'</div><br />';
-                    mes += '<div>设备状态:'+status+'</div><br />';
-                    mes += '<div>负责人:'+res.principal+'</div><br />';
-                    mes += '<div>联系电话:'+res.phone+'</div><br />';
+                    mes += '<div>负责人:'+res.clientPerson+'</div><br />';
+                    mes += '<div>联系电话:'+res.clientTel+'</div><br />';
                     let marker = active.marker(iconUrl ,[res.lon , res.lat]
-                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.name + '</span>'  +'<br/>'+ mes);
+                        ,content = '<span style="font-size: 20px;color: #FF4500;">' +  res.clientStyle + '</span>'  +'<br/>'+ mes);
                     // 将标注添加到地图中
                     active.map.addOverlay(marker);
                     sheshiArrayMarker.push(marker);

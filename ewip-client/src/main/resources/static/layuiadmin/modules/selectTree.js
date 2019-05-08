@@ -147,7 +147,6 @@ layui.define(['form','zTree'], function(exports){
                     $("body").bind("mousedown", selectTree.onBodyDown);
                 }
             });
-
             var idTree = option.id;
             option.id = "." + option.id + "TreeDiv #" + option.id + "Tree";
             option.setting = setting;
@@ -156,12 +155,27 @@ layui.define(['form','zTree'], function(exports){
             var tree = zTree.sync(option);
             // 如果有选中项则回填选中结果
             if(option.checkNodeId != undefined && option.checkNodeId != null){
-                var node = tree.getNodeByParam("id",option.checkNodeId, null);
-                tree.selectNode(node,true);//将指定ID的节点选中
-                onClick(event, idTree + "Tree", node);
-
+                if(option.checkNodeId.indexOf(",")!= -1){
+                    var result=option.checkNodeId.split(",");
+                    for(var i=0;i<result.length;i++){
+                        var node = tree.getNodeByParam("id",result[i], null);
+                        tree.selectNode(node,true);//将指定ID的节点选中
+                        onClick(event, idTree + "Tree", node);
+                    }
+                }else{
+                    var node = tree.getNodeByParam("id",option.checkNodeId, null);
+                    tree.selectNode(node,true);//将指定ID的节点选中
+                    onClick(event, idTree + "Tree", node);
+                }
             }
             return tree;
+        },
+
+        "selectNode": function (zTree, zTreeId, id) {
+            var node = zTree.getNodeByParam("id", id );
+            // zTree.cancelSelectedNode();
+            zTree.selectNode(node,true);
+            selectTree.setValue(zTreeId, node);
         }
         /**
          * 点击事件后赋值

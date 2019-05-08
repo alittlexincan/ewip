@@ -52,36 +52,23 @@
                 <script id="addPop" type="text/html">
                     <div class="layui-form layui-form-pane">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
                                 <div id="addAreaId" name="district" lay-verify="district" class="select-tree layui-form-select" autocomplete="off" placeholder="请选择区县"></div>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">面积</label>
+                            <label class="layui-form-label">车站名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="area" lay-verify="area"  autocomplete="off" placeholder="请输入面积" class="layui-input">
+                                <input type="text" name="name" lay-verify="name"  autocomplete="off" placeholder="请输入车站名称" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">车辆数</label>
+                            <label class="layui-form-label">车站地址</label>
                             <div class="layui-input-block">
-                                <input type="text" name="vehicle" lay-verify="vehicle"  autocomplete="off" placeholder="请输入车辆数" class="layui-input">
+                                <input type="text" name="address" lay-verify="address"  autocomplete="off" placeholder="请输入车站地址" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">可容纳人数</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="capacity" lay-verify="capacity"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
-                            </div>
-                        </div>
-
                         <div class="layui-form-item">
                             <label class="layui-form-label">经度</label>
                             <div class="layui-input-block">
@@ -95,6 +82,28 @@
                                 <input type="text" name="lat" lay-verify="lat" autocomplete="off" placeholder="请输入纬度" class="layui-input">
                             </div>
                         </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">车站等级</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="level"  autocomplete="off" placeholder="请输入车站等级" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">占地面积</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="area" lay-verify="area"  autocomplete="off" placeholder="请输入占地面积" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">可容纳人数</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="capacity" lay-verify="capacity"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">管辖单位</label>
                             <div class="layui-input-block">
@@ -113,12 +122,6 @@
                                 <input type="text" name="phone" autocomplete="off" placeholder="请输入电话" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea"></textarea>
-                            </div>
-                        </div>
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
@@ -129,13 +132,6 @@
                 <!-- 修改弹出层 -->
                 <script id="updatePop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
@@ -143,21 +139,15 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">面积</label>
+                            <label class="layui-form-label">车站名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="area" lay-verify="area" value="{{d.area}}"   autocomplete="off" placeholder="请输入面积" class="layui-input">
+                                <input type="text" name="name" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入车站名称" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">车辆数</label>
+                            <label class="layui-form-label">车站地址</label>
                             <div class="layui-input-block">
-                                <input type="text" name="vehicle" lay-verify="vehicle" value="{{d.vehicle}}"   autocomplete="off" placeholder="请输入车辆数" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">可容纳人数</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="capacity" lay-verify="capacity" value="{{d.capacity}}"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
+                                <input type="text" name="address" lay-verify="address" value="{{d.address}}"  autocomplete="off" placeholder="请输入车站地址" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -173,6 +163,27 @@
                                 <input type="text" name="lat" lay-verify="lat" value="{{d.lat}}"  autocomplete="off" placeholder="请输入纬度" class="layui-input">
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">车站等级</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="level" lay-verify="level" value="{{d.level}}"  autocomplete="off" placeholder="请输入车站等级" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">面积</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="area" lay-verify="area" value="{{d.area}}"   autocomplete="off" placeholder="请输入面积" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">可容纳人数</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="capacity" lay-verify="capacity" value="{{d.capacity}}"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">管辖单位</label>
                             <div class="layui-input-block">
@@ -191,12 +202,6 @@
                                 <input type="text" name="phone" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <input type="textarea" name="description" value="{{d.description}}" lay-verify="description" autocomplete="off" placeholder="请输入描述" class="layui-input">
-                            </div>
-                        </div>
                         <div class="layui-form-item layui-hide" >
                             <div class="layui-input-block layui-col-md-offset4">
                                 <textarea name="description" lay-verify="description" placeholder="请输入描述" class="layui-textarea">{{d.description}}</textarea>
@@ -209,13 +214,6 @@
                 <!-- 详细弹出层 -->
                 <script id="detailsPop" type="text/html">
                     <div class="layui-form layui-form-pane">
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">名称</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入名称" class="layui-input">
-                            </div>
-                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">区县</label>
                             <div class="layui-input-block">
@@ -223,23 +221,18 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">面积</label>
+                            <label class="layui-form-label">车站名称</label>
                             <div class="layui-input-block">
-                                <input type="text" name="area" disabled="disabled" lay-verify="area" value="{{d.area}}"   autocomplete="off" placeholder="请输入面积" class="layui-input">
+                                <input type="text" name="name" disabled="disabled" lay-verify="name" value="{{d.name}}"  autocomplete="off" placeholder="请输入车站名称" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">车辆数</label>
+                            <label class="layui-form-label">车站地址</label>
                             <div class="layui-input-block">
-                                <input type="text" name="vehicle" disabled="disabled" lay-verify="vehicle" value="{{d.vehicle}}"   autocomplete="off" placeholder="请输入车辆数" class="layui-input">
+                                <input type="text" name="address" disabled="disabled" lay-verify="address" value="{{d.address}}"  autocomplete="off" placeholder="请输入车站地址" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">可容纳人数</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="capacity" disabled="disabled" lay-verify="capacity" value="{{d.capacity}}"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
-                            </div>
-                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">经度</label>
                             <div class="layui-input-block">
@@ -253,6 +246,27 @@
                                 <input type="text" name="lat" disabled="disabled" lay-verify="lat" value="{{d.lat}}"  autocomplete="off" placeholder="请输入纬度" class="layui-input">
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">车站等级</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="level" disabled="disabled" lay-verify="level" value="{{d.level}}"  autocomplete="off" placeholder="请输入车站等级" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">面积</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="area" disabled="disabled" lay-verify="area" value="{{d.area}}"   autocomplete="off" placeholder="请输入面积" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">可容纳人数</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="capacity" disabled="disabled" lay-verify="capacity" value="{{d.capacity}}"  autocomplete="off" placeholder="请输入可容纳人数" class="layui-input">
+                            </div>
+                        </div>
+
                         <div class="layui-form-item">
                             <label class="layui-form-label">管辖单位</label>
                             <div class="layui-input-block">
@@ -269,12 +283,6 @@
                             <label class="layui-form-label">电话</label>
                             <div class="layui-input-block">
                                 <input type="text" name="phone" disabled="disabled" value="{{d.phone}}" autocomplete="off" placeholder="请输入电话" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">描述</label>
-                            <div class="layui-input-block">
-                                <input type="textarea" name="description" disabled="disabled" value="{{d.description}}" lay-verify="description" autocomplete="off" placeholder="请输入描述" class="layui-input">
                             </div>
                         </div>
                     </div>

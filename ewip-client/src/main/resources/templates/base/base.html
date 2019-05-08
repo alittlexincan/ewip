@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
 </head>
 <body class="base">
+<input id="areaName" type="hidden" th:value="${areaName}" >
 <div id="bdMap" class="layui-fluid"></div>
 <div class="floatGoods" id="setUp" style="height:500px;width:200px;overflow-x:hidden;overflow-y: auto;">
     <img src="/client/base/right.jpg" id="rightId" style="width:30px;position:fixed;bottom:10px;right:5px;font-size:0;line-height:0;z-index:100;"/>
@@ -18,49 +19,100 @@
     <div class="triangle_border_left" id="ass">
         <div id="manager">
             <ul class="tree">
+                <!--<li class="pro">-->
+                    <!--<span class="open">气象数据</span>-->
+                    <!--<ul class="show">-->
+                        <!--<li id="stationId" data-flag="0"><input type="checkbox" name="notice"/>区域自动站</li>-->
+                        <!--<li id="radarPTId" data-flag="0"><input type="checkbox" name="notice"/>雷达拼图</li>-->
+                        <!--<li id="warnId" data-flag="0"><input type="checkbox" name="notice"/>气象预警</li>-->
+                        <!--&lt;!&ndash;<li id="disasterScopeId" data-flag="0"><input type="checkbox" name="notice"/>气象灾害影响范围</li>&ndash;&gt;-->
+                        <!--<li id="hisWarnId" data-flag="0"><input type="checkbox" name="notice" />历史气象灾情</li>-->
+                        <!--<li id="serviceProductId" data-flag="0"><input type="checkbox" name="notice"/>气象服务产品</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="pro">-->
+                    <!--<span class="open">重点单位</span>-->
+                    <!--<ul class="show">-->
+                        <!--<li id="weihuapinId" data-flag="0"><input type="checkbox" name="notice"/>危化品场所</li>-->
+                        <!--<li id="nyyqId" data-flag="0"><input type="checkbox" name="notice"/>农业园区</li>-->
+                        <!--<li id="nzwzzId" data-flag="0"><input type="checkbox" name="notice"/>农作物种植区</li>-->
+                        <!--<li id="lvyouId" data-flag="0"><input type="checkbox" name="notice"/>旅游景区</li>-->
+                        <!--<li id="gaosuId" data-flag="0"><input type="checkbox" name="notice"/>高速公路</li>-->
+                        <!--<li id="qiaoliangId" data-flag="0"><input type="checkbox" name="notice"/>桥梁</li>-->
+                        <!--<li id="difangId" data-flag="0"><input type="checkbox" name="notice"/>堤防</li>-->
+                        <!--<li id="chezhanId" data-flag="0"><input type="checkbox" name="notice"/>车站</li>-->
+                        <!--<li id="xuexiaoId" data-flag="0"><input type="checkbox" name="notice"/>学校</li>-->
+                        <!--<li id="yiyuanId" data-flag="0"><input type="checkbox" name="notice"/>医院</li>-->
+                        <!--<li id="guagnchangId" data-flag="0"><input type="checkbox" name="notice"/>广场</li>-->
+                        <!--<li id="shangchangId" data-flag="0"><input type="checkbox" name="notice"/>商场</li>-->
+                        <!--<li id="shuikuId" data-flag="0"><input type="checkbox" name="notice"/>水库</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="pro">-->
+                    <!--<span class="open" id="fengxianId">气象防灾减灾人员</span>-->
+                    <!--<ul class="show">-->
+                        <!--<li id="danweiPeopleId" data-flag="0"><input type="checkbox" name="notice"/>单位责任人</li>-->
+                        <!--<li id="jicengPeopleId" data-flag="0"><input type="checkbox" name="notice"/>基层防御人员</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="pro">-->
+                    <!--<span class="open" id="fangzaiSheShiId">气象防灾减灾设施</span>-->
+                    <!--<ul class="show">-->
+                        <!--<li id="xianshipinId" data-flag="0"><input type="checkbox" name="notice"/>预警信息发布设施</li>-->
+                        <!--<li id="yingjibinanId" data-flag="0"><input type="checkbox" name="notice"/>应急避难场所</li>-->
+                        <!--<li id="wuzichubeiId" data-flag="0"><input type="checkbox" name="notice"/>应急物资储备场所</li>-->
+                        <!--<li id="bangongId" data-flag="0"><input type="checkbox" name="notice"/>办公场所</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="pro">-->
+                    <!--<span class="open">其他行业</span>-->
+                    <!--<ul class="show">-->
+                        <!--<li id="dizhizaihaiId" data-flag="0"><input type="checkbox" name="notice"/>地质灾害隐患点</li>-->
+                        <!--<li id="zhongxiaoheliuId" data-flag="0"><input type="checkbox" name="notice"/>中小河流洪水</li>-->
+                        <!--<li id="shanhongId" data-flag="0"><input type="checkbox" name="notice"/>山洪</li>-->
+                        <!--<li id="neilaoId" data-flag="0"><input type="checkbox" name="notice"/>内涝隐患点</li>-->
+                        <!--<li id="yilaoquId" data-flag="0"><input type="checkbox" name="notice"/>易涝区</li>-->
+                        <!--<li id="doupoId" data-flag="0"><input type="checkbox" name="notice"/>陡坡</li>-->
+                        <!--<li id="wadiId" data-flag="0"><input type="checkbox" name="notice"/>洼地</li>-->
+                        <!--<li id="zaiqingId" data-flag="0"><input type="checkbox" name="notice"/>实时灾情</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+
+
+
                 <li class="pro">
                     <span class="open">气象数据</span>
                     <ul class="show">
                         <li id="stationId" data-flag="0"><input type="checkbox" name="notice"/>区域自动站</li>
                         <li id="radarPTId" data-flag="0"><input type="checkbox" name="notice"/>雷达拼图</li>
                         <li id="warnId" data-flag="0"><input type="checkbox" name="notice"/>气象预警</li>
-                        <!--<li id="disasterScopeId" data-flag="0"><input type="checkbox" name="notice"/>气象灾害影响范围</li>-->
-                        <li id="hisWarnId" data-flag="0"><input type="checkbox" name="notice" />历史气象灾情</li>
                         <li id="serviceProductId" data-flag="0"><input type="checkbox" name="notice"/>气象服务产品</li>
                     </ul>
                 </li>
                 <li class="pro">
-                    <span class="open">重点单位</span>
+                    <span class="open">重点涉灾单位</span>
                     <ul class="show">
-                        <li id="weihuapinId" data-flag="0"><input type="checkbox" name="notice"/>危化品场所</li>
-                        <li id="nyyqId" data-flag="0"><input type="checkbox" name="notice"/>农业园区</li>
-                        <li id="nzwzzId" data-flag="0"><input type="checkbox" name="notice"/>农作物种植区</li>
                         <li id="lvyouId" data-flag="0"><input type="checkbox" name="notice"/>旅游景区</li>
-                        <li id="gaosuId" data-flag="0"><input type="checkbox" name="notice"/>高速公路</li>
-                        <li id="qiaoliangId" data-flag="0"><input type="checkbox" name="notice"/>桥梁</li>
-                        <li id="difangId" data-flag="0"><input type="checkbox" name="notice"/>堤防</li>
-                        <li id="chezhanId" data-flag="0"><input type="checkbox" name="notice"/>车站</li>
-                        <li id="xuexiaoId" data-flag="0"><input type="checkbox" name="notice"/>学校</li>
                         <li id="yiyuanId" data-flag="0"><input type="checkbox" name="notice"/>医院</li>
-                        <li id="guagnchangId" data-flag="0"><input type="checkbox" name="notice"/>广场</li>
-                        <li id="shangchangId" data-flag="0"><input type="checkbox" name="notice"/>商场</li>
+                        <li id="xuexiaoId" data-flag="0"><input type="checkbox" name="notice"/>学校</li>
                         <li id="shuikuId" data-flag="0"><input type="checkbox" name="notice"/>水库</li>
+                        <li id="weihuapinId" data-flag="0"><input type="checkbox" name="notice"/>易燃易爆场所</li>
                     </ul>
                 </li>
                 <li class="pro">
                     <span class="open" id="fengxianId">气象防灾减灾人员</span>
                     <ul class="show">
                         <li id="danweiPeopleId" data-flag="0"><input type="checkbox" name="notice"/>单位责任人</li>
-                        <li id="jicengPeopleId" data-flag="0"><input type="checkbox" name="notice"/>基层防御人员</li>
+                        <!--<li id="jicengPeopleId" data-flag="0"><input type="checkbox" name="notice"/>基层防御人员</li>-->
                     </ul>
                 </li>
                 <li class="pro">
                     <span class="open" id="fangzaiSheShiId">气象防灾减灾设施</span>
                     <ul class="show">
                         <li id="xianshipinId" data-flag="0"><input type="checkbox" name="notice"/>预警信息发布设施</li>
-                        <li id="yingjibinanId" data-flag="0"><input type="checkbox" name="notice"/>应急避难场所</li>
-                        <li id="wuzichubeiId" data-flag="0"><input type="checkbox" name="notice"/>应急物资储备场所</li>
-                        <li id="bangongId" data-flag="0"><input type="checkbox" name="notice"/>办公场所</li>
+                        <!--<li id="yingjibinanId" data-flag="0"><input type="checkbox" name="notice"/>应急避难场所</li>-->
+                        <!--<li id="wuzichubeiId" data-flag="0"><input type="checkbox" name="notice"/>应急物资储备场所</li>-->
+                        <!--<li id="bangongId" data-flag="0"><input type="checkbox" name="notice"/>办公场所</li>-->
                     </ul>
                 </li>
                 <li class="pro">
@@ -69,10 +121,10 @@
                         <li id="dizhizaihaiId" data-flag="0"><input type="checkbox" name="notice"/>地质灾害隐患点</li>
                         <li id="zhongxiaoheliuId" data-flag="0"><input type="checkbox" name="notice"/>中小河流洪水</li>
                         <li id="shanhongId" data-flag="0"><input type="checkbox" name="notice"/>山洪</li>
-                        <li id="neilaoId" data-flag="0"><input type="checkbox" name="notice"/>内涝隐患点</li>
-                        <li id="yilaoquId" data-flag="0"><input type="checkbox" name="notice"/>易涝区</li>
-                        <li id="doupoId" data-flag="0"><input type="checkbox" name="notice"/>陡坡</li>
-                        <li id="wadiId" data-flag="0"><input type="checkbox" name="notice"/>洼地</li>
+                        <li id="yilaoquId" data-flag="0"><input type="checkbox" name="notice"/>城镇易涝点</li>
+                        <!--<li id="neilaoId" data-flag="0"><input type="checkbox" name="notice"/>内涝隐患点</li>-->
+                        <!--<li id="doupoId" data-flag="0"><input type="checkbox" name="notice"/>陡坡</li>-->
+                        <!--<li id="wadiId" data-flag="0"><input type="checkbox" name="notice"/>洼地</li>-->
                         <li id="zaiqingId" data-flag="0"><input type="checkbox" name="notice"/>实时灾情</li>
                     </ul>
                 </li>

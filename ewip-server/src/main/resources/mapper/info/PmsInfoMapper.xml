@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyt.server.mapper.info.IPmsInfoMapper" >
+
+  <resultMap id="BaseResultMap" type="com.hyt.server.entity.info.PmsInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="schoolName" property="schoolName" jdbcType="VARCHAR" />
+    <result column="schoolType" property="schoolType" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="mobilePhone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="reportUnitCode" property="reportUnitCode" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <!-- 查询信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    select i.* from info_pms i where i.reportUnitCode like '${reportUnitCode}%'
+    <if test="id != null and id != ''">AND i.id = #{id}</if>
+    <if test="schoolName != null and schoolName != ''">AND i.schoolName like '%${schoolName}%' </if>
+    <if test="schoolType != null and schoolType != ''">AND i.schoolType = #{schoolType} </if>
+    <choose>
+      <when test="sortName !=null and sortName!='id'">
+        ORDER BY ${sortName} ${sortOrder}
+      </when >
+      <otherwise>
+        ORDER BY i.createTime DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <!-- 导入Excel到数据库 -->
+  <insert id="importData" >
+    insert into info_pms (id, schoolName, schoolType, lon, lat, contact, mobilePhone,reportUnitCode,createTime )
+    values
+    <foreach collection="list" item="item" separator=",">
+      ( REPLACE(UUID(),'-',''), #{item.schoolName}, #{item.schoolType}, #{item.lon}, #{item.lat}, #{item.contact}, #{item.mobilePhone},#{item.reportUnitCode},now())
+    </foreach>
+  </insert>
+
+
+</mapper>

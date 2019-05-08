@@ -19,7 +19,8 @@
 		select distinct w.id taskId,d.icon img,c.content sendContent from warn_edit as w
 		left join disaster as d on w.disaster_id=d.id
 		left join warn_edit_content c on w.id =c.warn_edit_id
-		where 1=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		left join area a on w.area_id=a.id
+		where 1=1 and a.code like '${areaCode}%'
 		order by w.send_time desc LIMIT 1
 	</select>
 	

@@ -22,6 +22,7 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="p_id" jdbcType="VARCHAR" property="pId"/>
         <result column="level" jdbcType="SMALLINT" property="level"/>
+        <result column="areaLevel" jdbcType="SMALLINT" property="areaLevel"/>
         <result column="area_id" jdbcType="VARCHAR" property="areaId"/>
     </resultMap>
 
@@ -80,9 +81,9 @@
     <select id="getAreaTree" resultMap="ZTreeResultMap">
 
         SELECT
-            id, p_id, area_name name, code, level
+            id, p_id, area_name name, code, level,level areaLevel
         FROM area where 1=1
-        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+        and code like '${areaCode}%'
         <if test="id != null and id != ''">AND id = #{id}</if>
         <if test="areaId != null and areaId != ''">AND id = #{areaId}</if>
         <if test="areaName != null and areaName != ''">AND area_name LIKE '${areaName}%'</if>
@@ -103,7 +104,7 @@
         0 count,
         0 type
         FROM area a where 1=1
-        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+        and a.code like '${areaCode}%'
         )union all(
         SELECT
         o.id,
@@ -114,7 +115,7 @@
         0 count,
         1 type
         FROM organization o LEFT JOIN area a on o.area_id=a.id where 1=1
-        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        and a.code like '${areaCode}%'
         )
 
 
@@ -217,7 +218,7 @@
         FROM user_group ug
         LEFT JOIN area a on a.id = ug.area_id
         LEFT JOIN organization o on o.id = ug.organization_id
-        where 1=1 and FIND_IN_SET(ug.area_id, getAreaCList(#{empAreaId}))
+        where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">AND ug.id = #{id}</if>
         <if test="name != null and name != ''">AND ug.name LIKE '${name}%'</if>
         <if test="pId != null and pId != ''">AND ug.p_id = #{pId}</if>
@@ -235,7 +236,7 @@
             ug.name,
             ug.channel_id,
             ug.area_id,
-            (SELECT count(1) from user u where u.user_group_id = ug.id) count
+            (SELECT count(1) from user u where u.user_group_id = ug.id AND u.channel_id = #{channelId}) count
         FROM
           user_group ug
         where 1=1
@@ -248,7 +249,7 @@
             </foreach>
         </if>
         <if test="organizationId != null and organizationId != ''">AND ug.organization_id = #{organizationId}</if>
-        <if test="channelId != null and channelId != ''">AND ug.channel_id = #{channelId}</if>
+
 
     </select>
 
@@ -264,7 +265,7 @@
         0 count,
         0 type
         FROM area a where 1=1
-        and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+        and a.code like '${areaCode}%'
         )union all(
         SELECT
         o.id,
@@ -275,7 +276,7 @@
         0 count,
         1 type
         FROM organization o LEFT JOIN area a on o.area_id=a.id where 1=1
-        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        and a.code like '${areaCode}%'
         )union all(
         SELECT
         ug.id,
@@ -287,7 +288,7 @@
         ug.area_id,
         (SELECT count(1) FROM USER u WHERE u.user_group_id = ug.id ) count,
         2 type FROM user_group ug  LEFT JOIN area a on ug.area_id=a.id where 1=1
-        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        and a.code like '${areaCode}%'
         )
 
 <!--        (SELECT

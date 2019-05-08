@@ -33,6 +33,14 @@ public class ChannelLinkMonitorController {
 	@ResponseBody
 	public JSONObject getChannelLinkMonitor(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
 			return this.service.getChannelLinkMonitor(map);
 		} catch (Exception e) {
 			e.printStackTrace();

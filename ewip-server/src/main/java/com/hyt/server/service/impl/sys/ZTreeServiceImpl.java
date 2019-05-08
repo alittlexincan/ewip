@@ -131,11 +131,12 @@ public class ZTreeServiceImpl extends AbstractService<ZTree> implements IZTreeSe
         List<ZTree> list = this.zTreeMapper.getUserGroupCountTree(map);
         if(list.size() == 0) return null;
         for(ZTree tree : list) {
-            if(tree.getCount()==0){
-                tree.setName(tree.getName());
-            }else{
-                tree.setName(tree.getName() + "(" +tree.getCount()+ ")");
-            }
+            tree.setName(tree.getName() + "(" +tree.getCount()+ ")");
+//            if(tree.getCount()==0){
+//                tree.setName(tree.getName());
+//            }else{
+//                tree.setName(tree.getName() + "(" +tree.getCount()+ ")");
+//            }
             tree.setOpen(true);
         }
         return list;

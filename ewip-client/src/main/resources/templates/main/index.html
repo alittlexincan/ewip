@@ -16,6 +16,7 @@
 <body class="layui-layout-body">
   <input id="monitorUrl" type="hidden" th:value="${monitorUrl}" >
   <input id="tianDiMapUrl" type="hidden" th:value="${tianDiMapUrl}" >
+  <input id="areaId" type="hidden" th:value="${areaId}" >
 
   <div id="LAY_app">
     <div class="layui-layout layui-layout-admin">
@@ -45,6 +46,8 @@
               <!--<span class="layui-badge-dot"></span>-->
             <!--</a>-->
           <!--</li>-->
+
+
           <li class="layui-nav-item layui-hide-xs" lay-unselect>
             <a href="javascript:;" layadmin-event="fullscreen">
               <i class="layui-icon layui-icon-screen-full"></i>
@@ -53,6 +56,14 @@
           <li class="layui-nav-item layui-hide-xs" lay-unselect>
             <button id="monitor" class="layui-btn layui-btn-sm">统计</button>
           </li>
+          <li class="layui-nav-item layui-hide-xs" id="ewip-xiala" lay-unselect>
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <div id="searchAreaId" name="areaId" class="select-tree layui-form-select" autocomplete="off" placeholder="地区切换"></div>
+              </div>
+            </div>
+          </li>
+
           <li class="layui-nav-item" lay-unselect style="margin-right: 10px;">
             <a href="javascript:;">
               <cite class="employeeName"></cite>
@@ -233,13 +244,16 @@
   <script th:inline="javascript">
   layui.config({
     base: [['layuiadmin/']] //静态资源所在路径
+    ,selectTree: 'selectTree'
   }).extend({
     index: 'lib/index' //主入口模块
-  }).use(['index','layer','laytpl','form'],function () {
+  }).use(['index','layer','laytpl','selectTree','form'],function () {
       var $ = layui.$
       ,layer = layui.layer		// 引用layui弹出层
       ,laytpl = layui.laytpl		// 引用layui模板引擎
+      ,selectTree = layui.selectTree
       ,form = layui.form;		// 引用layui表单
+
 
       var employee =[[${session.employee}]];
       layui.sessionData('ewip', {key:'employee',value:employee});
@@ -309,9 +323,48 @@
       //跳转统计页面
       $("#monitor").on("click",function () {
           var monitorUrl=document.getElementById("monitorUrl").value;
-          var tianDiMapUrl=document.getElementById("tianDiMapUrl").value;
-          window.location.href=monitorUrl+"/?areaId="+ employee.areaId + "&longitude=" + employee.longitude + "&latitude=" + employee.latitude+ "&areaName=" + employee.areaName;
-      })
+          // var tianDiMapUrl=document.getElementById("tianDiMapUrl").value;
+          window.location.href=monitorUrl+"/?areaId="+ employee.areaId
+              + "&longitude=" + employee.longitude + "&latitude=" + employee.latitude
+              + "&areaName=" + employee.areaName + "&areaCode=" + employee.areaCode
+              + "&level=" + employee.level;
+      });
+
+      /**
+       * 初始化下拉树(地区)
+       */
+      var zTree = selectTree.render({
+          'id': 'searchAreaId'
+          ,'url': '/client/tree/area'
+          ,'isMultiple': false
+          ,'isVerify': false
+          ,clickNode:function (event, treeId, treeNode) {
+              let areaId = treeNode.id;
+              let areaCode = treeNode.code;
+              let areaName = treeNode.name;
+              let level = treeNode.areaLevel;
+              $.ajax({
+                  async:false,
+                  type:"POST",
+                  data: {
+                      areaId: areaId,
+                      areaCode: areaCode,
+                      areaName: areaName,
+                      level: level,
+                  },
+                  dataType:"json",
+                  url:"/client/changeArea",
+                  success:function(data){
+                      window.location.reload();
+                  }
+              })
+              selectTree.setValue(treeId,treeNode);
+              //绑定树操作
+              selectTree.hideTree();
+          }
+      });
+
+      selectTree.selectNode(zTree, "searchAreaIdTree", $("#areaId").val());
 
       /**
        * 自定义验证规则

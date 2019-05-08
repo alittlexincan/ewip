@@ -83,6 +83,26 @@ website:    http://code.google.com/p/jquerytree/
 .ewip-header{
     z-index: 1002;
 }
+
+.ewip-header .layui-layout-right #ewip-xiala{
+    margin-left: 10px;
+}
+
+.ewip-header .layui-layout-right #ewip-xiala a{
+    display: inline-block;
+    padding:0 0px;
+    color:#000;
+    transition:all .3s;
+    -webkit-transition:all .3s
+}
+
+
+
+
+
+
+
+
 .home .layadmin-carousel{
     height: auto!important;
 }
@@ -1126,3 +1146,13 @@ website:    http://code.google.com/p/jquerytree/
     left: 5%;
 }
 /***综合数据展示样式 end***/
+
+
+/*
+.layui-form-pane .layui-form-label {
+    width: 140px;
+}
+
+.layui-form-pane .layui-input-block {
+    margin-left: 140px;
+}*/

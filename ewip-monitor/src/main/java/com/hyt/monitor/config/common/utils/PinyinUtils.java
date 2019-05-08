@@ -2,7 +2,6 @@ package com.hyt.monitor.config.common.utils;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;

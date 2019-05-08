@@ -11,11 +11,11 @@
     <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
 </head>
-<body>
-
+<body onLoad="onLoad()">
     <!--CIMISS国家站点ID-->
     <input id="longitude" type="hidden" th:value="${longitude}" >
     <input id="latitude" type="hidden" th:value="${latitude}" >
+    <input id="areaName" type="hidden" th:value="${areaName}" >
     <div class="layui-fluid home">
 
         <!--快捷方式、预警提醒、天气实况-->
@@ -178,12 +178,98 @@
     <script th:inline="javascript">
         var longitude=document.getElementById("longitude").value;
         var latitude=document.getElementById("latitude").value;
-        let bdMap = null;
-        let initMap = () => {
-            bdMap = new T.Map('container');
-            bdMap.centerAndZoom(new T.LngLat(longitude,latitude), 12);
+        var areaName=document.getElementById("areaName").value;
+        let tdMap = null;
+        var administrative;
+        function searchResult(result)
+        {
+            if(result.getStatus() == 100){
+                var data = result.getData();
+                showMsg(data);
+            }else{
+                result.getMsg();
+            }
+        }
+        function showMsg(data){
+            for(var i = 0; i < data.length; i++){
+                //解释上级行政区划
+                if(data[i].parents){
+                    var upLevel = "";
+                    if(data[i].parents.country){
+                        upLevel += data[i].parents.country.name;
+                    }
+                    if(data[i].parents.province){
+                        upLevel += data[i].parents.province.name;
+                    }
+                }
+                if(data[i].points){
+                    //绘制行政区划
+                    polygon(data[i].points);
+                }
+                //解释下级行政区划
+                if(data[i].child){
+                    showMsg(data[i].child);
+                    console.log(data[i].child.points);
+                    if(data[i].child.points){
+                        //绘制行政区划
+                        polygon(data[i].child.points);
+                    }
+                }
+            }
+        }
+
+        function polygon(points){
+            var pointsArr = [];
+            for (var i = 0; i < points.length; i++) {
+                var regionLngLats = [];
+                var regionArr = points[i].region.split(",");
+                for (var m = 0; m < regionArr.length; m++) {
+                    var lnglatArr = regionArr[m].split(" ");
+                    var lnglat = new T.LngLat(lnglatArr[0], lnglatArr[1]);
+                    regionLngLats.push(lnglat);
+                    pointsArr.push(lnglat);
+                }
+                //创建面对象
+                var polygon = new T.Polygon(regionLngLats,{color: "red", weight: 3, opacity: 1, fillColor: "#FFFFFF", fillOpacity: 0.1});
+                //向地图上添加行政区划面
+                tdMap.addOverLay(polygon);
+            }
+            //显示最佳比例尺
+            tdMap.setViewport(pointsArr);
+        }
+
+        function onLoad(){
+            tdMap = new T.Map('container');
+            tdMap.centerAndZoom(new T.LngLat(longitude,latitude), 12);
+
+            //创建对象
+            administrative = new T.AdministrativeDivision();
+            var config = {
+                needSubInfo: false,
+                needAll: false,
+                needPolygon: true,
+                needPre: true,
+                searchType: 1,
+                searchWord: areaName
+            };
+            administrative.search(config, searchResult);
+
+            var ctrl = new T.Control.MapType([
+                {
+                    title: '卫星', //地图控件上所要显示的图层名称
+                    icon:' http://api.tianditu.gov.cn/v4.0/image/map/maptype/satellitepoi.png',
+                    layer: TMAP_HYBRID_MAP
+                }
+                ,{
+                    title: '地图', //地图控件上所要显示的图层名称
+                    icon:'http://api.tianditu.gov.cn/v4.0/image/map/maptype/vector.png', //地图控件上所要显示的图层图标（默认图标大小80x80）
+                    layer: TMAP_NORMAL_MAP //地图类型对象，即MapType。
+                }
+            ]);
+            tdMap.addControl(ctrl);
+            tdMap.setMapType(TMAP_HYBRID_MAP);
         };
-        initMap();
+        // initMap();
     </script>
 </body>
 </html>

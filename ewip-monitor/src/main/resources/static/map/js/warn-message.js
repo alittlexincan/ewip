@@ -1354,7 +1354,9 @@ $(function(){
             async:{
                 enable:true,
                 url: "event/areaTree",
-                otherParam: {"empAreaId": Globel.empAreaId},
+                otherParam: {"empAreaId": Globel.empAreaId
+							,"areaCode": Globel.areaCode
+							,"level": Globel.level},
                 autoParam: ["id=pid"]
             },
             check: {
@@ -1385,7 +1387,9 @@ $(function(){
             async:false,
             type:"POST",
             url:"event/channelList",
-			data:{"empAreaId": Globel.empAreaId},
+			data:{"empAreaId": Globel.empAreaId
+                ,"areaCode": Globel.areaCode
+                ,"level": Globel.level},
             dataType: "json",
             success:function(data){
                 var html = "";
@@ -1851,6 +1855,8 @@ $(function(){
      */
     var param = function(){
         var p = {
+        	areaCode: Globel.areaCode,
+        	level: Globel.level,
             empAreaId: Globel.empAreaId,
             // startTime:"2018-09-10 11:28:21",
             // endTime:"2018-10-10 11:28:21",
@@ -1933,7 +1939,7 @@ $(function(){
      * 预警信息绑定地图上
      */
     var warnData = function(param){
-        remove_overlay();
+        // remove_overlay();
         //创建图片对象
         var createIcon = (iconUrl)=>{
             return new T.Icon({

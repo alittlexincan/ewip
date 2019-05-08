@@ -60,7 +60,7 @@
         LEFT JOIN organization o on o.id = u.organization_id
         LEFT JOIN channel c on c.id = u.channel_id
         LEFT JOIN user_job j on u.job_id = j.id
-        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">AND u.id = #{id}</if>
         <if test="name != null and name != ''">AND u.name LIKE '${name}%'</if>
         <if test="code != null and code != ''">AND u.code LIKE '${code}%'</if>
@@ -193,7 +193,8 @@
         FROM user u
         LEFT JOIN user_job uj on uj.id = u.job_id
         LEFT JOIN organization o on o.id = u.organization_id
-        where 1=1  and FIND_IN_SET(u.area_id, getAreaCList(#{empAreaId}))
+        LEFT JOIN area a on u.area_id = a.id
+        where 1=1  and a.code like '${areaCode}%'
         <if test="areaId != null and areaId != '' ">
             and u.area_id = #{areaId}
         </if>
@@ -252,7 +253,7 @@
         LEFT JOIN organization o on o.id = u.organization_id
         LEFT JOIN channel c on c.id = u.channel_id
         LEFT JOIN user_job j on u.job_id = j.id
-        where 1=1 and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">AND u.id = #{id}</if>
     </select>
 

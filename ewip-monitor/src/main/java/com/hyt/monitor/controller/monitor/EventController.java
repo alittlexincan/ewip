@@ -32,6 +32,15 @@ public class EventController {
 	@RequestMapping("/drawWarnLevelTotal")
 	@ResponseBody
 	public JSONObject drawWarnLevelTotal(@RequestParam Map<String, Object> map){
+		String areaCode=map.get("areaCode").toString();
+		if(map.get("level").equals("1")){
+			areaCode=areaCode.substring(0,2);
+		}else if(map.get("level").equals("2")){
+			areaCode=areaCode.substring(0,4);
+		}else if(map.get("level").equals("3")){
+			areaCode=areaCode.substring(0,6);
+		}
+		map.put("areaCode", areaCode);
 		try {
 			return this.service.drawWarnLevelTotal(map);
 		} catch (Exception e) {
@@ -49,6 +58,15 @@ public class EventController {
 	@ResponseBody
 	public JSONObject drawPublishAreaTotal(@RequestParam Map<String, Object> map) {
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.drawPublishAreaTotal(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,6 +81,15 @@ public class EventController {
 	@RequestMapping("/warnList")
 	@ResponseBody
 	public JSONObject warnList(@RequestParam Map<String, Object> map){
+		String areaCode=map.get("areaCode").toString();
+		if(map.get("level").equals("1")){
+			areaCode=areaCode.substring(0,2);
+		}else if(map.get("level").equals("2")){
+			areaCode=areaCode.substring(0,4);
+		}else if(map.get("level").equals("3")){
+			areaCode=areaCode.substring(0,6);
+		}
+		map.put("areaCode", areaCode);
 		try {
 			return this.service.warnList(map);
 		} catch (Exception e) {
@@ -81,6 +108,15 @@ public class EventController {
 	@ResponseBody
 	public JSONObject alreadyPub(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.alreadyPub(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,6 +134,15 @@ public class EventController {
 	@ResponseBody
 	public JSONObject drawPublishChannelTotal(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.drawPublishChannelTotal(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,6 +159,15 @@ public class EventController {
 	@ResponseBody
 	public JSONObject hourWarn(@RequestParam Map<String, Object> map)throws Exception{
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.hourWarn(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,6 +185,15 @@ public class EventController {
 	@ResponseBody
 	public JSONObject personStas(@RequestParam Map<String, Object> map){
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.personStas(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -149,6 +212,15 @@ public class EventController {
 	@ResponseBody
 	public List<Channel> channelList(@RequestParam Map<String, Object> map) {
 		try {
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
 			return this.service.findChannelAll(map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,6 +253,15 @@ public class EventController {
 	@RequestMapping(value = "/areaTree")
 	@ResponseBody
 	public Object areaTree(@RequestParam Map<String, Object> map) {
+		String areaCode=map.get("areaCode").toString();
+		if(map.get("level").equals("1")){
+			areaCode=areaCode.substring(0,2);
+		}else if(map.get("level").equals("2")){
+			areaCode=areaCode.substring(0,4);
+		}else if(map.get("level").equals("3")){
+			areaCode=areaCode.substring(0,6);
+		}
+		map.put("areaCode", areaCode);
 		try {
 			List<Tree> areaTree = this.service.areaTree(map);
 			return areaTree;
@@ -200,6 +281,17 @@ public class EventController {
 	@ResponseBody
 	public JSONArray getWarnData(@RequestParam Map<String, Object> map){
 		try {
+			String areaCodeOld=map.get("areaCode").toString();
+			String areaCode=map.get("areaCode").toString();
+			if(map.get("level").equals("1")){
+				areaCode=areaCode.substring(0,2);
+			}else if(map.get("level").equals("2")){
+				areaCode=areaCode.substring(0,4);
+			}else if(map.get("level").equals("3")){
+				areaCode=areaCode.substring(0,6);
+			}
+			map.put("areaCode", areaCode);
+			map.put("areaCodeOld", areaCodeOld);
 			return this.service.getWarnData(map);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -132,7 +132,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 添加地区信息"
-                ,area: '600px'
+                ,area: ['700px','600px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset:'50px'
@@ -148,6 +148,13 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                             'id': 'addPId'
                             ,'url': '/client/tree/area'
                             ,'isMultiple': false
+                        });
+                        // 初始化下拉树
+                        selectTree.render({
+                            'id': 'addVicinity'
+                            ,'url': '/client/tree/area'
+                            ,'isMultiple': true
+                            ,'chkboxType': { "Y": "s", "N": "s" }
                         });
                     });
                     form.render();
@@ -231,7 +238,7 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             layer.open({
                 type: 1
                 ,title: "<i class='layui-icon'>&#xe642;</i> 修改地区信息"
-                ,area: '500px'
+                ,area: ['700px','600px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
@@ -257,6 +264,17 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         }
                         // 初始化下拉树
                         selectTree.render(settings);
+
+                        var settingsNew = {
+                            'id': 'updateVicinity'
+                            , 'url': '/client/tree/area'
+                            , 'isMultiple': true
+                            , 'chkboxType': { "Y": "s", "N": "s" }
+                        };
+                        if(param.vicinity != null && param.vicinity !=""){
+                            settingsNew.checkNodeId = param.vicinity;
+                        }
+                        selectTree.render(settingsNew);
                     });
                     form.render();
                 }
@@ -291,12 +309,12 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             //示范一个公告层
             layer.open({
                 type: 1
-                ,title: "<i class='layui-icon'>&#xe642;</i> 详细信息"
-                ,area: '500px'
+                ,title: "<i class='layui-icon'>&#xe642;</i>详细信息"
+                ,area: ['700px','600px']
                 ,shade: 0.3
                 ,maxmin:true
                 ,offset: '50px'
-                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'>adsfds</div>"
+                ,content:"<div id='detailsDiv' style='padding:20px 20px 0 20px'></div>"
                 ,success: function(layero,index){
                     // 获取模板，并将数据绑定到模板，然后再弹出层中渲染
                     laytpl(detailsPop.innerHTML).render(param, function(html){
@@ -317,6 +335,17 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
                         }
                         // 初始化下拉树
                         selectTree.render(settings);
+
+                        var settingsNew = {
+                            'id': 'detailsVicinity'
+                            , 'url': '/client/tree/area'
+                            , 'isMultiple': true
+                            , 'chkboxType': { "Y": "s", "N": "s" }
+                        };
+                        if(param.vicinity != null && param.vicinity !=""){
+                            settingsNew.checkNodeId = param.vicinity;
+                        }
+                        selectTree.render(settingsNew);
                     });
                     form.render();
                 }
@@ -334,8 +363,6 @@ layui.use(["table","form","laytpl","layer","selectTree"], function(){
             $(".pId").removeClass("layui-hide");
         }
     });
-
-
     /**
      * 监听头部搜索
      */

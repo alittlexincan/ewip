@@ -23,6 +23,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("employee")
 public class EmployeeController {
+    public static void main(String[] args) {
+        String password = new SimpleHash("MD5", "111111",	"salt", 2).toString();
+        System.out.println(password);
+    }
 
     @Autowired
     private IEmployeeService employeeService;
@@ -41,7 +45,8 @@ public class EmployeeController {
      */
     @PostMapping("/insert")
     JSONObject insert(@RequestParam Map<String,Object> map){
-        Object password = new SimpleHash("MD5", map.get("loginPassword").toString(),	map.get("loginName").toString(), 2);
+//        Object password = new SimpleHash("MD5", map.get("loginPassword").toString(),	map.get("loginName").toString(), 2);
+        Object password = new SimpleHash("MD5", map.get("loginPassword").toString(),	"salt", 2);
         map.put("loginPassword", password.toString());
         return this.employeeService.insert(map);
     }
@@ -96,6 +101,15 @@ public class EmployeeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.employeeService.selectAll(map);
     }
 
@@ -126,7 +140,8 @@ public class EmployeeController {
      */
     @PostMapping("/verifyPwd")
     JSONObject verifyPwd(@RequestParam Map<String,Object> map){
-        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+//        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+        Object password = new SimpleHash("MD5", map.get("pass").toString(),	"salt", 2);
         map.put("loginPass", password.toString());
         return this.employeeService.verifyPwd(map);
     }
@@ -139,7 +154,8 @@ public class EmployeeController {
      */
     @PostMapping("/updatePwd")
     JSONObject updatePwd(@RequestParam Map<String,Object> map){
-        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+//        Object password = new SimpleHash("MD5", map.get("pass").toString(),	map.get("name").toString(), 2);
+        Object password = new SimpleHash("MD5", map.get("pass").toString(),	"salt", 2);
         map.put("newPwd", password.toString());
         return this.employeeService.updatePwd(map);
     }

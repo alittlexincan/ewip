@@ -2,11 +2,13 @@ package com.hyt.server.entity.base;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModel;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-
-@ApiModel(value = "FacilitySupply",description = "应急物资")
+@Getter
+@Setter
 @Table(name = "base_facility_supply")
 public class FacilitySupply {
     @Id
@@ -15,6 +17,8 @@ public class FacilitySupply {
     private String  id;
     @Column(name = "district",length = 64)
     private String district;
+    @Column(name = "placeName",length = 64)
+    private String placeName;
     @Column(name = "code",length = 64)
     private String code;
     @Column(name = "lon" )
@@ -23,14 +27,8 @@ public class FacilitySupply {
     private Double lat;
     @Column(name = "tel",length = 64)
     private String tel;
-    @Column(name = "type",length = 64)
-    private String type;
     @Column(name = "name",length = 64)
     private String name;
-    @Column(name = "existing",length = 64)
-    private String existing;
-    @Column(name = "model",length = 64)
-    private String model;
     @Column(name = "amount",length = 64)
     private String amount;
     @Column(name = "materialUse",length = 64)
@@ -62,188 +60,4 @@ public class FacilitySupply {
     private String createUserName;
     private String updateUserName;
 
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getCreateUserName() {
-        return createUserName;
-    }
-
-    public void setCreateUserName(String createUserName) {
-        this.createUserName = createUserName;
-    }
-
-    public String getUpdateUserName() {
-        return updateUserName;
-    }
-
-    public void setUpdateUserName(String updateUserName) {
-        this.updateUserName = updateUserName;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district == null ? null : district.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
-    public Double getLon() {
-        return lon;
-    }
-
-    public void setLon(Double lon) {
-        this.lon = lon;
-    }
-
-    public Double getLat() {
-        return lat;
-    }
-
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel == null ? null : tel.trim();
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getExisting() {
-        return existing;
-    }
-
-    public void setExisting(String existing) {
-        this.existing = existing == null ? null : existing.trim();
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model == null ? null : model.trim();
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount == null ? null : amount.trim();
-    }
-
-
-    public String getMaterialUse() {
-        return materialUse;
-    }
-
-    public void setMaterialUse(String materialUse) {
-        this.materialUse = materialUse;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit == null ? null : unit.trim();
-    }
-
-    public String getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(String principal) {
-        this.principal = principal == null ? null : principal.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
 }

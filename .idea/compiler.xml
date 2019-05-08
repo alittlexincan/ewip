@@ -21,6 +21,7 @@
         <module name="ocpp-web-client" />
         <module name="system-info" />
         <module name="warning-info" />
+        <module name="weather-forecast" />
         <module name="zuul-gateway" />
       </profile>
     </annotationProcessing>
@@ -42,6 +43,7 @@
       <module name="system-info" target="1.8" />
       <module name="uni-platform" target="1.8" />
       <module name="warning-info" target="1.8" />
+      <module name="weather-forecast" target="1.8" />
       <module name="zuul-gateway" target="1.8" />
     </bytecodeTargetLevel>
   </component>

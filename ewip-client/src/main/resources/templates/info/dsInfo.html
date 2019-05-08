@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>预警发布设施</title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" th:href="@{/layuiadmin/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuiadmin/style/admin.css}" media="all">
+    <link rel="stylesheet" th:href="@{/css/ewip.css}" media="all">
+
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <form action="javascript:;" class="layui-form layui-card-header layuiadmin-card-header-auto searchParam">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="clientID" placeholder="请输入终端编号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="factoryID" placeholder="请输入厂商编号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-button-btn" lay-submit="search" lay-filter="search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                        <button class="layui-btn layui-btn-danger" type="reset">
+                            <i class="layui-icon layui-icon-delete layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="layui-card-body">
+                <div class="layui-btn-group tableBar">
+                    <button class="layui-btn" data-type="addBarBtn">添加</button>
+                    <button class="layui-btn" data-type="deleteBarBtn">删除</button>
+                    <button class="layui-btn" data-type="downModel">下载导入模板</button>
+                    <div class="layui-inline" >
+                        <div class="layui-input-inline">
+                            <input type="file" hidden="" id="addFile" name="addFile"  lay-verify="file">
+                            <input type="hidden" id="excelPath" readonly="readonly" name="name" placeholder="Excel路径..."  class="layui-input">
+                        </div>
+                    </div>
+                    <button class="layui-btn" data-type="importData">导入数据</button>
+                </div>
+
+                <!-- 列表：数据行操作 -->
+                <script type="text/html" id="btnGroupOption">
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="detailsOption"><i class="layui-icon layui-icon-form"></i>详情</a>
+                    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="updateOption"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteOption"><i class="layui-icon layui-icon-delete"></i>删除</a>
+                </script>
+
+                <!-- 添加弹出层 -->
+                <script id="addPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientID" lay-verify="clientID"  autocomplete="off" placeholder="请输入终端编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商编号</label>
+                            <div class="layui-input-block">
+                                <select name="factoryID" lay-verify="factoryID" placeholder="请选择厂商编号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0001">双顺达</option>
+                                    <option value="0002">伍豪科技</option>
+                                    <option value="0003">沈阳恒远</option>
+                                    <option value="0004">强讯公司</option>
+                                    <option value="0005">华泰德丰</option>
+                                    <option value="0006">联合远航</option>
+                                    <option value="0007">赛乐科技</option>
+                                    <option value="0008">瑞彩</option>
+                                    <option value="0015">天齐信息</option>
+                                    <option value="0016">安徽中科金诚</option>
+                                    <option value="0017">深圳昆特</option>
+                                    <option value="0018">成都奥天</option>
+                                    <option value="0019">河南物理所</option>
+                                    <option value="0020">平治东方</option>
+                                    <option value="0021">花冠</option>
+                                    <option value="0022">畅运</option>
+                                    <option value="0023">锦州创安</option>
+                                    <option value="0024">电视台</option>
+                                    <option value="0025">广播电台</option>
+                                    <option value="0099">其他厂家</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商服务器编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="factoryServerID" lay-verify="factoryServerID"  autocomplete="off" placeholder="请输入厂商服务器编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端原始编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="originalClientID" lay-verify="originalClientID"  autocomplete="off" placeholder="请输入终端原始编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端型号</label>
+                            <div class="layui-input-block">
+                                <select name="clientStyle" lay-verify="clientStyle" placeholder="请选择终端型号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0">大喇叭</option>
+                                    <option value="1">电子屏</option>
+                                    <option value="2">北斗</option>
+                                    <option value="3">呼叫中心</option>
+                                    <option value="4">短信</option>
+                                    <option value="5">传真</option>
+                                    <option value="6">邮件</option>
+                                    <option value="7">电视</option>
+                                    <option value="8">广播</option>
+                                    <option value="9">微博</option>
+                                    <option value="10">微信</option>
+                                    <option value="11">网站</option>
+                                    <option value="12">手机客户端</option>
+                                    <option value="13">海洋广播</option>
+                                    <option value="14">气象频道</option>
+                                    <option value="15">预警智能盒子</option>
+                                    <option value="99">其他设备</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" lay-verify="lon" autocomplete="off" placeholder="请输入经度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" lay-verify="lat" autocomplete="off" placeholder="请输入纬度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" lay-verify="address" autocomplete="off" placeholder="请输入终端地址" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientPerson" lay-verify="clientPerson" autocomplete="off" placeholder="请输入终端负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人联系方式</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientTel" lay-verify="clientTel" autocomplete="off" placeholder="请输入负责人联系方式" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitAddBtn" id="submitAddBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <!-- 修改弹出层 -->
+                <script id="updatePop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientID" value="{{d.clientID}}" lay-verify="clientID"  autocomplete="off" placeholder="请输入终端编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商编号</label>
+                            <div class="layui-input-block">
+                                <select name="factoryID" lay-verify="factoryID" placeholder="请选择厂商编号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0001">双顺达</option>
+                                    <option value="0002">伍豪科技</option>
+                                    <option value="0003">沈阳恒远</option>
+                                    <option value="0004">强讯公司</option>
+                                    <option value="0005">华泰德丰</option>
+                                    <option value="0006">联合远航</option>
+                                    <option value="0007">赛乐科技</option>
+                                    <option value="0008">瑞彩</option>
+                                    <option value="0015">天齐信息</option>
+                                    <option value="0016">安徽中科金诚</option>
+                                    <option value="0017">深圳昆特</option>
+                                    <option value="0018">成都奥天</option>
+                                    <option value="0019">河南物理所</option>
+                                    <option value="0020">平治东方</option>
+                                    <option value="0021">花冠</option>
+                                    <option value="0022">畅运</option>
+                                    <option value="0023">锦州创安</option>
+                                    <option value="0024">电视台</option>
+                                    <option value="0025">广播电台</option>
+                                    <option value="0099">其他厂家</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商服务器编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="factoryServerID" value="{{d.factoryServerID}}" lay-verify="factoryServerID"  autocomplete="off" placeholder="请输入厂商服务器编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端原始编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="originalClientID" value="{{d.originalClientID}}" lay-verify="originalClientID"  autocomplete="off" placeholder="请输入终端原始编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端型号</label>
+                            <div class="layui-input-block">
+                                <select name="clientStyle" lay-verify="clientStyle" placeholder="请选择终端型号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0">大喇叭</option>
+                                    <option value="1">电子屏</option>
+                                    <option value="2">北斗</option>
+                                    <option value="3">呼叫中心</option>
+                                    <option value="4">短信</option>
+                                    <option value="5">传真</option>
+                                    <option value="6">邮件</option>
+                                    <option value="7">电视</option>
+                                    <option value="8">广播</option>
+                                    <option value="9">微博</option>
+                                    <option value="10">微信</option>
+                                    <option value="11">网站</option>
+                                    <option value="12">手机客户端</option>
+                                    <option value="13">海洋广播</option>
+                                    <option value="14">气象频道</option>
+                                    <option value="15">预警智能盒子</option>
+                                    <option value="99">其他设备</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" value="{{d.lon}}" lay-verify="lon" autocomplete="off" placeholder="请输入经度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" value="{{d.lat}}" lay-verify="lat" autocomplete="off" placeholder="请输入纬度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" value="{{d.address}}" lay-verify="address" autocomplete="off" placeholder="请输入终端地址" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientPerson" value="{{d.clientPerson}}" lay-verify="clientPerson" autocomplete="off" placeholder="请输入终端负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人联系方式</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientTel" value="{{d.clientTel}}" lay-verify="clientTel" autocomplete="off" placeholder="请输入负责人联系方式" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-hide" >
+                            <div class="layui-input-block layui-col-md-offset4">
+                                <button class="layui-btn" lay-submit="" lay-filter="submitUpdateBtn" id="submitUpdateBtn">添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+
+                <!-- 详细弹出层 -->
+                <script id="detailsPop" type="text/html">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientID" disabled="disabled" value="{{d.clientID}}" lay-verify="clientID"  autocomplete="off" placeholder="请输入终端编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商编号</label>
+                            <div class="layui-input-block">
+                                <select name="factoryID" lay-verify="factoryID" placeholder="请选择厂商编号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0001">双顺达</option>
+                                    <option value="0002">伍豪科技</option>
+                                    <option value="0003">沈阳恒远</option>
+                                    <option value="0004">强讯公司</option>
+                                    <option value="0005">华泰德丰</option>
+                                    <option value="0006">联合远航</option>
+                                    <option value="0007">赛乐科技</option>
+                                    <option value="0008">瑞彩</option>
+                                    <option value="0015">天齐信息</option>
+                                    <option value="0016">安徽中科金诚</option>
+                                    <option value="0017">深圳昆特</option>
+                                    <option value="0018">成都奥天</option>
+                                    <option value="0019">河南物理所</option>
+                                    <option value="0020">平治东方</option>
+                                    <option value="0021">花冠</option>
+                                    <option value="0022">畅运</option>
+                                    <option value="0023">锦州创安</option>
+                                    <option value="0024">电视台</option>
+                                    <option value="0025">广播电台</option>
+                                    <option value="0099">其他厂家</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">厂商服务器编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="factoryServerID" disabled="disabled" value="{{d.factoryServerID}}" lay-verify="factoryServerID"  autocomplete="off" placeholder="请输入厂商服务器编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端原始编号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="originalClientID" disabled="disabled" value="{{d.originalClientID}}" lay-verify="originalClientID"  autocomplete="off" placeholder="请输入终端原始编号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端型号</label>
+                            <div class="layui-input-block">
+                                <select name="clientStyle" lay-verify="clientStyle" placeholder="请选择终端型号" lay-filter="clientStyle">
+                                    <option value="">请选择终端型号</option>
+                                    <option value="0">大喇叭</option>
+                                    <option value="1">电子屏</option>
+                                    <option value="2">北斗</option>
+                                    <option value="3">呼叫中心</option>
+                                    <option value="4">短信</option>
+                                    <option value="5">传真</option>
+                                    <option value="6">邮件</option>
+                                    <option value="7">电视</option>
+                                    <option value="8">广播</option>
+                                    <option value="9">微博</option>
+                                    <option value="10">微信</option>
+                                    <option value="11">网站</option>
+                                    <option value="12">手机客户端</option>
+                                    <option value="13">海洋广播</option>
+                                    <option value="14">气象频道</option>
+                                    <option value="15">预警智能盒子</option>
+                                    <option value="99">其他设备</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">经度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lon" disabled="disabled" value="{{d.lon}}" lay-verify="lon" autocomplete="off" placeholder="请输入经度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="lat" disabled="disabled" value="{{d.lat}}" lay-verify="lat" autocomplete="off" placeholder="请输入纬度" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端地址</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="address" disabled="disabled" value="{{d.address}}" lay-verify="address" autocomplete="off" placeholder="请输入终端地址" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">终端负责人</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientPerson" disabled="disabled" value="{{d.clientPerson}}" lay-verify="clientPerson" autocomplete="off" placeholder="请输入终端负责人" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">负责人联系方式</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="clientTel" disabled="disabled" value="{{d.clientTel}}" lay-verify="clientTel" autocomplete="off" placeholder="请输入负责人联系方式" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </script>
+                <!-- 列表信息 -->
+                <table class="layui-table" lay-filter="table" id="table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/layuiadmin/layui/layui.js}" ></script>
+    <script th:src="@{/ewip/info/dsInfo.js}" charset="utf-8"></script>
+
+</body>
+</html>

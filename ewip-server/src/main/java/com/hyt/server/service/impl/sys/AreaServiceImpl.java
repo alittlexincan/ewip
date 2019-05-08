@@ -7,9 +7,13 @@ import com.hyt.server.config.common.universal.AbstractService;
 import com.hyt.server.entity.sys.Area;
 import com.hyt.server.mapper.sys.IAreaMapper;
 import com.hyt.server.service.sys.IAreaService;
+import com.hyt.server.utils.ChineseCharacterUtil;
+import com.hyt.server.utils.PinyinUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

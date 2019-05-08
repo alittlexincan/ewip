@@ -21,7 +21,9 @@
 		from warn_edit w
 		left join disaster d on w.disaster_id= d.id
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		left join area a on a.id= w.area_id
+		where 1=1 and w.status=1
+		and a.code like '${areaCode}%'
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -62,7 +64,8 @@
 		case w.disaster_color WHEN 0 then '红色' WHEN 1 then '橙色' WHEN 2 then '黄色' else '蓝色' end
 		colorLevelName from warn_edit w
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		left join area a on a.id=w.area_id
+		where 1=1 and w.status=1 and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -101,9 +104,11 @@
 		select areaId, city,count(colorLevelName) count,colorLevelName from (
 		SELECT distinct a.area_name city,a.level,c.area_id areaId, w.id,
 		case w.disaster_color WHEN 0 then '红色' WHEN 1 then '橙色' WHEN 2 then '黄色' else '蓝色' end colorLevelName
-		FROM warn_edit w left join warn_edit_content c on c.warn_edit_id=w.id
+		FROM warn_edit w
+		left join warn_edit_content c on c.warn_edit_id=w.id
 		left join area a on c.area_id=a.id
-		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		where 1=1 and w.status=1 and (level=1 or level=2 or level=3)
+		and a.code like '${areaCode}%'
 		<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 			]]>
@@ -151,7 +156,9 @@
 			w.title
 			from warn_edit w
 			left join disaster d on w.disaster_id=d.id
-			where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+			left join area a on w.area_id=a.id
+			where 1=1 and w.status=1
+			and a.code like '${areaCode}%'
 				<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 					]]>
@@ -190,7 +197,9 @@
 	<select id="warnListCount" resultType="java.lang.Integer">
 		select count(id) from (
 			select distinct w.id  from warn_edit w
-			where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+			left join area a on w.area_id=a.id
+			where 1=1 and w.status=1
+			and a.code like '${areaCode}%'
 			<![CDATA[
 				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 				]]>
@@ -234,7 +243,9 @@
 				from warn_edit w
 				LEFT JOIN disaster d on w.disaster_id =d.id
 				left join warn_edit_content c on w.id=c.warn_edit_id
-				where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+				left join area a on a.id=w.area_id
+				where 1=1 and w.status=1
+				and a.code like '${areaCode}%'
 					<![CDATA[
 							AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 						]]>
@@ -325,7 +336,9 @@
 		case w.disaster_color when 0 then '红色' when 1 then '橙色' when 2 then '黄色' else '蓝色' end colorLevelName,
 		DATE_FORMAT(w.send_time, '%Y-%m-%d') sendTime from warn_edit w
 		left join warn_edit_content c on w.id=c.warn_edit_id
-		where 1=1 and w.status=1 and FIND_IN_SET(w.area_id, getAreaCList(#{empAreaId}))
+		left join area a on w.area_id=a.id
+		where 1=1 and w.status=1
+		and a.code like '${areaCode}%'
 			<![CDATA[
 					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
 				]]>
@@ -368,7 +381,7 @@
 	<select id="areaTree" resultType="map">
 		select id, code, area_name areaName, level,p_id pid,
 		(select area_name from area where id = t.p_id) parentAreaName  from area t
-		where FIND_IN_SET(t.id, getAreaCList(#{empAreaId}))
+		where t.code like '${areaCode}%'
 	</select>
 
 	<!--获取灾种树-->
@@ -392,13 +405,20 @@
 			LEFT JOIN area a on c.area_id=a.id
 			LEFT JOIN disaster d on w.disaster_id=d.id
 			LEFT JOIN channel ch on ch.id=c.channel_id
-			where 1=1 and w.status=1 and a.level=3
+			where 1=1 and w.status=1
+			and a.code like '${areaCode}%'
+		<if test="vicinity != null and vicinity != '' ">
+			or a.id IN
+			<foreach collection="vicinity.split(',')" item="item" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</if>
 			<![CDATA[
-					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
-				]]>
+				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') >= #{startTime}
+			]]>
 			<![CDATA[
-					AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
-				]]>
+				AND DATE_FORMAT(w.send_time, '%Y-%m-%d %H:%i:%s') <= #{endTime}
+			]]>
 			<if test="disasterId != null and disasterId != '' ">
 				AND w.disaster_id IN
 				<foreach collection="disasterId.split(',')" item="item" open="(" close=")" separator=",">
@@ -424,6 +444,11 @@
 				</foreach>
 			</if>
 			ORDER BY w.send_time DESC
+	</select>
+
+	<!--查询所有渠道-->
+	<select id="getVicinityByAreaCode" resultType="com.hyt.monitor.entity.monitor.Area">
+		select * from area where code=#{areaCodeOld}
 	</select>
 
 	<!-- 根据ID和地区ID获取发布的渠道-->

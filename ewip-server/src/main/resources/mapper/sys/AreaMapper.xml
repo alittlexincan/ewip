@@ -14,24 +14,25 @@
         <result column="child" jdbcType="INTEGER" property="child"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+        <result column="vicinity" jdbcType="VARCHAR" property="vicinity"/>
     </resultMap>
 
     <!-- 查询地区信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-            a.id,
-            a.area_name,
-            a.code,
-            a.p_id,
-            (select b.area_name from area b where b.id = a.p_id) parent_name,
-            (select count(*) from area ar where ar.p_id = a.id) child,
-            a.level,
-            a.longitude,
-            a.latitude,
-            a.altitude,
-            a.create_time
-        FROM area a where 1=1
-        and FIND_IN_SET(a.id, getAreaCList(#{empAreaId}))
+        a.id,
+        a.area_name,
+        a.code,
+        a.p_id,
+        (select b.area_name from area b where b.id = a.p_id) parent_name,
+        (select count(*) from area ar where ar.p_id = a.id) child,
+        a.level,
+        a.longitude,
+        a.latitude,
+        a.altitude,
+        a.vicinity,
+        a.create_time
+        FROM area a where 1=1 and a.code like '${areaCode}%'
         <if test="id != null and id != ''">AND a.id = #{id}</if>
         <if test="areaName != null and areaName != ''">AND a.area_name LIKE '${areaName}%'</if>
         <if test="code != null and code != ''">AND a.code = #{code}</if>
@@ -42,7 +43,7 @@
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY a.create_time,a.level DESC
+                ORDER BY a.create_time DESC
             </otherwise>
         </choose>
     </select>
@@ -59,6 +60,7 @@
             a.longitude,
             a.latitude,
             a.altitude,
+            a.vicinity,
             a.create_time
         FROM area a where 1=1
         <if test="id != null">AND a.id = #{id, jdbcType=VARCHAR}</if>
@@ -67,9 +69,8 @@
 
     <!--查询所有的地区信息 -->
     <select id="areaList" resultMap="BaseResultMap">
-      select * from area where 1=1 and FIND_IN_SET(id, getAreaCList(#{empAreaId}))
+      select * from area where 1=1 and code like '${areaCode}%'
       or FIND_IN_SET(id, getAreaPList(#{empAreaId}))
     </select>
-
 
 </mapper>

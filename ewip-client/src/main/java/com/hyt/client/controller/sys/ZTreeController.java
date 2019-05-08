@@ -36,6 +36,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getMenuTree(map);
         return json.getJSONArray("data");
     }
@@ -51,6 +60,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getAreaTree(map);
         return json.getJSONArray("data");
     }
@@ -65,6 +83,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getOrganizationTree(map);
         return json.getJSONArray("data");
     }
@@ -79,6 +106,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getDisasterTree(map);
         return json.getJSONArray("data");
     }
@@ -93,6 +129,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getDisasterLevelTree(map);
         return json.getJSONArray("data");
     }
@@ -107,6 +152,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getDisasterByContentTree(map);
         return json.getJSONArray("data");
     }
@@ -121,6 +175,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getUserGroupTree(map);
         return json.getJSONArray("data");
     }
@@ -135,6 +198,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getUserGroupCountTree(map);
         return json.getJSONArray("data");
     }
@@ -149,6 +221,15 @@ public class ZTreeController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject json =  this.zTreeService.getOrganizationUserGroupTree(map);
         return json.getJSONArray("data");
     }

@@ -32,12 +32,11 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'areaName', title: '区县', sort: true}
-            ,{field: 'name', title: '名称', sort: true}
-            ,{field: 'unit', title: '所属部门',sort: true}
+            ,{field: 'name', title: '园区名称', sort: true}
+            ,{field: 'address', title: '地址', sort: true}
             ,{field: 'type', title: '园区类型',sort: true}
             ,{field: 'area', title: '占地面积（㎡）', sort: true}
-            ,{field: 'worker', title: '工作人员人数', sort: true}
-            ,{field: 'address', title: '地址', sort: true}
+
             // ,{field: 'principal', title: '负责人', sort: true}
             // ,{field: 'phone', title: '联系电话', sort: true}
             // ,{field: 'description', title: '园区描述', sort: true}

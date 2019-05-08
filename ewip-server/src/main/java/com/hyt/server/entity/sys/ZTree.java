@@ -27,6 +27,8 @@ public class ZTree {
 
     private String pId;
 
+    private int areaLevel;  // 级别
+
     private int level;  // 级别
 
     private String channelId;
@@ -61,12 +63,13 @@ public class ZTree {
 
     public ZTree() {}
 
-    public ZTree(String id, String name, String code, String pId, int level, String channelId, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img, int count, String url, int turn) {
+    public ZTree(String id, String name, String code, String pId, int level,int areaLevel, String channelId, String areaId, String organizationId, Boolean open, int type, int disasterColor, int disasterLevel, String areaName, String organizationName, int isConfig, int isStrategy, String img, int count, String url, int turn) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.pId = pId;
         this.level = level;
+        this.areaLevel = areaLevel;
         this.channelId = channelId;
         this.areaId = areaId;
         this.organizationId = organizationId;
@@ -242,5 +245,13 @@ public class ZTree {
 
     public void setTurn(int turn) {
         this.turn = turn;
+    }
+
+    public int getAreaLevel() {
+        return areaLevel;
+    }
+
+    public void setAreaLevel(int areaLevel) {
+        this.areaLevel = areaLevel;
     }
 }

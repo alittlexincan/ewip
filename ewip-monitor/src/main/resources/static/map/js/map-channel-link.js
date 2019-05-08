@@ -96,7 +96,9 @@ $(function(){
 			async: true,
 			type: "POST",
 			url: "/channel/monitor",
-			data: {empAreaId:Globel.empAreaId},
+			data: {empAreaId:Globel.empAreaId
+				,"areaCode": Globel.areaCode
+                ,"level": Globel.level},
 			dataType: "json",
 			success: function(data){
 				var cavData = $.channelMonitor("#main", {

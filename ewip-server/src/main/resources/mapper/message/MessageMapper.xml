@@ -18,24 +18,26 @@
     <!-- 分页查询一键发布列表信息 -->
     <select id="findAll" resultMap="BaseResultMap">
         select
-            id,
-            title,
-            organization_id,
-            organization_name,
-            area_id,
-            area_name,
-            type,
-            send_time
-        FROM message where 1=1
-        <if test="id != null and id != ''">AND id = #{id}</if>
-        <if test="title != null and title != ''">AND title LIKE '${title}%'</if>
-        <if test="type != null and type != ''">AND type = #{type}</if>
+            m.id,
+            m.title,
+            m.organization_id,
+            m.organization_name,
+            m.area_id,
+            m.area_name,
+            m.type,
+            m.send_time
+        FROM message m
+        left join area a on a.id=m.area_id
+        where 1=1 and a.code like '${areaCode}%'
+        <if test="id != null and id != ''">AND m.id = #{id}</if>
+        <if test="title != null and title != ''">AND m.title LIKE '${title}%'</if>
+        <if test="type != null and type != ''">AND m.type = #{type}</if>
         <choose>
             <when test="sortName !=null and sortName!='id'">
                 ORDER BY ${sortName} ${sortOrder}
             </when >
             <otherwise>
-                ORDER BY send_time DESC
+                ORDER BY m.send_time DESC
             </otherwise>
         </choose>
     </select>

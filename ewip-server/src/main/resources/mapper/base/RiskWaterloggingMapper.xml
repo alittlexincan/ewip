@@ -43,7 +43,7 @@
   <select id="findAll" resultMap="BaseResultMap">
     SELECT r.*,a.area_name areaName FROM base_risk_waterlogging r
     left join area a on r.district=a.id
-    where 1=1  and FIND_IN_SET(r.district, getAreaCList(#{empAreaId}))
+    where 1=1 and a.code like '${areaCode}%'
     <if test="id != null and id != ''">AND r.id = #{id}</if>
     <if test="name != null and name != ''">AND r.name = #{name} </if>
     <choose>

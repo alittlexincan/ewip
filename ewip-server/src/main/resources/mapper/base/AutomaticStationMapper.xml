@@ -47,7 +47,7 @@
     left join area a on s.area_id=a.id
     left join employee e on s.createUser=e.id
     left join employee em on s.updateUser=em.id
-    where 1=1 and FIND_IN_SET(s.area_id, getAreaCList(#{empAreaId}))
+    where 1=1 and a.code like '${areaCode}%'
     <if test="id != null and id != ''">AND s.id = #{id}</if>
     <if test="name != null and name != ''">AND s.name = #{name} </if>
     <choose>

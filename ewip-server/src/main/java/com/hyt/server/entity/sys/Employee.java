@@ -68,6 +68,8 @@ public class Employee {
 
     private String level;
 
+    private String areaCode;
+
     private String longitude;
 
     private String latitude;
@@ -86,7 +88,8 @@ public class Employee {
         this.createTime = createTime;
     }
 
-    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, String roleType, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode, String areaName, String level, String longitude, String latitude) {
+    public Employee(String loginName, String loginPassword, String name, String areaId, String organizationId, String phone, String email, String roleType, Integer sex, Date createTime, String organizationName, Integer organizationType, String organizationCode,
+                    String areaName, String level,String areaCode, String longitude, String latitude) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
         this.name = name;
@@ -102,6 +105,7 @@ public class Employee {
         this.organizationCode = organizationCode;
         this.areaName = areaName;
         this.level = level;
+        this.areaCode = areaCode;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -248,5 +252,13 @@ public class Employee {
 
     public void setRoleType(String roleType) {
         this.roleType = roleType;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode;
     }
 }

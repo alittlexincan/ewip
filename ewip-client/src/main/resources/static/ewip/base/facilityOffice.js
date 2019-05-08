@@ -32,14 +32,10 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             {type: 'checkbox'}
             ,{type: 'numbers', title: '编号'}
             ,{field: 'areaName', title: '地区', sort: true}
-            ,{field: 'name', title: '名称', sort: true}
-            ,{field: 'unit', title: '所属部门',sort: true}
-            ,{field: 'type', title: '场所类型',sort: true}
-            ,{field: 'area', title: '占地面积（㎡）', sort: true}
-            // ,{field: 'worker', title: '工作人员人数', sort: true}
-            // ,{field: 'address', title: '地址', sort: true}
-            // ,{field: 'principal', title: '负责人', sort: true}
-            // ,{field: 'phone', title: '联系电话', sort: true}
+            ,{field: 'name', title: '办公场所名称', sort: true}
+            ,{field: 'address', title: '地址', sort: true}
+            ,{field: 'principal', title: '联系人', sort: true}
+            ,{field: 'phone', title: '联系电话', sort: true}
            ,{title: '操&nbsp;&nbsp;作',width: '25%', align:'center', toolbar: '#btnGroupOption'}
         ]]
     });
@@ -54,8 +50,6 @@ layui.use(['table','form','laytpl','layer', 'selectTree', 'zTree', 'disaster'], 
             },
             where: { //设定异步数据接口的额外参数，任意设
                 name: param == undefined ? '' : param.name
-                ,type: param == undefined ? '' : param.type
-                ,unit: param == undefined ? '' : param.unit
             }
         });
     };

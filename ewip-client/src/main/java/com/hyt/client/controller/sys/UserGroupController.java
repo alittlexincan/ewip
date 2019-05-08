@@ -8,9 +8,7 @@ import com.hyt.client.utils.GroupExceUtil;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddressList;
-import org.apache.poi.xssf.usermodel.XSSFDataValidationHelper;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +97,15 @@ public class UserGroupController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.userGroupService.selectAll(map);
     }
 
@@ -113,6 +120,15 @@ public class UserGroupController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         return this.userGroupService.selectGroup(map);
     }
 
@@ -126,6 +142,15 @@ public class UserGroupController {
         Subject subject = SecurityUtils.getSubject();
         JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
         map.put("empAreaId", employee.getString("areaId"));
+        String areaCode=employee.getString("areaCode").toString();
+        if(employee.getString("level").equals("1")){
+            areaCode=areaCode.substring(0,2);
+        }else if(employee.getString("level").equals("2")){
+            areaCode=areaCode.substring(0,4);
+        }else if(employee.getString("level").equals("3")){
+            areaCode=areaCode.substring(0,6);
+        }
+        map.put("areaCode", areaCode);
         JSONObject jsonAll=this.userGroupService.downModel(map);
 
         String channel=jsonAll.get("channelArry").toString();
@@ -144,30 +169,21 @@ public class UserGroupController {
         }
         // 创建需要用户填写的sheet
         XSSFSheet sheetPro = (XSSFSheet) book.createSheet("群组信息");
-        Row row0 = sheetPro.createRow(0);
-        row0.createCell(0).setCellValue("省<必填>");
-        sheetPro.setColumnWidth(0, 4000);
-        row0.createCell(1).setCellValue("市<必填>");
-        sheetPro.setColumnWidth(1, 4000);
-        row0.createCell(2).setCellValue("区县<必填>");
-        sheetPro.setColumnWidth(2, 4000);
-        row0.createCell(3).setCellValue("乡镇");
-        sheetPro.setColumnWidth(3, 4000);
-        row0.createCell(4).setCellValue("机构名称<必填>");
-        sheetPro.setColumnWidth(4, 4000);
-        row0.createCell(5).setCellValue("群组类型<必填>");
-        sheetPro.setColumnWidth(5, 4000);
-        row0.createCell(6).setCellValue("渠道<必填>");
-        sheetPro.setColumnWidth(6, 4000);
-        row0.createCell(7).setCellValue("群组名称<必填>");
-        sheetPro.setColumnWidth(7, 4000);
+        XSSFRow row0 = sheetPro.createRow(0);
+        //第四步创建单元格
+        String[] keyWord = {"省<必填>","市<必填>","区县<必填>", "乡镇", "机构名称<必填>","群组类型<必填>","渠道<必填>","群组名称<必填>"};
+        for (int i = 0; i < keyWord.length; i++) {
+            XSSFCell cell = row0.createCell(i);//第一个单元格
+            cell.setCellValue(keyWord[i]);
+            sheetPro.setColumnWidth(i, 256 * 21);
+        }
         String data=jsonAll.get("data").toString();
         JSONArray result = JSONArray.parseArray(data);
         //创建一个专门用来存放地区信息的隐藏sheet页
         //因此也不能在现实页之前创建，否则无法隐藏。
         Sheet hideSheet = book.createSheet("area");
         //这一行作用是将此sheet隐藏，功能未完成时注释此行,可以查看隐藏sheet中信息是否正确
-        book.setSheetHidden(book.getSheetIndex(hideSheet), true);
+        book.setSheetHidden(book.getSheetIndex(hideSheet), false);
         int rowId = 0;
         // 设置所有行
         Row rows = hideSheet.createRow(rowId++);
@@ -229,17 +245,17 @@ public class UserGroupController {
         for(int c = 0;c < countyArry.size(); c++){
             JSONObject countyJson=countyArry.getJSONObject(c);
             String countyName=countyJson.get("name").toString();
-            String country=countyJson.get("children").toString();
-            JSONArray countryArry = JSONArray.parseArray(country);
+//            String country=countyJson.get("children").toString();
+//            JSONArray countryArry = JSONArray.parseArray(country);
             Row countyRow = hideSheet.createRow(rowId++);
             countyRow.createCell(0).setCellValue(countyName);
-            for(int j = 0; j < countryArry.size(); j ++){
-                JSONObject countryJson=countryArry.getJSONObject(j);
-                Cell countyCell = countyRow.createCell(j + 1);
-                countyCell.setCellValue(countryJson.get("name").toString());
-            }
+//            for(int j = 0; j < countryArry.size(); j ++){
+//                JSONObject countryJson=countryArry.getJSONObject(j);
+//                Cell countyCell = countyRow.createCell(j + 1);
+//                countyCell.setCellValue(countryJson.get("name").toString());
+//            }
             // 添加名称管理器
-            String range = ExcelUtil.getRange(1, rowId, countryArry.size());
+            String range = ExcelUtil.getRange(1, rowId, countyArry.size());
             Name name = book.createName();
             //key不可重复
             name.setNameName(countyName);
@@ -337,6 +353,15 @@ public class UserGroupController {
             Subject subject = SecurityUtils.getSubject();
             JSONObject employee = (JSONObject) subject.getSession().getAttribute("employee");
             map.put("empAreaId", employee.getString("areaId"));
+            String areaCode=employee.getString("areaCode").toString();
+            if(employee.getString("level").equals("1")){
+                areaCode=areaCode.substring(0,2);
+            }else if(employee.getString("level").equals("2")){
+                areaCode=areaCode.substring(0,4);
+            }else if(employee.getString("level").equals("3")){
+                areaCode=areaCode.substring(0,6);
+            }
+            map.put("areaCode", areaCode);
             return this.userGroupService.importData(map,list);
         }else{
             json.put("code","500");
